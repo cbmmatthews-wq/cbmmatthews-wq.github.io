@@ -551,6 +551,63 @@ pre.ascii-figure {
 }
 
 /* ==========================================================================
+   FUNNEL FIGURE
+   ========================================================================== */
+.funnel-figure {
+  margin: 6px 0 20px;
+  background: var(--white);
+  padding: 26px 18px 22px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.funnel-tier {
+  margin: 0 auto 6px;
+  padding: 16px 22px;
+  text-align: center;
+  border-left: 4px solid var(--rust);
+}
+.tier-tofu { width: 100%; background: var(--cream); }
+.tier-mofu { width: 82%; background: var(--cream-deep); }
+.tier-bofu { width: 64%; background: var(--ink); color: var(--white); }
+.funnel-stage {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.tier-bofu .funnel-stage { color: var(--white); }
+.funnel-quote {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.tier-bofu .funnel-quote { color: #c4baa8; }
+.funnel-tools {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.tier-bofu .funnel-tools { color: #e8e4dc; }
+.funnel-result {
+  width: 46%;
+  margin: 8px auto 0;
+  padding: 11px 18px;
+  text-align: center;
+  background: var(--rust);
+  color: white;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+@media (max-width: 640px) {
+  .tier-mofu { width: 92%; }
+  .tier-bofu { width: 82%; }
+  .funnel-result { width: 62%; }
+}
+
+/* ==========================================================================
    BLOCKQUOTE (for definitions like AAAA and Schultz)
    ========================================================================== */
 .section blockquote {
@@ -600,7 +657,7 @@ pre.ascii-figure {
   padding: 0 var(--content-padding) 100px;
 }
 .home-intro p {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.7;
   margin-bottom: 18px;
   color: var(--ink-soft);
