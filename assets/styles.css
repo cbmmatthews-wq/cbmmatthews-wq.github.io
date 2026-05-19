@@ -1,0 +1,654 @@
+/* ==========================================================================
+   cbmatthe — Course Notes Site
+   Shared design system. Every page links this file.
+   To restyle the entire site, edit only this file.
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --ink: #1c1917;
+  --ink-soft: #2a2520;
+  --paper: #f5f0e8;
+  --cream: #ede8e0;
+  --cream-deep: #e0d9cc;
+  --rust: #c8401e;
+  --rust-soft: #f0e8e6;
+  --muted: #7a7068;
+  --rule: #d6cfc4;
+  --white: #ffffff;
+  --highlight: #fff8e1;
+
+  /* Type */
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Layout */
+  --max-width: 1060px;
+  --content-padding: 40px;
+  --topnav-height: 44px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   TOP NAV — thin black bar
+   ========================================================================== */
+.topnav {
+  background: #0a0a0a;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.topnav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--topnav-height);
+}
+
+.topnav-brand {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.topnav-brand:hover { color: var(--rust); }
+
+.topnav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.topnav-item { position: relative; }
+
+.topnav-link {
+  display: block;
+  padding: 0 16px;
+  line-height: var(--topnav-height);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d4d0c8;
+  text-decoration: none;
+  transition: color 0.15s;
+  cursor: pointer;
+}
+.topnav-link:hover { color: var(--rust); }
+.topnav-link.has-dropdown::after { content: ' \25BE'; font-size: 9px; opacity: 0.6; margin-left: 2px; }
+
+.topnav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 280px;
+  background: var(--white);
+  border-top: 2px solid var(--rust);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  list-style: none;
+  padding: 8px 0;
+  z-index: 210;
+}
+.topnav-item:hover .topnav-dropdown,
+.topnav-item:focus-within .topnav-dropdown {
+  display: block;
+}
+.topnav-dropdown a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+.topnav-dropdown a:hover {
+  background: var(--paper);
+  color: var(--rust);
+  border-left-color: var(--rust);
+}
+.topnav-dropdown a.disabled {
+  color: var(--muted);
+  pointer-events: none;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   PAGE WRAPPER
+   ========================================================================== */
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* ==========================================================================
+   PAGE HERO (top of each unit page)
+   ========================================================================== */
+.page-hero {
+  padding: 56px 0 28px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.page-hero-num {
+  font-family: var(--serif);
+  font-size: 120px;
+  font-weight: 900;
+  color: var(--cream-deep);
+  line-height: 1;
+  margin-bottom: -32px;
+  user-select: none;
+}
+.page-hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 14px;
+}
+.page-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  max-width: 820px;
+}
+.page-hero .lede {
+  margin-top: 20px;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 720px;
+}
+
+/* ==========================================================================
+   SECONDARY NAV (in-page, sticky, with progress bar)
+   ========================================================================== */
+.subnav {
+  background: var(--cream);
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: var(--topnav-height);
+  z-index: 100;
+}
+.subnav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.subnav-inner::-webkit-scrollbar { display: none; }
+.subnav-inner a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 13px 12px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.subnav-inner a:hover,
+.subnav-inner a.active {
+  color: var(--rust);
+  border-bottom-color: var(--rust);
+}
+.subnav-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--rust);
+  width: 0%;
+  transition: width 0.08s linear;
+  z-index: 101;
+}
+
+/* ==========================================================================
+   SECTIONS — tightened gap
+   ========================================================================== */
+.section {
+  padding: 36px 0 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.section:last-of-type { border-bottom: none; }
+.sec-num {
+  font-family: var(--serif);
+  font-size: 96px;
+  font-weight: 900;
+  color: var(--cream-deep);
+  line-height: 1;
+  margin-bottom: -22px;
+  user-select: none;
+}
+.sec-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.section h2 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+.section h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 28px 0 10px;
+}
+.section h4 {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin: 22px 0 8px;
+}
+.section p {
+  margin-bottom: 14px;
+  max-width: 760px;
+}
+.section ul, .section ol {
+  margin: 0 0 14px 24px;
+  max-width: 760px;
+}
+.section li { margin-bottom: 6px; }
+.section a {
+  color: var(--rust);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.section a:hover { color: var(--ink); }
+em { font-style: italic; }
+strong { font-weight: 700; color: var(--ink); }
+
+/* ==========================================================================
+   PULL-QUOTE (for Wanamaker etc.)
+   ========================================================================== */
+.pullquote {
+  margin: 32px 0;
+  padding: 30px 36px;
+  background: var(--white);
+  border-left: 4px solid var(--rust);
+  max-width: 820px;
+}
+.pullquote-text {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.pullquote-attr {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+
+/* ==========================================================================
+   STAT CARDS / BIG NUMBER BOXES
+   ========================================================================== */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+.stat-card {
+  background: var(--white);
+  border-top: 3px solid var(--rust);
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.stat-card-val {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.stat-card-lbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.stat-card-sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   CALLOUTS & TAKEAWAY BOXES
+   ========================================================================== */
+.callout {
+  margin: 22px 0;
+  padding: 20px 24px;
+  background: var(--white);
+  border-left: 4px solid var(--rust);
+  max-width: 820px;
+}
+.callout-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 8px;
+}
+.callout p { margin-bottom: 8px; }
+.callout p:last-child { margin-bottom: 0; }
+
+.takeaway {
+  margin: 28px 0;
+  padding: 22px 26px;
+  background: var(--cream);
+  border-left: 4px solid var(--ink);
+  max-width: 820px;
+}
+.takeaway-label {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.takeaway ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  max-width: none;
+}
+.takeaway li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.takeaway li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--rust);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   SIDEBAR CARD (for Nike-style asides)
+   ========================================================================== */
+.sidebar-card {
+  margin: 36px 0;
+  padding: 32px 36px 28px;
+  background: var(--ink);
+  color: #e8e4dc;
+  position: relative;
+  max-width: 820px;
+}
+.sidebar-card::before {
+  content: 'SIDEBAR';
+  position: absolute;
+  top: -10px;
+  left: 28px;
+  background: var(--rust);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+}
+.sidebar-card h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.sidebar-card-sub {
+  font-size: 14px;
+  color: var(--rust);
+  font-style: italic;
+  margin-bottom: 18px;
+}
+.sidebar-card p {
+  color: #d4d0c8;
+  max-width: none;
+  margin-bottom: 12px;
+}
+.sidebar-card ul {
+  color: #d4d0c8;
+  margin: 8px 0 12px 22px;
+}
+.sidebar-card strong { color: var(--white); }
+.sidebar-card-tag {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #3a3530;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--rust);
+}
+
+/* ==========================================================================
+   TABLES
+   ========================================================================== */
+.section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.section table th {
+  background: var(--ink);
+  color: var(--white);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.section table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.section table tr:last-child td { border-bottom: none; }
+.section table tr:nth-child(even) td { background: var(--paper); }
+
+/* ==========================================================================
+   FIGURES
+   ========================================================================== */
+.figure {
+  margin: 28px 0;
+  max-width: 100%;
+}
+.figure-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 8px;
+}
+.figure-title {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.figure-content {
+  background: var(--white);
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.figure-caption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+pre.ascii-figure {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  background: var(--cream);
+  padding: 20px;
+  overflow-x: auto;
+  border-left: 3px solid var(--rust);
+  white-space: pre;
+}
+
+/* ==========================================================================
+   BLOCKQUOTE (for definitions like AAAA and Schultz)
+   ========================================================================== */
+.section blockquote {
+  margin: 20px 0;
+  padding: 18px 26px;
+  background: var(--cream);
+  border-left: 3px solid var(--muted);
+  font-style: italic;
+  color: var(--ink-soft);
+  max-width: 820px;
+}
+.section blockquote p { margin-bottom: 8px; }
+.section blockquote p:last-child { margin-bottom: 0; }
+
+/* ==========================================================================
+   HOMEPAGE
+   ========================================================================== */
+.home-hero {
+  padding: 100px 0 50px;
+  text-align: center;
+}
+.home-hero-tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 24px;
+}
+.home-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(56px, 9vw, 110px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.home-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--rust);
+  margin: 40px auto;
+}
+.home-intro {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--content-padding) 100px;
+}
+.home-intro p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  color: var(--ink-soft);
+}
+.home-intro p.signoff {
+  margin-top: 32px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--rust);
+  text-align: right;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  margin-top: 60px;
+  padding: 32px 0;
+  border-top: 1px solid var(--rule);
+  background: var(--cream);
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root { --content-padding: 20px; --topnav-height: 42px; }
+  body { font-size: 16px; }
+  .topnav-brand { font-size: 14px; }
+  .topnav-link { padding: 0 10px; font-size: 11px; }
+  .topnav-dropdown { right: -10px; min-width: 240px; }
+  .home-hero { padding: 60px 0 30px; }
+  .home-divider { margin: 30px auto; }
+  .sec-num, .page-hero-num { font-size: 64px; margin-bottom: -16px; }
+  .stat-card-val { font-size: 28px; }
+  .sidebar-card { padding: 28px 22px 22px; }
+  .pullquote { padding: 24px 22px; }
+  .pullquote-text { font-size: 20px; }
+}
