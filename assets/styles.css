@@ -751,7 +751,7 @@ pre.ascii-figure {
 .glossary dt {
   font-family: var(--serif);
   font-weight: 700;
-  color: var(--ink);
+  color: var(--rust);
   font-size: 17px;
   margin-top: 18px;
 }
