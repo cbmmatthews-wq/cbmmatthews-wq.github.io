@@ -52,8 +52,8 @@ const navConfig = {
     </li>`;
   }).join('');
 
-  mount.innerHTML = `
-    <nav class="topnav">
+  mount.outerHTML = `
+    <nav class="topnav" id="topnav">
       <div class="topnav-inner">
         <a href="${navConfig.brand.href}" class="topnav-brand">${navConfig.brand.label}</a>
         <ul class="topnav-menu">${itemsHTML}</ul>
