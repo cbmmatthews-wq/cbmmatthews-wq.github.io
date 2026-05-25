@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where the Money Actually Goes — cbmatthe</title>
+<meta name="description" content="A Core page on 2024 U.S. ad and marketing spend. Four charts breaking down the $551.9B U.S. market: total spend by channel, digital vs. traditional split, social media platform share, and where influencer dollars actually go.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Core &middot; 2024 Ad Spend</div>
+    <h1>Where the Money Actually Goes</h1>
+    <p class="lede">Total U.S. ad and marketing spend in 2024: $551.9 billion. Four charts. Four reality checks. Each one corrects a specific piece of pop-culture marketing wisdom.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#map-tells">What This Tells You</a>
+    <a href="#data-sources">Data Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<section class="section">
+  <p>Before we get into the six elements of the promotional mix or the rest of the unit's content, it is worth pausing on a simple question that pop culture consistently gets wrong: where does marketing money actually go?</p>
+
+  <p>The $390 billion advertising figure is the standard number for pure advertising. The broader category &mdash; ad plus marketing including events, sponsorships, direct mail, shopper marketing, and other below-the-line activity &mdash; came to <strong>$551.9 billion</strong> in 2024 in the United States alone. Either way the scale is large enough to be hard to internalize. What matters here is not the headline number but the breakdown, because the breakdown contradicts almost everything the public conversation about marketing tells you.</p>
+
+  <p>Four charts. Four reality checks. Each one is included because each one corrects a specific piece of pop-culture marketing wisdom. We will return to this material in more depth later in the course when we get to media planning. For now, the goal is to make sure you are looking at the same map the people actually allocating budgets are looking at.</p>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.3 &middot; Total Spend by Channel, 2024</div>
+      <div class="chart-sub">$551.9B total ad &amp; marketing spend, U.S.</div>
+      <div class="chart-container"><canvas id="totalChart"></canvas></div>
+      <div class="chart-legend" id="totalLegend"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.4 &middot; Digital vs. Traditional Split, 2024</div>
+      <div class="chart-sub">65.4% digital &middot; 34.6% traditional</div>
+      <div class="chart-container"><canvas id="splitChart"></canvas></div>
+      <div class="chart-legend" id="splitLegend"></div>
+    </div>
+  </div>
+
+  <p>The single largest line in U.S. marketing is digital search &mdash; Google and Bing ads, mostly &mdash; at $123.6 billion, which is bigger than the next three channels combined. The "TikTok is everything" position is contradicted on the first chart of the breakdown. TikTok is a real channel, but it lives inside social media, which itself is the second-largest category overall, not the first.</p>
+
+  <p>Digital has clearly won the aggregate fight. Roughly 65 cents of every advertising dollar in 2024 went to a digital channel, and that share grows a little more every year. But traditional did not disappear. Linear TV alone is still nearly $59 billion. Direct mail remains a $37.5 billion industry. Radio is $10.9 billion. The honest framing is that digital won in volume while specific traditional channels remain disproportionately effective for specific purposes, which is why sophisticated marketers still use them.</p>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.5 &middot; Social Media Spend by Platform</div>
+      <div class="chart-sub">~$82.7B platform spend &middot; Meta dominates</div>
+      <div class="chart-container"><canvas id="socialChart"></canvas></div>
+      <div class="chart-legend" id="socialLegend"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.6 &middot; Where Influencer Dollars Go</div>
+      <div class="chart-sub">$8.1B influencer marketing &middot; +23.7% YoY</div>
+      <div class="chart-container"><canvas id="influencerChart"></canvas></div>
+      <div class="chart-legend" id="influencerLegend"></div>
+    </div>
+  </div>
+
+  <p>The social media ad market looks competitive from outside and consolidated from inside. Meta &mdash; Facebook and Instagram combined &mdash; captured $64.6 billion, roughly 74% of all U.S. social media advertising in 2024. TikTok, despite the cultural noise around it, sits at $8.7 billion. The platforms that get the most conversation are not the platforms that get the most budget, and the gap between them is enormous.</p>
+
+  <p>Influencer marketing is real and growing fast &mdash; about 24% year over year &mdash; but the total is $8.1 billion. That is roughly 10% of what Meta alone collected in platform advertising, and meaningfully less than what U.S. companies spent on radio. Meta's ad business is about eight times the size of all U.S. influencer marketing combined. The public conversation about influencers dramatically overstates their share of actual marketing budgets, and the assumption that brands are "moving all their money to influencers" is contradicted by every serious data source.</p>
+</section>
+
+<section class="section" id="map-tells">
+  <h2>8.1 What This Map Actually Tells You</h2>
+
+  <p>A few patterns worth carrying forward.</p>
+
+  <p>First, the channels people talk about most are not the channels brands spend the most on. Cultural attention and economic scale are almost completely decoupled. TikTok dominates conversation; search dominates spend. Influencers dominate LinkedIn thought leadership; direct mail dominates actual budgets in many B2B categories.</p>
+
+  <p>Second, "digital vs. traditional" is the wrong framing. Within digital, search behaves nothing like social, which behaves nothing like CTV, which behaves nothing like programmatic display. Within traditional, linear TV behaves nothing like direct mail, which behaves nothing like out-of-home. The interesting tradeoffs are inside each category, not between the two big categories.</p>
+
+  <p>Third, none of these allocations are necessarily <em>correct</em>. They are what U.S. marketers actually spent. Some of that spending was strategic. Some of it was inertia. Some of it was vendor capture, where a brand keeps buying a channel because they've always bought it and switching feels risky. Just because $123 billion went to search doesn't mean that was the right $123 billion. Part of what you'll learn in this course is how to look at allocations like these and ask the harder question: <em>was the spend actually advancing the brand's strategic goals, or was it just easier to defend?</em></p>
+
+  <p>We will return to this breakdown in real depth later in the course in the section on media planning. For now, when you see someone confidently claim that marketing has moved entirely to social, or that nobody does TV anymore, or that influencer marketing has displaced advertising, you have the numbers to push back.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Total U.S. ad + marketing spend in 2024: $551.9B (about $390B if you count only pure advertising).</li>
+      <li>Digital search is the single largest channel, larger than the next three combined.</li>
+      <li>Meta captured roughly 74% of all U.S. social media ad spend. The "competitive social market" is mostly a story.</li>
+      <li>Influencer marketing is real and growing, but at $8.1B is smaller than radio, smaller than direct mail, and about one-eighth the size of Meta's ad business.</li>
+      <li>Cultural attention and economic scale are decoupled. The channels people talk about most are not the channels brands spend the most on.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="data-sources">
+  <h2>Data Sources</h2>
+
+  <p>The four charts above draw from industry data sources for 2024 U.S. ad and marketing spend. Underlying sources and methodology notes for each figure:</p>
+
+  <p><strong>Figure 1.3 &middot; Total Spend by Channel.</strong> Winterberry Group <em>2024 Annual Marketing &amp; Advertising Spend Outlook</em>; eMarketer <em>US Ad Spending 2024</em> (via Statista). Digital video excludes CTV. Events includes trade shows and experiential/sponsorship. "Other digital" includes audio, influencer, email/SMS, mobile gaming, and affiliate/lead gen.</p>
+
+  <p><strong>Figure 1.4 &middot; Digital vs. Traditional Split.</strong> Derived from the same Winterberry / eMarketer dataset. Digital total ($357B) sums digital search, social media, digital display, digital video, CTV/streaming, and other digital. Traditional total ($191B) sums linear TV, events &amp; sponsorships, direct mail, shopper marketing, OOH, print, and radio.</p>
+
+  <p><strong>Figure 1.5 &middot; Social Media Spend by Platform.</strong> eMarketer <em>US Social Network Ad Spending 2024</em>; WARC Media Platform Insights (Meta US $64.6B = Facebook + Instagram); Omdia / Variety (TikTok US $8B). Influencer marketing ($8.1B) is included here as a comparison point even though it isn't a single platform's ad revenue.</p>
+
+  <p><strong>Figure 1.6 &middot; Where Influencer Dollars Go.</strong> eMarketer <em>"State of Influencer-Brand Deals 2024"</em> ($8.14B total). YouTube is classified under digital video in the total-spend chart but is included here as a top influencer-marketing platform.</p>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+<!-- ============================================================
+     CHART DATA + RENDERING
+     ============================================================ -->
+<script>
+const totalData = {
+  labels: ['Digital search','Social media','Linear TV','Digital display','Events & sponsorships','Direct mail','Other digital','Digital video','CTV / streaming','Shopper marketing','OOH','Print','Radio'],
+  values: [123.6,82.7,58.9,53.5,40.8,37.5,37.5,30.5,28.8,19.9,12.0,11.1,10.9],
+  colors: ['#0C3D7A','#1557A5','#7A1A1A','#1A7AAD','#9C3518','#B85020','#1D9999','#1D9E72','#2E8B3E','#C46D20','#C48830','#B07840','#C09860']
+};
+
+const splitData = {
+  labels: ['Digital ($357B)','Traditional ($191B)'],
+  values: [357,191],
+  colors: ['#1557A5','#B85020']
+};
+
+const socialData = {
+  labels: ['Meta (FB + IG)','TikTok','Influencer mktg','Snapchat','LinkedIn','Pinterest','X / Twitter','Spotify','Reddit'],
+  values: [64.6,8.7,8.1,2.5,2.5,2.0,0.9,0.8,0.7],
+  colors: ['#0C3D7A','#2C2C2A','#0891B2','#BA7517','#185FA5','#993556','#888780','#0F6E56','#993C1D']
+};
+
+const influencerData = {
+  labels: ['Instagram','TikTok','YouTube','Facebook','Other'],
+  values: [3.7,2.2,1.6,0.4,0.2],
+  colors: ['#993556','#2C2C2A','#A32D2D','#185FA5','#888780']
+};
+
+function buildChart(id, data, legendId) {
+  const total = data.values.reduce((a,b)=>a+b, 0);
+  const ctx = document.getElementById(id);
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: data.labels,
+      datasets: [{
+        data: data.values,
+        backgroundColor: data.colors,
+        borderColor: '#ffffff',
+        borderWidth: 2,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '58%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              const pct = ((ctx.raw / total) * 100).toFixed(1);
+              return ` ${ctx.label}: $${ctx.raw}B (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  const leg = document.getElementById(legendId);
+  if (!leg) return;
+  leg.innerHTML = data.labels.map((l, i) => {
+    const pct = ((data.values[i] / total) * 100).toFixed(1);
+    return `<div class="chart-legend-item">
+      <span class="chart-legend-swatch" style="background:${data.colors[i]}"></span>
+      <span>${l}</span>
+      <span class="chart-legend-val">$${data.values[i]}B<span class="chart-legend-pct"> &middot; ${pct}%</span></span>
+    </div>`;
+  }).join('');
+}
+
+buildChart('totalChart', totalData, 'totalLegend');
+buildChart('splitChart', splitData, 'splitLegend');
+buildChart('socialChart', socialData, 'socialLegend');
+buildChart('influencerChart', influencerData, 'influencerLegend');
+</script>
+
+</body>
+</html>
