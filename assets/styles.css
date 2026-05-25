@@ -5,24 +5,32 @@
    ========================================================================== */
 
 :root {
-  /* Colors */
-  --ink: #1c1917;
-  --ink-soft: #2a2520;
-  --paper: #f5f0e8;
-  --cream: #ede8e0;
-  --cream-deep: #e0d9cc;
-  --rust: #c8401e;
-  --rust-soft: #f0e8e6;
-  --muted: #7a7068;
-  --rule: #d6cfc4;
-  --white: #ffffff;
-  --highlight: #fff8e1;
+  /* ---- Colors ---- */
+  --ink:        #2A2420;   /* warm-dark gray, primary text/headings */
+  --ink-soft:   #4C4743;   /* body text */
+  --paper:      #f5f0e8;   /* cream page background */
+  --cream:      #ede8e0;   /* subnav, takeaway, blockquote, footer */
+  --cream-deep: #e0d9cc;   /* giant ghost numerals on hero/sections */
+  --muted:      #6F6A66;   /* secondary text, footer text */
+  --rule:       #d6cfc4;   /* divider lines */
+  --white:      #ffffff;
+  --highlight:  #fff8e1;
 
-  /* Type */
+  /* PRIMARY ACCENT — red is used for most structural accents */
+  --red:        #BC5A44;
+  --red-mid:    #CC8774;   /* lighter, for hover or on dark surfaces */
+  --red-soft:   #f0e8e6;   /* very pale red tint for hover backgrounds */
+
+  /* SECONDARY ACCENT — blue is used sparingly for "pop" moments */
+  --blue:       #4D7090;
+  --blue-mid:   #6885A1;   /* lighter, for on-dark surfaces */
+  --blue-soft:  #D2DBE3;   /* very pale */
+
+  /* ---- Type ---- */
   --serif: 'Playfair Display', Georgia, serif;
-  --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans:  'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  /* Layout */
+  /* ---- Layout ---- */
   --max-width: 1060px;
   --content-padding: 40px;
   --topnav-height: 44px;
@@ -33,8 +41,8 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.50;
   color: var(--ink-soft);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
@@ -69,7 +77,7 @@ body {
   text-decoration: none;
   letter-spacing: 0.02em;
 }
-.topnav-brand:hover { color: var(--rust); }
+.topnav-brand:hover { color: var(--red-mid); }
 
 .topnav-menu {
   display: flex;
@@ -92,7 +100,7 @@ body {
   transition: color 0.15s;
   cursor: pointer;
 }
-.topnav-link:hover { color: var(--rust); }
+.topnav-link:hover { color: var(--red-mid); }
 .topnav-link.has-dropdown::after { content: ' \25BE'; font-size: 9px; opacity: 0.6; margin-left: 2px; }
 
 .topnav-dropdown {
@@ -102,7 +110,7 @@ body {
   right: 0;
   min-width: 280px;
   background: var(--white);
-  border-top: 2px solid var(--rust);
+  border-top: 2px solid var(--red);
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   list-style: none;
   padding: 8px 0;
@@ -125,8 +133,8 @@ body {
 }
 .topnav-dropdown a:hover {
   background: var(--paper);
-  color: var(--rust);
-  border-left-color: var(--rust);
+  color: var(--red);
+  border-left-color: var(--red);
 }
 .topnav-dropdown a.disabled {
   color: var(--muted);
@@ -147,17 +155,17 @@ body {
    PAGE HERO (top of each unit page)
    ========================================================================== */
 .page-hero {
-  padding: 56px 0 28px;
+  padding: 48px 0 24px;
   border-bottom: 1px solid var(--rule);
   position: relative;
 }
 .page-hero-num {
   font-family: var(--serif);
-  font-size: 120px;
+  font-size: 110px;
   font-weight: 900;
   color: var(--cream-deep);
   line-height: 1;
-  margin-bottom: -32px;
+  margin-bottom: -30px;
   user-select: none;
 }
 .page-hero-eyebrow {
@@ -165,12 +173,12 @@ body {
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--rust);
-  margin-bottom: 14px;
+  color: var(--red);
+  margin-bottom: 12px;
 }
 .page-hero h1 {
   font-family: var(--serif);
-  font-size: clamp(34px, 5vw, 52px);
+  font-size: clamp(32px, 5vw, 48px);
   font-weight: 700;
   line-height: 1.1;
   color: var(--ink);
@@ -178,15 +186,16 @@ body {
   max-width: 820px;
 }
 .page-hero .lede {
-  margin-top: 20px;
-  font-size: 19px;
-  line-height: 1.6;
+  margin-top: 18px;
+  font-size: 18px;
+  line-height: 1.55;
   color: var(--ink-soft);
   max-width: 720px;
 }
 
 /* ==========================================================================
    SECONDARY NAV (in-page, sticky, with progress bar)
+   More prominent: larger text, hover/active backgrounds, thicker progress bar.
    ========================================================================== */
 .subnav {
   background: var(--cream);
@@ -206,48 +215,54 @@ body {
 }
 .subnav-inner::-webkit-scrollbar { display: none; }
 .subnav-inner a {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   text-decoration: none;
-  padding: 13px 8px;
+  padding: 14px 12px;
   white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  transition: all 0.18s;
 }
-.subnav-inner a:hover,
+.subnav-inner a:hover {
+  color: var(--red);
+  background: var(--red-soft);
+}
 .subnav-inner a.active {
-  color: var(--rust);
-  border-bottom-color: var(--rust);
+  color: var(--red);
+  font-weight: 700;
+  background: var(--red-soft);
+  border-bottom-color: var(--red);
 }
 .subnav-progress {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
-  height: 3px;
-  background: var(--rust);
+  height: 4px;
+  background: var(--red);
   width: 0%;
   transition: width 0.08s linear;
   z-index: 101;
+  box-shadow: 0 1px 4px rgba(188, 90, 68, 0.35);
 }
 
 /* ==========================================================================
-   SECTIONS — tightened gap
+   SECTIONS — tightened spacing
    ========================================================================== */
 .section {
-  padding: 36px 0 28px;
+  padding: 32px 0 24px;
   border-bottom: 1px solid var(--rule);
 }
 .section:last-of-type { border-bottom: none; }
 .sec-num {
   font-family: var(--serif);
-  font-size: 96px;
+  font-size: 88px;
   font-weight: 900;
   color: var(--cream-deep);
   line-height: 1;
-  margin-bottom: -22px;
+  margin-bottom: -20px;
   user-select: none;
 }
 .sec-label {
@@ -255,45 +270,45 @@ body {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--red);
   margin-bottom: 10px;
 }
 .section h2 {
   font-family: var(--serif);
-  font-size: clamp(26px, 3vw, 36px);
+  font-size: clamp(24px, 3vw, 34px);
   font-weight: 700;
   line-height: 1.2;
   color: var(--ink);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   letter-spacing: -0.01em;
 }
 .section h3 {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 700;
   color: var(--ink);
-  margin: 28px 0 10px;
+  margin: 24px 0 8px;
 }
 .section h4 {
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--rust);
-  margin: 22px 0 8px;
+  color: var(--red);
+  margin: 20px 0 6px;
 }
 .section p {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   max-width: 760px;
 }
 .section ul, .section ol {
-  margin: 0 0 14px 24px;
+  margin: 0 0 12px 24px;
   max-width: 760px;
 }
-.section li { margin-bottom: 6px; }
+.section li { margin-bottom: 5px; }
 .section a {
-  color: var(--rust);
+  color: var(--red);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
@@ -303,34 +318,35 @@ em { font-style: italic; }
 strong { font-weight: 700; color: var(--ink); }
 
 /* ==========================================================================
-   PULL-QUOTE (for Wanamaker etc.)
+   PULL-QUOTE
    ========================================================================== */
 .pullquote {
-  margin: 32px 0;
-  padding: 30px 36px;
+  margin: 28px 0;
+  padding: 26px 32px;
   background: var(--white);
-  border-left: 4px solid var(--rust);
+  border-left: 4px solid var(--red);
   max-width: 820px;
 }
 .pullquote-text {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   font-style: italic;
   line-height: 1.35;
   color: var(--ink);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .pullquote-attr {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--red);
 }
 
 /* ==========================================================================
    STAT CARDS / BIG NUMBER BOXES
+   Default = red top border. .stat-card.highlight = blue top border for emphasis.
    ========================================================================== */
 .stat-grid {
   display: grid;
@@ -340,13 +356,14 @@ strong { font-weight: 700; color: var(--ink); }
 }
 .stat-card {
   background: var(--white);
-  border-top: 3px solid var(--rust);
-  padding: 18px 20px;
+  border-top: 3px solid var(--red);
+  padding: 16px 20px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
+.stat-card.highlight { border-top-color: var(--blue); }
 .stat-card-val {
   font-family: var(--serif);
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 700;
   color: var(--ink);
   display: block;
@@ -369,10 +386,10 @@ strong { font-weight: 700; color: var(--ink); }
    CALLOUTS & TAKEAWAY BOXES
    ========================================================================== */
 .callout {
-  margin: 22px 0;
-  padding: 20px 24px;
+  margin: 20px 0;
+  padding: 18px 22px;
   background: var(--white);
-  border-left: 4px solid var(--rust);
+  border-left: 4px solid var(--red);
   max-width: 820px;
 }
 .callout-label {
@@ -380,15 +397,15 @@ strong { font-weight: 700; color: var(--ink); }
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--rust);
-  margin-bottom: 8px;
+  color: var(--red);
+  margin-bottom: 6px;
 }
-.callout p { margin-bottom: 8px; }
+.callout p { margin-bottom: 6px; }
 .callout p:last-child { margin-bottom: 0; }
 
 .takeaway {
-  margin: 28px 0;
-  padding: 22px 26px;
+  margin: 24px 0;
+  padding: 20px 24px;
   background: var(--cream);
   border-left: 4px solid var(--ink);
   max-width: 820px;
@@ -409,24 +426,24 @@ strong { font-weight: 700; color: var(--ink); }
 .takeaway li {
   position: relative;
   padding-left: 16px;
-  margin-bottom: 8px;
-  font-size: 15px;
+  margin-bottom: 7px;
+  font-size: 14px;
   line-height: 1.5;
 }
 .takeaway li::before {
   content: '\2014';
   position: absolute;
   left: 0;
-  color: var(--rust);
+  color: var(--red);
   font-weight: 700;
 }
 
 /* ==========================================================================
-   SIDEBAR CARD (for Nike-style asides)
+   SIDEBAR CARD (dark, with BLUE "SIDEBAR" badge — the page's pop moment)
    ========================================================================== */
 .sidebar-card {
-  margin: 36px 0;
-  padding: 32px 36px 28px;
+  margin: 32px 0;
+  padding: 28px 32px 24px;
   background: var(--ink);
   color: #e8e4dc;
   position: relative;
@@ -436,8 +453,8 @@ strong { font-weight: 700; color: var(--ink); }
   content: 'SIDEBAR';
   position: absolute;
   top: -10px;
-  left: 28px;
-  background: var(--rust);
+  left: 26px;
+  background: var(--blue);
   color: var(--white);
   font-size: 10px;
   font-weight: 700;
@@ -446,20 +463,20 @@ strong { font-weight: 700; color: var(--ink); }
 }
 .sidebar-card h3 {
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: 22px;
   color: var(--white);
   margin-bottom: 4px;
 }
 .sidebar-card-sub {
-  font-size: 14px;
-  color: var(--rust);
+  font-size: 13px;
+  color: var(--blue-mid);
   font-style: italic;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .sidebar-card p {
   color: #d4d0c8;
   max-width: none;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .sidebar-card ul {
   color: #d4d0c8;
@@ -467,13 +484,13 @@ strong { font-weight: 700; color: var(--ink); }
 }
 .sidebar-card strong { color: var(--white); }
 .sidebar-card-tag {
-  margin-top: 20px;
-  padding-top: 16px;
+  margin-top: 18px;
+  padding-top: 14px;
   border-top: 1px solid #3a3530;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 16px;
-  color: var(--rust);
+  font-size: 15px;
+  color: var(--blue-mid);
 }
 
 /* ==========================================================================
@@ -518,7 +535,7 @@ strong { font-weight: 700; color: var(--ink); }
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--red);
   margin-bottom: 8px;
 }
 .figure-title {
@@ -546,12 +563,13 @@ pre.ascii-figure {
   background: var(--cream);
   padding: 20px;
   overflow-x: auto;
-  border-left: 3px solid var(--rust);
+  border-left: 3px solid var(--red);
   white-space: pre;
 }
 
 /* ==========================================================================
    FUNNEL FIGURE
+   Result chip uses BLUE — it's the "answer" moment.
    ========================================================================== */
 .funnel-figure {
   margin: 6px 0 20px;
@@ -563,7 +581,7 @@ pre.ascii-figure {
   margin: 0 auto 6px;
   padding: 16px 22px;
   text-align: center;
-  border-left: 4px solid var(--rust);
+  border-left: 4px solid var(--red);
 }
 .tier-tofu { width: 100%; background: var(--cream); }
 .tier-mofu { width: 82%; background: var(--cream-deep); }
@@ -594,7 +612,7 @@ pre.ascii-figure {
   margin: 8px auto 0;
   padding: 11px 18px;
   text-align: center;
-  background: var(--rust);
+  background: var(--blue);
   color: white;
   font-family: var(--serif);
   font-style: italic;
@@ -608,7 +626,7 @@ pre.ascii-figure {
 }
 
 /* ==========================================================================
-   FUNNEL — VARIANT FOR SIX ELEMENTS (uses .funnel-elements instead of quote+tools)
+   FUNNEL — VARIANT FOR SIX ELEMENTS
    ========================================================================== */
 .funnel-elements {
   font-family: var(--serif);
@@ -633,14 +651,14 @@ pre.ascii-figure {
 .peso-cell {
   background: var(--white);
   padding: 22px 24px 20px;
-  border-top: 3px solid var(--rust);
+  border-top: 3px solid var(--red);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .peso-cell-letter {
   font-family: var(--serif);
   font-size: 38px;
   font-weight: 900;
-  color: var(--rust);
+  color: var(--red);
   line-height: 1;
   margin-bottom: 6px;
 }
@@ -653,7 +671,7 @@ pre.ascii-figure {
 }
 .peso-cell-desc {
   font-size: 13px;
-  color: var(--rust);
+  color: var(--red);
   font-style: italic;
   margin-bottom: 12px;
 }
@@ -679,7 +697,7 @@ pre.ascii-figure {
 }
 
 /* ==========================================================================
-   CHART GRID — for the four pie charts in Section 3
+   CHART GRID
    ========================================================================== */
 .chart-grid {
   display: grid;
@@ -751,22 +769,22 @@ pre.ascii-figure {
 .glossary dt {
   font-family: var(--serif);
   font-weight: 700;
-  color: var(--rust);
-  font-size: 17px;
+  color: var(--red);
+  font-size: 16px;
   margin-top: 18px;
 }
 .glossary dt:first-child { margin-top: 0; }
 .glossary dd {
   margin: 4px 0 0 0;
-  font-size: 15px;
+  font-size: 14.5px;
   color: var(--ink-soft);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .glossary dd em { font-style: italic; }
 .glossary dd strong { color: var(--ink); }
 
 /* ==========================================================================
-   BLOCKQUOTE (for definitions like AAAA and Schultz)
+   BLOCKQUOTE
    ========================================================================== */
 .section blockquote {
   margin: 20px 0;
@@ -792,7 +810,7 @@ pre.ascii-figure {
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--red);
   margin-bottom: 24px;
 }
 .home-hero h1 {
@@ -806,7 +824,7 @@ pre.ascii-figure {
 .home-divider {
   width: 60px;
   height: 3px;
-  background: var(--rust);
+  background: var(--red);
   margin: 40px auto;
 }
 .home-intro {
@@ -815,18 +833,62 @@ pre.ascii-figure {
   padding: 0 var(--content-padding) 100px;
 }
 .home-intro p {
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 18px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
   color: var(--ink-soft);
 }
 .home-intro p.signoff {
-  margin-top: 32px;
+  margin-top: 30px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 20px;
-  color: var(--rust);
+  font-size: 19px;
+  color: var(--red);
   text-align: right;
+}
+
+/* ==========================================================================
+   BACK-TO-TOP BUTTON
+   Injected by nav.js into every page. Appears after scrolling ~400px.
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.20);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.15s;
+  z-index: 500;
+  padding: 0;
+}
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--ink);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 /* ==========================================================================
@@ -834,7 +896,7 @@ pre.ascii-figure {
    ========================================================================== */
 .footer {
   margin-top: 60px;
-  padding: 32px 0;
+  padding: 30px 0;
   border-top: 1px solid var(--rule);
   background: var(--cream);
   font-size: 13px;
@@ -855,15 +917,17 @@ pre.ascii-figure {
    ========================================================================== */
 @media (max-width: 768px) {
   :root { --content-padding: 20px; --topnav-height: 42px; }
-  body { font-size: 16px; }
+  body { font-size: 15px; }
   .topnav-brand { font-size: 14px; }
   .topnav-link { padding: 0 10px; font-size: 11px; }
   .topnav-dropdown { right: -10px; min-width: 240px; }
+  .subnav-inner a { font-size: 11px; padding: 12px 10px; }
   .home-hero { padding: 60px 0 30px; }
   .home-divider { margin: 30px auto; }
-  .sec-num, .page-hero-num { font-size: 64px; margin-bottom: -16px; }
-  .stat-card-val { font-size: 28px; }
-  .sidebar-card { padding: 28px 22px 22px; }
-  .pullquote { padding: 24px 22px; }
-  .pullquote-text { font-size: 20px; }
+  .sec-num, .page-hero-num { font-size: 60px; margin-bottom: -16px; }
+  .stat-card-val { font-size: 26px; }
+  .sidebar-card { padding: 24px 22px 20px; }
+  .pullquote { padding: 22px; }
+  .pullquote-text { font-size: 19px; }
+  .back-to-top { bottom: 18px; right: 18px; width: 40px; height: 40px; }
 }
