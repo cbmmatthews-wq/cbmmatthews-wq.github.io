@@ -1,8 +1,9 @@
 // =============================================================================
 // nav.js — top navigation + back-to-top button, defined once,
 //          rendered on every page automatically.
-// To add a new note: add an entry to the M544 Notes dropdown below.
-// To add a resource: add an entry to the Resources dropdown below.
+// To add a note: add to the M544 Notes dropdown.
+// To add a Core/Quick Hit/Example: add to the relevant column in the Resources
+// mega menu.
 // =============================================================================
 
 const navConfig = {
@@ -19,10 +20,34 @@ const navConfig = {
     },
     {
       label: 'Resources',
-      dropdown: [
-        { label: 'Coming soon', href: '#', disabled: true }
-        // Replace with real resource links as they're added
-      ]
+      megaMenu: {
+        columns: [
+          {
+            title: 'Core',
+            items: [
+              { label: 'What is IMC',       href: 'imc.html' },
+              { label: 'PESO',              href: 'peso.html' },
+              { label: 'The Funnel',        href: 'funnel.html' },
+              { label: 'Promotional Mix',   href: 'promotional-mix.html' },
+              { label: 'Touch Points',      href: 'touch-points.html' },
+              { label: 'Repetition',        href: 'repetition.html' },
+              { label: 'Brand vs. Perf',    href: 'brand-vs-performance.html' },
+              { label: '2024 Ad Spend',     href: 'ad-spend.html' }
+            ]
+          },
+          {
+            title: 'Quick Hits',
+            items: []  // empty for now — items will appear as built
+          },
+          {
+            title: 'Examples',
+            items: [
+              { label: 'Nike: Same Soul, Different Words', href: 'nike-same-soul.html' }
+              // Add more examples here as they're built
+            ]
+          }
+        ]
+      }
     }
   ]
 };
@@ -34,11 +59,37 @@ const navConfig = {
 
   const here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
+  const activeStyle = ' style="color:var(--red);border-left-color:var(--red);"';
+
   const itemsHTML = navConfig.items.map(item => {
+    // Mega menu (3-column dropdown)
+    if (item.megaMenu) {
+      const colsHTML = item.megaMenu.columns.map(col => {
+        const body = col.items.length === 0
+          ? '<div class="topnav-megamenu-empty">Coming soon</div>'
+          : `<ul class="topnav-megamenu-list">${
+              col.items.map(sub => {
+                const isHere = sub.href.toLowerCase() === here ? activeStyle : '';
+                return `<li><a href="${sub.href}"${isHere}>${sub.label}</a></li>`;
+              }).join('')
+            }</ul>`;
+        return `<div class="topnav-megamenu-col">
+          <div class="topnav-megamenu-title">${col.title}</div>
+          ${body}
+        </div>`;
+      }).join('');
+
+      return `<li class="topnav-item">
+        <a href="#" class="topnav-link has-dropdown" onclick="return false;">${item.label}</a>
+        <div class="topnav-megamenu">${colsHTML}</div>
+      </li>`;
+    }
+
+    // Simple flat dropdown
     if (item.dropdown) {
       const subItems = item.dropdown.map(sub => {
         const cls = sub.disabled ? 'disabled' : '';
-        const isHere = sub.href.toLowerCase() === here ? ' style="color:var(--red);border-left-color:var(--red);"' : '';
+        const isHere = sub.href.toLowerCase() === here ? activeStyle : '';
         return `<li><a href="${sub.href}" class="${cls}"${isHere}>${sub.label}</a></li>`;
       }).join('');
 
@@ -48,6 +99,7 @@ const navConfig = {
       </li>`;
     }
 
+    // Plain link
     const isHere = item.href.toLowerCase() === here ? ' style="color:var(--red);"' : '';
     return `<li class="topnav-item">
       <a href="${item.href}" class="topnav-link"${isHere}>${item.label}</a>
@@ -83,7 +135,6 @@ const navConfig = {
     else btn.classList.remove('visible');
   }
 
-  // Append after DOM is parsed enough to have a body
   if (document.body) {
     document.body.appendChild(btn);
   } else {
