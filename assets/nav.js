@@ -7,14 +7,20 @@
 // =============================================================================
 
 const navConfig = {
-  brand: { label: 'cbmatthe', href: 'index.html' },
+  brand: {
+    label: '<span style="color:var(--blue);">/</span><span style="color:var(--red);">/</span>cbmatthe',
+    href: 'index.html'
+  },
   items: [
     { label: 'Home', href: 'index.html' },
     {
       label: 'M544 Notes',
       dropdown: [
         { label: 'Intro: A Course Built Against the Current', href: 'intro.html' },
-        { label: 'Unit 1 — IMC', href: 'unit-1-imc.html' }
+        { label: 'Unit 1 — IMC',                href: 'unit-1-imc.html' },
+        { label: 'Unit 2A — Brand Foundations', href: 'unit-2a-brand-foundations.html' },
+        { label: 'Unit 2B — Brand Mechanics',   href: 'unit-2b-brand-mechanics.html' },
+        { label: 'Unit 2C — Blanding',          href: 'unit-2c-blanding.html' }
         // Add more units here as they're built
       ]
     },
