@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Myth That Advertising Makes Things Cost More &mdash; cbmatthe</title>
+<meta name="description" content="A contrarian Core page on whether advertising raises or lowers consumer prices. Walks through the cost-raising view, the scale-driven cost-lowering view, the competitive-discipline effect, and what the evidence actually says.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ==========================================================================
+   QUOTE SLIDER — page-specific component for now.
+   Move to assets/styles.css if reused on other pages.
+   ========================================================================== */
+.quote-slider {
+  background: var(--white);
+  border-left: 4px solid var(--red);
+  padding: 30px 36px 24px;
+  margin: 32px 0;
+  max-width: 820px;
+  outline: none;
+}
+.quote-slider:focus { box-shadow: 0 0 0 2px var(--red-soft); }
+.quote-slider-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 18px;
+}
+.quote-slider-track {
+  position: relative;
+  min-height: 200px;
+}
+.quote-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.quote-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+.quote-slide-text {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.38;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.quote-slide-attr {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.quote-slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+.quote-slider-dots {
+  display: flex;
+  gap: 8px;
+}
+.quote-slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cream-deep);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.quote-slider-dot:hover { background: var(--red-mid); }
+.quote-slider-dot.active { background: var(--red); }
+.quote-slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.quote-slider-counter {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.quote-slider-arrow {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--rule);
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+.quote-slider-arrow:hover {
+  background: var(--red-soft);
+  border-color: var(--red);
+}
+@media (max-width: 600px) {
+  .quote-slider { padding: 24px 22px 20px; }
+  .quote-slide-text { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Core &middot; Advertising &amp; Prices</div>
+    <h1>The Myth That Advertising Makes Things Cost More</h1>
+    <p class="lede">Pop-culture wisdom says marketing budgets get passed along to consumers, and that cutting advertising would cut prices. The accounting is more interesting than that &mdash; and most of the time, the popular view has it backwards.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#the-bias">The Bias</a>
+    <a href="#yes-raises">Yes, It Raises</a>
+    <a href="#no-lowers">No, It Lowers</a>
+    <a href="#being-seen">The Discipline of Being Seen</a>
+    <a href="#verdict">The Verdict</a>
+    <a href="#more-views">More Views</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<section class="section" id="the-bias">
+  <p>This page is contrarian on purpose. There is a folk theory of marketing that runs roughly like this: advertising is an expense; expenses get passed along to consumers; therefore advertising makes products cost more; therefore eliminating advertising (or replacing it with organic social and influencers, which the folk theory imagines as nearly free) would make products cheaper. Some version of this view shows up in undergraduate seminars, dinner-table conversations, and a surprising amount of business journalism, and it lives quietly inside the way most non-marketers think about the discipline.</p>
+
+  <p>The folk theory is not entirely wrong. Advertising is, in fact, an expense. Companies do, in fact, spend real money on media buys, creative agencies, influencer fees, packaging, slotting, and trade support, and that money has to come from somewhere. If you look at a single ad campaign in isolation, the cost flows in exactly the direction the folk theory predicts: dollars out, eventually recovered somewhere downstream, almost certainly in the unit price.</p>
+
+  <p>The folk theory's mistake is one of scope. It treats advertising as if it operates in a vacuum, with no effect on production volume, on competitive pricing, or on what consumers know about a category. In the actual economy advertising does all three of those things, and once they enter the calculation, the relationship between marketing spend and consumer price gets complicated enough that economists have been arguing about it since Alfred Marshall in 1919. The honest answer is that advertising can push prices either way depending on the brand, the category, and whether the campaign actually works. The more useful answer &mdash; the one the folk theory misses &mdash; is that for most products in most growing categories, the direction of the effect is downward.</p>
+
+  <div class="quote-slider">
+    <div class="quote-slider-label">Voices on the Question</div>
+    <div class="quote-slider-track">
+      <div class="quote-slide active">
+        <div class="quote-slide-text">"Half the money I spend on advertising is wasted; the trouble is, I don't know which half."</div>
+        <div class="quote-slide-attr">John Wanamaker (attributed)</div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Stopping advertising to save money is like stopping your watch to save time."</div>
+        <div class="quote-slide-attr">Henry Ford (attributed)</div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Brand advertising can lower consumer prices by reducing the margins in distribution &hellip; By creating product identity, advertising strongly disciplines retailers' markups."</div>
+        <div class="quote-slide-attr">Robert L. Steiner, <em>Journal of Marketing</em>, 1973</div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-slide-text">"If the individual's wants are urgent, they must be original with himself. They cannot be urgent if they must be contrived for him."</div>
+        <div class="quote-slide-attr">John Kenneth Galbraith, <em>The Affluent Society</em>, 1958</div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-slide-text">"The incentive to produce on a large scale only existed if there was a ready market for the output."</div>
+        <div class="quote-slide-attr">Adam Smith, paraphrased in Laurence Green's whitepaper for the Advertising Association</div>
+      </div>
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Most businesses don't have a growth problem; they have a unit economics problem. They acquire customers at a loss and try to make it up on volume."</div>
+        <div class="quote-slide-attr">David Skok, on DTC scaling failure</div>
+      </div>
+    </div>
+    <div class="quote-slider-controls">
+      <div class="quote-slider-dots"></div>
+      <div class="quote-slider-nav">
+        <span class="quote-slider-counter"></span>
+        <button class="quote-slider-arrow prev" aria-label="Previous quote">&lsaquo;</button>
+        <button class="quote-slider-arrow next" aria-label="Next quote">&rsaquo;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="yes-raises">
+  <h2>Yes, It Raises Costs</h2>
+
+  <p>Start with the case the folk theory gets right, because honest argument requires conceding what the other side has. Advertising spending is real and large. U.S. ad spend in 2024 ran north of $380 billion, a number that has to be financed by someone, and the consumer is the only party in the chain who isn't reimbursed. In categories where the product is cheap to make and the brand is most of what you're buying &mdash; fragrance, cosmetics, premium spirits, soft drinks &mdash; marketing spend can dwarf the cost of the liquid in the bottle. A bottle of mid-tier perfume that retails at $90 might contain $5 worth of ingredients; the rest is brand, packaging, distribution, and a media plan.</p>
+
+  <p>There is also waste, and a lot of it. The most famous line in advertising history, variously attributed to John Wanamaker and Lord Leverhulme, is that half the money spent on advertising is wasted and nobody knows which half. The line is older than modern measurement and not literally true today, but the intuition behind it survives: a meaningful share of any ad budget produces no incremental sales, and consumers effectively subsidize that waste. Competitive ad wars compound the problem. When Coke and Pepsi both spend billions and end up with roughly the same market shares they had before, much of the spend is canceling out rather than building value, and the cancellation gets paid for at the register.</p>
+
+  <p>The clearest empirical evidence for the cost-raising view sits on grocery shelves: private label. Store brands advertise almost nothing, often produce comparable or identical goods (the manufacturers are frequently the same), and price 20% to 40% below their national-brand equivalents. Private label hit a 38.6% market share in Europe in early 2024 and continues to climb in the U.S., which suggests the branded product's premium is, at least partly, funding the marketing budget. A shopper who buys Kirkland strawberry preserves instead of Smucker's is making, among other things, a small bet that the brand premium is not worth what the brand is charging for it.</p>
+
+  <p>The most sophisticated version of the cost-raising argument is older than the marketing literature itself. John Kenneth Galbraith argued in <em>The Affluent Society</em> (1958) that advertising does not just inform consumers; it manufactures wants that did not previously exist, and the cost of that manufacture &mdash; both the ad spend and the resources poured into producing the newly-wanted goods &mdash; is borne by everyone. The Galbraithian view never quite went away, and a thoughtful version of it animates current arguments about influencer marketing, performative consumption, and the social cost of attention. The folk theory is the cocktail-party version of Galbraith, and Galbraith is the version worth taking seriously.</p>
+</section>
+
+<section class="section" id="no-lowers">
+  <h2>No, It Lowers Costs</h2>
+
+  <p>Now the harder argument, which is that advertising &mdash; properly understood and properly executed &mdash; usually pushes consumer prices down rather than up. The mechanism is not mysterious. It runs through scale, and the arithmetic is unforgiving.</p>
+
+  <p>Manufacturing has steep fixed costs. Factories, equipment, R&amp;D, software, regulatory compliance, headquarters overhead, the salaries of everyone who isn't on the line &mdash; none of that changes much when you produce 100 units or 100,000 units, which means the fixed-cost slice of each unit shrinks dramatically as volume grows. This is not a marketing claim; it is the central result of production economics, taught in every introductory micro class. The fast way to see it is the table below.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 1</div>
+    <div class="figure-title">How Fixed Costs Spread Across Volume</div>
+    <table>
+      <thead>
+        <tr><th>Units sold</th><th>Total fixed cost</th><th>Fixed cost per unit</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>100</td><td>$10,000</td><td>$100.00</td></tr>
+        <tr><td>500</td><td>$10,000</td><td>$20.00</td></tr>
+        <tr><td>2,000</td><td>$10,000</td><td>$5.00</td></tr>
+        <tr><td>10,000</td><td>$10,000</td><td>$1.00</td></tr>
+      </tbody>
+    </table>
+    <div class="figure-caption">A $10,000 fixed-cost slug &mdash; the rough scale of a small business's startup costs or a quarter of modest digital ad spend &mdash; spread across enough units stops being a meaningful number per unit. Volume is the lever; advertising is what pulls it.</div>
+  </div>
+
+  <p>Two things worth saying about the table. The first is that the same math works at every scale. A Shopify store spending $300 a month on Meta ads to reach 5,000 people benefits from exactly the same fixed-cost spread that lets a Coca-Cola amortize a Super Bowl spot across two billion cans. The fixed-cost slug is smaller, the volume is smaller, the time horizon is shorter, but the arithmetic is identical. Nothing in the cost-lowering argument requires being a giant brand. The second point is that this is why "just use organic social and influencers, it costs nothing" is a misread of the modern marketing economy. Organic reach on most platforms has collapsed since around 2018, influencer fees have professionalized, and the cheap-channel advantage that early DTC brands enjoyed in 2015 was gone by 2022. There is no "free" version of building category awareness; there is only paid, with varying efficiency.</p>
+
+  <p>Advertising is the tool that drives volume up fast enough to capture those economies. A company that doubles its unit sales through an effective campaign cuts its fixed cost per unit roughly in half, and most products also benefit from learning-curve effects in which variable cost per unit drops as cumulative production grows. The math compounds. Once a brand has reached real scale it also negotiates better terms with suppliers (bigger orders, larger contracts, longer relationships), with retailers (better placement, lower slotting friction), and with media itself (volume discounts, upfront commitments). A brand consumers ask for by name also doesn't have to discount as aggressively to move inventory, and aggressive promotional cycles eat margin in ways that are easy to underestimate.</p>
+
+  <p>There is also an information effect that the folk theory ignores entirely. Consumers do not arrive at the shelf with a built-in sense of what a hamburger or a bicycle or a pair of jeans <em>should</em> cost. In a vacuum, a hamburger might be $15 or $4 and you would not necessarily know which one to be outraged by. The reason consumers have a working sense of category pricing &mdash; the reason $14 strikes most people as a lot for a fast-food meal and $4 strikes them as a bargain &mdash; is that years of advertising across many brands has built a shared mental price range for the category. That range disciplines what any individual brand can charge. A category with healthy advertising activity is a category in which sellers cannot quietly drift their prices upward without consumers noticing, because everyone is doing comparison shopping all the time, mostly without realizing it.</p>
+
+  <p>The strongest empirical evidence for the cost-lowering view comes from natural experiments where advertising was restricted or banned and prices were compared across markets. Lester Telser's work in the 1960s found that heavily advertised categories often had <em>more</em> competition and <em>lower</em> prices, not less, because advertising let new entrants reach customers and shop a price into the market. The eyeglasses studies of the 1970s found that states which banned optometric advertising had measurably higher eyeglass prices than states which allowed it. A 2013 analysis of Austrian advertising-tax changes by Ferdinand Rauch and Simon Loretz estimated that abolishing a 5% ad tax would reduce consumer prices by about 0.25 percentage points &mdash; small, but moving in the direction the cost-raising view says is impossible.</p>
+</section>
+
+<section class="section" id="being-seen">
+  <h2>The Discipline of Being Seen</h2>
+
+  <p>There is a third effect, related to the scale argument but worth separating out, which is the discipline that comes from being visible alongside competitors. When advertising and retail merchandising make similar products from similar retailers visible side by side &mdash; on a shelf, on an Amazon search results page, in a comparison-shopping engine, in a magazine spread &mdash; consumers can compare them quickly, and that visibility forces brands to hold prices in line with the category. Nobody wants to be the obvious outlier on a screen full of alternatives. The advertising in this view isn't just a marketing cost; it's part of what keeps the category honest, because it's what makes price comparisons possible in the first place.</p>
+
+  <p>This effect is sharpest in DTC and ecommerce, where paid acquisition essentially <em>is</em> the storefront. A brand like Warby Parker or Dollar Shave Club doesn't have a window display passersby walk past; it has a Meta ad, a Google search result, and a TikTok creator deal. Advertising in those channels is not a discretionary brand-building activity; it's how the customer arrives. The whole DTC playbook of the late 2010s &mdash; build a category-defining brand on cheap social ads, scale to hundreds of millions in revenue, drive unit costs down through volume &mdash; depended on advertising lowering effective costs faster than the ad spend itself rose.</p>
+
+  <p>The model only works while the math works, and the math is brutal. Customer acquisition cost (CAC) has to be recovered, with margin, inside the lifetime value (LTV) the customer ultimately produces. The healthy benchmark in DTC is roughly a 3:1 LTV-to-CAC ratio, with CAC payback inside three to four months on the first order plus second-order purchases. When CAC ran ahead of LTV &mdash; which is what happened to a generation of DTC darlings when Meta ad prices climbed 25%-to-40% between 2021 and 2024 &mdash; the businesses that had been growing on cheap advertising found themselves underwater on every new customer. Casper, Allbirds, Peloton, and most of the wave that followed them ran into versions of this wall. The advertising was lowering unit costs right up until the moment it started raising them, which is exactly the dynamic this page is about.</p>
+
+  <p>The DTC story is useful because it makes the relationship between advertising and unit cost legible in a way mature CPG categories don't. In a Procter &amp; Gamble or a Coca-Cola, the advertising spend is buried inside a P&amp;L that's been optimized for decades and the volume effect is invisible because the volume has been there for fifty years. In a four-year-old DTC brand the spreadsheet is exposed, and the question of whether advertising lowers or raises unit cost has a measurable, often weekly, answer.</p>
+</section>
+
+<section class="section" id="verdict">
+  <h2>The Verdict</h2>
+
+  <p>The two views reconcile on the word <em>effective</em>. Well-targeted advertising in growing categories is almost always cost-reducing, because each marginal customer unlocks real scale and each new entrant in the category disciplines the pricing of incumbents. Poorly-targeted advertising in saturated categories tends to be cost-raising, because the spend is mostly defensive &mdash; brands paying to hold what they already have rather than to grow the denominator &mdash; and the consumer ends up financing a competitive standoff. The same dollar of marketing spend can do either depending on context, which is why the empirical literature is genuinely mixed even though the central tendency is toward cost reduction.</p>
+
+  <p>The practical heuristic is something like: early in a brand's life advertising is almost certainly cost-reducing, because each new customer is meaningfully expanding the volume base. Late in a brand's life, in a mature category with stable shares, advertising trends toward cost-raising. Most of the famous examples on either side of this argument fit that pattern reasonably well. The folk theory's error is to apply the late-stage observation universally, as if every category were Coke versus Pepsi and every dollar of marketing spend were canceling out a competitor's. Most categories are not that. Most categories are still growing, still consolidating, still onboarding new buyers, and in those categories the dollar of advertising spend is doing real work to drive down what each unit costs to make and sell.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The folk view ("ads make products cost more") is not crazy, but it generalizes from a special case &mdash; the saturated category &mdash; to the whole economy.</li>
+      <li>Manufacturing and distribution have steep fixed costs. Advertising drives the volume that makes those fixed costs per unit small.</li>
+      <li>Advertising builds the category price awareness that disciplines what any individual brand can charge. Without it, sellers have more pricing power, not less.</li>
+      <li>The math works at every scale: a Shopify store on a $300/month ad budget benefits from the same fixed-cost spread Coca-Cola does.</li>
+      <li>In DTC and ecommerce the relationship is visible weekly: advertising is the storefront, and the LTV-to-CAC ratio decides whether the unit economics work.</li>
+      <li>Eliminating advertising, on the model the folk theory imagines, would not lower prices. It would reduce volume, raise per-unit costs, and reduce the comparison shopping that keeps incumbents honest.</li>
+    </ul>
+  </div>
+
+  <p style="margin-top: 24px; font-size: 14px; color: var(--muted);"><em>See also: <a href="promotional-mix.html">The Six Elements of the Promotional Mix</a> &mdash; where this advertising spend sits relative to the rest of the marketing toolkit.</em></p>
+</section>
+
+<section class="section" id="more-views">
+  <h2>More Views</h2>
+
+  <p class="more-views-intro">The case made above is one side of an argument that has been running since Alfred Marshall, and reasonable economists land on both sides depending on which mechanism they emphasize. The six pieces below sample the range: a foundational 1973 paper that established the scale-and-distribution argument, a thoughtful Advertising Association whitepaper that updates it for the modern economy, a natural-experiment paper from Austria with rare empirical evidence, a pricing-strategy practitioner view, a Mises Institute reading of Galbraith's persuasion argument (the strongest version of the folk theory), and a 2026 DTC brand benchmark report that shows how the trade-off looks in a category where the numbers are exposed.</p>
+
+  <div class="mv-item">
+    <div class="mv-source">Journal of Marketing &middot; SSRN</div>
+    <div class="mv-title"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1851674" target="_blank" rel="noopener">Robert L. Steiner &mdash; Does Advertising Lower Consumer Prices?</a></div>
+    <div class="mv-desc">The seminal 1973 paper that articulated the modern scale-and-distribution argument: brand advertising raises manufacturer turnover, captures economies of scale, and disciplines retailer markups by giving consumers a recognizable item to comparison-shop. Still the cleanest one-paper version of the cost-lowering case.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Advertising Association &middot; Credos</div>
+    <div class="mv-title"><a href="https://adassoc.org.uk/credos/does-advertising-increase-consumer-prices/" target="_blank" rel="noopener">Laurence Green &mdash; Does Advertising Increase Consumer Prices?</a></div>
+    <div class="mv-desc">A thoughtful whitepaper from the U.K. Advertising Association's research arm. Acknowledges that advertising can raise prices in the narrow sense, then walks through the offsetting mechanisms &mdash; competition, scale, innovation, media subsidy &mdash; that point the net effect downward. The reference piece for this argument in the industry.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">CEPR &middot; VoxEU</div>
+    <div class="mv-title"><a href="https://cepr.org/voxeu/columns/advertising-and-consumer-prices" target="_blank" rel="noopener">Loretz &amp; Rauch &mdash; Advertising and Consumer Prices</a></div>
+    <div class="mv-desc">A summary of the Austrian advertising-tax natural experiment. Uses cross-state tax harmonization as a clean source of variation in advertising spend and estimates that on average advertising decreases consumer prices &mdash; rare empirical evidence on a question that is usually argued theoretically.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Pricing for Profit</div>
+    <div class="mv-title"><a href="https://www.pricingforprofit.com/pricing-strategy-blog/does-advertising-increase-or-decrease-retail-prices.htm" target="_blank" rel="noopener">Does Advertising Increase or Decrease Retail Prices?</a></div>
+    <div class="mv-desc">A pricing-strategy practitioner take. Useful because it reframes the question from "ad spend in versus prices out" to "what role does advertising play in positioning?" &mdash; arguing that effective advertising can raise the price a brand <em>can</em> command and lower the price each unit <em>costs</em> at the same time, and that these are not contradictory.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Mises Institute</div>
+    <div class="mv-title"><a href="https://mises.org/mises-daily/galbraith-was-right-about-advertising" target="_blank" rel="noopener">Galbraith Was Right About Advertising</a></div>
+    <div class="mv-desc">The strongest steelman of the cost-raising view. A libertarian outlet conceding ground to John Kenneth Galbraith's "dependence effect": the argument that advertising manufactures wants rather than informing them, and that the social cost of that manufacture is real even when the unit-cost arithmetic comes out favorable. The Galbraithian view is what the folk theory becomes when it gets serious.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Yotpo</div>
+    <div class="mv-title"><a href="https://www.yotpo.com/blog/dtc-brand-comparison/" target="_blank" rel="noopener">2026 DTC Brand Comparison: The Resilience Playbook</a></div>
+    <div class="mv-desc">A current benchmark report on the state of direct-to-consumer brands. Useful as a working example of the cost-lowering argument hitting its limits: when ad prices rise faster than LTV, the math that made DTC work in 2018 breaks, and the same advertising that was lowering unit costs starts raising them. The DTC playbook is the cleanest test bed for this whole debate.</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+<script src="assets/quote-slider.js"></script>
+
+</body>
+</html>
