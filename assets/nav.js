@@ -45,13 +45,15 @@ const navConfig = {
           {
             title: 'Quick Hits',
             items: [
-              { label: 'Does Advertising Raise Prices?', href: 'advertising-and-prices.html' }
+              { label: 'Does Advertising Raise Prices?', href: 'advertising-and-prices.html' },
+              { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' }
             ]
           },
           {
             title: 'Examples',
             items: [
-              { label: 'Nike: Same Soul, Different Words', href: 'nike-same-soul.html' }
+              { label: 'Nike: Same Soul, Different Words',  href: 'nike-same-soul.html' },
+              { label: 'Off the Swoosh Path: Hoka & On',    href: 'off-the-swoosh-path.html' }
               // Add more examples here as they're built
             ]
           }
