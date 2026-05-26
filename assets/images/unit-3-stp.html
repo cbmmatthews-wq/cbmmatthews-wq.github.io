@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3: Segmentation, Targeting & Positioning — cbmatthe</title>
+<meta name="description" content="Unit 3 of M544. How marketers split the market, choose whom to chase, and decide what to mean in the customer's mind. STP as the operating system underneath every IMC decision.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for Unit 3 — keep here rather than touching shared styles.css */
+
+  /* STP roadmap — the four cards */
+  .stp-roadmap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 28px 0;
+    position: relative;
+  }
+  .stp-card {
+    background: var(--white);
+    border-top: 4px solid var(--red);
+    padding: 20px 18px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    position: relative;
+  }
+  .stp-card-step {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .stp-card-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .stp-card-body {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .stp-card::after {
+    content: "→";
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--red);
+    font-size: 22px;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .stp-card:last-child::after { display: none; }
+  @media (max-width: 760px) {
+    .stp-roadmap { grid-template-columns: 1fr 1fr; }
+    .stp-card:nth-child(2)::after { display: none; }
+    .stp-card::after { right: 50%; top: auto; bottom: -16px; transform: translateX(50%) rotate(90deg); }
+  }
+  @media (max-width: 460px) {
+    .stp-roadmap { grid-template-columns: 1fr; }
+    .stp-card::after { right: 50%; top: auto; bottom: -16px; transform: translateX(50%) rotate(90deg); }
+  }
+
+  /* Failed targeting examples grid */
+  .failure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0 18px;
+  }
+  .failure-card {
+    background: var(--cream);
+    padding: 18px 16px;
+    border-radius: 2px;
+    border-left: 3px solid var(--red);
+  }
+  .failure-brand {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .failure-year {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .failure-body {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .failure-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Four bases of segmentation plot */
+  .bases-plot {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 24px 22px;
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+  .bases-plot-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .bases-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .basis-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 130px;
+    gap: 14px;
+    align-items: center;
+    padding: 12px 14px;
+    background: var(--cream);
+    border-radius: 2px;
+  }
+  .basis-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 15px;
+  }
+  .basis-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .basis-meter {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .meter-row { display: flex; align-items: center; gap: 6px; }
+  .meter-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--rule);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .meter-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 1px;
+  }
+  @media (max-width: 720px) {
+    .basis-row { grid-template-columns: 1fr; }
+    .basis-meter { flex-direction: row; gap: 14px; }
+    .meter-row { flex: 1; }
+  }
+
+  /* Three coverage strategies */
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 22px 0;
+  }
+  .coverage-card {
+    background: var(--white);
+    padding: 18px 16px;
+    border-radius: 2px;
+    border-top: 3px solid var(--ink);
+  }
+  .coverage-card.featured { border-top-color: var(--red); }
+  .coverage-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .coverage-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .coverage-body {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .coverage-eg {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--rule);
+    font-size: 12px;
+    color: var(--ink);
+  }
+  .coverage-eg strong { color: var(--red); }
+  @media (max-width: 720px) {
+    .coverage-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Five tests checklist */
+  .tests-list {
+    background: var(--cream);
+    padding: 22px 24px;
+    margin: 22px 0;
+    border-radius: 2px;
+  }
+  .tests-list ol {
+    margin: 0;
+    padding-left: 24px;
+    counter-reset: testcounter;
+    list-style: none;
+  }
+  .tests-list ol li {
+    counter-increment: testcounter;
+    position: relative;
+    padding: 8px 0 8px 8px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .tests-list ol li::before {
+    content: counter(testcounter);
+    position: absolute;
+    left: -22px;
+    top: 8px;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 14px;
+  }
+  .tests-list ol li strong { color: var(--ink); }
+
+  /* Persona thumbnail grid with lightbox */
+  .personas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 18px 0 14px;
+  }
+  .persona-thumb {
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    cursor: zoom-in;
+    position: relative;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .persona-thumb:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .persona-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background: var(--white);
+    display: block;
+  }
+  .persona-caption {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    background: var(--cream);
+    padding: 14px 18px;
+    border-radius: 2px;
+    border-left: 3px solid var(--red);
+    margin: 6px 0 22px;
+  }
+  .persona-caption strong { color: var(--ink); }
+  @media (max-width: 720px) {
+    .personas-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Lightbox overlay */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 16, 0.92);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    cursor: default;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: transparent;
+    border: 0;
+    color: var(--white);
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px 12px;
+    font-family: var(--serif);
+  }
+  .lightbox-close:hover { color: var(--red-mid); }
+
+  /* Positioning approaches list */
+  .approaches {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 22px 0;
+  }
+  .approach {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 12px;
+    background: var(--white);
+    padding: 14px 14px;
+    border-radius: 2px;
+    border: 1px solid var(--rule);
+  }
+  .approach-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+  }
+  .approach-body strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .approach-body span {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .approach-eg {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--red);
+  }
+  @media (max-width: 720px) {
+    .approaches { grid-template-columns: 1fr; }
+  }
+
+  /* STP → 4Ps cascade */
+  .cascade {
+    display: grid;
+    grid-template-columns: 1fr 30px 2fr;
+    gap: 16px;
+    align-items: center;
+    margin: 22px 0;
+    padding: 22px;
+    background: var(--cream);
+    border-radius: 2px;
+  }
+  .cascade-stp {
+    background: var(--white);
+    padding: 16px;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .cascade-stp .label {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .cascade-stp .stp-letters {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.1em;
+  }
+  .cascade-arrow {
+    text-align: center;
+    font-size: 24px;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .cascade-ps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .cascade-p {
+    background: var(--white);
+    padding: 10px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+  }
+  .cascade-p strong { color: var(--red); }
+  @media (max-width: 720px) {
+    .cascade { grid-template-columns: 1fr; }
+    .cascade-arrow { transform: rotate(90deg); }
+  }
+
+  /* Video facade — thumbnail-first, click to load iframe */
+  .video-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 24px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .video-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--ink);
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+  }
+  .video-thumb:hover img { transform: scale(1.03); opacity: 0.92; }
+  .video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(204, 32, 30, 0.92);
+    border: 3px solid var(--white);
+    color: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 6px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .video-thumb:hover .video-play {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: var(--red);
+  }
+  .video-meta {
+    padding: 16px 18px 18px;
+  }
+  .video-meta .label {
+    font-family: var(--serif);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .video-meta .title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .video-meta .desc {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .video-yt-link {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .video-yt-link:hover { color: var(--red); text-decoration: underline; }
+  .video-card iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    display: block;
+  }
+
+  /* Harley segments grid */
+  .harley-myth {
+    background: var(--ink);
+    color: var(--white);
+    padding: 22px 24px;
+    margin: 24px 0 18px;
+    border-radius: 2px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 18px;
+    align-items: center;
+  }
+  .harley-myth .pct {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    text-align: center;
+  }
+  .harley-myth .text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .harley-myth .text strong { color: var(--white); }
+  .harley-segments {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 18px 0 22px;
+  }
+  .harley-seg {
+    background: var(--cream);
+    padding: 14px 16px;
+    border-radius: 2px;
+    border-left: 3px solid var(--red);
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .harley-seg-pct {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    text-align: center;
+    padding-top: 2px;
+  }
+  .harley-seg-name {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .harley-seg-desc {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .harley-segments { grid-template-columns: 1fr; }
+    .harley-myth { grid-template-columns: 60px 1fr; }
+    .harley-myth .pct { font-size: 32px; }
+  }
+
+  /* Danger callout */
+  .danger-callout {
+    background: var(--red);
+    color: var(--white);
+    padding: 26px 28px;
+    margin: 28px 0;
+    border-radius: 2px;
+  }
+  .danger-callout .label {
+    font-family: var(--serif);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+    margin-bottom: 8px;
+  }
+  .danger-callout .text {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  /* External-link callout (Esri, Harley) */
+  .external-link {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--blue, #2b4d7a);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 2px;
+  }
+  .external-link .type {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .external-link .title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .external-link p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .external-link a { color: var(--blue, #2b4d7a); text-decoration: none; }
+  .external-link a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 · Unit 3</div>
+    <h1>Segmentation, Targeting &amp; Positioning</h1>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#segmentation">Segmentation</a>
+    <a href="#targeting">Targeting</a>
+    <a href="#positioning">Positioning</a>
+    <a href="#making-work">Making It Work</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The $150 Million Misread</h2>
+
+  <p>In 1996, McDonald's bet roughly $150 million on a burger called the Arch Deluxe. The marketing was a deliberate repositioning play: McDonald's wanted to be seen as a place adults went for grown-up taste, not just somewhere parents brought kids for Happy Meals. The campaign featured children making sour faces at the new burger while sophisticated adults enjoyed it. The tagline, in effect: <em>this one's not for the kids.</em></p>
+
+  <p>The Arch Deluxe was dead inside two years. Adults who wanted a grown-up burger were not going to McDonald's to get it. Families who did go to McDonald's were not interested in being told the new burger wasn't for their kids. The brand had two targets — the one it had, and the one it wanted — and the campaign managed to alienate the first without converting the second.</p>
+
+  <p>The Arch Deluxe is the most famous example of a failure that is more common than the case studies suggest. Every dollar of media spend behind a campaign rests on three earlier decisions: which groups of customers exist in this market, which one of them we are going to chase, and what we want to mean to that group relative to everyone else competing for the same attention. Get the targeting wrong and the creative does not save you. Get the positioning wrong and the media plan does not save you. Get the segmentation wrong and you are not even in the right argument.</p>
+
+  <div class="failure-grid">
+
+    <div class="failure-card">
+      <div class="failure-brand">Tropicana Redesign</div>
+      <div class="failure-year">2009 · Lost ~$30M in 2 months</div>
+      <div class="failure-body">Replaced the iconic orange-with-a-straw carton with a glass of juice on a flat field. Loyalists could no longer find the brand on the shelf. Sales dropped 20% in eight weeks. Tropicana reverted the design.</div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-brand">Crystal Pepsi</div>
+      <div class="failure-year">1992 · Pulled in 18 months</div>
+      <div class="failure-body">Pepsi launched a clear cola for health-conscious '90s consumers. The problem: people who wanted cola wanted it to taste and look like cola. People who wanted "clear and pure" weren't buying soda in the first place.</div>
+    </div>
+
+    <div class="failure-card">
+      <div class="failure-brand">Coors Rocky Mountain Sparkling Water</div>
+      <div class="failure-year">1990 · Withdrawn within 2 years</div>
+      <div class="failure-body">Coors put a beer brand on bottled water. The targeting was sound — premium water was a growing category — but the brand's beer DNA made the water feel wrong to water buyers and irrelevant to Coors drinkers.</div>
+    </div>
+
+  </div>
+
+  <p>Each of these brands had access to the same data the rest of their industries had. None of them was short on creative talent or media budget. The failure point in every case was upstream: the marketers picked the wrong target, or they picked the right target but tried to occupy a position the brand had no permission to hold. <em>Segmentation, targeting, and positioning</em> — STP — is the discipline that exists to stop this from happening.</p>
+
+  <div class="danger-callout">
+    <div class="label">The operating warning</div>
+    <div class="text">The most common failure in marketing isn't picking the wrong target. It's skipping segmentation entirely, picking a target out of intuition, and discovering — usually after the launch budget is spent — that the "target" was three different groups in a trench coat, each wanting something the others didn't.</div>
+  </div>
+
+  <h3>The Three Letters, in One Breath</h3>
+
+  <p>Before we go deeper, the working definitions:</p>
+
+  <ul>
+    <li><strong>Segmentation</strong> is the act of dividing a market into distinct groups whose members share needs, behaviors, or characteristics that make them likely to respond similarly to a marketing program.</li>
+    <li><strong>Targeting</strong> is the choice of which of those groups the firm will actually pursue — and, implicitly, which it will not.</li>
+    <li><strong>Positioning</strong> is the deliberate construction of a brand's meaning in the chosen target's mind, in comparison to what they already think about competing brands.</li>
+  </ul>
+
+  <p>The order matters. You cannot position to a target you have not chosen. You cannot choose a target without first seeing the segments. The discipline runs in one direction, even though in practice the data flows in loops.</p>
+
+  <h3>The Four-Card Roadmap</h3>
+
+  <p>The marketing literature, most cleanly in Belch's <em>Advertising and Promotion</em>, frames STP as a four-step process. We'll use this as the spine of the unit:</p>
+
+  <div class="stp-roadmap">
+    <div class="stp-card">
+      <div class="stp-card-step">Step 1</div>
+      <div class="stp-card-title">Identify Markets With Unfulfilled Needs</div>
+      <div class="stp-card-body">Spot the opportunity. Where are buyers underserved? Where is demand growing? What gaps do competitors leave open?</div>
+    </div>
+    <div class="stp-card">
+      <div class="stp-card-step">Step 2</div>
+      <div class="stp-card-title">Determine Market Segmentation</div>
+      <div class="stp-card-body">Divide the market into groups using demographic, geographic, psychographic, or behavioral characteristics. Build profiles.</div>
+    </div>
+    <div class="stp-card">
+      <div class="stp-card-step">Step 3</div>
+      <div class="stp-card-title">Select a Market to Target</div>
+      <div class="stp-card-body">Evaluate segments. Choose how many to enter and which ones offer the best fit between the firm's capabilities and the segment's potential.</div>
+    </div>
+    <div class="stp-card">
+      <div class="stp-card-step">Step 4</div>
+      <div class="stp-card-title">Position Through Marketing Strategies</div>
+      <div class="stp-card-body">Decide what the brand will mean to the chosen target. Coordinate every element of the marketing mix to deliver and reinforce that meaning.</div>
+    </div>
+  </div>
+
+  <p>Steps 1 and 2 collapse in practice — you identify markets <em>by</em> segmenting them — so the rest of this unit covers them together. Each remaining card gets its own section.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 01 — SEGMENTATION
+     ============================================================ -->
+<section class="section" id="segmentation">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Segmentation</div>
+  <h2>How Marketers Cut the Market</h2>
+
+  <p>Markets, in their natural state, are not groups. They are crowds. A "market for athletic shoes" is not a thing you can market to — it's millions of people who happen to share the loose attribute of buying athletic footwear at some frequency, and who otherwise want, value, and respond to different things. The first job of segmentation is to find the seams in that crowd: the natural fault lines where one group's needs diverge enough from another's that a single message stops working for both.</p>
+
+  <p>The reason this matters operationally is that every promotional dollar has a denominator. If your campaign reaches a hundred people and ninety of them have no use for your product, you have spent ninety percent of the budget on irrelevant impressions. Segmentation is what lets you raise the hit rate.</p>
+
+  <div class="video-card" data-video-id="EQ2pgHbvK0A">
+    <div class="video-thumb">
+      <img src="https://i.ytimg.com/vi/EQ2pgHbvK0A/maxresdefault.jpg" alt="Four ways to segment a market" loading="lazy"
+           onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/EQ2pgHbvK0A/hqdefault.jpg';">
+      <button class="video-play" aria-label="Play video">▶</button>
+    </div>
+    <div class="video-meta">
+      <div class="label">Video · Segmentation overview</div>
+      <div class="title">Four Ways to Segment a Market</div>
+      <div class="desc">A short walkthrough of the four bases of segmentation — demographic, geographic, psychographic, and behavioral — and what each one actually tells you about a customer.</div>
+      <a href="https://youtu.be/EQ2pgHbvK0A" class="video-yt-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+    </div>
+  </div>
+
+  <h3>1.1 The Four Bases of Segmentation</h3>
+
+  <p>Marketers segment using four broad categories of information. They differ on two dimensions that matter: how easy the data is to get, and how well it predicts what customers will actually do.</p>
+
+  <div class="bases-plot">
+    <div class="bases-plot-title">The four bases, ranked by usefulness</div>
+    <div class="bases-list">
+
+      <div class="basis-row">
+        <div class="basis-name">Demographic</div>
+        <div class="basis-desc">Age, gender, income, education, ethnicity, household composition. Cheap, public, measurable, and the weakest predictor of behavior.</div>
+        <div class="basis-meter">
+          <div class="meter-row"><span>Easy</span><div class="meter-bar"><div class="meter-fill" style="width: 90%;"></div></div></div>
+          <div class="meter-row"><span>Predict</span><div class="meter-bar"><div class="meter-fill" style="width: 25%;"></div></div></div>
+        </div>
+      </div>
+
+      <div class="basis-row">
+        <div class="basis-name">Geographic /<br>Geodemographic</div>
+        <div class="basis-desc">Where customers live, plus the demographic and lifestyle patterns of that place. Tools like Esri Tapestry and Nielsen PRIZM bundle these into pre-built clusters.</div>
+        <div class="basis-meter">
+          <div class="meter-row"><span>Easy</span><div class="meter-bar"><div class="meter-fill" style="width: 65%;"></div></div></div>
+          <div class="meter-row"><span>Predict</span><div class="meter-bar"><div class="meter-fill" style="width: 50%;"></div></div></div>
+        </div>
+      </div>
+
+      <div class="basis-row">
+        <div class="basis-name">Psychographic</div>
+        <div class="basis-desc">Activities, interests, opinions, values, lifestyles. Harder to measure (requires surveys or proprietary panels), but better explains <em>why</em> people buy.</div>
+        <div class="basis-meter">
+          <div class="meter-row"><span>Easy</span><div class="meter-bar"><div class="meter-fill" style="width: 40%;"></div></div></div>
+          <div class="meter-row"><span>Predict</span><div class="meter-bar"><div class="meter-fill" style="width: 70%;"></div></div></div>
+        </div>
+      </div>
+
+      <div class="basis-row">
+        <div class="basis-name">Behavioral</div>
+        <div class="basis-desc">What customers have actually done — purchases, usage rate, loyalty, online behavior, search intent. Expensive or privacy-sensitive to obtain, and by far the strongest predictor of what they'll do next.</div>
+        <div class="basis-meter">
+          <div class="meter-row"><span>Easy</span><div class="meter-bar"><div class="meter-fill" style="width: 25%;"></div></div></div>
+          <div class="meter-row"><span>Predict</span><div class="meter-bar"><div class="meter-fill" style="width: 95%;"></div></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p>The pattern that runs through this list is worth stating explicitly: the easiest data is the least useful, and the most useful data raises ethical and operational questions. A campaign built on age and ZIP code is cheap and quick to assemble; it is also working with the equivalent of a customer's outline. A campaign built on what the customer has actually bought, browsed, and abandoned over the last six months is closer to a portrait — but getting that data ethically, storing it responsibly, and using it without creeping the customer out is the harder discipline.</p>
+
+  <h3>1.2 Demographic Segmentation</h3>
+
+  <p>Demographics are the most common base of segmentation, the easiest to defend in a meeting, and the most likely to mislead. The reason they mislead is that demographic categories are correlated with consumer behavior but rarely the cause of it. Two women in their thirties with the same household income can have completely different brand preferences. Demographics tell you who the customer is on paper; they rarely tell you what they want. Netflix has publicly stated that demographic data is "almost useless" to them compared to viewing behavior — knowing a household contains a 34-year-old woman in Atlanta tells them almost nothing; knowing she binged the first season of <em>Wednesday</em> in three nights tells them everything.</p>
+
+  <p>That said, demographics are not worthless. They remain useful when (a) the product is genuinely demographic-bound — diapers, retirement planning, AARP — or (b) they are combined with other bases to sharpen a profile. The mistake is to treat demographics as <em>sufficient</em>.</p>
+
+  <p>One demographic dimension worth pausing on is generation. Millennials (born roughly 1982–1996) and Gen Z (born roughly 1997–2012) are routinely treated as a single "young" segment, and they are not. Gen Z is more skeptical of brand promises, more influenced by friends and creators than by celebrities, less brand-loyal, and more likely to expect brands to take positions on social issues. A campaign that lumps them in with older millennials and uses the same channels and tone is targeting two segments with one budget — the Arch Deluxe error in miniature.</p>
+
+  <h3>1.3 Geographic and Geodemographic Segmentation</h3>
+
+  <p>Where people live shapes what they buy. The obvious cases are physical: snowblowers in Minnesota, sunscreen in Florida, four-wheel drive in mountain regions. The less obvious cases are cultural: certain soft-drink brands have built durable regional cult followings — Cheerwine in the Carolinas, Vernors in Michigan, Moxie in New England, Big Red across the South — that don't translate when the brand tries to go national. The Cheerwine slogan is literally <em>"The South's Unique Cherry Soft Drink."</em> Geography is the segmentation; the rest of the brand is built on top of it.</p>
+
+  <p>Geodemographic segmentation extends this idea by bundling geographic location with demographic and lifestyle characteristics. The premise: people who live in similar neighborhoods tend to share similar buying patterns. Several companies sell pre-built versions of this analysis. Esri's <em>Tapestry Segmentation</em> divides U.S. neighborhoods into more than 60 distinct lifestyle clusters with names like <em>Soccer Moms</em>, <em>Laptops and Lattes</em>, <em>Salt of the Earth</em>, and <em>Heartland Communities</em>. Nielsen's <em>PRIZM</em> does the same with 66 clusters bearing names like <em>Bohemian Mix</em>, <em>Suburban Pioneers</em>, and <em>Country Casuals</em>.</p>
+
+  <!-- Esri Tapestry segments PDF -->
+  <div class="external-link">
+    <div class="type">External · Pre-built segments</div>
+    <div class="title"><a href="https://www.esri.com/content/dam/esrisites/en-us/media/posters/2025-arcgis-tapestry.pdf" target="_blank" rel="noopener">Esri Tapestry Segmentation — 2025 Reference Poster (PDF)</a></div>
+    <p>Page 1 shows all 60+ Tapestry segments grouped multiple ways (by LifeMode, by Urbanization, etc.). Page 2 maps where each segment actually lives in the U.S. Useful both for seeing the granularity a commercial segmentation system aims for, and for noticing how quickly the named segments start to feel like caricatures — a useful tension to hold while reading the rest of this section.</p>
+  </div>
+
+  <p>These systems are useful for two things: they're fast, and they give a sales team a common vocabulary. Their weakness is that they describe averages of places, not individuals. A "Laptops and Lattes" neighborhood will contain people who fit the cluster's profile and people who don't, and a marketer who treats the cluster as a customer rather than as a hypothesis is going to miss.</p>
+
+  <h3>1.4 Psychographic Segmentation</h3>
+
+  <p>Psychographics are an attempt to segment by <em>why</em> rather than <em>who</em>. Instead of grouping people by age or income, psychographic systems group them by what they value, what they do with their time, and how they see themselves. The technical term for the underlying data is <em>AIO</em> — activities, interests, opinions.</p>
+
+  <p>The best-known commercial psychographic system is <em>VALS</em>, developed by Strategic Business Insights. VALS sorts U.S. adults into eight segments based on two underlying dimensions: their primary motivation (whether they're driven by ideals, by achievement, or by self-expression) and the resources they bring to acting on that motivation (high vs. low). Segments include <em>Innovators</em>, <em>Thinkers</em>, <em>Achievers</em>, <em>Experiencers</em>, and four others. Marketers use VALS not to identify customers one at a time but to design messages, creative, and media plans that resonate with the motivational profile of the chosen target.</p>
+
+  <p>The point of psychographics is that two people who look identical demographically — same age, same income, same ZIP code — can have completely different orientations to brands. One sees a luxury car as a reward for achievement; the other sees the same car as a statement of identity. The advertising that lands for one won't necessarily land for the other, even though the demographic profile is the same.</p>
+
+  <h3>1.5 Behavioral Segmentation: The Highest-Resolution Lens</h3>
+
+  <p>Behavioral segmentation groups customers by what they have actually done — what they've bought, how often, how much, whether they're loyal, and which benefits they appear to be seeking. It is the most predictive of the four bases because past behavior is the single best predictor of future behavior in almost every consumer category.</p>
+
+  <p>Four behavioral cuts are worth knowing.</p>
+
+  <p><strong>Usage rate.</strong> Customers in any category split into heavy, medium, and light users — and the split is rarely even. The pattern is so consistent across industries that it has its own name: the <em>80/20 rule</em>, sometimes called the Pareto principle. Roughly 20% of a brand's customers tend to drive roughly 80% of its volume. In some categories the skew is steeper. The implication for marketing is that a campaign aimed at "everyone in the category" will mostly miss the people who actually matter. A targeted effort at heavy users — keeping them, deepening their relationship, preventing defection — is often the highest-leverage move a brand can make.</p>
+
+  <p><strong>Loyalty status.</strong> Within any product category, customers fall into four loose loyalty bands. <em>Hard-core loyals</em> buy one brand all the time. <em>Split loyals</em> rotate between two or three brands they consider acceptable substitutes. <em>Shifting loyals</em> move from one brand to another over time. <em>Switchers</em> have no loyalty at all and buy whatever's on sale. Each group requires a different message. Hard-core loyals need reinforcement and retention. Split loyals can be moved up to hard-core with the right relationship investment. Shifting loyals respond to product innovation and competitive comparisons. Switchers respond mostly to price — and chasing them with brand-building messaging is usually a waste.</p>
+
+  <p><strong>User status.</strong> Closely related but distinct: customers in a category can be non-users, ex-users, potential users, first-time users, or regular users. The messaging required to convert a non-user is completely different from the messaging required to win back an ex-user, which is different again from what a regular user needs in order to stay regular.</p>
+
+  <p><strong>Benefit segmentation.</strong> A behavioral cut that focuses on <em>why</em> customers bought. Two people who buy the same toothpaste may want different things from it — one wants whitening, one wants cavity protection, one wants fresh breath, one is buying for sensitive teeth. The product is identical; the segment is not. Crest, Colgate, and Sensodyne each carry multiple SKUs aimed at different benefit segments within what looks from the outside like one category.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Behavioral data is the closest thing marketing has to a portrait of the actual customer. It is also the data customers are least comfortable knowing you have collected.</div>
+  </div>
+
+  <h3>1.6 Behavioral Targeting Online — and What's Changing</h3>
+
+  <p>The internet made behavioral segmentation operational at scale. Cookies, pixels, retargeting tags, and the entire programmatic-advertising stack exist to identify a customer by what they have just done — visited this page, abandoned this cart, watched this video — and serve them an ad calibrated to that behavior within seconds. This is why digital became the most efficient direct-response channel ever built, and it is also what triggered the regulatory and platform-led backlash now reshaping the field.</p>
+
+  <p>Apple's App Tracking Transparency, Google's deprecation of third-party cookies, EU and California privacy regulations, and growing consumer discomfort with feeling watched have all chipped away at the cleanest implementations. Marketers in 2026 are spending real money rebuilding measurement and targeting systems that used to be free. The strategic implication: behavioral targeting remains the most predictive base of segmentation, but obtaining the behavior is no longer frictionless. First-party data — what customers do on a brand's own properties — has become more valuable than ever. Third-party behavioral data has become less reliable.</p>
+
+  <h3>1.7 Combining Bases</h3>
+
+  <p>In practice, useful segments are almost always built from more than one base. A ski-equipment brand isn't targeting <em>"people who ski"</em> — that's a category, not a segment. The segment might be: <em>25–45 years old (demographic), household income above $90,000 (demographic), located within 200 miles of a major mountain (geographic), active outdoor lifestyle and identifies with peak performance (psychographic), and has purchased technical equipment within the last three seasons (behavioral).</em> Each base sharpens the picture. None of them alone would do.</p>
+
+  <p>The temptation is to keep adding layers until the segment is so specific it contains six people. The discipline is to stop layering at the point where the segment is sharp enough to design for but still large enough to be worth designing for. Which brings us to the next card.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 02 — TARGETING
+     ============================================================ -->
+<section class="section" id="targeting">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Targeting</div>
+  <h2>Choosing Whom to Chase</h2>
+
+  <p>Segmentation produces a map. Targeting is the choice of which territory to enter. The two are linked but distinct, and one of the most common mistakes new marketers make is to collapse them — to skip the segmentation work entirely and "target" a vague group like "younger consumers" or "the premium segment" without ever doing the analysis that would have revealed what those phrases actually contain. You cannot target what you have not first segmented. Or, more precisely: you can, but you'll be guessing, and the cost of being wrong will be visible only after the launch.</p>
+
+  <h3>2.1 Three Coverage Strategies</h3>
+
+  <p>Once a market has been segmented, a firm faces a structural choice about how many segments to enter and with what kind of marketing mix. The literature settles on three options.</p>
+
+  <div class="coverage-grid">
+    <div class="coverage-card">
+      <div class="coverage-name">Undifferentiated</div>
+      <div class="coverage-tagline">One mix for everyone</div>
+      <div class="coverage-body">Ignore segment differences. Offer one product with one message to the entire market. Cheap to execute. Effective only when the market is genuinely homogeneous, which it almost never is.</div>
+      <div class="coverage-eg"><strong>Example:</strong> Early Coca-Cola — one bottle, one taste, one ad, the whole world. Largely abandoned as a strategy in most consumer categories.</div>
+    </div>
+
+    <div class="coverage-card featured">
+      <div class="coverage-name">Differentiated</div>
+      <div class="coverage-tagline">Different mix per segment</div>
+      <div class="coverage-body">Enter multiple segments with a separate marketing mix tailored to each. Higher cost, higher coverage, requires the organization to keep multiple positioning lines straight without contaminating each other.</div>
+      <div class="coverage-eg"><strong>Example:</strong> Marriott runs Ritz-Carlton, JW Marriott, Courtyard, Residence Inn, Fairfield, and Moxy as separate brands, each pitched at a different traveler segment and price point.</div>
+    </div>
+
+    <div class="coverage-card">
+      <div class="coverage-name">Concentrated</div>
+      <div class="coverage-tagline">Go all-in on one</div>
+      <div class="coverage-body">Pick a single segment and dominate it. Lower revenue ceiling, but the strategy lets a small firm punch above its weight by being the obvious choice for its chosen group.</div>
+      <div class="coverage-eg"><strong>Example:</strong> Tesla in its first decade — luxury electric vehicles for early-adopter affluent buyers, no economy model, no hybrid hedge. The Roadster and Model S were not for everyone.</div>
+    </div>
+  </div>
+
+  <h3>2.2 The Five Tests</h3>
+
+  <p>Not every segment a marketer can identify is one worth pursuing. The standard checklist from the marketing literature is five tests. A segment that fails any of them is probably not a viable target, regardless of how interesting it looks on the slide.</p>
+
+  <div class="tests-list">
+    <ol>
+      <li><strong>Measurable.</strong> Can the segment's size, purchasing power, and key characteristics actually be quantified? If you cannot count the segment, you cannot plan for it, budget for it, or report on it.</li>
+      <li><strong>Substantial.</strong> Is the segment large enough — or profitable enough per customer — to justify a separate marketing effort? Niche is fine. Tiny is not.</li>
+      <li><strong>Accessible.</strong> Can the firm reach the segment through available media, channels, and distribution? A perfectly defined segment that lives outside your media plan and your retail footprint is a segment for someone else.</li>
+      <li><strong>Differentiable.</strong> Does the segment respond differently from other segments to the marketing mix? If two "segments" want the same product, at the same price, through the same channel, with the same message — they are one segment.</li>
+      <li><strong>Actionable.</strong> Does the firm actually have the resources, capabilities, and organizational fit to design and execute a program for this segment? A target you cannot serve well is worse than no target at all.</li>
+    </ol>
+  </div>
+
+  <h3>2.3 From Segment to Persona</h3>
+
+  <p>The five tests give you a target. They do not yet give you a target that feels like a <em>person</em>. And it turns out that the more concrete the target feels in the heads of the people designing the work — the strategists, the creative team, the media buyers — the better the work tends to be.</p>
+
+  <p>This is where personas come in. A persona is a semi-fictional representation of a target customer, constructed from the segmentation data but rendered as an individual. Instead of describing the target as <em>"women 30–45, household income $75K+, suburban, two children, college-educated, value-conscious but brand-aware"</em> — which is a bullet list — the persona has a name, a face, a job, a daily routine, a set of frustrations, and a relationship to the product category. <em>Sarah Chen, 38, dental hygienist in suburban Denver, married with two kids in elementary school, listens to true-crime podcasts on her commute, shops at Target because it's faster than Whole Foods, frustrated that her current toothpaste hasn't helped her sensitivity.</em></p>
+
+  <p>Personas are fashionable, and like all fashionable tools they get over-applied. Used badly, they become an exercise in creative writing that distracts from the underlying segmentation. Used well, they do something the bullet list cannot: they give the team a coherent person to design for. It is easier to imagine what would make Sarah Chen's day better than to imagine what would make "women 30–45, HHI $75K+" feel anything at all.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">A persona is not a replacement for segmentation. It is the segmentation made human enough to design against. The segment is the math. The persona is the muse.</div>
+  </div>
+
+  <p>The format is flexible — you'll see them called <em>marketing personas</em>, <em>buyer personas</em>, <em>donor personas</em>, <em>candidate personas</em>, <em>shopper personas</em>, <em>lead personas</em>, and a dozen other names depending on the context — but the underlying move is the same: take a segment, make it specific enough to imagine, and design for the imagined person.</p>
+
+  <div class="personas-grid">
+    <div class="persona-thumb"><img src="assets/images/persona-1.png" alt="Persona example: Assaf, 28, Tel Aviv shopper" loading="lazy"></div>
+    <div class="persona-thumb"><img src="assets/images/persona-2.png" alt="Persona example: Rosie Ortiz, 27, web developer, London" loading="lazy"></div>
+    <div class="persona-thumb"><img src="assets/images/persona-3.png" alt="Persona examples: Mark, Justin, and Maggie demographic and behavioral identifiers" loading="lazy"></div>
+    <div class="persona-thumb"><img src="assets/images/persona-4.png" alt="Persona example: Candace Nicks, Head of Engineering" loading="lazy"></div>
+    <div class="persona-thumb"><img src="assets/images/persona-5.png" alt="Persona example: Tracy Chadwick, Director of Sales" loading="lazy"></div>
+    <div class="persona-thumb"><img src="assets/images/persona-6.png" alt="Marketoonist cartoon: 7 types of marketing personas" loading="lazy"></div>
+  </div>
+
+  <div class="persona-caption"><strong>What you're looking at.</strong> Some of this data appears to have been collected <em>quantitatively</em> — numbers, scales, rankings of motivations or technology proficiency. Some is collected <em>qualitatively</em> — quotes, interviews, descriptions of frustrations and goals. The best personas combine both, and the final panel (a cartoonist's gentle skewering) is a reminder that personas done badly become caricatures that get filed away rather than used.</div>
+
+  <p>Personas can also live in video. The short explainer below covers what a buyer persona actually is, what questions it should answer, and how it gets used in practice.</p>
+
+  <div class="video-card" data-video-id="zOc4ZZKDsBE">
+    <div class="video-thumb">
+      <img src="https://i.ytimg.com/vi/zOc4ZZKDsBE/maxresdefault.jpg" alt="What is a buyer persona?" loading="lazy"
+           onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/zOc4ZZKDsBE/hqdefault.jpg';">
+      <button class="video-play" aria-label="Play video">▶</button>
+    </div>
+    <div class="video-meta">
+      <div class="label">Video · Persona walkthrough</div>
+      <div class="title">What a Buyer Persona Is — and How to Build One</div>
+      <div class="desc">A short explainer on what goes into a usable persona, the questions it has to answer, and the mistakes that turn a persona into a wall decoration.</div>
+      <a href="https://youtu.be/zOc4ZZKDsBE" class="video-yt-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+    </div>
+  </div>
+
+  <p>The most instructive real-world case of persona-driven targeting comes from Harley-Davidson. Most large consumer brands rent their segmentation from systems like Claritas or Esri Tapestry — buy the cluster file, map the customer base, target accordingly. Harley-Davidson does not. The company has, for roughly four decades, built its marketing around <strong>seven internally developed customer personas</strong> that it has refined through its own ethnographic research, owner-group meetings, and rider events. The personas don't map cleanly onto any commercial segmentation system, and Harley believes that's the point.</p>
+
+  <div class="harley-myth">
+    <div class="pct">85%</div>
+    <div class="text"><strong>The myth-buster.</strong> Most people picture a Harley rider as either a wealthy "Rich Urban Biker" (RUB) or a leather-clad outlaw. Combined, those two segments are only <strong>15%</strong> of actual Harley owners. The other 85% are the riders almost no outside observer would think to put on the bike.</div>
+  </div>
+
+  <p>Sorted by size, the seven Harley-Davidson rider segments look like this:</p>
+
+  <div class="harley-segments">
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">29%</div>
+      <div>
+        <div class="harley-seg-name">Sensitive Pragmatists</div>
+        <div class="harley-seg-desc">Mostly blue-collar. Easy-going and practical. Take riding seriously — "you'd better know what you're doing." Tend to ride FL-series bikes.</div>
+      </div>
+    </div>
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">24%</div>
+      <div>
+        <div class="harley-seg-name">Laid-Back Campers</div>
+        <div class="harley-seg-desc">Quiet, soft-spoken cruisers, not racers. The bike is a way to escape the city. "Made in America" is the #1 reason they buy Harley. Tend to ride Sportsters.</div>
+      </div>
+    </div>
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">17%</div>
+      <div>
+        <div class="harley-seg-name">Cool-Headed Loners</div>
+        <div class="harley-seg-desc">Higher-income white-collar but not necessarily wealthy. The Harley is a "fingerprint" — buy the base, customize so nobody has the same one. Tend to ride Softails.</div>
+      </div>
+    </div>
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">10%</div>
+      <div>
+        <div class="harley-seg-name">Adventure-Loving Traditionalists</div>
+        <div class="harley-seg-desc">Ride for independence, freedom, and risk. Find newer Harley riders "trendy and unappealing." Share the Campers' love of "Made in America."</div>
+      </div>
+    </div>
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">8%</div>
+      <div>
+        <div class="harley-seg-name">Classy Capitalists (RUBs)</div>
+        <div class="harley-seg-desc">"Rich Urban Bikers." Often 45–50, promised themselves a Harley as the reward for success. Love the attention. Tend to ride Softails.</div>
+      </div>
+    </div>
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">7%</div>
+      <div>
+        <div class="harley-seg-name">Cocky Misfits</div>
+        <div class="harley-seg-desc">The cultural stereotype. "Tattoos with attitude." The sound and speed matter most — always looking for a chance to open it up.</div>
+      </div>
+    </div>
+
+    <div class="harley-seg">
+      <div class="harley-seg-pct">5%</div>
+      <div>
+        <div class="harley-seg-name">Stylish Status Seekers</div>
+        <div class="harley-seg-desc">Younger aspirers emulating the Capitalists. The Capitalists ride for themselves; the Status Seekers ride to be noticed. Smallest segment.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p>What this list reveals — and what no commercial cluster file would have given Harley — is that the brand's two most <em>visible</em> rider types account for only 15% of its actual buyers. A marketing program built around the cultural stereotype would have spoken loudly to the smallest segments while ignoring the Pragmatists, Campers, and Loners who together make up 70% of the customer base. The off-the-shelf segmentation would have produced ads for the Harley nobody actually rides.</p>
+
+  <!-- Harley personas Forbes source -->
+  <div class="external-link">
+    <div class="type">External · Case study</div>
+    <div class="title"><a href="https://www.forbes.com/sites/larrylight/2020/05/26/harley-davidson-in-a-post-corona-world-keep-your-customers-close/" target="_blank" rel="noopener">Harley-Davidson in a Post-Corona World: Keep Your Customers Close</a></div>
+    <p>Larry Light's Forbes piece on Harley's seven-persona system and why the company has stayed loyal to it for four decades. The full segment descriptions in the section above are drawn from this article.</p>
+  </div>
+
+  <p>The lesson for smaller brands is not that everyone should refuse commercial segmentation systems. It's that commercial systems should be treated as starting points, not destinations. A pre-built cluster will tell you what an average resident of a neighborhood looks like. Only your own data, your own customers, and your own attention will tell you what <em>your</em> customer actually is.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 03 — POSITIONING
+     ============================================================ -->
+<section class="section" id="positioning">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Positioning</div>
+  <h2>Owning a Place in the Customer's Mind</h2>
+
+  <p>Once a target has been chosen, the firm faces its final and most consequential strategic decision: what does the brand mean to that target, in comparison to every other brand competing for the same attention? This is positioning. It is the one element of marketing strategy that lives entirely in the customer's head, which makes it both the hardest to control and the one that decides whether everything else works.</p>
+
+  <div class="video-card" data-video-id="1iAEqKH8ebE">
+    <div class="video-thumb">
+      <img src="https://i.ytimg.com/vi/1iAEqKH8ebE/maxresdefault.jpg" alt="Mark Ritson on positioning" loading="lazy"
+           onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/1iAEqKH8ebE/hqdefault.jpg';">
+      <button class="video-play" aria-label="Play video">▶</button>
+    </div>
+    <div class="video-meta">
+      <div class="label">Video · Mark Ritson</div>
+      <div class="title">What Positioning Actually Is</div>
+      <div class="desc">Marketing Week columnist and brand strategist Mark Ritson on why positioning is the most important — and most poorly executed — discipline in modern marketing.</div>
+      <a href="https://youtu.be/1iAEqKH8ebE" class="video-yt-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+    </div>
+  </div>
+
+  <h3>3.1 The Definition Worth Memorizing</h3>
+
+  <p>The cleanest definition comes from Jack Trout and Al Ries, who introduced the term to American marketing in the 1970s:</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Positioning is not what you do to a product. Positioning is what you do to the mind of the prospect. It is how you differentiate yourself in the mind of your prospect.<br><span style="font-size: 14px; opacity: 0.7; display: block; margin-top: 8px;">— Al Ries and Jack Trout, <em>Positioning: The Battle for Your Mind</em></span></div>
+  </div>
+
+  <p>Two things in that quote are doing the work. The first is the location: positioning happens in the prospect's mind, not in the product, the ad, or the brand book. The second is the structural requirement: positioning is comparative. A brand cannot be positioned in isolation; it can only be positioned relative to what the customer already thinks about other brands in the category. Volvo is positioned as <em>safe</em> only because the customer's mental category for cars already contains brands the customer associates with performance, luxury, or fuel economy. Strip away the comparison and "safe" stops meaning anything.</p>
+
+  <p>Two implications follow. First, positioning is harder to change than to establish, because changing it requires altering what the customer already believes — and people are bad at updating beliefs about brands they've held for years. Second, every brand is positioned <em>somewhere</em> whether the firm intends it or not. The choice is whether to direct the positioning or to inherit whatever the customer assembles on their own.</p>
+
+  <h3>3.2 Seven Approaches to Positioning</h3>
+
+  <p>The marketing literature, most thoroughly in Aaker, Shansby, and Myers, identifies seven distinct approaches a brand can take to establish its position. Most successful brands use more than one, but one tends to dominate.</p>
+
+  <div class="approaches">
+
+    <div class="approach">
+      <div class="approach-num">1</div>
+      <div class="approach-body">
+        <strong>By Attribute or Benefit</strong>
+        <span>Set the brand apart on a specific feature or benefit that competitors don't credibly own.</span>
+        <span class="approach-eg">Volvo (safety) · Apple (design simplicity) · 5-hour ENERGY (sugar-free quick energy)</span>
+      </div>
+    </div>
+
+    <div class="approach">
+      <div class="approach-num">2</div>
+      <div class="approach-body">
+        <strong>By Price / Quality</strong>
+        <span>Position at the top of the price ladder as a quality signal, or at a favorable price for the quality offered.</span>
+        <span class="approach-eg">Rolex (premium quality at premium price) · Kohl's (good value at competitive price)</span>
+      </div>
+    </div>
+
+    <div class="approach">
+      <div class="approach-num">3</div>
+      <div class="approach-body">
+        <strong>By Use or Application</strong>
+        <span>Associate the brand with a specific occasion or use case, sometimes inventing one to expand the category.</span>
+        <span class="approach-eg">Arm &amp; Hammer (baking → fridge deodorizer → carpet refresh → toothpaste) · Gatorade (during athletic performance)</span>
+      </div>
+    </div>
+
+    <div class="approach">
+      <div class="approach-num">4</div>
+      <div class="approach-body">
+        <strong>By Product Class</strong>
+        <span>Position against a different category entirely to redefine what the brand competes with.</span>
+        <span class="approach-eg">Amtrak (vs. airlines, not other trains) · Liquid Death (canned water positioned against soda and energy drinks, not bottled water)</span>
+      </div>
+    </div>
+
+    <div class="approach">
+      <div class="approach-num">5</div>
+      <div class="approach-body">
+        <strong>By Product User</strong>
+        <span>Define the brand by the kind of person who uses it. The user imagery does the positioning.</span>
+        <span class="approach-eg">Ralph Lauren (aspirational lifestyle) · Patagonia (the environmentally serious outdoorsperson) · Stanley tumblers (post-2020, the Gen Z hydration-as-identity buyer)</span>
+      </div>
+    </div>
+
+    <div class="approach">
+      <div class="approach-num">6</div>
+      <div class="approach-body">
+        <strong>By Competitor</strong>
+        <span>Position explicitly against a named or unnamed competitor. Risky, but powerful when the comparison is favorable and credible.</span>
+        <span class="approach-eg">Avis ("We try harder" — vs. Hertz) · Apple "Get a Mac" (vs. PC) · Samsung "It doesn't take a genius" (vs. Apple)</span>
+      </div>
+    </div>
+
+    <div class="approach">
+      <div class="approach-num">7</div>
+      <div class="approach-body">
+        <strong>By Cultural Symbol</strong>
+        <span>Anchor the brand in a memorable character or icon that carries the meaning across decades.</span>
+        <span class="approach-eg">Tony the Tiger (60+ years) · The Geico Gecko · The Pillsbury Doughboy · Duolingo's owl (the modern reinvention)</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>3.3 A Second Lens: Functional, Symbolic, Experiential</h3>
+
+  <p>The seven approaches describe <em>how</em> to position. A complementary framework, from Park, Jaworski, and MacInnis, describes <em>what kind of need</em> the position appeals to. Brands satisfy three types of needs:</p>
+
+  <ul>
+    <li><strong>Functional needs</strong> — practical problems to be solved. Crocs are lightweight, comfortable, and easy to clean. Tide gets stains out. The positioning answers "does this work?"</li>
+    <li><strong>Symbolic needs</strong> — identity, belonging, status, self-expression. Rolex is not primarily about telling time; it tells the world (and the wearer) something about the wearer. The positioning answers "what does owning this say about me?"</li>
+    <li><strong>Experiential needs</strong> — sensory pleasure, variety, stimulation. Dove chocolate is "a chocolate experience like no other." A theme park sells the day, not the rides. The positioning answers "how does this feel?"</li>
+  </ul>
+
+  <p>Most brands carry traces of all three, but successful positioning emphasizes one. Trying to be functional, symbolic, and experiential at once produces messaging the customer cannot summarize back to you — which is a working definition of weak positioning.</p>
+
+  <h3>3.4 Repositioning: The Old Spice Case</h3>
+
+  <p>Repositioning is what a brand does when its current position has stopped working — when the target has aged out, when the category has shifted, when a competitor has annexed the ground the brand used to own, or when the brand has simply become irrelevant to the people the firm needs to sell to. It is among the hardest things a brand can do, because it requires altering customer perceptions that have been forming for decades.</p>
+
+  <p>The textbook case from the last twenty years is Old Spice. Before 2010, Old Spice was a 75-year-old men's grooming brand that consumers reliably associated with grandfathers. The product was real, distribution was strong, and the brand was dying. Younger men were not buying it, younger women weren't recommending it for their husbands and boyfriends, and the category was being eaten by Axe, Dove Men+Care, and newer entrants.</p>
+
+  <p>In February 2010, Old Spice launched <em>"The Man Your Man Could Smell Like"</em> with a 30-second Super Bowl spot. The actor was Isaiah Mustafa, a former NFL practice-squad player with no particular fame. The agency was Wieden+Kennedy. The strategic insight was that women influence men's grooming purchases — so the ad spoke directly to women, in a tone of absurd hyper-masculine confidence, about what their man <em>could</em> smell like.</p>
+
+  <p>The execution worked on every level a campaign can. The spot went viral within days. Wieden+Kennedy followed it with a real-time social-media response campaign that summer, in which Mustafa recorded short personalized video replies to tweets and Facebook comments — nearly 200 of them in two days — which became one of the most studied case studies in digital advertising. <strong>Old Spice body wash sales reportedly grew 107% in the first three months of the campaign.</strong> The brand's average buyer age dropped, category share rebounded, and the cultural meaning of "Old Spice" shifted from <em>your grandfather's drugstore aftershave</em> to <em>the brand that did the funniest commercial of the year.</em></p>
+
+  <p>What made Old Spice work, and what makes most repositioning attempts fail, is that the campaign did not ask consumers to update a single belief. It gave them a new memory to attach to the brand entirely. The old position wasn't argued against — it was made irrelevant by the volume and freshness of the new one.</p>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: Buick's Quieter Repositioning</h3>
+    <div class="sidebar-card-sub">When you don't have a Super Bowl moment, you grind</div>
+
+    <p>Not every repositioning gets a viral campaign. Buick spent most of the 2010s trying to shed the same "old person's car" perception that haunted Oldsmobile before it went out of business in 2004. The average age of a Buick owner in 2008 was 63. By 2018 it had dropped to 58 — five years of progress that took five years to make.</p>
+
+    <p>The effort included new product (the Enclave SUV, the Encore crossover, the Cascada convertible — Buick's first convertible in 25 years), a redesigned dealer experience, and a long-running ad campaign called <em>"That's a Buick?"</em> that explicitly mocked the brand's own outdated image. Younger and older actors saw new Buicks and refused to believe they were Buicks. The campaign ran for more than five years without changing its premise.</p>
+
+    <p>The Buick case is worth knowing because most repositioning looks more like Buick than Old Spice. There's no single ad that turned the brand. There's a decade of small, expensive, mostly invisible work that bent the perception five degrees a year. Old Spice is the case study because it photographs well. Buick is the case study because it's the one most brands will actually have to run.</p>
+
+    <p style="background: var(--white); padding: 14px 16px; margin-top: 14px; border-left: 3px solid var(--red); font-size: 13px; color: var(--ink-soft); line-height: 1.55;"><strong style="color: var(--ink);">Postscript, 2026:</strong> The repositioning moved the needle in the short term — average buyer age dropped from 63 to 58 and sales rose — but Buick has continued to contract in the U.S. market. The brand now sells only crossovers and SUVs (Encore GX, Envista, Envision, Enclave), most of GM's Buick volume now comes from China rather than North America, and GM has announced the brand will transition entirely to electric by 2030. Even successful repositioning may not save a brand from category-level decline.</p>
+
+    <div class="sidebar-card-tag">Repositioning is usually grind, not viral.</div>
+  </div>
+
+  <h3>3.5 The Positioning Statement</h3>
+
+  <p>Most brand teams eventually write down a single sentence that captures what the brand stands for in the target's mind. The standard form, originally attributed to Geoffrey Moore, is some variant of:</p>
+
+  <p style="font-family: var(--serif); font-size: 16px; padding: 16px 22px; background: var(--cream); border-left: 3px solid var(--red); margin: 18px 0;">
+    <em>For [target customer], [brand name] is the [category] that [single most important benefit/point of differentiation], because [the reason to believe].</em>
+  </p>
+
+  <p>The statement is internal. It is not a tagline. It is not customer-facing copy. Its job is to give every person making a decision about the brand — the agency, the product team, the PR team, the social team, the retail team — a single sentence to test their work against. A choice that supports the positioning statement is on-strategy. A choice that contradicts it is off-strategy, regardless of how clever the choice is on its own merits.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 04 — MAKING IT WORK
+     ============================================================ -->
+<section class="section" id="making-work">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Operationalizing</div>
+  <h2>Making STP Actually Work</h2>
+
+  <p>STP is not a deliverable. It is an operating system. The segmentation document, the targeting brief, and the positioning statement are useful only to the degree that they cascade into the rest of the marketing decisions a firm makes. A brilliant positioning statement in a drawer is worth less than a mediocre positioning statement that every team across the organization can recite.</p>
+
+  <h3>4.1 STP Into the Four Ps</h3>
+
+  <p>The link between STP and the rest of marketing runs through the four Ps. Each one must be checked against the positioning, and any P that contradicts the position fights the brand from the inside.</p>
+
+  <div class="cascade">
+    <div class="cascade-stp">
+      <div class="label">Strategy</div>
+      <div class="stp-letters">STP</div>
+    </div>
+    <div class="cascade-arrow">→</div>
+    <div class="cascade-ps">
+      <div class="cascade-p"><strong>Product</strong><br>Features, design, quality, packaging — must deliver what the position promises.</div>
+      <div class="cascade-p"><strong>Price</strong><br>Premium positions require premium prices. Value positions require credible affordability.</div>
+      <div class="cascade-p"><strong>Place</strong><br>Where the product sells signals what it is. Tiffany at a kiosk would break the brand. Walmart at premium prices would too.</div>
+      <div class="cascade-p"><strong>Promotion</strong><br>The element that <em>shouts</em> the position — but only credibly if the other three Ps back it up.</div>
+    </div>
+  </div>
+
+  <p>The four Ps fail when one of them gets out of alignment. A luxury brand that discounts heavily during slow quarters trains its customer to wait for the sale and undermines the positioning that justified the premium price in the first place. A budget brand that introduces an upmarket product line confuses the original target without convincing the new one. A premium brand that lets its product end up at off-price retail loses control of its place dimension and dilutes the position.</p>
+
+  <h3>4.2 Push, Pull, and the Targeting of Channels</h3>
+
+  <p>One distinction worth pulling out of the place-and-promotion crossover is the difference between push and pull strategies, because each implies a different target.</p>
+
+  <ul>
+    <li><strong>Push</strong> aims promotional effort at the channel — wholesalers, distributors, retailers — to convince them to stock, display, and sell the product. The "target" of push promotion is not the end consumer but the trade. Trade shows, sales incentives, retailer co-op programs, and slotting fees are all push tactics.</li>
+    <li><strong>Pull</strong> aims promotional effort at the end consumer, to generate demand the consumer will then bring to retailers. The retailer stocks the product because customers are asking for it. Most consumer advertising is pull. Direct-to-consumer brands are pure-pull plays — they bypass the channel entirely.</li>
+  </ul>
+
+  <p>Most established brands run both simultaneously. A new brand often has to start with one. Newer DTC brands typically start pull-heavy because they have no distribution to push through. Industrial and B2B brands often start push-heavy because the consumer demand they need to generate is mediated through purchasing departments and procurement processes that respond more to sales reps than to advertising.</p>
+
+  <h3>4.3 Five Takeaways</h3>
+
+  <p>If a single page of notes had to capture what this unit argued, it would be these five claims.</p>
+
+  <ol style="font-size: 15px; line-height: 1.65;">
+    <li><strong>Segmentation is observation; targeting is choice.</strong> The market gives you the groups. You decide which ones to chase. Confusing the two is how brands end up "targeting everyone."</li>
+    <li><strong>The easiest data is the least predictive.</strong> Demographics are convenient and visible. Behavior is the truth. The strongest segmentations combine bases; the weakest stop at demographics.</li>
+    <li><strong>A segment is not a target until it passes five tests.</strong> Measurable, substantial, accessible, differentiable, actionable. A segment that fails any of them is a slide, not a strategy.</li>
+    <li><strong>Positioning is what your customer thinks, not what you say.</strong> Your job is to influence the thinking, not to declare it done. Every brand is positioned somewhere — the only question is whether you directed it.</li>
+    <li><strong>STP fails when it's a slogan instead of an operating system.</strong> If your product, price, and place don't reinforce your position, your promotion is a check the brand can't cash.</li>
+  </ol>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Marketing's hardest question isn't "what should we say?" It's "to whom, and why us?" Everything else in this course is downstream of that answer.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MORE VIEWS & GLOSSARY (combined endmatter)
+     ============================================================ -->
+<section class="section" id="more-and-glossary">
+  <h2>More Views &amp; Glossary</h2>
+
+  <p>A short reading list for going deeper on STP, followed by the working vocabulary for this unit.</p>
+
+  <h3>More Views</h3>
+
+  <p class="more-views-intro">A short reading list for going deeper on STP.</p>
+
+  <div class="mv-item">
+    <div class="mv-source">Book · Foundational</div>
+    <h4 class="mv-title"><a href="https://www.amazon.com/Positioning-Battle-Your-Mind-Anniversary/dp/0071373586" target="_blank" rel="noopener">Positioning: The Battle for Your Mind — Al Ries and Jack Trout</a></h4>
+    <p class="mv-desc">The book that introduced "positioning" to American marketing. Forty years old, occasionally dated in its examples, and still the single best treatment of why positioning is a mental phenomenon rather than a product one.</p>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Newsletter · Marketing Week</div>
+    <h4 class="mv-title"><a href="https://www.marketingweek.com/author/markritson/" target="_blank" rel="noopener">Mark Ritson on Positioning</a></h4>
+    <p class="mv-desc">Ritson writes about brand positioning more frequently and more bluntly than any other working commentator. Look in particular for his recurring critique of "purpose-as-positioning." Paywalled but worth it.</p>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Tool · Strategic Business Insights</div>
+    <h4 class="mv-title"><a href="https://www.strategicbusinessinsights.com/vals/" target="_blank" rel="noopener">VALS Framework</a></h4>
+    <p class="mv-desc">The home of the VALS psychographic system referenced in Section 1.4. Includes a free survey that classifies you into one of the eight VALS segments — useful both as a personal exercise and as a demonstration of what psychographic segmentation feels like from the customer side.</p>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Article · The Brand Hopper</div>
+    <h4 class="mv-title"><a href="https://thebrandhopper.com/2023/02/23/the-man-your-man-could-smell-like-case-study-on-old-spice-branding-campaign/" target="_blank" rel="noopener">The Old Spice Repositioning, in Full</a></h4>
+    <p class="mv-desc">A complete walkthrough of the "Man Your Man Could Smell Like" campaign, including the social-media response phase in summer 2010 and the post-campaign sales data. Section 3.4 summarizes; this piece gives the full picture.</p>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Article · Forbes · Larry Light</div>
+    <h4 class="mv-title"><a href="https://www.forbes.com/sites/larrylight/2020/05/26/harley-davidson-in-a-post-corona-world-keep-your-customers-close/" target="_blank" rel="noopener">Harley-Davidson's Seven-Persona Customer Map</a></h4>
+    <p class="mv-desc">The source for Section 2.3's persona breakdown. Argues for the long-run value of custom personas built from primary research rather than purchased cluster systems.</p>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Reference · Esri</div>
+    <h4 class="mv-title"><a href="https://www.esri.com/content/dam/esrisites/en-us/media/posters/2025-arcgis-tapestry.pdf" target="_blank" rel="noopener">Esri Tapestry Segmentation — 2025 Reference Poster (PDF)</a></h4>
+    <p class="mv-desc">Page 1 maps all 60+ Tapestry segments by lifestyle group. Page 2 shows where each segment lives in the U.S. Useful for seeing both the craft and the limits of commercial geodemographic segmentation.</p>
+  </div>
+
+  <h3>Glossary</h3>
+
+  <p>Curated terms used in this unit. Definitions are one sentence each.</p>
+
+  <dl class="glossary">
+    <dt>Segmentation</dt>
+    <dd>The act of dividing a market into distinct groups whose members share characteristics that make them likely to respond similarly to a marketing program.</dd>
+
+    <dt>Targeting</dt>
+    <dd>The choice of which segment or segments a firm will pursue, and the strategic allocation of resources to those segments.</dd>
+
+    <dt>Positioning</dt>
+    <dd>The deliberate construction of a brand's meaning in the target customer's mind, relative to competing brands in the same category.</dd>
+
+    <dt>Demographic Segmentation</dt>
+    <dd>Dividing a market by measurable population characteristics: age, gender, income, education, ethnicity, household composition.</dd>
+
+    <dt>Geographic Segmentation</dt>
+    <dd>Dividing a market by location — nation, region, state, city, neighborhood, climate zone.</dd>
+
+    <dt>Geodemographic Segmentation</dt>
+    <dd>The combination of geographic and demographic data into pre-built neighborhood-level clusters, sold commercially by firms like Esri (Tapestry) and Nielsen (PRIZM).</dd>
+
+    <dt>Psychographic Segmentation</dt>
+    <dd>Dividing a market by activities, interests, opinions, values, and lifestyles — the AIO variables.</dd>
+
+    <dt>VALS</dt>
+    <dd>A commercial psychographic framework from Strategic Business Insights that classifies U.S. adults into eight segments based on primary motivation (ideals, achievement, self-expression) and resources.</dd>
+
+    <dt>Behavioral Segmentation</dt>
+    <dd>Dividing a market by what customers actually do — purchase history, usage rate, loyalty status, benefits sought, and online behavior.</dd>
+
+    <dt>80/20 Rule (Pareto Principle)</dt>
+    <dd>The empirical observation that roughly 20% of a brand's customers tend to account for roughly 80% of its sales volume.</dd>
+
+    <dt>Loyalty Status</dt>
+    <dd>A behavioral classification of customers into hard-core loyals, split loyals, shifting loyals, and switchers, based on their pattern of brand purchases.</dd>
+
+    <dt>Benefit Segmentation</dt>
+    <dd>Grouping customers by the specific benefits they are seeking from a product, rather than by who they are or where they live.</dd>
+
+    <dt>Undifferentiated Marketing</dt>
+    <dd>A coverage strategy that ignores segment differences and offers one product with one marketing mix to the entire market.</dd>
+
+    <dt>Differentiated Marketing</dt>
+    <dd>A coverage strategy that enters multiple segments with a separate marketing mix tailored to each.</dd>
+
+    <dt>Concentrated Marketing</dt>
+    <dd>A coverage strategy that selects one segment and focuses all marketing effort on dominating it.</dd>
+
+    <dt>The Five Tests</dt>
+    <dd>The standard checklist for evaluating segment attractiveness: measurable, substantial, accessible, differentiable, actionable.</dd>
+
+    <dt>Persona</dt>
+    <dd>A semi-fictional individual representation of a target customer, built from segmentation data but rendered as a named, photographed person with a backstory. Also called a buyer persona, marketing persona, donor persona, or candidate persona depending on context.</dd>
+
+    <dt>Repositioning</dt>
+    <dd>The deliberate alteration of a brand's existing position in the customer's mind, usually in response to declining relevance, target aging out, or competitive displacement.</dd>
+
+    <dt>Positioning Statement</dt>
+    <dd>An internal sentence that captures who the brand is for, what category it competes in, the central benefit it offers, and the reason the customer should believe it.</dd>
+
+    <dt>Push Strategy</dt>
+    <dd>A promotional strategy aimed at convincing channel members — wholesalers, distributors, retailers — to stock and merchandise a product.</dd>
+
+    <dt>Pull Strategy</dt>
+    <dd>A promotional strategy aimed at end consumers, intended to generate demand that consumers then bring to retailers.</dd>
+  </dl>
+</section>
+
+</main>
+
+<!-- Lightbox overlay for persona thumbnails -->
+<div class="lightbox" id="persona-lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img src="" alt="">
+</div>
+
+<script>
+  // Lite YouTube facade — load iframe only on click, use no-cookie domain
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.video-card').forEach(function (card) {
+      var thumb = card.querySelector('.video-thumb');
+      if (!thumb) return;
+      thumb.addEventListener('click', function () {
+        var id = card.getAttribute('data-video-id');
+        if (!id) return;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+        var titleEl = card.querySelector('.video-meta .title');
+        iframe.title = titleEl ? titleEl.textContent : 'YouTube video';
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        thumb.replaceWith(iframe);
+      });
+    });
+
+    // Persona lightbox — click thumb → enlarge in overlay
+    var lightbox = document.getElementById('persona-lightbox');
+    var lightboxImg = lightbox.querySelector('img');
+    var lightboxClose = lightbox.querySelector('.lightbox-close');
+
+    document.querySelectorAll('.persona-thumb img').forEach(function (img) {
+      img.parentElement.addEventListener('click', function () {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+  });
+</script>
+
+<!-- Site-wide scripts -->
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
