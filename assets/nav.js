@@ -37,7 +37,9 @@ const navConfig = {
           },
           {
             title: 'Quick Hits',
-            items: []  // empty for now — items will appear as built
+            items: [
+              { label: 'Does Advertising Raise Prices?', href: 'advertising-and-prices.html' }
+            ]
           },
           {
             title: 'Examples',
