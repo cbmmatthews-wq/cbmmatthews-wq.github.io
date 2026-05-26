@@ -20,7 +20,8 @@ const navConfig = {
         { label: 'Unit 1 — IMC',                href: 'unit-1-imc.html' },
         { label: 'Unit 2A — Brand Foundations', href: 'unit-2a-brand-foundations.html' },
         { label: 'Unit 2B — Brand Mechanics',   href: 'unit-2b-brand-mechanics.html' },
-        { label: 'Unit 2C — Blanding',          href: 'unit-2c-blanding.html' }
+        { label: 'Unit 2C — Blanding',          href: 'unit-2c-blanding.html' },
+        { label: 'Unit 3 — STP',                href: 'unit-3-stp.html' }
         // Add more units here as they're built
       ]
     },
