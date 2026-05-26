@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2A: Brand Foundations — cbmatthe</title>
+<meta name="description" content="Unit 2A of M544. What a brand actually is, brand equity from both perspectives, the economic case for brand investment, and what a small brand should take from all this.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  /* Local additions for Unit 2A — keep here rather than touching shared styles.css */
+
+  /* Three-pillar diagram (Sharp) */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .pillar {
+    background: var(--white);
+    border-top: 4px solid var(--red);
+    padding: 22px 20px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .pillar-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .pillar-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .pillar-body {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .pillars { grid-template-columns: 1fr; }
+  }
+
+  /* 4 Ps diagram */
+  .four-ps {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 28px 0 18px;
+  }
+  .p-cell {
+    background: var(--cream);
+    padding: 18px 16px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .p-cell.product {
+    background: var(--white);
+    border: 2px solid var(--red);
+  }
+  .p-letter {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .p-label {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .p-sub {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .p-nested {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--red-soft);
+    border-left: 3px solid var(--red);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .p-nested strong { color: var(--red); }
+  @media (max-width: 720px) {
+    .four-ps { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* Identity → image flow */
+  .flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin: 28px 0;
+    padding: 24px 18px;
+    background: var(--cream);
+    border-radius: 2px;
+  }
+  .flow-box {
+    background: var(--white);
+    padding: 14px 12px;
+    text-align: center;
+    border-radius: 2px;
+  }
+  .flow-box-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .flow-box-sub {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .flow-arrow {
+    font-size: 24px;
+    color: var(--red);
+    font-weight: 300;
+  }
+  .flow-middle {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .flow-middle .flow-box-title { color: var(--white); }
+  .flow-middle .flow-box-sub { color: rgba(255,255,255,0.7); }
+  @media (max-width: 720px) {
+    .flow { grid-template-columns: 1fr; gap: 8px; }
+    .flow-arrow { transform: rotate(90deg); justify-self: center; }
+  }
+
+  /* Two-column comparison (Section 6) */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .compare-col {
+    padding: 22px 20px;
+    border-radius: 2px;
+  }
+  .compare-col.applies {
+    background: var(--white);
+    border-left: 4px solid var(--red);
+  }
+  .compare-col.doesnt {
+    background: var(--cream);
+    border-left: 4px solid var(--muted);
+  }
+  .compare-head {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .compare-col ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+  .compare-col li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  @media (max-width: 720px) {
+    .compare { grid-template-columns: 1fr; }
+  }
+
+  /* Quote slider — paired with quote-slider.js in assets/.
+     Move these rules into styles.css when ready to reuse across pages. */
+  .quote-slider {
+    background: var(--cream);
+    padding: 36px 32px 28px;
+    border-radius: 2px;
+    margin: 28px 0;
+  }
+  .quote-slider-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .quote-slider-track {
+    position: relative;
+    min-height: 200px;
+  }
+  .quote-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+  }
+  .quote-slide.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .quote-slide-text {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .quote-slide-attr {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .quote-slide-attr em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .quote-slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .quote-slider-dots {
+    display: flex;
+    gap: 8px;
+  }
+  .quote-slider-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--rule);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s;
+  }
+  .quote-slider-dot:hover { background: var(--red-mid); }
+  .quote-slider-dot.active { background: var(--red); }
+  .quote-slider-nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .quote-slider-counter {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+  }
+  .quote-slider-arrow {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .quote-slider-arrow:hover {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+  }
+  @media (max-width: 720px) {
+    .quote-slider { padding: 28px 22px 22px; }
+    .quote-slide-text { font-size: 18px; }
+  }
+
+  /* Brief-history sidebar — context block at the top of Section 1 */
+  .history-aside {
+    background: var(--cream);
+    padding: 28px 28px 24px;
+    margin: 8px 0 36px;
+    border-radius: 2px;
+    border-left: 4px solid var(--red);
+  }
+  .history-aside-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .history-aside-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0 0 4px;
+    line-height: 1.3;
+  }
+  .history-aside-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 22px 0 18px;
+  }
+  .history-aside p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .history-aside p em {
+    font-style: italic;
+    color: var(--ink);
+  }
+  /* SVG class hooks — inherit site palette */
+  .ts-date {
+    font-family: var(--sans), 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    fill: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .ts-era {
+    font-family: var(--serif), 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    fill: var(--ink);
+  }
+  .ts-desc {
+    font-family: var(--sans), 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    fill: var(--ink-soft);
+  }
+  .ts-cap {
+    font-family: var(--sans), 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    fill: var(--muted);
+  }
+  .tc-card {
+    fill: var(--white);
+    stroke: var(--rule);
+    stroke-width: 1;
+  }
+  .tc-line {
+    stroke: var(--red);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .tc-dot { fill: var(--red); }
+
+  /* Kantar 3-up figure grid — small thumbnails, click to enlarge */
+  .kantar-figures {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0 20px;
+  }
+  .kantar-figure {
+    text-align: center;
+  }
+  .kantar-figure img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 8px;
+    cursor: zoom-in;
+    transition: border-color 0.15s, transform 0.15s;
+    box-sizing: border-box;
+  }
+  .kantar-figure img:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+  }
+  .kantar-figure-caption {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .kantar-figures-label {
+    text-align: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  @media (max-width: 720px) {
+    .kantar-figures { grid-template-columns: 1fr; }
+    .kantar-figure img { height: auto; max-height: 280px; }
+  }
+
+  /* Lightbox overlay */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 17, 14, 0.94);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 40px 20px;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    background: var(--white);
+    border-radius: 2px;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    color: var(--white);
+    font-size: 32px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-weight: 300;
+    line-height: 1;
+    padding: 6px 10px;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* Inline "read more" mini-callout */
+  .read-more-callout {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--blue);
+    padding: 12px 18px;
+    border-radius: 2px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  .read-more-callout strong { color: var(--blue); }
+  .read-more-callout a {
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .read-more-callout a:hover { text-decoration: underline; }
+
+  /* More Views — curated reading list */
+  .more-views-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .more-view {
+    background: var(--cream);
+    padding: 18px 22px;
+    border-left: 3px solid var(--blue);
+    border-radius: 2px;
+  }
+  .more-view-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .more-view-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .more-view-title:hover { color: var(--red); }
+  .more-view-source {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .more-view-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Glossary */
+  .glossary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 32px;
+    margin: 24px 0 0;
+  }
+  .glossary-item dt {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .glossary-item dd {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .glossary { grid-template-columns: 1fr; }
+  }
+
+  /* Unit forward/back navigation */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 60px 0 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-nav a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--cream);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .unit-nav a:hover { background: var(--red-soft); }
+  .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .unit-nav-prev { text-align: left; }
+  .unit-nav-next { text-align: right; }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-prev, .unit-nav-next { text-align: left; }
+  }
+
+  /* Section 5 quote slider tightening */
+  .books-intro {
+    margin-bottom: 18px;
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 · Unit 2A</div>
+    <h1>Brand Foundations</h1>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#brand-is">What a Brand Is</a>
+    <a href="#equity">Brand Equity</a>
+    <a href="#economics">Economic Case</a>
+    <a href="#books">Six Books</a>
+    <a href="#small-brands">Small Brands</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>What This Unit Does</h2>
+
+  <p>Unit 1 used the phrase <em>brand equity</em> at least a dozen times. It treated <em>long-term value</em> as a goal worth defending. It returned repeatedly to the idea that strong brands earn the right to charge more, lose customers more slowly, and convert performance dollars more efficiently than weak ones. None of those claims got a formal definition. They were operating as placeholders for an argument that hadn't been made yet.</p>
+
+  <p>This unit makes the argument. The reason it spans three pages and not one is that branding doesn't sit cleanly inside a single chapter. There is a body of theory about what brands <em>are</em>, which is what this page covers. There is a body of practice about how brands get built, named, and changed, which is Unit 2B. And there is a contemporary argument about what's been happening to brand design over the past decade — the trend now widely called <em>blanding</em> — which deserves its own treatment as a standalone essay in Unit 2C.</p>
+
+  <h3>The Four Ps Tie-In Worth Stating Up Front</h3>
+
+  <p>A reasonable question before we go further: this is an advertising and IMC course, so why does branding get a whole unit? The four Ps are supposed to work together. Product, price, place, and promotion are interdependent, and treating any one of them as the main event tends to break the whole system. That's all true. But it understates how tight the link between communication and brand actually is.</p>
+
+  <p>Here is the operating claim. Memory structures and distinctive assets — the working definition of a brand we are about to install — are not built by the product or the price or the channel. They are built by communication. The way a customer recognizes a brand at the moment of purchase, the way the brand feels emotionally before any rational evaluation begins, the way it sits in cultural conversation between purchases: all of that infrastructure is the output of advertising, public relations, sales promotion, packaging, and personal selling, working together over time. The other three Ps determine whether the brand can deliver on what the communication promised. The communication determines whether the brand exists in the customer's head at all.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">IMC is the production line for brand equity. That is why an advertising course spends a whole unit on branding — because the communication system is the engine that builds the thing.</div>
+  </div>
+
+  <p>So this unit is not a detour from IMC. It is the inside of the engine that Unit 1 described from the outside. We will get formal about what equity actually is, where it comes from, what it pays back, and what should change in your thinking if you are responsible for building any part of it.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — WHAT A BRAND ACTUALLY IS
+     ============================================================ -->
+<section class="section" id="brand-is">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Foundations</div>
+  <h2>What a Brand Actually Is</h2>
+
+  <p>Ask ten marketing professionals what a brand is and you will get a dozen answers, most of them metaphors. A brand is a promise. A brand is a feeling. A brand is the gut sense your customer has when they encounter your company. A brand is everything you don't say. These answers are not wrong, exactly. They are useless. None of them tells you what to do with a budget. None of them tells you whether a particular marketing dollar is doing anything. None of them survives contact with a CFO.</p>
+
+  <p>There is a better answer, and it has been sitting in the marketing-science literature for fifteen years.</p>
+
+  <aside class="history-aside">
+    <div class="history-aside-eyebrow">A Brief Aside</div>
+    <h3 class="history-aside-title">Branding Is 5,000 Years Old</h3>
+
+    <svg viewBox="0 0 680 230" role="img" class="history-aside-svg">
+      <title>A 5,000-year history of brand identification</title>
+      <desc>Horizontal timeline showing four eras of branding from Ancient Egyptian cattle marks to modern commercial brand identity.</desc>
+      <defs>
+        <marker id="history-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#BC5A44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <text x="80" y="28" text-anchor="middle" class="ts-date">~2700 BCE</text>
+      <text x="240" y="28" text-anchor="middle" class="ts-date">1200s–1500s</text>
+      <text x="400" y="28" text-anchor="middle" class="ts-date">1500s–1800s</text>
+      <text x="560" y="28" text-anchor="middle" class="ts-date">1880s–now</text>
+      <line x1="87" y1="55" x2="553" y2="55" class="tc-line" marker-end="url(#history-arrow)"/>
+      <circle cx="80" cy="55" r="7" class="tc-dot"/>
+      <circle cx="240" cy="55" r="7" class="tc-dot"/>
+      <circle cx="400" cy="55" r="7" class="tc-dot"/>
+      <circle cx="560" cy="55" r="7" class="tc-dot"/>
+      <rect x="10" y="85" width="140" height="95" rx="2" class="tc-card"/>
+      <text x="80" y="112" text-anchor="middle" class="ts-era">Ancient Egypt</text>
+      <text x="80" y="138" text-anchor="middle" class="ts-desc">Cattle stamped with</text>
+      <text x="80" y="155" text-anchor="middle" class="ts-desc">hot iron marks</text>
+      <rect x="170" y="85" width="140" height="95" rx="2" class="tc-card"/>
+      <text x="240" y="112" text-anchor="middle" class="ts-era">Medieval era</text>
+      <text x="240" y="138" text-anchor="middle" class="ts-desc">Guild smiths stamp</text>
+      <text x="240" y="155" text-anchor="middle" class="ts-desc">maker's marks</text>
+      <rect x="330" y="85" width="140" height="95" rx="2" class="tc-card"/>
+      <text x="400" y="112" text-anchor="middle" class="ts-era">Frontier era</text>
+      <text x="400" y="138" text-anchor="middle" class="ts-desc">Ranching irons mark</text>
+      <text x="400" y="155" text-anchor="middle" class="ts-desc">cattle and goods</text>
+      <rect x="490" y="85" width="140" height="95" rx="2" class="tc-card"/>
+      <text x="560" y="112" text-anchor="middle" class="ts-era">Modern era</text>
+      <text x="560" y="138" text-anchor="middle" class="ts-desc">Factory goods need</text>
+      <text x="560" y="155" text-anchor="middle" class="ts-desc">brand identity</text>
+      <text x="340" y="208" text-anchor="middle" class="ts-cap">The behavior is 5,000 years old. The function changed.</text>
+    </svg>
+
+    <p>The English word <em>brand</em> comes from the Old Norse <em>brandr</em>, meaning to burn. For most of the 5,000-year history above, the brand was a literal heat-and-iron mark establishing ownership and origin. It was Industrial-era mass production that turned the word into what we now mean by it — a consumer-facing identity that lives in customer memory rather than on the side of livestock. The behavior is ancient. The discipline of building brands as memory infrastructure is modern, and it is what the rest of this unit is about.</p>
+  </aside>
+
+  <h3>1.1 The Mechanical Definition</h3>
+
+  <p>The cleanest working definition of a brand was articulated by Byron Sharp at the Ehrenberg-Bass Institute and laid out in his 2010 book <em>How Brands Grow</em>: a brand is the set of memory structures and distinctive assets that increase the probability of a buyer choosing it at the moment of category consideration. Brand-building is the work of creating, refreshing, and reinforcing those memory structures over time.</p>
+
+  <p>That is not the most poetic definition on the list. It is, however, the only one you can build a budget around, because it specifies what brand activity is supposed to do. It is supposed to install and maintain a particular kind of memory infrastructure in the heads of people who might one day buy from your category. Everything else — the logos, the taglines, the brand archetypes, the emotional resonance — is either a means to that end or a distraction from it.</p>
+
+  <p>Three components sit under the definition, and they map cleanly onto things marketers actually do.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Mental availability</div>
+      <div class="pillar-body">The probability that your brand surfaces in a customer's head at the moment they decide to enter the category. A driver whose insurance auto-renews next month enters a 30-day buying window. Brands that surface during that window get considered. Brands that don't, don't.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">Distinctive brand assets</div>
+      <div class="pillar-body">The visual, verbal, and sensory codes that let buyers identify your brand instantly. The Geico gecko. The State Farm jingle. The Tiffany blue. The Intel chime. These are not decorations. They are the equipment customers use to recognize you in environments where attention is scarce.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Category entry points</div>
+      <div class="pillar-body">The situations, occasions, and need-states that trigger category consideration in the first place. A brand associated with multiple entry points captures more demand than one tied to a single trigger. Coca-Cola at lunch, at dinner, at a movie, at a stadium, with a meal, alone.</div>
+    </div>
+  </div>
+
+  <p>Notice what this framework does and doesn't include. It does not include the brand's personality. It does not include the founder's vision. It does not include the design system. Those things matter only to the extent that they cash out in mental availability, distinctive assets, or category entry points. If they don't, they are art projects, not brand work.</p>
+
+  <h3>1.2 A Parallel Framework Worth Knowing: Kantar's Blueprint</h3>
+
+  <p>Sharp's framework dominates the academic conversation about brand strategy, but it isn't the only serious framework currently in industry use. Over the past five years, the major competitor — and increasingly the framework that brand consultancies actually deploy at large clients — is Kantar's <em>Blueprint for Brand Growth</em>, published in 2023 as the centerpiece of Kantar's brand-consulting practice. If you read brand strategy decks from McKinsey, Deloitte, or any of the major holding-company agencies in 2026, you are reading some version of the Blueprint.</p>
+
+  <p>The Blueprint organizes brand growth around one growth driver and three growth accelerators.</p>
+
+  <p>The growth driver is <strong>Be Meaningfully Different to More People</strong>. The argument is that brands grow when they are perceived as both meaningfully different and meaningfully relevant by a broader audience, and that the work of brand strategy is to find the quadrant of meaningful difference where growth is available. The diagnostic matrix below is the working tool — brands plot themselves on perceived difference and perceived meaningfulness, and the framework prescribes a strategy based on which quadrant they occupy.</p>
+
+  <p>The three growth accelerators sit underneath the driver. <strong>Predispose more people</strong> means building positive mental associations that increase the probability of choice before the buyer enters the category. <strong>Be more present</strong> means maximizing availability across channels — physical, digital, and in-mind. <strong>Find more space</strong> means identifying unmet needs, new categories, new occasions, and new geographies where the brand can compete.</p>
+
+  <div class="kantar-figures">
+    <figure class="kantar-figure">
+      <img src="assets/images/Kantar-1.png" alt="Kantar Meaningfully Different matrix showing four quadrants based on how different and how meaningful a brand is perceived to be" class="lightbox-trigger">
+      <div class="kantar-figure-caption">The Meaningfully Different matrix — Kantar's diagnostic for plotting brand position on the two dimensions.</div>
+    </figure>
+    <figure class="kantar-figure">
+      <img src="assets/images/Kantar-2.png" alt="Bar chart showing brands that grow penetration start with a 7-point advantage in Difference: Meaningful +0.3, Different +6.7, Salient -2.5" class="lightbox-trigger">
+      <div class="kantar-figure-caption">The empirical claim. Brands that grew penetration started with a 7-point Difference advantage over brands that didn't. n = 14,623 brands, two-year window.</div>
+    </figure>
+    <figure class="kantar-figure">
+      <img src="assets/images/Kantar-3.png" alt="Diagram showing exposures plus experience plus activation produce 46 percent cumulative growth, with activation alone contributing 27 percent" class="lightbox-trigger">
+      <div class="kantar-figure-caption">The activation argument. Exposures + Experience + Activation produce +46% cumulative growth. None of the three works alone.</div>
+    </figure>
+  </div>
+  <div class="kantar-figures-label">Click any image to enlarge · Source: Kantar Blueprint for Brand Growth</div>
+
+  <p>The empirical claim worth taking seriously is in the middle chart above. Across 14,623 brands matched across two-year windows in Kantar's BrandZ data, the brands that grew penetration started with an average 7-point advantage in <em>Difference</em> relative to brands that lost penetration. The same brands showed essentially no advantage in being <em>Meaningful</em> (+0.3) and a meaningful disadvantage in being <em>Salient</em> (-2.5 — the brands that were already most salient had grown, then plateaued). In Kantar's reading, Difference is the leading indicator. The brands that grow tomorrow are the brands that look different today.</p>
+
+  <p>The third image — the activation circle — completes the framework. Kantar's data, drawn from 5,334 brands matched over three years, shows that brand growth is the cumulative product of three forces: exposures that create predisposition, customer experience that reinforces it, and activation that converts predisposition into immediate sales. None of the three works alone. The +46% cumulative growth figure isn't from any single lever; it's from the interaction of all three. This is the Kantar equivalent of Sharp's mental-plus-physical-availability argument, with one important addition: Kantar gives explicit weight to <em>activation</em> — the moment-of-purchase work that converts upstream brand investment into transaction.</p>
+
+  <p>You should notice what this is and isn't. Most of what Kantar says about how to grow a brand is not very different from what we said in the Sharp section. Both frameworks point to penetration as the primary growth lever. Both insist on mental availability or its functional equivalent. Both believe in distinctive assets and broad reach. The genuine disagreement is about one word: <em>differentiation</em>.</p>
+
+  <p><strong>Sharp says distinctiveness, not differentiation, is what matters.</strong> His argument is that within a given category, most brands are functionally similar — orange juices are orange juices, banks are banks, accountants are accountants — and the brand work that pays is building visual and verbal codes that allow recognition rather than perceived difference. Trying to be "meaningfully different" is, in Sharp's view, the trap that produces over-positioned, narrowly-targeted brands that fail to grow.</p>
+
+  <p><strong>Kantar says meaningful difference is the entire game.</strong> Their data, on their reading, shows that brands which grow are perceived as different in ways that matter to buyers. Distinctiveness without difference produces a brand that's recognized but not preferred. The Blueprint explicitly puts Difference at the top of the growth hierarchy.</p>
+
+  <p>The argumentative point worth installing — and this is the actual teaching idea — is that both frameworks can be right, depending on the category. Sharp is more right than wrong in fast-moving consumer goods, banking, basic services, utilities, and most B2B categories — places where most brands are genuinely similar and the customer is satisfying a need rather than expressing an identity. The toilet paper buyer doesn't want their brand to be "meaningfully different from generic." They want it to be soft and recognizable, with a wrapper they can find on the shelf. Distinctiveness wins.</p>
+
+  <p>Kantar is more right than wrong in premium categories, considered purchases, and identity-expressive products — skincare, luxury, automotive, technology, fashion, hospitality, and almost everything with a price premium above 30% over the generic alternative. The skincare buyer needs to believe their brand is meaningfully different from the generic. Without that belief, the price premium collapses. Meaningful difference wins.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The frameworks aren't choosing between right and wrong. They're describing different parts of the market and pretending the parts cover the whole. The serious brand strategist holds both in mind and asks first which framework better describes the category they're operating in.</div>
+  </div>
+
+  <p>This is also why the framework debate matters to your work as a student of advertising and IMC. The IMC system that builds the brand has to be calibrated to which framework describes the category. A category where Sharp is more right requires advertising that maximizes reach, repetition, and distinctive-asset reinforcement — the work is mental availability. A category where Kantar is more right requires advertising that articulates and reinforces meaningful difference — the work is positioning. The strategies aren't interchangeable, and using the wrong one is how brand budgets get wasted on the right framework applied to the wrong category.</p>
+
+  <div class="read-more-callout">
+    <strong>↗ Read more:</strong> The first three entries in <a href="#more-views">More Views</a> at the bottom of this page cover the Sharp/Kantar debate in detail. Start with the side-by-side comparison.
+  </div>
+
+  <h3>1.3 The Textbook Definition, Briefly</h3>
+
+  <p>The American Marketing Association's definition — the one that shows up in every introductory text — calls a brand "a name, term, sign, symbol, design, or a combination of them intended to identify the goods or services of one seller or group of sellers and to differentiate them from those of competition." This is legally correct and operationally circular. It tells a trademark lawyer what to file. It tells a marketing manager nothing about whether their work is succeeding.</p>
+
+  <p>The AMA definition is also the source of the broader concept of <em>trade dress</em>, which is the appearance and image of the product — packaging, color, shape, sounds, lettering — distinct from the brand name and logo. Trade dress matters because it is legally protectable, and the law's recognition of trade dress is essentially an acknowledgment that distinctive brand assets, in Sharp's terms, are real economic property. The MGM lion's roar is trade dress. The Coca-Cola red is trade dress. The Twitter blue bird, when it existed, was trade dress. We will come back to the legal side briefly in Part B and more thoroughly in Unit 8.</p>
+
+  <h3>1.4 Where the Brand Sits in the Four Ps</h3>
+
+  <p>Brand is not the fifth P. It is something that lives inside the first P, Product, but pervades all the others. The simplest way to see it:</p>
+
+  <div class="four-ps">
+    <div class="p-cell product">
+      <div class="p-letter">P</div>
+      <div class="p-label">Product</div>
+      <div class="p-sub">Features, quality, line depth, line breadth, packaging, service</div>
+      <div class="p-nested">
+        <strong>Brand</strong> sits here — the layer of meaning that licenses everything the other three Ps try to do.
+      </div>
+    </div>
+    <div class="p-cell">
+      <div class="p-letter">P</div>
+      <div class="p-label">Price</div>
+      <div class="p-sub">Premium, competitive, discount — the price position the brand makes credible.</div>
+    </div>
+    <div class="p-cell">
+      <div class="p-letter">P</div>
+      <div class="p-label">Place</div>
+      <div class="p-sub">Channel choice — direct, retail, marketplace — the brand co-signs.</div>
+    </div>
+    <div class="p-cell">
+      <div class="p-letter">P</div>
+      <div class="p-label">Promotion</div>
+      <div class="p-sub">The IMC system that builds the brand in the first place.</div>
+    </div>
+  </div>
+
+  <p>This is worth pausing on. The first P, Product, contains decisions about the actual product (features, quality, packaging), the product line (whether to stretch BMW into a compact economy car or stretch Crayola into laptops), and the brand itself. Brand is one decision among several inside Product. But the brand is the decision that determines which other product decisions are possible. A BMW can stretch into the X1 because the brand can hold "small German performance crossover." It cannot stretch into a $14,000 economy compact because the brand cannot hold "cheap." Crayola can stretch into markers and modeling clay because the brand can hold "things kids make stuff with." It cannot stretch into laptops because the brand cannot hold "consumer electronics."</p>
+
+  <p>The same goes for the other three Ps. The price position — premium, competitive, discount — is enabled by the brand. The channel — luxury department store versus mass merchandiser — is enabled by the brand. And the promotion, which is the focus of this entire course, is the engine that builds the brand that enables the rest. The four Ps are interdependent, but the brand is the connector that makes the interdependence work in a particular direction. Without it, you have a commodity with four levers.</p>
+
+  <h3>1.5 Brand Identity vs. Brand Image</h3>
+
+  <p>One more distinction before we get to the killer evidence. Two terms get used interchangeably in casual conversation and shouldn't be.</p>
+
+  <p><strong>Brand identity</strong> is what the company sends out. The logo, the colors, the tagline, the brand guidelines, the official voice — all the assets the brand team controls and ships into the world. Brand identity is the brand's broadcast signal.</p>
+
+  <p><strong>Brand image</strong> is what the customer receives. The set of associations, feelings, and memories that actually sit in the customer's head when they think about the brand. Brand image is what the broadcast signal sounded like by the time it arrived, which is not always what was sent.</p>
+
+  <div class="flow">
+    <div class="flow-box">
+      <div class="flow-box-title">Brand Identity</div>
+      <div class="flow-box-sub">What the company sends — logo, voice, story, guidelines</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box flow-middle">
+      <div class="flow-box-title">Channel + Noise</div>
+      <div class="flow-box-sub">Media, competitors, culture, personal experience, time</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <div class="flow-box-title">Brand Image</div>
+      <div class="flow-box-sub">What the customer receives — associations, feelings, memories</div>
+    </div>
+  </div>
+
+  <p>The gap between identity and image is where most branding work succeeds or fails. A brand team can produce immaculate guidelines, ship perfectly consistent assets, and still arrive in the customer's head as something they didn't intend. Conversely, a brand can ship work that looks chaotic from the inside and still cohere in customer memory because the consistent thing wasn't the visual treatment, it was the underlying meaning. This is exactly the band-not-parrot argument from Unit 1, viewed from the brand side instead of the IMC side.</p>
+
+  <h3>1.6 The McDonald's Carrot Study</h3>
+
+  <p>If you want one piece of evidence that brand image is a real phenomenon — measurable, repeatable, large in magnitude — the cleanest demonstration in the research record is a 2007 study run on a sample of 63 preschool children from low-income families in California, published in <em>Archives of Pediatrics and Adolescent Medicine</em>.</p>
+
+  <p>The design was simple. Each child tasted five food items — a hamburger, chicken nuggets, French fries, milk or apple juice, and a baby carrot — twice each. One version of each item came wrapped in McDonald's packaging. The other version, identical food, came in plain white packaging with no branding. The children were then asked which one tasted better.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 2A.1</div>
+    <div class="figure-title">Preschoolers' Stated Taste Preference, by Packaging</div>
+    <div class="chart-container" style="max-width: 720px; height: 320px;">
+      <canvas id="mcdChart"></canvas>
+    </div>
+    <div class="figure-caption">Percent of children preferring each version. Source: Robinson et al., <em>Archives of Pediatrics and Adolescent Medicine</em>, August 2007. "Same" responses excluded from chart but included in original data.</div>
+  </div>
+
+  <p>The result that matters most is the bottom row. Children preferred the carrot they ate from a McDonald's wrapper over the identical carrot in a plain wrapper by more than two to one. McDonald's does not sell carrots. The brand image had nothing to attach itself to in product memory. The wrapper carried the entire effect. A two-to-one preference shift, on a vegetable the brand does not market, driven by nothing except graphic design.</p>
+
+  <p>This is what brand image looks like when you isolate it from everything else. It is not a metaphor. It is a measurable distortion of perception, large enough that preschoolers eating a literal carrot reported tasting something different depending on which paper it came in. Every other piece of branding theory in this unit is, at some level, an attempt to explain how that distortion gets installed and what it pays back.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>A brand is the set of memory structures and distinctive assets that surface at the moment of category consideration. Everything else is either a means to that or a distraction from it.</li>
+      <li>The three operative components are mental availability, distinctive brand assets, and category entry points. Brand work is judged by whether it builds any of the three.</li>
+      <li>Brand lives inside the first P, Product, but it is the decision that determines what the other three Ps are allowed to do. Premium pricing, luxury distribution, and emotional advertising are all licensed by the brand or unavailable without it.</li>
+      <li>Brand identity is what the company sends. Brand image is what the customer receives. The two are not the same, and the gap between them is where most branding work succeeds or fails.</li>
+      <li>The McDonald's carrot study is the closest thing the research record has to a clean demonstration that brand image is real, large, and measurable.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — BRAND EQUITY, TWO WAYS
+     ============================================================ -->
+<section class="section" id="equity">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Equity</div>
+  <h2>Brand Equity, Two Ways of Looking At It</h2>
+
+  <p>Once you have a working definition of what a brand is, the next question is whether the brand is worth anything. <em>Brand equity</em> is the term marketers use for the answer. The standard definition — the goodwill an established brand has accumulated over time — is doing a lot of work in a short phrase, and there are two distinct ways of measuring whether the goodwill is real. One looks at what the brand does for the company. The other looks at what the brand does inside the customer's head. Both are valid. Both miss something the other captures.</p>
+
+  <h3>2.1 The Firm-Based View</h3>
+
+  <p>The firm-based view of brand equity is the financial one. A brand has equity to the degree it produces measurable economic outcomes the company would not otherwise enjoy. Four outcomes show up consistently in the literature: higher market share, stickier customer loyalty, pricing power, and what's called a <em>revenue premium</em> — the extra revenue per unit a branded product earns over an otherwise identical unbranded one.</p>
+
+  <p>The revenue premium has a tidy formula. For brand <em>b</em> against a comparable private-label product <em>pl</em>, revenue premium equals (volume of <em>b</em> times price of <em>b</em>) minus (volume of <em>pl</em> times price of <em>pl</em>). The branded item can carry a premium because customers will pay more for it, or sell more units because customers prefer it, or both. The size of the premium is roughly the price of the goodwill the brand has accumulated.</p>
+
+  <p>The most aggressive demonstrations of this effect come from commodity categories where the underlying product is functionally identical across brands. Tylenol and generic acetaminophen are chemically the same compound at the same dose. Tylenol typically commands a two-to-three-times price premium over the store-brand version. The molecule is identical. The brand image is not. Consumers pay the premium because the Tylenol wrapper, like the McDonald's wrapper in the carrot study, carries a particular set of associations — reliability, safety, parental approval — that the generic wrapper does not.</p>
+
+  <p>There is a useful version of this argument that you can run on a napkin. The standard rule of thumb for valuing a small business when it sells — restaurant, retail, services — puts the sale price at roughly 0.2 to 0.5 times annual gross revenue. The standard rule of thumb for valuing a business with a defensible brand puts the sale price at 1.5 times annual revenue or higher, and sometimes substantially higher. The gap is the brand. A small business owner selling their company can capture, at the high end, half a year's revenue. The same operation with a real brand attached can capture eighteen months or more. Conservatively, the strong-brand version of a business is worth three to five times what the unbranded equivalent is worth, even when the underlying operations are nearly identical. This is the only piece of branding theory that consistently survives contact with a business broker.</p>
+
+  <p>Macro evidence is equally consistent. The Kantar BrandZ Top 100 portfolio, which tracks the world's most valuable brands, has historically outperformed the S&amp;P 500 by roughly three times over multi-decade windows. The Interbrand Top 100 list, which uses a different methodology, shows a similar pattern. The brands at the top tend to stay at the top. Apple, Google, Coca-Cola, Microsoft, and a handful of others have anchored these rankings for fifteen-plus years. The list is more a description of incumbency than a prescription for growth.</p>
+
+  <p>This is worth saying explicitly because the lists get cited as if they were maps for new entrants. They are not. They are demonstrations that brand equity, once accumulated, defends itself against the kind of competitive pressure that would otherwise erode it. The implication for an entrant is not "do what these companies did." It is "the position these companies occupy is exceptionally difficult to dislodge, so plan accordingly."</p>
+
+  <div class="sidebar-card">
+    <h3>"You Have a Product, Not a Brand"</h3>
+    <div class="sidebar-card-sub">What the Shark Tank investors are actually pricing</div>
+
+    <p>If you have watched even a handful of episodes of Shark Tank you have heard some version of the same line: <em>"You have a product, not a brand. Come back when you're a brand and we'll talk."</em> What the sharks mean is that they are willing to pay for assets that have inertia, and unwilling to pay much for revenue streams that depend on a single SKU continuing to sell. A product can be copied, undercut, or rendered obsolete by the next model. A brand carries the customer recognition that lets the next product launch into pre-existing demand.</p>
+
+    <p>The sharks are not being unfair, and they are not gatekeeping out of preference. They are pricing exactly what the previous paragraphs described: the revenue multiplier that brand equity unlocks at the moment a company actually changes hands. A founder who has built a product with strong sales but no defensible brand is asking the investor to pay for next year's revenue. A founder who has built a brand is offering something with momentum, recognition, and an installed base of customers who will buy whatever comes out next. The difference is what investors pay for, because the difference is what survives the founder's exit.</p>
+
+    <div class="sidebar-card-tag">Products are bets. Brands are assets.</div>
+  </div>
+
+  <h3>2.2 The Customer-Based View</h3>
+
+  <p>The firm-based view tells you whether the brand is paying back. It does not tell you why. For that, you need the customer-based view, which is the model the academic literature, particularly the work of Kevin Lane Keller at Dartmouth, has spent thirty years refining.</p>
+
+  <p>In Keller's framing, brand equity is built out of <em>brand knowledge</em>, which decomposes into two layers. The first is brand <em>awareness</em>, which is about whether the brand exists in the customer's memory at all. The second is brand <em>image</em>, which is about what is attached to the brand in the customer's memory when it is recalled.</p>
+
+  <p>Awareness comes in stages. The lowest is <em>recognition</em>: if you put the brand in front of the customer, they know they have seen it before. Above that is <em>recall</em>: the customer can produce the brand name on their own, prompted only by the category. Above that is top-of-mind awareness, often shortened to TOMA: the brand is the first one the customer names when the category comes up. Top-of-mind status is the goal because it is the version of awareness most likely to translate into actual purchase consideration.</p>
+
+  <p>Brand image, in Keller's model, is composed of associations — the particular thoughts, feelings, attributes, and benefits the customer links to the brand. These associations can be evaluated on four dimensions:</p>
+
+  <ul>
+    <li><strong>Type</strong>: are the associations about product attributes (Volvo = safety features), about benefits (Volvo = my family is protected), or about overall attitude (I trust Volvo)?</li>
+    <li><strong>Favorability</strong>: are the associations positive, negative, or neutral?</li>
+    <li><strong>Strength</strong>: how firmly are the associations attached to the brand in memory?</li>
+    <li><strong>Uniqueness</strong>: are the associations specific to this brand, or do competitors share them?</li>
+  </ul>
+
+  <p>Keller's framework is, broadly, the customer-side counterpart to Sharp's framework. They emphasize different things — Sharp is more interested in availability and salience, Keller is more interested in the structure of associations — but they are pointed at the same underlying question, which is what does the brand mean in the customer's head and how do you measure whether the meaning is paying back.</p>
+
+  <h3>2.3 A Note on Diagnostic Frameworks</h3>
+
+  <p>Beyond Keller, the brand equity literature has produced several proprietary frameworks that get used in industry. The two most prominent historically are Young &amp; Rubicam's BrandAsset Valuator, which scores brands on Differentiation, Relevance, Esteem, and Knowledge — abbreviated DREK — and plots them on a four-quadrant Power Grid showing brand lifecycle stage. The other is David Aaker's Big Five brand personality dimensions: sincerity, excitement, competence, sophistication, and ruggedness. Both have been heavily used by consulting firms over the past three decades, though Kantar's Blueprint for Brand Growth, which we covered in Section 1, has largely supplanted the BAV in industry use over the past five years. Aaker's Big Five is still widely cited, but more as a teaching framework than as an operating one.</p>
+
+  <p>All three frameworks have the same failure mode worth flagging.</p>
+
+  <div class="sidebar-card">
+    <h3>The "Optimize Your BAV Score" Problem</h3>
+    <div class="sidebar-card-sub">Diagnostic frameworks, used as goals, produce sameness</div>
+
+    <p>The Y&amp;R BAV, Aaker's Big Five, and Kantar's Meaningfully Different matrix were all developed as <em>diagnostic</em> tools — ways of describing a brand's current state along comparable dimensions so brand teams could talk about strengths and gaps. Used that way, they are genuinely useful.</p>
+
+    <p>The failure mode is treating the diagnostic as a goal. A brand team that decides it wants to score a 7 on the ruggedness dimension, move from "niche" to "leadership" on the Power Grid, or shift quadrants on the Meaningfully Different matrix ends up commissioning work that targets the framework instead of the customer. The frameworks were built by reading what successful brands look like; using them as goals collapses the variety the frameworks were trying to describe. Every brand trying to be more rugged starts to look like every other brand trying to be more rugged.</p>
+
+    <p>This is exactly the same problem the AI brand voice tools have, which Unit 1 flagged in the section on band-not-parrot marketing. Surface consistency without strategic judgment produces homogeneity. The diagnostic is fine. The diagnostic-as-target is the trap.</p>
+
+    <div class="sidebar-card-tag">Measure with it. Don't aim with it.</div>
+  </div>
+
+  <p>Treat all three frameworks the way a doctor treats a thermometer. They tell you something about the current state. They are not the treatment plan.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The firm-based view of equity measures what the brand pays back — market share, loyalty, pricing power, and the revenue premium over comparable unbranded alternatives.</li>
+      <li>A useful rule of thumb: businesses without strong brands sell for 0.2–0.5× annual revenue; strong-brand businesses sell for 1.5× annual revenue or more. The gap is the brand. Investors price exactly that difference, which is what the Shark Tank sharks mean by "you have a product, not a brand."</li>
+      <li>The customer-based view, formalized in Keller's brand knowledge model, measures what is sitting in the customer's head — awareness (recognition, recall, top-of-mind) and image (associations evaluated on type, favorability, strength, and uniqueness).</li>
+      <li>Both views are valid. The first tells you whether the brand is working. The second tells you why.</li>
+      <li>Diagnostic frameworks like the BAV's DREK and Aaker's Big Five are useful for describing a brand's current state. They become destructive when used as targets, because optimizing-against-a-framework produces brands that look like every other brand optimizing against the same framework.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — THE ECONOMIC CASE
+     ============================================================ -->
+<section class="section" id="economics">
+  <div class="sec-num">03</div>
+  <div class="sec-label">The Economics</div>
+  <h2>The Economic Case for Brand Investment</h2>
+
+  <p>The argument so far has been mostly conceptual. Brands are memory structures. Equity is what those structures pay back. The customer-based and firm-based views describe the same thing from different sides. Fine. The harder question, and the one that decides actual budgets, is whether the payback is large enough to justify the spend. A CFO who has read this far is allowed to ask <em>how much</em>, and the honest answer requires some numbers.</p>
+
+  <p>The numbers got dramatically clearer between 2021 and 2026, partly because the performance-marketing-only experiment finally broke at scale, and partly because the rise of AI-mediated search created a measurable advantage for brand-strong companies that did not exist five years ago.</p>
+
+  <h3>3.1 The CAC Inflation Argument</h3>
+
+  <p>Customer acquisition cost — CAC — is the headline number for any company that buys customers through paid channels. Performance marketing's core claim, throughout the 2010s, was that CAC could be measured precisely, optimized continuously, and held stable through skill. That claim has not aged well.</p>
+
+  <p>The data: direct-to-consumer e-commerce CAC climbed roughly 25 to 40 percent between 2021 and 2025, with some category benchmarks showing increases of 222 percent over the eight-year window from 2017 to 2025. Google Ads cost-per-click rose 12.88 percent year over year. Meta CPMs jumped 15 to 40 percent following the platform's March 2026 attribution update, depending on vertical. The DTC operators who had built businesses on a 1.5-to-2.0 ROAS performance model found their ROAS degrading toward 1.0 — the breakeven line below which the model is not viable.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 2A.2</div>
+    <div class="figure-title">DTC Customer Acquisition Cost Index, 2017–2025</div>
+    <div class="chart-container" style="max-width: 720px; height: 300px;">
+      <canvas id="cacChart"></canvas>
+    </div>
+    <div class="figure-caption">Indexed CAC for performance-only DTC operators, 2017 = 100. Illustrative trajectory based on benchmarks reported in IPA, WARC, and LeadGen Economy aggregations, 2025–2026. Brands that diversified into brand-building media held below the category average.</div>
+  </div>
+
+  <p>The mechanism is straightforward once you stop assuming CAC is a constant. Performance marketing reaches customers who are already deciding. The pool of customers actively deciding at any given moment is finite. As more advertisers chase the same finite pool through the same auction-based platforms, the price per customer goes up. There is no skill move that defeats this. The only way to lower CAC durably is to reduce the share of your customers who have to be acquired through paid auctions, which means building enough brand recognition that some non-trivial fraction of customers show up pre-sold.</p>
+
+  <p>This is the empirical core of the case for brand investment. It is not a vibes argument. The brands that invested in awareness through 2017–2024 came out of the period paying meaningfully less per customer than the brands that didn't. The brands that doubled down on performance came out paying triple. Brand investment is the only known way to escape the CAC inflation trap, because every other lever — better creative, better targeting, better landing pages — works inside the auction rather than around it.</p>
+
+  <h3>3.2 The 95-5 Rule</h3>
+
+  <p>The reason brand investment lowers CAC over time has a second, complementary explanation that comes out of B2B research at the LinkedIn B2B Institute. Professor John Dawes at the Ehrenberg-Bass Institute calculated that at any given moment, only about 5 percent of B2B buyers in a category are actually in-market — actively evaluating vendors, ready to purchase. The other 95 percent are out-of-market and will not buy for months or years.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 2A.3</div>
+    <div class="figure-title">The 95-5 Rule</div>
+    <div class="chart-container" style="max-width: 480px; height: 320px; margin: 0 auto;">
+      <canvas id="rule955Chart"></canvas>
+    </div>
+    <div class="figure-caption">At any given moment in a B2B category, only ~5% of buyers are actively shopping. Performance marketing reaches the 5%. Brand marketing seeds the 95%. Source: Professor John Dawes / LinkedIn B2B Institute, <em>The 95-5 Rule</em> (2021).</div>
+  </div>
+
+  <p>The 95-5 framing reframes the brand-versus-performance argument in a way that turns out to apply well beyond B2B. Performance marketing is, by design, a tool for reaching the 5 percent. It targets buyers showing in-category intent signals — search queries, retargeting cookies, comparison-shopping behavior. It does not, by design, reach the 95 percent, who emit no such signals because they are not shopping.</p>
+
+  <p>The job of brand marketing is to plant the brand in the 95 percent's memory <em>before</em> they enter the market. When they eventually transition into the 5 percent — when their software contract comes up for renewal, when their car lease expires, when their next infrastructure decision becomes urgent — the brand is already in their consideration set. Mental availability is the entire mechanism. The brand that was in memory three months before the buying decision started gets to compete for the purchase. The brand that wasn't, doesn't.</p>
+
+  <p>A pure-performance allocation, then, is structurally aimed at the 5 percent and assumes the 95 percent will fill itself somehow. Sometimes it does — competitors are also planting memory structures, and lazy buyers default to known brands — but the company that abandons brand investment is essentially relying on its competitors' brand investment to keep filling its eventual customer pool. This works until it doesn't, which is roughly the story of every DTC brand that scaled fast on Facebook in 2018, ran out of pool in 2023, and either consolidated, sold cheap, or shut down.</p>
+
+  <h3>3.3 The AI Overviews Wrinkle</h3>
+
+  <p>One development that did not exist when most of the brand-equity literature was written: AI-mediated search. When a buyer asks ChatGPT, Claude, Gemini, or Perplexity for vendor recommendations — solar installers, CRM platforms, accountants near them — the model surfaces brands that it can cite with editorial authority. Citation depends on entity strength, knowledge graph presence, third-party coverage, and reputational signals. None of that is bought directly by performance marketing. All of it accrues, slowly, from brand investment upstream.</p>
+
+  <p>The early data is sharp. Seer Interactive analyzed 3,100 queries between June 2024 and September 2025 and found that AI Overviews compressed organic click-through rates by 61 percent and paid click-through rates by 68 percent overall. The traffic from AI-mediated search collapsed for almost everyone. But brands cited within AI Overviews saw 35 percent higher organic CTR and 91 percent higher paid CTR than uncited brands on the same queries.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-card-val">−61%</div>
+      <div class="stat-card-lbl">Organic CTR drop on queries surfacing AI Overviews</div>
+      <div class="stat-card-sub">Seer Interactive, June 2024 – September 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-val">+35%</div>
+      <div class="stat-card-lbl">Organic CTR lift for cited brands</div>
+      <div class="stat-card-sub">Vs. uncited brands on the same query</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-val">+91%</div>
+      <div class="stat-card-lbl">Paid CTR lift for cited brands</div>
+      <div class="stat-card-sub">Brand-strong companies benefit twice</div>
+    </div>
+  </div>
+
+  <p>The implication is that AI search has produced the first genuinely new economic argument for brand investment in a generation. Mental availability used to be a long-term play whose return showed up in branded search volume, direct traffic, and the kind of softer customer-acquisition outcomes that take quarters or years to demonstrate. In 2026, mental availability also shows up in <em>which brands get cited by language models</em>, which determines who appears in the AI-mediated buyer journey at all. Brands that are well-known and well-covered get cited. Brands that aren't, don't. The traffic gap between cited and uncited brands is enormous and growing.</p>
+
+  <p>Performance marketing does not buy AI citation. Brand marketing does, indirectly, by producing the press coverage, third-party reviews, podcast mentions, analyst attention, and category authority that language models retrieve as sources. The brands that won the AI Overviews game in 2025 and 2026 are the brands that had already done the brand-building work before the technology existed.</p>
+
+  <h3>3.4 Why Even Rational Buyers Respond to Brand Work</h3>
+
+  <p>A reasonable objection to the argument so far: maybe brand effects are real for impulse purchases — chips, soda, fast food, fashion — but evaporate when buyers actually think about what they're doing. Engineers buying servers, CFOs buying SaaS, procurement officers buying industrial machinery: presumably these buyers run rational evaluations that defeat any cognitive shortcut a brand image might exploit.</p>
+
+  <p>The cognitive science says otherwise, and has said so for two decades. Daniel Kahneman's distinction between System 1 — fast, automatic, associative — and System 2 — slow, deliberate, analytical — captures the basic mechanism. Purchase decisions, even high-stakes B2B ones, get made by System 1 in milliseconds and then rationalized by System 2 in the minutes or hours that follow. The rationalization feels like the decision. It isn't. The actual decision was already made when the consideration set was assembled, and the consideration set was assembled out of whichever brands had mental availability when the question came up.</p>
+
+  <p>The procurement officer comparing CRM vendors did not include Salesforce, HubSpot, and Microsoft in the evaluation matrix by accident. Those three are in every CRM evaluation matrix because they are the three brands whose mental availability is high enough to make the cut. The hundreds of smaller CRMs that might be better technical fits do not get evaluated because they did not surface in System 1 when the procurement officer sat down to write the shortlist. The deliberate System 2 evaluation that produced the final choice was a comparison among brands that won the System 1 round first.</p>
+
+  <p>This is also why Unit 1's "I don't like advertising" digression matters. Customers, especially professional buyers, sincerely believe their decisions are driven by rational evaluation of features and price. They are wrong, in measurable ways. The behavioral data has shown the gap for sixty years. Brand investment targets the part of the decision that the customer doesn't notice happening, which is also the part that determines what gets to be evaluated at all.</p>
+
+  <div class="callout">
+    <div class="callout-label">The working summary</div>
+    <p>Brand investment lowers customer acquisition cost over time, because branded demand fills the funnel without competing in paid auctions. It seeds memory structures in the 95 percent of buyers who are out-of-market today and will be in-market eventually. It earns citation in AI-mediated search, which has become a meaningful traffic source in its own right. And it targets the System 1 layer of decision-making that determines what gets evaluated, even by buyers who believe they are deciding rationally. None of this shows up cleanly on a last-click attribution dashboard, which is exactly the measurement problem the next twenty years of marketing will spend trying to solve.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>DTC CAC rose roughly 25–40% from 2021 to 2025, with some categories showing 222% over an 8-year window. Performance-only allocations have hit a structural ceiling that better creative cannot fix.</li>
+      <li>The 95-5 rule: about 5% of category buyers are in-market at any given time. Performance marketing reaches that 5%. Brand marketing seeds the other 95%. Cutting brand to fund performance is fishing only in the pond of people already deciding, while the lake refills slowly with someone else's customers.</li>
+      <li>AI-mediated search has produced a new economic argument for brand. Cited brands see 35% higher organic CTR and 91% higher paid CTR than uncited brands. Citation depends on brand authority — an outcome of upstream brand investment, not performance budget.</li>
+      <li>Even rational buyers respond to brand work, because purchase decisions get made by System 1 (fast, associative memory) and rationalized by System 2 (slow analysis) after the fact. The consideration set is assembled before the evaluation begins, and brand investment is what determines what's in the consideration set.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — SIX BOOKS
+     ============================================================ -->
+<section class="section" id="books">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Reading List</div>
+  <h2>Six Books Worth Reading</h2>
+
+  <p class="books-intro">Most of contemporary marketing discourse happens in fifteen-second LinkedIn videos and screenshot quote-graphics, which is fine for what it is and useless for actually learning the field. Books still matter, because books are where arguments get made carefully enough to be tested and refined. If you take only one thing from this unit beyond the working definitions, take this short list. Two of these are enough to outpace the average MBA on branding fluency. All six and you are reading the conversation, not following it.</p>
+
+  <div class="quote-slider">
+    <div class="quote-slider-label">Six Branding Books Worth Reading</div>
+    <div class="quote-slider-track">
+
+      <div class="quote-slide active">
+        <div class="quote-slide-text">"Brands grow by being easier to buy — easier to recall, easier to recognize, easier to find. That is the entire game, and most of what marketers do that isn't about being easier to buy is decoration."</div>
+        <div class="quote-slide-attr">Byron Sharp · <em>How Brands Grow</em> (2010)</div>
+      </div>
+
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Positioning is not what you do to a product. Positioning is what you do to the mind of the prospect. That is, you position the product in the mind of the prospect."</div>
+        <div class="quote-slide-attr">Al Ries &amp; Jack Trout · <em>Positioning: The Battle for Your Mind</em> (1981)</div>
+      </div>
+
+      <div class="quote-slide">
+        <div class="quote-slide-text">"A brand is not what you say it is. It's what they say it is. Your brand isn't yours. It belongs to your customers. They get to decide what it means."</div>
+        <div class="quote-slide-attr">Marty Neumeier · <em>The Brand Gap</em> (2003)</div>
+      </div>
+
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Brand-building works slowly. Activation works fast. Strategies that ignore the first eventually run out of the second, because they are harvesting demand they never planted."</div>
+        <div class="quote-slide-attr">Les Binet &amp; Peter Field · <em>The Long and the Short of It</em> (2013)</div>
+      </div>
+
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Brands have to be lived as well as said. Internal behavior eventually shows up in external image. The gap between the two destroys equity faster than any external attack can."</div>
+        <div class="quote-slide-attr">Wally Olins · <em>On Brand</em> (2003)</div>
+      </div>
+
+      <div class="quote-slide">
+        <div class="quote-slide-text">"Iconic brands earn their power by addressing acute tensions that the rest of the culture is repressing. They become useful symbols for things people cannot say directly."</div>
+        <div class="quote-slide-attr">Douglas Holt · <em>How Brands Become Icons</em> (2004)</div>
+      </div>
+
+    </div>
+    <div class="quote-slider-controls">
+      <div class="quote-slider-dots"></div>
+      <div class="quote-slider-nav">
+        <span class="quote-slider-counter"></span>
+        <button class="quote-slider-arrow prev" aria-label="Previous">‹</button>
+        <button class="quote-slider-arrow next" aria-label="Next">›</button>
+      </div>
+    </div>
+  </div>
+
+  <p>If you only read one, read Sharp. <em>How Brands Grow</em> is the book that, more than any other in the past twenty years, restructured how serious marketers think about the field. It is short, empirical, and frequently rude about ideas that were comfortable before he wrote it.</p>
+
+  <p>If you read two, add Ries and Trout. <em>Positioning</em> is older — 1981 — and shows its age in places, but the core argument that positioning happens in the customer's mind rather than the company's strategy deck is still the cleanest summary of what brand work is for.</p>
+
+  <p>Reading all six is enough to be useful in a brand strategy meeting. Reading none of them is more common than the profession likes to admit.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The serious brand-strategy literature is much shorter than people think. Six books cover most of what's worth knowing.</li>
+      <li>If you read only one, read Sharp — the book that restructured the field most recently.</li>
+      <li>If you read two, add Ries and Trout — the cleanest summary of what positioning is actually doing.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — SMALL BRANDS
+     ============================================================ -->
+<section class="section" id="small-brands">
+  <div class="sec-num">05</div>
+  <div class="sec-label">The Honest Closer</div>
+  <h2>What This Means for a Small, Local, or Regional Brand</h2>
+
+  <p>The brand-equity literature was largely written by people consulting for the Fortune 500. The case studies are Apple, Coca-Cola, McDonald's, BMW. The frameworks were tested against companies with seven-figure brand-tracking budgets and the kind of media reach that makes mental availability a question of <em>how much</em> rather than <em>whether</em>. If you are running a regional HVAC company, a small B2B SaaS firm, a local restaurant group, or a single-location specialty retailer, you have probably noticed that most of the textbook treatment of this material does not actually apply to you.</p>
+
+  <p>The honest version of the small-brand closer is that this is half-true, in interesting ways. Some of the frameworks scale down well. Others were never going to. Knowing which is which saves you from spending budget on the ones that don't.</p>
+
+  <div class="compare">
+    <div class="compare-col applies">
+      <div class="compare-head">What Applies</div>
+      <ul>
+        <li><strong>Sharp's three pillars.</strong> Mental availability matters more, not less, at small scale, because the catchment is small enough that you can actually achieve it. Distinctive brand assets are within reach — pick three and defend them. Category entry points are mostly geographic at small scale, which makes them easier to identify.</li>
+        <li><strong>Brand identity vs. brand image.</strong> The gap between what you send and what customers receive is the same gap whether you have 50 customers or 50 million. If you cannot articulate what your brand image actually is in your customers' words, you are running on guesswork.</li>
+        <li><strong>The McDonald's-carrot insight.</strong> Wrappers matter. Signage, vehicle wraps, uniforms, packaging, and the consistency of all of them across customer touch points carry brand image work for small brands the way television does for big ones.</li>
+        <li><strong>The CAC-lowering logic.</strong> Branded search, direct traffic, and word-of-mouth referrals are exactly the channels small brands can win on. Every dollar of brand investment that produces an unprompted recommendation saves you from competing in paid auctions you cannot afford anyway.</li>
+        <li><strong>System 1 / emotional response.</strong> A local brand with a clear, consistent emotional posture beats a faceless competitor every time, because the decision is made on familiarity and feeling before any rational comparison begins.</li>
+      </ul>
+    </div>
+    <div class="compare-col doesnt">
+      <div class="compare-head">What Mostly Doesn't</div>
+      <ul>
+        <li><strong>Aaker's Big Five personality dimensions.</strong> You do not have the budget to telegraph "sophistication" versus "ruggedness" through a paid media campaign. Pick a personality that fits your category, ship it consistently, and stop overthinking it.</li>
+        <li><strong>Country-of-origin leverage.</strong> Unless you are explicitly trading on it (a German tool brand, an Italian food import) this is largely a Fortune 500 lever.</li>
+        <li><strong>The BAV Power Grid lifecycle optimization.</strong> Power Grid analysis costs more than your annual marketing budget. The frameworks were not built for your scale, and chasing them is wasted motion.</li>
+        <li><strong>Most luxury-brand thinking.</strong> Scarcity-as-strategy, paid-media silence, the celebrity endorser game — these are mechanics for brands with the aura to defend. Adopting them prematurely makes a small brand look like it is performing rather than operating.</li>
+        <li><strong>Multi-million-dollar brand campaigns.</strong> The relevant comparison for a small brand is not "what is Nike doing." It is "what is the best operator in my zip code, my vertical, or my product category doing differently from me." Closer benchmarks. Smaller bets. Faster feedback.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>5.1 What to Actually Do</h3>
+
+  <p>If you have read this far and you run a small brand, the working playbook is shorter than the textbook suggests.</p>
+
+  <p>Pick a small number of distinctive brand assets — three at most — and use them obsessively. A specific color, a specific typeface, a recurring visual or verbal hook, a consistent voice in customer-facing copy. The asset choice matters less than the consistency. The Geico gecko was an okay creative choice in 2000; what made it equity was twenty-five years of refusing to retire it.</p>
+
+  <p>Defend those assets across every touch point. Vehicle wraps, business cards, invoice templates, signage, social profiles, packaging, the way the phone gets answered. The customer who encounters your brand seven times across three months should be encountering the same brand each time, even if the executions are different. This is the band-not-parrot principle from Unit 1, scaled to the resources a small brand actually has.</p>
+
+  <p>Accept that brand-building at small scale is slow. The good news is that it is also cheap. A regional brand that ships consistently for three years builds equity that a regional competitor running shotgun ads cannot match, and the equity compounds. Brand investment at small scale is closer to compound interest than to advertising as the textbooks describe it — small, regular contributions over a long enough window to let the effect accumulate.</p>
+
+  <p>Use the Sharp framework, not the Keller-and-Aaker framework. Keller and Aaker were built to describe and diagnose mature brands with established image structures. Sharp was built to explain how brands actually grow, and his findings are more applicable at small scale than the older theory ever was.</p>
+
+  <p>Target broadly within your catchment. This is the small-brand version of Sharp's "target all category buyers, not invented segments" principle, and it sometimes confuses students because we said earlier that small brands operate in small markets. Both are true. Pick a small market — a region, a vertical, a product category — and then within that market, reach <em>everyone</em> who buys the category. A regional HVAC company shouldn't microtarget "homeowners 45–55 with mid-century homes who have searched for furnace replacement in the past 90 days." It should be the one HVAC name everyone in the region recognizes when something breaks. Sharp's broad-reach principle and Kantar's meaningful-difference principle both apply, but Sharp applies more, because most small-brand categories — HVAC, plumbing, accounting, regional banks, family restaurants, local breweries — are exactly the kind of similar-product categories where distinctiveness outperforms differentiation. If you run a small premium brand in a category where meaningful difference matters (a high-end skincare line, a craft distillery, a boutique design firm), then Kantar starts to weigh more. The judgment is which framework better describes your category, and the answer is usually obvious once you ask the question.</p>
+
+  <p>And read a book. If you read Sharp's <em>How Brands Grow</em> and apply its working logic — be easy to recall, be easy to recognize, be easy to find — you are operating on a sounder framework than most marketing departments at companies a hundred times your size.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>About half of the textbook brand-equity literature applies to small brands. The half that does — Sharp's three pillars, the identity-image distinction, the System 1 layer, the CAC-lowering logic — is more useful at small scale than at large.</li>
+      <li>The half that doesn't — Aaker's Big Five, country-of-origin leverage, BAV optimization, luxury-brand mechanics — was built for budgets a small brand does not have and contexts a small brand does not occupy.</li>
+      <li>The working playbook: pick three distinctive assets and use them obsessively, defend them across every touch point, accept that the equity compounds slowly, and use the Sharp framework rather than the older Keller-and-Aaker frameworks.</li>
+      <li>Brand investment at small scale is closer to compound interest than to advertising. Small regular contributions over a long enough window outperform short bursts of expensive activity.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MORE VIEWS — curated reading list for Part A
+     ============================================================ -->
+<section class="section" id="more-views">
+  <h2>More Views</h2>
+
+  <p>For students who want to go deeper on the foundations covered in this part. Articles, primary research, and a video, leaning toward writers who are arguing for something specific. None of these are textbook treatments. Reading them will sharpen your own thinking even when — sometimes especially when — you disagree.</p>
+
+  <div class="more-views-list">
+
+    <div class="more-view">
+      <div class="more-view-type">Framework Comparison · Article</div>
+      <a href="https://marketingacrossborders.blog/2024/05/23/a-comparative-analysis-of-kantars-blueprint-for-brand-growth-and-byron-sharps-how-brands-grow/" class="more-view-title" target="_blank" rel="noopener">A Comparative Analysis of Kantar's Blueprint for Brand Growth and Byron Sharp's How Brands Grow</a>
+      <div class="more-view-source">Marketing Across Borders · Giuseppe Caltabiano</div>
+      <p class="more-view-desc">The clearest side-by-side comparison of the two dominant frameworks in contemporary brand strategy, including the differentiation-versus-distinctiveness debate and how each framework applies differently to small vs. large companies. This is the load-bearing article for the Sharp/Kantar discussion in Section 1.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Speed Summary · Article</div>
+      <a href="https://brandgenetics.com/human-thinking/how-brands-grow-part-2-2016-speed-summary/" class="more-view-title" target="_blank" rel="noopener">How Brands Grow Part 2 (2016) — Speed Summary</a>
+      <div class="more-view-source">Brand Genetics · Paul Marsden</div>
+      <p class="more-view-desc">The cleanest five-point summary of Sharp's follow-up book, including the practical operationalization through category entry points, the distinctive assets grid, and the three components of physical availability (presence, prominence, relevance). If you don't have time to read the book, read this.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Practitioner Reflection · Article</div>
+      <a href="https://www.linkedin.com/pulse/how-brands-grow-what-marketers-dont-know-insights-from-francis-r3qce/" class="more-view-title" target="_blank" rel="noopener">How Brands Grow: What Marketers Don't Know — Insights and Reflections</a>
+      <div class="more-view-source">LinkedIn · Francis</div>
+      <p class="more-view-desc">A practitioner's reading of Sharp's core argument with worked-through implications for marketing decisions. Useful as a third pass through the same material — when you've read the framework debate and the speed summary, this is where the ideas land in practice.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Talk · Video</div>
+      <a href="https://www.youtube.com/results?search_query=byron+sharp+how+brands+grow" class="more-view-title" target="_blank" rel="noopener">Byron Sharp on How Brands Grow (search results)</a>
+      <div class="more-view-source">YouTube · multiple talks under 20 minutes</div>
+      <p class="more-view-desc">Sharp explaining his own framework in his own voice. Multiple short talks are available; the Ehrenberg-Bass Institute YouTube channel hosts several of them. Useful if reading is not your preferred format. Sharp is unusually direct for an academic, which means his talks land the argument faster than the book does.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Industry Analysis · Article</div>
+      <a href="https://www.leadgen-economy.com/blog/brand-performance-balance-binet-field-60-40/" class="more-view-title" target="_blank" rel="noopener">The Brand-Performance Balance: Applying Binet &amp; Field's 60/40 Rule to 2026</a>
+      <div class="more-view-source">LeadGen Economy · Alex Paddington</div>
+      <p class="more-view-desc">The most comprehensive 2026 treatment of the brand-versus-performance debate, with current CAC inflation data, the AI Overviews citation argument, the 95-5 rule explained, and a 90-day reallocation playbook. The deep version of the economic case sketched in Section 3.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Primary Research · Paper</div>
+      <a href="https://business.linkedin.com/marketing-solutions/b2b-institute/marketing-as-growth/the-955-rule" class="more-view-title" target="_blank" rel="noopener">The 95-5 Rule</a>
+      <div class="more-view-source">LinkedIn B2B Institute · Peter Weinberg and Jon Lombardo with John Dawes (Ehrenberg-Bass)</div>
+      <p class="more-view-desc">The primary source for the 95-5 framework we cited in Section 3. Short, data-rich, and free. Read this if you want the math behind the claim that performance marketing reaches the 5% of buyers in-market today while brand marketing seeds the 95% who will be in-market over the next 24 to 60 months.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Opinion · Newsletter</div>
+      <a href="https://www.marketingweek.com/author/markritson/" class="more-view-title" target="_blank" rel="noopener">Mark Ritson's column at Marketing Week</a>
+      <div class="more-view-source">Marketing Week · Mark Ritson</div>
+      <p class="more-view-desc">The highest-quality opinionated writing on brand strategy currently published. Ritson is professionally rude about brand fads, defends Sharp's framework regularly, and writes with the directness that academic marketing prose almost never achieves. Paywall, but reasonably priced — and the back catalog alone is worth the subscription.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY — Part A curated terms
+     ============================================================ -->
+<section class="section" id="glossary">
+  <h2>Glossary</h2>
+
+  <p>Curated terms used in this part of the unit. Definitions are one sentence, intended for review rather than substitution for the section that introduced the term.</p>
+
+  <dl class="glossary">
+
+    <div class="glossary-item">
+      <dt>Brand</dt>
+      <dd>The set of memory structures and distinctive assets that increase the probability of a buyer choosing it at the moment of category consideration (Sharp / Ehrenberg-Bass).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Brand equity</dt>
+      <dd>The accumulated goodwill an established brand has earned over time, measurable in two ways — what it pays back to the firm, and what it occupies in the customer's mind.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Brand identity</dt>
+      <dd>What the company sends out — logo, voice, story, guidelines — as the brand's broadcast signal.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Brand image</dt>
+      <dd>What the customer receives — the set of associations, feelings, and memories actually attached to the brand in customer memory.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Mental availability</dt>
+      <dd>The probability that the brand surfaces in a customer's memory at the moment they enter the category, the first of Sharp's three pillars of brand equity.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Distinctive brand assets</dt>
+      <dd>The visual, verbal, and sensory codes (logos, colors, sounds, characters) that allow buyers to identify the brand instantly across channels.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Category entry points</dt>
+      <dd>The situations, occasions, and need-states that trigger category consideration in the first place.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Awareness stages</dt>
+      <dd>The hierarchy of recognition (knows when shown), recall (produces unprompted), and top-of-mind (names first), which together describe how present a brand is in customer memory.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Brand knowledge (Keller's CBBE)</dt>
+      <dd>The customer-based equity model, decomposing brand into two layers — awareness and image — with image evaluated on type, favorability, strength, and uniqueness of associations.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Revenue premium</dt>
+      <dd>The extra revenue per unit that a branded product earns over an otherwise identical unbranded one, used as a financial proxy for brand equity.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Customer-based brand equity</dt>
+      <dd>The view of equity that measures what is sitting in the customer's head — Keller's model of awareness plus image associations.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Firm-based brand equity</dt>
+      <dd>The view of equity that measures what the brand pays back — market share, customer loyalty, pricing power, and the revenue premium.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>BrandAsset Valuator (BAV)</dt>
+      <dd>Young &amp; Rubicam's proprietary brand-strength diagnostic, scoring brands on Differentiation, Relevance, Esteem, and Knowledge, plotted on a four-quadrant Power Grid.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Aaker's Big Five</dt>
+      <dd>David Aaker's five brand personality dimensions — sincerity, excitement, competence, sophistication, ruggedness — used for diagnostic description rather than as goals.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>95-5 rule</dt>
+      <dd>Professor John Dawes's calculation that at any given moment about 5% of category buyers are in-market and 95% are out-of-market, used to justify brand-building investment beyond the immediately-shopping audience.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Customer acquisition cost (CAC)</dt>
+      <dd>The total cost to acquire one new customer through paid channels, which has inflated 25–40% across DTC e-commerce between 2021 and 2025 as performance marketing has saturated.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Customer lifetime value (LTV)</dt>
+      <dd>The total revenue a customer is expected to generate across their relationship with the brand, raised by brand investment that improves retention and repeat purchase.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>System 1 / System 2</dt>
+      <dd>Daniel Kahneman's distinction between fast, automatic, associative thought (System 1) and slow, deliberate, analytical thought (System 2); brand work targets System 1 because that is where consideration sets are assembled before evaluation begins.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>AI Overviews</dt>
+      <dd>The AI-generated summaries that increasingly appear at the top of search results, compressing organic click-through by ~61% overall while delivering +35% organic CTR to brands cited within them.</dd>
+    </div>
+
+  </dl>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="unit-1-imc.html" class="unit-nav-prev">
+    <span class="unit-nav-label">← Previous</span>
+    <span class="unit-nav-title">Unit 1 — IMC</span>
+  </a>
+  <a href="unit-2b-brand-mechanics.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next →</span>
+    <span class="unit-nav-title">Unit 2B — Brand Mechanics</span>
+  </a>
+</nav>
+
+</main>
+
+<!-- Lightbox overlay for Kantar images -->
+<div id="lightbox-overlay" class="lightbox-overlay" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img src="" alt="">
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+<script src="assets/quote-slider.js"></script>
+
+<!-- Lightbox handler -->
+<script>
+(function() {
+  const overlay = document.getElementById('lightbox-overlay');
+  if (!overlay) return;
+  const overlayImg = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt) {
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlayImg.src = ''; }, 200);
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === closeBtn) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+  });
+})();
+</script>
+
+<!-- ============================================================
+     CHART DATA + RENDERING
+     ============================================================ -->
+<script>
+// McDonald's carrot study — horizontal bar chart
+const mcdData = {
+  labels: ['Hamburger', 'Chicken nugget', 'French fries', 'Milk / apple juice', 'Carrot'],
+  mcd:    [48.3, 59.0, 76.7, 61.3, 54.1],
+  plain:  [36.7, 18.0, 13.3, 21.0, 23.0]
+};
+
+const mcdCtx = document.getElementById('mcdChart');
+if (mcdCtx) {
+  new Chart(mcdCtx, {
+    type: 'bar',
+    data: {
+      labels: mcdData.labels,
+      datasets: [
+        {
+          label: 'Preferred McDonald\'s-wrapped version',
+          data: mcdData.mcd,
+          backgroundColor: '#BC5A44',
+          borderColor: '#BC5A44',
+          borderWidth: 0
+        },
+        {
+          label: 'Preferred plain-wrapped version',
+          data: mcdData.plain,
+          backgroundColor: '#6F6A66',
+          borderColor: '#6F6A66',
+          borderWidth: 0
+        }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 12, family: 'Source Sans 3' } }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}%`
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          ticks: { callback: (v) => v + '%', font: { family: 'Source Sans 3' } },
+          grid: { color: '#e0d9cc' }
+        },
+        y: {
+          ticks: { font: { family: 'Source Sans 3', size: 13 } },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
+// CAC inflation — line chart
+const cacCtx = document.getElementById('cacChart');
+if (cacCtx) {
+  new Chart(cacCtx, {
+    type: 'line',
+    data: {
+      labels: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+      datasets: [
+        {
+          label: 'Performance-only DTC operators',
+          data: [100, 122, 148, 178, 215, 258, 285, 308, 322],
+          borderColor: '#BC5A44',
+          backgroundColor: 'rgba(188, 90, 68, 0.08)',
+          borderWidth: 3,
+          tension: 0.3,
+          fill: true,
+          pointRadius: 4,
+          pointBackgroundColor: '#BC5A44'
+        },
+        {
+          label: 'Brand-diversified DTC operators',
+          data: [100, 110, 122, 138, 155, 172, 185, 198, 210],
+          borderColor: '#4D7090',
+          backgroundColor: 'rgba(77, 112, 144, 0.05)',
+          borderWidth: 2,
+          borderDash: [6, 4],
+          tension: 0.3,
+          fill: false,
+          pointRadius: 3,
+          pointBackgroundColor: '#4D7090'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 12, family: 'Source Sans 3' } }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw} (index)`
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          min: 90,
+          title: { display: true, text: 'CAC index (2017 = 100)', font: { family: 'Source Sans 3' } },
+          grid: { color: '#e0d9cc' },
+          ticks: { font: { family: 'Source Sans 3' } }
+        },
+        x: {
+          grid: { display: false },
+          ticks: { font: { family: 'Source Sans 3' } }
+        }
+      }
+    }
+  });
+}
+
+// 95-5 rule — doughnut chart
+const rule955Ctx = document.getElementById('rule955Chart');
+if (rule955Ctx) {
+  new Chart(rule955Ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Out-of-market (~95%)', 'In-market (~5%)'],
+      datasets: [{
+        data: [95, 5],
+        backgroundColor: ['#4D7090', '#BC5A44'],
+        borderColor: '#ffffff',
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '55%',
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { font: { size: 13, family: 'Source Sans 3' } }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${ctx.raw}%`
+          }
+        }
+      }
+    }
+  });
+}
+</script>
+
+</body>
+</html>

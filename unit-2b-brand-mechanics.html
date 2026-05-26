@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2B: Brand Mechanics — cbmatthe</title>
+<meta name="description" content="Unit 2B of M544. How brand equity gets built, how new brands get adopted, naming and visual identity, and repositioning.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for Unit 2B */
+
+  /* Three-strategies card grid */
+  .strategies {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .strategy {
+    background: var(--white);
+    border-top: 4px solid var(--red);
+    padding: 22px 20px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .strategy-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .strategy-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .strategy-body {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .strategies { grid-template-columns: 1fr; }
+  }
+
+  /* Leveraging four-source diagram */
+  .leverage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 28px 0;
+  }
+  .leverage-cell {
+    background: var(--cream);
+    padding: 22px 20px;
+    border-left: 4px solid var(--blue);
+    border-radius: 2px;
+  }
+  .leverage-source {
+    font-family: var(--serif);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .leverage-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .leverage-body {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .leverage-body em { color: var(--ink); font-style: italic; }
+  @media (max-width: 720px) {
+    .leverage-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Rogers' 5 cards */
+  .rogers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 24px 0;
+  }
+  .rogers-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 16px 14px;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .rogers-num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .rogers-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .rogers-body {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 900px) {
+    .rogers { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .rogers { grid-template-columns: 1fr; }
+  }
+
+  /* Naming process — horizontal flow */
+  .process-flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 24px 0;
+  }
+  .process-step {
+    background: var(--cream);
+    padding: 16px 12px;
+    border-radius: 2px;
+    position: relative;
+    text-align: center;
+  }
+  .process-step::after {
+    content: '→';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--red);
+    font-size: 16px;
+    font-weight: 600;
+    z-index: 1;
+  }
+  .process-step:last-child::after { display: none; }
+  .process-step-num {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .process-step-label {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  @media (max-width: 720px) {
+    .process-flow { grid-template-columns: 1fr; }
+    .process-step::after { display: none; }
+  }
+
+  /* Jaunt funnel — narrative number drop */
+  .funnel-narrative {
+    background: var(--cream);
+    padding: 28px 22px;
+    border-radius: 2px;
+    margin: 28px 0;
+    text-align: center;
+  }
+  .funnel-narrative-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .funnel-narrative-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .fn-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .fn-arrow {
+    color: var(--muted);
+    font-size: 20px;
+    margin: 0 4px;
+  }
+  .funnel-narrative-caption {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* Sound symbolism table */
+  .symbolism-table {
+    width: 100%;
+    margin: 24px 0;
+    border-collapse: collapse;
+  }
+  .symbolism-table th {
+    background: var(--cream);
+    text-align: left;
+    padding: 12px 14px;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+    border-bottom: 2px solid var(--rule);
+  }
+  .symbolism-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .symbolism-table td strong { color: var(--red); }
+  .symbolism-table tr:last-child td { border-bottom: none; }
+
+  /* Repositioning before/after table */
+  .reposition-table {
+    width: 100%;
+    margin: 24px 0;
+    border-collapse: collapse;
+  }
+  .reposition-table th {
+    background: var(--ink);
+    color: var(--white);
+    padding: 12px 14px;
+    text-align: left;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .reposition-table td {
+    padding: 14px 14px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .reposition-table tr:last-child td { border-bottom: none; }
+  .reposition-table .from { color: var(--muted); }
+  .reposition-table .to { color: var(--ink); font-weight: 600; }
+  .reposition-table .reason {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* External reading callout — used for brand guide links */
+  .external-reading {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--blue);
+    padding: 22px 24px;
+    margin: 28px 0;
+    border-radius: 2px;
+  }
+  .external-reading-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .external-reading h4 {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .external-reading p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .external-reading p:last-child { margin-bottom: 0; }
+  .external-reading a { color: var(--blue); font-weight: 600; }
+
+  /* Image figure — for inline visual case studies */
+  .img-figure {
+    margin: 28px 0;
+    text-align: center;
+  }
+  .img-figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .img-figure-caption {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-style: italic;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .img-figure-caption strong {
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* More Views — curated reading list */
+  .more-views-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .more-view {
+    background: var(--cream);
+    padding: 18px 22px;
+    border-left: 3px solid var(--blue);
+    border-radius: 2px;
+  }
+  .more-view-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .more-view-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .more-view-title:hover { color: var(--red); }
+  .more-view-source {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .more-view-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Glossary */
+  .glossary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 32px;
+    margin: 24px 0 0;
+  }
+  .glossary-item dt {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .glossary-item dd {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .glossary { grid-template-columns: 1fr; }
+  }
+
+  /* Unit forward/back navigation (same as 2A) */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 60px 0 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-nav a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--cream);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .unit-nav a:hover { background: var(--red-soft); }
+  .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .unit-nav-prev { text-align: left; }
+  .unit-nav-next { text-align: right; }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-prev, .unit-nav-next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 · Unit 2B</div>
+    <h1>Brand Mechanics</h1>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#building">Building Equity</a>
+    <a href="#adoption">Adoption</a>
+    <a href="#naming">Naming &amp; Identity</a>
+    <a href="#repositioning">Repositioning</a>
+    <a href="#closer">Closer</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>From Theory to Mechanics</h2>
+
+  <p>Unit 2A installed a working definition of what a brand is, why it pays back, and what a small operation should take from the literature. The frameworks were the load-bearing part. The economics — CAC inflation, the 95-5 rule, the AI Overviews effect on brand-strong companies — were the part that closed the budget argument.</p>
+
+  <p>This unit is about execution. How brand equity actually gets built, what determines whether a new brand gets adopted by customers, how brand names are chosen (and why most of the famous ones came out of structured naming processes rather than founder inspiration), what the research actually says about logo design, and how repositioning works when it works.</p>
+
+  <p>Most of this material gets taught as a sequence of techniques. That framing understates how much of brand work is judgment, and how much of the judgment turns out to be about restraint. The naming firms that produce the best names also reject more than 99% of the candidates they generate. The launches that succeed do so partly by limiting how many things they ask the customer to figure out. The repositions that work are usually the ones where the company tells a clear story about why now, rather than pretending nothing happened. None of that is technique. All of it is discipline.</p>
+
+  <p>One more frame worth keeping in mind. Unit 2A argued that brand equity is the long-run output of the IMC system. Unit 2B is about the inputs. Everything in here — strategies, adoption mechanics, naming, identity, repositioning — is something the IMC system does to produce, maintain, or repair the equity Unit 2A described. The closer at the end of this unit pulls both parts back together.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — HOW EQUITY GETS BUILT
+     ============================================================ -->
+<section class="section" id="building">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Building Equity</div>
+  <h2>How Brand Equity Actually Gets Built</h2>
+
+  <p>The brand-management literature, somewhat usefully, sorts the strategies for building brand equity into three categories. The categories overlap at the edges. Most real brand programs use all three at once, in different mixes at different stages. But the distinctions are worth holding onto because each strategy implies a different kind of work, a different cost structure, and a different failure mode.</p>
+
+  <div class="strategies">
+    <div class="strategy">
+      <div class="strategy-num">01</div>
+      <div class="strategy-title">Speak for itself</div>
+      <div class="strategy-body">The brand earns equity through customers' direct experience of the product. No advertising required, in theory. Word of mouth, repeat purchase, and customer recommendation do the building.</div>
+    </div>
+    <div class="strategy">
+      <div class="strategy-num">02</div>
+      <div class="strategy-title">Message-driven</div>
+      <div class="strategy-body">The brand earns equity through repeated communication of attributes, benefits, and emotional positioning. Advertising, PR, content, and sales materials construct the meaning in the customer's head.</div>
+    </div>
+    <div class="strategy">
+      <div class="strategy-num">03</div>
+      <div class="strategy-title">Leveraging</div>
+      <div class="strategy-body">The brand borrows equity from things that already have it. Other brands, endorsers, places of origin, events, causes. The strategy is to attach existing positive meaning to a new vessel.</div>
+    </div>
+  </div>
+
+  <h3>1.1 Speak-For-Itself, and Why Startups Overestimate It</h3>
+
+  <p>The speak-for-itself school is dominant in startup culture. Build a great product, the argument goes, and customers will discover it, love it, and tell their friends. Word of mouth will do the marketing work. Money spent on advertising is money diverted from product development. This is not entirely wrong. There are real cases of products that grew almost exclusively through customer experience and recommendation — early Tesla, original Dropbox, Costco for fifteen years.</p>
+
+  <p>The cases that get cited are also survivorship bias on a heroic scale. For every Dropbox there are hundreds of products that built equally good experiences and disappeared because nobody ever heard of them. Word of mouth needs a critical mass of users to compound, and reaching that critical mass almost always requires some upstream investment to get customers in the door in the first place. The brands that "spoke for themselves" mostly spent years in obscurity before they were noticed, and the ones still in obscurity are not writing memoirs about their experience.</p>
+
+  <p>The more honest framing: speak-for-itself is an outcome, not a strategy. Brands that have built enough mental availability and product trust to grow on referral alone have earned that position through years of work that included communication. Skipping the communication and assuming the product will compensate is the most expensive mistake a new brand can make, because it shows up as runway burn with nothing to show for it.</p>
+
+  <h3>1.2 Message-Driven, and Why It's Harder Than It Looks</h3>
+
+  <p>The message-driven school is what most of advertising is. The brand commissions creative work that articulates its positioning, runs that work across paid media, and accumulates equity through repetition and consistency over time. This is the strategy that Apple has used since 1997, that Nike has used since 1988, that Coca-Cola has used since the late 1800s.</p>
+
+  <p>The reason it's harder than it looks is that message-driven equity is built slowly and erodes fast if you stop. The Binet and Field data from the IPA Effectiveness Databank, which Unit 1 referenced extensively, is essentially evidence that message-driven brand building has a half-life. Brands that maintain the work compound. Brands that pause to fund performance see the equity decay measurably within a year and visibly within two. The strategy works, but only if you are willing to fund it through the periods when its short-term metrics look worse than the performance alternatives. Most companies are not.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The strategy that builds the biggest brands in the world is also the one most companies abandon precisely when its work is starting to pay back. Brand equity compounds only if you let it.</div>
+  </div>
+
+  <h3>1.3 Leveraging, and the Underappreciated Move</h3>
+
+  <p>Leveraging is the most undertaught of the three. The idea is that brand meaning, once accumulated somewhere, can be borrowed by attaching the new brand to the source. The leveraging hub has four standard sources.</p>
+
+  <div class="leverage-grid">
+    <div class="leverage-cell">
+      <div class="leverage-source">From Other Brands</div>
+      <div class="leverage-title">Co-branding and ingredient branding</div>
+      <div class="leverage-body">Two brands enter an alliance and both gain. <em>Intel Inside</em> is the textbook case: Intel paid PC manufacturers to include the logo on their hardware, and both Intel and the PC brands benefited from the implied performance association. <em>Gore-Tex</em> in outerwear. <em>Teflon</em> in cookware. <em>Lycra</em> in jeans. Visa co-branded credit cards with universities and airlines. The mechanic is that two brand identities cross-pollinate, with each carrying associations the other lacks.</div>
+    </div>
+    <div class="leverage-cell">
+      <div class="leverage-source">From People</div>
+      <div class="leverage-title">Endorsements and ambassadors</div>
+      <div class="leverage-body">A brand attaches itself to a person whose existing reputation carries the kind of associations the brand wants. <em>Michael Jordan and Gatorade</em> in the 1990s is the gold standard: the partnership was so deep that the brand and the athlete became culturally interchangeable. The downside is in the same category. <em>Tiger Woods</em> lost endorsement deals with Accenture, AT&amp;T, Gatorade, and Gillette inside a single week in 2009. The leverage works in both directions.</div>
+    </div>
+    <div class="leverage-cell">
+      <div class="leverage-source">From Places</div>
+      <div class="leverage-title">Country of origin, channel, geography</div>
+      <div class="leverage-body">Some categories carry such strong country associations that the country itself is leverage. <em>German</em> for cars, watches, and engineering tools. <em>Italian</em> for food, fashion, and design. <em>Swiss</em> for watches, chocolate, and banking. <em>Japanese</em> for electronics and craftsmanship. A new entrant in any of these categories can borrow the country's reputation almost for free, which is why brands invent country-of-origin associations even when the connection is thin. The channel a brand is sold through carries similar leverage: products at Neiman Marcus are positioned differently than identical products at Walmart, before any advertising runs.</div>
+    </div>
+    <div class="leverage-cell">
+      <div class="leverage-source">From Things</div>
+      <div class="leverage-title">Events, causes, third-party endorsement</div>
+      <div class="leverage-body">Sponsorships of cultural events — the Olympics, the World Cup, a music festival — let the brand borrow the event's emotional weight. Cause associations — Patagonia and environmental protection, Tom's Shoes and donations — let the brand borrow moral standing. Third-party endorsements — "America's most-trusted X," Consumer Reports recommendations, expert reviews — let the brand borrow institutional authority. All of these are forms of leverage, and the alternative to using them is paying full price to build the same associations from scratch.</div>
+    </div>
+  </div>
+
+  <p>Leveraging is undertaught because it requires admitting that your brand does not yet carry enough meaning on its own. Founders are bad at this admission. The marketing literature, written largely about successful brands looking back at their growth, tends to retrospectively narrate leveraging as if it were optional. It usually isn't. Most new brands that grow do so by attaching themselves to something larger and gradually transferring the borrowed meaning into proprietary equity. The brands that refuse to leverage often spend years explaining to customers what they stand for, when a partnership would have answered the question in a sentence.</p>
+
+  <p>The argumentative point worth holding onto: the three strategies are not a menu. A serious brand program uses all three. The product has to deliver on what the messaging promises, the messaging has to articulate what the product cannot, and the leveraging has to install meaning that the brand has not yet earned on its own. The strategies fail when they substitute for each other rather than reinforce each other.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Three strategies build brand equity: speak-for-itself, message-driven, leveraging. A serious program uses all three.</li>
+      <li>Speak-for-itself is an outcome, not a strategy. Brands that grow by referral alone usually got there through years of upstream communication work.</li>
+      <li>Message-driven equity compounds slowly and decays fast. The brands that win are the ones willing to fund the work through periods when its short-term metrics look worse than performance alternatives.</li>
+      <li>Leveraging — borrowing meaning from other brands, people, places, or things — is the most undertaught strategy because it requires admitting your brand does not yet carry enough meaning on its own. Most new brands cannot afford not to.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — HOW NEW BRANDS GET ADOPTED
+     ============================================================ -->
+<section class="section" id="adoption">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Adoption</div>
+  <h2>How New Brands Actually Get Adopted</h2>
+
+  <p>Once you have a brand and a strategy, the question becomes whether customers will actually adopt it. The data on this is sobering. Estimates of new-brand failure rates range from 35 to 45 percent in consumer categories and higher in technology and durable goods, depending on how strictly you define "failure." That number has been roughly stable for decades despite continuous improvements in marketing tools, market research, and analytics. Whatever knowledge marketers have accumulated about launching brands, it has not yielded reliable success.</p>
+
+  <p>The dominant model for thinking about adoption is the three-stage funnel that descends from Everett Rogers' <em>Diffusion of Innovations</em> (1962) and has been adapted into countless marketing textbooks since. The stages are <em>awareness</em>, <em>trial</em>, and <em>repeat purchase</em>, and the model is useful because it isolates three distinct gates a new brand has to pass through, each of which fails for different reasons.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 2B.1</div>
+    <div class="figure-title">The Brand Adoption Funnel</div>
+    <div class="funnel-figure">
+      <div class="funnel-tier tier-tofu">
+        <div class="funnel-stage">Awareness Class</div>
+        <div class="funnel-elements">Driven by advertising, PR, sampling, social, distribution presence</div>
+      </div>
+      <div class="funnel-tier tier-mofu">
+        <div class="funnel-stage">Trier Class</div>
+        <div class="funnel-elements">Driven by coupons, distribution, price, ease of trial</div>
+      </div>
+      <div class="funnel-tier tier-bofu">
+        <div class="funnel-stage">Repeater Class</div>
+        <div class="funnel-elements">Driven by product satisfaction, brand reinforcement, ongoing relationship</div>
+      </div>
+    </div>
+    <div class="figure-caption">Adapted from the Brand Adoption Process model in Andrews &amp; Shimp (2018) and Rogers' <em>Diffusion of Innovations</em> (1962).</div>
+  </div>
+
+  <p>Awareness is the gate everyone focuses on. It is also the easiest to buy, because awareness is what mass-reach advertising is built to produce. Trial is harder, because turning a customer who knows about your brand into a customer who actually tries it requires reducing the perceived risk of the first purchase. Distribution presence, sampling, coupons, low-price introductory offers, money-back guarantees, and free trials all live here. Repeat purchase is the hardest, because nothing in the marketing budget can substitute for a product that delivers on what the brand promised. A brand that buys awareness, lubricates trial with discounts, and then disappoints on first use does not get a second chance.</p>
+
+  <h3>2.1 Rogers' Five Characteristics</h3>
+
+  <p>Beneath the three-stage funnel, Rogers identified five characteristics of a new product that predict how quickly it will be adopted. The five have held up well across sixty years of research, with some sharpening at the edges. They are worth knowing because they are the closest thing the literature has to a pre-launch diagnostic.</p>
+
+  <div class="rogers">
+    <div class="rogers-card">
+      <div class="rogers-num">01</div>
+      <div class="rogers-title">Relative Advantage</div>
+      <div class="rogers-body">How much better is it than what the customer is using now? Bigger advantage = faster adoption.</div>
+    </div>
+    <div class="rogers-card">
+      <div class="rogers-num">02</div>
+      <div class="rogers-title">Compatibility</div>
+      <div class="rogers-body">Does it fit existing habits, values, and infrastructure? Higher compatibility = less switching cost.</div>
+    </div>
+    <div class="rogers-card">
+      <div class="rogers-num">03</div>
+      <div class="rogers-title">Complexity</div>
+      <div class="rogers-body">How hard is it to understand and use? More complex = slower adoption, often by a lot.</div>
+    </div>
+    <div class="rogers-card">
+      <div class="rogers-num">04</div>
+      <div class="rogers-title">Trialability</div>
+      <div class="rogers-body">Can the customer try it with low risk? Higher trialability = less commitment required to test.</div>
+    </div>
+    <div class="rogers-card">
+      <div class="rogers-num">05</div>
+      <div class="rogers-title">Observability</div>
+      <div class="rogers-body">Can other people see the customer using it? More visible = stronger social proof and word of mouth.</div>
+    </div>
+  </div>
+
+  <p>The standard exercise is to score a new product on each of the five characteristics, weight the scores by importance, and produce a total. The textbook calls this Importance × Evaluation scoring, and the exercise is worth running on any launch even if the final number is not what matters. The discipline of forcing yourself to evaluate the product on the five dimensions surfaces the weaknesses ahead of time, and the weaknesses are where launches fail.</p>
+
+  <h3>2.2 The Honest Finding: Most Launches Die on Two of the Five</h3>
+
+  <p>Here is the part the textbook does not emphasize enough. The five characteristics are listed as if they are equal predictors. They are not. When you go back through actual launch failures and ask which characteristic killed the launch, the answer is overwhelmingly one of two: complexity or trialability. Relative advantage, compatibility, and observability explain some failures, but they tend to explain failures retrospectively rather than predict them ahead of time.</p>
+
+  <p>The Tesla Cybertruck launch is a useful recent example. Relative advantage was real — the truck offered features competitors couldn't match. Observability was sky-high — the design was distinctive enough that owning one was an act of public statement. Compatibility was poor (the design didn't fit existing pickup-truck conventions), and complexity was high (the launch was beset by software issues, panel-fit problems, and feature delays), and trialability was low (a $100,000 purchase doesn't lend itself to casual evaluation). The launch underperformed not because Tesla failed at all five characteristics, but because it failed at the two that predict failure most reliably.</p>
+
+  <p>The Ozempic and Wegovy launches in the opposite direction. The semaglutide products had high relative advantage (weight loss outcomes substantially better than existing alternatives), reasonable compatibility (weekly injection, familiar to diabetic patients), low complexity (one drug, one dose, clear instructions), high trialability (insurance coverage made the first month effectively free for many patients), and extreme observability (a 40-pound weight loss is hard to miss in a customer's social network). Three of the five were strong, two were exceptional, and the products achieved adoption rates that pharmaceutical companies normally see over five years in less than 18 months.</p>
+
+  <p>The argumentative point: do the Importance × Evaluation exercise on any launch you are involved with, but weight complexity and trialability more heavily than the model suggests. The other three matter, but they are usually how you explain failure after the fact. Complexity and trialability are how you predict it.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>New-brand failure rates run 35-45% in consumer categories, with little improvement over decades despite better tools. The adoption problem is mostly unsolved.</li>
+      <li>The Awareness → Trier → Repeater funnel isolates three distinct gates. Each fails for different reasons. Buying past one gate doesn't help with the next.</li>
+      <li>Rogers' five characteristics — relative advantage, compatibility, complexity, trialability, observability — predict adoption rate. The Importance × Evaluation exercise is worth running on every launch.</li>
+      <li>Most failed launches die on complexity or trialability. The other three characteristics explain failures retrospectively but predict them poorly.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — NAMING AND VISUAL IDENTITY
+     ============================================================ -->
+<section class="section" id="naming">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Naming &amp; Identity</div>
+  <h2>Naming and Visual Identity</h2>
+
+  <p>The brand name and the visual identity are the two assets a brand owns longest and changes least often. Most brand names outlast every other strategic decision the company makes. The name on the door when you start the business is usually the name on the building when you sell it forty years later. The logo, if you treat it with discipline, has a similar lifespan — adjusted for typography and design conventions, but recognizable across decades. Because of this longevity, the costs of getting them wrong are unusually high. The decisions feel small. They are not.</p>
+
+  <h3>3.1 The Economics of Naming</h3>
+
+  <p>The price of a professionally developed brand name from a top-tier naming firm runs from about three thousand dollars at the low end to seventy-five thousand at the high end, with most landing in the $25,000 to $50,000 range. That sounds like a lot for a few words on a slide. It is not. The brand-building investment that follows the name — advertising, packaging, signage, digital presence — runs into the tens of millions of dollars for a real consumer brand, and the equity that investment accumulates gets attached to the name. Getting the name right is the cheapest piece of work in the entire brand-building program. Getting it wrong is the most expensive.</p>
+
+  <p>The four functional requirements of a good brand name are well-established in the literature. A good name distinguishes the brand from competitors. It facilitates consumer learning about what the brand stands for. It achieves compatibility with the brand's desired image and the product's design and packaging. And it is memorable and easy to pronounce. These requirements are not equal in importance — distinctiveness usually matters most, pronounceability matters more than people think, and image compatibility is the one that gets most often violated. But all four are worth checking against.</p>
+
+  <h3>3.2 How a Real Naming Process Runs: The Jaunt Story</h3>
+
+  <p>It's worth walking through one real naming engagement to see what the process actually looks like, because the romance of "we just thought of it one day" is mostly invented for press releases. Most successful brand names came out of disciplined processes that generated thousands of candidates and rejected the overwhelming majority.</p>
+
+  <p>The case to look at is Jaunt, the virtual reality experience company that raised over $34 million on the strength of a VR film starring Paul McCartney. The investors had funded the company, but they had no name for it. They retained Anthony Shore, formerly of Landor Associates and Lexicon Branding, who runs a single-employee naming agency called Operative Words. The story of what Shore did is documented in the Andrews textbook, and it's worth reading because it shows how a professional naming process actually works.</p>
+
+  <p>Shore started by asking what he calls "the brief": what made the VR experience new, different, transporting, science-fictional. The investors wanted something short that conveyed speed and arrival. Shore worked through six creative buckets — change, entertainment, experience, immersion, presence, and a "wow" factor — and then turned to phonetics. Speed and smallness in English get conveyed by <em>fricative</em> consonants: f, s, v, z. Arrival, weight, and largeness get conveyed by <em>plosive</em> consonants: b, d, p, t. He used the Universal Text Combination app to generate a list of 7,500 names combining fricatives and plosives in different positions.</p>
+
+  <div class="funnel-narrative">
+    <div class="funnel-narrative-label">The Jaunt Naming Process</div>
+    <div class="funnel-narrative-steps">
+      <span class="fn-num">7,500</span>
+      <span class="fn-arrow">→</span>
+      <span class="fn-num">1,200</span>
+      <span class="fn-arrow">→</span>
+      <span class="fn-num">61</span>
+      <span class="fn-arrow">→</span>
+      <span class="fn-num">1</span>
+    </div>
+    <div class="funnel-narrative-caption">From 7,500 generated candidates, filtered through phonetics, trademark availability, cultural screening, and investor review, to a single chosen name.</div>
+  </div>
+
+  <p>Shore then used onelook.com and rhymezone.com to filter the list down to 1,200 names by checking word associations and rhyme partners. He filtered again to 61 candidates that survived basic taste, pronounceability, and trademark screening. The shortlist included Virch, Amuzium, FarAcross, Thrall, Howl, Mezmer, Joyager, Jumpdoor, Livit, Lunge, Midst, Popover, Zyde, and Jaunt. The final review weighed semantic fit, trademark availability, cultural connotations across major markets, and investor preference. Jaunt won.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Professional naming firms generate thousands of candidates and reject 99 percent of them. The discipline is not in the generation. It is in the rejection. Founders who skip that step usually skip the part that mattered.</div>
+  </div>
+
+  <p>The point of the story is not that the name Jaunt is unusually brilliant. It is that the process by which it was chosen was unusually disciplined. Shore generated 7,500 candidates and rejected 7,499 of them. That ratio — generate broadly, reject ruthlessly — is what professional naming firms charge for. The founders who name their own companies in an afternoon are usually skipping the rejection step, which is where most of the value sits.</p>
+
+  <h3>3.3 Sound Symbolism: Why Frosh Beats Frish</h3>
+
+  <p>One piece of the naming research worth knowing about because it is consistently underappreciated: phonetic sounds carry meaning even when the words themselves are nonsense. This is the field called sound symbolism, and the experimental evidence has been replicated across languages and cultures for fifty years.</p>
+
+  <table class="symbolism-table">
+    <thead>
+      <tr>
+        <th style="width: 22%;">Sound family</th>
+        <th style="width: 38%;">Connotation</th>
+        <th>Example brand names</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Front vowels</strong><br>(e, i, ee)</td>
+        <td>Small, light, fast, feminine, sharp, sleek</td>
+        <td>Bing, Mini, Tic Tac, Sprite, Fitbit, Kindle, Twitter</td>
+      </tr>
+      <tr>
+        <td><strong>Back vowels</strong><br>(o, oo, u)</td>
+        <td>Large, heavy, slow, masculine, rich, warm</td>
+        <td>Toyota, Costco, Hulu, Volvo, Google, Trump, GoPro</td>
+      </tr>
+      <tr>
+        <td><strong>Fricatives</strong><br>(f, s, v, z)</td>
+        <td>Speed, movement, lightness, friction</td>
+        <td>Visa, Zoom, Vans, Versace, Five Guys, Fender</td>
+      </tr>
+      <tr>
+        <td><strong>Plosives</strong><br>(b, d, p, t, k, g)</td>
+        <td>Weight, arrival, impact, stability</td>
+        <td>BMW, Coca-Cola, Pepsi, Reddit, Target, Kodak, Adidas</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The classic experimental demonstration: researchers presented subjects with two made-up brand names for ice cream — <em>Frosh</em> and <em>Frish</em> — and asked which sounded richer, creamier, and more luxurious. Frosh won by large margins, every time. The only difference is the vowel. Same letters around it. Same number of syllables. Same plosive at the end. Just the difference between a front vowel and a back vowel was enough to shift preference reliably.</p>
+
+  <p>This matters because most founders pick brand names based on what they mean rather than what they sound like. Meaning is one input. Sound is another, and it's an input that operates beneath conscious evaluation, which means even sophisticated focus-group testing may miss it. The professional naming firms test phonetics explicitly because the effects are real and the founder's intuition for them is usually wrong.</p>
+
+  <h3>3.4 Three Naming Schools: Suggestive, Made-Up, Empty-Vessel</h3>
+
+  <p>Brand names fall, roughly, into three families. <em>Suggestive</em> names directly imply what the product does or the benefit it offers. Post-it, Healthy Choice, Crocs (suggesting durability and water-resistance), Outback (for an SUV implying rugged terrain), Liquid-Plumr. These names do work for the customer by carrying their own meaning. The risk is that the meaning constrains the brand. A company named for a specific product feature has trouble extending into adjacent categories. Liquid-Plumr cannot stretch into hair care.</p>
+
+  <p>The <em>made-up</em> school constructs names from morphemes — the semantic building blocks of language — that suggest meaning without committing to it. <em>Acura</em> is built from <em>accurate</em>. <em>Compaq</em> was <em>compact</em> plus a hard ending. <em>Verizon</em> combines <em>veritas</em> and <em>horizon</em>. <em>Microsoft</em> joined <em>microcomputer</em> and <em>software</em>. These names are designed to feel meaningful without locking the brand into a specific product domain.</p>
+
+  <p>The <em>empty-vessel</em> school takes the opposite approach. The name is deliberately devoid of prior meaning, leaving the brand free to install whatever meaning the marketing creates. <em>Exxon</em> was computer-generated to be neutral across global markets — the company specifically wanted a name that had no existing associations in any language. <em>Lucent</em> (formerly Lucent Technologies, later Alcatel-Lucent) was chosen because <em>lucent</em> had limited semantic baggage. <em>Kodak</em> was invented from scratch by George Eastman in 1888 specifically because he wanted a name that didn't mean anything in any language.</p>
+
+  <p>The empty-vessel approach has an advantage that becomes obvious in hindsight: a name with no prior meaning never has to undo any associations. The brand teaches the customer what the name means, rather than competing with whatever the customer thought it meant before. The disadvantage is that empty-vessel names require sustained communication investment to install the meaning in the first place. They are expensive at the beginning and cheap forever after.</p>
+
+  <h3>3.5 The Exceptions That Prove the Rules</h3>
+
+  <p>Some of the most successful brand names in history violate every guideline in the literature. <em>Häagen-Dazs</em> is unpronounceable to English speakers, doesn't mean anything in any language (the name was invented in the Bronx in 1961 by Reuben Mattus to sound Danish), uses unusual spellings, and has accents that don't exist in English. By textbook scoring it should have failed. It is one of the most valuable premium ice cream brands in the world.</p>
+
+  <p><em>Leinenkugel's</em> is a German surname that most American customers cannot spell or pronounce. <em>Schick</em> for razors is technically fine but has the same surname-origin issue. <em>Yelp</em> sounds like a dog injury. <em>Wendy's</em> was named after the founder's daughter, against the prevailing wisdom that family names should be avoided. None of these violate naming theory by accident — they violate it on purpose, and the brand survived because the violation became part of the brand's distinctiveness.</p>
+
+  <p>The lesson is not that the rules are wrong. The rules describe what works on average. The exceptions are brands that were memorable enough on other dimensions — taste, founder story, marketing creativity, sheer cultural luck — to overcome the naming disadvantages. If you can guarantee that level of creative execution downstream, you can name your brand anything. If you cannot, follow the rules.</p>
+
+  <h3>3.6 The Five-Step Naming Process</h3>
+
+  <p>The standard professional naming process has five steps, and the JetBlue story below illustrates why each of them matters.</p>
+
+  <div class="process-flow">
+    <div class="process-step">
+      <div class="process-step-num">1</div>
+      <div class="process-step-label">Specify objectives</div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">2</div>
+      <div class="process-step-label">Generate candidates</div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">3</div>
+      <div class="process-step-label">Evaluate candidates</div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">4</div>
+      <div class="process-step-label">Choose a name</div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num">5</div>
+      <div class="process-step-label">Register trademark</div>
+    </div>
+  </div>
+
+  <p>JetBlue Airways, which launched in 2000, almost wasn't called JetBlue. The original operating name was New Air, a placeholder while the marketing team worked on the real name. The CEO had been clear about what he didn't want — no geographic destination like Southwest or Northeast, no made-up word like Lexus or Acura. The team considered Taxi, Gotham, Imagine Air, Yes!, and Fresh Air. Taxi was the favorite, because it was distinctive and would have enabled a yellow-and-black checker design on the tails. The Federal Aviation Administration killed Taxi because the verb describes what planes do on runways, and the FAA didn't want the term confused.</p>
+
+  <p>The next candidate was True Blue, after Landor Associates ran a formal process. The name was chosen, the design was developed, the launch was planned. Two weeks before launch, the team discovered that Thrifty Rent-a-Car had already trademarked True Blue for its customer service program. The mistake — failing to clear the name through trademark search before committing — was a Landor error that the marketing team paid for.</p>
+
+  <p>One week before the launch announcement, a member of the marketing team suggested JetBlue. The name had not been on any list. It cleared trademark search. It was short, easy to pronounce, distinctive in the airline category, and it preserved the blue palette and visual identity the team had already built. New Air became JetBlue Airways, and the airline launched on schedule. The story is a useful reminder that even disciplined naming processes can produce the final answer in the last week, and that the trademark step in the five-step process is non-negotiable even when the firm running your process is the most respected in the industry.</p>
+
+  <h3>3.7 Logos and Visual Identity</h3>
+
+  <p>If the brand name is the verbal anchor, the logo is the visual one. The logo functions as a shorthand identifier — a single asset that a customer can recognize at a glance, on a tiny app icon or a sixty-foot billboard, and that triggers the entire brand image stored in memory.</p>
+
+  <p>The research on what makes a logo work is surprisingly settled. Good logos share three properties: they are recognized readily by their target audience, they convey roughly the same meaning to all viewers, and they evoke positive feelings. The visual research, replicated across multiple studies, is that moderately elaborate designs outperform both overly simple and overly complex ones, and that natural designs — designs based on recognizable real-world objects — outperform purely abstract designs on most measures. Liking, recognition, and emotional response are all higher for the moderately-elaborate-natural quadrant than for any of the other three.</p>
+
+  <p>One of the more interesting cases is Betty Crocker, who is not a real person but a brand mascot created in 1921. The Betty Crocker face has been updated eight times across more than 95 years, with the most recent version, introduced in 1996, produced by digitally morphing photographs of 75 American women into a single composite. The composite was chosen specifically because it could not be traced to any single ethnic or regional source. The brand decided that universality was more important than specificity. Whether the bet paid off is debatable. What is not debatable is that the Betty Crocker face is recognized by approximately 75% of American consumers, a recognition level that the brand has maintained for a century by treating the visual identity as a long-term asset rather than a short-term creative project.</p>
+
+  <p>The trend over the past 15 years has been from angular logos toward rounded ones — Starbucks dropped its angular wordmark in 2011 in favor of the rounded siren mark; Pepsi simplified repeatedly; tech companies almost universally rounded their wordmarks during the same period. The research suggests cultural variation in reception: rounded logos play better in interdependent cultures (India, China, much of Asia) than they do in more independent Western markets. The wholesale convergence on rounded sans-serif typography in the late 2010s and early 2020s, however, produced the design phenomenon that Unit 2C is going to argue against: <em>blanding</em>, the homogenization of brand identity into a uniform minimal aesthetic. We will hold that argument for the third part. For now, the principle: rounded works, but variety works better, and stripping out distinctive elements to match the prevailing trend is a strategic mistake regardless of what the design press says.</p>
+
+  <h3>3.8 When Identity Changes Go Wrong: Two Case Studies</h3>
+
+  <p>The visual identity research is mostly theoretical. The two cases below are the cleanest financially-documented examples in the recent literature of what happens when a brand discards distinctive assets and the customer notices. Both happened within twenty months of each other, and both produced enough damage to land in every subsequent textbook treatment of brand identity.</p>
+
+  <h4>Tropicana, 2009 — The Customer Cannot Find the Product</h4>
+
+  <div class="img-figure">
+    <img src="assets/images/tropicana.png" alt="Tropicana packaging evolution from 2009 original to 2009 redesign to return to original to 2011 latest redesign">
+    <div class="img-figure-caption"><strong>Tropicana Pure Premium packaging evolution, 2009–2011.</strong> The Arnell Group redesign launched January 8, 2009 replaced the iconic orange-with-a-straw with a generic glass-of-juice image. PepsiCo reverted on February 23, 2009, just six weeks later. The 2011 update demonstrated what additive evolution can do: a new bottle form while preserving the distinctive asset.</div>
+  </div>
+
+  <p>In early 2009, PepsiCo decided to modernize Tropicana Pure Premium — at the time a $700-million-a-year brand that had defined premium orange juice for two decades. The Arnell Group produced a redesign that replaced the iconic orange-with-a-straw image with a generic glass of juice, repositioned the wordmark vertically, and applied a minimalist treatment. The total investment in the redesign and supporting advertising was $35 million. The new packaging hit shelves on January 8, 2009.</p>
+
+  <p>Within two months, sales had dropped 20 percent — a $30 million loss in real revenue. Competitors picked up the displaced share. On February 23, 2009, just six weeks after launch, Tropicana announced it would revert to the original packaging. By the time the dust settled, the total cost of the failed rebrand exceeded $50 million.</p>
+
+  <p>What had happened was not aesthetic confusion. Customers were not buying Tropicana because they liked the packaging. They were navigating to Tropicana because the packaging was the recognition cue they had built up over twenty years of grocery store visits. The orange-with-a-straw was a distinctive brand asset in Sharp's terms — a piece of visual code that allowed buyers to identify the product instantly in a crowded juice aisle. When PepsiCo replaced it with a generic glass of orange juice, the asset was gone. Customers in stores looked at the shelf, didn't see Tropicana, and bought competitor brands. Some bought Tropicana by mistake and concluded the brand had been discontinued. The financial damage was almost entirely a recognition failure, and it showed up not as a vague reduction in brand equity but as immediate, quantifiable sales decline.</p>
+
+  <p>Tropicana eventually updated the packaging successfully — the 2011 introduction of the curved bottle preserved the orange-with-straw imagery while modernizing the form factor. The successful 2011 evolution is rarely discussed because the 2009 failure is more memorable, but the contrast demonstrates the operative principle: <em>distinctive assets can be evolved, but they cannot be discarded</em>.</p>
+
+  <h4>Gap, 2010 — The Customer Tells You In Six Days</h4>
+
+  <div class="img-figure">
+    <img src="assets/images/gap-logo.png" alt="Gap logo evolution from 1990 to October 6, 2010 to October 12, 2010">
+    <div class="img-figure-caption"><strong>The Gap logo, before, during, and after the six-day disaster.</strong> The 2010 replacement — a flat sans-serif Helvetica wordmark with a small blue square — launched on October 6 and was reversed on October 12 following sustained public ridicule on social media.</div>
+  </div>
+
+  <p>The Gap case is worth knowing as the textbook example of how fast a brand can lose the public on a visual identity change. In October 2010, Gap replaced its long-running serif wordmark — a distinctive asset that had identified the brand since 1990 — with a flat sans-serif design featuring a small offset blue square. The redesign was widely mocked on Twitter within hours, parodied across design blogs within days, and reversed by the company on October 12, six days after launch.</p>
+
+  <p>Estimates of the financial cost vary, but the consensus puts the total damage to Gap somewhere around $100 million in design fees, production costs, and reputational damage. The case is now used in design schools as the canonical demonstration of two things: that distinctive brand assets, once accumulated, cannot be replaced by committee in a board room without warning the customer; and that customers will tell you immediately when they think you have made a mistake, in detail, on every platform available to them. Gap had not asked customers what they thought of the old logo. The new logo arrived as a surprise. The customers had opinions, expressed them within hours, and were not wrong.</p>
+
+  <p>The pattern across both cases is the same. The brand assumed that customers would not notice a visual identity change, or would absorb it as a "modernization" they should appreciate. The customers noticed immediately, treated the change as a loss, and either left or complained loudly enough to force a reversal. The Sharp framework explains both outcomes: distinctive brand assets are the equipment customers use to find the product. Take the equipment away, even in pursuit of a "cleaner" or "more modern" aesthetic, and the cost shows up at the cash register.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Distinctive brand assets can be evolved. They cannot be discarded. The customer is using them to find your product, and when they disappear, the customer does not just buy the new design — they buy your competitor.</div>
+  </div>
+
+  <div class="external-reading">
+    <div class="external-reading-label">External Reading — Brand Guidelines in Practice</div>
+    <h4>Two brand guides worth bookmarking</h4>
+    <p>For a working tour of how real brand guidelines look in 2026, two are available in the <strong>Canvas Unit 2 module</strong>. The Carhartt brand guide focuses on outdoor workwear identity — typography, photography conventions, color systems, tone of voice for marketing copy, and what to never do. The Burger King brand guide is the more interesting read because it documents the brand's deliberate 2021 reversion to a vintage palette and bolder display typography, restoring distinctive assets the brand had stripped out during its mid-2010s minimal phase.</p>
+    <p>The Burger King guide is especially worth studying as a counterexample to the blanding trend we will cover in Unit 2C. They leaned into character at exactly the moment their competitors were stripping it out, and the brand has been gaining attention ever since. The contrast between the two guides — Carhartt's quiet authenticity, Burger King's loud restoration — is instructive on the range of legitimate brand-identity strategies a serious brand can adopt.</p>
+  </div>
+
+  <h3>3.9 The Legal Layer (Brief)</h3>
+
+  <p>The legal protection of brand assets — trademarks, copyrights, patents, trade dress — is a real and important topic that we are going to cover properly in Unit 8 when we get to ethics, regulation, and the legal environment of marketing communications. Two things to flag in passing.</p>
+
+  <p>First, trademark protection in the United States is governed by the Lanham Act of 1946 and amended by the Federal Trademark Dilution Act of 1995. Trademarks last as long as the holder defends them through continuous use and renewal, which means a well-maintained trademark can last forever. The Coca-Cola wordmark has been a registered trademark since 1893. The risk that ends a trademark is not the clock; it is <em>genericness</em> — the brand becoming so dominant in its category that the name turns into the category itself. Aspirin, Escalator, Cellophane, Trampoline, and Thermos all started as protected trademarks and lost the protection when they became generic terms. Xerox spent decades aggressively reminding customers and journalists that "Xerox" is the brand and "photocopy" is the verb, specifically to avoid the same fate. Genericness is the marketing-success failure mode.</p>
+
+  <p>Second, trademark registration in foreign markets is a separate process from US registration, and the rules vary. In China, registration trumps prior use, which means brands that fail to register early in China can find their name owned by a squatter who beat them to the filing. Starbucks discovered this when they tried to enter China and found "Xian Bake" — the Chinese phonetic equivalent — already registered. We will return to all of this in Unit 8.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Professional brand naming runs $3K–$75K for the name itself, against tens of millions in downstream brand investment that attaches to it. Getting the name right is the cheapest part of the program.</li>
+      <li>The four functional requirements: distinguish from competition, facilitate learning, achieve image compatibility, be memorable and pronounceable. Distinctiveness usually matters most.</li>
+      <li>Real naming processes generate thousands of candidates and reject 99%+ of them. The Jaunt process — 7,500 → 1,200 → 61 → 1 — is typical, not exceptional.</li>
+      <li>Sound symbolism is real. Front vowels feel small and fast; back vowels feel large and heavy; fricatives feel quick; plosives feel weighty. Founders' intuition for these effects is usually wrong, which is why professional firms test phonetics explicitly.</li>
+      <li>Three naming schools — suggestive, made-up, empty-vessel — each have trade-offs. Empty-vessel names are expensive to launch and cheap to maintain forever after.</li>
+      <li>Logo research is settled: moderately elaborate beats simple-or-complex, natural beats abstract. The Betty Crocker face is the textbook longevity case; the Gap reversal is the textbook failure case.</li>
+      <li>Trademarks last as long as you defend them. The risk is not the clock — it's genericness, the failure mode of becoming the category name.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — REPOSITIONING
+     ============================================================ -->
+<section class="section" id="repositioning">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Repositioning</div>
+  <h2>Repositioning: When Brands Have to Change</h2>
+
+  <p>A brand can be the most stable strategic asset a company owns. It can also be the asset most expensive to change, because the equity that took years to build is, in some real sense, what gets thrown away when the brand changes. Repositioning is the deliberate decision to discard some accumulated equity in exchange for new positioning the company believes is more valuable going forward. The question every repositioning faces is whether the trade is worth it.</p>
+
+  <p>The historical record is mixed. Some repositions land cleanly and the company comes out stronger. Others destroy value the company never recovers. The pattern that emerges from the cases is that the successful repositions usually share a structural feature the failed ones lack: a clear story about <em>why now</em>. The repositions that fail tend to pretend nothing has changed, expecting customers to absorb the change without comment.</p>
+
+  <h3>4.1 The Three Reasons Brands Reposition</h3>
+
+  <p>Real repositionings, looked at across the past decade, cluster into three causes. Each plays out differently.</p>
+
+  <p><strong>Internal strategic change.</strong> The company has decided to be something different, and the brand needs to reflect the new direction. <em>Facebook to Meta</em> in 2021 is the cleanest recent example. The company was no longer primarily a social network; it was positioning itself as a metaverse infrastructure provider, and the name change signaled the pivot. Whether the metaverse bet pays off is a separate question. The repositioning worked as repositioning, because the story explained itself — the company was becoming something different, and the new name reflected the new thing.</p>
+
+  <p><strong>External cultural pressure.</strong> The brand's existing identity has become socially untenable, and continuing to defend it carries reputational risk that exceeds the cost of changing. <em>Aunt Jemima to Pearl Milling Company</em> in 2021 is the textbook case. The brand had been built on a racialized caricature that the company had been quietly modernizing for decades, but by 2020 the modernization was no longer enough. The reposition was forced by cultural pressure, and Quaker Oats made the decision quickly enough to land it as a moment of accountability rather than a foot-dragging concession.</p>
+
+  <p><strong>Declining sales or relevance.</strong> The brand is losing the market and needs a different identity to compete. <em>Taco Bell's "Yo Quiero Taco Bell" to "Live Más"</em> repositioning in 2012 is the classic example. The Chihuahua-era brand had aged out of relevance with younger customers. The "Live Más" repositioning, paired with menu and store changes, repositioned the brand from value-fast-food into lifestyle brand. Same parent company, same product category, dramatically different customer relationship.</p>
+
+  <h3>4.2 The Cases at a Glance</h3>
+
+  <table class="reposition-table">
+    <thead>
+      <tr>
+        <th style="width: 24%;">Year</th>
+        <th style="width: 36%;">Change</th>
+        <th>Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2010</td>
+        <td><span class="from">Washington Redskins</span> → <span class="to">Washington Commanders</span> (via "Football Team" interim)</td>
+        <td><span class="reason">External cultural pressure. Sponsor exit accelerated the timeline. Two-year interim period was a strategic mistake.</span></td>
+      </tr>
+      <tr>
+        <td>2012</td>
+        <td><span class="from">Taco Bell "Yo Quiero"</span> → <span class="to">Taco Bell "Live Más"</span></td>
+        <td><span class="reason">Declining relevance with younger customers. Paired with menu and store redesign. Brand reframed from value-fast-food into lifestyle.</span></td>
+      </tr>
+      <tr>
+        <td>2015</td>
+        <td><span class="from">Gucci (Tom Ford-era)</span> → <span class="to">Gucci (Alessandro Michele era)</span></td>
+        <td><span class="reason">Declining relevance in luxury. Maximalist aesthetic revolution. Worked spectacularly through 2022, then unwound; Michele was replaced in 2023.</span></td>
+      </tr>
+      <tr>
+        <td>2020</td>
+        <td><span class="from">Aunt Jemima</span> → <span class="to">Pearl Milling Company</span></td>
+        <td><span class="reason">External cultural pressure. Quaker moved fast and reframed it as accountability. Clean execution.</span></td>
+      </tr>
+      <tr>
+        <td>2021</td>
+        <td><span class="from">Facebook (corporate)</span> → <span class="to">Meta</span></td>
+        <td><span class="reason">Internal strategic change. Signaled metaverse pivot. The brand story explained itself.</span></td>
+      </tr>
+      <tr>
+        <td>2022</td>
+        <td><span class="from">Cleveland Indians</span> → <span class="to">Cleveland Guardians</span></td>
+        <td><span class="reason">External cultural pressure. Decades of Native American protest finally landed. Brand stayed within the city.</span></td>
+      </tr>
+      <tr>
+        <td>2023</td>
+        <td><span class="from">Twitter</span> → <span class="to">X</span></td>
+        <td><span class="reason">Internal strategic change driven by ownership preference. Threw away one of the most distinctive brand assets in social media. Cautionary case.</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>4.3 The Gucci Counter-Pattern: A Reposition That Worked, Then Unwound</h3>
+
+  <p>The reposition table is dominated by name changes, which can obscure that some of the most consequential repositionings are aesthetic and creative rather than nominative. Gucci is the cleanest recent case of a successful brand reinvention that then ran out of cultural momentum, and it's worth pausing on because the binary "success or failure" framing in most textbook treatments oversimplifies what actually happens.</p>
+
+  <p>Gucci in 2015 was a luxury house in slow decline. The Tom Ford era — bold, sexual, hard-edged — had ended in 2004, and the brand had spent a decade losing relevance with younger luxury buyers. Frida Giannini's tenure produced solid but unremarkable collections. Sales were flat in a category where flat means losing. In January 2015, Kering appointed Alessandro Michele as creative director. Michele's first collection, produced in five days, replaced almost every element of Gucci's existing aesthetic: maximalism replaced minimalism, geek-romantic replaced sleek-sexy, layered prints replaced clean silhouettes, mismatched eras replaced consistent ones. The brand's distinctive assets — the green-red-green stripe, the GG monogram, the horsebit motif — were preserved and amplified rather than discarded.</p>
+
+  <p>The result was one of the fastest luxury brand recoveries in modern history. Gucci's revenue grew from approximately €3.5 billion in 2014 to approximately €9.6 billion in 2022. Michele was credited with reinventing not just Gucci but the broader category, and competing houses spent years copying the maximalist approach. By any reasonable measure, the reposition was a triumph.</p>
+
+  <p>And then, between 2022 and 2023, the aesthetic ran out. Maximalism became expected rather than surprising. Younger luxury buyers shifted toward quiet-luxury cues. Gucci's growth stalled, then reversed. Kering replaced Michele in 2023 with Sabato De Sarno, whose first collections aggressively pulled the brand back toward minimal-luxury restraint. The reposition that had worked spectacularly for eight years had unwound.</p>
+
+  <p>The lesson is not that Michele was wrong. The lesson is that no reposition is permanent. Cultural cycles move. The aesthetic that defines a brand for a decade can become the aesthetic that drags it down in the eleventh year. Brands that understand this build flexibility into their distinctive-asset architecture — the GG monogram and the green-red-green stripe survived Michele's era and will survive De Sarno's, even as everything around them changes. The assets are the through-line. The reposition is the chapter.</p>
+
+  <h3>4.4 The Twitter / X Case: How to Destroy a Brand on Purpose</h3>
+
+  <div class="img-figure">
+    <img src="assets/images/twitter.jpg" alt="Twitter blue bird logo before, X logo after">
+    <div class="img-figure-caption"><strong>Twitter to X, July 2023.</strong> Among the most consequential single-day destructions of distinctive brand assets in technology history. Brand Finance estimated Twitter's pre-rebrand brand value at approximately $20 billion. Within twelve months of the change, the same firm estimated brand value had fallen by roughly half.</div>
+  </div>
+
+  <p>The Twitter to X reposition deserves a longer look because it shows what happens when a reposition is driven by ownership preference rather than strategic necessity, and because it produced the largest measured single-event destruction of brand equity in recent history.</p>
+
+  <p>Twitter, by 2022, had one of the strongest distinctive-brand-asset portfolios of any technology company. The blue bird was iconic. The verb "to tweet" had entered standard English. The platform's name was a household word in dozens of countries. Brand Finance estimated Twitter's brand value at approximately $20 billion before the acquisition. When Elon Musk rebranded the platform to X in July 2023, every one of these assets was thrown away. The bird was retired. The verb "tweet" was officially deprecated. The name "Twitter" was replaced with a single letter that already meant several other things in technology and culture, including but not limited to a long-running adult content category.</p>
+
+  <p>By most published estimates, X's brand value within twelve months of the change had fallen by 50 to 70 percent. Advertiser spending dropped substantially. User behavior continued to refer to "tweets" out of muscle memory. The platform retained a similar user base — though it has declined steadily — but the brand asset it once held was largely destroyed. From a Sharp framework perspective, the case is instructive: the platform had spent fifteen years building memory structures and distinctive assets that were essentially priceless, and the rebrand zeroed them out in a single day. The replacement assets — a single letter X, a black-and-white color palette — were generic in a way the originals never were.</p>
+
+  <p>The cautionary lesson is not that repositions are bad. Some are necessary and some are overdue. The Twitter-to-X case is the inverse: a reposition driven by personal preference, executed without a story that explained why the customer should accept the change, that destroyed equity faster than any external attack could have done. The Sharp framework would say that distinctive brand assets, once you have them, are worth defending with extreme caution. The Twitter case is what happens when that caution is absent.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The blue bird was one of the most recognized distinctive brand assets in technology. It was retired by a board of one, in a single day, with no story about why now. The equity loss was measured in the tens of billions, and most of it was visible within the first quarter.</div>
+  </div>
+
+  <h3>4.5 What Makes Repositioning Work</h3>
+
+  <p>From the cases, the pattern is consistent enough to summarize. Successful repositions share three properties: a clear story about <em>why now</em>, decisive execution that doesn't drag the change out over multiple cycles, and preservation of whatever distinctive brand assets are still working (color palette, voice, customer rituals) even when the name or visual identity changes. Failed repositions usually violate at least one of these. They either fail to explain the change, drag it out across two or three years of half-measures, or throw away assets that should have been preserved.</p>
+
+  <p>The brand decision a company faces when considering a reposition is essentially an asset-management problem. The accumulated equity is the asset. The reposition decision is whether to discard it, partially refurbish it, or fully replace it. Most repositions that succeed do partial refurbishment — keeping the assets that work, replacing the ones that no longer fit, and telling a clear story about why the change makes sense. Most repositions that fail do full replacement under the assumption that customers will not notice. They do notice, and they are not always forgiving.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Repositioning trades accumulated brand equity for new positioning the company believes is more valuable. The question is whether the trade is worth it.</li>
+      <li>Three causes drive repositions: internal strategic change, external cultural pressure, declining sales or relevance. Each plays out differently and each has different success criteria.</li>
+      <li>Successful repositions tell a clear story about why now, execute decisively, and preserve distinctive brand assets that still work. Failed repositions pretend nothing has changed.</li>
+      <li>The Twitter-to-X case is the canonical recent example of value destruction. The blue bird, the verb "tweet," and the brand name itself were among the most valuable distinctive assets in technology. They were discarded in one day, with measurable equity loss in the tens of billions.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CLOSER — UNIT-LEVEL
+     ============================================================ -->
+<section class="section" id="closer">
+  <h2>What You Should Be Able to Do Now</h2>
+
+  <p>Across Parts A and B, you have installed a working vocabulary for branding that goes well beyond what most introductory marketing courses provide. The list of things you should now be able to do is short, but each item is load-bearing.</p>
+
+  <p>You should be able to <strong>define a brand</strong> mechanically, not metaphorically. A brand is the set of memory structures and distinctive assets that surface at the moment of category consideration. Mental availability, distinctive brand assets, and category entry points are the three operative components. Anything that doesn't cash out in one of those three is decoration.</p>
+
+  <p>You should be able to <strong>argue the economic case</strong> for brand investment when a CFO challenges it. Strong brands lower CAC, raise LTV, win citation in AI Overviews, and sell for 1.5× annual revenue or more, against 0.2–0.5× for unbranded equivalents. The 95-5 rule explains why: performance marketing reaches the 5% in-market today; brand marketing seeds the 95% who will be in-market later. The choice between the two is not really a choice. The honest answer is both, in proportions that depend on the brand's lifecycle stage.</p>
+
+  <p>You should be able to <strong>distinguish brand identity from brand image</strong>, recognize that the gap between them is where most branding work succeeds or fails, and understand why the McDonald's carrot study is the cleanest empirical demonstration of brand image in the research record.</p>
+
+  <p>You should be able to <strong>diagnose a brand-building program</strong> for the three strategies — speak-for-itself, message-driven, leveraging — and identify which are doing real work and which are being assumed. You should be able to point out when a brand is overusing one strategy at the expense of the others, particularly when a startup is leaning hard on speak-for-itself without doing the upstream communication work that makes it possible.</p>
+
+  <p>You should be able to <strong>evaluate a launch</strong> against Rogers' five characteristics, with extra weight on complexity and trialability because that is where most launches actually die. The Importance × Evaluation exercise is worth running on any new-brand launch you are involved with.</p>
+
+  <p>You should be able to <strong>recognize good and bad naming work</strong>, understand the difference between suggestive, made-up, and empty-vessel naming schools, and have some sense of why phonetics matter even when the customer cannot articulate why one name feels better than another. You should never let a brand launch a name without trademark clearance, even when the firm running the naming process is supposedly the best in the industry.</p>
+
+  <p>You should be able to <strong>read a repositioning</strong>, ask which of the three causes is driving it, and assess whether the company is telling a clear story about why now or hoping the customer won't notice. You should be able to spot a Twitter-to-X-style asset destruction and call it what it is.</p>
+
+  <p>Unit 2C applies the framework to a specific contemporary debate. Between roughly 2015 and 2022, much of the design industry decided that brands should look less like brands. The trend — now widely called <em>blanding</em> — produced enough damage to be worth analyzing on its own terms, and enough cultural pressure from Gen Z preference signals that the underlying mistake is worth understanding even if the trend reverses entirely. Read on.</p>
+</section>
+
+
+<!-- ============================================================
+     MORE VIEWS — curated reading list for Part B
+     ============================================================ -->
+<section class="section" id="more-views">
+  <h2>More Views</h2>
+
+  <p>The list below is for students who want to go deeper on the practical side of brand-building covered in this part. Articles, working notes, and a video. None of these are textbook treatments. All are written by practitioners or journalists who are arguing for something specific, and reading them will sharpen your own thinking even when you disagree.</p>
+
+  <div class="more-views-list">
+
+    <div class="more-view">
+      <div class="more-view-type">Case Study · Article</div>
+      <a href="https://www.thebrandingjournal.com/2015/05/what-to-learn-from-tropicanas-packaging-redesign-failure/" class="more-view-title" target="_blank" rel="noopener">What to Learn from Tropicana's Packaging Redesign Failure</a>
+      <div class="more-view-source">The Branding Journal</div>
+      <p class="more-view-desc">The most detailed open-access analysis of the 2009 Tropicana case, including the financial math, the design choices Arnell Group made, and what the brand team got wrong about its own distinctive assets. Useful complement to the case discussion in Section 3.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Working Notes · Blog</div>
+      <a href="https://operativewords.com/" class="more-view-title" target="_blank" rel="noopener">Operative Words</a>
+      <div class="more-view-source">Anthony Shore</div>
+      <p class="more-view-desc">The professional blog of the naming consultant who developed the Jaunt VR name. Working notes from a practicing naming firm — case studies, methodology, and unusually clear writing on what makes a brand name work. Probably the only place online where you can read about real naming engagements without the marketing-firm pitch deck wrapping.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Industry Analysis · Article</div>
+      <a href="https://brandfinance.com/insights/brand-finance-global-500-2024" class="more-view-title" target="_blank" rel="noopener">Brand Finance Global 500 — Twitter/X Analysis</a>
+      <div class="more-view-source">Brand Finance</div>
+      <p class="more-view-desc">Brand Finance's annual ranking and methodology notes on the world's most valuable brands, including their published estimates of brand value destruction at X. The methodology section is worth reading if you want to understand how brand value gets estimated in practice rather than in theory.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Design Case · Article</div>
+      <a href="https://www.fastcompany.com/90611812/burger-kings-new-logo-is-a-blast-from-the-past-and-thats-a-good-thing" class="more-view-title" target="_blank" rel="noopener">Burger King's New Logo Is a Blast From the Past</a>
+      <div class="more-view-source">Fast Company</div>
+      <p class="more-view-desc">Coverage of the 2021 Burger King restoration to its 1969-era vintage palette and bolder typography. Worth reading as the rare case study of a major brand explicitly reversing the blanding trend — and getting credit for it. Setup material for Unit 2C.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Talk · Video</div>
+      <a href="https://www.youtube.com/results?search_query=marty+neumeier+brand+gap" class="more-view-title" target="_blank" rel="noopener">Marty Neumeier on Brand Gap (multiple short talks)</a>
+      <div class="more-view-source">YouTube · various</div>
+      <p class="more-view-desc">The author of <em>The Brand Gap</em> has dozens of short talks on YouTube, most under 20 minutes. Search "Marty Neumeier brand" for current versions. Useful if reading is not your preferred format — Neumeier articulates the customer-perception side of brand more clearly than anyone else writing for general audiences.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY — Part B curated terms
+     ============================================================ -->
+<section class="section" id="glossary">
+  <h2>Glossary</h2>
+
+  <p>Curated terms used in this part of the unit. Definitions are one sentence, intended for review rather than substitution for the section that introduced the term.</p>
+
+  <dl class="glossary">
+
+    <div class="glossary-item">
+      <dt>Speak-for-itself strategy</dt>
+      <dd>Building brand equity primarily through customers' direct experience of the product and the word-of-mouth that follows.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Message-driven strategy</dt>
+      <dd>Building brand equity through repeated communication of attributes, benefits, and emotional positioning via paid media.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Leveraging strategy</dt>
+      <dd>Building brand equity by attaching the brand to existing positive meaning from other brands, people, places, or things.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Co-branding</dt>
+      <dd>An alliance between two brands in which each carries associations the other lacks (e.g., Visa with airline frequent-flyer programs).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Ingredient branding</dt>
+      <dd>A form of co-branding in which one brand is featured as a named component of another brand's product (e.g., Intel Inside, Gore-Tex).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Country of origin</dt>
+      <dd>The leverage a brand obtains from its association with a country whose reputation in the category is itself an asset (e.g., Italian fashion, German automotive).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Brand adoption process</dt>
+      <dd>The sequence by which customers move from unaware of a new brand to repeat purchasers, usually modeled as Awareness → Trier → Repeater.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Awareness class</dt>
+      <dd>The subset of category buyers who know that a new brand exists, the first gate in the adoption funnel.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Trier class</dt>
+      <dd>The subset of aware customers who have actually purchased the brand at least once, the second gate in the adoption funnel.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Repeater class</dt>
+      <dd>The subset of triers who buy the brand again, indicating that the product delivered enough satisfaction to justify continued purchase.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Rogers' five characteristics</dt>
+      <dd>The five product attributes that predict adoption rate: relative advantage, compatibility, complexity, trialability, observability.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Relative advantage</dt>
+      <dd>How much better a new product is than what the customer is currently using, one of Rogers' five adoption predictors.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Trialability</dt>
+      <dd>How easily a customer can try a new product with low risk; one of the two characteristics that most reliably predicts launch failure when it is low.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Complexity</dt>
+      <dd>How hard a new product is to understand and use; one of the two characteristics that most reliably predicts launch failure when it is high.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Importance × Evaluation scoring</dt>
+      <dd>The diagnostic exercise of scoring a new product on each of Rogers' five characteristics and weighting by importance to estimate adoption probability.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Sound symbolism</dt>
+      <dd>The phenomenon in which the phonetic properties of a word carry meaning independent of the word's literal definition, used systematically in professional brand naming.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Fricatives</dt>
+      <dd>Consonants formed by air friction (f, s, v, z), associated with speed, movement, and lightness in brand-naming applications.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Plosives</dt>
+      <dd>Consonants formed by stopping and releasing airflow (b, d, p, t, k, g), associated with weight, arrival, and impact in brand-naming applications.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Suggestive name</dt>
+      <dd>A brand name that directly implies the product's function or benefit (e.g., Post-it, Healthy Choice, Liquid-Plumr).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Made-up name</dt>
+      <dd>A brand name constructed from morphemes that suggest meaning without committing to a specific product domain (e.g., Acura, Verizon, Microsoft).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Empty-vessel name</dt>
+      <dd>A brand name deliberately devoid of prior meaning, leaving the brand free to install whatever meaning the marketing creates (e.g., Exxon, Kodak).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Trademark</dt>
+      <dd>A legal protection on a brand name, logo, or other distinctive identifier that lasts as long as the holder defends it through continuous use and renewal.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Trade dress</dt>
+      <dd>The legally protectable appearance and image of a product — packaging, color, shape, sounds — distinct from the brand name and logo.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Genericness</dt>
+      <dd>The failure mode in which a brand becomes so dominant in its category that the name turns into the generic term for the category itself (e.g., Aspirin, Escalator, Cellophane).</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Repositioning</dt>
+      <dd>The deliberate decision to discard some accumulated brand equity in exchange for new positioning the company believes is more valuable going forward.</dd>
+    </div>
+
+  </dl>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="unit-2a-brand-foundations.html" class="unit-nav-prev">
+    <span class="unit-nav-label">← Previous</span>
+    <span class="unit-nav-title">Unit 2A — Brand Foundations</span>
+  </a>
+  <a href="unit-2c-blanding.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next →</span>
+    <span class="unit-nav-title">Unit 2C — Blanding</span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2C: Blanding — cbmatthe</title>
+<meta name="description" content="Unit 2C of M544. The trend-over-trust opening, what blanding is, the forces that drove it, why it's structurally bad, and the signs of reversal.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for Unit 2C — scoped here, not modifying shared styles.css */
+
+  /* Image figure — single inline image with caption (matches Part B) */
+  .img-figure {
+    margin: 28px 0;
+    text-align: center;
+  }
+  .img-figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: zoom-in;
+    transition: opacity 0.15s;
+  }
+  .img-figure img:hover { opacity: 0.92; }
+  .img-figure-caption {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-style: italic;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .img-figure-caption strong {
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* 2-up image grid with lightbox */
+  .image-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 28px 0 12px;
+  }
+  .image-pair figure {
+    margin: 0;
+    text-align: center;
+  }
+  .image-pair img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: zoom-in;
+    transition: border-color 0.15s, transform 0.15s;
+    box-sizing: border-box;
+  }
+  .image-pair img:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+  }
+  .image-pair figcaption {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.45;
+    text-align: left;
+  }
+  .image-pair-label {
+    text-align: center;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 22px;
+  }
+  @media (max-width: 720px) {
+    .image-pair { grid-template-columns: 1fr; }
+    .image-pair img { height: auto; max-height: 280px; }
+  }
+
+  /* Lightbox overlay */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 17, 14, 0.94);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 40px 20px;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    background: var(--white);
+    border-radius: 2px;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    color: var(--white);
+    font-size: 32px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-weight: 300;
+    line-height: 1;
+    padding: 6px 10px;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* Four forces card grid */
+  .forces {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .force-card {
+    background: var(--white);
+    border-top: 4px solid var(--red);
+    padding: 22px 22px 20px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .force-num {
+    font-family: var(--serif);
+    font-size: 26px;
+    color: var(--red);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .force-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .force-body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .forces { grid-template-columns: 1fr; }
+  }
+
+  /* Block quote for the basedesign excerpt */
+  .block-quote {
+    margin: 28px 0;
+    padding: 22px 28px;
+    background: var(--cream);
+    border-left: 4px solid var(--blue);
+    border-radius: 2px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .block-quote-attr {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  /* More Views — curated reading list */
+  .more-views-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .more-view {
+    background: var(--cream);
+    padding: 18px 22px;
+    border-left: 3px solid var(--blue);
+    border-radius: 2px;
+  }
+  .more-view-type {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .more-view-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .more-view-title:hover { color: var(--red); }
+  .more-view-source {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .more-view-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Glossary */
+  .glossary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 32px;
+    margin: 24px 0 0;
+  }
+  .glossary-item dt {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .glossary-item dd {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .glossary { grid-template-columns: 1fr; }
+  }
+
+  /* Unit forward/back navigation */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 60px 0 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-nav a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--cream);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .unit-nav a:hover { background: var(--red-soft); }
+  .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .unit-nav-prev { text-align: left; }
+  .unit-nav-next { text-align: right; }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-prev, .unit-nav-next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 · Unit 2C</div>
+    <h1>Blanding</h1>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#trend">Trend Over Trust</a>
+    <a href="#what">What Blanding Is</a>
+    <a href="#forces">The Forces</a>
+    <a href="#why-bad">Why It's Bad</a>
+    <a href="#pros">The Real Pros</a>
+    <a href="#fading">Signs of Reversal</a>
+    <a href="#lesson">The Lesson</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     SECTION 1 — TREND OVER TRUST
+     ============================================================ -->
+<section class="section" id="trend">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Setting Up the Argument</div>
+  <h2>Trend Over Trust</h2>
+
+  <p>There is a paragraph circulating in the marketing trade press, the marketing-adjacent corners of LinkedIn, and the cultural-criticism wings of Substack, that goes roughly like this: brands no longer matter to Gen Z. Younger consumers, the argument runs, are loyal to products rather than brands, attracted to whatever is trending in the moment, and broadly contemptuous of the corporate-identity machinery that the previous fifteen thousand words of this unit have just spent explaining how to build.</p>
+
+  <p>The argument has empirical support. SAP Emarsys's fifth annual Customer Loyalty Index, published in 2025, reported that 43 percent of Gen Z consumers buy products simply because they are trending, and 64 percent say they are loyal to products rather than brands. Stanley Quencher tumblers in 2024. Owala bottles in 2025. Erewhon green juice. Liquid Death. Olipop. These products were not driven by traditional brand investment in the way Parts A and B described. They were driven by viral attention, and they sold extraordinarily well.</p>
+
+  <div class="img-figure">
+    <img src="assets/images/trend-loyal.png" alt="Instagram post from @whatstrending citing SAP Emarsys data showing 43% of Gen Z buy based on what's viral, not brand loyalty" class="lightbox-trigger">
+    <div class="img-figure-caption"><strong>The headline making the rounds in late 2025.</strong> 43% of Gen Z report buying based on trends; 64% say they're loyal to products rather than brands. Source: SAP Emarsys 5th annual Customer Loyalty Index, surfaced via What's Trending.</div>
+  </div>
+
+  <p>This unit will not insult you by pretending the data are wrong. They aren't wrong. Gen Z does buy trending products at higher rates than older cohorts. The cultural shift is real, and treating it as a manufactured panic misses the genuine generational change underneath the survey. Something is happening.</p>
+
+  <p>But the headline conclusion that the survey produces — <em>Gen Z does not care about brands</em> — is doing more work than the data actually support. The honest version of the picture has three moving parts that the headline collapses.</p>
+
+  <h3>1.1 Stated Preference vs. Revealed Preference</h3>
+
+  <p>This is Sharp's argument from Part A applied to a new dataset. People consistently say one thing on surveys and do something different in the marketplace. The gap has been documented in consumer-behavior research for forty years. When you tell a pollster you don't care about brands, your kitchen still contains Heinz ketchup, Tide detergent, Crest toothpaste, and Coca-Cola. The 64 percent of Gen Z who report being loyal to products rather than brands go home to bathrooms and pantries that look statistically indistinguishable from their parents' bathrooms and pantries.</p>
+
+  <p>The trend story is true about what they say. The brand story is true about what they do. These are not contradictions. They are two different measurements of the same person, and treating either one as the whole picture is the mistake the marketing trade press has been making since the survey came out.</p>
+
+  <h3>1.2 The Front-Stage / Back-Stage Distinction</h3>
+
+  <p>The elegant way to reconcile the two measurements comes from the sociologist Erving Goffman, who in 1959 made the distinction between <em>front-stage</em> behavior — what people do when others are watching — and <em>back-stage</em> behavior, what they do when they are alone. Applied to consumer products in 2026, the distinction is doing real work.</p>
+
+  <p>Trendiness is concentrated in front-stage products: drinkware that gets carried through public spaces, fashion that gets photographed, energy drinks that get held up in TikTok videos, the visible Dunkin' or Starbucks coffee cup. These are products that other people see, and the buyer's choice signals something to those observers. Stanley tumblers are not actually superior cups. They are a social signal that the carrier has paid attention to a particular cultural moment.</p>
+
+  <p>Back-stage products operate by entirely different rules. Paper towels, dishwasher detergent, ibuprofen, deodorant, dental floss, garbage bags, cleaning supplies, frozen vegetables, canned beans. These are products no one ever sees the buyer use. The buyer's choice signals nothing to anyone, because there is no audience. And in these categories, brand loyalty among Gen Z is statistically similar to brand loyalty among their parents and grandparents. The Stanley-cup carrier still uses Bounty paper towels at home. The Dunkin'-cup holder still uses Tide.</p>
+
+  <p>Both behaviors coexist in the same person without contradiction. The buyer who insists they "don't care about brands" while wearing brand-name clothing and carrying a Stanley quencher is being entirely consistent: the visible items are social signals, and the invisible ones are running on brand loyalty the way they always have. The survey captures the social-signal answer because that is what surveys ask. The pantry captures the brand-loyalty answer because that is what the actual purchases reveal.</p>
+
+  <h3>1.3 The Cultural Surface vs. The Underlying Mechanism</h3>
+
+  <p>What changes between generations is the surface — which categories are most subject to viral attention, what design choices look modern this year, what aesthetic feels authentic to which generation, what cultural references unlock which audiences. The mechanism beneath the surface is consistent. Brands grow by being easier to recall, easier to recognize, easier to find, and easier to choose at the moment of category consideration. That mechanism does not care which generation is doing the buying.</p>
+
+  <p>The design industry, between roughly 2015 and 2022, read the surface of this cultural moment and concluded that the mechanism had changed too. It hadn't. What changed was which products were generating viral attention, and what aesthetic was reading as authentic to younger buyers in any given year. The underlying brand-equity mechanism — the slow accumulation of distinctive memory structures over time — was operating exactly as it had operated for the previous half-century.</p>
+
+  <p>The design industry's misreading of that distinction produced the phenomenon now widely called <em>blanding</em>. That misreading, what produced it, why it was strategically wrong, and the early signs that it's now reversing — that is the rest of this unit.</p>
+
+  <div class="callout">
+    <div class="callout-label">A note on where this goes next</div>
+    <p>We will return to the broader question of brand-as-entertainment versus brand-as-memory-infrastructure in the unit on Social Media and Influencers, where the trade-offs between staying on-brand and chasing cultural moments deserve their own treatment. For this unit, the point is narrower: whatever Gen Z is doing with energy drinks and water bottles, the underlying mechanics of how brands grow and earn equity have not changed, and the design response that pretended otherwise has produced predictable damage.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The Gen Z trend-over-trust survey data is real and worth taking seriously. The cultural shift is genuine.</li>
+      <li>Stated preference (what people say on surveys) and revealed preference (what they actually buy) have had a forty-year gap in consumer research. The trend story and the brand story are both true, about different measurements of the same person.</li>
+      <li>The Goffman front-stage / back-stage distinction explains the apparent contradiction. Trendiness lives in products other people see. Brand loyalty lives in products only the buyer sees. Both behaviors coexist in the same buyer without conflict.</li>
+      <li>The underlying brand-equity mechanism is generation-agnostic. What changes between cohorts is the cultural surface, not the mechanism beneath it.</li>
+      <li>The design industry mistook the surface for the mechanism. Blanding is what that mistake looked like in execution.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — WHAT BLANDING IS
+     ============================================================ -->
+<section class="section" id="what">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Defining the Phenomenon</div>
+  <h2>What Blanding Is</h2>
+
+  <p><em>Blanding</em> is the term, coined in design criticism around 2018 and now standard, for the trend in which brands stripped distinctive identity in favor of identical-looking minimalist aesthetics. Same flat sans-serif fonts. Same beige, sage, or muted-pastel palettes. Same lowercase wordmarks with no logo mark. Same earnest copy voice that could have been generated by any of three design studios in Brooklyn or Stockholm. Same product photography on the same beige backdrops.</p>
+
+  <p>The classic before-and-afters tell the story faster than any prose can.</p>
+
+  <div class="image-pair">
+    <figure>
+      <img src="assets/images/blanding-1.png" alt="Luxury fashion brands before and after blanding — Yves Saint Laurent, Balenciaga, Burberry, Berluti, Balmain — all transitioning from distinctive serif and script wordmarks to flat sans-serif" class="lightbox-trigger">
+      <figcaption><strong>Luxury fashion blanding, ~2014–2018.</strong> Yves Saint Laurent → Saint Laurent, Balenciaga, Burberry, Berluti, Balmain. Distinctive scripts and serifs replaced with flat geometric sans-serifs.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/images/blanding-5.png" alt="Diane von Furstenberg, Google, Airbnb, and Pinterest logos before and after their respective rebrands toward minimalist typography" class="lightbox-trigger">
+      <figcaption><strong>Tech and apparel blanding, ~2013–2017.</strong> Diane von Furstenberg, Google, Airbnb, Pinterest. Custom typography and distinctive treatment replaced with geometric sans-serifs.</figcaption>
+    </figure>
+  </div>
+  <div class="image-pair-label">Click any image to enlarge</div>
+
+  <p>The luxury cases are the most visceral, because the entire economic argument for luxury depends on perceived difference. A Saint Laurent bag at $3,200 carries the Saint Laurent bag because the wordmark is recognizable as Saint Laurent. When that wordmark becomes a flat sans-serif indistinguishable from a Banana Republic logo, the basis for the price erodes by inches per year. Most luxury houses that blanded between 2015 and 2022 are now quietly walking the change back, which we will get to in Section 6.</p>
+
+  <p>The direct-to-consumer cohort produced the same phenomenon at a different price point. Between 2017 and 2022, the venture-funded DTC wave hired the same handful of design studios to produce the same set of identity moves: a single-word brand name, a flat sans-serif wordmark with no logo mark, a soft-pastel palette, photography against beige backdrops, copy voice somewhere between earnest-millennial and gently-ironic-Gen-Z.</p>
+
+  <div class="image-pair">
+    <figure>
+      <img src="assets/images/blanding-3.png" alt="Grid of 24 direct-to-consumer brand logos — Clare, Mejuri, Waldo, Candid, Summersalt, Recliner, Molekule, Everlane, Hims, Fur, Jot, Winc, Parachute, Sunscoop, Peachy, Lola, Mirror, Fitplan, Hubble, Visible, Small Door, Two Chairs, Tend, Alma — all in similar minimalist typography" class="lightbox-trigger">
+      <figcaption><strong>A small slice of the venture-funded DTC cohort, 2017–2022.</strong> Try to associate any logo with a product category without reading the name.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/images/blanding-4.png" alt="Six DTC brand logos — Casper, Warby Parker, Away, Harry's, Oscar, Quip — in similar minimalist typography" class="lightbox-trigger">
+      <figcaption><strong>The headline DTC successes from the same era.</strong> Casper, Warby Parker, Away, Harry's, Oscar, Quip. Different categories, indistinguishable identity systems.</figcaption>
+    </figure>
+  </div>
+  <div class="image-pair-label">Click any image to enlarge</div>
+
+  <p>The result, when you place 24 of them on a page, is that the eye stops being able to tell them apart. The brands had all read the same design briefs, hired from the same talent pool, and converged on what their funders and their peers believed a "modern brand" looked like. The aesthetic was identical because, structurally, it came from the same place.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Blanding is the convergence of brand identity onto a narrow visual vocabulary: flat sans-serif fonts, muted palettes, minimal ornamentation, lowercase wordmarks, beige photography backdrops.</li>
+      <li>Two cohorts drove most of the trend: luxury fashion houses between 2014 and 2018, and venture-funded DTC startups between 2017 and 2022.</li>
+      <li>The luxury case is the most strategically damaging, because luxury pricing depends on perceived difference. Blanded luxury wordmarks erode the price premium they once justified.</li>
+      <li>The DTC case is more visually demonstrable. Two dozen brands designed by overlapping teams produced two dozen logos that the eye cannot distinguish.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — THE FORCES THAT DROVE IT
+     ============================================================ -->
+<section class="section" id="forces">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Causes</div>
+  <h2>The Forces That Drove It</h2>
+
+  <p>Bad design choices at this scale don't arrive by accident. The blanding consensus was the predictable output of several converging forces, four of which are worth naming because each of them is still operating and will continue to produce blanding-adjacent design unless brand teams resist it deliberately.</p>
+
+  <div class="forces">
+    <div class="force-card">
+      <div class="force-num">01</div>
+      <div class="force-title">The app icon problem</div>
+      <div class="force-body">Brand identity got compressed into a 60-pixel square as mobile became primary. Ornate logos do not scale to 60 pixels. The reasonable response was to simplify the app icon. The unreasonable response — the blanding response — was to assume that because the app icon needed to be simple, the entire brand identity should be too. Mastercard at 60 pixels works. Mastercard at billboard size also works, with the same two circles. The dichotomy was always false.</div>
+    </div>
+    <div class="force-card">
+      <div class="force-num">02</div>
+      <div class="force-title">Canva and tool homogenization</div>
+      <div class="force-body">Canva launched in 2013 and reached more than 100 million users by 2023. Every brand, regardless of budget, got access to the same design templates, the same fonts, the same color palettes, the same layout grids. Democratization of tooling is a public good. Homogenization of output is what democratization produces when the tools ship with defaults. Most small brands designed in Canva between 2018 and 2024 produced visual identity indistinguishable from every other small brand designed in Canva.</div>
+    </div>
+    <div class="force-card">
+      <div class="force-num">03</div>
+      <div class="force-title">The DTC consultancy bottleneck</div>
+      <div class="force-body">A small handful of design studios were responsible for the visual identity of an outsized fraction of DTC startups that scaled between 2017 and 2022. The same studios produced the same aesthetic for the same kind of brand. Casper, Warby Parker, Allbirds, Glossier, Away, Harry's, Oscar, Quip, Hims, Hers, Outdoor Voices — many of these were designed by overlapping teams using overlapping references. The cohort looked alike because, structurally, it was made by the same hands.</div>
+    </div>
+    <div class="force-card">
+      <div class="force-num">04</div>
+      <div class="force-title">AI tools and the authenticity paradox</div>
+      <div class="force-body">AI image generation produces the statistical average of its training data, and the training data is heavy on the design conventions of 2017–2022 — which means AI tools currently produce blanding-by-default. At the same time, the Gen Z authenticity preference pushes brands toward an aesthetic of intentional roughness. The collision of these two forces is producing brands that look corporate-minimal and hand-made-rustic at the same time, which is most brands launched in 2024 and 2025. The aesthetic is converging on a new average that is somehow worse than either predecessor.</div>
+    </div>
+  </div>
+
+  <p>None of these forces, individually, is unreasonable. The app icon really does need to be legible at 60 pixels. Canva really did make professional design accessible to operators who could not have afforded it otherwise. The DTC studios really did produce design work that was, by craft standards, good. AI tools really are useful for small teams that can't hire designers. Each force, taken alone, has a defensible justification.</p>
+
+  <p>The damage came from their interaction, and from the absence of any countervailing force pushing brands toward distinctiveness. Throughout the entire 2017–2022 window, the strongest design voices in the industry — the influential studios, the design publications, the conference circuit, the LinkedIn-design-discourse — were largely cheering the convergence rather than warning against it. By the time the warnings arrived, the cohort was already locked in.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Each individual force had a defensible justification. The damage came from their interaction, and from the absence of any countervailing voice pushing brands toward distinctiveness.</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Four forces converged to produce blanding: the app icon problem, Canva-driven tool homogenization, the DTC design-studio bottleneck, and AI-amplified aesthetic averaging.</li>
+      <li>Each force, taken alone, has a defensible justification. The damage came from their interaction and from the absence of countervailing pressure toward distinctiveness.</li>
+      <li>Three of the four forces are still operating in 2026, which means blanding-adjacent design will continue to be the default unless brand teams actively resist it.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — WHY IT'S STRUCTURALLY BAD
+     ============================================================ -->
+<section class="section" id="why-bad">
+  <div class="sec-num">04</div>
+  <div class="sec-label">The Critique That Holds</div>
+  <h2>Why Blanding Is Structurally Bad</h2>
+
+  <p>The aesthetic critique of blanding is the easy critique. Critics — and there are many — argue that minimalist sans-serif design is ugly, sterile, corporate, lazy, or some combination of these. The critique is often correct on its own terms but is also easy to dismiss as taste, which is the response most blanding-defenders use to deflect it. <em>You don't like minimalism? That's a preference. The market has spoken.</em></p>
+
+  <p>There is a stronger critique that the aesthetic argument can't reach. It comes directly from the framework Parts A and B installed, and it has the advantage of being structurally unavoidable rather than a matter of taste.</p>
+
+  <p>Distinctive brand assets — Sharp's second pillar from Part A — are the infrastructure of mental availability. They are the recognition cues that allow buyers to identify a brand instantly across crowded shelves, mobile feeds, app drawers, and category-saturated digital environments. The Geico gecko, the Coca-Cola red, the Tiffany blue, the McDonald's arches: these are not decorations. They are equipment. Customers use them to find the product.</p>
+
+  <p>Blanding actively destroys distinctive brand assets. That is its operative mechanism. By converging onto the same fonts, palettes, and design conventions, blanded brands become measurably harder to recognize, harder to recall, and harder to find in environments where attention is scarce.</p>
+
+  <h3>4.1 The Meal-Kit Anecdote</h3>
+
+  <p>The designer Mark-Making, writing about the trend in late 2022, described going to look online for a specific meal-kit subscription brand he had heard recommended. He could not remember the name. He went to search for it. He could not tell the brands apart. Every meal-kit company — Hello Fresh, Home Chef, Simply Cook, Mindful Chef, The Baking Club — used the same green color palette, the same chef-iconography, the same handwritten-with-confidence wordmark style. He gave up and ordered nothing. <em>I couldn't remember which one I wanted to try.</em></p>
+
+  <div class="img-figure">
+    <img src="assets/images/blanding-7.png" alt="Five meal kit brands — Hello Fresh, Home Chef, Simply Cook, Mindful Chef, The Baking Club — all using nearly identical green color palettes and minimalist chef iconography" class="lightbox-trigger">
+    <div class="img-figure-caption"><strong>The meal-kit category, ~2022.</strong> Hello Fresh, Home Chef, Simply Cook, Mindful Chef, The Baking Club. Identical green palettes, identical chef-iconography, identical wordmark approach. Find the brand you wanted.</div>
+  </div>
+
+  <p>This is what mental availability failure looks like in the actual marketplace. The customer was a designer, trained to notice visual difference, with active intent to buy. The category had blanded itself into a state where it could not capture his attention long enough to convert his intent. The brands that lost the sale lost it because they had nothing distinctive enough to surface in the moment of purchase consideration. The customer left to think about it later. He never came back.</p>
+
+  <p>In Sharp's framework, this is the entire ballgame. A brand that has spent millions on customer acquisition, performance marketing, and category education — and then strips away the visual identity that would have allowed the customer to remember it — has spent the money to acquire a customer it will not retain, because the customer cannot find them again. Every dollar of brand-building investment that went into a blanded identity is a dollar deposited into the wrong account. The category gets the equity. The brand doesn't.</p>
+
+  <h3>4.2 The Newman's Own Slide</h3>
+
+  <p>The Newman's Own case is the other side of the same coin, and it's worth a longer look because the brand has been doing this to itself slowly enough that the damage is still recoverable.</p>
+
+  <p>Newman's Own was founded by the actor Paul Newman in 1982, with proceeds going to charity. The original salad-dressing bottle featured Paul Newman's face — actually printed on the label, looking the buyer in the eye, in costume appropriate to whichever variety the bottle contained. He wore a crown on the Classic Oil &amp; Vinegar. A scarf and beard on the Balsamic Vinaigrette. A straw hat on the Family Recipe Italian. The face was a distinctive brand asset of exceptional power. Newman was famous, the face was unique, and the printed-face-on-the-bottle move was an unmistakable signal that the product was the one Paul Newman started.</p>
+
+  <div class="img-figure">
+    <img src="assets/images/blanding-6.png" alt="Newman's Own salad dressing before and after — left side shows three bottles with large illustrated portraits of Paul Newman in costume; right side shows three updated bottles with smaller portraits in medallion frames and more generic packaging" class="lightbox-trigger">
+    <div class="img-figure-caption"><strong>Newman's Own before and after.</strong> Left: the original bottles, each with a costumed Paul Newman portrait dominating the label. Right: the updated bottles, with Newman reduced to a small medallion and the design conforming to standard premium-dressing conventions.</div>
+  </div>
+
+  <p>Between 2018 and 2021, Newman's Own updated the packaging. Paul Newman is still there, but smaller, in a small medallion frame, and treated as one design element among many. The new bottles look much more like every other premium salad dressing — generic in a way the originals never were. The "100% Profits to Help Kids" line is preserved, and the brand has not collapsed. But Paul Newman, the man, is fading from cultural memory: he died in 2008, and a meaningful fraction of customers buying Newman's Own dressings in 2026 have no association with him as a person. The brand still bears his name. The visual asset that anchored the brand to him is no longer doing the work it used to do.</p>
+
+  <p>This is what blanding looks like applied to a brand that had something distinctive worth defending. The new bottles are not ugly. The brand has not failed. But the distinctive asset has been quietly degraded over multiple iterations, and the brand image is sliding from <em>Paul Newman's company</em> to <em>one premium salad dressing among several</em>. That slide is measurable, eventually, in revenue.</p>
+
+  <h3>4.3 Reframing the Critique</h3>
+
+  <p>The aesthetic critique of blanding — <em>this is ugly</em> — gets dismissed as taste because it is taste. The structural critique — <em>this raises customer acquisition cost and lowers mental availability, in the framework you yourself use to evaluate brand investment</em> — cannot be dismissed as taste. It is a budget problem disguised as a design choice.</p>
+
+  <p>Blanding's defenders rarely engage with this version of the critique, because the framework they would have to invoke to defend their position is the same framework that produces the critique. If Sharp is right about distinctive brand assets, then blanding is bad on Sharp's terms. The defenders of blanding either have to argue that Sharp is wrong (which the data make difficult), or that distinctive brand assets don't apply to their particular case (which requires showing why the buyer's recognition needs are different), or that the cost of stripping the assets is somehow lower than the benefit of conforming to the design consensus (which the meal-kit and Newman's Own cases suggest it isn't).</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Blanding is a budget problem disguised as a design choice. The brand spent the money to acquire the customer. The blanded identity made sure the customer couldn't find them the next time.</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The aesthetic critique of blanding (this is ugly) is correct but easily dismissed as taste.</li>
+      <li>The structural critique — blanding destroys distinctive brand assets and therefore raises CAC and lowers mental availability — comes directly from the Sharp framework installed in Part A and cannot be dismissed as taste.</li>
+      <li>The meal-kit case shows mental availability failure in real-time: a motivated buyer leaves the category without converting because the brands had blanded themselves into indistinguishability.</li>
+      <li>The Newman's Own case shows the slower version of the same damage: a brand with an exceptional distinctive asset (Paul Newman's face) quietly degrades it over a decade of "modernization."</li>
+      <li>Blanding is a budget problem disguised as a design choice. The customer-acquisition spend that goes into a blanded identity is largely wasted, because the customer cannot recognize the brand on the next encounter.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — THE REAL PROS
+     ============================================================ -->
+<section class="section" id="pros">
+  <div class="sec-num">05</div>
+  <div class="sec-label">A Fair Hearing</div>
+  <h2>The Arguments For Blanding (And Why They Don't Hold)</h2>
+
+  <p>To be fair to the case for blanding, the defenders make a small number of arguments worth engaging seriously. Most of them have some validity, and all of them turn out to be solvable without abandoning distinctiveness.</p>
+
+  <p>The strongest defense is <strong>small-size reproducibility</strong>. Brand identity in 2026 has to work at every size from a 16-pixel favicon to a 60-pixel app icon to a 600-foot billboard. Ornate logos genuinely do not scale down. The Burberry equestrian monogram, at 16 pixels, becomes a small black smudge. The Saint Laurent script, at the same size, is illegible. Blanding's defenders argue that simplification was forced by the visual environment, not chosen out of laziness.</p>
+
+  <p>The argument is partially correct, and also false in the specific way that matters. Mastercard kept its two circles. Nike kept the swoosh. McDonald's kept the arches. Apple kept the apple. All four work at 16 pixels AND at billboard size, in app drawers and in airport terminals, on watch faces and on stadium scoreboards. The dichotomy between "distinctive at large size" and "legible at small size" is a false dichotomy, and the brands that committed fully to blanding under cover of the small-size argument were the ones that lacked the design discipline to solve for both simultaneously. The good designers solved it. The blanded brands gave up.</p>
+
+  <p>The weaker arguments deserve briefer treatment. <strong>Flexibility across global markets</strong> — minimalist designs travel better across cultures than character-heavy ones — has some truth, but the global brands with the strongest mental availability (Coca-Cola, McDonald's, Apple) all kept character-heavy identity systems. <strong>Ease of brand extension</strong> — a minimal identity is easier to apply across new product lines than a maximal one — is genuinely true, but a brand that extends so far that its identity has to be minimal to fit is a brand that has lost the focus that makes it valuable in the first place. <strong>Cost of design execution</strong> — minimalist design is cheaper to produce and revise — is real, and is also the part of the argument most blanding-defenders avoid saying out loud, because admitting that the design choice was driven by budget rather than strategy undermines the strategic case.</p>
+
+  <p>The blanding-as-strategic-choice argument was never as strong as its defenders implied. It was a rationalization for an aesthetic preference combined with a budget incentive — minimalist design is cheaper to produce, easier to revise, and faster to ship than distinctive design. The strategic justification was layered on after the aesthetic and budgetary choices were already made. The cost showed up later, on the demand side, in ways the design budget didn't have to account for.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The small-size reproducibility argument is the strongest defense of blanding, and it is also wrong in practice. The best-resourced brands solved for distinctiveness AND legibility simultaneously; the dichotomy was false.</li>
+      <li>The other defenses — flexibility, extension, cost — are real but minor, and each is solvable without abandoning distinctiveness.</li>
+      <li>The honest motivation for most blanding was aesthetic preference plus budget pressure, with strategic justification layered on after the fact.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — SIGNS BLANDING IS FADING
+     ============================================================ -->
+<section class="section" id="fading">
+  <div class="sec-num">06</div>
+  <div class="sec-label">The Reversal</div>
+  <h2>Signs Blanding Is Fading</h2>
+
+  <p>The good news, for anyone pessimistic about the future of distinctive brand identity, is that blanding appears to be in retreat. The reversal is visible in three places.</p>
+
+  <h3>6.1 Luxury Fashion Walks It Back</h3>
+
+  <p>The brands that blanded most aggressively between 2014 and 2018 are now restoring ornament, serifs, monograms, and distinctive treatments at a measurable rate. Design publications have started using the term <em>de-blanding</em> in earnest.</p>
+
+  <div class="img-figure">
+    <img src="assets/images/blanding-2.png" alt="Six brand wordmark reversals — Burberry, Saint Laurent, Sigma, Iittala, Lloyds, Faculty — each shown going from a blanded sans-serif treatment to a restored distinctive serif or display typography" class="lightbox-trigger">
+    <div class="img-figure-caption"><strong>De-blanding in progress, 2023–2025.</strong> Burberry, Saint Laurent, Sigma, Iittala, Lloyds, Faculty. Each restored distinctive typography after years of flat sans-serif treatment. The arrows point the way the previous decade's arrows pointed — only this time, back toward distinctiveness.</div>
+  </div>
+
+  <p>Burberry's 2023 wordmark update reintroduced a custom serif. Saint Laurent's wordmark has reincorporated the script Y monogram in marketing applications. Iittala and Berluti are walking similar paths. Lloyds Bank — which blanded in 2017 — restored serifs in its 2024 refresh. The pattern is consistent enough that it has become its own design-press genre, and the houses doing it are getting credit for the move rather than skepticism.</p>
+
+  <h3>6.2 Mascot Revivals Everywhere</h3>
+
+  <p>Brand mascots — the most distinctive of distinctive brand assets, because they're characters with names and personalities — were among the heaviest casualties of the 2015–2022 minimalism push. The Geico Gecko got less screen time. Mr. Peanut was killed, mourned, and resurrected as a Super Bowl stunt. The Pillsbury Doughboy went silent. The Kool-Aid Man retreated to the children's-cereal subset of media buys.</p>
+
+  <p>As of 2024 and 2025, every one of those mascots is back in active rotation, in some cases with more screen time than they had pre-blanding. Brand teams have remembered that a character carries more equity than a wordmark, because a character is harder to copy, harder to replicate, and harder to confuse with a competitor. The Geico Gecko in 2025 is doing the same job he was doing in 2005, only the brand teams that quieted him during the blanding years have been replaced.</p>
+
+  <h3>6.3 The Burger King Reversal</h3>
+
+  <p>Burger King's 2021 vintage reversal is the textbook case. The brand reverted from a flat sans-serif minimalist identity to its 1969-era vintage logo, restored a warmer color palette, and brought back display-typography treatments that had been stripped during the 2010s. The reversion was widely covered in the design press as either a brave anti-blanding move or a reckless nostalgia play, depending on which design critic was writing.</p>
+
+  <p>The data have since settled the debate. Burger King has gained brand-recognition score and same-store sales since the 2021 update. The vintage move worked. Brand teams across categories have been studying the playbook ever since.</p>
+
+  <h3>6.4 The Liquid Death Counter-Example</h3>
+
+  <p>Liquid Death is the high-profile counter-example to the entire blanding era. Founded in 2017, the brand chose to do the deliberate opposite of every blanding convention: heavy metal aesthetic, aggressively confrontational packaging, copy voice somewhere between thrash-band lyrics and IT-Crowd dialogue, no minimalism anywhere in the brand system. The brand reached a $1.4 billion valuation by 2024 selling, fundamentally, water in a can.</p>
+
+  <p>The lesson Liquid Death offers is not that every brand should adopt heavy metal aesthetics. It is that there was substantial market demand, throughout the entire blanding era, for brands that committed to <em>being something specific</em>. The consultancy-driven design consensus of 2017–2022 was leaving that demand on the table. Liquid Death picked it up.</p>
+
+  <h3>6.5 The Schnozz Doctrine</h3>
+
+  <p>The design agency Base, writing about the trend in 2023, put it more directly than most design publications would. The advice was offered as a joke. The advice is also the entire blanding-recovery playbook compressed into a paragraph.</p>
+
+  <div class="block-quote">
+    <p>Does your company have a big nose? This is how people will remember you, whether you like it or not. So you might as well own it. Call your company Schnozz. Make a proboscis monkey your mascot. Donate a percentage of profits to preserving their habitat. Commission deluxe, XL facial tissues, brand them and give them to clients. Live the truth that big noses build character. Then translate that to visuals that feel like you, not somebody else. Just stay away from the sans-serif in vibrant colors like purple and turquoise and cheerful illustrations, okay?</p>
+    <div class="block-quote-attr">— Base Design, <em>The Blanding / Branding Paradox</em></div>
+  </div>
+
+  <p>Strip away the joke and the advice is the same advice Sharp would give: find the distinctive thing your brand actually is, commit to it, and refuse to let the prevailing design consensus talk you into looking like everybody else. The brands that have done this — Liquid Death, Burger King post-2021, the luxury houses now walking blanding back — are the brands the data say are winning the post-blanding period.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Luxury fashion is leading the de-blanding reversal. The houses that stripped distinctiveness between 2014 and 2018 are restoring it as of 2023–2025.</li>
+      <li>Mascot revivals are happening across categories. The brand teams that quieted distinctive characters during the blanding years have largely been replaced.</li>
+      <li>The Burger King 2021 vintage reversal is the textbook recovery case. The data have settled the debate: it worked.</li>
+      <li>Liquid Death is the counter-example. A brand that did the opposite of every blanding convention reached a $1.4 billion valuation selling canned water — evidence that the demand for distinctive brands never went away.</li>
+      <li>The Schnozz Doctrine, from Base Design: find what's distinctive about your brand, own it, and refuse to let prevailing design consensus flatten it out.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — THE LESSON
+     ============================================================ -->
+<section class="section" id="lesson">
+  <div class="sec-num">07</div>
+  <div class="sec-label">Closing</div>
+  <h2>The Lesson</h2>
+
+  <p>Parts A and B of this unit installed a framework. Part C has applied that framework to one specific contemporary design trend, partly because the trend is recent enough to be relevant and partly because watching the framework predict the outcome is more useful than watching it explain something that already settled decades ago.</p>
+
+  <p>The lesson, for anyone responsible for brand-building decisions, is short.</p>
+
+  <p>If your brand has distinctive assets — a recognizable color, a character, a typeface, a sound, a verbal hook, a person whose face has been on the label since 1982 — defend them. Treat them as the most valuable property the brand owns, because they are. Evolve them carefully when the visual environment demands it, but do not discard them in pursuit of a design trend whose half-life will not exceed the half-life of the cultural moment that produced it.</p>
+
+  <p>If your brand does not have distinctive assets, build them. Pick a small number — three is the working maximum — and commit to them obsessively, for years, across every customer touchpoint. The compounding mechanism in brand equity does not work without something to compound on, and the something is the distinctive asset that the customer remembers when they encounter you again.</p>
+
+  <p>Do not let the cultural pressure to look modern, or to look authentic, or to look minimal, talk you out of looking like yourself. The buyers who tell pollsters they don't care about brands are still buying brands, just on different shelves than they used to. The brands that survive the rest of the 2020s are the ones that committed to being something specific and refused to abandon that commitment when the design consensus told them to.</p>
+
+  <h3>7.1 A Five-Thousand-Year Callback</h3>
+
+  <p>The opening of Part A made the point that brand identification is a five-thousand-year-old human behavior. Cattle owners burned iron marks into livestock in 2700 BCE. Medieval guild smiths stamped their work. Frontier ranchers branded leather, wood, and barrels alongside their cattle. The Industrial Revolution turned the practice into consumer-facing identity. Each era required the brand to look different — what worked on a cow does not work on a billboard, and what worked on a billboard does not work in a 60-pixel app drawer — but the underlying behavior never changed. People mark their stuff so other people can find it.</p>
+
+  <p>Blanding is the recent chapter of that history in which a meaningful fraction of brand designers forgot what the marking was for. The chapter was a real one. It shook the industry for nearly a decade and produced billions of dollars of mostly-wasted brand-investment spend. But five thousand years of human behavior says the designers will figure it out again, and the current evidence suggests they already are. The brands that come out of this period strongest will be the ones that didn't lose the thread in the meantime.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Brands evolve because the visual environment demands it. They go bland when designers forget what the marking was for. Five thousand years of human behavior say the designers figure it out again.</div>
+  </div>
+
+  <p>That is the unit. The framework is yours now. Apply it to whatever brand-related decision lands in your inbox next.</p>
+</section>
+
+
+<!-- ============================================================
+     MORE VIEWS — curated reading list for Part C
+     ============================================================ -->
+<section class="section" id="more-views">
+  <h2>More Views</h2>
+
+  <p>The blanding literature is unusually opinionated, partly because most of the writers are designers who watched the trend happen in their own profession and have strong feelings about it. The six articles below are the load-bearing ones. Read at least two; they're short.</p>
+
+  <div class="more-views-list">
+
+    <div class="more-view">
+      <div class="more-view-type">Industry Analysis · Article</div>
+      <a href="https://www.fastcompany.com/90276496/blanding-the-hottest-branding-trend-of-the-year-is-also-the-worst" class="more-view-title" target="_blank" rel="noopener">Blanding: The Hottest Branding Trend of the Year Is Also the Worst</a>
+      <div class="more-view-source">Fast Company</div>
+      <p class="more-view-desc">The piece that put the word "blanding" into broader circulation in 2018. Concise, opinionated, with the early case studies that became the standard references. Read this first.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Design Critique · Article</div>
+      <a href="https://www.basedesign.com/opinions/blanding-branding-paradox" class="more-view-title" target="_blank" rel="noopener">The Blanding / Branding Paradox</a>
+      <div class="more-view-source">Base Design</div>
+      <p class="more-view-desc">The source of the Schnozz Doctrine quoted in Section 6. A design agency arguing against the consensus aesthetic their own industry produced. The most readable of the six and the funniest.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Practitioner Essay · Article</div>
+      <a href="https://www.mark-making.com/blanding-what-why-and-how-to-avoid-it/" class="more-view-title" target="_blank" rel="noopener">Blanding: What, Why, and How to Avoid It</a>
+      <div class="more-view-source">Mark-Making</div>
+      <p class="more-view-desc">The source of the meal-kit anecdote in Section 4. A working designer describing being unable to recognize the brands in a category he wanted to buy from. The clearest statement of the customer-side consequences of blanding.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Case Studies · Article</div>
+      <a href="https://www.littlebigbrands.com/brands-gone-bland/" class="more-view-title" target="_blank" rel="noopener">Brands Gone Bland</a>
+      <div class="more-view-source">Little Big Brands</div>
+      <p class="more-view-desc">The source of the Newman's Own case in Section 4. A packaging-focused design agency walking through specific brands that lost identity-defining assets in pursuit of modernization. Good if you want more examples of the slow-slide failure mode.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Trend Analysis · Article</div>
+      <a href="https://fluxbranding.com/the-rise-of-blanding/" class="more-view-title" target="_blank" rel="noopener">The Rise of Blanding</a>
+      <div class="more-view-source">Flux Branding</div>
+      <p class="more-view-desc">A working brand consultancy explaining the trend to its own clients. Useful as a practitioner's read on what was actually being sold to brand teams during the 2018–2022 window, and what the agency-side rationalizations looked like.</p>
+    </div>
+
+    <div class="more-view">
+      <div class="more-view-type">Overview · Article</div>
+      <a href="https://www.wbrand.agency/blog/what-is-blanding-and-why-has-it-become-popular" class="more-view-title" target="_blank" rel="noopener">What Is Blanding and Why Has It Become Popular</a>
+      <div class="more-view-source">W Brand Agency</div>
+      <p class="more-view-desc">A balanced overview that engages seriously with the pros (small-size reproducibility, flexibility, cost) before getting to the cons. Useful as a counterweight if you found the other five too one-sided.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY — Part C curated terms
+     ============================================================ -->
+<section class="section" id="glossary">
+  <h2>Glossary</h2>
+
+  <p>Curated terms used in this part of the unit. Definitions are one sentence, intended for review rather than substitution for the section that introduced the term.</p>
+
+  <dl class="glossary">
+
+    <div class="glossary-item">
+      <dt>Blanding</dt>
+      <dd>The trend, dominant in design from roughly 2015 to 2022, in which brands stripped distinctive identity in favor of identical-looking minimalist aesthetics.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>De-blanding</dt>
+      <dd>The reverse trend, visible from 2023 onward, in which brands restore distinctive ornament, serifs, characters, and color palettes after years of minimalist treatment.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Trend loyalty</dt>
+      <dd>The behavior, reported especially among Gen Z, of buying products driven by viral attention or cultural momentum rather than accumulated brand familiarity.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Stated preference</dt>
+      <dd>What buyers tell surveys or researchers they prefer — distinct from what their actual purchase behavior reveals.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Revealed preference</dt>
+      <dd>What buyers actually purchase — distinct from what they say they prefer; the two have had a documented forty-year gap in consumer research.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Front-stage behavior</dt>
+      <dd>From Goffman: behavior that occurs when others are watching. Applied to consumption, the purchases that signal something to observers — drinkware, fashion, visible coffee cups.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Back-stage behavior</dt>
+      <dd>From Goffman: behavior that occurs when no one is watching. Applied to consumption, the purchases that signal nothing because there's no audience — paper towels, deodorant, garbage bags.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>App icon problem</dt>
+      <dd>The legitimate design challenge of making brand identity legible at 60-pixel mobile-app-icon size — used as the strongest defense of blanding, and also the false dichotomy the best-resourced brands disprove.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>DTC consultancy bottleneck</dt>
+      <dd>The structural reason most venture-funded direct-to-consumer brands of 2017–2022 looked alike: a small number of design studios produced the visual identity for an outsized fraction of the cohort.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Distinctive brand assets</dt>
+      <dd>From Sharp (Part A): the visual, verbal, and sensory codes that allow buyers to identify a brand instantly. Blanding destroys these by convergence; de-blanding restores them.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Mental availability</dt>
+      <dd>From Sharp (Part A): the probability that a brand surfaces in a buyer's mind at the moment of category consideration. Blanding lowers it because the brands become harder to recognize and recall.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>The Schnozz Doctrine</dt>
+      <dd>From Base Design: find the distinctive thing your brand actually is, own it explicitly, and resist the prevailing design consensus pulling you toward sameness. Section 6 of this unit.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Brand mascot</dt>
+      <dd>A character associated with a brand, typically with a name, personality, and visual identity. Among the most defensible of distinctive brand assets because characters are harder to copy than wordmarks.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Newman's Own slide</dt>
+      <dd>The slow-erosion failure mode in which a brand quietly degrades a distinctive asset (a face, a character, an iconography) over multiple "modernization" iterations, with damage that accumulates over years rather than appearing immediately.</dd>
+    </div>
+
+    <div class="glossary-item">
+      <dt>Authenticity paradox</dt>
+      <dd>The Gen Z preference for brands that feel "authentic" or "unpolished" that, in practice, has produced an aesthetic of intentional roughness that is itself a uniformly adopted style — generating its own version of blanding.</dd>
+    </div>
+
+  </dl>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="unit-2b-brand-mechanics.html" class="unit-nav-prev">
+    <span class="unit-nav-label">← Previous</span>
+    <span class="unit-nav-title">Unit 2B — Brand Mechanics</span>
+  </a>
+  <a href="unit-3.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next →</span>
+    <span class="unit-nav-title">Unit 3</span>
+  </a>
+</nav>
+
+</main>
+
+<!-- Lightbox overlay -->
+<div id="lightbox-overlay" class="lightbox-overlay" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img src="" alt="">
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+<!-- Lightbox handler -->
+<script>
+(function() {
+  const overlay = document.getElementById('lightbox-overlay');
+  if (!overlay) return;
+  const overlayImg = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.lightbox-close');
+
+  function openLightbox(src, alt) {
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlayImg.src = ''; }, 200);
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === closeBtn) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) closeLightbox();
+  });
+})();
+</script>
+
+</body>
+</html>
