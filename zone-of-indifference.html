@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Zone of Indifference — cbmatthe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific additions: zone bar viz, compare grid, formula display -->
+  <style>
+    /* Compare grid (carried over from off-the-swoosh-path) */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 22px 0 26px;
+      max-width: 860px;
+    }
+    .compare-card {
+      background: var(--white);
+      padding: 20px 22px 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-top: 3px solid var(--rule);
+    }
+    .compare-card.up   { border-top-color: var(--red); }
+    .compare-card.down { border-top-color: var(--blue); }
+    .compare-card-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .compare-card.up   .compare-card-brand { color: var(--red); }
+    .compare-card.down .compare-card-brand { color: var(--blue); }
+    .compare-card-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .compare-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      max-width: none;
+    }
+    .compare-card li {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      padding: 6px 0 6px 16px;
+      border-bottom: 1px solid #f0ece6;
+      position: relative;
+    }
+    .compare-card li:last-child { border-bottom: none; }
+    .compare-card li::before {
+      content: '\203A';
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+    .compare-card.up   li::before { color: var(--red); }
+    .compare-card.down li::before { color: var(--blue); }
+    @media (max-width: 640px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Definition box — softer than a callout, more presence than a paragraph */
+    .definition-box {
+      background: var(--white);
+      border-left: 5px solid var(--red);
+      padding: 28px 32px;
+      margin: 16px 0 28px;
+      max-width: 860px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .definition-box-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .definition-box-term {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .definition-box p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: none;
+      margin-bottom: 0;
+    }
+    .definition-box strong { color: var(--ink); }
+
+    /* Zone bar visualization */
+    .zone-figure {
+      background: var(--white);
+      padding: 36px 40px 30px;
+      margin: 20px 0 28px;
+      max-width: 860px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .zone-figure-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .zone-bar-wrap {
+      position: relative;
+      padding: 30px 0 50px;
+    }
+    .zone-bar {
+      position: relative;
+      height: 50px;
+      background: var(--cream);
+    }
+    .zone-bar-fill {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 30%; width: 40%;
+      background: rgba(188, 90, 68, 0.14);
+      border: 2px solid var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .zone-marker {
+      position: absolute;
+      top: -28px;
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      text-align: center;
+    }
+    .zone-marker small {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+    .zone-marker::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 8px;
+      background: var(--ink);
+    }
+    .zone-arrow {
+      position: absolute;
+      bottom: -32px;
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .zone-figure-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 16px;
+    }
+
+    /* Formula display */
+    .formula {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 22px 28px;
+      margin: 18px 0 24px;
+      max-width: 860px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .formula-label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-mid);
+      margin-bottom: 10px;
+    }
+
+    /* Asymmetry sidebar (uses existing .sidebar-card but with extra room) */
+    .asymmetry-card {
+      max-width: 860px;
+    }
+
+    /* Sub-label for stacked table groups */
+    .table-group-label {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 24px 0 6px;
+    }
+    .table-group-label-prefix {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Numbered rules block (closing) */
+    .rules-grid {
+      margin: 22px 0;
+      max-width: 860px;
+    }
+    .rule-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .rule-item:last-child { border-bottom: none; }
+    .rule-num {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+    .rule-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .rule-body {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    /* Highlight cell value in tables */
+    .hl { color: var(--red); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <!-- Top nav (built by nav.js) -->
+  <div id="topnav"></div>
+
+  <!-- =============================================================
+       PAGE HERO
+       ============================================================= -->
+  <header class="page-hero">
+    <div class="wrapper">
+      <div class="page-hero-num">10%</div>
+      <div class="page-hero-eyebrow">Resource · Pricing Strategy</div>
+      <h1>The Zone of Indifference</h1>
+      <p class="lede">Ten percent is the textbook starting point. The real number flexes considerably — by category, competition, substitute availability, and whether the product fills an emotional or utilitarian need.</p>
+    </div>
+  </header>
+
+  <!-- =============================================================
+       SECONDARY NAV
+       ============================================================= -->
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <a href="#definition">Definition</a>
+      <a href="#boundaries">Boundaries</a>
+      <a href="#width">Width</a>
+      <a href="#modifier">Modifier</a>
+      <a href="#elasticity">Elasticity</a>
+      <a href="#increases">Increases</a>
+      <a href="#decreases">Decreases</a>
+      <a href="#asymmetry">Asymmetry</a>
+      <a href="#rules">Rules</a>
+    </div>
+    <div class="subnav-progress"></div>
+  </nav>
+
+  <!-- =============================================================
+       MAIN
+       ============================================================= -->
+  <main class="wrapper">
+
+    <!-- ============ INTRO PARAGRAPH ============ -->
+    <section class="section" style="padding-top: 36px;">
+      <p style="font-size: 17px; line-height: 1.6;">Most marketing textbooks present the Zone of Indifference as a tidy <em>±10%</em> band — the price range within which customers don't notice or don't care. In practice the band is highly context-dependent. It widens for differentiated lifestyle products and narrows for commodity utilities. It asymmetrically resists price increases more than price cuts in some categories, and the opposite in others. The mechanics matter, and they're worth understanding precisely before you ever ship a price change.</p>
+    </section>
+
+    <!-- ============ SECTION 1: DEFINITION ============ -->
+    <section class="section" id="definition">
+      <div class="sec-num">01</div>
+      <div class="sec-label">Pricing Fundamentals</div>
+      <h2>What the Zone of Indifference Actually Is</h2>
+
+      <p>The concept is simple to state but easy to misapply. It's not a tolerance band on a single customer; it's a behavioral threshold across the customer base.</p>
+
+      <div class="definition-box">
+        <div class="definition-box-label">Definition</div>
+        <div class="definition-box-term">Zone of Indifference</div>
+        <p>The price range within which consumers either <strong>do not notice a price change</strong>, or notice it but <strong>do not care enough to alter their purchasing behavior</strong>. It represents the bandwidth of pricing flexibility a brand has before customers begin to consciously re-evaluate their decision to buy. Within the zone, purchase behavior remains essentially stable. Cross the boundary — in either direction — and psychological and behavioral responses begin to activate.</p>
+      </div>
+
+      <p>Two things follow from that definition. First, the zone is <em>asymmetric</em> in most categories — the response to a price increase is not a mirror image of the response to a cut. Second, the zone's width is a function of category, not of the specific dollar value, which is why a 10% band on a $20 product behaves very differently from a 10% band on a $100 product even though they're nominally the same.</p>
+    </section>
+
+    <!-- ============ SECTION 2: BOUNDARIES ============ -->
+    <section class="section" id="boundaries">
+      <div class="sec-num">02</div>
+      <div class="sec-label">Boundaries</div>
+      <h2>Inside the Zone vs. Outside — Two Different Psychologies</h2>
+
+      <p>Staying within the zone means customers may register the change intellectually but won't act on it. The moment you cross either boundary, you've entered a different psychological territory entirely. The risks are real, and they run in opposite directions.</p>
+
+      <!-- Zone visualization -->
+      <div class="zone-figure">
+        <div class="zone-figure-title">Visualizing the Zone — $20 product (±10%)</div>
+        <div class="zone-bar-wrap">
+          <div class="zone-bar">
+            <div class="zone-bar-fill">Zone of Indifference  ·  $18 – $22</div>
+            <div class="zone-marker" style="left:30%;">$18<small>Floor</small></div>
+            <div class="zone-marker" style="left:50%;">$20<small>Base</small></div>
+            <div class="zone-marker" style="left:70%;">$22<small>Ceiling</small></div>
+            <div class="zone-arrow" style="left:0;">&larr; Price cut risk: quality doubt</div>
+            <div class="zone-arrow" style="right:0; text-align:right;">Price increase risk: substitution &rarr;</div>
+          </div>
+        </div>
+        <div class="zone-figure-caption">The entire zone spans just $4 on a $20 product — a narrow margin for error.</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card up">
+          <div class="compare-card-brand">Moving Up — Above the Ceiling</div>
+          <div class="compare-card-title">Substitution risk activates</div>
+          <ul>
+            <li>Triggers active comparison-shopping</li>
+            <li>Loyal customers ask <em>"is this still worth it?"</em></li>
+            <li>New, uncommitted buyers exit first</li>
+            <li>Emotional/status products can tolerate more — higher price signals exclusivity</li>
+            <li>Utilitarian products lose volume quickly — substitutes are acceptable</li>
+          </ul>
+        </div>
+        <div class="compare-card down">
+          <div class="compare-card-brand">Moving Down — Below the Floor</div>
+          <div class="compare-card-title">Quality doubt activates</div>
+          <ul>
+            <li>Consumers may question quality or stock status</li>
+            <li>Cheapens brand perception — hard to reverse</li>
+            <li>For lifestyle products: signals desperation or decline</li>
+            <li>For utilitarian products: generally safer, boosts volume</li>
+            <li>May trigger a competitive price war with rivals</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 3: WIDTH ============ -->
+    <section class="section" id="width">
+      <div class="sec-num">03</div>
+      <div class="sec-label">Width</div>
+      <h2>Same Percentage, Very Different Dollars</h2>
+
+      <p>The %10 band is a heuristic, not a law. When you translate it into dollars, two products with the same percentage zone behave very differently because the <em>absolute</em> dollar buffer is what creates room to maneuver.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>$20 Product</th>
+            <th>$100 Product</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Zone of Indifference (±10%)</td><td>$18 &ndash; $22</td><td>$90 &ndash; $110</td></tr>
+          <tr><td>Dollar width of the zone</td><td class="hl">$4 total</td><td class="hl">$20 total</td></tr>
+          <tr><td>Upper boundary breach begins at</td><td>$22.01+</td><td>$110.01+</td></tr>
+          <tr><td>Lower boundary breach begins at</td><td>$17.99 or less</td><td>$89.99 or less</td></tr>
+          <tr><td>Consumer price awareness</td><td>High — often memorized</td><td>Moderate — purchase is considered</td></tr>
+          <tr><td>Substitute availability</td><td>Typically high</td><td>Often lower in differentiated niches</td></tr>
+          <tr><td>Price cut perception risk</td><td>Lower — "a deal is a deal"</td><td>Higher — "what changed?"</td></tr>
+        </tbody>
+      </table>
+
+      <p>The dollar buffer on the $100 product is what gives you real room to maneuver. A $10 swing on a $100 item still sits comfortably inside the zone. A $2 swing on a $20 item may already be blowing past it.</p>
+    </section>
+
+    <!-- ============ SECTION 4: THE CRITICAL MODIFIER ============ -->
+    <section class="section" id="modifier">
+      <div class="sec-num">04</div>
+      <div class="sec-label">The Critical Modifier</div>
+      <h2>Utilitarian vs. Emotional/Lifestyle Products</h2>
+
+      <p>Category type changes the shape of the zone more than any other variable. A utilitarian product (toothpaste, gasoline, paper towels) has a narrow, symmetric zone. An emotional or lifestyle product (specialty gear, fashion, identity-laden brands) has a wider zone that's asymmetric in the brand's favor on the upside.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Utilitarian Product</th>
+            <th>Emotional / Lifestyle Product</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Price increase tolerance</td><td>Low — substitutes are acceptable</td><td>Higher — identity is hard to replace</td></tr>
+          <tr><td>Price decrease risk</td><td>Low — a deal is a deal</td><td>High — cheapening damages the story</td></tr>
+          <tr><td>Zone width tendency</td><td>Narrower</td><td>Wider on the upside</td></tr>
+          <tr><td>Consumer mindset</td><td>"Does it work and is it fair?"</td><td>"Does it say something about me?"</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-label">Why This Modifier Dominates</div>
+        <p>A product that sits at the intersection of <em>performance utility</em> and <em>emotional identity</em> — specialty athletic gear, premium kitchen tools, prosumer cameras — gets the widest zone available. Customers tolerate higher prices because the product confirms an identity, and they tolerate fewer discounts because cheapening damages the identity they bought into.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 5: ELASTICITY ============ -->
+    <section class="section" id="elasticity">
+      <div class="sec-num">05</div>
+      <div class="sec-label">Quantifying the Impact</div>
+      <h2>Price Elasticity of Demand — the Math Behind the Loss</h2>
+
+      <p>There's no single universal formula for what happens outside the zone, but <strong>Price Elasticity of Demand (PED)</strong> is the working tool. It measures how sensitively volume responds to price. It doesn't give perfect predictions, but it provides a defensible framework for estimating what you're risking when you cross the boundary.</p>
+
+      <div class="formula">
+        <span class="formula-label">Price Elasticity of Demand</span>
+        PED  =  % Change in Quantity Demanded  &divide;  % Change in Price
+      </div>
+
+      <p>The output is a negative number (because raising price drops quantity, and vice versa). The interesting question is the magnitude.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Elasticity Range</th>
+            <th>What It Means</th>
+            <th>Typical Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0 to &minus;0.5</td><td>Inelastic — price has little effect on volume</td><td>Insulin, essential staples, specialty medical</td></tr>
+          <tr><td>&minus;0.5 to &minus;1.0</td><td>Moderately elastic</td><td>Performance niche, specialty gear</td></tr>
+          <tr><td>&minus;1.0 to &minus;2.0</td><td>Elastic — price changes significantly affect volume</td><td>Mainstream consumer goods, lifestyle products</td></tr>
+          <tr><td>Below &minus;2.0</td><td>Highly elastic — volume very sensitive to price</td><td>Commodity products, undifferentiated goods</td></tr>
+        </tbody>
+      </table>
+
+      <p>For the tables that follow I use two representative benchmarks: a <span class="hl">utilitarian PED of &minus;1.5</span> and a <span class="hl">lifestyle PED of &minus;0.6</span>. Your actual product almost certainly lands somewhere different. The point is the <em>shape</em> of the response, not the specific numbers.</p>
+    </section>
+
+    <!-- ============ SECTION 6: PRICE INCREASES ============ -->
+    <section class="section" id="increases">
+      <div class="sec-num">06</div>
+      <div class="sec-label">Price Increases</div>
+      <h2>Moving Up Out of the Zone — Estimated Customer Loss</h2>
+
+      <p>Percentages below measure the overshoot <em>beyond the zone ceiling</em>, not from the base price. The utilitarian/lifestyle split shows up clearly: a 36% overshoot loses about half of utilitarian customers but only a fifth of lifestyle customers.</p>
+
+      <div class="table-group-label">
+        <span class="table-group-label-prefix">$20 Product</span>
+        From $22 (zone ceiling) upward
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>New Price</th>
+            <th>% Above Zone</th>
+            <th>Utilitarian Loss (&minus;1.5)</th>
+            <th>Lifestyle Loss (&minus;0.6)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$24</td><td>+9%</td><td>~13% of customers</td><td>~5% of customers</td></tr>
+          <tr><td>$26</td><td>+18%</td><td>~27% of customers</td><td>~11% of customers</td></tr>
+          <tr><td>$28</td><td>+27%</td><td>~40% of customers</td><td>~16% of customers</td></tr>
+          <tr><td>$30</td><td>+36%</td><td class="hl">~54% of customers</td><td>~22% of customers</td></tr>
+        </tbody>
+      </table>
+
+      <div class="table-group-label">
+        <span class="table-group-label-prefix">$100 Product</span>
+        From $110 (zone ceiling) upward
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>New Price</th>
+            <th>% Above Zone</th>
+            <th>Utilitarian Loss (&minus;1.5)</th>
+            <th>Lifestyle Loss (&minus;0.6)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$120</td><td>+9%</td><td>~13% of customers</td><td>~5% of customers</td></tr>
+          <tr><td>$135</td><td>+23%</td><td>~34% of customers</td><td>~14% of customers</td></tr>
+          <tr><td>$150</td><td>+36%</td><td>~54% of customers</td><td>~22% of customers</td></tr>
+          <tr><td>$175</td><td>+59%</td><td class="hl">~88% of customers</td><td>~35% of customers</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-label">Key Observation</div>
+        <p>The percentages mirror each other across product prices — but the $100 product's $20 zone buffer gives you far more absolute room. A $25 price increase on a $100 item still sits inside the zone. The same $25 jump on a $20 item would be a 125% price increase — catastrophic.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 7: PRICE DECREASES ============ -->
+    <section class="section" id="decreases">
+      <div class="sec-num">07</div>
+      <div class="sec-label">Price Decreases</div>
+      <h2>Moving Down Out of the Zone — Gain or Lose?</h2>
+
+      <p>This is where the analysis splits sharply by product type. For utilitarian goods, cutting price below the zone typically increases volume. For lifestyle and emotional brands, it can <em>reduce</em> volume by triggering quality doubt. The same action — a price cut — has opposite effects depending on what the brand is.</p>
+
+      <div class="table-group-label">
+        <span class="table-group-label-prefix">$20 Product</span>
+        From $18 (zone floor) downward
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>New Price</th>
+            <th>% Below Zone</th>
+            <th>Utilitarian Gain (+1.5)</th>
+            <th>Lifestyle Net Effect (&minus;0.6)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$17</td><td>&minus;6%</td><td>~+9% more customers</td><td>~&minus;4% (quality doubt creeps in)</td></tr>
+          <tr><td>$15</td><td>&minus;17%</td><td>~+25% more customers</td><td>~&minus;10% (brand feels cheap)</td></tr>
+          <tr><td>$12</td><td>&minus;33%</td><td class="hl">~+50% more customers</td><td>~&minus;20% (significant brand damage)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="table-group-label">
+        <span class="table-group-label-prefix">$100 Product</span>
+        From $90 (zone floor) downward
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>New Price</th>
+            <th>% Below Zone</th>
+            <th>Utilitarian Gain</th>
+            <th>Lifestyle Net Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>$85</td><td>&minus;6%</td><td>~+9% more customers</td><td>~&minus;4% (mild concern)</td></tr>
+          <tr><td>$75</td><td>&minus;17%</td><td>~+25% more customers</td><td>~&minus;14% (noticeable brand erosion)</td></tr>
+          <tr><td>$60</td><td>&minus;33%</td><td class="hl">~+50% more customers</td><td>~&minus;22% (serious perception damage)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ SECTION 8: THE ASYMMETRY ============ -->
+    <section class="section" id="asymmetry">
+      <div class="sec-num">08</div>
+      <div class="sec-label">The Asymmetry</div>
+      <h2>Going Up and Going Down Are Not Mirror Images</h2>
+
+      <p>The two directions are often treated as symmetric — raise price, lose some customers; cut price, gain some back. For utilitarian goods that's roughly true. For lifestyle and emotional brands it is not.</p>
+
+      <div class="sidebar-card asymmetry-card">
+        <h3>The asymmetry nobody talks about enough</h3>
+        <p class="sidebar-card-sub">For emotional and lifestyle products, the downside risk of cutting price is often worse than the upside risk of raising it.</p>
+        <p>A luxury or identity-linked brand can survive a price increase better than a price cut, because:</p>
+        <p>Price increases can be framed as <strong>a reflection of quality improvement or brand growth</strong>. Price cuts are very hard to explain without implying something is wrong — and customers who bought at the higher price may feel retroactively cheated.</p>
+        <p class="sidebar-card-tag">Once you've trained customers to expect a lower number, raising the price back is extremely difficult.</p>
+      </div>
+
+      <p>The practical consequence: for any brand with emotional or identity components, treat the upper zone boundary as a stretchable membrane and the lower zone boundary as a brittle wall. You can push through the top with the right narrative. You can break through the bottom and find the pieces don't reassemble.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card up">
+          <div class="compare-card-brand">If You're Going Up</div>
+          <div class="compare-card-title">Stretch the membrane carefully</div>
+          <ul>
+            <li>Move gradually — multiple small steps stay near the zone boundary</li>
+            <li>Anchor the increase to something tangible: new features, new credibility, new packaging</li>
+            <li>Give customers a narrative they can use to accept the change</li>
+            <li>First 10&ndash;15% outside the zone is usually recoverable</li>
+          </ul>
+        </div>
+        <div class="compare-card down">
+          <div class="compare-card-brand">If You're Going Down</div>
+          <div class="compare-card-title">Don't break the wall by accident</div>
+          <ul>
+            <li>Never discount a lifestyle brand without a story — a sale needs a reason</li>
+            <li>Use time-limited or bundle framing: anniversary, seasonal, bundle offer</li>
+            <li>Avoid permanent cuts that retrain price expectations</li>
+            <li>Beyond 25&ndash;30% outside the zone, you're repositioning whether you intend to or not</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 9: RULES OF THUMB ============ -->
+    <section class="section" id="rules">
+      <div class="sec-num">09</div>
+      <div class="sec-label">Closing</div>
+      <h2>The Practical Rules of Thumb</h2>
+
+      <p>Four working rules that fall out of the framework above. They're not laws, but they're the right defaults until you have brand-specific elasticity data that contradicts them.</p>
+
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-num">01</div>
+          <div>
+            <div class="rule-title">Go up gradually.</div>
+            <div class="rule-body">Multiple small moves are psychologically safer than one shocking jump. Each step stays closer to the zone boundary and gives customers time to adjust.</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">02</div>
+          <div>
+            <div class="rule-title">Anchor every price change to something.</div>
+            <div class="rule-body">Customers need a narrative — new features, new credibility, improved quality — to accept a higher price. A bare price increase with no story is a loyalty test you may fail.</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">03</div>
+          <div>
+            <div class="rule-title">Never discount a lifestyle brand without a story.</div>
+            <div class="rule-body">A sale needs a reason: anniversary, limited time, bundle. Without framing, a discount quietly signals desperation and damages brand equity.</div>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">04</div>
+          <div>
+            <div class="rule-title">Know your recovery threshold.</div>
+            <div class="rule-body">The first 10&ndash;15% outside the zone is usually recoverable. Beyond 25&ndash;30%, you're no longer adjusting price — you're repositioning the brand, whether you intend to or not.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <div class="takeaway-label">The bottom line</div>
+        <ul>
+          <li>The zone is a behavioral threshold, not a tolerance band on individuals.</li>
+          <li>The width is set by category, not by the percentage. Dollars matter more than percent.</li>
+          <li>Utilitarian goods have narrow, symmetric zones; lifestyle goods have wider, asymmetric ones.</li>
+          <li>PED gives a framework, not a forecast. Use the shape of the response, not the exact number.</li>
+          <li>Price increases stretch a membrane. Price decreases can break a wall.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       FOOTER
+       ============================================================= -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>cbmatthe · M544 Course Notes</span>
+      <span>Resource · The Zone of Indifference</span>
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       SCRIPTS
+       ============================================================= -->
+  <script src="nav.js"></script>
+  <script src="scrollspy.js"></script>
+
+</body>
+</html>
