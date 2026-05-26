@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Off the Swoosh Path: How Hoka and On Ran a Different Race — cbmatthe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific additions (compare-grid component + italic vs. ghost) -->
+  <style>
+    /* Italic "vs." override for the hero numeral on this comparison page */
+    .page-hero-num.is-vs {
+      font-style: italic;
+      font-weight: 700;
+      font-size: 130px;
+      margin-bottom: -36px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Side-by-side comparison cards: Hoka (red) | On (blue) */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 22px 0 26px;
+      max-width: 860px;
+    }
+    .compare-card {
+      background: var(--white);
+      padding: 20px 22px 18px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-top: 3px solid var(--rule);
+    }
+    .compare-card.hoka { border-top-color: var(--red); }
+    .compare-card.on   { border-top-color: var(--blue); }
+    .compare-card-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .compare-card.hoka .compare-card-brand { color: var(--red); }
+    .compare-card.on   .compare-card-brand { color: var(--blue); }
+    .compare-card-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .compare-card p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+      max-width: none;
+    }
+    .compare-card p:last-child { margin-bottom: 0; }
+    .compare-card strong { color: var(--ink); }
+    @media (max-width: 640px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+
+    /* More Views: small subhead within section to group source clusters */
+    .mv-group-label {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 28px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+      max-width: 820px;
+    }
+    .mv-group-label:first-of-type { margin-top: 12px; }
+    .mv-tag {
+      font-style: italic;
+      color: var(--red);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top nav (built by nav.js) -->
+  <div id="topnav"></div>
+
+  <!-- =============================================================
+       PAGE HERO
+       ============================================================= -->
+  <header class="page-hero">
+    <div class="wrapper">
+      <div class="page-hero-num is-vs">vs.</div>
+      <div class="page-hero-eyebrow">Example · Brand Strategy</div>
+      <h1>Off the Swoosh Path: How Hoka and On Ran a Different Race</h1>
+      <p class="lede">Two upstart running brands took meaningful share from Nike inside a decade. Neither did it by trying to outspend Nike at Nike's own game, and neither of them did it the same way as the other.</p>
+    </div>
+  </header>
+
+  <!-- =============================================================
+       SECONDARY NAV
+       ============================================================= -->
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <a href="#nike-playbook">Nike Playbook</a>
+      <a href="#upstarts">The Upstarts</a>
+      <a href="#targeting">Targeting</a>
+      <a href="#imc">IMC</a>
+      <a href="#peso">PESO</a>
+      <a href="#branding">Branding</a>
+      <a href="#other-differences">Other Differences</a>
+      <a href="#brand-vs-perf">Brand vs. Perf</a>
+      <a href="#more-views">More Views</a>
+    </div>
+    <div class="subnav-progress"></div>
+  </nav>
+
+  <!-- =============================================================
+       MAIN
+       ============================================================= -->
+  <main class="wrapper">
+
+    <!-- ============ INTRO PARAGRAPH (no section number) ============ -->
+    <section class="section" style="padding-top: 36px;">
+      <p style="font-size: 17px; line-height: 1.6;">Hoka was founded in 2009 by two French trail runners in the Alps. On was founded in 2010 by a Swiss triathlete and two engineers in Zurich. Both are now over a billion dollars in annual revenue. Both have taken real slices of the premium running market from Nike, Adidas, and Asics. The interesting fact isn't <em>that</em> they grew. It's that they grew in opposite directions — Hoka by climbing up from obscure ultra-trail races into the mainstream, and On by descending from a Swiss-luxury aesthetic position into serious running. To see why their playbooks worked, you have to start with the playbook they refused to run.</p>
+    </section>
+
+    <!-- ============ SECTION 1: NIKE PLAYBOOK ============ -->
+    <section class="section" id="nike-playbook">
+      <div class="sec-num">01</div>
+      <div class="sec-label">The Incumbent</div>
+      <h2>The Nike Playbook, Specifically</h2>
+
+      <p>When people talk about "the Nike playbook" they usually mean something vague about storytelling and the swoosh. The actual playbook is more specific, and it was assembled in the 1980s out of three big bets that compounded for forty years.</p>
+
+      <p>The first bet was the 1984 signing of Michael Jordan, which didn't just produce a hit shoe — it invented the athlete-signature category and a sub-brand (Jordan) that still generates billions of dollars a year decades after Jordan's retirement. The second was "Just Do It" in 1988, which paired athlete mythology with a tagline broad enough to fit any human with a heartbeat. The third, less remembered, was Nike's willingness to spend on demand creation at a scale no competitor could match. By the late 2010s Nike was spending roughly $4 billion a year on marketing, more than Hoka and On's <em>combined annual revenue</em> at the time.</p>
+
+      <p>That spend bought ubiquity. Nike could simultaneously sponsor the NFL, sign LeBron, Ronaldo, and Serena Williams, run Super Bowl spots, and operate the SNKRS app for sneaker collectors. Adidas built a parallel empire on the same template, anchored in football and Olympic track, with hip-hop credibility courtesy of Run-DMC. Puma — the third Dassler brand and the perpetual third-place finisher — has spent most of its modern history trying to walk around the wall instead of through it: designer collaborations, Rihanna's Fenty line, Formula 1, and most recently the Nitro foam push into performance running.</p>
+
+      <div class="callout">
+        <div class="callout-label">The structural weakness</div>
+        <p>This playbook works. It is, however, a playbook that requires Nike's resources to run, and it has a weakness specific challenger brands learned to exploit. When you sponsor every sport, sign every category of athlete, and your ads play in 70 countries, you cannot say <em>"we are the shoe for the person who runs 80 miles a week."</em> You have to say <em>"we are the shoe for athletes."</em></p>
+        <p>The gap between "athletes" and <em>actual runners</em> is the door Hoka and On walked through.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 2: THE UPSTARTS — side-by-side cards ============ -->
+    <section class="section" id="upstarts">
+      <div class="sec-num">02</div>
+      <div class="sec-label">Two Different Refusals</div>
+      <h2>How Hoka and On Diverge — From Nike and From Each Other</h2>
+
+      <p>Both brands rejected the Nike playbook. They did not reject it the same way, and pretending otherwise is the mistake most casual analysis makes.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card hoka">
+          <div class="compare-card-brand">Hoka</div>
+          <div class="compare-card-title">Bottom-up — earned at the finish line</div>
+          <p>Started by trail-running fanatics who wanted a shoe that could descend Alpine technical terrain without destroying their quads. Their answer was an absurdly thick, lightweight midsole that the running establishment immediately considered <em>ugly</em>.</p>
+          <p>Hoka spent its first several years circulating through ultra-marathon culture as a cult product: Karl Meltzer, Western States podium finishers, French trail clubs. Deckers, the parent of UGG, acquired it in 2012 and started pouring fuel on the fire.</p>
+          <p>The strategy never really changed after the acquisition: <strong>build credibility at the sharp end of the sport, let it filter outward to serious recreational runners, and only then expand into lifestyle, nurses, walkers, and travelers.</strong></p>
+        </div>
+        <div class="compare-card on">
+          <div class="compare-card-brand">On</div>
+          <div class="compare-card-title">Top-down — paid into existence as a premium object</div>
+          <p>Founded by Olivier Bernhard, a Swiss triathlete, with David Allemann and Caspar Coppetti. On opened with a piece of product theater — the CloudTec pod-soled shoe — and immediately positioned it as a premium Swiss design object.</p>
+          <p>The shoe ran well, but more importantly it <em>looked</em> like nothing else. On built the brand the way a watchmaker would: clean retail, clean packaging, clean website, premium pricing, and a tightly curated story.</p>
+          <p>The credibility came later. When Roger Federer signed in 2019 — for a 3% equity stake rather than a paycheck — <strong>the stamp of approval was placed on top of an already-aspirational brand, not used to manufacture aspiration that didn't exist.</strong></p>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        <p class="pullquote-text">The Nike playbook says "be everywhere with the biggest athletes." Hoka said "be at the finish line of the hardest race in the sport." On said "be the most beautiful object in the running shop."</p>
+        <p class="pullquote-attr">Three different bets — only two were available without Nike's checkbook</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 3: TARGETING — side-by-side cards ============ -->
+    <section class="section" id="targeting">
+      <div class="sec-num">03</div>
+      <div class="sec-label">Audience</div>
+      <h2>Who They Target — Same on Paper, Different in Practice</h2>
+
+      <p>There is meaningful overlap in who Hoka and On are trying to reach. Both want the premium running consumer who will pay $160 or more for a shoe. Both want the upwardly mobile professional who runs sometimes and walks a lot. Both want some piece of the lifestyle-sneaker market that Allbirds, New Balance, and the Adidas Samba currently share. So far, same target.</p>
+
+      <p>The differences are real, though, and they show up in who each brand reaches <em>first</em>.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card hoka">
+          <div class="compare-card-brand">Hoka</div>
+          <div class="compare-card-title">Funnel of expansion: utility crossover</div>
+          <p>Original target — and still its most loyal core — is the <strong>serious distance runner</strong> who logs 30-plus miles a week and reads shoe reviews on iRunFar.</p>
+          <p>The brand then radiates outward in two directions. The first is the running-adjacent comfort buyer: nurses on twelve-hour shifts, retirees with plantar fasciitis, post-partum mothers, anyone whose feet hurt. The second is the lifestyle buyer who picked up a pair because their physical-therapist friend swore by them.</p>
+          <p>Mainstream growth has been driven by <strong>comfort migrating into casual wear</strong>.</p>
+        </div>
+        <div class="compare-card on">
+          <div class="compare-card-brand">On</div>
+          <div class="compare-card-title">Funnel of expansion: aspiration crossover</div>
+          <p>Original target was something closer to the <strong>design-forward urban runner</strong> — the person who buys an Apple Watch, runs three times a week, takes a SoulCycle class, and wants their gear to look as considered as their kitchen. That person also buys Lululemon, Tracksmith, and a Theragun.</p>
+          <p>From that base, On has pushed in two directions. Up-market it has built out tennis (Federer, Swiatek, Shelton) and a fashion-adjacent collaboration program (Loewe, PostArchiveFaction). Down-market it has chased running credibility through pro marathoners, the Cloudboom racing line, and an On Athletics Club.</p>
+          <p>Growth has been driven by <strong>fashion buyers eventually being told the shoes can actually run</strong>.</p>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <div class="takeaway-label">The result</div>
+        <ul>
+          <li>Hoka's lifestyle customer thinks of the brand as <em>performance gear that happens to be comfortable</em>.</li>
+          <li>On's performance customer thinks of the brand as <em>a design object that happens to run well</em>.</li>
+          <li>Same person on paper. Different mental model in the head.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 4: IMC — side-by-side cards ============ -->
+    <section class="section" id="imc">
+      <div class="sec-num">04</div>
+      <div class="sec-label">Integrated Marketing Communications</div>
+      <h2>IMC: Same Discipline, Opposite Channel Mix</h2>
+
+      <p>The phrase <strong>IMC</strong> — integrated marketing communications — means a single consistent message executed across every channel a brand touches. The fight is over which channels do what work, and the two brands have built dramatically different mixes.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card hoka">
+          <div class="compare-card-brand">Hoka</div>
+          <div class="compare-card-title">Earned and event-led, paid arriving late</div>
+          <p>Traditional advertising was almost nonexistent for the brand's first decade — no TV, minimal print, no large-scale outdoor. The brand invested in <strong>race sponsorships that produce earned media at the source</strong>: title sponsor of UTMB through 2028, Western States Endurance Run through 2029, the Ironman World Championships, and the NAZ Elite professional running team through the 2028 Olympics.</p>
+          <p>Digital and social skew toward Strava, Instagram athlete content, and the YouTube reviewer ecosystem — Believe in the Run, Seth James DeMoor, Trail and Kale.</p>
+          <p>The first real global anthem campaign, "Together We Fly Higher," only launched in 2025 — sixteen years after Hoka was founded. When a Hoka athlete wins a major race, <em>that race result is the ad</em>.</p>
+        </div>
+        <div class="compare-card on">
+          <div class="compare-card-brand">On</div>
+          <div class="compare-card-title">Paid and owned from day one, earned compounding on top</div>
+          <p>Traditional advertising arrived early and looked premium — full-page placements in <em>Monocle</em> and <em>GQ</em>, OOH in fashion-forward cities, polished Federer films that ran on tennis broadcasts and YouTube pre-rolls.</p>
+          <p>Digital is anchored by an unusually well-designed DTC site, the Cyclon recycled-shoe subscription program (which is as much PR as it is product), and an active social presence built around Federer's tens of millions of followers plus the newer tennis signings.</p>
+          <p><strong>Retail is part of the IMC, not separate from it.</strong> Flagship stores in New York, Tokyo, Zurich, and London function as brand films you can walk into. The athlete roster is curated rather than dense; each signing has to <em>say something</em> about the brand.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>The deepest difference is what each brand does on social</h3>
+        <p class="sidebar-card-sub">Bottom-up curation vs. top-down distribution</p>
+        <p>Hoka's social strategy is essentially <strong>"amplify the running community talking about us."</strong> User-generated content, athlete reposts, race recaps, runner testimonials. The brand acts as a hub for community signal already moving through Strava and Reddit.</p>
+        <p>On's strategy is <strong>"produce premium content the running community wants to share."</strong> Polished Federer films, behind-the-scenes shoots with Swiatek, architectural retail walkthroughs. The brand acts as a publisher whose work is good enough that customers redistribute it.</p>
+        <p class="sidebar-card-tag">One feed reads like a community newsletter, the other like a quarterly magazine.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 5: PESO ============ -->
+    <section class="section" id="peso">
+      <div class="sec-num">05</div>
+      <div class="sec-label">PESO Model</div>
+      <h2>PESO: Earned Their Way to Paid, Paid Their Way to Earned</h2>
+
+      <p>The <strong>PESO</strong> model — paid, earned, shared, owned — is the cleanest way to see the divergence.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card hoka">
+          <div class="compare-card-brand">Hoka</div>
+          <div class="compare-card-title">Heavy on earned and shared</div>
+          <p>The PESO mix has historically been disproportionately <strong>earned</strong> (race results, physical therapist recommendations, editorial coverage in running publications) and <strong>shared</strong> (runners and PTs telling other runners and PTs, then those people posting on Strava and in subreddits).</p>
+          <p>Owned was modest — a clean DTC site and athlete blog content — and paid was almost an afterthought until Deckers got serious about the brand post-2020. The recent "Together We Fly Higher" campaign is essentially the first time Hoka has operated a full PESO stack, and they're doing it now because the earned credibility is locked in and they need ToFU brand work to keep reaching non-runners.</p>
+        </div>
+        <div class="compare-card on">
+          <div class="compare-card-brand">On</div>
+          <div class="compare-card-title">Heavy on paid and owned, earned compounding later</div>
+          <p>The mix was <strong>paid</strong> and <strong>owned</strong> heavy from the start. Premium owned channels (the DTC site, flagship retail, the Cyclon program) had to exist for the brand story to be credible — you cannot claim Swiss design and ship the customer a shoebox that looks like it came from a discount mall.</p>
+          <p>Paid was always visible, in placements designed to support the premium positioning. Earned and shared compounded later: Federer's signing detonated a wave of business-press coverage and athlete-as-investor thinkpieces, and his social reach plus the tennis signings drove shared media at a scale Hoka cannot match through grassroots alone.</p>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        <p class="pullquote-text">Hoka earned its way to paid. On paid its way to earned.</p>
+        <p class="pullquote-attr">Both ended up at full PESO — from opposite starting points</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 6: BRANDING ============ -->
+    <section class="section" id="branding">
+      <div class="sec-num">06</div>
+      <div class="sec-label">Brand Identity</div>
+      <h2>Branding: Same Discipline, Opposite Affect</h2>
+
+      <p>There is a difference between "doing brand marketing" and "doing branding." Branding is what the brand <em>is</em> — its visual identity, its positioning, its core story. Both Hoka and On are unusually disciplined at this, which is part of why they were able to break through.</p>
+
+      <h3>What they share</h3>
+      <p>The most valuable asset either company has is a <strong>distinctive silhouette</strong> that does marketing work for free. Hoka's chunky maximalist stack and On's CloudTec pods are both instantly recognizable from across a street. In a category where the average consumer can't tell a Nike Pegasus from an Asics Nimbus at ten feet, "what are those?" is a perpetual conversation-starter. Both also protect premium pricing religiously, both have clean restrained visual identity systems (sans-serif logotypes, lots of white space, minimal color accents), and both treat their core technology — Hoka's PROFLY/CMEVA midsole geometry, On's CloudTec and Helion foam — as a named, branded asset the way Apple treats Retina or M-series.</p>
+
+      <h3>Where they diverge — the emotional register</h3>
+      <div class="compare-grid">
+        <div class="compare-card hoka">
+          <div class="compare-card-brand">Hoka — Brand Voice</div>
+          <div class="compare-card-title">Athletic, communal, occasionally earnest</div>
+          <p>The 2025 "Together We Fly Higher" films feature ordinary-looking runners in intimate, raw moments — not aspirational fantasy but pursuit. The brand talks about "the joy of progress" and leans into representation and inclusion.</p>
+          <p>It is a brand built to feel like it belongs to <em>the runner who knows</em>.</p>
+        </div>
+        <div class="compare-card on">
+          <div class="compare-card-brand">On — Brand Voice</div>
+          <div class="compare-card-title">Sleek, restrained, design-conscious, a little aloof</div>
+          <p>The films feel like architecture photography that happens to involve athletes. The brand talks about "running on clouds" and "Swiss precision."</p>
+          <p>It is a brand built to feel <em>worth owning</em> before it has been earned.</p>
+        </div>
+      </div>
+
+      <p class="tagline">Same category, opposite affect.</p>
+
+      <p>A useful test: if Hoka and On both launched a leather goods line, you would expect Hoka's to be a sturdy daypack and On's to be a clean minimalist tote. Neither would feel like a stretch, which is itself a sign of how well-defined the brands are.</p>
+    </section>
+
+    <!-- ============ SECTION 7: OTHER DIFFERENCES ============ -->
+    <section class="section" id="other-differences">
+      <div class="sec-num">07</div>
+      <div class="sec-label">Operational Choices</div>
+      <h2>Other Differences Worth Naming</h2>
+
+      <p>A handful of operational decisions that don't fit elsewhere but matter to the comparison.</p>
+
+      <h4>Distribution</h4>
+      <p>Hoka is heavier in wholesale: specialty running stores, then department stores and DSW, then a growing DTC presence. On was DTC-first and is still proportionally more direct, with selective wholesale through partners that match its brand standards (Nordstrom, REI, premium boutiques, never DSW). The wholesale-vs-DTC split influences everything downstream — gross margin, data ownership, how fast each brand can react to a trend.</p>
+
+      <h4>Innovation cadence</h4>
+      <p>Hoka iterates conservatively within established silhouettes (Bondi, Clifton, Speedgoat), with most version-to-version changes invisible to non-runners. On releases visible "tech story" updates frequently (Cloudboom Strike, Cloudsurfer, Cloudmonster) and uses each one to refresh the narrative. Hoka uses race results as marketing events. On uses product launches.</p>
+
+      <h4>Sustainability</h4>
+      <p>On is louder about it. The Cyclon subscription, the recycled-material lines, and a steady drumbeat of sustainability reporting are part of the brand. Hoka does some of the same work but talks about it less, which is consistent with a brand that grew out of a community where performance, not values signaling, is the primary credential.</p>
+
+      <h4>Geographic origin in the story</h4>
+      <p>On <em>is</em> a Swiss brand and uses Swissness as a marketing asset constantly. Hoka was started in France, is now owned by an American parent (Deckers), and has essentially dropped the country-of-origin angle. Hoka's nationality is the running community itself.</p>
+    </section>
+
+    <!-- ============ SECTION 8: BRAND VS PERFORMANCE % (brand-first) ============ -->
+    <section class="section" id="brand-vs-perf">
+      <div class="sec-num">08</div>
+      <div class="sec-label">Spend Split (Estimated)</div>
+      <h2>Brand vs. Performance — My Honest Estimate</h2>
+
+      <p>Neither company publishes a clean breakdown of brand versus performance marketing spend, and any answer here is an educated guess. With that caveat, here's my read — listed brand-first, since brand is the moat in this category.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-card-val">~40 / 60</span>
+          <span class="stat-card-lbl">Hoka — brand / performance</span>
+          <span class="stat-card-sub">Wholesale-heavy distribution and Deckers' performance-marketing muscle memory pull the budget toward the lower funnel. The brand work is rising fast but isn't yet the center of gravity.</span>
+        </div>
+        <div class="stat-card highlight">
+          <span class="stat-card-val">~65 / 35</span>
+          <span class="stat-card-lbl">On — brand / performance</span>
+          <span class="stat-card-sub">DTC margins and a premium positioning that <em>requires</em> top-of-funnel investment push the mix the other way. Performance dollars exist to convert aspiration the brand work already created.</span>
+        </div>
+      </div>
+
+      <h3>Why I'd guess these ratios</h3>
+      <p>Hoka's budget still lives close to the shelf. A lot of the spend is going to channel-level activity, retailer co-op, athlete endorsement contracts that produce direct conversion at running stores, and bottom-of-funnel digital (paid search around "best running shoe for plantar fasciitis," retargeting on the DTC site). The "Together We Fly Higher" campaign signaled an inflection toward brand, but the muscle memory of the organization, and Deckers as a parent, is performance-marketing oriented.</p>
+
+      <p>On's economics are flipped. The DTC-first model gives the brand cleaner performance-marketing math, but the premium positioning is the entire strategic moat, so most of the spend has to defend and extend it. Federer films, retail flagships, magazine placements, fashion collaborations, and OOH all sit on the brand side of the ledger. The performance work is real (paid search, paid social, retargeting, affiliate) but it's there to convert aspiration the brand work already manufactured, not to manufacture it.</p>
+
+      <h3>The trajectory matters more than the snapshot</h3>
+      <p>These ratios are moving toward each other. Hoka is investing in brand work to break out of the running-store ghetto. On is investing in performance credibility — pro marathoners, racing shoes, track meet sponsorships — because fashion-buyer momentum eventually plateaus without runner legitimacy. In five years the question won't be "which mix do they each run" but "which one closed the gap on the other side faster."</p>
+
+      <div class="callout">
+        <div class="callout-label">My pick on who has the harder road</div>
+        <p>Hoka. Brand prestige is built on consistency over decades, and Hoka has the structural disadvantage of sharing a parent company with UGGs at outlet malls. On has the easier task. Adding performance credibility to a premium brand is something dozens of luxury and lifestyle brands have done successfully. Adding aspirational brand prestige to a brand whose primary moat is <em>"this shoe doesn't hurt your feet"</em> is a harder trick. Solvable, but harder.</p>
+      </div>
+    </section>
+
+    <!-- ============ MORE VIEWS ============ -->
+    <section class="section" id="more-views">
+      <div class="sec-num">09</div>
+      <div class="sec-label">Further Reading</div>
+      <h2>More Views</h2>
+
+      <p class="more-views-intro">A curated reading list of marketing-industry takes on Hoka, On, and the larger challenger-brand story. Grouped by subject. Where a piece pushes against the consensus — particularly the iSpot.tv critique of On's Elmo campaign — I've flagged it.</p>
+
+      <!-- HOKA cluster -->
+      <div class="mv-group-label">On Hoka</div>
+
+      <div class="mv-item">
+        <div class="mv-source">NoGood</div>
+        <h3 class="mv-title"><a href="https://nogood.io/2023/08/25/hoka-marketing/" target="_blank" rel="noopener">HOKA Marketing Strategy: Category Domination</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Deep dive.</span> Marketing-agency breakdown of how Hoka leaned into its "ugly" thick-sole identity and refused to dilute the brand post-Deckers acquisition.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">System1 Group</div>
+        <h3 class="mv-title"><a href="https://system1group.com/ad-of-the-week/high-flying-hoka-finds-the-emotional-core-of-running" target="_blank" rel="noopener">High Flying HOKA Finds the Emotional Core of Running</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Data-backed praise.</span> Tests the "Together We Fly Higher" campaign and gives it a 3.4-Star Rating, well above the US average, with analysis of why the emotional approach works.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">The Marketing Millennials</div>
+        <h3 class="mv-title"><a href="https://themarketingmillennials.com/podcast/2024-05-23/why-marketing-works-hoka/" target="_blank" rel="noopener">Why Marketing Works: Hoka</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Podcast.</span> Episode unpacking why Hoka chose to go maximalist in a minimalist market, and what makes the brand so appealing to Gen Z.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">The Marketing Millennials</div>
+        <h3 class="mv-title"><a href="https://themarketingmillennials.com/articles/2024-05-21/1m-to-1b-in-10-years-the-story-of-hoka/" target="_blank" rel="noopener">$1M to $1B in 10 Years: The Story of Hoka</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Companion article.</span> Hoka's cult-following strategy and why it didn't try to take Nike head-on.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Digiday</div>
+        <h3 class="mv-title"><a href="https://digiday.com/marketing/why-hoka-is-experimenting-with-connected-tv-in-its-first-global-campaign/" target="_blank" rel="noopener">Why Hoka is experimenting with connected TV in its first global campaign</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Channel strategy.</span> Covers the media mix, including that 30% of the brand's North American budget went to connected TV.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Campaign US</div>
+        <h3 class="mv-title"><a href="https://www.campaignlive.com/article/regain-its-pace-hoka-releases-cinematic-tribute-runners/1925626" target="_blank" rel="noopener">To regain its pace, Hoka releases cinematic tribute to runners</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Creative review.</span> Coverage of the Anomaly-made "Together We Fly Higher" follow-up campaign.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Marketing-Interactive</div>
+        <h3 class="mv-title"><a href="https://www.marketing-interactive.com/hoka-birds-eye-flying-chapter-campaign" target="_blank" rel="noopener">Hoka soars with dynamic rendition of origin story</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Campaign analysis.</span> On the "Bird's Eye" seasonal spot and how it reinforces brand authenticity.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Latterly.org</div>
+        <h3 class="mv-title"><a href="https://www.latterly.org/hoka-marketing-strategy/" target="_blank" rel="noopener">Hoka Marketing Strategy 2025: A Case Study</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Long-form praise.</span> Analysis of the pull-model distribution strategy and brand exclusivity play.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Medium · DeJuan Wright</div>
+        <h3 class="mv-title"><a href="https://medium.com/@DeJuanWright/the-marketing-strategy-that-led-to-the-meteoric-rise-of-hoka-de737847fce4" target="_blank" rel="noopener">The Marketing Strategy That Led to the Meteoric Rise of Hoka</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Praise.</span> Entrepreneur-focused breakdown of the brand's positioning.</p>
+      </div>
+
+      <!-- ON cluster -->
+      <div class="mv-group-label">On On</div>
+
+      <div class="mv-item">
+        <div class="mv-source">iSpot.tv</div>
+        <h3 class="mv-title"><a href="https://www.ispot.tv/hub/character-appeal-vs-brand-recall-key-insights-from-on-runnings-elmo-campaign/" target="_blank" rel="noopener">Character Appeal vs. Brand Recall: Insights from On's Elmo Campaign</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Data-driven critique — the most interesting of the bunch.</span> Emotional profiling of viewer comments on "Soft Wins" reveals more negative reactions than expected and significant confusion among American viewers, many of whom struggled to identify what the ad was advertising. The report argues On should prioritize stronger brand recall mechanics — including clearer audio branding — in subsequent work.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Front Office Sports</div>
+        <h3 class="mv-title"><a href="https://frontofficesports.com/on-runnings-soft-wins-campaign-is-latest-shot-at-nike/" target="_blank" rel="noopener">How On's "Soft Wins" With Elmo Takes Aim at Nike</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Strategy analysis.</span> Frames the Elmo campaign as a not-so-subtle shot at Nike's current "hard" positioning, with quotes from an NYU Stern marketing professor.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">The Drum</div>
+        <h3 class="mv-title"><a href="https://www.thedrum.com/news/2025/02/14/sesame-street-s-softest-star-leads-s-new-running-campaign" target="_blank" rel="noopener">Sesame Street's softest star leads On's new running campaign</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Creative review.</span> The hero film and its cultural positioning.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Marketing Dive</div>
+        <h3 class="mv-title"><a href="https://www.marketingdive.com/news/on-elmo-encourage-softer-approach-running-campaign/740112/" target="_blank" rel="noopener">On and Elmo encourage a softer approach to running</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Analysis.</span> Contrasts On's softness messaging against Nike's "no pain" return.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Marketing Dive</div>
+        <h3 class="mv-title"><a href="https://www.marketingdive.com/news/on-running-zendaya-brand-ambassador-sportswear-marketing/718315/" target="_blank" rel="noopener">On Running appoints Zendaya as brand partner in multiyear deal</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Partnership analysis.</span> Covers the "Dream Together" campaign and what the Zendaya signing signals about On's lifestyle ambitions.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Athleta Mag</div>
+        <h3 class="mv-title"><a href="https://athletamag.com/en/running-is-soft-and-powerful-with-elmo-and-on/" target="_blank" rel="noopener">Running is Soft and Powerful, with Elmo and On</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Praise.</span> Calls it a brilliant campaign for challenging the high-intensity mindset dominant in running marketing.</p>
+      </div>
+
+      <!-- CROSS-BRAND cluster -->
+      <div class="mv-group-label">Hoka vs. On vs. Nike</div>
+
+      <div class="mv-item">
+        <div class="mv-source">GumGum</div>
+        <h3 class="mv-title"><a href="https://gumgum.com/blog/the-mindset-divide-nike-vs-hoka-and-on" target="_blank" rel="noopener">The Mindset Divide in Sneakers: Nike vs. Hoka and On</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Data analysis.</span> Content-signal data shows On over-indexes in fashion-trend, style, and street-style contexts (aspirational lifestyle alignment), while Hoka over-indexes in wellness niches.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">Fast Company</div>
+        <h3 class="mv-title"><a href="https://www.fastcompany.com/91399272/how-upstart-brands-like-hoka-and-on-can-tackle-giants-like-nike-small-companies-marketing-strategy" target="_blank" rel="noopener">How upstart brands like Hoka and On can tackle giants like Nike</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Challenger-brand lessons.</span> Five takeaways drawn from both brands' rise.</p>
+      </div>
+
+      <div class="mv-item">
+        <div class="mv-source">eMarketer</div>
+        <h3 class="mv-title"><a href="https://www.emarketer.com/content/3-retail-rivalries-that-aren-t-amazon-vs-walmart" target="_blank" rel="noopener">3 retail rivalries that aren't Amazon vs. Walmart</a></h3>
+        <p class="mv-desc"><span class="mv-tag">Industry analysis.</span> Section on Nike vs. Hoka and the Gen Z battle for premium athletic footwear.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       FOOTER
+       ============================================================= -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>cbmatthe · M544 Course Notes</span>
+      <span>Example · Off the Swoosh Path</span>
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       SCRIPTS
+       ============================================================= -->
+  <script src="nav.js"></script>
+  <script src="scrollspy.js"></script>
+
+</body>
+</html>
