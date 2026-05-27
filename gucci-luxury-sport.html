@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gucci: From Logomania to Luxury Sport — cbmatthe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <!-- Page-specific additions: stat cards, era timeline, breaking-news banner, competitor grid -->
+  <style>
+    /* Breaking-news banner up top of the hero */
+    .breaking-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: var(--white);
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .breaking-banner::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--white);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Era timeline — three-card horizontal layout for the IMC evolution */
+    .era-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 22px 0 26px;
+      max-width: 880px;
+    }
+    .era-card {
+      background: var(--white);
+      padding: 18px 20px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-top: 3px solid var(--rule);
+      position: relative;
+    }
+    .era-card.michele { border-top-color: var(--red); }
+    .era-card.sarno   { border-top-color: var(--muted); }
+    .era-card.demna   { border-top-color: var(--blue); }
+    .era-card-period {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 2px;
+      line-height: 1;
+    }
+    .era-card-director {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .era-card-tagline {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .era-card.michele .era-card-tagline { color: var(--red); }
+    .era-card.sarno   .era-card-tagline { color: var(--muted); }
+    .era-card.demna   .era-card-tagline { color: var(--blue); }
+    .era-card p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin-bottom: 0;
+      max-width: none;
+    }
+    @media (max-width: 760px) {
+      .era-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Big stat box for the sales drop */
+    .stat-impact {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 30px;
+      align-items: center;
+      background: var(--white);
+      padding: 22px 28px;
+      margin: 20px 0 22px;
+      max-width: 820px;
+      border-left: 4px solid var(--red);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-impact-num {
+      font-family: var(--serif);
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+    .stat-impact-text {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .stat-impact-text strong { color: var(--ink); }
+    .stat-impact-text-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    /* Spend split — single big card */
+    .spend-card {
+      background: var(--white);
+      padding: 28px 32px;
+      margin: 20px 0 24px;
+      max-width: 820px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--red);
+    }
+    .spend-card-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .spend-card-ratio {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .spend-card-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .spend-card-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: none;
+    }
+
+    /* Visual ratio bar — shows brand-vs-performance proportion */
+    .ratio-bar {
+      display: flex;
+      height: 32px;
+      margin: 14px 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .ratio-bar-brand,
+    .ratio-bar-perf {
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .ratio-bar-brand { background: var(--red); }
+    .ratio-bar-perf  { background: var(--blue); }
+
+    /* Competitor comparison cards */
+    .competitor-grid {
+      margin: 20px 0 26px;
+      max-width: 860px;
+    }
+    .competitor-card {
+      background: var(--white);
+      padding: 22px 26px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--rule);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+    }
+    .competitor-card.hermes  { border-left-color: var(--ink); }
+    .competitor-card.bottega { border-left-color: var(--muted); }
+    .competitor-card.lv      { border-left-color: var(--blue); }
+    .competitor-name {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+    .competitor-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .competitor-card.hermes  .competitor-tag { color: var(--ink); }
+    .competitor-card.bottega .competitor-tag { color: var(--muted); }
+    .competitor-card.lv      .competitor-tag { color: var(--blue); }
+    .competitor-ratio {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .competitor-ratio-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .competitor-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .competitor-body p {
+      margin-bottom: 8px;
+      max-width: none;
+    }
+    .competitor-body p:last-child { margin-bottom: 0; }
+    .competitor-body strong { color: var(--ink); }
+    @media (max-width: 720px) {
+      .competitor-card { grid-template-columns: 1fr; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top nav (built by nav.js) -->
+  <div id="topnav"></div>
+
+  <!-- =============================================================
+       PAGE HERO
+       ============================================================= -->
+  <header class="page-hero">
+    <div class="wrapper">
+      <div class="page-hero-eyebrow">Example · Brand Strategy</div>
+      <h1>Gucci: From Logomania to Luxury Sport</h1>
+      <p class="lede">A 105-year-old house lost a quarter of its revenue in 2025 and brought in two new leaders to fix it. The IMC strategy that worked in 2018 stopped working in 2023. The one being assembled right now — Demna, Times Square, a Formula 1 title sponsorship — is a bet that spectacle still buys relevance in luxury.</p>
+    </div>
+  </header>
+
+  <!-- =============================================================
+       SECONDARY NAV
+       ============================================================= -->
+  <nav class="subnav">
+    <div class="subnav-inner">
+      <a href="#identity">Brand Identity</a>
+      <a href="#imc">IMC</a>
+      <a href="#peso">PESO</a>
+      <a href="#spend">Brand vs. Perf</a>
+      <a href="#competitors">Competitors</a>
+    </div>
+    <div class="subnav-progress"></div>
+  </nav>
+
+  <!-- =============================================================
+       MAIN
+       ============================================================= -->
+  <main class="wrapper">
+
+    <!-- ============ INTRO ============ -->
+    <section class="section" style="padding-top: 36px;">
+      <div class="breaking-banner">Announced today · May 27, 2026</div>
+      <p style="font-size: 17px; line-height: 1.6;">Gucci will become the title sponsor of the Alpine Formula 1 team starting in 2027, racing as <em>Gucci Racing Alpine Formula One Team</em> — the first luxury fashion house ever to title-sponsor an F1 team. The deal launches "Gucci Racing," a new platform Gucci describes as being "at the intersection of luxury and sport." It's the latest and biggest move in a turnaround that's been twelve months in the making, and it's the cleanest signal yet of where the new leadership is taking the brand: <strong>spectacle, scale, and a deliberate pivot away from the quiet aesthetic that defined the previous creative director's two-year tenure.</strong></p>
+    </section>
+
+    <!-- ============ SECTION 1: BRAND IDENTITY ============ -->
+    <section class="section" id="identity">
+      <div class="sec-num">01</div>
+      <div class="sec-label">Who Gucci Is Right Now</div>
+      <h2>A 105-year-old brand mid-reinvention.</h2>
+
+      <p>Gucci was founded in Florence in 1921 and spent the next century as one of luxury's most consistent powerhouses. The thing to understand about Gucci today, though, is that the brand has lived three completely different lives in the last decade — and the version operating now is on its third creative reset since 2022.</p>
+
+      <p>The peak Gucci most people picture is the <strong>Alessandro Michele era (2015–2022)</strong>. Michele's maximalist, eclectic, gender-fluid aesthetic doubled Gucci's revenue and turned it into the favorite brand of millennials and early-Gen Z. It was loud, magpie, romantic, and instantly recognizable. The double-G logo went everywhere. Then it stopped working — partly because the aesthetic became overexposed, partly because the broader luxury market shifted toward what's now called "quiet luxury."</p>
+
+      <p>Gucci's response was <strong>Sabato De Sarno (2023–2025)</strong>: a deliberate retreat into restrained classicism. Quieter palettes, less ornamentation, less logo. It was the right diagnosis of where luxury was heading. It was not, however, the right product for Gucci's existing customer base, who had been trained for a decade to expect spectacle. The strategy didn't ignite sales. De Sarno was out by February 2025.</p>
+
+      <div class="stat-impact">
+        <div class="stat-impact-num">&minus;22%</div>
+        <div class="stat-impact-text">
+          <span class="stat-impact-text-label">2025 SALES DECLINE</span>
+          Gucci's revenue fell roughly 22% in 2025, with the brand accounting for nearly half of parent Kering's total sales and roughly two-thirds of its recurring operating profit. The decline triggered a leadership overhaul — new CEO, new creative director, new strategic playbook.
+        </div>
+      </div>
+
+      <p>The current chapter is <strong>Demna Gvasalia (July 2025–)</strong>, the Georgian designer best known for his decade at Balenciaga. Demna is, by reputation, a provocateur — his Balenciaga work was dystopian, often deliberately uncomfortable, and culturally loud. Kering's stock dropped 10% the day his appointment was announced because investors worried the brand was about to swing to an aesthetic Gucci's customers couldn't follow. Demna's first Gucci show landed in February 2026 with a softer, more emotional register than his Balenciaga work — restraint inside provocation rather than provocation for its own sake.</p>
+
+      <p>That trajectory — Michele's loud romanticism, De Sarno's quiet classicism, Demna's calibrated spectacle — is the entire reason the IMC story below is so interesting. The same brand has run three IMC playbooks in eight years, and each one was a response to the limits of the one before.</p>
+    </section>
+
+    <!-- ============ SECTION 2: IMC ============ -->
+    <section class="section" id="imc">
+      <div class="sec-num">02</div>
+      <div class="sec-label">Integrated Marketing Communications</div>
+      <h2>Three IMC eras in eight years.</h2>
+
+      <p>The Gucci <strong>IMC</strong> story is a textbook case of how a luxury brand's channel mix has to evolve with its creative direction. The same house has cycled through three distinct channel strategies since 2015, and each cycle teaches a different lesson about luxury marketing under pressure.</p>
+
+      <div class="era-grid">
+        <div class="era-card michele">
+          <div class="era-card-period">2015&ndash;2022</div>
+          <div class="era-card-director">Michele Era</div>
+          <div class="era-card-tagline">Saturate the culture.</div>
+          <p>Heavy paid social, especially Instagram. Celebrity ambassadors at scale (Harry Styles, Jared Leto). Cinematic campaign films with star directors. The double-G monogram everywhere. IMC strategy was about <em>cultural ubiquity</em> — be in every feed, on every red carpet, in every meme.</p>
+        </div>
+        <div class="era-card sarno">
+          <div class="era-card-period">2023&ndash;2025</div>
+          <div class="era-card-director">De Sarno Era</div>
+          <div class="era-card-tagline">Retreat into restraint.</div>
+          <p>Quieter campaign aesthetics. Less celebrity, more product. Pivot toward Hermès-style elegance. The IMC pulled back to match the quieter design language — but the brand had spent a decade training the market to expect spectacle, and the audience didn't follow.</p>
+        </div>
+        <div class="era-card demna">
+          <div class="era-card-period">2025&ndash;present</div>
+          <div class="era-card-director">Demna Era</div>
+          <div class="era-card-tagline">Spectacle, but with discipline.</div>
+          <p>Times Square runway with Tom Brady and Cindy Crawford. The "Generation Gucci" 84-image campaign. Title sponsorship of an F1 team starting 2027. IMC is <em>back to scale and noise</em> — but more architectural and less random than the Michele era's everything-everywhere energy.</p>
+        </div>
+      </div>
+
+      <p>Look closely at what the current chapter is doing, and the IMC is unusually integrated for luxury. Traditional channels (campaign films, magazine editorial, OOH) are running alongside cultural-moment plays (Times Square as both a runway and a media event) and a long-horizon platform bet (Gucci Racing as a sub-brand built to live across cars, apparel, retail, and content for years). Each piece reinforces the others. The Brady-and-Crawford Times Square moment was both a celebrity activation <em>and</em> a paid media buy <em>and</em> an earned-media generator. The F1 deal is simultaneously a sponsorship line item, a long-form content platform, a merchandise category, and a global awareness vehicle.</p>
+
+      <p>The departure from the Michele era is the discipline. Michele's Gucci was profligate — every campaign tried to be a cultural event. The Demna-era machine is more selective: fewer activations, but each one engineered to do five jobs at once.</p>
+    </section>
+
+    <!-- ============ SECTION 3: PESO ============ -->
+    <section class="section" id="peso">
+      <div class="sec-num">03</div>
+      <div class="sec-label">PESO Model</div>
+      <h2>PESO: paid and owned heavy, earned designed in.</h2>
+
+      <p>Gucci's <strong>PESO</strong> mix has always tilted toward paid and owned — that's the default position for any heritage luxury brand with the budget to control its own narrative. What's changing under the new leadership is how aggressively the earned and shared dimensions are being engineered rather than left to chance.</p>
+
+      <p><strong>Paid</strong> is still the foundation: campaign films, magazine placements, OOH in fashion-capital cities, paid digital across Instagram and TikTok. <strong>Owned</strong> is the second pillar — Gucci.com as a flagship experience, the boutique network functioning as architecture-grade brand films you can walk into, and now Gucci Racing positioned to become its own owned platform. <strong>Shared</strong> sits at the celebrity-and-cultural-moment layer: the brand is built around its ambassadors' social reach and around the fan communities that surround them. <strong>Earned</strong> is where the current strategy is most visibly different from the Michele era. Each major activation now seems to be selected for its earned-media yield, not just its on-channel performance.</p>
+
+      <p>The Alpine F1 deal is the clearest example. It's a paid sponsorship contract, but it's also engineered as a year-round earned-media machine — every race weekend from 2027 onward is twenty hours of global broadcast time with the Gucci name embedded in the team identity. The Times Square activation in May 2026 was the same logic: a paid runway show staged in a way that guaranteed earned coverage in every major business and culture outlet. The brand is essentially buying earned media by structuring paid investments as inherently newsworthy events.</p>
+
+      <div class="callout">
+        <div class="callout-label">The shift</div>
+        <p>The Michele-era PESO mix was paid-heavy and earned-by-accident. The Demna-era mix is paid-heavy and <em>earned-by-design</em>. The activations are still expensive, but each one is built to generate proportionally more earned and shared output than a conventional campaign would. F1 is the apex of that strategy — a single sponsorship that runs for years and produces earned coverage continuously.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 4: BRAND VS. PERFORMANCE ============ -->
+    <section class="section" id="spend">
+      <div class="sec-num">04</div>
+      <div class="sec-label">Spend Split</div>
+      <h2>The 60/40 guideline and where Gucci actually sits.</h2>
+
+      <p>The conventional brand-marketing wisdom — sometimes called the <em>Binet & Field 60/40 rule</em> — says that long-term brand-building should get roughly 60% of your marketing investment and short-term performance/activation should get 40%. The ratio flexes by category. For premium luxury, brand should usually run higher than the 60% baseline because the entire economic moat is the brand itself.</p>
+
+      <p>My read of where Gucci sits today, listed brand-first:</p>
+
+      <div class="spend-card">
+        <div class="spend-card-label">Gucci — Brand / Performance</div>
+        <div class="spend-card-ratio">~75 / 25</div>
+        <div class="spend-card-sub">Heavier on brand than the textbook 60/40, as it should be for a luxury house.</div>
+        <div class="ratio-bar">
+          <div class="ratio-bar-brand" style="flex: 75;">Brand · 75%</div>
+          <div class="ratio-bar-perf" style="flex: 25;">Perf · 25%</div>
+        </div>
+        <div class="spend-card-body">
+          <p>The F1 title sponsorship, Times Square runway, "Generation Gucci" 84-look campaign, Demna's seasonal show productions, OOH in Milan/Paris/Tokyo/New York, and the celebrity ambassador program all sit on the brand side of the ledger. The performance work is real (paid search, paid social, DTC retargeting, the e-commerce funnel on gucci.com) but it exists to convert demand the brand work generates — not to manufacture demand on its own.</p>
+        </div>
+      </div>
+
+      <p>Two things to know about that 75/25 estimate. First, it's an inference, not a public number — Kering doesn't break out marketing spend with that granularity. Second, the ratio has almost certainly <em>shifted</em> in the last twelve months. Under De Sarno, the performance number was likely higher because the brand was leaning on its existing customer database (Gucci's 340-million-profile CRM is one of luxury's largest) to mitigate slowing acquisition. Under Demna, the brand-side investments are visibly heavier — F1 alone is the kind of multi-year commitment that pushes the ratio further toward brand.</p>
+
+      <h3>Where it's going</h3>
+      <p>The trajectory is clear: more brand, less performance, longer time horizons. F1 is a 2027-and-beyond bet. Times Square is a 2026 statement. The "Generation Gucci" campaign is built around iteration over seasons rather than a single launch moment. Gucci is consciously moving back toward the kind of long-form brand-building that the Michele era did at high volume — but with the activations chosen for cultural durability instead of cultural ubiquity.</p>
+
+      <div class="takeaway">
+        <div class="takeaway-label">The honest assessment</div>
+        <ul>
+          <li>Gucci is operating closer to <strong>75/25 brand-to-performance</strong>, heavier than the 60/40 textbook baseline.</li>
+          <li>That ratio is correct for the category — but it's a bet that costs money before it earns it.</li>
+          <li>The new leadership is increasing the brand side further. F1 alone represents years of commitment.</li>
+          <li>If the Demna creative direction lands with consumers the way the Times Square activation landed with media, the math works. If it doesn't, this is a very expensive brand-side stretch with no quick lever to pull on the performance side.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 5: COMPETITORS ============ -->
+    <section class="section" id="competitors">
+      <div class="sec-num">05</div>
+      <div class="sec-label">Competitor Comparison</div>
+      <h2>Not all premium fashion plays the same game.</h2>
+
+      <p>Three useful contrasts — each one operating a meaningfully different IMC playbook than Gucci. The lesson isn't which approach is "right." It's that "premium fashion" isn't a single strategy. Brands in the same category can be running near-opposite marketing models and both be winning, or both struggling, depending on what they're trying to be.</p>
+
+      <div class="competitor-grid">
+
+        <div class="competitor-card hermes">
+          <div>
+            <div class="competitor-tag">The Opposite Approach</div>
+            <div class="competitor-name">Hermès</div>
+            <div class="competitor-ratio">~95 / 5<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
+          </div>
+          <div class="competitor-body">
+            <p>Hermès is the cleanest possible contrast to current Gucci. No F1 sponsorship. No Times Square stunt. No celebrity-led campaigns. The brand barely advertises. <strong>Marketing spend as a percent of revenue is among the lowest in the category</strong> — Hermès is so close to "no marketing department" that industry analysts use it as a case study in restraint.</p>
+            <p>The strategy works because scarcity does the marketing for free. A Birkin has a waiting list measured in years. Production is capped intentionally. Boutique experience does the persuading. The brand cleared roughly $12 billion in 2023 revenue and has been growing through the same luxury slowdown that cut Gucci's sales by 22%. The lesson isn't that Hermès is "doing it right" — it's that they've built an economic engine where loud marketing would actively damage the equity.</p>
+          </div>
+        </div>
+
+        <div class="competitor-card bottega">
+          <div>
+            <div class="competitor-tag">Same Parent, Opposite Playbook</div>
+            <div class="competitor-name">Bottega Veneta</div>
+            <div class="competitor-ratio">~85 / 15<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
+          </div>
+          <div class="competitor-body">
+            <p>The interesting Bottega Veneta comparison is that it has the same parent company as Gucci. Same access to Kering capital. Same supply chain. Same retail infrastructure. And it has been the bright spot in Kering's portfolio while Gucci collapsed — sales up 15% in a recent quarter, with the brand functioning as the proof case that luxury can still grow.</p>
+            <p>Bottega's IMC playbook is almost the inverse of Gucci's. <strong>No visible logos.</strong> Largely absent from traditional social media for years. Marketing focused on craftsmanship and the Intrecciato weave as the recognition mark, not on branded monograms. The 1972 tagline — <em>"When your own initials are enough"</em> — articulated the strategy fifty years before "quiet luxury" became a category. Same corporate parent, opposite IMC. Both can work. They just can't be the same brand.</p>
+          </div>
+        </div>
+
+        <div class="competitor-card lv">
+          <div>
+            <div class="competitor-tag">The Peer Doing Similar Things, Bigger</div>
+            <div class="competitor-name">Louis Vuitton</div>
+            <div class="competitor-ratio">~70 / 30<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
+          </div>
+          <div class="competitor-body">
+            <p>Louis Vuitton is the closest peer to Gucci on scale and strategy. Both are heritage Italian/French maisons running celebrity-led campaigns, monogram-forward visual identities, blockbuster runway productions, and global ad spend in the hundreds of millions. The Gucci F1 announcement is partly a response to LVMH's <strong>10-year F1 partnership signed in 2024</strong> — Gucci was watching LV plant a flag in luxury sport and decided it couldn't let that go uncontested.</p>
+            <p>The difference between the two is execution maturity. LV has been running the integrated spectacle playbook for fifteen years without a major creative reset. Gucci is rebuilding the same kind of machine on its third creative director in three years. LV is the version of the strategy that's been compounded; Gucci is the version that's being reassembled. Whether Gucci can close the gap depends almost entirely on whether the Demna era holds together long enough to compound.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="tagline">The category isn't the strategy. The strategy is the strategy.</p>
+
+      <p>Three brands, three IMC playbooks, three different ratios. Hermès wins by refusing to play. Bottega wins by refusing to shout. LV wins by playing loud at compounding scale. Gucci is currently betting that it can run LV's playbook with sharper creative discipline than Michele had and more cultural relevance than De Sarno achieved. Five years from now we'll know whether that bet paid off. The F1 deal announced today is the clearest move yet that the bet is real and the chips are committed.</p>
+    </section>
+
+  </main>
+
+  <!-- =============================================================
+       FOOTER
+       ============================================================= -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>cbmatthe · M544 Course Notes</span>
+      <span>Example · Gucci: From Logomania to Luxury Sport</span>
+    </div>
+  </footer>
+
+  <!-- =============================================================
+       SCRIPTS
+       ============================================================= -->
+  <script src="assets/nav.js"></script>
+  <script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
