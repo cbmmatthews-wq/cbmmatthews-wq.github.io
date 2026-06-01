@@ -38,7 +38,11 @@
   const PAUSE_ON_HOVER    = true;
 
   // Nine carousel slides from the announcement post, in published order.
-  const images = ["1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png","9.png"];
+  const images = [
+    "alpine-01.png","alpine-02.png","alpine-03.png",
+    "alpine-04.png","alpine-05.png","alpine-06.png",
+    "alpine-07.png","alpine-08.png","alpine-09.png"
+  ];
 
   // One campaign — used for the lightbox caption.
   const CAMPAIGN = {
