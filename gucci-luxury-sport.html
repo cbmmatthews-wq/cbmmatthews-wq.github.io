@@ -90,6 +90,92 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
 
+    /* ===== Inline figures (real images, with captions) ===== */
+    .inline-fig {
+      max-width: 860px;
+      margin: 22px 0 8px;
+    }
+    .inline-fig img {
+      display: block;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .inline-fig figcaption {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 8px;
+      line-height: 1.5;
+      max-width: none;
+    }
+    .inline-fig figcaption strong {
+      color: var(--ink);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* Side-by-side small figure for placing inside a paragraph context */
+    .inline-fig-side {
+      max-width: 420px;
+      float: right;
+      margin: 6px 0 18px 28px;
+      clear: right;
+    }
+    @media (max-width: 720px) {
+      .inline-fig-side { float: none; max-width: 100%; margin: 18px 0; }
+    }
+
+    /* Headline-style attributed quote (looks like a published headline + subhead) */
+    .headline-quote {
+      background: var(--white);
+      padding: 26px 30px;
+      margin: 22px 0;
+      max-width: 820px;
+      border-left: 4px solid var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .headline-quote-source {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .headline-quote-headline {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .headline-quote-sub {
+      font-family: var(--serif);
+      font-size: 15px;
+      font-style: italic;
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    /* Era card figure (replaces placeholder-img in real-image mode) */
+    .era-card-img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 14px;
+    }
+    /* Competitor card figure */
+    .competitor-card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 12px;
+    }
+
     /* ===== Original page styles ===== */
     /* Breaking-news banner up top of the hero */
     .breaking-banner {
@@ -410,6 +496,11 @@
 
       <p>The peak Gucci most people picture is the <strong>Alessandro Michele era (2015–2022)</strong>. Michele's maximalist, eclectic, gender-fluid aesthetic doubled Gucci's revenue and turned it into the favorite brand of millennials and early-Gen Z. It was loud, magpie, romantic, and instantly recognizable. The double-G logo went everywhere. Then it stopped working — partly because the aesthetic became overexposed, partly because the broader luxury market shifted toward what's now called "quiet luxury."</p>
 
+      <figure class="inline-fig inline-fig-side">
+        <img src="assets/images/gucci/era-michele-02.png" alt="Alessandro Michele with Lana Del Rey and Jared Leto at a Gucci New York show">
+        <figcaption><strong>Alessandro Michele with Lana Del Rey and Jared Leto</strong> at a New York show. <em>"It was a revolutionary act,"</em> Leto would later say of the period — a useful reminder that the Michele aesthetic wasn't just commercial; for a stretch of years it actually moved the cultural needle.</figcaption>
+      </figure>
+
       <p>Gucci's response was <strong>Sabato De Sarno (2023–2025)</strong>: a deliberate retreat into restrained classicism. Quieter palettes, less ornamentation, less logo. It was the right diagnosis of where luxury was heading. It was not, however, the right product for Gucci's existing customer base, who had been trained for a decade to expect spectacle. The strategy didn't ignite sales. De Sarno was out by February 2025.</p>
 
       <div class="stat-impact">
@@ -435,30 +526,21 @@
 
       <div class="era-grid">
         <div class="era-card michele">
-          <div class="placeholder-img">
-            Michele era visual
-            <span class="placeholder-img-note">Suggested: 2018&ndash;2020 maximalist Gucci campaign image &mdash; layered, monogram-heavy, romantic</span>
-          </div>
+          <img class="era-card-img" src="assets/images/gucci/era-michele-01.png" alt="Alessandro Michele era Gucci — maximalist campaign imagery">
           <div class="era-card-period">2015&ndash;2022</div>
           <div class="era-card-director">Michele Era</div>
           <div class="era-card-tagline">Saturate the culture.</div>
           <p>Heavy paid social, especially Instagram. Celebrity ambassadors at scale (Harry Styles, Jared Leto). Cinematic campaign films with star directors. The double-G monogram everywhere. IMC strategy was about <em>cultural ubiquity</em> — be in every feed, on every red carpet, in every meme.</p>
         </div>
         <div class="era-card sarno">
-          <div class="placeholder-img">
-            De Sarno era visual
-            <span class="placeholder-img-note">Suggested: 2024 &ldquo;Ancora&rdquo; red campaign image &mdash; quiet, minimal, classical</span>
-          </div>
+          <img class="era-card-img" src="assets/images/gucci/era-sarno-01.png" alt="Sabato De Sarno era Gucci — restrained classical campaign imagery">
           <div class="era-card-period">2023&ndash;2025</div>
           <div class="era-card-director">De Sarno Era</div>
           <div class="era-card-tagline">Retreat into restraint.</div>
           <p>Quieter campaign aesthetics. Less celebrity, more product. Pivot toward Hermès-style elegance. The IMC pulled back to match the quieter design language — but the brand had spent a decade training the market to expect spectacle, and the audience didn't follow.</p>
         </div>
         <div class="era-card demna">
-          <div class="placeholder-img">
-            Demna era visual
-            <span class="placeholder-img-note">Suggested: &ldquo;Generation Gucci&rdquo; Pre-Fall 2026 campaign image or GucciCore Times Square runway</span>
-          </div>
+          <img class="era-card-img" src="assets/images/gucci/era-demna-01.png" alt="Demna era Gucci — Generation Gucci campaign imagery">
           <div class="era-card-period">2025&ndash;present</div>
           <div class="era-card-director">Demna Era</div>
           <div class="era-card-tagline">Spectacle, but with discipline.</div>
@@ -489,12 +571,35 @@
 
       <p>Gucci's Cruise 2027 show, branded "GucciCore," took over a full block of Times Square between Broadway and Seventh Avenue. Cindy Crawford closed the show. Tom Brady walked the runway in all-black leather and made his catwalk debut. Lewis Hamilton was there. So were Mariah Carey, Kim Kardashian, Paris Hilton, Anna Wintour, Emily Ratajkowski, Lindsay Lohan, Shawn Mendes, Alix Earle, and Kate Moss. The show was simulcast on the surrounding Times Square LED billboards — and Gucci even commandeered those billboards to display fake ads for fictional Gucci products (including, reportedly, Gucci supplements) as part of the show's "Guccified New York archetypes" concept.</p>
 
-      <div class="placeholder-img placeholder-feature">
-        Times Square &mdash; GucciCore runway, May 16, 2026
-        <span class="placeholder-img-note">Suggested: wide shot of the Times Square takeover with the billboards, or Brady/Crawford on the runway</span>
+      <figure class="inline-fig">
+        <img src="assets/images/gucci/times-square.png" alt="Gucci GucciCore Cruise 2027 takeover of Times Square, May 16, 2026">
+        <figcaption><strong>GucciCore, May 16, 2026.</strong> Gucci took over a full block of Times Square — runway, audience, and the surrounding billboards all running the show simultaneously.</figcaption>
+      </figure>
+
+      <p>The strategic logic of choosing <em>that</em> venue was sharper than it first appeared. Times Square is the most saturated advertising surface in the United States. By placing the show there, Demna turned the architecture of commercial messaging itself into part of the production — and the press noticed.</p>
+
+      <div class="headline-quote">
+        <div class="headline-quote-source">Harper's Bazaar</div>
+        <div class="headline-quote-headline">Demna Turned Times Square Into One Big Giant Gucci Ad</div>
+        <div class="headline-quote-sub">The Cruise 2027 collection was filled with supermodels, It girls, big screens, and a seven-time Super Bowl winner.</div>
+      </div>
+
+      <p>That framing — the show <em>as</em> an ad, the venue <em>as</em> the medium — captured what most other coverage missed. The runway was the obvious part. The bigger move was using fifty synced billboards to broadcast a fictional Gucci universe (Gucci Acqua, Gucci Pets, the "Palazzo Gucci Hotel," even Gucci longevity supplements) before the live show began. Demna was inviting Times Square to do what Times Square already does, just with Gucci's name on every surface.</p>
+
+      <div class="sidebar-card">
+        <h3>A working review of the show</h3>
+        <p class="sidebar-card-sub">Critical commentary from <em>contentmode</em>, published shortly after the show.</p>
+        <p>"Demna's Gucci takeover of Times Square embraced chaos in a way that felt intentional, immersive, and distinctly New York. Against the overload of flashing billboards, sirens, and nonstop movement, the collection grounded itself through sharply observed character dressing and strong wardrobe construction rather than spectacle alone."</p>
+        <p>"What resonated most was the tension between uptown polish and downtown disruption — oversized outerwear, precise tailoring, exaggerated bags, and elevated essentials styled into modern New York archetypes. The strongest looks carried clarity and confidence, particularly the sculptural coats, leather pieces, and reworked Gucci signatures that balanced commercial desirability with fashion edge."</p>
+        <p class="sidebar-card-tag">"The collection reinforced Demna's ability to merge cultural commentary, product, and visual identity in a way that keeps luxury fashion relevant to a younger generation."</p>
       </div>
 
       <p>Count what that single Saturday night actually was, and the PESO logic becomes obvious. <strong>It was paid media</strong> — the cost of a Times Square takeover is in the high seven figures even before you add the production, the talent, and the casting. <strong>It was a celebrity activation</strong> — five or six A-list ambassadors on the runway, twenty more in the audience, each generating their own social posts to a combined following in the hundreds of millions. <strong>It was owned media</strong> — the show was hosted on Gucci's terms, designed to flow into Gucci.com and the boutique network. <strong>It was shared media at scale</strong> — Brady's runway walk alone was reposted by Vogue, the NFL's official account, ESPN, and TMZ within twenty-four hours. <strong>It was a product launch</strong> — Demna's first Cruise collection for the house, positioned by him as Gucci's "new core wardrobe" and engineered as the foundation for next season's retail line. And <strong>it was earned media on a scale Gucci could not have purchased directly</strong> — coverage in Reuters, AFP, the BBC, Vogue, Dazed, the AP, every major fashion and culture outlet plus most general-news outlets.</p>
+
+      <figure class="inline-fig">
+        <img src="assets/images/gucci/era-demna-03.png" alt="Tom Brady walking the GucciCore Cruise 2027 runway in Times Square">
+        <figcaption><strong>Brady's catwalk debut</strong> drove a wave of crossover coverage from sports media, including <em>The New York Times</em> — <strong>"Gucci Got Tom Brady and Cindy Crawford to Strut Their Stuff in Times Square."</strong> A seven-time Super Bowl winner on a Gucci runway is exactly the kind of cross-category moment that buys earned media no fashion-press budget can manufacture.</figcaption>
+      </figure>
 
       <p>One activation. Six jobs. That's the new playbook.</p>
 
@@ -569,10 +674,7 @@
 
         <div class="competitor-card hermes">
           <div>
-            <div class="placeholder-img">
-              Herm&egrave;s visual
-              <span class="placeholder-img-note">Suggested: Birkin bag in a boutique window or against neutral background</span>
-            </div>
+            <img class="competitor-card-img" src="assets/images/gucci/competitor-hermes.png" alt="Hermès — luxury through scarcity">
             <div class="competitor-tag">The Opposite Approach</div>
             <div class="competitor-name">Hermès</div>
             <div class="competitor-ratio">~95 / 5<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
@@ -585,10 +687,7 @@
 
         <div class="competitor-card bottega">
           <div>
-            <div class="placeholder-img">
-              Bottega Veneta visual
-              <span class="placeholder-img-note">Suggested: logo-free Andiamo or Cassette bag, or close-up of the Intrecciato weave</span>
-            </div>
+            <img class="competitor-card-img" src="assets/images/gucci/competitor-bottega.png" alt="Bottega Veneta — logo-free luxury">
             <div class="competitor-tag">Same Parent, Opposite Playbook</div>
             <div class="competitor-name">Bottega Veneta</div>
             <div class="competitor-ratio">~85 / 15<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
@@ -601,10 +700,7 @@
 
         <div class="competitor-card lv">
           <div>
-            <div class="placeholder-img">
-              Louis Vuitton visual
-              <span class="placeholder-img-note">Suggested: LVMH x F1 partnership imagery or LV monogram trunk product shot</span>
-            </div>
+            <img class="competitor-card-img" src="assets/images/gucci/competitor-lv.png" alt="Louis Vuitton — peer luxury at scale">
             <div class="competitor-tag">The Peer Doing Similar Things, Bigger</div>
             <div class="competitor-name">Louis Vuitton</div>
             <div class="competitor-ratio">~70 / 30<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
