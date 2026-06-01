@@ -53,7 +53,8 @@ const navConfig = {
             title: 'Examples',
             items: [
               { label: 'Nike: Same Soul, Different Words',  href: 'nike-same-soul.html' },
-              { label: 'Off the Swoosh Path: Hoka & On',    href: 'off-the-swoosh-path.html' }
+              { label: 'Off the Swoosh Path: Hoka & On',    href: 'off-the-swoosh-path.html' },
+              { label: 'Gucci: From Logomania to Luxury Sport', href: 'gucci-luxury-sport.html' }
               // Add more examples here as they're built
             ]
           }
