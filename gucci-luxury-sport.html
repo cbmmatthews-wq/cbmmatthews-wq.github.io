@@ -176,6 +176,281 @@
       margin-bottom: 12px;
     }
 
+    /* ===== F1 benefits grid (intro section) ===== */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 18px 0 22px;
+      max-width: 860px;
+    }
+    .benefits-card {
+      background: var(--white);
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-top: 2px solid var(--red);
+    }
+    .benefits-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 5px;
+    }
+    .benefits-card p {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin-bottom: 0;
+      max-width: none;
+    }
+    @media (max-width: 760px) {
+      .benefits-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Info callout (smaller, gray-bordered explainer box) ===== */
+    .info-callout {
+      background: var(--cream);
+      border-left: 3px solid var(--muted);
+      padding: 14px 18px;
+      margin: 14px 0;
+      max-width: 860px;
+    }
+    .info-callout-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 5px;
+    }
+    .info-callout p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin-bottom: 0;
+      max-width: none;
+    }
+
+    /* ===== Big tagline display (for the "One activation. Six jobs." moment) ===== */
+    .display-tagline {
+      text-align: center;
+      max-width: 820px;
+      margin: 36px auto;
+      padding: 32px 20px;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .display-tagline-text {
+      font-family: var(--serif);
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .display-tagline-text em {
+      font-style: italic;
+      color: var(--red);
+    }
+    .display-tagline-sub {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ===== Brady-photo side variant (smaller, floats right) ===== */
+    .inline-fig-half {
+      max-width: 320px;
+      float: right;
+      margin: 6px 0 18px 28px;
+      clear: right;
+    }
+    @media (max-width: 720px) {
+      .inline-fig-half { float: none; max-width: 100%; margin: 18px 0; }
+    }
+
+    /* ===== Segmentation section: numbered layer cards ===== */
+    .segment-stack {
+      margin: 20px 0 24px;
+      max-width: 860px;
+    }
+    .segment-row {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 18px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .segment-row:last-child { border-bottom: none; }
+    .segment-num {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+    .segment-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .segment-title-sub {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .segment-body {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+    .segment-body p { margin-bottom: 6px; max-width: none; }
+    .segment-body p:last-child { margin-bottom: 0; }
+    .segment-body strong { color: var(--ink); }
+
+    /* ===== Two-column comparison row (Gucci vs LV audience) ===== */
+    .audience-compare {
+      background: var(--white);
+      padding: 20px 24px;
+      margin: 18px 0 20px;
+      max-width: 860px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .audience-compare-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .audience-compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .audience-compare-col {
+      padding-top: 10px;
+      border-top: 3px solid var(--rule);
+    }
+    .audience-compare-col.gucci { border-top-color: var(--red); }
+    .audience-compare-col.lv    { border-top-color: var(--blue); }
+    .audience-compare-col-name {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .audience-compare-col-signal {
+      font-size: 13px;
+      font-style: italic;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .audience-compare-col.lv .audience-compare-col-signal { color: var(--blue); }
+    .audience-compare-col-body {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+    @media (max-width: 600px) {
+      .audience-compare-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Business model comparison table (Section 07) ===== */
+    .biz-table {
+      width: 100%;
+      max-width: 860px;
+      border-collapse: collapse;
+      margin: 18px 0 24px;
+      background: var(--white);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .biz-table th {
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .biz-table td {
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .biz-table tr:last-child td { border-bottom: none; }
+    .biz-table tr td:first-child {
+      font-weight: 700;
+      color: var(--ink);
+      width: 25%;
+    }
+    .biz-table tr.gucci-row { background: rgba(188,90,68,0.05); }
+    .biz-table tr.gucci-row td:first-child { color: var(--red); }
+
+    /* ===== Closing diagram image (logo-prices-f1.png) ===== */
+    .closing-diagram {
+      max-width: 860px;
+      margin: 24px 0 8px;
+    }
+    .closing-diagram img {
+      display: block;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .closing-diagram figcaption {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* Red sidebar variant — stands out against the default ink sidebar-card */
+    .sidebar-card.red {
+      background: var(--red);
+    }
+    .sidebar-card.red::before {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .sidebar-card.red h3 {
+      color: var(--white);
+    }
+    .sidebar-card.red .sidebar-card-sub {
+      color: rgba(255,255,255,0.75);
+    }
+    .sidebar-card.red p {
+      color: rgba(255,255,255,0.92);
+    }
+    .sidebar-card.red strong {
+      color: var(--white);
+    }
+    .sidebar-card.red .sidebar-card-tag {
+      color: var(--white);
+      border-top-color: rgba(255,255,255,0.25);
+    }
+
     /* ===== Original page styles ===== */
     /* Breaking-news banner up top of the hero */
     .breaking-banner {
@@ -448,7 +723,10 @@
       <a href="#imc">IMC</a>
       <a href="#peso">PESO</a>
       <a href="#spend">Brand vs. Perf</a>
+      <a href="#segmentation">Segmentation</a>
       <a href="#competitors">Competitors</a>
+      <a href="#business-model">Business Model</a>
+      <a href="#summary">Summary</a>
     </div>
     <div class="subnav-progress"></div>
   </nav>
@@ -460,8 +738,10 @@
 
     <!-- ============ INTRO ============ -->
     <section class="section" style="padding-top: 36px;">
-      <div class="breaking-banner">Announced today · May 27, 2026</div>
+      <div class="breaking-banner">Announced May 27, 2026</div>
       <p style="font-size: 17px; line-height: 1.6;">Gucci will become the title sponsor of the Alpine Formula 1 team starting in 2027, racing as <em>Gucci Racing Alpine Formula One Team</em> — the first luxury fashion house ever to title-sponsor an F1 team. The deal launches "Gucci Racing," a new platform Gucci describes as being "at the intersection of luxury and sport." It's the latest and biggest move in a turnaround that's been twelve months in the making, and it's the cleanest signal yet of where the new leadership is taking the brand: <strong>spectacle, scale, and a deliberate pivot away from the quiet aesthetic that defined the previous creative director's two-year tenure.</strong></p>
+
+      <p>The financial commitment is substantial. The three-year contract is estimated at <strong>$50–60 million per season</strong>, with bonus incentives pushing the total above <strong>$150 million</strong>. That puts it in the same range as HP's title sponsorship of Ferrari ($50–100M/year, depending on the year), and it's the largest single brand-marketing commitment Gucci has made in its modern history.</p>
 
       <!-- Alpine F1 announcement slider (gucci-alpine-strip.js) -->
       <div class="alpine-strip-wrap">
@@ -483,6 +763,47 @@
         <button class="nav next" id="lbNext" aria-label="Next">&rsaquo;</button>
         <img id="lbImg" src="" alt="">
         <div class="meta" id="lbMeta"></div>
+      </div>
+
+      <h3>Why F1 — and what Gucci actually gets for $150 million</h3>
+
+      <p>A title sponsorship of this scale isn't just a logo placement. It's a bundle of marketing assets that don't exist outside of professional sport:</p>
+
+      <div class="benefits-grid">
+        <div class="benefits-card">
+          <div class="benefits-card-label">01 · Brand Surface</div>
+          <p>The team name itself becomes the brand &mdash; every broadcast, headline, and race-result chyron displays "Gucci Racing Alpine F1 Team" for three full seasons.</p>
+        </div>
+        <div class="benefits-card">
+          <div class="benefits-card-label">02 · Promotional Rights</div>
+          <p>Use of team imagery, car liveries, and race footage in Gucci's own campaigns, retail, and social content. The 2027 car becomes a Gucci marketing asset, not just a sponsorship credit.</p>
+        </div>
+        <div class="benefits-card">
+          <div class="benefits-card-label">03 · Driver Access</div>
+          <p>Pierre Gasly and Franco Colapinto become available to Gucci for campaigns, events, ambassador work, and content. Two professional athletes with global followings, contractually accessible.</p>
+        </div>
+        <div class="benefits-card">
+          <div class="benefits-card-label">04 · Hospitality & Paddock</div>
+          <p>VIP access to every race weekend &mdash; the most exclusive corporate hospitality environment in global sport. Gucci can host clients, press, and ambassadors at 24 Grand Prix events per year.</p>
+        </div>
+        <div class="benefits-card">
+          <div class="benefits-card-label">05 · Co-Branded Product</div>
+          <p>Bespoke team apparel, fashion product, and exclusive experiential merchandise tied to Gucci Racing &mdash; an entirely new retail category created by the deal.</p>
+        </div>
+        <div class="benefits-card">
+          <div class="benefits-card-label">06 · Global Reach</div>
+          <p>1.83 billion cumulative TV viewers across the 2025 F1 season. 76 million average per Grand Prix. No traditional fashion-marketing channel buys that audience.</p>
+        </div>
+      </div>
+
+      <div class="info-callout">
+        <div class="info-callout-label">Title sponsor vs. car-part sponsor</div>
+        <p>A title sponsorship is the top of the F1 sponsorship pyramid. Most F1 teams subsidize their roughly $250 million annual budgets by selling smaller logo placements on different parts of the car &mdash; the rear wing, the sidepods, the halo, the engine cover &mdash; at vastly different price points. <strong>See the diagram at the bottom of this page</strong> for an approximate price-by-location breakdown of where the sponsorships go and what they cost.</p>
+      </div>
+
+      <div class="info-callout">
+        <div class="info-callout-label">Who is BWT, and what happens to them?</div>
+        <p><strong>BWT</strong> stands for <em>Best Water Technology</em>, an Austrian company specializing in water filters, softeners, and purification systems. They've been Alpine's title sponsor since 2022, which is why the team's recent cars have raced in BWT's signature pink and blue livery. BWT's F1 program was tied to a global sustainability message about reducing single-use plastics. The Gucci deal ends that run &mdash; Alpine will race in Gucci's black and gold from 2027 forward, with BWT remaining only as a smaller partner.</p>
       </div>
     </section>
 
@@ -513,7 +834,15 @@
 
       <p>The current chapter is <strong>Demna Gvasalia (July 2025–)</strong>, the Georgian designer best known for his decade at Balenciaga. Demna is, by reputation, a provocateur — his Balenciaga work was dystopian, often deliberately uncomfortable, and culturally loud. Kering's stock dropped 10% the day his appointment was announced because investors worried the brand was about to swing to an aesthetic Gucci's customers couldn't follow. Demna's first Gucci show landed in February 2026 with a softer, more emotional register than his Balenciaga work — restraint inside provocation rather than provocation for its own sake.</p>
 
-      <p>That trajectory — Michele's loud romanticism, De Sarno's quiet classicism, Demna's calibrated spectacle — is the entire reason the IMC story below is so interesting. The same brand has run three IMC playbooks in eight years, and each one was a response to the limits of the one before.</p>
+      <p>That trajectory &mdash; Michele's loud romanticism, De Sarno's quiet classicism, Demna's calibrated spectacle &mdash; is the entire reason the IMC story below is so interesting. The same brand has run three IMC playbooks in eight years, and each one was a response to the limits of the one before.</p>
+
+      <div class="sidebar-card red">
+        <h3>What does all this do <em>for the brand?</em></h3>
+        <p class="sidebar-card-sub">Three creative resets in eight years. PESO, IMC, target audience, retail strategy &mdash; all rebuilt with each one.</p>
+        <p>Most heritage luxury brands move in a straight line over decades. Hermès has been Hermès for a century. Louis Vuitton's brand DNA has barely shifted since Marc Jacobs took the creative reins in 1997.</p>
+        <p>Gucci has done something different &mdash; three sharp turns in eight years, each one a near-repudiation of the era before it. Cultural ubiquity, then quiet restraint, then calibrated spectacle. Loud, then quiet, then loud again.</p>
+        <p class="sidebar-card-tag">The straight line, or the zig-zag?</p>
+      </div>
     </section>
 
     <!-- ============ SECTION 2: IMC ============ -->
@@ -534,6 +863,8 @@
         </div>
         <div class="era-card sarno">
           <img class="era-card-img" src="assets/images/gucci/era-sarno-01.png" alt="Sabato De Sarno era Gucci — restrained classical campaign imagery">
+          <figcaption style="font-size:11px;color:var(--muted);font-style:italic;line-height:1.4;margin:-8px 0 10px;">De Sarno's <em>Ancora</em> red — the signature gesture of a two-year tenure that bet on restraint at exactly the wrong moment in luxury's cycle.</figcaption>
+          <img class="era-card-img" src="assets/images/gucci/era-sarno-02.png" alt="A second Sabato De Sarno era Gucci campaign image" style="margin-bottom:10px;">
           <div class="era-card-period">2023&ndash;2025</div>
           <div class="era-card-director">De Sarno Era</div>
           <div class="era-card-tagline">Retreat into restraint.</div>
@@ -541,6 +872,8 @@
         </div>
         <div class="era-card demna">
           <img class="era-card-img" src="assets/images/gucci/era-demna-01.png" alt="Demna era Gucci — Generation Gucci campaign imagery">
+          <figcaption style="font-size:11px;color:var(--muted);font-style:italic;line-height:1.4;margin:-8px 0 10px;">From the &ldquo;Generation Gucci&rdquo; Pre-Fall 2026 lookbook &mdash; Demna's first published image system for the house, an 84-image set built to live across multiple seasons.</figcaption>
+          <img class="era-card-img" src="assets/images/gucci/era-demna-02.png" alt="A second Demna era Gucci image" style="margin-bottom:10px;">
           <div class="era-card-period">2025&ndash;present</div>
           <div class="era-card-director">Demna Era</div>
           <div class="era-card-tagline">Spectacle, but with discipline.</div>
@@ -559,9 +892,26 @@
       <div class="sec-label">PESO Model</div>
       <h2>PESO: paid and owned heavy, earned designed in.</h2>
 
-      <p>Gucci's <strong>PESO</strong> mix has always tilted toward paid and owned — that's the default position for any heritage luxury brand with the budget to control its own narrative. What's changing under the new leadership is how aggressively the earned and shared dimensions are being engineered rather than left to chance.</p>
+      <h3>A quick clarification about what PESO control actually means</h3>
 
-      <p><strong>Paid</strong> is still the foundation: campaign films, magazine placements, OOH in fashion-capital cities, paid digital across Instagram and TikTok. <strong>Owned</strong> is the second pillar — Gucci.com as a flagship experience, the boutique network functioning as architecture-grade brand films you can walk into, and now Gucci Racing positioned to become its own owned platform. <strong>Shared</strong> sits at the celebrity-and-cultural-moment layer: the brand is built around its ambassadors' social reach and around the fan communities that surround them. <strong>Earned</strong> is where the current strategy is most visibly different from the Michele era. Each major activation now seems to be selected for its earned-media yield, not just its on-channel performance.</p>
+      <p>Before unpacking Gucci's mix, it's worth pinning down what each <strong>PESO</strong> channel actually offers in terms of control &mdash; because the differences are sharper than the four-letter acronym suggests, and they explain why Gucci's recent activation strategy looks the way it does.</p>
+
+      <ul>
+        <li><strong>Paid</strong> &mdash; you control everything: the message, the targeting, the placement, the timing. The catch is that paid only reaches people you can identify and pay to put it in front of.</li>
+        <li><strong>Owned</strong> &mdash; full control of the message, but only for people who already chose to visit your site or follow your social. By the time someone sees owned content, they've already moved through awareness and into consideration. The audience is small, but warm.</li>
+        <li><strong>Earned</strong> &mdash; the press, critics, third parties, and other content creators saying things about you. <em>You don't control whether they cover you, what they say, or whether your brand sits alone in a story or shares a paragraph with three competitors.</em> But it's the most credible PESO channel by far, because the audience knows you didn't pay for it.</li>
+        <li><strong>Shared</strong> &mdash; what your audience does with your content on their own social feeds. Adjacent to earned, but driven by individuals rather than journalists.</li>
+      </ul>
+
+      <p>Here's the important piece most PESO explanations skip: <strong>earned media usually requires a paid investment as its precursor.</strong> No one writes about a brand because the brand wants them to. Press covers events, sponsorships, scandals, milestones, and cultural moments. So if you want earned coverage, you almost always have to pay for the precursor &mdash; a runway show, a sponsorship, a celebrity activation, a flagship opening &mdash; and then hope the press shows up and writes something useful.</p>
+
+      <p>That's the lever Gucci is pulling. They pay for the <em>occasion</em>. They don't &mdash; and can't &mdash; pay for the coverage. The Harper's Bazaar headline that called the Times Square show "one big giant Gucci ad" wasn't bought. It was earned by paying for a venue and a production that gave press something they wanted to cover anyway.</p>
+
+      <h3>How Gucci's PESO mix actually breaks down</h3>
+
+      <p>Gucci's PESO mix has always tilted toward paid and owned &mdash; that's the default position for any heritage luxury brand with the budget to control its own narrative. What's changing under the new leadership is how aggressively the earned and shared dimensions are being engineered rather than left to chance.</p>
+
+      <p><strong>Paid</strong> is still the foundation: campaign films, magazine placements, OOH in fashion-capital cities, paid digital across Instagram and TikTok. <strong>Owned</strong> is the second pillar &mdash; Gucci.com as a flagship experience, the boutique network functioning as architecture-grade brand films you can walk into, and now Gucci Racing positioned to become its own owned platform. <strong>Shared</strong> sits at the celebrity-and-cultural-moment layer: the brand is built around its ambassadors' social reach and the fan communities that surround them. <strong>Earned</strong> is where the current strategy is most visibly different from the Michele era. Each major activation now seems to be selected for its earned-media yield, not just its on-channel performance.</p>
 
       <h3>The single-activation, multi-function logic</h3>
 
@@ -594,14 +944,19 @@
         <p class="sidebar-card-tag">"The collection reinforced Demna's ability to merge cultural commentary, product, and visual identity in a way that keeps luxury fashion relevant to a younger generation."</p>
       </div>
 
-      <p>Count what that single Saturday night actually was, and the PESO logic becomes obvious. <strong>It was paid media</strong> — the cost of a Times Square takeover is in the high seven figures even before you add the production, the talent, and the casting. <strong>It was a celebrity activation</strong> — five or six A-list ambassadors on the runway, twenty more in the audience, each generating their own social posts to a combined following in the hundreds of millions. <strong>It was owned media</strong> — the show was hosted on Gucci's terms, designed to flow into Gucci.com and the boutique network. <strong>It was shared media at scale</strong> — Brady's runway walk alone was reposted by Vogue, the NFL's official account, ESPN, and TMZ within twenty-four hours. <strong>It was a product launch</strong> — Demna's first Cruise collection for the house, positioned by him as Gucci's "new core wardrobe" and engineered as the foundation for next season's retail line. And <strong>it was earned media on a scale Gucci could not have purchased directly</strong> — coverage in Reuters, AFP, the BBC, Vogue, Dazed, the AP, every major fashion and culture outlet plus most general-news outlets.</p>
-
-      <figure class="inline-fig">
+      <figure class="inline-fig inline-fig-half">
         <img src="assets/images/gucci/era-demna-03.png" alt="Tom Brady walking the GucciCore Cruise 2027 runway in Times Square">
-        <figcaption><strong>Brady's catwalk debut</strong> drove a wave of crossover coverage from sports media, including <em>The New York Times</em> — <strong>"Gucci Got Tom Brady and Cindy Crawford to Strut Their Stuff in Times Square."</strong> A seven-time Super Bowl winner on a Gucci runway is exactly the kind of cross-category moment that buys earned media no fashion-press budget can manufacture.</figcaption>
+        <figcaption><strong>Brady's catwalk debut</strong> drove a wave of crossover coverage from sports media, including <em>The New York Times</em> &mdash; <strong>"Gucci Got Tom Brady and Cindy Crawford to Strut Their Stuff in Times Square."</strong> A seven-time Super Bowl winner on a Gucci runway is exactly the kind of cross-category moment no fashion-press budget can manufacture.</figcaption>
       </figure>
 
-      <p>One activation. Six jobs. That's the new playbook.</p>
+      <p>Count what that single Saturday night actually was, and the PESO logic becomes obvious. <strong>It was paid media</strong> &mdash; the cost of a Times Square takeover is in the high seven figures even before you add the production, the talent, and the casting. <strong>It was a celebrity activation</strong> &mdash; five or six A-list ambassadors on the runway, twenty more in the audience, each generating their own social posts to a combined following in the hundreds of millions. <strong>It was owned media</strong> &mdash; the show was hosted on Gucci's terms, designed to flow into Gucci.com and the boutique network. <strong>It was shared media at scale</strong> &mdash; Brady's runway walk alone was reposted by Vogue, the NFL's official account, ESPN, and TMZ within twenty-four hours. <strong>It was a product launch</strong> &mdash; Demna's first Cruise collection for the house, positioned by him as Gucci's "new core wardrobe" and engineered as the foundation for next season's retail line. And <strong>it was earned media on a scale Gucci could not have purchased directly</strong> &mdash; coverage in Reuters, AFP, the BBC, Vogue, Dazed, the AP, every major fashion and culture outlet plus most general-news outlets.</p>
+
+      <div style="clear:both;"></div>
+
+      <div class="display-tagline">
+        <div class="display-tagline-text">One activation. <em>Six jobs.</em></div>
+        <div class="display-tagline-sub">That's the new playbook.</div>
+      </div>
 
       <h4>Gucci Racing Alpine F1 — announced May 27, 2026, live 2027</h4>
 
@@ -620,7 +975,13 @@
         <p>Compare those two activations against the Michele-era practice of running dozens of smaller paid placements per quarter. The new approach makes fewer bets, but each one is structured to do five or six different jobs at once across paid, earned, shared, and owned channels. The Michele-era PESO mix was paid-heavy and earned-by-accident. The Demna-era mix is paid-heavy and <em>earned-by-design</em> — the activations are still expensive, but each one is built to generate proportionally more earned and shared output than a conventional campaign would, and to keep generating it across years rather than weeks.</p>
       </div>
 
-      <p>That's the real shift, and it's the one most easily overlooked. It's not that Gucci is suddenly spending more or spending less — luxury houses at this scale have always spent at the top of the category. It's that the spend is being concentrated into fewer, larger, longer-lived activations, each one engineered to compound across multiple PESO channels rather than burning out in a single press cycle. The Times Square show ran for one night and produced two weeks of global coverage. The F1 deal runs for years and will produce coverage continuously across its lifetime.</p>
+      <p>That's the real shift, and it's the one most easily overlooked. It's not that Gucci is suddenly spending more or spending less &mdash; luxury houses at this scale have always spent at the top of the category. It's that the spend is being concentrated into fewer, larger, longer-lived activations, each one engineered to compound across multiple PESO channels rather than burning out in a single press cycle. The Times Square show ran for one night and produced two weeks of global coverage. The F1 deal runs for years and will produce coverage continuously across its lifetime.</p>
+
+      <h3>Fewer events, more control over the message</h3>
+
+      <p>There's a second consequence of the new approach worth naming. By running fewer activations, Gucci isn't just being more efficient &mdash; it's giving itself a better shot at controlling what the conversation is about. When you run dozens of small activations per quarter, you can't predict which one the press will pick up or how they'll frame it. The story writes itself, often in directions you didn't want. When you run two or three giant ones per year, each one is so large that the press almost has to cover it, and they're more likely to cover it on the terms the activation itself set up.</p>
+
+      <p>Demna's Times Square show was clearly the brand's story to tell for the two weeks that followed. The Alpine F1 announcement was a one-day breaking-news cycle that Gucci framed in its own language: "Gucci Racing &mdash; a new business and experiential platform at the intersection of luxury and sport." That phrase &mdash; not anything a journalist wrote &mdash; appeared in nearly every piece of coverage in the next 48 hours. You can't control the press. But if you give them an activation that's already pre-loaded with the framing you want, the framing tends to ride along.</p>
     </section>
 
     <!-- ============ SECTION 4: BRAND VS. PERFORMANCE ============ -->
@@ -662,9 +1023,89 @@
       </div>
     </section>
 
-    <!-- ============ SECTION 5: COMPETITORS ============ -->
-    <section class="section" id="competitors">
+    <!-- ============ SECTION 5: SEGMENTATION ============ -->
+    <section class="section" id="segmentation">
       <div class="sec-num">05</div>
+      <div class="sec-label">Segmentation</div>
+      <h2>Who actually buys Gucci &mdash; and why the answer surprises people.</h2>
+
+      <p>Ask a room of undergraduates who Gucci is for, and most will say <em>themselves</em>. They'll point to the Instagram presence, the celebrity ambassadors, the TikTok visibility, the streetwear collaborations, the Demna provocations. They are not wrong about who Gucci <em>markets to</em>. They are wrong about who actually <em>buys</em> at full price.</p>
+
+      <p>The cleanest way to understand Gucci's segmentation is to separate the brand's three customer layers &mdash; because the loudest one in cultural conversation is the smallest one in the revenue mix.</p>
+
+      <div class="segment-stack">
+        <div class="segment-row">
+          <div class="segment-num">01</div>
+          <div>
+            <div class="segment-title-sub">Core full-price buyers</div>
+            <div class="segment-title">Affluent 30&ndash;55+</div>
+            <div class="segment-body">
+              <p>People who can repeatedly buy handbags, shoes, ready-to-wear, jewelry, and accessories without organizing their identity around any single purchase. This is the revenue engine. <strong>Gucci's 2024 revenue of &euro;7.7 billion was 91% directly operated retail</strong> &mdash; meaning the business depends overwhelmingly on full-price boutique and e-commerce sales, not youth hype.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="segment-row">
+          <div class="segment-num">02</div>
+          <div>
+            <div class="segment-title-sub">Younger luxury buyers</div>
+            <div class="segment-title">25&ndash;39, especially Millennials</div>
+            <div class="segment-body">
+              <p>The fashion/image customer at the sweet spot &mdash; old enough to have income, young enough to care about visible status and cultural relevance. During the Michele boom in 2017, <strong>55% of Gucci sales came from consumers under 35</strong>, an unusually young distribution for a heritage luxury house. This is the layer Gucci is best at activating, and the one most receptive to cultural moments like the Times Square show.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="segment-row">
+          <div class="segment-num">03</div>
+          <div>
+            <div class="segment-title-sub">Gen Z, 18&ndash;24</div>
+            <div class="segment-title">High awareness, high aspiration, selective buying</div>
+            <div class="segment-body">
+              <p>The group Gucci's marketing <em>feels</em> made for &mdash; and the group that contributes the smallest revenue share. Gen Z buys entry items: fragrance, belts, wallets, sunglasses, slides, small leather goods, secondhand purchases, or one "big" symbolic item. The premium handbag and ready-to-wear sales that drive Gucci's economics come from older, richer, repeat customers.</p>
+              <p><strong>Gen Z accounted for roughly 4% of global luxury spending pre-pandemic</strong>, and Bain reports their share has cooled in Western markets and Japan since 2024. They matter strategically, but they are not the revenue base.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Why Gen Z is in the marketing if they're not in the revenue</h3>
+
+      <p>Gucci is using Gen Z as an <strong>aspirational recruitment audience</strong>, not a current revenue target. The economic logic is straightforward: sell the 22-year-old the belt, sunglasses, fragrance, wallet, small leather good, sneaker, or charm now. Then, if the brand stays emotionally loaded in that customer's mind for the next decade, maybe they buy the handbag, watch, ready-to-wear, or higher-margin leather good when they're 32 or 42 or 52 and finally have full luxury spending power.</p>
+
+      <p>Kering's own 2022 Gucci strategy presentation said the brand should "capitalize on younger generations with aspirational categories" while also pursuing "growth opportunities among mature clients through brand elevation." Translation: keep the Gen Z heat, sell them the affordable stuff, but build the business on the people who can already write five-figure checks. It's a long-arc recruitment funnel disguised as a youth-marketing program.</p>
+
+      <h3>How Gucci's audience differs from its competitors</h3>
+
+      <div class="audience-compare">
+        <div class="audience-compare-title">Gucci vs. Louis Vuitton &mdash; same demographic, different psychological territory</div>
+        <div class="audience-compare-grid">
+          <div class="audience-compare-col gucci">
+            <div class="audience-compare-col-name">Gucci</div>
+            <div class="audience-compare-col-signal">"I'm stylish."</div>
+            <div class="audience-compare-col-body">Fashion-forward, trend-driven, expressive. Strongest pull on younger consumers, especially Gen Z. More experimental, higher "loud-luxury" factor historically. Identity-and-fashion signaling. Heavy streetwear influence in the Michele era. Vulnerable to trend cycles &mdash; explosive growth, sharper drops.</div>
+          </div>
+          <div class="audience-compare-col lv">
+            <div class="audience-compare-col-name">Louis Vuitton</div>
+            <div class="audience-compare-col-signal">"I made it."</div>
+            <div class="audience-compare-col-body">Heritage, status, classic luxury. Slightly older Millennials and affluent professionals. More conservative, more controlled prestige. Achievement-and-status signaling. Streetwear influence present but more restrained. Operates more like a global luxury utility &mdash; broad appeal, stable prestige, less aesthetic-cycle volatility.</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Hermès and Chanel skew older and wealthier still &mdash; the consumer who's done with signaling and just wants the object. Bottega Veneta plays the same territory as Hermès but with a generation younger. The pattern across luxury is consistent: <strong>as consumers age, they move from logo-forward identity brands (Gucci, LV) toward quieter status brands (Bottega, Hermès, Chanel).</strong> Gucci's strategic challenge is whether to fight that aging-up &mdash; by staying culturally loud for the next cohort &mdash; or to follow it, by elevating into the quieter-luxury zone the De Sarno era briefly attempted.</p>
+
+      <div class="sidebar-card">
+        <h3>The audience trap, in one sentence</h3>
+        <p class="sidebar-card-sub">A useful frame for any luxury-brand analysis.</p>
+        <p>Gucci markets to Gen Z not because Gen Z is its largest sales segment today, but because Gen Z creates cultural heat, social visibility, and future brand preference. The current sale may be a belt, fragrance, wallet, sneaker, or accessory. The long-term goal is to make Gucci feel familiar, desirable, and status-loaded <em>before</em> that consumer has full luxury spending power.</p>
+        <p class="sidebar-card-tag">Gucci's audience is young. Gucci's revenue is older and richer. Don't confuse the two.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECTION 6: COMPETITORS ============ -->
+    <section class="section" id="competitors">
+      <div class="sec-num">06</div>
       <div class="sec-label">Competitor Comparison</div>
       <h2>Not all premium fashion plays the same game.</h2>
 
@@ -716,6 +1157,96 @@
       <p class="tagline">The category isn't the strategy. The strategy is the strategy.</p>
 
       <p>Three brands, three IMC playbooks, three different ratios. Hermès wins by refusing to play. Bottega wins by refusing to shout. LV wins by playing loud at compounding scale. Gucci is currently betting that it can run LV's playbook with sharper creative discipline than Michele had and more cultural relevance than De Sarno achieved. Five years from now we'll know whether that bet paid off. The F1 deal announced today is the clearest move yet that the bet is real and the chips are committed.</p>
+    </section>
+
+    <!-- ============ SECTION 7: BUSINESS MODEL ============ -->
+    <section class="section" id="business-model">
+      <div class="sec-num">07</div>
+      <div class="sec-label">Business Model</div>
+      <h2>The retail shift behind the brand shift.</h2>
+
+      <p>Most of this page has been about what Gucci <em>says</em>. This section is about how Gucci <em>sells</em> &mdash; and it turns out the marketing pivot under Demna is happening alongside a quieter but equally consequential pivot in the underlying business model. Both shifts are pointed in the same direction, and they reinforce each other.</p>
+
+      <h3>What "DTC vs. wholesale" actually means</h3>
+
+      <p>Luxury brands sell their product two ways. <strong>Directly operated retail</strong> &mdash; what the industry calls DTC, for direct-to-consumer &mdash; means the brand owns the store: Gucci.com, Gucci flagship boutiques, Gucci airport stores. The brand controls pricing, presentation, customer experience, and data. Margins are higher because no third party is taking a cut.</p>
+
+      <p><strong>Wholesale</strong> means selling through department stores and multi-brand retailers: a Gucci section at Nordstrom or Saks, or Gucci goods on third-party luxury e-commerce sites. Wholesale gives a brand reach into places it doesn't operate, but at the cost of margin (the retailer takes a cut), control (the brand doesn't decide how its product is displayed next to competitors'), and pricing discipline (department stores discount during promotions).</p>
+
+      <p>For decades, the entire luxury industry has been moving from wholesale toward DTC. The reason is simple: the higher the brand's prestige, the more the wholesale environment cheapens it. Seeing a Gucci handbag next to a Michael Kors handbag in a department store undermines the very premium positioning the brand spends hundreds of millions to build elsewhere.</p>
+
+      <h3>Where Gucci sits today</h3>
+
+      <p>Gucci's 2024 revenue was <strong>91% directly operated retail</strong>, with the remaining ~9% from wholesale. Kering has publicly stated the goal is to get wholesale to <strong>below 10% of total Gucci sales</strong> &mdash; the implication being that the current 9% is the floor, and they want it tighter still. The Demna-era brand strategy makes sense only if the retail strategy is also moving this direction. You can't claim to be the most culturally relevant luxury house in the world if you're also visible at the Macy's anniversary sale.</p>
+
+      <table class="biz-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Approx. DTC share</th>
+            <th>Direction</th>
+            <th>Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="gucci-row">
+            <td>Gucci</td>
+            <td>~91% DTC</td>
+            <td>Pushing toward 95%+</td>
+            <td>Aggressive wholesale reduction to match the brand-elevation strategy.</td>
+          </tr>
+          <tr>
+            <td>Louis Vuitton</td>
+            <td>~100% DTC</td>
+            <td>Already there</td>
+            <td>LV famously refuses to sell wholesale at all. Every LV bag in the world comes from an LV store or LV.com.</td>
+          </tr>
+          <tr>
+            <td>Hermès</td>
+            <td>~100% DTC</td>
+            <td>Already there</td>
+            <td>Pure DTC, plus scarcity, plus a hand-selected client list. The opposite of a wholesale business model.</td>
+          </tr>
+          <tr>
+            <td>Bottega Veneta</td>
+            <td>~85&ndash;90% DTC</td>
+            <td>Pushing toward 95%+</td>
+            <td>Same parent (Kering), same strategy as Gucci. Bottega has been faster about it.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The pattern is clear. At the top of luxury, DTC is the standard, and any wholesale presence is a vestige to be reduced. Gucci is converging on the same model the other top houses have already adopted. The Demna-era marketing strategy is, in part, the visible signal of a less-visible retail strategy: get the brand to a place where every Gucci touchpoint is controlled, premium, and consistent &mdash; because that's the only environment in which a $50&ndash;60M-per-year F1 sponsorship pays back.</p>
+
+      <div class="callout">
+        <div class="callout-label">The link the page has been building toward</div>
+        <p>The DTC shift, the cultural spectacle, the F1 deal, the celebrity-led activations, the Demna provocations &mdash; they're all the same strategy expressed through different functions of the business. Gucci is trying to operate as a fully controlled luxury house at every customer touchpoint, from the runway to the retail rack. Whether that strategy works is a question for 2028 and beyond. Whether it's coherent is no longer a question at all.</p>
+      </div>
+    </section>
+
+    <!-- ============ SUMMARY ============ -->
+    <section class="section" id="summary">
+      <div class="sec-num">&mdash;</div>
+      <div class="sec-label">Summary</div>
+      <h2>What this page has been arguing.</h2>
+
+      <p>Gucci is twelve months into a turnaround that, on paper, looks like nothing more than a new creative director and a couple of big sponsorship deals. Read closely, it's a coordinated reset across four functions of the business at once.</p>
+
+      <ul>
+        <li><strong>Creative direction</strong> has moved from De Sarno's quiet classicism to Demna's calibrated spectacle &mdash; loud enough to generate cultural conversation, disciplined enough to control what the conversation is about.</li>
+        <li><strong>IMC</strong> has consolidated from many small activations into a few large multi-function ones &mdash; the Times Square show and the F1 deal each doing five or six PESO jobs simultaneously.</li>
+        <li><strong>Spend</strong> has shifted further toward brand-building (now estimated at 75/25 brand-to-performance), with the F1 commitment alone running $150M+ over three years.</li>
+        <li><strong>Distribution</strong> is pushing the wholesale channel toward extinction, getting Gucci to the all-DTC model that LV, Hermès, and Bottega already run.</li>
+      </ul>
+
+      <p>The bet is that all four shifts compound. If Demna delivers the cultural relevance, if the F1 platform builds the new audience, if the DTC consolidation protects the premium positioning, and if the spend trajectory holds, Gucci returns to growth and the 2025 sales drop becomes a footnote. If any one of those legs fails &mdash; if Demna's aesthetic doesn't land, or the luxury slowdown deepens, or the F1 audience doesn't convert &mdash; then this is a very expensive year of repositioning with no easy off-ramp.</p>
+
+      <p>The F1 announcement is the most visible commitment Kering has made to the new strategy. It locks in three years of premium-sport positioning, three years of co-branded content, and three years of headlines that say "Gucci Racing" before they say anything else. It's also a forward-looking bet on a different kind of luxury audience &mdash; one that watches Grand Prix on Sunday and wants the team apparel on Monday.</p>
+
+      <figure class="closing-diagram">
+        <img src="assets/images/logo-prices-f1.png" alt="F1 car-part sponsorship pricing diagram &mdash; approximate annual cost by location on the car">
+        <figcaption><strong>F1 sponsorship pricing by location on the car.</strong> A title sponsorship like Gucci's is the top of this pyramid &mdash; the team identity itself. Most other brands buy individual placements at vastly lower price points, from the engine cover to the rear wing to the halo. The diagram shows approximate annual costs for each location.</figcaption>
+      </figure>
     </section>
 
   </main>
