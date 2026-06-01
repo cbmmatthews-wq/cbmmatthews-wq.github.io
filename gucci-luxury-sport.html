@@ -9,8 +9,88 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 
-  <!-- Page-specific additions: stat cards, era timeline, breaking-news banner, competitor grid -->
+  <!-- Page-specific additions: stat cards, era timeline, breaking-news banner, competitor grid, image placeholders, Alpine slider override -->
   <style>
+    /* ===== Alpine F1 slider — 400px override on the existing strip CSS ===== */
+    .strip-container { height: 400px; }
+    @media (max-width: 760px) {
+      .strip-container { height: 280px; }
+    }
+    .alpine-strip-wrap {
+      margin: 4px 0 36px;
+    }
+    .alpine-strip-hint {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 14px;
+      max-width: none;
+    }
+
+    /* ===== Inline figure (for placeholders + real images, sized inside cards) ===== */
+    .placeholder-img {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(42, 36, 32, 0.04),
+        rgba(42, 36, 32, 0.04) 8px,
+        rgba(42, 36, 32, 0.07) 8px,
+        rgba(42, 36, 32, 0.07) 16px
+      );
+      border: 1px dashed var(--muted);
+      color: var(--muted);
+      text-align: center;
+      padding: 18px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+    .placeholder-img::before {
+      content: '\1F5BC';   /* framed picture glyph */
+      font-size: 22px;
+      margin-bottom: 8px;
+      opacity: 0.55;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .placeholder-img-note {
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      margin-top: 6px;
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+
+    /* Era card placeholder — sized to card width, 3:2 aspect */
+    .era-card .placeholder-img {
+      aspect-ratio: 3 / 2;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    /* Competitor card placeholder — left column, square-ish */
+    .competitor-card .placeholder-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      margin-bottom: 12px;
+    }
+
+    /* Standalone placeholder (Times Square in the intro) — 16:9, full width */
+    .placeholder-feature {
+      max-width: 860px;
+      margin: 22px 0;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    /* ===== Original page styles ===== */
     /* Breaking-news banner up top of the hero */
     .breaking-banner {
       display: inline-flex;
@@ -296,6 +376,28 @@
     <section class="section" style="padding-top: 36px;">
       <div class="breaking-banner">Announced today · May 27, 2026</div>
       <p style="font-size: 17px; line-height: 1.6;">Gucci will become the title sponsor of the Alpine Formula 1 team starting in 2027, racing as <em>Gucci Racing Alpine Formula One Team</em> — the first luxury fashion house ever to title-sponsor an F1 team. The deal launches "Gucci Racing," a new platform Gucci describes as being "at the intersection of luxury and sport." It's the latest and biggest move in a turnaround that's been twelve months in the making, and it's the cleanest signal yet of where the new leadership is taking the brand: <strong>spectacle, scale, and a deliberate pivot away from the quiet aesthetic that defined the previous creative director's two-year tenure.</strong></p>
+
+      <!-- Alpine F1 announcement slider (gucci-alpine-strip.js) -->
+      <div class="alpine-strip-wrap">
+        <div class="alpine-strip-hint">The official Gucci Racing × Alpine announcement carousel — click any image to enlarge. Auto-advances; hover to pause.</div>
+        <div class="strip-container">
+          <div class="strip-track" id="track"></div>
+          <button class="strip-arrow prev" id="stripPrev" aria-label="Previous slide">&lsaquo;</button>
+          <button class="strip-arrow next" id="stripNext" aria-label="Next slide">&rsaquo;</button>
+        </div>
+        <div class="strip-controls">
+          <div>9 images &middot; auto-advances every <span id="speedLabel">3.0s</span></div>
+          <button id="pauseBtn" type="button">Pause</button>
+        </div>
+      </div>
+
+      <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="close" id="lbClose" aria-label="Close">&times;</button>
+        <button class="nav prev" id="lbPrev" aria-label="Previous">&lsaquo;</button>
+        <button class="nav next" id="lbNext" aria-label="Next">&rsaquo;</button>
+        <img id="lbImg" src="" alt="">
+        <div class="meta" id="lbMeta"></div>
+      </div>
     </section>
 
     <!-- ============ SECTION 1: BRAND IDENTITY ============ -->
@@ -333,18 +435,30 @@
 
       <div class="era-grid">
         <div class="era-card michele">
+          <div class="placeholder-img">
+            Michele era visual
+            <span class="placeholder-img-note">Suggested: 2018&ndash;2020 maximalist Gucci campaign image &mdash; layered, monogram-heavy, romantic</span>
+          </div>
           <div class="era-card-period">2015&ndash;2022</div>
           <div class="era-card-director">Michele Era</div>
           <div class="era-card-tagline">Saturate the culture.</div>
           <p>Heavy paid social, especially Instagram. Celebrity ambassadors at scale (Harry Styles, Jared Leto). Cinematic campaign films with star directors. The double-G monogram everywhere. IMC strategy was about <em>cultural ubiquity</em> — be in every feed, on every red carpet, in every meme.</p>
         </div>
         <div class="era-card sarno">
+          <div class="placeholder-img">
+            De Sarno era visual
+            <span class="placeholder-img-note">Suggested: 2024 &ldquo;Ancora&rdquo; red campaign image &mdash; quiet, minimal, classical</span>
+          </div>
           <div class="era-card-period">2023&ndash;2025</div>
           <div class="era-card-director">De Sarno Era</div>
           <div class="era-card-tagline">Retreat into restraint.</div>
           <p>Quieter campaign aesthetics. Less celebrity, more product. Pivot toward Hermès-style elegance. The IMC pulled back to match the quieter design language — but the brand had spent a decade training the market to expect spectacle, and the audience didn't follow.</p>
         </div>
         <div class="era-card demna">
+          <div class="placeholder-img">
+            Demna era visual
+            <span class="placeholder-img-note">Suggested: &ldquo;Generation Gucci&rdquo; Pre-Fall 2026 campaign image or GucciCore Times Square runway</span>
+          </div>
           <div class="era-card-period">2025&ndash;present</div>
           <div class="era-card-director">Demna Era</div>
           <div class="era-card-tagline">Spectacle, but with discipline.</div>
@@ -367,12 +481,41 @@
 
       <p><strong>Paid</strong> is still the foundation: campaign films, magazine placements, OOH in fashion-capital cities, paid digital across Instagram and TikTok. <strong>Owned</strong> is the second pillar — Gucci.com as a flagship experience, the boutique network functioning as architecture-grade brand films you can walk into, and now Gucci Racing positioned to become its own owned platform. <strong>Shared</strong> sits at the celebrity-and-cultural-moment layer: the brand is built around its ambassadors' social reach and around the fan communities that surround them. <strong>Earned</strong> is where the current strategy is most visibly different from the Michele era. Each major activation now seems to be selected for its earned-media yield, not just its on-channel performance.</p>
 
-      <p>The Alpine F1 deal is the clearest example. It's a paid sponsorship contract, but it's also engineered as a year-round earned-media machine — every race weekend from 2027 onward is twenty hours of global broadcast time with the Gucci name embedded in the team identity. The Times Square activation in May 2026 was the same logic: a paid runway show staged in a way that guaranteed earned coverage in every major business and culture outlet. The brand is essentially buying earned media by structuring paid investments as inherently newsworthy events.</p>
+      <h3>The single-activation, multi-function logic</h3>
+
+      <p>The cleanest way to understand the current approach is to look at what each major activation is actually <em>doing</em> — and how many jobs it does at once. The Michele era spent at high volume and got earned coverage as a byproduct. The Demna era is engineering activations where the earned coverage is the point, the paid investment is the trigger, and a half-dozen other strategic objectives get knocked down along the way.</p>
+
+      <h4>GucciCore at Times Square — May 16, 2026</h4>
+
+      <p>Gucci's Cruise 2027 show, branded "GucciCore," took over a full block of Times Square between Broadway and Seventh Avenue. Cindy Crawford closed the show. Tom Brady walked the runway in all-black leather and made his catwalk debut. Lewis Hamilton was there. So were Mariah Carey, Kim Kardashian, Paris Hilton, Anna Wintour, Emily Ratajkowski, Lindsay Lohan, Shawn Mendes, Alix Earle, and Kate Moss. The show was simulcast on the surrounding Times Square LED billboards — and Gucci even commandeered those billboards to display fake ads for fictional Gucci products (including, reportedly, Gucci supplements) as part of the show's "Guccified New York archetypes" concept.</p>
+
+      <div class="placeholder-img placeholder-feature">
+        Times Square &mdash; GucciCore runway, May 16, 2026
+        <span class="placeholder-img-note">Suggested: wide shot of the Times Square takeover with the billboards, or Brady/Crawford on the runway</span>
+      </div>
+
+      <p>Count what that single Saturday night actually was, and the PESO logic becomes obvious. <strong>It was paid media</strong> — the cost of a Times Square takeover is in the high seven figures even before you add the production, the talent, and the casting. <strong>It was a celebrity activation</strong> — five or six A-list ambassadors on the runway, twenty more in the audience, each generating their own social posts to a combined following in the hundreds of millions. <strong>It was owned media</strong> — the show was hosted on Gucci's terms, designed to flow into Gucci.com and the boutique network. <strong>It was shared media at scale</strong> — Brady's runway walk alone was reposted by Vogue, the NFL's official account, ESPN, and TMZ within twenty-four hours. <strong>It was a product launch</strong> — Demna's first Cruise collection for the house, positioned by him as Gucci's "new core wardrobe" and engineered as the foundation for next season's retail line. And <strong>it was earned media on a scale Gucci could not have purchased directly</strong> — coverage in Reuters, AFP, the BBC, Vogue, Dazed, the AP, every major fashion and culture outlet plus most general-news outlets.</p>
+
+      <p>One activation. Six jobs. That's the new playbook.</p>
+
+      <h4>Gucci Racing Alpine F1 — announced May 27, 2026, live 2027</h4>
+
+      <p>The F1 deal does the same multi-function work, but on a multi-year time horizon. Pull it apart:</p>
+
+      <p>It is, first, <strong>a paid sponsorship</strong> — a title-partner contract that gives Gucci's name prominent placement on the car, the team kit, the team transporters, and the team's official identity itself (the team will race as <em>Gucci Racing Alpine Formula One Team</em>). The financial terms weren't disclosed, but title sponsorships in F1 typically run in the tens of millions of dollars per year.</p>
+
+      <p>It is, second, <strong>a long-form content platform</strong>. F1 isn't a one-night event. It's twenty-four race weekends per year, each one producing forty-plus hours of broadcast content, behind-the-scenes documentary footage, social cuts, highlights, post-race interviews, and pre-race anticipation programming. Netflix's <em>Drive to Survive</em> alone has reshaped how F1 is consumed by audiences who don't watch live sports. Gucci has essentially bought a permanent year-round content slot inside one of the world's largest content ecosystems.</p>
+
+      <p>It is, third, <strong>a merchandise category</strong>. "Gucci Racing" was announced as a new business platform, not just a sponsorship credit — a sub-brand that will live across apparel, accessories, possibly automotive collaborations, and experiential retail for years to come. The Alpine deal is the platform's flagship, not its totality.</p>
+
+      <p>And it is, fourth, <strong>a global awareness vehicle on a scale no other luxury marketing channel can match</strong>. F1's 2025 season drew a cumulative global TV audience of 1.83 billion viewers — its largest in five years — with an average of 76.1 million viewers per Grand Prix. Almost 600 different brands had visible exposure during F1 broadcasts in 2025, but only one of them will be in the team name from 2027 onward.</p>
 
       <div class="callout">
-        <div class="callout-label">The shift</div>
-        <p>The Michele-era PESO mix was paid-heavy and earned-by-accident. The Demna-era mix is paid-heavy and <em>earned-by-design</em>. The activations are still expensive, but each one is built to generate proportionally more earned and shared output than a conventional campaign would. F1 is the apex of that strategy — a single sponsorship that runs for years and produces earned coverage continuously.</p>
+        <div class="callout-label">Why this matters for IMC discipline</div>
+        <p>Compare those two activations against the Michele-era practice of running dozens of smaller paid placements per quarter. The new approach makes fewer bets, but each one is structured to do five or six different jobs at once across paid, earned, shared, and owned channels. The Michele-era PESO mix was paid-heavy and earned-by-accident. The Demna-era mix is paid-heavy and <em>earned-by-design</em> — the activations are still expensive, but each one is built to generate proportionally more earned and shared output than a conventional campaign would, and to keep generating it across years rather than weeks.</p>
       </div>
+
+      <p>That's the real shift, and it's the one most easily overlooked. It's not that Gucci is suddenly spending more or spending less — luxury houses at this scale have always spent at the top of the category. It's that the spend is being concentrated into fewer, larger, longer-lived activations, each one engineered to compound across multiple PESO channels rather than burning out in a single press cycle. The Times Square show ran for one night and produced two weeks of global coverage. The F1 deal runs for years and will produce coverage continuously across its lifetime.</p>
     </section>
 
     <!-- ============ SECTION 4: BRAND VS. PERFORMANCE ============ -->
@@ -426,6 +569,10 @@
 
         <div class="competitor-card hermes">
           <div>
+            <div class="placeholder-img">
+              Herm&egrave;s visual
+              <span class="placeholder-img-note">Suggested: Birkin bag in a boutique window or against neutral background</span>
+            </div>
             <div class="competitor-tag">The Opposite Approach</div>
             <div class="competitor-name">Hermès</div>
             <div class="competitor-ratio">~95 / 5<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
@@ -438,6 +585,10 @@
 
         <div class="competitor-card bottega">
           <div>
+            <div class="placeholder-img">
+              Bottega Veneta visual
+              <span class="placeholder-img-note">Suggested: logo-free Andiamo or Cassette bag, or close-up of the Intrecciato weave</span>
+            </div>
             <div class="competitor-tag">Same Parent, Opposite Playbook</div>
             <div class="competitor-name">Bottega Veneta</div>
             <div class="competitor-ratio">~85 / 15<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
@@ -450,6 +601,10 @@
 
         <div class="competitor-card lv">
           <div>
+            <div class="placeholder-img">
+              Louis Vuitton visual
+              <span class="placeholder-img-note">Suggested: LVMH x F1 partnership imagery or LV monogram trunk product shot</span>
+            </div>
             <div class="competitor-tag">The Peer Doing Similar Things, Bigger</div>
             <div class="competitor-name">Louis Vuitton</div>
             <div class="competitor-ratio">~70 / 30<span class="competitor-ratio-label">Brand / Performance (est.)</span></div>
@@ -484,6 +639,7 @@
        ============================================================= -->
   <script src="assets/nav.js"></script>
   <script src="assets/scrollspy.js"></script>
+  <script src="assets/gucci-alpine-strip.js"></script>
 
 </body>
 </html>
