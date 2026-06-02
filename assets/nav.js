@@ -21,7 +21,16 @@ const navConfig = {
         { label: 'Unit 2A — Brand Foundations', href: 'unit-2a-brand-foundations.html' },
         { label: 'Unit 2B — Brand Mechanics',   href: 'unit-2b-brand-mechanics.html' },
         { label: 'Unit 2C — Blanding',          href: 'unit-2c-blanding.html' },
-        { label: 'Unit 3 — STP',                href: 'unit-3-stp.html' }
+        { label: 'Unit 3 — STP',                href: 'unit-3-stp.html' },
+        {
+          // Non-clickable parent. Hovering it reveals the flyout below.
+          label: 'Unit 4',
+          submenu: [
+            { label: 'Unit 4A — Getting Through', href: 'unit-4a-getting-through.html' },
+            { label: 'Unit 4B — Deciding',        href: 'unit-4b-deciding.html' },
+            { label: 'Unit 4C — Moving Them',     href: 'unit-4c-moving.html' }
+          ]
+        }
         // Add more units here as they're built
       ]
     },
@@ -101,6 +110,22 @@ const navConfig = {
     // Simple flat dropdown
     if (item.dropdown) {
       const subItems = item.dropdown.map(sub => {
+        // Nested flyout: a non-clickable parent that reveals its own
+        // submenu (parts A/B/C) to the side on hover.
+        if (sub.submenu) {
+          const leaves = sub.submenu.map(leaf => {
+            const isHere = leaf.href.toLowerCase() === here ? activeStyle : '';
+            return `<li><a href="${leaf.href}"${isHere}>${leaf.label}</a></li>`;
+          }).join('');
+          // Highlight the parent if one of its children is the current page.
+          const childActive = sub.submenu.some(leaf => leaf.href.toLowerCase() === here);
+          const parentActive = childActive ? activeStyle : '';
+          return `<li class="topnav-subitem">
+            <a href="#" class="has-flyout" onclick="return false;"${parentActive}>${sub.label}</a>
+            <ul class="topnav-flyout">${leaves}</ul>
+          </li>`;
+        }
+
         const cls = sub.disabled ? 'disabled' : '';
         const isHere = sub.href.toLowerCase() === here ? activeStyle : '';
         return `<li><a href="${sub.href}" class="${cls}"${isHere}>${sub.label}</a></li>`;

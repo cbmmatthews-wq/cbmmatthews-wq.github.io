@@ -142,6 +142,62 @@ body {
   font-style: italic;
 }
 
+/* Flyout submenu — a nested menu that opens to the side of a dropdown row.
+   Used by "Unit 4" in M544 Notes: the parent row isn't clickable; hovering it
+   reveals parts A/B/C in a panel beside the dropdown. */
+.topnav-subitem { position: relative; }
+.topnav-dropdown a.has-flyout {
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.topnav-dropdown a.has-flyout::after {
+  content: ' \25C2';            /* left-pointing caret: the flyout opens left */
+  font-size: 10px;
+  opacity: 0.55;
+  margin-left: 10px;
+}
+/* Keep the parent row highlighted while the cursor travels to the flyout. */
+.topnav-subitem:hover > a.has-flyout {
+  background: var(--paper);
+  color: var(--red);
+  border-left-color: var(--red);
+}
+.topnav-flyout {
+  display: none;
+  position: absolute;
+  top: -8px;                    /* align with the dropdown's top padding */
+  right: 100%;                  /* open to the left of the dropdown */
+  min-width: 260px;
+  background: var(--white);
+  border-top: 2px solid var(--red);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  list-style: none;
+  padding: 8px 0;
+  z-index: 220;
+}
+.topnav-subitem:hover .topnav-flyout,
+.topnav-subitem:focus-within .topnav-flyout {
+  display: block;
+}
+.topnav-flyout a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  letter-spacing: 0;
+  text-transform: none;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+.topnav-flyout a:hover {
+  background: var(--paper);
+  color: var(--red);
+  border-left-color: var(--red);
+}
+
 /* Mega menu — 3-column dropdown used by the Resources nav item.
    Hover trigger same as .topnav-dropdown; layout is a grid. */
 .topnav-megamenu {
@@ -1320,6 +1376,18 @@ pre.ascii-figure {
   .topnav-brand { font-size: 14px; }
   .topnav-link { padding: 0 10px; font-size: 11px; }
   .topnav-dropdown { right: -10px; min-width: 240px; }
+  /* On narrow screens, a sideways flyout would run off-screen, so expand the
+     Unit 4 parts inline beneath the parent instead. */
+  .topnav-flyout {
+    position: static;
+    min-width: 0;
+    border-top: none;
+    box-shadow: none;
+    padding: 0 0 4px;
+    background: var(--paper);
+  }
+  .topnav-flyout a { padding-left: 36px; font-size: 13px; }
+  .topnav-dropdown a.has-flyout::after { content: ' \25BE'; }  /* down caret */
   .subnav-inner a { font-size: 11px; padding: 12px 10px; }
   .home-hero { padding: 60px 0 30px; }
   .home-divider { margin: 30px auto; }
