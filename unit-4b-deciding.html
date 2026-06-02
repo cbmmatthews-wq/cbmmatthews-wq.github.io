@@ -190,6 +190,96 @@
     .yt-pair { grid-template-columns: 1fr; }
   }
 
+  /* Lightbox modal for video playback. Triggered when a .yt-card is
+     clicked. Renders a centered iframe over a dimmed backdrop; escape,
+     backdrop click, or close button dismisses. */
+  .video-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(20, 16, 12, 0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+  }
+  .video-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0s linear 0s;
+  }
+  .video-lightbox-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+  .video-lightbox-stage iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video-lightbox-close {
+    position: absolute;
+    top: -44px;
+    right: -4px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    transition: background 0.15s, color 0.15s;
+  }
+  .video-lightbox-close:hover,
+  .video-lightbox-close:focus-visible {
+    background: var(--red);
+    color: var(--white);
+    outline: none;
+  }
+  .video-lightbox-caption {
+    position: absolute;
+    bottom: -36px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13.5px;
+  }
+  body.video-lightbox-open {
+    overflow: hidden;
+  }
+  @media (max-width: 720px) {
+    .video-lightbox { padding: 12px; }
+    .video-lightbox-close {
+      top: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.95);
+    }
+    .video-lightbox-caption {
+      bottom: -28px;
+      font-size: 12px;
+    }
+  }
+
   /* §2 — Pain Point Taxonomy figure */
   .pain-grid {
     display: grid;
@@ -2191,16 +2281,63 @@
 <script src="assets/scrollspy.js"></script>
 
 <script>
-  /* Click-to-play YouTube facade — thumbnail cards swap to a playing
-     iframe on click, no page navigation. Autoplay works because the
-     iframe is created in response to a user gesture. */
+  /* Video lightbox — click a .yt-card to open the video in a centered
+     modal over a dimmed backdrop. The iframe is created on user gesture
+     (so autoplay works) and destroyed on close (so playback stops).
+     Dismisses on ESC, backdrop click, or close button. */
   (function () {
-    function playVideo(card) {
+    var lightbox, stage, closeBtn, captionEl, lastTrigger;
+
+    function buildLightbox() {
+      lightbox = document.createElement('div');
+      lightbox.className = 'video-lightbox';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.setAttribute('aria-label', 'Video player');
+
+      stage = document.createElement('div');
+      stage.className = 'video-lightbox-stage';
+
+      closeBtn = document.createElement('button');
+      closeBtn.className = 'video-lightbox-close';
+      closeBtn.type = 'button';
+      closeBtn.setAttribute('aria-label', 'Close video');
+      closeBtn.innerHTML = '&times;';
+
+      captionEl = document.createElement('div');
+      captionEl.className = 'video-lightbox-caption';
+
+      stage.appendChild(closeBtn);
+      stage.appendChild(captionEl);
+      lightbox.appendChild(stage);
+      document.body.appendChild(lightbox);
+
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+          closeLightbox();
+        }
+      });
+    }
+
+    function openLightbox(card) {
+      if (!lightbox) buildLightbox();
       var videoId = card.getAttribute('data-video-id');
       var videoTitle = card.getAttribute('data-video-title') || '';
+      var titleEl = card.querySelector('.yt-title');
+      var labelEl = card.querySelector('.yt-label');
       if (!videoId) return;
-      var thumb = card.querySelector('.yt-thumb');
-      if (!thumb || thumb.querySelector('iframe')) return;
+
+      lastTrigger = card;
+
+      /* Remove any prior iframe before inserting the new one. */
+      var prior = stage.querySelector('iframe');
+      if (prior) prior.remove();
+
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
       iframe.title = videoTitle;
@@ -2208,24 +2345,43 @@
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       iframe.setAttribute('allowfullscreen', '');
-      iframe.style.position = 'absolute';
-      iframe.style.inset = '0';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.border = '0';
-      thumb.innerHTML = '';
-      thumb.appendChild(iframe);
-      card.style.cursor = 'default';
+      stage.insertBefore(iframe, closeBtn);
+
+      var captionParts = [];
+      if (labelEl) captionParts.push(labelEl.textContent.trim());
+      if (titleEl) captionParts.push(titleEl.textContent.trim());
+      captionEl.textContent = captionParts.join(' \u2014 ');
+
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('video-lightbox-open');
+
+      /* Move focus to the close button so ESC and tab behavior are predictable. */
+      setTimeout(function () { closeBtn.focus(); }, 50);
     }
+
+    function closeLightbox() {
+      if (!lightbox) return;
+      var iframe = stage.querySelector('iframe');
+      if (iframe) iframe.remove();
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('video-lightbox-open');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') {
+        lastTrigger.focus();
+      }
+    }
+
     document.querySelectorAll('.yt-card[data-video-id]').forEach(function (card) {
       card.addEventListener('click', function (e) {
         if (e.target.closest('.yt-watch')) return;
-        playVideo(card);
+        e.preventDefault();
+        openLightbox(card);
       });
       card.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          playVideo(card);
+          openLightbox(card);
         }
       });
     });
