@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4A: Getting Through — cbmatthe</title>
+<meta name="description" content="Unit 4A of M544. How messages become meaning: the communication model, the source effect, noise, semiotics, meaning transfer, and figurative language.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Unit 4A ---- */
+
+  /* Communication-model flow diagram */
+  .comm-flow { margin: 4px 0 6px; }
+  .cf-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 8px;
+  }
+  .cf-node {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    padding: 13px 14px;
+    flex: 1 1 110px;
+    min-width: 104px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .cf-node .cf-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  .cf-node .cf-sub {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .cf-arrow {
+    align-self: center;
+    color: var(--muted);
+    font-size: 18px;
+    flex: 0 0 auto;
+  }
+  .cf-noise {
+    margin-top: 12px;
+    background: var(--ink);
+    color: #e8e4dc;
+    text-align: center;
+    padding: 11px 14px;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    line-height: 1.45;
+  }
+  .cf-noise strong { color: var(--red-mid); }
+  .cf-feedback {
+    margin-top: 9px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .cf-feedback strong { color: var(--ink); font-style: normal; }
+  @media (max-width: 640px) {
+    .cf-row { flex-direction: column; }
+    .cf-arrow { transform: rotate(90deg); }
+  }
+
+  /* Source-effect table — "same words, different source" */
+  .source-table { width: 100%; border-collapse: collapse; margin: 0; font-size: 14px; }
+  .source-table th {
+    background: var(--ink);
+    color: var(--white);
+    text-align: left;
+    padding: 11px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .source-table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  .source-table tr:last-child td { border-bottom: none; }
+  .source-table .said {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .source-table .from { color: var(--ink-soft); }
+  .source-table .decodes { color: var(--ink-soft); }
+  .source-table .decodes strong { color: var(--red); }
+  @media (max-width: 640px) {
+    .source-table .said { white-space: normal; }
+  }
+
+  /* Semiotic triangle — SVG diagram for §2 */
+  .semio-triangle {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  /* Two-halves diagram — SVG for §3 */
+  .meaning-halves {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  /* Brand-character gallery — §4 (placeholders swap 1:1 with <img class="character-img">) */
+  .character-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin: 0;
+  }
+  .character-card { display: flex; flex-direction: column; }
+  .character-img,
+  .character-placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--cream);
+    margin-bottom: 10px;
+    border-radius: 2px;
+  }
+  .character-img { object-fit: cover; }
+  .character-placeholder {
+    border: 2px dashed var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 12.5px;
+    line-height: 1.4;
+    box-sizing: border-box;
+  }
+  .character-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .character-brand {
+    font-size: 10.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .character-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Synthesis grid — Closer Figure 4A.9 */
+  .synthesis-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 0 0 14px;
+  }
+  .synthesis-cell {
+    background: var(--cream);
+    border-top: 3px solid var(--red);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .synthesis-num {
+    font-family: var(--serif);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .synthesis-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .synthesis-cell p {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .synthesis-summary {
+    background: var(--ink);
+    color: #e8e4dc;
+    text-align: center;
+    padding: 15px 20px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .synthesis-summary strong { color: var(--red-mid); font-style: normal; }
+  @media (max-width: 720px) {
+    .synthesis-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Key terms list inside sidebar — compact reference */
+  .key-terms { margin: 0; }
+  .key-terms p {
+    font-size: 13px;
+    line-height: 1.55;
+    margin: 0 0 8px;
+  }
+  .key-terms p:last-child { margin-bottom: 0; }
+
+  /* Dual close — pairs The Enduring Idea (takeaway) with The Current View (callout) */
+  .dual-close { margin: 30px 0 4px; }
+  .dual-close .takeaway { margin: 0; }
+  .dual-close .callout { margin: 14px 0 0; }
+
+  /* Work-in-progress stub note */
+  .stub-note {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  /* Inline source links route to the secondary blue, so citations read as
+     "clickable" and don't compete with the red structural accents. */
+  .section a { color: var(--blue); }
+  .section a:hover { color: var(--ink); }
+  .sidebar-card a { color: var(--blue-mid); }      /* legible on the dark card */
+  .sidebar-card a:hover { color: var(--white); }
+
+  /* APA reference list — small type, hanging indents */
+  .references { max-width: 820px; }
+  .references .ref {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    padding-left: 28px;
+    text-indent: -28px;
+    margin-bottom: 12px;
+  }
+  .references .ref a { word-break: break-word; }
+
+  /* Unit forward/back navigation (matches earlier units) */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 60px 0 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-nav a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--cream);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .unit-nav a:hover { background: var(--red-soft); }
+  .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .unit-nav-prev { text-align: left; }
+  .unit-nav-next { text-align: right; }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-prev, .unit-nav-next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-num">4A</div>
+    <div class="page-hero-eyebrow">M544 · Unit 4A</div>
+    <h1>Getting Through</h1>
+    <p class="lede">How messages become meaning. Before anyone decides anything or gets persuaded of anything, a message has to travel from one head to another and survive the trip. This part is the plumbing of that trip — and the reason the thing that arrives is never quite the thing that was sent.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#model">The Model</a>
+    <a href="#semiotics">Meaning &amp; Semiotics</a>
+    <a href="#meaning-source">Where Meaning Comes From</a>
+    <a href="#figurative">Figurative Language</a>
+    <a href="#closer">Closer</a>
+    <a href="#references">References</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>Meaning Is Built, Not Delivered</h2>
+
+  <p>There is a comfortable way to think about marketing communication, and it is wrong. The comfortable version goes like this: you have an idea, you put it into words and pictures, you send it out through some channel, and it lands in the customer's head more or less intact. Communication is transmission. Get the message right and the job is done.</p>
+
+  <p>This is not a stupid model. It is how most org charts are drawn, how most media plans are budgeted, and how most people picture a press release working. It is also how the engineers who first formalized communication in the 1940s described it, and it captures something real — there is a sender, there is a channel, there is a receiver. The trouble is that it gets the one thing that matters backward. The message does not arrive intact. It gets <em>rebuilt</em> at the other end, by a person who was not in the room when it was written, who is half-watching, who carries a lifetime of associations the sender never accounted for. Meaning is not shipped. It is reconstructed. And the marketer controls only one side of that reconstruction.</p>
+
+  <p>That reframe is why Unit 4A comes first. Once you accept that meaning is constructed by the receiver — not handed over by the sender — almost everything in the rest of this unit follows. Why two people see the same ad and take away opposite things. Why a brand can mean one thing to its founder and something else entirely to its customers. Why a perfectly clear internal memo still gets misread. This first part covers the <em>plumbing</em> (how a message physically travels) and the <em>code</em> (how meaning gets made from signs). The standard treatments pair them deliberately, and so will we.</p>
+
+  <p>One framing assumption runs underneath every part of this unit, so it is worth stating once. Assume a contemporary consumer: <strong>attention-scarce, algorithmically-mediated, and mobile-first</strong>, meeting brands across fragmented paid, owned, earned, and shared touchpoints, trusting peers and creators over polished advertising, and expecting friction-free action. The classic models were written before that consumer existed in full. They still hold — but the conditions they operate under have shifted, and each section ends by showing how.</p>
+
+  <div class="callout">
+    <div class="callout-label">For the non-marketers in the room</div>
+    <p>Most of you are not in marketing — you are in operations, HR, management, accounting. This unit is still about your work, because it is not really about advertising. It is about why a clear message gets received as something other than what you meant. The reorg announcement that sets off a panic, the policy memo nobody acts on, the onboarding doc that confuses every new hire: those are communication failures with the same anatomy as a failed ad. Learn the anatomy here and you can diagnose them anywhere.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — THE COMMUNICATION MODEL
+     ============================================================ -->
+<section class="section" id="model">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The Model</div>
+  <h2>The Communication Model, and Where It Breaks</h2>
+
+  <p>The word <em>communication</em> comes from the Latin <em>communis</em> — "common." That root is not decoration. To communicate is to establish a <em>commonness of thought</em> between two parties, which means communication has not occurred just because a message was sent. It has occurred only when something is genuinely shared. A salesperson can deliver a flawless pitch to a buyer who is nodding along while scrolling her phone, and no communication has taken place at all — sound waves hit an eardrum, but no thought was held in common. Communication is something you do <em>with</em> another person, not something you do <em>to</em> them. Hold onto that. It is the whole reason the transmission model fails.</p>
+
+  <p>The standard sources draw essentially the same diagram for how a message moves, and it is worth keeping because it gives you a vocabulary for naming exactly where things go wrong.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.1</div>
+    <div class="figure-title">The Communication Process</div>
+    <div class="figure-content">
+      <div class="comm-flow">
+        <div class="cf-row">
+          <div class="cf-node">
+            <div class="cf-name">Source</div>
+            <div class="cf-sub">has something to share</div>
+          </div>
+          <div class="cf-arrow">&rarr;</div>
+          <div class="cf-node">
+            <div class="cf-name">Encoding</div>
+            <div class="cf-sub">thought &rarr; words, images, signs</div>
+          </div>
+          <div class="cf-arrow">&rarr;</div>
+          <div class="cf-node">
+            <div class="cf-name">Message<br>&amp; Channel</div>
+            <div class="cf-sub">the form, and how it travels</div>
+          </div>
+          <div class="cf-arrow">&rarr;</div>
+          <div class="cf-node">
+            <div class="cf-name">Decoding</div>
+            <div class="cf-sub">receiver rebuilds the meaning</div>
+          </div>
+          <div class="cf-arrow">&rarr;</div>
+          <div class="cf-node">
+            <div class="cf-name">Receiver<br>&amp; Outcome</div>
+            <div class="cf-sub">awareness, attitude, action</div>
+          </div>
+        </div>
+        <div class="cf-noise"><strong>NOISE</strong> &mdash; interference that can distort the message at <em>any</em> stage above</div>
+        <div class="cf-feedback"><strong>Feedback</strong> loops back from receiver to source &mdash; how the source learns whether any of it worked</div>
+      </div>
+    </div>
+    <div class="figure-caption">Synthesized from standard communication-process models (<a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">Belch &amp; Belch, 2023</a>; <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">Andrews &amp; Shimp, 2018</a>). The spine is consistent across treatments: encode, transmit, decode, with noise and feedback throughout.</div>
+  </div>
+
+  <h3>1.1 Encoding, Decoding, and the Overlap That Makes Meaning Possible</h3>
+
+  <p>The source <em>encodes</em>: it translates a thought into symbolic form — a sentence, a logo, a price, a tone of voice. The receiver <em>decodes</em>: it works backward from those symbols to a meaning. The catch is that decoding does not run on the sender's mental dictionary. It runs on the receiver's. Each party brings a <em>field of experience</em> — the whole accumulated stock of what they have seen, learned, and lived — and a message only gets through to the extent that those two fields overlap. Where they overlap, the symbols mean roughly the same thing to both sides. Where they don't, the receiver fills the gap with their own associations, and the meaning that lands can be anything from slightly off to the exact opposite of what was intended.</p>
+
+  <p>This is the mechanism behind the reframe in the overview. Meaning is constructed at the receiving end, out of materials the sender does not own. The practical implication is uncomfortable: the more different your audience is from you, the less you can assume your encoding will decode the way you meant it. Marketing and advertising people skew young, urban, and educated; the markets they write for usually are not. A creative team that finds a joke obvious can be writing for millions of people who will read it flat, or wrong.</p>
+
+  <h3>1.2 The Source Is Part of the Message</h3>
+
+  <p>The diagram puts the source at the far left, as if its only job is to hand off a message and step aside. That undersells it badly. The source never leaves. The receiver decodes the message <em>through</em> their read of who is sending it — so identical words carry different meaning depending on the speaker's credibility, likability, and fit with the claim being made. Two brands can run the exact same line. If one is trusted and the other unknown, or one is playful and the other earnest, or one obviously <em>fits</em> the claim and the other obviously doesn't, the audience does not hear one message received two ways. It hears two different messages.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.2</div>
+    <div class="figure-title">Same Words, Different Source</div>
+    <div class="figure-content">
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th>The identical claim</th>
+            <th>Coming from&hellip;</th>
+            <th>&hellip;decodes as</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="said">"Built to last."</td>
+            <td class="from">a century-old heritage brand</td>
+            <td class="decodes">a <strong>statement of fact</strong>, pre-proven by the company's own survival</td>
+          </tr>
+          <tr>
+            <td class="said">"Built to last."</td>
+            <td class="from">a six-month-old startup</td>
+            <td class="decodes">a <strong>hope, or a boast</strong> — an unproven claim read with a raised eyebrow</td>
+          </tr>
+          <tr>
+            <td class="said">"Built to last."</td>
+            <td class="from">a brand known for deadpan humor</td>
+            <td class="decodes">possibly a <strong>wink</strong> — the audience scans for the joke before the literal meaning</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">The words are constant. The source is the variable — and the source moves the meaning.</div>
+  </div>
+
+  <p>This is also why "on brand" is a communication constraint, not a style preference. A message that contradicts what a brand is known for does not just fall flat; it registers as <em>noise</em>, because the receiver has to reconcile the claim against the source and usually resolves the conflict against the claim. The same logic runs the modern playbook: today the most credible source is often not the brand at all but a peer or a creator the audience already trusts, which is precisely why brands pay to route identical claims through other people's mouths. The source can multiply a message or kill it.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Two brands can run the identical line and have it land as fact, as bravado, or as a joke — depending entirely on who is speaking. Communication doesn't add up; it multiplies, which is the whole sense in which 1 + 1 = 3.</div>
+  </div>
+
+  <p>The deeper point is that the boxes in Figure 4A.1 are not independent. Source, message, channel, and receiver interact — the meaning is a property of the whole loop, not of any one box. That is the sense in which communication is bigger than the sum of its parts. You can write a perfect message, and the wrong source, wrong channel, or wrong moment will still produce the wrong meaning.</p>
+
+  <h3>1.3 Noise: The Thing That Gets In</h3>
+
+  <p>Noise is any interference that distorts or interrupts the message, and the important point is that it is not confined to the channel. It enters at every stage. At <em>encoding</em>, a source that is unclear about its own objective produces a muddled, internally contradictory message before it ever leaves the building. In the <em>channel</em>, the message competes with everything else fighting for the same eyes — a crowded magazine page, a cluttered feed, a sales call interrupted by three texts. At <em>decoding</em>, the receiver is distracted, multitasking, or simply lacks the background knowledge to make sense of what arrived. A message can be encoded perfectly, sent through a clean channel, and still fail because the person on the other end was thinking about something else.</p>
+
+  <p>Naming the stage matters, because the fix is different at each one. Encoding noise is solved by getting clear on the objective before you write. Channel noise is solved by media choices and repetition. Decoding noise — the hardest — is solved by meeting the receiver inside their field of experience and by testing whether they actually understood, rather than assuming they did. The research is blunt on this last point: studies of televised messages have found miscomprehension rates around 30 percent, and even tightly controlled ad tests run 10 to 15 percent <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>. Roughly a quarter to a third of any audience takes away something other than what you sent. Pretesting is not a nicety. It is how you find out which third.</p>
+
+  <h3>1.4 Feedback: How the Source Finds Out</h3>
+
+  <p>Feedback is the receiver's response routed back to the source, and it is what separates communication from broadcasting into the void. In a sales conversation it is instant — a frown, a question, a raised eyebrow tells the seller in real time whether the message is landing. In mass communication it is slower and indirect: sales figures, coupon redemptions, store visits, recall and attitude studies. Either way, feedback closes the loop. It is how the source learns whether the original message hit the target or needs to be re-cut. A communicator who never builds a feedback path is, functionally, talking to a wall and assuming the wall agrees.</p>
+
+  <div class="sidebar-card">
+    <h3>Single Voice Across a Fragmented World</h3>
+    <div class="sidebar-card-sub">The IMC thread — why "on brand" is an encoding problem</div>
+    <p>Integrated marketing communications (IMC) is, at bottom, an encoding discipline. A brand now speaks through paid ads, its own website and app, earned coverage and reviews, and shared social posts — the <strong>PESO</strong> model. Every one of those is a separate encoding of the same underlying idea, often produced by different people on different days. "Single voice" means encoding consistently enough that a customer who meets the brand across five touchpoints decodes <em>one</em> coherent thing rather than five unrelated ones.</p>
+    <p>The flip side is noise. Competitive clutter, contradictory messages from different departments, and a feed that interleaves your post with a hundred others are all channel-stage interference. Consistency is how a brand raises its own signal above that noise — not by being louder, but by being recognizably the same at every point of contact.</p>
+    <div class="sidebar-card-tag">Inconsistent encoding is self-inflicted noise.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Beyond marketing · change management &amp; internal comms</div>
+    <p>The reorg announcement that triggers a week of hallway panic is this model failing on schedule. Leadership encodes ambiguously ("we're streamlining for agility"), the message travels through a channel thick with organizational noise (rumor, Slack, the last reorg's scars), and every employee decodes it through their own field of experience — which, for anyone who has survived layoffs, reads "streamlining" as "cuts." Notice the source effect at work here too: the identical email lands one way over a trusted manager's signature and another way over a CEO nobody has met. The fix is the same as for any communication failure: encode the actual objective plainly, anticipate how <em>this</em> audience will decode it, and build a feedback path so you learn what people actually heard before it hardens into fact.</p>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>Communication is establishing a <em>commonness of thought</em>, not transmitting a message. It happens <em>with</em> the receiver, not <em>to</em> them — sound reaching an ear is not communication.</li>
+        <li>The model is durable: <strong>source &rarr; encode &rarr; message &rarr; channel &rarr; decode &rarr; receiver &rarr; outcome</strong>, with <strong>noise</strong> possible at every stage and <strong>feedback</strong> looping back so the source learns whether it worked.</li>
+        <li>The boxes interact; they don't add up. The <em>source</em> is part of the message — the same words mean different things depending on who says them — so meaning is a property of the whole loop. Communication multiplies: 1 + 1 = 3.</li>
+        <li>Meaning is rebuilt by the receiver out of their own <em>field of experience</em>. A message only gets through where the sender's and receiver's fields overlap — which is why miscomprehension runs a quarter to a third of any audience, and why testing beats assuming.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The model still holds — but noise has changed shape. For decades the prototypical noise was <em>interference</em>: static, clutter, a crying baby during the commercial. Today the dominant noise is <em>attention scarcity</em> in an algorithmically-mediated feed. The receiver is rarely giving the channel their full attention: per Omdia's November 2025 research, 52% of US viewers aged 45–54 now watch video on their phones <em>while</em> watching TV (up from 39% in 2022) <a href="https://www.businesswire.com/news/home/20260311585852/en" target="_blank" rel="noopener">(Omdia, 2026)</a>, and second-screen use is projected to reach 81.9% of the US population by 2027 <a href="https://www.emarketer.com/content/second-screen-viewing-goes-mainstream-raising-ad-recall-risks" target="_blank" rel="noopener">(eMarketer, 2026)</a>. Two consequences follow. First, "channel" now includes a gatekeeper the source does not control — an algorithm decides whether the message reaches the receiver at all, which is a noise source the original diagram never had. Second, feedback is faster and louder than ever (likes, shares, comments, instant sales data), but it is also itself noisy, skewing toward the loudest reactions rather than the typical one. The plumbing is the same. The water pressure is not.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — MEANING & SEMIOTICS
+     ============================================================ -->
+<section class="section" id="semiotics">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Meaning &amp; Semiotics</div>
+  <h2>Signs, and Why Meaning Lives in the Person</h2>
+
+  <p>There is a way to think about words and pictures that treats them like sealed containers — you fill them carefully, you ship them out, and the meaning arrives at the other end intact. Get the wording right, hire the right designer, and the message <em>is</em> the message. This is the dictionary view of language, and it quietly underwrites most of the writing advice you have ever been given. It is also the view that semiotics — the study of how signs make meaning — was developed to dismantle. The dictionary is a useful first approximation; it is not how meaning actually travels.</p>
+
+  <p>The discipline starts from a single claim that sounds obvious until you sit with its consequences: signs do not carry meanings. People carry meanings for signs. A word, an image, a gesture, a logo — none of these arrives at the receiver with its meaning attached. The meaning is what an interpreter constructs out of the sign, the thing it points to, and the context the two meet in. Change any one of those and the meaning changes with it, sometimes by a little and sometimes by everything.</p>
+
+  <h3>2.1 Sign, Referent, Interpreter</h3>
+
+  <p>The framework has three pieces. A <em>sign</em> is anything physical and perceivable — a word, an image, a sound, a gesture, a logo, a price tag. A <em>referent</em> is what the sign is meant to point to, the thing or idea it is supposed to call up. An <em>interpreter</em> is the person doing the decoding, bringing their accumulated experience and the situation they happen to be in at that moment. Meaning emerges from how those three relate; it does not live inside any one of them.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.3</div>
+    <div class="figure-title">The Semiotic Triangle</div>
+    <div class="figure-content">
+      <svg class="semio-triangle" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The semiotic triangle: sign, referent, interpreter, with meaning emerging from the relationship among the three">
+        <line x1="300" y1="55" x2="100" y2="270" stroke="#d6cfc4" stroke-width="2"/>
+        <line x1="300" y1="55" x2="500" y2="270" stroke="#d6cfc4" stroke-width="2"/>
+        <line x1="100" y1="270" x2="500" y2="270" stroke="#d6cfc4" stroke-width="2"/>
+        <text x="300" y="183" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-style="italic" font-weight="700" font-size="22" fill="#BC5A44">meaning</text>
+        <text x="300" y="207" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#6F6A66">lives here — in the relationship,</text>
+        <text x="300" y="224" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="13" fill="#6F6A66">not in any one point</text>
+        <rect x="215" y="25" width="170" height="60" fill="#ede8e0" stroke="#BC5A44" stroke-width="2.5"/>
+        <text x="300" y="52" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="18" fill="#2A2420">SIGN</text>
+        <text x="300" y="71" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#6F6A66">word, image, gesture, logo</text>
+        <rect x="15" y="245" width="170" height="60" fill="#ede8e0" stroke="#BC5A44" stroke-width="2.5"/>
+        <text x="100" y="272" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="18" fill="#2A2420">REFERENT</text>
+        <text x="100" y="291" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#6F6A66">the thing it points to</text>
+        <rect x="415" y="245" width="170" height="60" fill="#ede8e0" stroke="#BC5A44" stroke-width="2.5"/>
+        <text x="500" y="272" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="18" fill="#2A2420">INTERPRETER</text>
+        <text x="500" y="291" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12.5" fill="#6F6A66">a person, in a context</text>
+        <text x="300" y="340" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic" font-size="12.5" fill="#6F6A66">…and all of it sits inside a context that shapes how the three relate.</text>
+      </svg>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">Andrews &amp; Shimp (2018)</a>. The dictionary-style view treats meaning as belonging to the sign; semiotics locates it in the relationship among all three vertices, inside a context.</div>
+  </div>
+
+  <p>Take the dollar sign. As a sign, <em>$</em> is just a stroke through the letter S. The referent depends entirely on who is reading: most Americans decode it as US currency, but the same mark points to Australian, Canadian, Hong Kong, and several other dollars elsewhere — same sign, different referents, sorted by the interpreter's context. Or take Nike's swoosh. The sign — a simple curved shape — was nearly meaningless when Phil Knight paid a Portland State design student $35 for it in 1971. What made it mean <em>speed</em>, <em>athletic achievement</em>, <em>victory</em> was fifty years of pairing the sign with those referents in the presence of millions of interpreters. The shape on the shoe did not change. The relationship did.</p>
+
+  <h3>2.2 The Thumbs-Up Reversal</h3>
+
+  <p>The cleanest proof that meaning lives in the interpreter and not in the sign is what happens when the same gesture means opposite things in different communities. In most of the English-speaking West, a thumbs-up signals approval — a small grant of credit, a quick "looks good." In parts of the Middle East and West Africa, the same gesture is closer to a middle finger raised. The same sign produces opposite meanings, and the difference is not in the hand. It is in the interpretive community the hand is being shown to <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>.</p>
+
+  <p>What makes the textbook example uncomfortable is how quickly it generalizes. The interpretive community decoding thumbs-up does not have to be a country; it can be a generation. Gen Z, sharing essentially one language and largely one culture with their parents, has collectively decided that the thumbs-up emoji reads as passive-aggressive — it ends conversations, signals dismissal, and lands closer to <em>whatever</em> than to <em>good</em> <a href="https://screenwiseapp.com/guides/the-ultimate-guide-to-gen-z-emojis" target="_blank" rel="noopener">(Screenwise, 2025)</a>. The crying-laughing 😂, once the universal symbol of online amusement, now codes as "millennial," displaced for younger users by the skull 💀 and the loudly-crying-face 😭, which mean roughly <em>I am dying laughing</em> <a href="https://www.dictionary.com/e/gen-z-explains-emoji-to-millennials/" target="_blank" rel="noopener">(Dictionary.com, 2023)</a>. The signs have not changed; the interpreters have, and that is enough.</p>
+
+  <p>The operational version of this is that any communicator who treats signs as fixed is letting their audience drift away from them. The audience always votes on what a sign means. They just do not tell you when the vote is happening.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">A sign is a stimulus. A meaning is a response. The marketer chooses the first; the audience chooses the second — and the audience does not vote at the same intervals the marketer does.</div>
+  </div>
+
+  <h3>2.3 The Four Dimensions of Meaning</h3>
+
+  <p>Once you accept that meaning is constructed, the next useful move is to name <em>which kind</em> of meaning a given sign is putting into play. The standard treatments distinguish four, and the distinctions matter because most marketing failures concentrate in one or two of them.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.4</div>
+    <div class="figure-title">The Four Dimensions of Meaning</div>
+    <div class="figure-content">
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>What it is</th>
+            <th>Worked example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="said">Denotative</td>
+            <td class="from">Exact, sign-tied meaning. The literal claim. Decodes the same way for everyone who knows the term.</td>
+            <td class="decodes">"This car gets <strong>50 MPG</strong>." You can verify it. The meaning travels intact.</td>
+          </tr>
+          <tr>
+            <td class="said">Connotative</td>
+            <td class="from">Implied, interpretive meaning. The reader fills in their own version of the qualifier.</td>
+            <td class="decodes">"This car gets <strong>great mileage</strong>." "Great" means something different to a delivery driver, a Tesla owner, and a retiree.</td>
+          </tr>
+          <tr>
+            <td class="said">Structural</td>
+            <td class="from">Meaning inferred from sign-to-sign relationships, without enough context to fully decode.</td>
+            <td class="decodes">"Now with <strong>T<sub>2</sub>5*</strong>." You sense it is a feature claim. You cannot say what it does.</td>
+          </tr>
+          <tr>
+            <td class="said">Contextual</td>
+            <td class="from">Meaning supplied by signs that frame other signs — the interpretive scaffolding around a claim.</td>
+            <td class="decodes">"T<sub>2</sub>5* is our blend of <strong>active agents that protect enamel</strong>." Now T<sub>2</sub>5* decodes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">Andrews &amp; Shimp (2018)</a>. Most marketing claims live in the connotative dimension; the contextual dimension is the main lever for shaping how a connotative claim gets decoded.</div>
+  </div>
+
+  <p>The denotative-versus-connotative split is the one most worth holding onto. Almost no marketing claims are denotative — <em>great</em>, <em>premium</em>, <em>fresh</em>, <em>effortless</em>, <em>designed for the modern professional</em> — these are the words that seem to travel without ever quite arriving, because every interpreter fills in their own private version of what "premium" means. That is not a failure mode of bad copy. It is the default condition of language. The fix is not to swap connotative claims for denotative ones, because most of the time you cannot. The fix is to recognize that connotative claims are doing different work than denotative ones, and to use the contextual dimension deliberately — the signs around the claim do most of the steering on what the claim ends up meaning.</p>
+
+  <h3>2.4 The Brand as a Slowly-Built Sign</h3>
+
+  <p>This is what makes brand work mechanical rather than mystical, and it picks up the thread from §1's point about the source being part of the message. A brand is, among other things, a sign that has been paired with specific referents — promises, associations, feelings — long enough and consistently enough that interpreters decode it the same way without thinking. The swoosh-as-Nike-as-athletic-performance is a sign relationship that did not exist in 1970 and took decades of paid and earned reinforcement to install in enough heads to count. Disney's mouse ears, FedEx's hidden arrow, Tiffany's blue — these are all signs whose meanings were deliberately built into interpretive communities through repetition. "On brand" is the discipline of not breaking that sign-meaning pairing once you have it. "Off brand" is what gets registered when you do, and the receiver experiences it as noise.</p>
+
+  <p>This is why repositioning a brand is so hard, and it is also why we will come back to this idea in §3. Once a sign has installed a particular meaning in enough interpreters, changing that meaning is closer to retraining a population than to rewriting a tagline.</p>
+
+  <div class="sidebar-card">
+    <h3>Context Collapse and the Platform Problem</h3>
+    <div class="sidebar-card-sub">Why the same post means different things on different feeds</div>
+    <p>Sociologists Alice Marwick and danah boyd named the phenomenon <em>context collapse</em>: the way social media flattens audiences that used to be separate — friends, family, coworkers, strangers — into a single feed where everyone sees the same content <a href="https://doi.org/10.1177/1461444810365313" target="_blank" rel="noopener">(Marwick &amp; boyd, 2011)</a>. The personal version is what you do or don't share knowing all of them are watching. The brand version is something slightly different but mechanically related: the same image, video, or copy travels through multiple platforms with completely different interpretive norms. A polished product photo reads as competent on LinkedIn, dated on Instagram, and tone-deaf on TikTok. A campaign that lands sincere on YouTube can land as cringe on Reddit. The sign has not changed. The interpretive community around it has — and the platform is the one deciding which community sees it first.</p>
+    <p>This is §1's noise meeting §2's semiotics. The algorithm is now functionally part of the <strong>contextual dimension</strong>: it picks the signs that surround yours when an interpreter encounters them. Brands that produce one piece of content and broadcast it everywhere are letting the platforms decide what their signs mean. Brands that adapt the same idea to the interpretive norms of each platform are doing context work at the channel layer — which is exactly what the contextual dimension asks of you.</p>
+    <div class="sidebar-card-tag">A sign read in the wrong room means something other than what was said in the right one.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>Signs do not carry meanings; people carry meanings for signs. A sign signifies a <em>referent</em> to an <em>interpreter</em> in some <em>context</em> — and the meaning lives in the relationship, not in the sign alone.</li>
+        <li>The thumbs-up reversal is the proof: identical sign, opposite meaning, sorted by the interpretive community. Meaning is idiosyncratic and context-dependent.</li>
+        <li>Four dimensions name the kind of meaning a sign is putting in play — <strong>denotative</strong> (literal), <strong>connotative</strong> (implied), <strong>structural</strong> (sign-to-sign), <strong>contextual</strong> (the surrounding frame). Most marketing claims are connotative; the contextual dimension is your main lever.</li>
+        <li>A brand is a sign slowly paired with referents through repetition. "On brand" is the discipline of not breaking that pairing.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The machinery is unchanged. The clock has sped up. In an algorithmically-mediated feed, sign-meaning pairings now drift faster within a single culture than they used to drift across cultures. The thumbs-up emoji needed roughly half a decade to flip from approval to passive-aggressive among under-25s <a href="https://screenwiseapp.com/guides/the-ultimate-guide-to-gen-z-emojis" target="_blank" rel="noopener">(Screenwise, 2025)</a>; the crying-laughing 😂 was declared a millennial tell around 2022 and has stayed that way, displaced by the skull 💀 and the loudly-crying-face 😭 doing the work it used to do <a href="https://www.dictionary.com/e/gen-z-explains-emoji-to-millennials/" target="_blank" rel="noopener">(Dictionary.com, 2023)</a>. Meanwhile AI-generated imagery is muddying the referent at scale — when audiences cannot trust that a given image points to anything real, the sign-referent connection the whole model rests on weakens. The work of building stable brand meanings has not gotten easier; it has gotten harder, and the half-life of any given meaning is shorter than it used to be.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — WHERE MEANING COMES FROM
+     ============================================================ -->
+<section class="section" id="meaning-source">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Where Meaning Comes From</div>
+  <h2>Two Halves: The Brand's and the Consumer's</h2>
+
+  <p>The branding unit you took last semester handled meaning from <em>the brand's side</em> — how marketers build brand equity, position a product, install distinctive assets in memory. That work is real, and most of it is the brand's to do. But it is only <strong>half the story</strong>. Brand meaning has <em><strong>two sources</strong></em>, and any honest account of how brands actually work needs both of them on the table. <em>One half is borrowed from the surrounding culture.</em> <em>The other half is constructed by the consumer.</em> The brand controls neither half outright. It controls the <strong>meeting point</strong> between them — which is the mark itself.</p>
+
+  <p>This is the structural reason §1 and §2 came first. The communication model showed that the <em>receiver</em> always rebuilds the message. Semiotics showed that the rebuild happens through the <em>interpreter's</em> own field of experience. Once you accept both, the next move is mechanical: brand meaning is <em>not delivered</em> to consumers — it is <em>built</em> by consumers out of materials the brand provides and materials the brand never touches. The diagram is two arrows pointing at a single mark.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.5</div>
+    <div class="figure-title">The Two Halves of Brand Meaning</div>
+    <div class="figure-content">
+      <svg class="meaning-halves" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The two halves of brand meaning: meaning transferred from the cultural world on one side, meaning constructed by the consumer on the other, meeting at the brand mark in the middle">
+        <defs>
+          <marker id="ah-red" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <polygon points="0 0, 10 5, 0 10" fill="#BC5A44"/>
+          </marker>
+        </defs>
+        <text x="130" y="105" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic" font-size="12" fill="#6F6A66">the brand's half</text>
+        <text x="570" y="105" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic" font-size="12" fill="#6F6A66">the consumer's half</text>
+        <rect x="30" y="120" width="200" height="140" fill="#ede8e0" stroke="#BC5A44" stroke-width="2.5"/>
+        <text x="130" y="155" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="15" fill="#2A2420">THE CULTURAL</text>
+        <text x="130" y="174" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="15" fill="#2A2420">WORLD</text>
+        <text x="130" y="202" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#6F6A66">icons, archetypes, causes,</text>
+        <text x="130" y="218" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#6F6A66">traditions, celebrities</text>
+        <line x1="240" y1="190" x2="275" y2="190" stroke="#BC5A44" stroke-width="2.5" marker-end="url(#ah-red)"/>
+        <text x="258" y="178" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic" font-size="10.5" fill="#BC5A44">transferred</text>
+        <circle cx="350" cy="190" r="70" fill="#2A2420" stroke="#BC5A44" stroke-width="3"/>
+        <text x="350" y="186" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="18" fill="#ffffff">THE BRAND</text>
+        <text x="350" y="208" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic" font-size="12" fill="#c4baa8">(the mark)</text>
+        <line x1="460" y1="190" x2="425" y2="190" stroke="#BC5A44" stroke-width="2.5" marker-end="url(#ah-red)"/>
+        <text x="442" y="178" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-style="italic" font-size="10.5" fill="#BC5A44">constructed</text>
+        <rect x="470" y="120" width="200" height="140" fill="#ede8e0" stroke="#BC5A44" stroke-width="2.5"/>
+        <text x="570" y="155" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="15" fill="#2A2420">CONSUMER</text>
+        <text x="570" y="174" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-weight="700" font-size="15" fill="#2A2420">IDENTITY</text>
+        <text x="570" y="202" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#6F6A66">field of experience,</text>
+        <text x="570" y="218" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#6F6A66">community, self-signaling</text>
+        <text x="350" y="305" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-style="italic" font-weight="700" font-size="17" fill="#BC5A44">meaning lives where the two halves meet</text>
+        <text x="350" y="328" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="12" fill="#6F6A66">the brand controls the meeting point, not either half</text>
+      </svg>
+    </div>
+    <div class="figure-caption">The brand's half is meaning <em>transferred</em> from the culturally constituted world. The consumer's half is meaning <em>constructed</em> from identity and community. The brand mark is the meeting point.</div>
+  </div>
+
+  <h3>3.1 The Brand's Half — Meaning Transferred from Culture</h3>
+
+  <p>Anthropologist Grant McCracken put this clearly in his 1986 framing of the <em>culturally constituted world</em> — the everyday environment of icons, archetypes, traditions, songs, ribbons, holidays, and known persons that <strong>already carry meaning</strong> before any brand touches them. Brands do not invent meaning from scratch. They <em>reach into culture</em> and bind themselves to pre-existing meanings the culture is already maintaining — sometimes by paying for the connection (sponsorships, celebrity endorsements, cause partnerships) and sometimes by <em>enacting</em> the meaning operationally so the connection becomes part of the brand's substance.</p>
+
+  <p>Consider <strong>Patagonia</strong>. The environment, as a cultural meaning, already existed when Yvon Chouinard founded the company in 1973. National parks, the John Muir conservation tradition, the back-to-the-land counterculture, the climate movement — none of that was Patagonia's invention. The cultural meaning was <em>already there</em>, maintained by other people. Patagonia's brand work was to bind itself to that meaning through fifty years of consistent action: founding membership in <strong>1% for the Planet</strong> (1985), the repair program, the recycled-materials commitments, and eventually the 2022 ownership transfer that made the binding <em>structural</em> rather than symbolic. <a href="https://www.patagonia.com/ownership/" target="_blank" rel="noopener">Earth is now the company's only shareholder</a>: 98% of post-reinvestment profits flow to environmental causes through the Holdfast Collective, which received <strong>$180 million</strong> in the first three years after the transfer (Patagonia, n.d.).</p>
+
+  <p>The point worth holding onto is the <em>direction</em>. Patagonia did not have to <em>invent</em> environmentalism; the meaning was already there. They had to <em><strong>tie themselves to it</strong></em> durably enough that, in the consumer's head, the brand mark and the cultural meaning became one association. The brand's half of meaning is the discipline of choosing which cultural meanings to bind to, then earning the binding through repetition and operational truth. Brands that try to <em>signal</em> a cultural meaning they do not actually enact — Pepsi's 2017 Kendall Jenner protest commercial is the canonical recent example — discover that the transfer does not take. <strong>Consumers refuse the binding.</strong> The meaning bounces off.</p>
+
+  <h3>3.2 The Consumer's Half — Meaning Constructed from Identity</h3>
+
+  <p>The second source of brand meaning is the <em>consumer</em>, and this is the half a branding course taught from the brand's perspective tends to underweight. Consumers do not just <em>decode</em> brand meaning — they <em><strong>construct</strong></em> it, out of their own identity, their community, their field of experience, and the use they put the brand to. That construction can match what the brand intended, exceed it, or contradict it. The brand mark is what consumers project meaning <em>onto</em>. The brand provides the screen. The consumer provides the projector.</p>
+
+  <p>The cleanest recent case is <strong>Stanley</strong>. Stanley 1913 had spent a century making rugged stainless-steel vacuum flasks for blue-collar contractors — practical, indestructible, sold mostly to construction sites and hunting trips. When the company launched the <em>Quencher</em> tumbler in 2016 it was unremarkable enough that Stanley nearly killed the product by 2019 <a href="https://www.retaildive.com/news/stanley-quencher-tumblers-viral-success/699416/" target="_blank" rel="noopener">(Salpini, 2023)</a>. Then something happened that the brand had nothing to do with. A group of women running an Instagram account called <em>The Buy Guide</em> began promoting the Quencher to a female audience as a stylish hydration accessory — colors, designs, lifestyle. The brand had not built this meaning. The brand had not asked for it. <em><strong>Consumers were constructing it on their own</strong></em>, out of the cultural moment around WaterTok, wellness, self-care, and aesthetic identity.</p>
+
+  <p>Stanley's smart move was to <em>notice</em> and lean in. CEO Terence Reilly (formerly of Crocs) accepted the new audience around 2020, started designing colorways for it, and let the brand <em>mean</em> what the consumers were already making it mean. Revenue went from <strong>$73 million in 2019</strong> to <strong>over $800 million by 2024</strong> — an eleven-fold expansion of a hundred-year-old brand. The TikTok hashtag <em>#StanleyTumbler</em> passed a billion views. Limited-edition colorways at Target produced lines around the block and resale prices at four times retail. None of this was the brand's intended meaning. All of it was meaning <em>the brand's customers built</em> — sometimes in ways Stanley's marketing team eventually got ahead of, more often in ways they followed.</p>
+
+  <p>The flip side of consumer-constructed meaning is <em><strong>consumer-rejected meaning</strong></em>. Bud Light's 2023 collapse — sales falling sharply after a Dylan Mulvaney partnership the brand's existing interpretive community refused to accept — is the same mechanism running in reverse. The brand attempted a meaning shift. The community voted <em>no</em>. The brand did not have the standing to override the vote. <em>Meaning lives in the interpretive community, not in the marketing plan.</em></p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The brand provides the screen. The consumer provides the projector. Half of a brand's meaning is borrowed from culture; the other half is constructed by consumers who fit the brand into their own identity. The brand controls neither half — it controls the meeting point, which is the mark itself.</div>
+  </div>
+
+  <h3>3.3 The Two Halves, Side by Side</h3>
+
+  <p>Lay the two halves next to each other and a few practical things become visible.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.6</div>
+    <div class="figure-title">Comparing the Two Halves</div>
+    <div class="figure-content">
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>The brand's half</th>
+            <th>The consumer's half</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="said">Source of meaning</td>
+            <td class="from">The culturally constituted world (icons, causes, traditions)</td>
+            <td class="from">Consumer identity, community, field of experience</td>
+          </tr>
+          <tr>
+            <td class="said">Direction</td>
+            <td class="from"><em>Transferred in</em> — from culture to the brand mark</td>
+            <td class="from"><em>Constructed out</em> — from identity onto the brand mark</td>
+          </tr>
+          <tr>
+            <td class="said">Brand control</td>
+            <td class="from">Partial — choose which cultural meanings to bind to, then earn the binding</td>
+            <td class="from">Limited — the interpretive community votes on what the brand means</td>
+          </tr>
+          <tr>
+            <td class="said">Failure mode</td>
+            <td class="from"><strong>Transfer doesn't take</strong> — consumers refuse the binding (Pepsi-Jenner)</td>
+            <td class="from"><strong>Community rejects or hijacks</strong> the brand's intended meaning (Bud Light)</td>
+          </tr>
+          <tr>
+            <td class="said">Worked example</td>
+            <td class="from"><em>Patagonia</em> + environmentalism — bound durably enough to become structural</td>
+            <td class="from"><em>Stanley Quencher</em> + women + WaterTok — meaning the brand did not intend</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">A brand mark stabilizes when the two halves <em>align</em>. The cultural meaning the brand binds to has to land in interpretive communities that accept the binding as part of how they see themselves.</div>
+  </div>
+
+  <p>The synthesis worth carrying forward: a brand mark stabilizes <em>only when the two halves align</em>. The cultural meaning a brand binds to has to land in interpretive communities that accept the binding <em>as part of how they see themselves</em>. Patagonia works because environmentalists already had an identity, and the brand earned its place inside that identity. Stanley v2 works because the cultural moment of WaterTok and wellness already had an identity, and the brand was adopted into it. <strong><em>Alignment of the two halves is brand-meaning stability.</em></strong></p>
+
+  <p>Misalignment is what brand failure looks like, and it shows up two ways. First, the brand binds to a cultural meaning consumers reject — the Pepsi-Jenner case — and the transfer never takes. Second, the brand fails to recognize what its consumers are constructing (legacy Stanley before 2020), or worse, actively contradicts it (Bud Light, 2023). The brand's intended meaning loses to the consumer-constructed one because consumers control the interpretive community their own identity lives inside, and that is not a community the brand can outvote.</p>
+
+  <div class="sidebar-card">
+    <h3>Personas as the Practical Move</h3>
+    <div class="sidebar-card-sub">How marketers hold the consumer's half in mind</div>
+    <p>This is also why <em>personas</em> — short character sketches of different customer segments — are the practical artifact most marketing teams use to work both halves at once. Each persona is essentially an answer to the question: <em><strong>what version of our brand meaning is this segment likely to construct?</strong></em></p>
+    <p>A Nike <em>elite athlete</em> persona constructs the brand as <strong>performance</strong>. A Nike <em>teenager</em> persona constructs it as <strong>identity and cool</strong>. A Nike <em>parent</em> persona constructs it as <strong>durability and value</strong>. A Nike <em>injured runner</em> persona constructs it as <strong>rehabilitation and longevity</strong>. All four are the same brand mark. All four are <em>different meanings</em>, built by different interpretive communities out of different identities. The persona is how a marketer holds the consumer's half of meaning in mind without pretending that all customers are constructing the same thing.</p>
+    <div class="sidebar-card-tag">We will spend most of Unit 4B inside this idea.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>Brand meaning has <strong>two sources</strong>. One half is <em>borrowed from the culturally constituted world</em> — icons, traditions, archetypes, causes, celebrities. The other half is <em>constructed by consumers</em> out of their own identity, community, and field of experience.</li>
+        <li>The brand's half is <strong>meaning-transfer work</strong>: reach into culture, bind to pre-existing meanings, earn the binding through repetition and operational truth. <em>Patagonia is the canonical case.</em></li>
+        <li>The consumer's half is <strong>meaning-construction work</strong>: consumers don't decode brand meaning passively, they project meaning onto the brand from their identity. <em>Stanley is the canonical recent case</em> — meaning the brand did not intend, built by the audience first.</li>
+        <li>The brand controls <em><strong>neither half outright</strong></em>. It controls the meeting point — the mark itself. Brand meaning stabilizes when the two halves align; misalignment is what brand failure looks like.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>In the algorithmic feed, the <em>consumer's half</em> has gotten louder and faster. TikTok virality means consumer-constructed meaning can scale to mass overnight (Stanley); consumer-rejected meaning can scale to mass overnight too (Bud Light, 2023). The window for a brand to course-correct has compressed from <em>quarters to days</em>, and the interpretive community building or refusing the brand's meaning is now visible in real time — through hashtags, reviews, comments, sales data, and viral videos. The brand's job is no longer just to <em>transfer</em> meaning from culture; it is to <em>watch</em> what consumers are constructing and decide — quickly — whether to lean in, ignore, or push back. <strong>Patagonia</strong> still works because the meaning it transferred from culture matches the meaning its consumers are constructing about themselves. <strong>Stanley</strong> works because the brand eventually noticed what its consumers were making and stopped getting in their way. <strong>Bud Light</strong> failed because it bet a meaning shift could be imposed faster than the community could refuse it. It could not.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — FIGURATIVE LANGUAGE
+     ============================================================ -->
+<section class="section" id="figurative">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Figurative Language</div>
+  <h2>Or, How to Hand the Audience the Bridge</h2>
+
+  <p>There is a fashionable way to dismiss figurative language in advertising — that it is <strong>decoration</strong>, the writerly part, the thing you add to plain copy to make it sound nicer. The serious work, in this telling, is the claim and the offer; the metaphors are garnish. This is not entirely wrong. A great deal of figurative language in marketing genuinely <em>is</em> decoration. But it understates what figurative language is actually <em>for</em>. A metaphor is not garnish. It is a <em><strong>meaning-transfer mechanism</strong></em> — the same machinery §2 named — running at high speed. You name two things, the audience builds the bridge between them, and properties from one concept flow to the other. <em>The audience does the work.</em> Which is precisely why it works.</p>
+
+  <p>The standard treatment <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a> distinguishes four figurative moves. They look like different rhetorical devices but they are, mechanically, variations on a single move: <em>name two concepts and let the audience transfer properties between them.</em></p>
+
+  <h3>4.1 The Four Figurative Moves</h3>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.7</div>
+    <div class="figure-title">Four Figurative Moves, One Mechanism</div>
+    <div class="figure-content">
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th>Move</th>
+            <th>What it does</th>
+            <th>Worked example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="said">Simile</td>
+            <td class="from"><strong>Explicit</strong> comparison, signaled by <em>like</em> or <em>as</em>. The bridge is named for the audience.</td>
+            <td class="decodes">"<strong>Like a good neighbor,</strong> State Farm is there." The neighborly virtues transfer to the brand.</td>
+          </tr>
+          <tr>
+            <td class="said">Metaphor</td>
+            <td class="from"><strong>Implicit</strong> comparison. A is presented <em>as</em> B; the audience reconciles the identity rather than the likeness.</td>
+            <td class="decodes">"Red Bull <strong>gives you wings</strong>." Energy isn't <em>like</em> flight; the ad asserts it <em>is</em>.</td>
+          </tr>
+          <tr>
+            <td class="said">Allegory</td>
+            <td class="from">A <strong>sustained narrative</strong> that stands for something else. The whole story is the figure.</td>
+            <td class="decodes">Apple's <em>1984</em> spot: a parable about conformity that "means" Apple is liberation from IBM.</td>
+          </tr>
+          <tr>
+            <td class="said">Personification</td>
+            <td class="from">A <strong>non-human thing or abstract concept given human attributes</strong>. The concept becomes a character.</td>
+            <td class="decodes">Mr. Mayhem (Allstate) is <em>chaos with a face</em>; the Geico Gecko is <em>friendly affordable insurance with an accent</em>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">All four moves are the §2 sign-to-meaning machinery used <em>deliberately</em>: the writer names a vehicle and lets the audience transfer its properties to the brand.</div>
+  </div>
+
+  <p>The transfer in each case is doing two distinct kinds of work. <em>Cognitive</em>: it compresses an argument that would otherwise take paragraphs into a single move the audience completes in milliseconds. <em>Affective</em>: it imports the feelings already attached to the vehicle (the good neighbor's warmth, the wings' freedom, the rebellion's energy) and lays them onto the brand. The reason figurative language is <em>more</em> persuasive than literal claims of the same content — and the experimental evidence here is consistent — is that it routes both jobs through one operation, and the audience volunteers for both.</p>
+
+  <h3>4.2 Brand Characters: Personification at Industrial Scale</h3>
+
+  <p>Personification is the figurative move worth singling out, because it is the one that most readily <em>sustains</em>. A simile lasts as long as its tagline. A metaphor lasts as long as the campaign. A <strong>character</strong> can last for decades, because every appearance is one more deposit into the figurative transfer that built it. Three years in, the audience has accumulated a relationship with the character that the brand could not have manufactured directly. Twenty years in, the character functions as part of the brand's source — recall §1.2: the source is part of the message — except this is a source whose every attribute is <em>designed</em>.</p>
+
+  <p>The four below are useful to look at together because each runs the personification machinery on a slightly different vehicle: an animal, a product, an abstract concept, and a stylized human.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.8</div>
+    <div class="figure-title">Brand Characters as Sustained Personification</div>
+    <div class="figure-content">
+      <div class="character-gallery">
+
+        <div class="character-card">
+          <img class="character-img" src="assets/images/geicko.png" alt="The Geico Gecko">
+          <span class="character-name">The Geico Gecko</span>
+          <span class="character-brand">Geico · since 1999</span>
+          <p>An <em>animal</em> personified — given a refined British-inflected voice and a calm, articulate demeanor. The abstract concept of <strong>affordable car insurance</strong> (normally dry and adversarial) is channeled through a likeable speaker the audience would, frankly, rather listen to than a corporate spokesperson.</p>
+        </div>
+
+        <div class="character-card">
+          <img class="character-img" src="assets/images/MM.png" alt="The M&amp;M's spokescandies">
+          <span class="character-name">The M&amp;M's</span>
+          <span class="character-brand">Mars · since 1995</span>
+          <p>The <em>product itself</em> personified. Each candy has a personality (the smooth one, the anxious one, the sharp one) and they hold conversations <em>about</em> being eaten. The product's properties — color, shape, flavor coating — become character traits, which is the figurative bridge.</p>
+        </div>
+
+        <div class="character-card">
+          <img class="character-img" src="assets/images/mayhem.png" alt="Mr. Mayhem">
+          <span class="character-name">Mr. Mayhem</span>
+          <span class="character-brand">Allstate · since 2010</span>
+          <p>An <em>abstract concept</em> — risk, chaos, the bad-day-you-didn't-see-coming — personified as a smirking man in a suit. Pure allegorical personification: the thing the brand sells protection <em>against</em> has been given a face the audience can root against.</p>
+        </div>
+
+        <div class="character-card">
+          <img class="character-img" src="assets/images/aflac.png" alt="The Aflac Duck">
+          <span class="character-name">The Aflac Duck</span>
+          <span class="character-brand">Aflac · since 2000</span>
+          <p>An <em>animal</em> personified into a single utterance — the brand name itself. Solves a hard problem (an obscure category, an unfamiliar name) by making the sound of the name memorable as the source itself. The character <em>is</em> the brand mnemonic.</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="figure-caption">Four ways of running the same figurative move. Each character is a designed source whose attributes — voice, demeanor, look, vibe — the brand controls completely, in a way it can never control a real spokesperson.</div>
+  </div>
+
+  <h3>4.3 When Figures Break</h3>
+
+  <p>A figurative move only works when the audience <em>can</em> and <em>will</em> make the leap, which is the same constraint §2 named — meaning lives in the interpreter, not the sign. Three predictable failure modes follow. <em>Cultural specificity:</em> a metaphor whose vehicle the audience doesn't recognize cannot transfer anything, which is why imported campaigns so often land flat. <em>Audience fatigue:</em> a character can wear out — the figurative deposits stop accumulating, or worse, accumulate negatively, and the brand's once-loved mascot becomes the brand's once-loved-now-tolerated mascot. <em>Brand fit:</em> a character whose vibe contradicts the rest of the brand creates the same noise §1 named — the receiver has to reconcile the character with the brand and usually resolves the conflict against whichever one is weaker. <strong><em>Figurative language is powerful, and like most powerful things it fails loudly when it fails at all.</em></strong></p>
+
+  <div class="sidebar-card">
+    <h3>The Character as a Fabricated Source</h3>
+    <div class="sidebar-card-sub">Tying back to §1.2 — the source is part of the message</div>
+    <p>§1's source-effect argument applies with extra force to brand characters. A character is a <strong>source you can design</strong>: voice, accent, body language, fashion, fictional backstory, even moral arc. You cannot do this with a real celebrity or executive. You can negotiate around them. You cannot redesign them. The character is the closest a brand gets to <em>controlling its source effects</em> without giving up on having a source at all — and the credibility, likability, and fit attributes that real spokespeople bring as a take-it-or-leave-it package can, for a character, be specified line by line.</p>
+    <p>This is also why characters survive personnel changes the brand could not otherwise survive. Flo from Progressive has been played by the same actor since 2008, but the character could be recast tomorrow without losing the brand. The Geico Gecko has had multiple voice actors. The character is <em>portable</em> in a way no human source can be.</p>
+    <div class="sidebar-card-tag">A designed source is the only source whose attributes the brand fully owns.</div>
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-text">A metaphor is not decoration; it is a meaning-transfer engine. The advertiser names two things and lets the audience build the bridge — and the bridge they build <em>is</em> the brand.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>Figurative language is <strong>mechanical, not decorative</strong>. Simile, metaphor, allegory, and personification are four variations on a single move — name two concepts, let the audience transfer properties between them.</li>
+        <li>The transfer does two jobs at once. <em>Cognitive:</em> it compresses a long argument into a millisecond move the audience completes. <em>Affective:</em> it imports the feelings already attached to the vehicle and lays them on the brand.</li>
+        <li><strong>Brand characters</strong> are personification <em>sustained</em>. Every appearance is one more deposit into the figurative transfer that built them, and over years the character becomes part of the brand's source — a source whose every attribute is <em>designed</em>.</li>
+        <li>Figures break when the audience can't make the leap (cultural specificity), won't make it any more (fatigue), or has to reconcile a contradiction (brand fit). Powerful when it works; loud when it fails.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The internet runs on figurative language, decentralized. Memes are essentially <em>figurative templates</em> — <em>"X is the way I feel when Y"</em>, <em>"POV: you're X"</em>, the side-by-side photo with two labels — and audiences build the bridge millions of times a day, exactly the way they have always built figurative bridges. What is new is that the <strong>templates themselves circulate</strong>: once a template is established, anyone can fill in their two concepts and run the transfer. Brands now have two new options that did not exist in the textbook era. They can <em>create</em> templates (and watch the audience populate them), or they can <em>ride</em> templates the audience is already running (filling the slots with their own product). Either way, the figurative work has shifted partially to the audience — which is what §3 already told us about the consumer's half of meaning, applied at the level of the bridge itself.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CLOSER — unit wrap and seam into 4B
+     ============================================================ -->
+<section class="section" id="closer">
+  <div class="sec-label">Closer</div>
+  <h2>What This Unit Added Up To</h2>
+
+  <p>Four sections, one argument. <em><strong>Meaning is not delivered; it is built.</strong></em> The communication model (§1) showed that the message gets rebuilt at the receiving end out of materials the sender does not own, and that the <em>source</em> is part of the message itself — which is why two brands running the same line produce two different meanings. Semiotics (§2) supplied the mechanics: signs do not carry meanings, <em>people</em> carry meanings for signs, and meaning emerges from the relationship among the sign, the referent it points to, and the interpreter doing the decoding inside a context. §3 traced where brand meaning comes from on both ends — half <em>borrowed</em> from the culturally constituted world, half <em>constructed</em> by consumers out of their own identity, meeting at the brand mark. §4 named the mechanism marketers use to drive meaning across the gap on purpose: <em>figurative bridges</em>, with brand characters as personification sustained into designed sources.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4A.9</div>
+    <div class="figure-title">The Whole Picture</div>
+    <div class="figure-content">
+      <div class="synthesis-grid">
+        <div class="synthesis-cell">
+          <div class="synthesis-num">§1</div>
+          <div class="synthesis-title">The Channel</div>
+          <p>Communication is co-construction. Source → encode → message → channel → decode → receiver, with noise at every stage. <strong>The source is part of the message.</strong></p>
+        </div>
+        <div class="synthesis-cell">
+          <div class="synthesis-num">§2</div>
+          <div class="synthesis-title">The Code</div>
+          <p>Signs don't have meanings; <em>people have meanings for signs</em>. Meaning lives in the relationship among sign, referent, and interpreter — inside a context.</p>
+        </div>
+        <div class="synthesis-cell">
+          <div class="synthesis-num">§3</div>
+          <div class="synthesis-title">The Sources</div>
+          <p>Brand meaning has two halves: one <em>borrowed</em> from culture, one <em>constructed</em> by consumers. The brand owns neither — only the meeting point.</p>
+        </div>
+        <div class="synthesis-cell">
+          <div class="synthesis-num">§4</div>
+          <div class="synthesis-title">The Bridge</div>
+          <p>Figurative language is the deliberate use of the meaning-transfer machinery. Brand characters are personification sustained into designed sources.</p>
+        </div>
+      </div>
+      <p class="synthesis-summary">Together: a message becomes meaning only when receiver, source, sign, and bridge align — and the marketer controls <strong>the materials</strong>, not the meaning.</p>
+    </div>
+    <div class="figure-caption">The four sections are one model. Each adds a layer to how a sent thing becomes a received meaning.</div>
+  </div>
+
+  <p>The synthesis worth carrying into the rest of the unit is that <em><strong>a marketer controls materials, not meanings</strong></em>. You can choose the source, design the message, pick the channel, build the figure, bind to the cultural meaning you want — and that is real work, often the whole job. But the meaning that <em>actually exists in the world</em> is the meaning the <em>receiver</em> builds out of all of it, inside an interpretive community the brand does not get to vote in. The work is to build the conditions under which the meaning the audience builds is the one you want — and then to <em>watch what the audience builds</em> and decide whether to lean in, ignore, or push back. That is the move the rest of the unit (4B and 4C) puts into practice.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">What You Should Be Able to Do Now</div>
+    <ul>
+      <li><strong>Diagram and label the communication model</strong>, and name the specific stage (encoding, channel, or decoding) where a given communication is breaking down.</li>
+      <li><strong>Explain why miscomprehension is the default</strong>, not the exception — and outline a pretest plan that would catch it before launch.</li>
+      <li><strong>Use semiotics</strong> — sign / referent / interpreter and the four dimensions of meaning (denotative, connotative, structural, contextual) — <strong>to read what an ad is actually doing</strong>.</li>
+      <li><strong>Trace the cultural meaning a brand has borrowed</strong>, and identify the route by which the transfer was earned through repetition or operational truth.</li>
+      <li><strong>Describe how consumers construct brand meaning</strong> that may differ from, exceed, or resist what the brand intended — and name the case in which that construction goes well (Stanley) and the case in which it doesn't (Bud Light).</li>
+      <li><strong>Identify simile, metaphor, allegory, and personification</strong> in advertising, and explain how each one transfers meaning to the brand by handing the audience a bridge.</li>
+    </ul>
+  </div>
+
+  <div class="sidebar-card">
+    <h3>Key Terms from Unit 4A</h3>
+    <div class="sidebar-card-sub">A quick reference for the rest of the unit</div>
+    <div class="key-terms">
+      <p><strong><em>Communication</em></strong> — establishing a <em>commonness of thought</em>; happens <em>with</em> the receiver, not <em>to</em> them.</p>
+      <p><strong><em>Encoding / decoding</em></strong> — translation between thought and symbolic form, run on the sender's mental dictionary in one direction and the receiver's in the other.</p>
+      <p><strong><em>Field of experience</em></strong> — the accumulated stock of what each party has seen, learned, and lived; messages get through where the two fields overlap.</p>
+      <p><strong><em>Source effect</em></strong> — the receiver decodes the message <em>through</em> their read of who is speaking; identical words land differently from different sources. The reason 1 + 1 = 3.</p>
+      <p><strong><em>Noise</em></strong> — interference that distorts the message; enters at encoding (unclear objective), channel (clutter, algorithm), or decoding (distraction, missing background).</p>
+      <p><strong><em>Feedback</em></strong> — the receiver's response routed back to the source; closes the loop that separates communication from broadcasting.</p>
+      <p><strong><em>Sign / Referent / Interpreter</em></strong> — the three points whose relationship makes meaning. Meaning lives in the relationship, not in the sign.</p>
+      <p><strong><em>Four dimensions of meaning</em></strong> — denotative (literal), connotative (implied), structural (sign-to-sign), contextual (the surrounding frame).</p>
+      <p><strong><em>Interpretive community</em></strong> — the audience that shares a way of decoding a sign; thumbs-up means approval in one and dismissal in another.</p>
+      <p><strong><em>Context collapse</em></strong> — different audiences with different interpretive norms seeing the same content because platforms flatten them into one feed.</p>
+      <p><strong><em>Meaning transfer</em></strong> — the brand's half of meaning; binding the brand mark to a pre-existing cultural meaning through repetition and operational truth.</p>
+      <p><strong><em>Consumer-constructed meaning</em></strong> — the consumer's half; what the audience projects onto the brand mark out of their own identity, which can match, exceed, or contradict the brand's intent.</p>
+      <p><strong><em>Figurative bridge</em></strong> — simile, metaphor, allegory, or personification; the deliberate use of two-concept naming to make the audience transfer properties between them.</p>
+      <p><strong><em>Brand character as fabricated source</em></strong> — personification sustained over years into a designed source whose attributes the brand fully owns.</p>
+    </div>
+    <div class="sidebar-card-tag">Carry these into Units 4B and 4C; the vocabulary doesn't reset.</div>
+  </div>
+
+  <h3>Where Unit 4B Picks Up</h3>
+
+  <p>Unit 4B picks up exactly where this one stops — at the moment of <em>decoding</em>. Once a consumer has rebuilt the meaning, they have to <em>do something with it</em>. Unit 4B is about how consumers process information they have decoded, weigh alternatives, evaluate brands, and arrive at choices. The mechanism running underneath is <strong>consumer information processing</strong>: attention, perception, comprehension, agreement, retention — and then the harder work of judgment and choice. If §1–§4 answered the question <em>how does meaning land</em>, Unit 4B answers the question <em>what does the consumer do with the meaning once it has</em>.</p>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Sources cited in this unit, in APA style. Course readings appear here alongside the current-data sources behind the modern sidebars; the list grows as sections are added.</p>
+
+  <div class="references">
+    <p class="ref">Andrews, J. C., &amp; Shimp, T. A. (2018). <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener"><em>Advertising, promotion, and other aspects of integrated marketing communications</em></a> (10th ed.). Cengage Learning.</p>
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener"><em>Advertising and promotion: An integrated marketing communications perspective</em></a> (13th ed.). McGraw Hill.</p>
+    <p class="ref">Dictionary.com. (2023). <a href="https://www.dictionary.com/e/gen-z-explains-emoji-to-millennials/" target="_blank" rel="noopener">How Gen Z uses emoji: A guide for millennials</a>. Dictionary.com. https://www.dictionary.com/e/gen-z-explains-emoji-to-millennials/</p>
+    <p class="ref">eMarketer. (2026). <a href="https://www.emarketer.com/content/second-screen-viewing-goes-mainstream-raising-ad-recall-risks" target="_blank" rel="noopener">Second-screen viewing goes mainstream, raising ad recall risks</a>. eMarketer. https://www.emarketer.com/content/second-screen-viewing-goes-mainstream-raising-ad-recall-risks</p>
+    <p class="ref">Marwick, A. E., &amp; boyd, d. (2011). <a href="https://doi.org/10.1177/1461444810365313" target="_blank" rel="noopener">I tweet honestly, I tweet passionately: Twitter users, context collapse, and the imagined audience</a>. <em>New Media &amp; Society, 13</em>(1), 114–133. https://doi.org/10.1177/1461444810365313</p>
+    <p class="ref">Omdia. (2026, March 11). <a href="https://www.businesswire.com/news/home/20260311585852/en" target="_blank" rel="noopener">Omdia: More than half of 45–54 year olds now watch mobile video while watching TV</a> [Press release]. Business Wire. https://www.businesswire.com/news/home/20260311585852/en</p>
+    <p class="ref">Patagonia. (n.d.). <a href="https://www.patagonia.com/ownership/" target="_blank" rel="noopener">Earth is now our only shareholder</a>. Patagonia. https://www.patagonia.com/ownership/</p>
+    <p class="ref">Salpini, C. (2023, November 14). <a href="https://www.retaildive.com/news/stanley-quencher-tumblers-viral-success/699416/" target="_blank" rel="noopener">The rise of the Stanley tumbler: How a 110-year-old brand achieved viral success</a>. Retail Dive. https://www.retaildive.com/news/stanley-quencher-tumblers-viral-success/699416/</p>
+    <p class="ref">Screenwise. (2025, December). <a href="https://screenwiseapp.com/guides/the-ultimate-guide-to-gen-z-emojis" target="_blank" rel="noopener">The ultimate guide to Gen Z emojis</a>. Screenwise. https://screenwiseapp.com/guides/the-ultimate-guide-to-gen-z-emojis</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="unit-3-stp.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">Unit 3 — STP</span>
+  </a>
+  <a href="unit-4b-deciding.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">Unit 4B — Deciding</span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
