@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4C: Moving Them — cbmatthe</title>
+<meta name="description" content="Unit 4C of M544. How marketers persuade: the ethics of persuasion, Cialdini's six tools, source/message/channel factors, the Elaboration Likelihood Model, the attitude equation, and the 60/40 payoff.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Unit 4C ---- */
+
+  /* Generic stage / flow row reused for the persuasion arc and ELM routes */
+  .flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 6px;
+    margin: 4px 0 6px;
+  }
+  .flow-node {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    padding: 13px 12px;
+    flex: 1 1 130px;
+    min-width: 118px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  .flow-node .fn-num {
+    font-family: var(--serif);
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+  }
+  .flow-node .fn-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14.5px;
+    line-height: 1.2;
+  }
+  .flow-node .fn-sub {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-top: 6px;
+  }
+  .flow-arrow {
+    align-self: center;
+    color: var(--muted);
+    font-size: 18px;
+    flex: 0 0 auto;
+  }
+  @media (max-width: 720px) {
+    .flow-row { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+
+  /* Cialdini six-tool grid */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 4px 0 6px;
+  }
+  .tool-card {
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    padding: 16px 16px 14px;
+    border-top: 3px solid var(--blue);
+    display: flex;
+    flex-direction: column;
+  }
+  .tool-card .tc-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .tool-card .tc-trigger {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .tool-card .tc-body {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .tool-card .tc-depends {
+    margin-top: 10px;
+    padding-top: 9px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  @media (max-width: 720px) {
+    .tool-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Source-attribute → process table-style cards (Kelman) */
+  .kelman-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+  }
+  .kelman-row .kr-attr {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .kelman-row .kr-arrow { color: var(--red); font-size: 18px; text-align: center; }
+  .kelman-row .kr-proc {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--blue);
+  }
+  .kelman-row .kr-note {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .kelman-head {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr 1fr;
+    gap: 10px;
+    padding: 0 16px 6px;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .kelman-head span:nth-child(2) { text-align: center; }
+  @media (max-width: 720px) {
+    .kelman-row { grid-template-columns: 1fr; text-align: left; gap: 4px; }
+    .kelman-row .kr-arrow { text-align: left; transform: rotate(90deg); width: 1em; }
+    .kelman-head { display: none; }
+  }
+
+  /* ELM two-route diagram */
+  .elm-routes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 6px 0;
+  }
+  .elm-route {
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    padding: 18px 20px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .elm-route.central { border-top: 4px solid var(--blue); }
+  .elm-route.peripheral { border-top: 4px solid var(--red); }
+  .elm-route .er-label {
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .elm-route .er-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .elm-route ul { margin: 0 0 0 18px; padding: 0; }
+  .elm-route li { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 6px; }
+  .elm-route .er-foot {
+    margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--serif); font-style: italic; font-weight: 700;
+    font-size: 14px;
+  }
+  .elm-route.central .er-foot { color: var(--blue); }
+  .elm-route.peripheral .er-foot { color: var(--red); }
+  @media (max-width: 720px) {
+    .elm-routes { grid-template-columns: 1fr; }
+  }
+
+  /* Attitude-equation visual */
+  .eqn-box {
+    background: var(--ink);
+    color: #e8e4dc;
+    text-align: center;
+    padding: 22px 18px;
+    margin: 6px 0;
+  }
+  .eqn-box .eqn-formula {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.01em;
+  }
+  .eqn-box .eqn-formula .eq-sub { font-size: 18px; vertical-align: sub; }
+  .eqn-box .eqn-legend {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--blue-mid);
+    line-height: 1.6;
+  }
+  .eqn-box .eqn-legend b { color: var(--red-mid); font-style: normal; }
+
+  /* Strategy cards (3 + 1 attitude-change moves) */
+  .strat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 6px 0;
+  }
+  .strat-card {
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    padding: 16px 18px 14px;
+    border-left: 4px solid var(--red);
+  }
+  .strat-card .st-lever {
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 4px;
+  }
+  .strat-card .st-name {
+    font-family: var(--serif); font-weight: 700; font-size: 17px;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .strat-card .st-body { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+  .strat-card.applied { border-left-color: var(--blue); }
+  .strat-card.applied .st-lever { color: var(--blue); }
+  @media (max-width: 720px) {
+    .strat-grid { grid-template-columns: 1fr; }
+  }
+
+  /* 60/40 split bar */
+  .split-bar {
+    display: flex;
+    height: 64px;
+    margin: 6px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .split-bar .sb-60 {
+    flex: 0 0 60%;
+    background: var(--blue);
+    color: #fff;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 6px;
+  }
+  .split-bar .sb-40 {
+    flex: 0 0 40%;
+    background: var(--red);
+    color: #fff;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 6px;
+  }
+  .split-bar .sb-pct { font-family: var(--serif); font-weight: 900; font-size: 22px; line-height: 1; }
+  .split-bar .sb-lab { font-size: 11.5px; letter-spacing: 0.04em; margin-top: 4px; opacity: 0.95; }
+
+  /* YouTube thumbnail-card (links out / lightbox). Matches 4B. */
+  .yt-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0 6px; }
+  .yt-card {
+    display: block; background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease; cursor: pointer;
+  }
+  .yt-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+  .yt-card:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .yt-thumb { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000; }
+  .yt-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .yt-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 54px; height: 54px; border-radius: 50%;
+    background: rgba(188,90,68,0.92); display: flex; align-items: center; justify-content: center;
+  }
+  .yt-play::after {
+    content: ''; display: block; width: 0; height: 0;
+    border-left: 18px solid #fff; border-top: 11px solid transparent; border-bottom: 11px solid transparent;
+    margin-left: 4px;
+  }
+  .yt-meta { padding: 12px 14px 13px; }
+  .yt-label { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .yt-title { font-family: var(--serif); font-weight: 700; font-size: 15px; color: var(--ink); line-height: 1.25; }
+  .yt-watch { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--blue); }
+  @media (max-width: 720px) { .yt-pair { grid-template-columns: 1fr; } }
+
+  /* Video lightbox (shared behavior in inline script at end) */
+  .video-lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(20,17,14,0.86);
+    display: none; align-items: center; justify-content: center; padding: 24px;
+  }
+  .video-lightbox.is-open { display: flex; }
+  body.video-lightbox-open { overflow: hidden; }
+  .video-lightbox-stage { position: relative; width: min(960px, 100%); }
+  .video-lightbox-stage iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; background: #000; }
+  .video-lightbox-close {
+    position: absolute; top: -42px; right: 0;
+    background: none; border: none; color: #fff; font-size: 34px; line-height: 1; cursor: pointer;
+  }
+  .video-lightbox-caption { color: #d4d0c8; font-size: 13px; margin-top: 10px; text-align: center; }
+
+  /* Unit-nav (forward/back) — mirrors 4B */
+  .unit-nav {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin: 40px 0 8px; padding-top: 28px; border-top: 1px solid var(--rule);
+  }
+  .unit-nav a { text-decoration: none; display: block; }
+  .unit-nav-label {
+    display: block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .unit-nav-title { display: block; font-family: var(--serif); font-size: 17px; color: var(--ink); font-weight: 700; }
+  .unit-nav-prev { text-align: left; }
+  .unit-nav-next { text-align: right; opacity: 0.55; }
+  .unit-nav-next .unit-nav-title { color: var(--muted); }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-prev, .unit-nav-next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Unit 4C</div>
+    <h1>Moving Them</h1>
+    <p class="lede">How marketers persuade. Unit 4B mapped how consumers decide &mdash; their motivations, identities, pain points, and the friction in their way. Knowing all of that tells you <em>who they are.</em> This module is about the other half: <em>how communication is designed to move them.</em> The tools of influence, the two routes a persuasive message can travel, and the levers that actually change an attitude &mdash; with an honest look at where the line is between persuasion and manipulation.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#ethics">Ethics</a>
+    <a href="#cialdini">Six Tools</a>
+    <a href="#source-message">Source &amp; Message</a>
+    <a href="#elm">Two Routes</a>
+    <a href="#attitude">The Attitude Equation</a>
+    <a href="#closer">Closer</a>
+    <a href="#references">References</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>From Knowing Them to Moving Them</h2>
+
+  <p>Unit 4B ended with a consumer who is fully understood and entirely unmoved. We can name their motivation, sort their pain into functional, emotional, and social columns, map the friction in their path, and predict which decision rule they will reach for. None of that, by itself, sells anything. Understanding a consumer is diagnostic; it tells you <em>who they are</em> and <em>where they are stuck.</em> Persuasion is the intervention &mdash; the deliberate design of communication to move someone from where they are to where you would like them to be. That is the whole job of this final module, and it is worth being precise about the seam: 4B explained why tension and wants and barriers exist; 4C is about how a marketer activates or resolves them.</p>
+
+  <p>A working definition, borrowed from standard treatments and stripped to its core: <strong>persuasion is an effort to guide someone toward the adoption of, or a change in, a belief, attitude, or behavior, using reasoning and emotional appeals</strong> <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>. Three things in that sentence matter. It is an <em>effort</em>, not a guarantee &mdash; the receiver always has the last vote. It targets <em>belief, attitude, or behavior</em>, three things that don't always move together; you can change what someone believes without changing what they do, and change behavior without touching belief. And it uses <em>both</em> reasoning and emotion &mdash; the seam the back half of this module is built on.</p>
+
+  <p>This module has a deliberately small spine. We start with the ethics, because persuasion is the one topic in this unit where the technique and the abuse of the technique are the same technique &mdash; you cannot teach the tools without teaching where the line sits. Then come Robert Cialdini's <strong>six tools of influence</strong>, the most portable thing in the whole unit. Then the <strong>source, message, and channel factors</strong> &mdash; who says it, how it is built, and where it runs. Then the <strong>Elaboration Likelihood Model</strong>, the framework that explains why the same message persuades one person through careful thought and another through a background detail they never consciously noticed. And finally the <strong>attitude equation</strong>, which takes an attitude apart so you can see which lever to pull to change it. The module closes by collecting the 60/40 brand-building-versus-activation thread that has run through the whole course, and handing it to the creative work that comes next.</p>
+
+  <p>One framing assumption carries over from 4A and 4B and runs underneath everything here. Assume a contemporary consumer: <strong>attention-scarce, algorithmically-mediated, and mobile-first</strong>, meeting brands across fragmented paid, owned, earned, and shared touchpoints, trusting peers and creators over polished advertising, and expecting friction-free action. Every persuasion model in this module was written for a slower, more captive audience than that. The models still hold &mdash; people are still moved by credible sources, social proof, strong arguments, and emotional association &mdash; but the <em>conditions</em> have shifted hard, and the modern shift in persuasion is specific: <strong>social proof now arrives through user content and creators rather than brand claims; behavioral-economics biases have become the everyday levers of the peripheral route; and retargeting has turned repeated exposure into an industrial process.</strong> The <em>Current View</em> at the end of each section is where we say how.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Understanding a consumer is diagnostic. Persuasion is the intervention. 4B told you who they are and where they are stuck; this module is about how communication is designed to move them.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">For the non-marketers in the room</div>
+    <p>If you are in HR, operations, accounting, or general management, this is the module that was secretly written for you. The other two explained how people receive information and how they decide; useful, but background. This one is a toolkit for <strong>influence without authority</strong> &mdash; how you move a colleague, a committee, or an executive who does not report to you and cannot be ordered to comply. Cialdini's six tools work in a salary negotiation and a budget meeting exactly as they work in advertising. The Elaboration Likelihood Model explains why your carefully reasoned proposal lost to a worse one with a better story. And there is a specific accounting angle worth flagging now: the argument that a marketing budget is an <em>investment</em> rather than an <em>expense</em> is itself an attitude-change strategy aimed at a finance audience &mdash; we will name the exact lever it pulls in &sect;5. Read this module as persuasion theory for anyone who has ever needed to move a room.</p>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li><strong>Persuasion</strong> is an effort to guide someone toward adopting, or changing, a <strong>belief, attitude, or behavior</strong>, using reasoning and emotional appeals. It is an effort, not a guarantee &mdash; the receiver always has the last vote.</li>
+        <li>Belief, attitude, and behavior are three different targets that do not always move together. You can change a belief without changing behavior, and change behavior without touching belief.</li>
+        <li>The module's spine: <strong>ethics &rarr; Cialdini's six tools &rarr; source/message/channel factors &rarr; the Elaboration Likelihood Model &rarr; the attitude equation</strong>, closing on the 60/40 payoff and the handoff to creative work.</li>
+        <li>This is the unit's payoff for non-marketers: <strong>influence without authority.</strong> The same tools that move consumers move committees, peers, and executives who don't report to you.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The persuasion models in this module predate the feed. They were built for an audience that sat still &mdash; a reader with a magazine, a household with three TV networks, a prospect across a desk from a salesperson. Today's consumer is none of those things, and the shift shows up in three specific places this module will keep returning to. <strong>Social proof</strong> has migrated from the brand's claims to other consumers' content &mdash; reviews, ratings, and creator videos now do the persuading that polished advertising used to. <strong>Behavioral-economics biases</strong> &mdash; the loss aversion, anchoring, defaults, and framing catalogued in 4B &mdash; have become the everyday machinery of low-effort persuasion, the levers a designer pulls when the consumer isn't thinking hard. And <strong>repeated exposure</strong>, which old media bought in bulk and hoped for, has become <em>retargeting</em>: the same message following the same person across sites, an industrial version of a very old persuasion principle. None of this replaces the canonical models. It changes the conditions they run under, which is exactly what the <em>Current View</em> blocks are here to track.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 1 — THE ETHICS OF PERSUASION
+     ============================================================ -->
+<section class="section" id="ethics">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Ethics</div>
+  <h2>What Persuasion Is, and Where the Line Sits</h2>
+
+  <p>Persuasion is the one subject in this unit where the technique and the abuse of the technique are the same technique. A scarcity cue that helps a shopper avoid missing a genuinely limited release is the same cue, mechanically, as the fake countdown timer that resets when you reload the page. So before the tools, a short and deliberately incomplete word on ethics &mdash; incomplete because this course closes with a standalone unit on it. The job here is narrow: get the vocabulary straight, and plant the one habit of mind the rest of the module depends on.</p>
+
+  <p>Start with the distinction people reach for first, between persuasion and manipulation. A useful line, and not the only one: <strong>persuasion respects the receiver's ability to say no; manipulation tries to remove it.</strong> A strong argument, an honest testimonial, a real deadline &mdash; these inform a choice the consumer remains free to make. A hidden fee revealed at the last step, a fabricated shortage, a dark-pattern checkout that buries the cancel button &mdash; these work by defeating the choice rather than winning it. The mechanics can be identical; the ethics live in whether the receiver's judgment is being equipped or evaded. Standard treatments put it plainly: the practice of persuasion can be noble or deplorable, and nothing is wrong with persuasion as such &mdash; it is the practitioner who is sometimes at fault <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>.</p>
+
+  <p>The second thing worth naming is that your audience is not naive. Persuasion researchers use the phrase <strong>schemer schema</strong> to capture the fact that people carry a fairly sophisticated mental model of how marketers try to influence them <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>. Consumers know the salesperson is working an angle, know the "limited time" may not be, know the influencer was paid. This matters for the tools that follow because it sets a ceiling on the clumsy versions of every technique: the moment a tactic is recognized <em>as</em> a tactic, it tends to backfire. Which leads directly to the habit of mind this whole module runs on.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Persuasion respects the receiver's ability to say no. Manipulation tries to remove it. The mechanics can be identical; the ethics live in whether the receiver's judgment is being equipped or evaded.</div>
+  </div>
+
+  <p><strong>Every tool in this module is contingent.</strong> None of them works always, on everyone, in every situation. Each one comes with an implicit "it depends" &mdash; on whether the audience is involved or distracted, whether they already agree or start opposed, whether the source reads as sincere or self-serving, whether the claim survives the schemer schema. The amateur learns the six tools and the two routes as a list of things that work. The professional learns the conditions under which each one works, fails, or reverses. That contingency is not a hedge; it is the actual content. Whenever the next four sections introduce a lever, the most important sentence will be the one that begins "this works when&hellip;" and the one right after it that begins "&hellip;and backfires when."</p>
+
+  <div class="sidebar-card is-red">
+    <h3>Why the Ethics Treatment Here Is Deliberately Short</h3>
+    <div class="sidebar-card-sub">A note on sequencing, not a dodge</div>
+    <p>This course ends with a full unit on marketing ethics, and persuasion is its center of gravity &mdash; dark patterns, manipulation, vulnerable audiences, algorithmic targeting, the disclosure rules for paid endorsements. Loading that argument into this section would either duplicate it or shortchange it. So the move here is to give you just enough to use the tools responsibly &mdash; the persuasion/manipulation line, the schemer schema, and the contingency habit &mdash; and to flag the genuinely hard cases as they come up rather than adjudicate them now.</p>
+    <p>Watch for the flags. When &sect;2 notes that fabricated scarcity is illegal as well as ineffective, when &sect;3 raises the disclosure rules around paid creators, when &sect;4 observes that the peripheral route is the easiest place to manipulate someone because they are not paying attention by definition &mdash; each of those is a thread the ethics unit will pull. For now: learn the tools, notice the lines, and hold the verdicts.</p>
+    <div class="sidebar-card-tag">Learn the tools, notice the lines, hold the verdicts &mdash; the full reckoning is its own unit.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>Persuasion as such is neither good nor bad; <strong>the practice can be noble or deplorable depending on the practitioner.</strong> The technique and its abuse are frequently the same technique.</li>
+        <li>A workable line: <strong>persuasion respects the receiver's ability to refuse; manipulation works by defeating it</strong> &mdash; equipping judgment versus evading it.</li>
+        <li>Audiences are not blank slates. The <strong>schemer schema</strong> &mdash; people's working model of how they are being sold to &mdash; means clumsy, recognizable tactics tend to backfire.</li>
+        <li>Every tool in this module is <strong>contingent.</strong> The valuable knowledge is not the list of techniques but the conditions under which each works, fails, or reverses.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The contingency that matters most today is that the schemer schema has gotten sharper and faster. A consumer who can screenshot a reset "limited time" timer, search a brand's claim mid-scroll, or watch a creator get ratioed in the comments for an undisclosed ad is running real-time fact-checking that the canonical persuasion research never assumed. That cuts two ways. It raises the floor &mdash; sloppy manipulation gets caught and punished publicly, fast &mdash; and it raises the value of the honest versions of every tool, because authenticity is now the scarce thing. The deeper modern problem, the one the closing ethics unit is built around, is the <em>peripheral route at industrial scale</em>: algorithmic systems that target the exact moment a specific person is least able to resist a specific cue. That is a genuinely new ethical situation, and it deserves more than a paragraph &mdash; which is why it gets its own unit. Here, the takeaway is just the habit: treat every lever in the next four sections as something that works <em>under conditions</em>, and treat the line between informing a choice and defeating it as the thing to keep watching.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — CIALDINI'S SIX TOOLS
+     ============================================================ -->
+<section class="section" id="cialdini">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Tools of Influence</div>
+  <h2>Cialdini's Six Tools</h2>
+
+  <p>If you remember one thing from this unit a year from now, it should probably be this section. The social psychologist Robert Cialdini spent years working undercover &mdash; car salesman, fundraiser, telemarketer &mdash; cataloguing the techniques persuasion professionals use, then testing them in the lab. What he found was not six tricks but six deep regularities in behavior, each a shortcut the mind takes to avoid evaluating every decision from scratch <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>. The tools are <strong>reciprocation, commitment and consistency, social proof, liking, authority,</strong> and <strong>scarcity.</strong></p>
+
+  <p>The reason they work is the same reason 4B's whole back half existed: people do not have the cognitive budget to deliberate on everything. Cialdini's term for the resulting behavior is <strong>click-whirr</strong> &mdash; a stimulus triggers a response (<em>click</em>), and a more-or-less automatic, scripted behavior follows (<em>whirr</em>), without much thought in between. A favor triggers the urge to return it. A long line outside a restaurant triggers the assumption that the food is good. These shortcuts are usually adaptive; they are correct often enough to be worth the cognitive savings. Which is exactly why they can be exploited &mdash; a tool of influence is a shortcut deliberately triggered by someone who benefits from the whirr. Keep one foot in &sect;4 as you read: this is the same machinery the Elaboration Likelihood Model will call the <em>peripheral route</em>, and these six tools are most of its toolkit.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.1</div>
+    <div class="figure-title">The Six Tools of Influence</div>
+    <div class="figure-content">
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tc-name">Reciprocation</div>
+          <div class="tc-trigger">Trigger: a gift or favor</div>
+          <div class="tc-body">We feel obligated to repay what we receive. A free sample, a useful piece of content, an unexpected upgrade &mdash; each creates a small debt the recipient wants to settle, often with a purchase.</div>
+          <div class="tc-depends">Works when the gift reads as genuine. Backfires when it's transparently a hook with strings attached.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tc-name">Commitment &amp; Consistency</div>
+          <div class="tc-trigger">Trigger: a prior small "yes"</div>
+          <div class="tc-body">Once we commit to something &mdash; especially publicly &mdash; we feel pressure to act consistently with it. A small first step (a free trial, a signed petition, a saved cart) makes the larger step feel like staying true to ourselves.</div>
+          <div class="tc-depends">Strongest when the commitment was active, public, and freely chosen. Weak when it was coerced or trivial.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tc-name">Social Proof</div>
+          <div class="tc-trigger">Trigger: what others are doing</div>
+          <div class="tc-body">When we're unsure, we look to others to define correct behavior. Reviews, ratings, "bestseller" tags, follower counts, and "10,000 sold this week" all run on this. The more uncertain the choice, the heavier the lean.</div>
+          <div class="tc-depends">Most powerful under uncertainty and when the "others" are seen as similar to us. Fabricated proof is illegal and, once caught, poisonous.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tc-name">Liking</div>
+          <div class="tc-trigger">Trigger: warmth &amp; similarity</div>
+          <div class="tc-body">We say yes to people we like, and we like people who are attractive, similar to us, familiar, and who like us back. This is why brands cast relatable spokespeople and why salespeople find common ground before the pitch.</div>
+          <div class="tc-depends">Durable but shallow: liking moves the easy decisions and gets overridden when stakes and scrutiny rise.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tc-name">Authority</div>
+          <div class="tc-trigger">Trigger: legitimate expertise</div>
+          <div class="tc-body">We defer to credible experts &mdash; and to the symbols of expertise (titles, lab coats, credentials, "9 out of 10 dentists"). The deference saves us the work of evaluating a complex claim ourselves.</div>
+          <div class="tc-depends">Works when the authority is real and relevant. The schemer schema punishes borrowed or fake authority hard.</div>
+        </div>
+        <div class="tool-card">
+          <div class="tc-name">Scarcity</div>
+          <div class="tc-trigger">Trigger: limited supply or time</div>
+          <div class="tc-body">Things feel more valuable when they're rare or about to disappear. "Only 3 left," "ends tonight," limited editions, and exclusive access all work because a potential loss looms larger than an equivalent gain.</div>
+          <div class="tc-depends">Effective when the limit is real. A countdown that resets on reload is manipulation, gets screenshotted, and can draw regulators.</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">Andrews &amp; Shimp (2018)</a>, after Cialdini. Each tool pairs a trigger with a near-automatic response &mdash; the "click-whirr." The line under each card is the one that matters most: the condition under which the tool works, and the condition under which it reverses. The amateur memorizes the six names; the professional memorizes the twelve conditions.</div>
+  </div>
+
+  <p>A few of these deserve a closer look, because the standard one-liners hide the interesting parts. <strong>Reciprocation</strong> is why the free sample at the warehouse club is not generosity &mdash; it is an investment with a measurable return, and the return comes from a sense of obligation the shopper barely notices forming. It scales into content marketing: a genuinely useful free guide, calculator, or template builds a small reciprocal debt that makes the eventual ask land softer. <strong>Commitment and consistency</strong> is the engine under the "free trial" and the saved cart and the multi-step onboarding flow that asks you to do something trivial on day one &mdash; each small yes makes the next yes more consistent with who you've just shown yourself to be. The classic field version is the salesperson's <em>lowball</em>: get the commitment first, reveal the true cost second, and watch the buyer talk themselves into staying.</p>
+
+  <p><strong>Scarcity</strong> is worth pausing on because it connects directly to a bias from 4B. It works because <em>loss aversion</em> works &mdash; the prospect of missing out weighs heavier than the prospect of an equivalent gain, so "you'll lose access" outperforms "you'll get access." This is the cleanest illustration of a claim this whole module rests on: Cialdini's tools and the behavioral-economics biases are not two separate lists. Scarcity is loss aversion deployed on purpose. Social proof appears on both. The six tools are, in large part, named persuasion applications of the same handful of cognitive shortcuts the last module catalogued.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The amateur memorizes the six names. The professional memorizes the twelve conditions &mdash; the "works when" and the "backfires when" under each one. The contingency is the content.</div>
+  </div>
+
+  <div class="sidebar-card">
+    <h3>Social Proof Has Changed Hands</h3>
+    <div class="sidebar-card-sub">The modern angle &middot; from brand claims to peer and creator content</div>
+    <p>Of the six tools, social proof is the one the modern media environment has reshaped most. For most of advertising history, a brand supplied its own proof &mdash; testimonials it selected, "America's favorite," a celebrity it paid. The consumer had little else to go on. That is no longer the situation. Proof now arrives overwhelmingly from <em>other consumers</em>: star ratings, review counts, unboxing videos, "TikTok made me buy it," the comment section. The brand has lost control of the most persuasive version of its own social proof, and that is mostly the consumer's gain.</p>
+    <p>The underlying preference is durable and well-measured. Nielsen's 2021 global Trust in Advertising study found that <strong>89% of respondents trust recommendations from people they know more than any other channel</strong> &mdash; the single most trusted format, ahead of every paid format <a href="https://www.nielsen.com/insights/2021/beyond-martech-building-trust-with-consumers-and-engaging-where-sentiment-is-high/" target="_blank" rel="noopener">(Nielsen, 2021)</a>. The 2025 Edelman Trust Barometer's brand report extends the point: trust has become a third axis of purchase decision alongside price and quality, and <strong>80% of people now say they trust the brands they use</strong> &mdash; but that trust is increasingly earned through authentic, culturally-fluent signals rather than asserted in advertising <a href="https://www.edelman.com/trust/2025/trust-barometer/special-report-brands" target="_blank" rel="noopener">(Edelman, 2025)</a>.</p>
+    <p>Two practical consequences follow. First, the marketer's job shifts from <em>manufacturing</em> proof to <em>earning and surfacing</em> it &mdash; making genuine customer content easy to create, collect, and display. Second, the schemer schema is merciless here: fake reviews, undisclosed paid endorsements, and engagement-farmed "proof" get detected and punished publicly, and the US Federal Trade Commission's endorsement rules now treat undisclosed material connections as a violation. The most powerful tool in Cialdini's set is also the one most likely to detonate if you fake it.</p>
+    <div class="sidebar-card-tag">The brand no longer owns its most persuasive proof. The work is earning it, not asserting it.</div>
+  </div>
+
+  <p>One thread to carry forward. The six tools are not interchangeable; they push through different psychological doors, which means an integrated campaign should match the tool to the job. <strong>Public relations and expert endorsement run on authority. Reviews, ratings, and creator content run on social proof. Loyalty perks and free samples run on reciprocation. Limited drops and deadlines run on scarcity.</strong> A single voice across channels &mdash; the IMC principle from 4A &mdash; does not mean a single tool; it means choosing, per touchpoint, which shortcut fits the moment the consumer is in. That is also a preview of &sect;4's central insight: different tools tend to push different <em>routes</em> to persuasion, and which route you want depends on who is on the other end.</p>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>Cialdini's six tools &mdash; <strong>reciprocation, commitment/consistency, social proof, liking, authority, scarcity</strong> &mdash; are deep behavioral regularities, not tricks. Each is a mental shortcut that's adaptive often enough to be worth taking.</li>
+        <li>They work through <strong>click-whirr</strong>: a trigger fires a near-automatic, scripted response with little deliberation in between. That low-deliberation quality is what links them to the peripheral route in &sect;4.</li>
+        <li>Every tool is <strong>contingent.</strong> Reciprocation needs sincerity; commitment needs to be active and public; social proof needs uncertainty and similarity; authority and scarcity must be <em>real</em> or the schemer schema punishes them.</li>
+        <li>The tools overlap with the behavioral-economics biases from 4B &mdash; <strong>scarcity is loss aversion deployed on purpose</strong>; social proof appears on both lists. They are one body of knowledge seen from two angles.</li>
+        <li>In an IMC program, <strong>match the tool to the touchpoint</strong>: PR carries authority, reviews carry social proof, perks carry reciprocation, drops carry scarcity. One voice, many tools.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The biggest live shift is that <strong>social proof has moved out of the brand's hands and into the feed.</strong> The most persuasive endorsement of a product is now a stranger's video or a five-star average with 4,000 reviews, not anything the brand says about itself &mdash; and consumers trust it precisely because the brand didn't author it. That reorders the marketer's priorities: earning and surfacing genuine customer content beats producing another polished claim. The other tools have modern faces too. Reciprocation runs through free tools and content. Commitment runs through frictionless onboarding that banks a small yes before asking for a big one. Scarcity runs through the limited "drop," a model whole brands are now built on. And authority is being renegotiated in real time as <strong>generative-AI assistants become the thing consumers ask</strong> &mdash; Edelman's 2025 data notes that among the 55% using generative-AI platforms, 91% use them for shopping in some way, which means the "expert" a consumer defers to is increasingly a model summarizing reviews <a href="https://www.edelman.com/trust/2025/trust-barometer/special-report-brands" target="_blank" rel="noopener">(Edelman, 2025)</a>. The six tools still describe the machinery exactly. What's changed is who pulls the levers, and how fast a faked one gets caught.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — SOURCE, MESSAGE & CHANNEL
+     ============================================================ -->
+<section class="section" id="source-message">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Source, Message &amp; Channel</div>
+  <h2>Who Says It, How They Say It, and Where</h2>
+
+  <p>Cialdini's tools describe the <em>psychology</em> a message exploits. This section is about the three knobs a marketer controls when building the message: <strong>the source</strong> (who delivers it), <strong>the message</strong> (how it's structured and what appeal it makes), and <strong>the channel</strong> (where it runs) &mdash; the controllable variables in 4A's communication model. A standard way to organize the decisions is the <strong>persuasion matrix</strong>, which crosses those inputs against the steps a receiver passes through, so you can ask whether a choice that helps one stage quietly hurts another <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">(Belch &amp; Belch, 2023)</a>.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.2</div>
+    <div class="figure-title">The Persuasion Matrix</div>
+    <div class="figure-content">
+      <table>
+        <thead>
+          <tr>
+            <th>Receiver step &darr; &nbsp;/&nbsp; Marketer's lever &rarr;</th>
+            <th>Source</th>
+            <th>Message</th>
+            <th>Channel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Exposure / presentation</strong><br><span style="font-size:12px;color:var(--muted)">Did it reach them at all?</span></td><td></td><td></td><td>Which media vehicle, where, how often</td></tr>
+          <tr><td><strong>Attention</strong><br><span style="font-size:12px;color:var(--muted)">Did they notice?</span></td><td>A source who breaks through clutter</td><td></td><td></td></tr>
+          <tr><td><strong>Comprehension</strong><br><span style="font-size:12px;color:var(--muted)">Did they get it?</span></td><td></td><td>Clear structure; right reading level</td><td></td></tr>
+          <tr><td><strong>Yielding / liking</strong><br><span style="font-size:12px;color:var(--muted)">Did it change how they feel?</span></td><td></td><td>The appeal: fear, humor, argument</td><td></td></tr>
+          <tr><td><strong>Retention</strong><br><span style="font-size:12px;color:var(--muted)">Will they remember?</span></td><td></td><td></td><td></td></tr>
+          <tr><td><strong>Behavior</strong><br><span style="font-size:12px;color:var(--muted)">Did they act?</span></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">Belch &amp; Belch (2023)</a>. The point of the grid isn't to fill every cell &mdash; it's the diagnostic discipline. A choice that wins one row can lose another: a celebrity who nails <em>attention</em> can wreck <em>comprehension</em> if viewers remember the star and forget the brand (the "vampire effect"); a humorous appeal that wins <em>liking</em> can sink <em>retention</em> if the joke is what sticks. The matrix is a reminder to check the whole column before celebrating one cell.</div>
+  </div>
+
+  <h3>3.1 Source: Who Delivers It</h3>
+
+  <p>4A introduced the <em>source effect</em> &mdash; the same words land differently depending on who says them. This section gives the mechanism. The foundational work is Herbert Kelman's, and it maps three source attributes onto three different processes by which a source changes someone's mind. The distinction is not academic hair-splitting; each process produces a <em>different kind</em> of attitude change, with a different shelf life.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.3</div>
+    <div class="figure-title">Kelman's Source Attributes and How Each One Works</div>
+    <div class="figure-content">
+      <div class="kelman-head">
+        <span>Source attribute</span><span></span><span>Process it triggers</span><span>What it produces</span>
+      </div>
+      <div class="kelman-row">
+        <div class="kr-attr">Credibility<br><span style="font-size:12px;font-weight:400;color:var(--muted)">expertise + trustworthiness</span></div>
+        <div class="kr-arrow">&rarr;</div>
+        <div class="kr-proc">Internalization</div>
+        <div class="kr-note">The receiver adopts the position as their own because they believe it's accurate. <strong>Durable</strong> &mdash; survives even after the source is forgotten.</div>
+      </div>
+      <div class="kelman-row">
+        <div class="kr-attr">Attractiveness<br><span style="font-size:12px;font-weight:400;color:var(--muted)">similarity, familiarity, likability</span></div>
+        <div class="kr-arrow">&rarr;</div>
+        <div class="kr-proc">Identification</div>
+        <div class="kr-note">The receiver adopts the position to feel connected to a source they like or resemble. Lasts <strong>only as long</strong> as the source stays attractive and supportive.</div>
+      </div>
+      <div class="kelman-row">
+        <div class="kr-attr">Power<br><span style="font-size:12px;font-weight:400;color:var(--muted)">control over rewards/punishments</span></div>
+        <div class="kr-arrow">&rarr;</div>
+        <div class="kr-proc">Compliance</div>
+        <div class="kr-note">The receiver goes along to get a reward or avoid a penalty, without private agreement. <strong>Shallowest</strong> &mdash; lasts only while the source is watching.</div>
+      </div>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">Belch &amp; Belch (2023)</a>, after Kelman. Notice the connection to &sect;2: Cialdini's <em>authority</em> is Kelman's <em>credibility</em>, and Cialdini's <em>liking</em> is Kelman's <em>attractiveness</em>. The two frameworks are describing the same source effects from different angles &mdash; which is reassuring, not redundant. <em>Power</em> rarely applies to advertising (an ad can't punish you) but is the everyday currency of a boss, a regulator, or a platform that can shut off your reach.</div>
+  </div>
+
+  <p>The most important word in that figure is <strong>internalization</strong>, because it is the only one of the three that produces lasting change. A credible source &mdash; one with genuine <em>expertise</em> and, just as critically, <em>trustworthiness</em> &mdash; gets the receiver to fold the new belief into their own belief system, where it stays after the source is gone. This is why expert endorsements, demonstrations, and third-party validation do durable work, and why the <em>trustworthiness</em> half matters so much: a knowledgeable source who seems biased or bought gets discounted, and the receiver counter-argues instead of internalizing. The cleanest practical version of this is publicity &mdash; a news story or an independent review carries more weight than the identical claim in a paid ad precisely because the source has no obvious stake.</p>
+
+  <p>Attractiveness works differently and worse, in the sense that <em>identification</em> is rented, not owned. People adopt the attitudes of sources they like or resemble, but the moment the celebrity falls out of favor or switches sides, the borrowed attitude evaporates. This is the structural weakness of celebrity endorsement, and it sets up the risk a brand takes whenever it ties its meaning to a person it does not control &mdash; the Tiger Woods and Lance Armstrong cautionary tales in the source literature are exactly this failure mode <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">(Belch &amp; Belch, 2023)</a>. There is also a quieter trap: the <strong>vampire effect</strong>, where a source so vivid that the audience remembers the star and forgets the brand has won attention at the expense of everything downstream of it in the matrix.</p>
+
+  <h3>3.2 Message: How It's Built</h3>
+
+  <p>Once you've chosen who delivers the message, you have to decide how to construct it. Two families of decision matter most: <em>structure</em> (how the argument is arranged) and <em>appeal</em> (what psychological lever it pulls). Start with structure, where the single most useful idea is <strong>message sidedness.</strong> A <strong>one-sided message</strong> states only the positives. A <strong>two-sided message</strong> admits a drawback or concedes a competitor's strength before making its case. The instinct is to go one-sided always &mdash; why hand ammunition to the skeptic? &mdash; but the research is clear that two-sided messages are more persuasive with audiences who are skeptical, well-educated, or already aware of the downside, because the concession buys credibility <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">(Belch &amp; Belch, 2023)</a>. It is the same concession-then-attack move that makes an argumentative essay trustworthy: acknowledge what the other side gets right, and your claim lands harder.</p>
+
+  <p>A sharper version is the <strong>refutational appeal</strong> &mdash; raise the opposing argument <em>specifically</em> and then dismantle it. This is more than honesty; it functions like an inoculation. A consumer who has heard the counter-argument and seen it answered is measurably more resistant when a competitor makes that same argument later, the way a small dose of a pathogen builds immunity. Market leaders and brands under attack use this deliberately to harden their customers against defection. Two more structural levers round it out. <strong>Order of presentation</strong>: items at the beginning and end of a message are remembered better than those buried in the middle, so the strongest points go first or last, never in the soft middle. And <strong>verbal versus visual</strong>: in most modern advertising the image carries the persuasion and the words caption it, which matters more than ever in a mobile feed scrolled with the sound off.</p>
+
+  <div class="yt-pair" style="grid-template-columns: 1fr;">
+    <div class="yt-card" data-video-id="AH5R56jILag" data-video-title="Domino's Pizza Turnaround (2009)" role="button" tabindex="0" aria-label="Play: Domino's Pizza Turnaround, a two-sided message">
+      <div class="yt-thumb">
+        <img src="https://img.youtube.com/vi/AH5R56jILag/hqdefault.jpg" alt="Domino's executives and chefs reacting to harsh customer focus-group feedback in the 2009 Pizza Turnaround documentary">
+        <div class="yt-play" aria-hidden="true"></div>
+      </div>
+      <div class="yt-meta">
+        <div class="yt-label">Watch &middot; the two-sided message, in the wild</div>
+        <div class="yt-title">Domino's "Pizza Turnaround" (2009)</div>
+        <a class="yt-watch" href="https://www.youtube.com/watch?v=AH5R56jILag" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:-2px;">The cleanest two-sided message in modern marketing. Domino's opened its 2009 relaunch by putting real focus-group footage on screen &mdash; customers calling the crust "cardboard," the sauce "like ketchup" &mdash; before unveiling a reformulated recipe. Admitting the product had been bad is exactly the concession that bought the credibility for "oh yes we did." The campaign drove a record same-store sales jump and is credited as a turning point in Domino's eventual rise past Pizza Hut <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">(Belch &amp; Belch, 2023)</a>.</p>
+
+  <p>Now the appeals &mdash; the psychological lever the message pulls. Three are worth knowing well. <strong>Fear appeals</strong> threaten an unwanted consequence (social rejection from bad breath, a DUI's cost, the health risk of a behavior) and offer the brand or behavior as the way to avoid it. The crucial and counterintuitive finding is that fear is <em>not</em> linear: its relationship to persuasion is an inverted U. Too little fear and the message is ignored; too much and the receiver shuts down, denies the threat, or tunes out entirely to protect themselves. The sweet spot is moderate fear <em>paired with a clear, achievable way to remove the threat</em> &mdash; which is the heart of the <strong>protection-motivation model</strong>: a fear appeal works only when the audience believes both that the recommended action will work and that they can actually do it.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.4</div>
+    <div class="figure-title">Why Fear Appeals Have a Ceiling</div>
+    <div class="figure-content">
+      <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fear-t fear-d">
+        <title id="fear-t">The inverted-U relationship between fear and persuasion</title>
+        <desc id="fear-d">A curve rising from low acceptance at low fear to a peak at moderate fear, then falling at high fear. A dashed facilitating line rises; a dashed inhibiting line falls; their sum is the inverted-U curve.</desc>
+        <defs>
+          <style>
+            .ax { stroke:#b5ad9f; stroke-width:1.5; }
+            .axlab { fill:#6F6A66; font-family:'Source Sans 3',sans-serif; font-size:13px; }
+            .axtitle { fill:#2A2420; font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:600; }
+            .curve { fill:none; stroke:#BC5A44; stroke-width:3.5; }
+            .facil { fill:none; stroke:#4D7090; stroke-width:1.8; stroke-dasharray:5,4; }
+            .inhib { fill:none; stroke:#6F6A66; stroke-width:1.8; stroke-dasharray:5,4; }
+            .glab { font-family:'Source Sans 3',sans-serif; font-size:12.5px; font-weight:600; }
+            .peaklab { fill:#BC5A44; font-family:'Playfair Display',serif; font-size:13px; font-style:italic; font-weight:700; }
+          </style>
+        </defs>
+        <!-- axes -->
+        <line class="ax" x1="80" y1="40" x2="80" y2="320"/>
+        <line class="ax" x1="80" y1="320" x2="710" y2="320"/>
+        <text class="axtitle" x="44" y="180" transform="rotate(-90 44 180)" text-anchor="middle">Message acceptance &rarr;</text>
+        <text class="axtitle" x="395" y="358" text-anchor="middle">Level of fear in the message &rarr;</text>
+        <text class="axlab" x="120" y="338">low</text>
+        <text class="axlab" x="650" y="338">high</text>
+        <!-- facilitating (rises) -->
+        <path class="facil" d="M80,300 C260,250 480,150 700,70"/>
+        <text class="glab" x="598" y="58" fill="#4D7090">facilitating effect</text>
+        <!-- inhibiting (falls) -->
+        <path class="inhib" d="M80,150 C300,180 520,300 700,330"/>
+        <text class="glab" x="560" y="322" fill="#6F6A66">inhibiting effect</text>
+        <!-- resultant inverted-U -->
+        <path class="curve" d="M80,288 C240,170 360,120 410,118 C470,116 580,200 700,300"/>
+        <circle cx="410" cy="118" r="5" fill="#BC5A44"/>
+        <text class="peaklab" x="410" y="104" text-anchor="middle">moderate fear + a clear way out</text>
+      </svg>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">Belch &amp; Belch (2023)</a>. The red curve is the sum of two opposing forces: a <span style="color:#4D7090;font-weight:600;">facilitating effect</span> (fear grabs attention and motivates action) and an <span style="color:#6F6A66;font-weight:600;">inhibiting effect</span> (too much fear triggers denial and avoidance). Persuasion peaks in the middle &mdash; and only if the message also tells people what to do about the threat. Fear without a remedy mostly produces paralysis.</div>
+  </div>
+
+  <p><strong>Humor</strong> is the most common appeal and the most double-edged. It wins attention, improves liking of the ad, and disarms counter-arguing &mdash; but it can overshadow the brand (you remember the joke, not the product), wears out faster than serious appeals once the surprise is gone, and suits low-involvement, feeling products far better than high-involvement, thinking ones. Nobody wants a hilarious oncologist. <strong>Comparative advertising</strong> &mdash; naming a competitor and beating them on a specific attribute &mdash; is the third. It is most useful for challenger brands borrowing relevance from a leader (a small brand that names the category king instantly positions itself as the alternative), and it is risky for leaders, who have little to gain by giving a rival free airtime. It is also the native grammar of political attack ads, where the goal is less to praise the candidate than to raise doubt about the opponent.</p>
+
+  <h3>3.3 Channel: Where It Runs</h3>
+
+  <p>The channel is the third knob, and the one most often treated as a media-buying afterthought rather than a persuasion decision. It is a persuasion decision. <strong>Self-paced channels</strong> &mdash; print, web pages, anything the receiver controls &mdash; let people process a long, complex, argument-heavy message at their own speed, which makes them the right home for high-involvement, central-route persuasion. <strong>Externally-paced channels</strong> &mdash; broadcast TV and radio, where the medium sets the speed &mdash; suit shorter, simpler, emotional messages. There is also a <em>qualitative</em> media effect: the same ad reads differently depending on its surroundings, which is why a luxury watch wants the glossy magazine and the travel brand wants to sit next to travel content. And the channel environment is increasingly defined by <strong>clutter</strong> &mdash; the sheer volume of competing messages, which is just the "noise" from 4A's communication model wearing its media-planning clothes. The more cluttered the channel, the harder every other decision in this section has to work.</p>
+
+  <div class="sidebar-card">
+    <h3>The Creator Is the Modern Source</h3>
+    <div class="sidebar-card-sub">The modern angle &middot; Kelman's three attributes, recombined in one person</div>
+    <p>The most interesting thing about the influencer economy, read through this section, is that the successful creator quietly solves the source problem that stumped advertising for a century. A good creator is <strong>credible</strong> (they use the stuff and have built a track record), <strong>attractive</strong> in Kelman's sense (their audience is self-selected for similarity and liking), and they carry the <strong>social proof</strong> of a visible, engaged following. Credibility plus attractiveness plus proof, bundled into one source the audience chose to follow &mdash; that is a more complete persuasion package than a paid celebrity, who supplies attractiveness but rents it, or a brand spokesperson, who supplies a claim but no trust.</p>
+    <p>This is also where the meaning-transfer logic from 4A returns. The endorsement literature describes how a celebrity moves <em>cultural meaning</em> into a brand &mdash; the star's associations become the brand's associations <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">(Belch &amp; Belch, 2023)</a>. Creators do the same transfer, but from a source the audience treats as a peer rather than a distant icon, which is why a micro-creator with 40,000 engaged followers can outperform a global celebrity for certain products. The meaning being transferred is "someone like me, who I trust, uses this."</p>
+    <p>The catch is the one &sect;1 flagged and the ethics unit will press: this only works while the audience believes the endorsement is genuine. The US Federal Trade Commission's Endorsement Guides, substantially updated in 2023, require any material connection between a creator and a brand &mdash; payment, free product, even a discount &mdash; to be disclosed clearly and conspicuously, and the threshold has nothing to do with dollar value <a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" target="_blank" rel="noopener">(Federal Trade Commission, 2024)</a>. An undisclosed paid endorsement isn't just a legal exposure; it converts the creator's credibility &mdash; the durable, internalizing kind &mdash; into the discounted kind the moment it's exposed.</p>
+    <div class="sidebar-card-tag">A trusted creator is credibility, attractiveness, and social proof in one source &mdash; which is exactly why faking the trust is so destructive.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>The three controllable persuasion variables are <strong>source, message, and channel</strong>. The <strong>persuasion matrix</strong> crosses them against the receiver's steps (exposure &rarr; attention &rarr; comprehension &rarr; yielding &rarr; retention &rarr; behavior) so you can spot when winning one step costs another.</li>
+        <li>Kelman's <strong>source attributes</strong> each trigger a different process: <strong>credibility &rarr; internalization</strong> (durable, owned), <strong>attractiveness &rarr; identification</strong> (rented, fades), <strong>power &rarr; compliance</strong> (shallow, only while watched). Credibility is the only one that lasts. These line up with Cialdini's authority and liking.</li>
+        <li><strong>Message structure:</strong> two-sided and refutational messages beat one-sided ones with skeptical or informed audiences; concession buys credibility, and refutation inoculates. Put strong points first or last, never the middle.</li>
+        <li><strong>Message appeals:</strong> fear follows an <strong>inverted U</strong> and needs a clear remedy (protection-motivation); humor wins attention but can overshadow the brand and wears out; comparative advertising helps challengers and endangers leaders.</li>
+        <li><strong>Channel</strong> is a persuasion choice, not just a media buy: self-paced channels suit complex arguments, externally-paced ones suit short emotional messages, context colors meaning, and clutter is 4A's "noise" by another name.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>Every knob in this section has been recombined by the platform era. The <strong>source</strong> question now resolves to the creator, who bundles credibility, attractiveness, and social proof into a single peer-shaped package that outperforms both the paid celebrity and the brand's own voice &mdash; provided the material connection is disclosed, which the 2023 FTC guides make non-optional <a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" target="_blank" rel="noopener">(Federal Trade Commission, 2024)</a>. The <strong>message</strong> is increasingly visual-first and sound-off, which inverts the old verbal/visual hierarchy &mdash; the image now carries the argument and the caption supports it. And the <strong>channel</strong> distinction between self-paced and externally-paced has blurred into something stranger: a feed is self-paced in that you control the scroll, but algorithmically-paced in that a recommender decides what scrolls past and how often, which turns repeated exposure into <em>retargeting</em> &mdash; the same message following the same person until it converts or annoys. The canonical source/message/channel framework still names the right three decisions. What's changed is that a recommendation algorithm now sits between the channel and the receiver, making some of those decisions on the marketer's behalf. &sect;4 gives us the model that explains why all of this works &mdash; why a credible source persuades one person through careful thought and a background jingle persuades another without any thought at all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — THE TWO ROUTES (ELM)
+     ============================================================ -->
+<section class="section" id="elm">
+  <div class="sec-num">04</div>
+  <div class="sec-label">The Two Routes</div>
+  <h2>The Elaboration Likelihood Model</h2>
+
+  <p>Everything so far &mdash; the six tools, the source attributes, the message appeals &mdash; raises a question the individual pieces can't answer on their own: <em>why does the same persuasive attempt work through completely different mechanisms on different people, or on the same person at different moments?</em> A meticulous argument about interest rates persuades one mortgage shopper and bounces off another who just goes with the bank whose ad had a nice jingle. The Elaboration Likelihood Model, developed by the psychologists Richard Petty and John Cacioppo, is the framework that organizes the whole module by answering exactly that <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>. It is the most important single model in this unit, because it tells you <em>which</em> of the other tools to reach for.</p>
+
+  <p>The model's core word is <strong>elaboration</strong> &mdash; the amount of effortful thinking a person does in response to a message. Do they weigh the argument, compare it to what they already believe, generate their own counterpoints? Or do they barely engage, letting the message wash over them while a background cue does the quiet work? The degree of elaboration sits on a continuum, and where a given person lands on it for a given message is called the <strong>elaboration likelihood.</strong> That likelihood is set by three factors, abbreviated <strong>MAO</strong>:</p>
+
+  <div class="flow-row">
+    <div class="flow-node">
+      <div class="fn-num">M</div>
+      <div class="fn-name">Motivation</div>
+      <div class="fn-sub">Do they <em>care</em>? Is the message personally relevant &mdash; tied to a current goal, need, or risk?</div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-node">
+      <div class="fn-num">A</div>
+      <div class="fn-name">Ability</div>
+      <div class="fn-sub">Can they <em>follow</em> it? Do they have the knowledge and skill to process the argument?</div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-node">
+      <div class="fn-num">O</div>
+      <div class="fn-name">Opportunity</div>
+      <div class="fn-sub">Can they process it <em>right now</em>? Or is it too fast, too cluttered, too distracted a moment?</div>
+    </div>
+    <div class="flow-arrow">&rarr;</div>
+    <div class="flow-node" style="border-top-color:var(--blue);">
+      <div class="fn-num">RESULT</div>
+      <div class="fn-name">Elaboration likelihood</div>
+      <div class="fn-sub">High only if <em>all three</em> are present. Any one missing drops it toward low.</div>
+    </div>
+  </div>
+
+  <p>The "all three" point is the one people miss. Elaboration likelihood is closer to an <em>and</em> gate than an average. A consumer can be motivated and able to evaluate a car loan, but if they pass the billboard at 65 miles an hour, the opportunity is gone and so is the thinking. A capable reader with all the time in the world still won't elaborate on a product they don't care about. Whichever element is weakest sets the ceiling &mdash; and the level of elaboration determines which of two routes the persuasion travels.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.5</div>
+    <div class="figure-title">The Two Routes to Persuasion</div>
+    <div class="figure-content">
+      <div class="elm-routes">
+        <div class="elm-route central">
+          <div class="er-label">High elaboration &mdash; MAO all present</div>
+          <div class="er-name">The Central Route</div>
+          <ul>
+            <li>The receiver <strong>thinks hard</strong> about the actual message &mdash; weighs arguments, checks evidence, generates their own responses.</li>
+            <li>Persuasion hinges on <strong>argument quality.</strong> Strong arguments win; weak ones get caught and rejected.</li>
+            <li>The attitude change is <strong>durable, resistant to counter-persuasion, and predictive of behavior.</strong></li>
+            <li>Tools that fit: credible expertise, two-sided and refutational messages, demonstrations, specifics.</li>
+          </ul>
+          <div class="er-foot">Hard to earn. Hard to dislodge once earned.</div>
+        </div>
+        <div class="elm-route peripheral">
+          <div class="er-label">Low elaboration &mdash; an MAO element missing</div>
+          <div class="er-name">The Peripheral Route</div>
+          <ul>
+            <li>The receiver <strong>barely engages the argument</strong> and instead responds to a <strong>peripheral cue</strong> sitting alongside it.</li>
+            <li>Persuasion hinges on cues: <strong>attractiveness, music, mood, a likable source, social proof, scarcity, sheer repetition.</strong></li>
+            <li>The attitude change is <strong>temporary, fragile, and easily reversed</strong> unless the cue keeps reappearing.</li>
+            <li>Tools that fit: liking, social proof, scarcity &mdash; and the behavioral-econ biases from 4B.</li>
+          </ul>
+          <div class="er-foot">Easy to earn. Easy to lose &mdash; so you repeat it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">Andrews &amp; Shimp (2018)</a>, after Petty &amp; Cacioppo. The two routes are ends of a continuum, not a binary &mdash; most real persuasion runs a <em>moderate</em> elaboration mix of both. The practical question is never "which route exists" but "where on this continuum is <em>my</em> audience, for <em>this</em> message, in <em>this</em> moment" &mdash; because that's what tells you whether to spend your effort on argument quality or on cues.</div>
+  </div>
+
+  <p>Read the two columns side by side and the strategic payoff is obvious. The central route produces the kind of attitude every marketer says they want &mdash; durable, behavior-driving, resistant to a competitor's counter-message &mdash; but it is expensive to earn, because it requires an audience willing and able and free to think, and a message strong enough to reward the thinking. The peripheral route is cheap and fast but builds on sand; the attitude lasts only as long as the cue keeps showing up, which is precisely why peripheral-route advertising relies on <em>repetition.</em> Neither route is "better." They are answers to different situations, and the entire art is diagnosing which situation you're in before you spend a dollar.</p>
+
+  <h3>4.1 What the Peripheral Route Collects</h3>
+
+  <p>Here is where two things 4B deliberately set aside come home. The previous module taught classical conditioning and catalogued a half-dozen behavioral-economics biases, and both times it promised they would be re-explained here as parts of one framework. This is the framework. <strong>Both are mechanisms of the peripheral route.</strong></p>
+
+  <p>Start with <strong>classical conditioning</strong> &mdash; Pavlov's dogs, repurposed for brands. Pavlov paired a neutral bell with meat powder until the bell alone made the dogs salivate. Advertising runs the identical procedure: pair a brand (neutral) with something that already produces a good feeling (popular music, a beloved holiday, an attractive face, a surge of nostalgia) and repeat until the brand alone triggers the feeling. Notice what's <em>absent</em> from that process &mdash; any argument, any evaluation, any thinking. The consumer isn't persuaded that the brand is good; they're <em>conditioned</em> to feel good near it. That is the peripheral route exactly: a cue doing the work that an argument would do on the central route, with elaboration close to zero. Most brand-mood advertising &mdash; the soda ad that is just happy people and a song, with no claim about the soda at all &mdash; is classical conditioning running on the peripheral route.</p>
+
+  <p>Now the <strong>behavioral-economics biases.</strong> 4B catalogued them &mdash; loss aversion, anchoring, defaults and status-quo bias, framing, social proof, mental accounting &mdash; and called them the "peripheral route's tool kit" with a promissory note to this module. The note comes due now: <strong>each bias is a peripheral cue.</strong> It moves behavior without engaging the argument, by exploiting a shortcut the mind takes when it isn't elaborating. Anchoring works because the consumer isn't deliberating on the true price; the first number they see sets the frame and they react to it. A default wins because changing it requires effort the low-elaboration consumer won't spend. Loss-aversion framing ("don't miss out") moves people who would shrug at the logically-equivalent gain frame. Run down the list and the pattern holds: every one is a lever you pull when the receiver is on the peripheral route and not thinking hard enough to notice the lever.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.6</div>
+    <div class="figure-title">One Framework, Three Vocabularies</div>
+    <div class="figure-content">
+      <table>
+        <thead>
+          <tr><th>You met it as&hellip;</th><th>In&hellip;</th><th>In ELM terms, it's&hellip;</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cialdini's <strong>liking</strong> &amp; <strong>social proof</strong></td><td>&sect;2, this module</td><td>Peripheral cues</td></tr>
+          <tr><td>Cialdini's <strong>authority</strong></td><td>&sect;2 / Kelman's credibility, &sect;3</td><td>Can feed <em>either</em> route &mdash; a cue if unexamined, an argument if the expertise is evaluated</td></tr>
+          <tr><td>Cialdini's <strong>scarcity</strong> = <strong>loss aversion</strong></td><td>&sect;2 + 4B biases</td><td>Peripheral cue</td></tr>
+          <tr><td><strong>Classical conditioning</strong> (Pavlov)</td><td>4B, behavioral learning</td><td>The peripheral route, by definition</td></tr>
+          <tr><td><strong>Behavioral-econ biases</strong> (anchoring, defaults, framing, mental accounting&hellip;)</td><td>4B, &sect;5 sidebar</td><td>Peripheral cues, one and all</td></tr>
+          <tr><td><strong>Strong argument + credible proof</strong></td><td>&sect;3, message structure</td><td>The central route's raw material</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-caption">The reason this course kept saying "we'll consolidate this later" is that the ELM is the consolidation. Classical conditioning, the behavioral-economics biases, and most of Cialdini's tools are not separate topics &mdash; they are the peripheral route described in three different research vocabularies. The central route is the smaller, harder category: genuine arguments processed by someone actually thinking. Most of what we call "advertising" lives in the top five rows.</div>
+  </div>
+
+  <p>This consolidation is the intellectual payoff of the whole unit, so it's worth stating flatly: <strong>the peripheral route is where most marketing operates</strong>, because most consumers, most of the time, are low on at least one MAO element. They don't care enough, can't follow the detail, or have no spare attention in the moment. That isn't a knock on consumers; it's the attention-scarce, mobile-first condition this unit assumed from the start. The strategic consequence is uncomfortable for anyone who believes good products win on their merits: in most categories, the merits only get evaluated if you can first get the consumer onto the central route, and getting them there &mdash; raising motivation, ability, or opportunity &mdash; is itself a marketing job.</p>
+
+  <div class="sidebar-card">
+    <h3>If You Want the Central Route, You Have to Build It</h3>
+    <div class="sidebar-card-sub">Enhancing MAO &middot; the marketer's three openings</div>
+    <p>The ELM isn't only a diagnosis; it's a set of levers. If the durable, central-route attitude is what you need, and your audience is sitting at low elaboration, you can try to raise any of the three MAO factors &mdash; each is a different opening <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>.</p>
+    <p><strong>Raise motivation</strong> by making the message personally relevant &mdash; tie it to a goal the consumer already has, pose a question they want answered, or raise a stake they care about. A retirement-plan ad that opens with "you're probably behind" manufactures the motivation to keep reading.</p>
+    <p><strong>Raise ability</strong> by making the argument easy to process &mdash; plain language, a concrete demonstration, an analogy that maps the new thing onto something already understood, a number put in human terms. You're lowering the knowledge cost of following the claim.</p>
+    <p><strong>Raise opportunity</strong> by controlling the moment &mdash; repeat the message so it's available when attention is, choose a self-paced channel for a complex argument, strip distractions from the page, slow the pace. A long-form landing page exists precisely to give a motivated, able consumer the <em>opportunity</em> a 15-second spot can't.</p>
+    <p>The honest caveat: you cannot manufacture central-route processing for a product nobody cares about. If motivation is structurally zero &mdash; a genuinely low-interest, low-stakes purchase &mdash; the peripheral route is not a fallback, it's the correct strategy. Knowing which situation you're in is the whole point of the model.</p>
+    <div class="sidebar-card-tag">The central route can be built &mdash; by raising motivation, ability, or opportunity &mdash; but not conjured from nothing.</div>
+  </div>
+
+  <p>One thread to hand forward. The two routes line up almost exactly with the 60/40 split that has run through this entire course. <strong>Peripheral-route, emotionally-conditioned, repetition-built attitudes are brand-building &mdash; the "60."</strong> <strong>Central-route, argument-driven, action-now persuasion is activation &mdash; the "40."</strong> The Closer collects that thread in full; for now, just notice that the ELM is the psychological engine underneath the budget rule, and that a marketer who only ever runs the central route ("here are our features, rationally consider them") is starving the brand-building that the peripheral route does.</p>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>The <strong>Elaboration Likelihood Model</strong> explains why the same message persuades different people through different mechanisms. <strong>Elaboration</strong> &mdash; how hard someone thinks about a message &mdash; is set by <strong>MAO: motivation, ability, opportunity</strong>, and it takes all three to reach high elaboration.</li>
+        <li>High elaboration routes persuasion through the <strong>central route</strong>: argument quality wins, and the resulting attitude is <strong>durable, behavior-driving, and resistant to counter-persuasion.</strong></li>
+        <li>Low elaboration routes it through the <strong>peripheral route</strong>: cues win &mdash; liking, mood, music, social proof, scarcity, repetition &mdash; and the attitude is <strong>temporary and fragile</strong> unless the cue keeps recurring.</li>
+        <li>The big consolidation: <strong>classical conditioning and the behavioral-economics biases are both peripheral-route mechanisms.</strong> Most of Cialdini's tools are peripheral cues. The ELM is the framework that unifies them.</li>
+        <li>The routes are a continuum, not a switch, and they map onto <strong>60/40</strong>: peripheral/emotional = brand-building (60), central/rational = activation (40). You can <strong>raise MAO</strong> to move an audience toward the central route, but you can't conjure it for a product nobody cares about.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The peripheral route's dependence on repetition used to be a blunt instrument &mdash; buy enough impressions and hope the right people see them enough times. <strong>Retargeting</strong> turned it into a precision tool. The product you looked at once now follows you across sites and apps, reappearing until you buy, forget, or get annoyed &mdash; which is classical conditioning and mere-exposure repetition, automated and aimed at one person. The industry's own "frequency capping" practice &mdash; deliberately limiting how many times it shows you the same ad &mdash; is a quiet admission of the inhibiting effect from &sect;3's fear curve: past a point, repetition stops persuading and starts repelling. The deeper shift is that <strong>the algorithm now estimates your MAO in real time.</strong> A recommender that knows you're scrolling fast on mobile late at night is, in effect, betting you're on the peripheral route and serving a cue rather than an argument. That is the ELM operationalized at a scale Petty and Cacioppo never imagined &mdash; and it is exactly the territory the closing ethics unit takes up, because targeting the moment a specific person is least able to elaborate is the most efficient persuasion ever built and the easiest to abuse. &sect;5 turns from <em>how</em> persuasion travels to <em>what</em> it's trying to change: the attitude itself, taken apart into the pieces a marketer can actually move.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5 — THE ATTITUDE EQUATION & CHANGE STRATEGIES
+     ============================================================ -->
+<section class="section" id="attitude">
+  <div class="sec-num">05</div>
+  <div class="sec-label">The Attitude Equation</div>
+  <h2>Taking an Attitude Apart to Change It</h2>
+
+  <p>The ELM told us <em>how</em> persuasion travels. This section is about <em>what</em> it's trying to change &mdash; the attitude itself &mdash; and it offers the most precise tool in the unit for doing it. 4B introduced attitudes as having three components and forming in different orders depending on involvement; it deliberately left the equation and the change strategies for here. This is here. The idea is almost arrogant in its tidiness: an attitude can be written as a formula, and once you can see its parts, you can see exactly which part to push on to change it.</p>
+
+  <p>A quick teach-once note before the formula. The standard treatments give this model two names &mdash; Belch presents it as the <strong>multiattribute model</strong>, Andrews and Shimp as the attitudinal core of the <strong>theory of reasoned action (TORA)</strong> &mdash; and write it with slightly different notation. They are the same equation. We'll use one version and not belabor the symbols, because the value here is conceptual, not algebraic.</p>
+
+  <div class="eqn-box">
+    <div class="eqn-formula">A<span class="eq-sub">brand</span> &nbsp;=&nbsp; &Sigma; ( B<span class="eq-sub">i</span> &times; E<span class="eq-sub">i</span> )</div>
+    <div class="eqn-legend">
+      Your <b>attitude toward a brand</b> is the sum, across every attribute that matters, of&hellip;<br>
+      <b>B<span style="font-size:11px">i</span></b> = how strongly you <em>believe</em> the brand has attribute <em>i</em> &nbsp;&times;&nbsp; <b>E<span style="font-size:11px">i</span></b> = how much you <em>value</em> attribute <em>i</em>
+    </div>
+  </div>
+
+  <p>In plain English: your overall feeling about a brand is built from a handful of <strong>beliefs</strong> about what it offers, each one weighted by how much you <strong>care</strong> about that thing, all added up. Take a phone. You might believe it has an excellent camera (a strong belief) and care enormously about cameras (a heavy weight) &mdash; that pairing contributes a big positive chunk to your attitude. You might also believe its battery is mediocre, but if battery life barely matters to you, that weak-belief-times-low-weight pairing barely dents the total. Someone else, who lives and dies by battery life, runs the same brand through the same equation and lands on a completely different attitude &mdash; not because the phone is different, but because their <em>weights</em> are. This is why the multi-motivation personas from 4B construct different attitudes from the same product: same beliefs, different E's.</p>
+
+  <p>You don't need real numbers in the equation for it to earn its keep; its value is making a vague feeling <em>decomposable.</em> "I don't love this brand" is not actionable. "I rate it low on the one attribute I weight most heavily" is &mdash; it tells you where the attitude is being lost. Once the attitude is broken into belief-times-weight pairs, the ways to change it fall out almost mechanically: three, plus a fourth applied move.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.7</div>
+    <div class="figure-title">Four Ways to Move an Attitude</div>
+    <div class="figure-content">
+      <div class="strat-grid">
+        <div class="strat-card">
+          <div class="st-lever">Operates on B</div>
+          <div class="st-name">1. Change a belief</div>
+          <div class="st-body">Convince people the brand performs better on an attribute than they think. "Actually, our battery lasts 40% longer than you assume." The classic central-route, argument-and-evidence play &mdash; and the hardest, because beliefs resist contradiction.</div>
+        </div>
+        <div class="strat-card">
+          <div class="st-lever">Operates on E</div>
+          <div class="st-name">2. Change a weight</div>
+          <div class="st-body">Make people care more about an attribute you're strong on (or less about one you're weak on). Volvo spent decades making buyers weight <em>safety</em> more heavily &mdash; not changing what cars do, but what consumers value in them.</div>
+        </div>
+        <div class="strat-card">
+          <div class="st-lever">Adds a new term</div>
+          <div class="st-name">3. Add an attribute</div>
+          <div class="st-body">Introduce a dimension consumers weren't considering at all, one you happen to win. Tropicana getting buyers to evaluate orange juice on <em>added calcium</em> &mdash; a term that wasn't in anyone's equation until the brand put it there.</div>
+        </div>
+        <div class="strat-card applied">
+          <div class="st-lever">Applied move &middot; operates on the comparison</div>
+          <div class="st-name">4. Reposition the competitor</div>
+          <div class="st-body">Change the beliefs or weights attached to a <em>rival's</em> attributes &mdash; the engine of comparative advertising (&sect;3). You don't raise your own score; you lower theirs on an attribute the consumer weights heavily.</div>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">Adapted from <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener">Belch &amp; Belch (2023)</a> and <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">Andrews &amp; Shimp (2018)</a>. The first three operate on your own brand's terms in the equation; the fourth operates on the competitor's. Notice the ELM connection: changing a <em>belief</em> (strategy 1) is central-route work that needs a real argument, while changing a <em>weight</em> (strategy 2) often runs peripheral &mdash; repeated emotional association teaching people what to value, no argument required.</div>
+  </div>
+
+  <p>The strategies are ranked, roughly, by difficulty. Changing a belief is hardest, because an established belief actively resists contradiction &mdash; you're arguing against something the consumer already "knows." Changing a weight is often easier and more powerful, because you're not contradicting anyone; you're shifting emphasis, and emphasis can be moved by repetition and emotion rather than proof. Adding an attribute can be the cleverest of all, because for a moment you're competing on a dimension where you have no competition &mdash; you defined it. And repositioning the competitor is the highest-risk, because it invites retaliation and runs into the credibility problems comparative advertising always carries.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">"I don't love this brand" is not actionable. "I rate it low on the attribute I weight most heavily" is. The equation's gift isn't arithmetic &mdash; it's turning a vague feeling into a diagnosis with a location.</div>
+  </div>
+
+  <p>This is also the moment to close the loop the Overview opened. Recall the claim that the argument <em>"marketing is an investment, not an expense"</em> is itself an attitude-change strategy aimed at a finance audience. Now we can name the lever precisely. A CFO's attitude toward the marketing budget is built from beliefs-times-weights like any other: a belief that marketing spend is discretionary, weighted heavily against it. The "investment not expense" argument is a <strong>change-a-belief</strong> move (reclassify the spend as capacity-building rather than consumption) reinforced by an <strong>add-an-attribute</strong> move (introduce <em>long-term brand equity</em> as a dimension the purely-quarterly view leaves out). That is not a metaphor. It is the same equation, run on an internal stakeholder instead of a consumer &mdash; which is exactly the "influence without authority" promise this module made to the non-marketers on the first page.</p>
+
+  <div class="sidebar-card">
+    <h3>Choice Architecture Is the Equation, Moved to the Point of Decision</h3>
+    <div class="sidebar-card-sub">The modern angle &middot; nudges as evaluation-and-default engineering</div>
+    <p>The contemporary vocabulary for moving behavior is <em>choice architecture</em> &mdash; the Thaler-and-Sunstein "nudge" tradition that 4B previewed. It is worth seeing that nudging and the attitude equation are not rivals; the nudge is the equation applied at the moment of choice rather than in advance through messaging. A classic attitude-change campaign tries to shift your <em>B</em>'s and <em>E</em>'s over weeks so that when you reach the shelf, your computed attitude favors the brand. A nudge skips the attitude and rearranges the <em>decision itself</em> &mdash; the default option, the order things appear, what's framed as the loss.</p>
+    <p>Look closely and the nudges map onto the same levers. A <strong>default</strong> (the pre-checked subscription, the opt-out organ-donor form) wins by exploiting the low-elaboration consumer's unwillingness to spend effort &mdash; pure peripheral route. <strong>Framing</strong> a price as "$1 a day" rather than "$365 a year" is a <em>change-the-weight</em> move on the cost attribute. A <strong>decoy</strong> option added to a menu shifts the comparison the way repositioning a competitor does. The nudge tradition didn't replace the multiattribute model; it relocated it from the ad to the checkout, where elaboration is lowest and a small design choice does the work a whole campaign used to.</p>
+    <p>Which is also where the ethics get sharp, and where the closing unit will pick this up: a default that serves the consumer (auto-enrolling them in retirement savings) and a default that preys on them (auto-enrolling them in a subscription they'll forget to cancel) are the <em>same lever</em>, pulled toward different ends. The equation and the nudge are morally neutral machinery. The practitioner is not.</p>
+    <div class="sidebar-card-tag">A nudge is the attitude equation relocated to the moment of choice &mdash; same levers, lower elaboration, higher stakes.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>An attitude can be modeled as <strong>A<sub>brand</sub> = &Sigma;(B<sub>i</sub> &times; E<sub>i</sub>)</strong> &mdash; the sum of <strong>beliefs</strong> about a brand's attributes, each weighted by how much the consumer <strong>values</strong> that attribute. Belch's <strong>multiattribute model</strong> and Shimp's <strong>TORA</strong> are the same equation.</li>
+        <li>Its power is decomposition, not arithmetic: it turns "I don't love this brand" into a located diagnosis &mdash; <em>which</em> belief or weight is costing you. Different consumers reach different attitudes from identical beliefs because their <strong>weights (E)</strong> differ &mdash; the mechanism under 4B's multi-motivation personas.</li>
+        <li>Three change strategies fall out of the equation: <strong>change a belief (B), change a weight (E), or add an attribute</strong> &mdash; plus the applied fourth, <strong>reposition the competitor.</strong> Roughly ranked by difficulty: beliefs resist change hardest; weights move more easily via emotion and repetition.</li>
+        <li>The strategies connect to the ELM: <strong>changing a belief is central-route work</strong> (needs a real argument); <strong>changing a weight often runs peripheral</strong> (repeated association teaching people what to value).</li>
+        <li>The equation runs on internal stakeholders too: <strong>"marketing is investment, not expense"</strong> is a change-a-belief plus add-an-attribute move aimed at finance &mdash; influence without authority, made concrete.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The equation's modern face is <strong>choice architecture</strong> &mdash; the nudge. Rather than spending weeks shifting beliefs and weights through messaging so the consumer arrives at the shelf pre-persuaded, the contemporary move is to rearrange the decision at the point of choice: set the default, frame the price, order the options, design the comparison. It is the same multiattribute logic relocated from the advertisement to the checkout flow, where elaboration is lowest and a single design decision can outperform a campaign. Two things make this the live frontier. First, digital interfaces make choice architecture <em>infinitely tunable and individually targetable</em> in a way a physical store shelf never was &mdash; the default you see can be computed for you specifically. Second, that power sits exactly on the ethical line &sect;1 drew and the closing ethics unit will press: a default that auto-enrolls you in retirement savings and a default that buries the cancel button are the identical lever aimed at opposite ends. The attitude equation is sixty years old and still exactly right about how attitudes are built. What's new is that we can now operate on it one consumer at a time, at the precise moment they're least likely to notice. That hands us straight to the Closer &mdash; and to the question of how to spend a budget across all of this.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CLOSER
+     ============================================================ -->
+<section class="section" id="closer">
+  <div class="sec-label">Closer</div>
+  <h2>The 60/40 Payoff &mdash; and the Handoff to Creative</h2>
+
+  <p>One thread has run through all three modules of this unit, surfacing in nearly every dual close, and this is where it pays off. The <strong>60/40 rule</strong> comes from Les Binet and Peter Field's analysis of hundreds of campaigns, and its finding is blunt: across categories, the budget split that maximizes long-term growth is roughly <strong>60% brand-building and 40% sales activation</strong> <a href="https://dissidentchoir.com/60-40-binet-fields-landmark-research/" target="_blank" rel="noopener">(Binet &amp; Field, 2013)</a>. The reason that rule belongs at the <em>end</em> of a persuasion module, rather than in a media-planning one, is that this module has spent five sections explaining the psychology underneath it. The 60/40 split is not an accounting convention. It is the ELM, turned into a budget.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4C.8</div>
+    <div class="figure-title">Why 60/40 Is the ELM Wearing a Budget</div>
+    <div class="figure-content">
+      <div class="split-bar">
+        <div class="sb-60">
+          <span class="sb-pct">60%</span>
+          <span class="sb-lab">Brand-building &middot; peripheral route &middot; emotion &middot; the long term</span>
+        </div>
+        <div class="sb-40">
+          <span class="sb-pct">40%</span>
+          <span class="sb-lab">Activation &middot; central route &middot; argument &middot; right now</span>
+        </div>
+      </div>
+    </div>
+    <div class="figure-caption">The same divide, named five different ways across this unit. <strong>Brand-building</strong> is peripheral-route work: emotional conditioning, repeated association, likable sources, the durable feelings that make a brand the easy default years from now &mdash; it builds slowly and pays off long. <strong>Activation</strong> is central-route work: the argument, the offer, the reason to act this week &mdash; it spikes fast and decays fast. The recurring finding is that activation is easy to measure and brand-building is easy to cut, which is exactly why under-pressure organizations starve the 60 to feed the 40, and underperform for it.</div>
+  </div>
+
+  <p>Lay the vocabularies side by side and they are obviously one thing. <strong>Brand-building</strong> is the peripheral route from &sect;4 &mdash; emotional, conditioned, repetition-built attitudes &mdash; which is the same as the HEM (hedonic, experiential) processing from 4B, which is the "60." <strong>Activation</strong> is the central route &mdash; arguments, offers, reasons to act now &mdash; which is the CPM (rational, message-based) processing from 4B, the "40." The reason the split tilts toward brand-building is the asymmetry the ELM predicts: central-route activation produces behavior <em>now</em> but decays the moment the offer ends, while peripheral-route brand-building produces the durable, low-elaboration preference that makes a consumer pick you by default for years. You need both &mdash; activation pays this quarter's bills &mdash; but the long-run compounding lives in the 60.</p>
+
+  <p>This is also, finally, the accounting argument promised on page one, now fully assembled. Activation is legible to finance because it is measurable: you can attribute a click, a conversion, a sale. Brand-building is the opposite &mdash; it works slowly, diffusely, and resists clean attribution, which makes it look like an <em>expense</em> to a quarterly dashboard and the first thing to cut under pressure. The case for protecting the 60 is an attitude-change argument (&sect;5) aimed at a CFO: change the <em>belief</em> that brand spend is discretionary, and add the <em>attribute</em> of long-term equity that the short-term view leaves out. The marketer who can make that argument is doing exactly what this module is about &mdash; moving a stakeholder who outranks them, using the tools rather than the authority.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Activation is easy to measure, so it's easy to defend. Brand-building is easy to cut, so it's the first thing to go under pressure. The 60/40 rule exists because the easy-to-measure half is not the half that compounds.</div>
+  </div>
+
+  <h3>Where This Unit Has Taken You</h3>
+
+  <p>Step back across the three modules. <strong>4A</strong> established that meaning is constructed by the receiver, not transmitted by the sender &mdash; that a message lands as whatever the audience rebuilds it into. <strong>4B</strong> mapped how that audience decides: the journey from a felt gap to a purchase to a memory, run on a far smaller budget of attention than the classical models assume. <strong>4C</strong> closed the loop by showing how communication is engineered to move people through that journey &mdash; the tools that exploit mental shortcuts, the source and message and channel choices that carry a message, the two routes a persuasion attempt can travel, and the equation that lets you take an attitude apart to change it. The through-line is a single reframe: the consumer is not a rational calculator waiting for information, but an attention-scarce, meaning-making, mostly-low-elaboration human who is moved by emotion and shortcut at least as often as by argument &mdash; and the marketer's job is to know which is which.</p>
+
+  <div class="sidebar-card">
+    <h3>What Comes Next: The Big Idea</h3>
+    <div class="sidebar-card-sub">The seam into the Creative unit</div>
+    <p>This unit gave you the inputs. The next one is about compressing them into something a creative team can make. Everything you've learned converges on a single question the Creative unit opens with: <em>what is the one expressible idea that carries all of this?</em></p>
+    <p>That idea &mdash; the <strong>Big Idea</strong> &mdash; is what you get when you compress three things into one creative thought: the <strong>pain point or motivation</strong> you're addressing (4B), the <strong>meaning you want to transfer</strong> to the brand (4A's semiotics), and the <strong>persuasion route you're betting on</strong> &mdash; emotional and peripheral, or rational and central (4C). The <strong>creative brief</strong> is the document that forces those inputs onto one page so the Big Idea has somewhere to come from. And the 60/40 thread rides along with you: whether a given execution is brand-building or activation is, in part, a creative decision about which route to play.</p>
+    <p>So the handoff is this. We've covered why consumers decide and how persuasion works. The creative unit is about distilling all of it into a single Big Idea &mdash; and the brief that produces it. After that comes media planning (where the 60/40 split becomes a real schedule) and measurement (where you find out whether any of it worked). The journey map from 4B and the 60/40 rule from this module are the two ideas that travel across all of it. Hold onto them.</p>
+    <div class="sidebar-card-tag">The Big Idea is this entire unit, compressed until it fits in one sentence a creative team can build.</div>
+  </div>
+
+  <div class="dual-close">
+    <div class="takeaway">
+      <div class="takeaway-label">The Enduring Idea</div>
+      <ul>
+        <li>The <strong>60/40 rule</strong> &mdash; roughly 60% of budget to brand-building, 40% to activation &mdash; is the practical resolution of the whole unit. It is the <strong>ELM turned into a budget</strong>: peripheral/emotional/HEM brand-building (60) versus central/rational/CPM activation (40).</li>
+        <li>The split tilts to brand-building because of an <strong>asymmetry</strong>: activation drives behavior now but decays fast; brand-building compounds into durable, low-elaboration preference. Both are needed; the long-run growth lives in the 60.</li>
+        <li>Activation is <strong>easy to measure and easy to defend</strong>; brand-building is <strong>easy to cut under pressure.</strong> Protecting the 60 is itself an attitude-change argument aimed at finance &mdash; the influence-without-authority payoff this module promised.</li>
+        <li>Across the unit: <strong>4A</strong> = meaning is constructed by the receiver; <strong>4B</strong> = how the receiver decides; <strong>4C</strong> = how communication is engineered to move them. One reframe throughout: the consumer is a meaning-making, mostly-low-elaboration human, moved by shortcut and emotion as often as by argument.</li>
+      </ul>
+    </div>
+    <div class="callout">
+      <div class="callout-label">The Current View</div>
+      <p>The 60/40 finding has held up well enough to become an orthodoxy, but the modern environment puts it under genuine strain &mdash; and the strain is instructive. Digital platforms are extraordinary at measuring activation: every click, conversion, and add-to-cart is attributable, dashboarded, and optimizable in real time. They are correspondingly terrible at measuring brand-building, which works on timescales and through mechanisms that resist last-click attribution. The predictable result is that the easy-to-measure half captures the budget, the hard-to-measure half gets cut, and the organization slowly trades long-term equity for short-term numbers that look great right up until growth stalls. The platforms' incentives compound this, because the performance-advertising machine monetizes the 40 far more directly than the 60. So the live debate isn't whether 60/40 is right &mdash; the evidence still says it roughly is &mdash; but whether marketers can hold the line on brand-building in a measurement environment engineered to reward the opposite. That is the budget version of this entire unit's argument: the consumer is moved by durable emotional association at least as much as by the measurable click, even though only one of those shows up cleanly in the dashboard. Carry that into the Creative unit, where the Big Idea has to do both jobs at once.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">References</div>
+  <h2>Sources &amp; Further Reading</h2>
+  <p>Sources cited in this unit, in APA style. Course readings appear alongside the current-data sources behind the modern sidebars.</p>
+  <div class="references">
+    <p class="ref">Andrews, J. C., &amp; Shimp, T. A. (2018). <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener"><em>Advertising, promotion, and other aspects of integrated marketing communications</em></a> (10th ed.). Cengage Learning.</p>
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener"><em>Advertising and promotion: An integrated marketing communications perspective</em></a> (13th ed.). McGraw Hill.</p>
+    <p class="ref">Binet, L., &amp; Field, P. (2013). <a href="https://dissidentchoir.com/60-40-binet-fields-landmark-research/" target="_blank" rel="noopener"><em>The long and the short of it: Balancing short- and long-term marketing strategies</em></a>. Institute of Practitioners in Advertising (IPA). https://dissidentchoir.com/60-40-binet-fields-landmark-research/</p>
+    <p class="ref">Cialdini, R. B. (2021). <em>Influence: The psychology of persuasion</em> (New &amp; expanded ed.). Harper Business.</p>
+    <p class="ref">Edelman. (2025, June). <a href="https://www.edelman.com/trust/2025/trust-barometer/special-report-brands" target="_blank" rel="noopener">2025 Edelman Trust Barometer special report: Brand trust, from we to me</a>. Edelman. https://www.edelman.com/trust/2025/trust-barometer/special-report-brands</p>
+    <p class="ref">Federal Trade Commission. (2024). <a href="https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers" target="_blank" rel="noopener">Disclosures 101 for social media influencers</a>. U.S. Federal Trade Commission. https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers</p>
+    <p class="ref">Nielsen. (2021). <a href="https://www.nielsen.com/insights/2021/beyond-martech-building-trust-with-consumers-and-engaging-where-sentiment-is-high/" target="_blank" rel="noopener">Beyond martech: Building trust with consumers and engaging where sentiment is high</a> [Trust in Advertising Study]. Nielsen. https://www.nielsen.com/insights/2021/beyond-martech-building-trust-with-consumers-and-engaging-where-sentiment-is-high/</p>
+    <p class="ref">Petty, R. E., &amp; Cacioppo, J. T. (1986). <em>Communication and persuasion: Central and peripheral routes to attitude change</em>. Springer-Verlag.</p>
+    <p class="ref">Thaler, R. H., &amp; Sunstein, C. R. (2021). <em>Nudge: The final edition</em>. Penguin Books.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="unit-4b-deciding.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">Unit 4B &mdash; Deciding</span>
+  </a>
+  <span class="unit-nav-next">
+    <span class="unit-nav-label">End of unit</span>
+    <span class="unit-nav-title">Next: the Creative unit</span>
+  </span>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+<script>
+  /* Video lightbox — click a .yt-card to open the video in a centered modal.
+     Iframe created on user gesture (autoplay) and destroyed on close. */
+  (function () {
+    var lightbox, stage, closeBtn, captionEl, lastTrigger;
+    function buildLightbox() {
+      lightbox = document.createElement('div');
+      lightbox.className = 'video-lightbox';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.setAttribute('aria-label', 'Video player');
+      stage = document.createElement('div');
+      stage.className = 'video-lightbox-stage';
+      closeBtn = document.createElement('button');
+      closeBtn.className = 'video-lightbox-close';
+      closeBtn.type = 'button';
+      closeBtn.setAttribute('aria-label', 'Close video');
+      closeBtn.innerHTML = '&times;';
+      captionEl = document.createElement('div');
+      captionEl.className = 'video-lightbox-caption';
+      stage.appendChild(closeBtn);
+      stage.appendChild(captionEl);
+      lightbox.appendChild(stage);
+      document.body.appendChild(lightbox);
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+      });
+    }
+    function openLightbox(card) {
+      if (!lightbox) buildLightbox();
+      var videoId = card.getAttribute('data-video-id');
+      var videoTitle = card.getAttribute('data-video-title') || '';
+      var titleEl = card.querySelector('.yt-title');
+      var labelEl = card.querySelector('.yt-label');
+      if (!videoId) return;
+      lastTrigger = card;
+      var prior = stage.querySelector('iframe');
+      if (prior) prior.remove();
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+      iframe.title = videoTitle;
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.setAttribute('allowfullscreen', '');
+      stage.insertBefore(iframe, closeBtn);
+      var captionParts = [];
+      if (labelEl) captionParts.push(labelEl.textContent.trim());
+      if (titleEl) captionParts.push(titleEl.textContent.trim());
+      captionEl.textContent = captionParts.join(' \u2014 ');
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('video-lightbox-open');
+      setTimeout(function () { closeBtn.focus(); }, 50);
+    }
+    function closeLightbox() {
+      if (!lightbox) return;
+      var iframe = stage.querySelector('iframe');
+      if (iframe) iframe.remove();
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('video-lightbox-open');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+    }
+    document.querySelectorAll('.yt-card[data-video-id]').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('.yt-watch')) return;
+        e.preventDefault();
+        openLightbox(card);
+      });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(card); }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
