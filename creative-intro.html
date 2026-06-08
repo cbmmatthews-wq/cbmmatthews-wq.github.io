@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative — Start Here — cbmatthe</title>
+<meta name="description" content="Introduction to the Creative section of M544. Eleven pieces that build a working definition of good creative — wrapped in the branding, IMC, and PESO frameworks already in place.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Creative Intro ---- */
+
+  /* The 11-piece mini-TOC: a clean list of one-line teases.
+     Each row is a numbered card with kicker, title (red on hover),
+     and a one-line description. */
+  .toc-list {
+    margin: 18px 0 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .toc-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 14px;
+    background: var(--white);
+    padding: 14px 16px;
+    border-left: 3px solid var(--cream-deep);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .toc-row:hover {
+    border-left-color: var(--red);
+    transform: translateX(2px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .toc-num {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 30px;
+    color: var(--cream-deep);
+    line-height: 1;
+    align-self: center;
+    text-align: center;
+  }
+  .toc-row:hover .toc-num { color: var(--red); }
+  .toc-body { min-width: 0; }
+  .toc-kicker {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .toc-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16.5px;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .toc-row:hover .toc-title { color: var(--red); }
+  .toc-tease {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* References list — same look as Unit 4B */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+  }
+
+  /* Unit-nav: intro has no "previous", so collapse to a single column
+     that aligns the Next card to the right edge of the content column. */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 60px 0 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-nav a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--cream);
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .unit-nav a:hover { background: var(--red-soft); }
+  .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .unit-nav-tease {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  /* Single-next variant for the intro (no previous link). */
+  .unit-nav.only-next { grid-template-columns: 1fr; }
+  .unit-nav.only-next .unit-nav-next { text-align: right; }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav.only-next .unit-nav-next { text-align: left; }
+  }
+
+  /* Glossary uses a tighter definition-list look */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Creative &middot; Intro</div>
+    <h1>Start Here</h1>
+    <p class="lede">When marketers say the word <em>creative,</em> they mean at least four different things, and most disagreements about advertising are really disagreements about which one is on the table. Some mean the <em>people</em> &mdash; the copywriters, art directors, creative directors who staff agencies. Some mean the <em>process</em> &mdash; the brainstorming, the briefs, the rounds of revision. Some mean the <em>artifact</em> &mdash; the spot, the still, the headline. And some mean the <em>media choice</em> itself &mdash; the creative use of paid, earned, shared, and owned channels to put the right message in front of the right person at the right moment. Each definition is defensible. Each one gets you to a different answer about what makes a creative decision a good one.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#scope">Scope</a>
+    <a href="#stakes">Stakes</a>
+    <a href="#goal">Goal</a>
+    <a href="#pieces">The Eleven Pieces</a>
+    <a href="#how">How to Use</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     SECTION 1 — SCOPE
+     ============================================================ -->
+<section class="section" id="scope">
+  <div class="sec-label">Scope</div>
+  <h2>What &ldquo;Creative&rdquo; Means in This Module</h2>
+
+  <p>The position this section defends is the third one: <em>creative</em>, for a marketing student who will mostly be approving the work rather than making it, is best understood as <strong>the message that goes in front of the consumer plus the craft that decides whether it lands</strong> &mdash; the artifact, together with the strategic kernel underneath that gives it something worth saying. Not the agency org chart. Not the brainstorming ritual on its own. The thing in the world that meets the consumer, and the idea that holds it together.</p>
+
+  <p>That choice is not a dismissal of the other three definitions, and the fourth one in particular deserves an explicit nod. <strong>Creative media selection</strong> &mdash; the choice of which paid, earned, shared, and owned channels carry the work, and in what mix &mdash; is creative thinking in every sense that counts, and you have already been doing it for four units. The <a href="peso.html">PESO</a> framework, the <a href="imc.html">IMC</a> discipline of coordinating channels around one brand promise, the <a href="unit-3-stp.html">STP</a> move of getting the right message to the right segment: those are media-creative decisions, made on the apparatus of <a href="unit-2a-brand-foundations.html">brand foundations</a> already built. The artifact this section unpacks and the channels it travels through are bound together &mdash; same idea expressed differently across surfaces &mdash; and the eleven pieces here add the artifact-and-kernel layer to the media-and-coordination layer you already have.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — STAKES
+     ============================================================ -->
+<section class="section" id="stakes">
+  <div class="sec-label">Stakes</div>
+  <h2>The Number Behind the Argument</h2>
+
+  <p>The reason any of this matters in dollar terms is sitting in a budget line you will eventually be asked to defend. Most established brands spend somewhere in the range of <strong>5&ndash;10% of <em>gross sales</em></strong> &mdash; not profit, <em>sales</em> &mdash; on advertising and the wider IMC promotional mix. Startups and brands in densely contested niches routinely run <strong>20% or more</strong>; that is the cost of buying mental availability in a category that does not yet know you exist. Translate that into a working number: a hundred-million-dollar revenue base, eight to ten million dollars committed to promotion in a normal year, and a question about whether that spend will come back as growth or merely fund next year&rsquo;s media plan.</p>
+
+  <p>Among the variables that decide which of those two things happens &mdash; targeting, channel mix, media weight, frequency, offer, creative &mdash; <strong>creative quality is the largest one inside your control</strong>. A foundational <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">HBR analysis</a> of 437 European campaigns across 90 FMCG brands found that highly creative campaigns produced roughly <em>double</em> the sales impact per euro of less creative ones in the same category <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">(Reinartz &amp; Saffert, 2013)</a>. This is not the place that finding gets argued &mdash; that is the work of <a href="creative-1-why-creative.html">piece #1</a>. This is the place the <em>stake</em> gets named so the rest of the section reads with the right pressure.</p>
+
+  <div class="callout">
+    <div class="callout-label">The Frame for the Section</div>
+    <p>Almost every other lever in a marketing plan is bought from someone else &mdash; media is bought from publishers, data is bought from platforms, distribution is rented from retailers. <strong>Creative is the lever the brand controls outright.</strong> It is also the lever that decides whether the rented levers earn out. That is the bang-for-buck argument; the rest of the section is how to make it actually true on your campaigns.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — GOAL
+     ============================================================ -->
+<section class="section" id="goal">
+  <div class="sec-label">Goal</div>
+  <h2>What You&rsquo;ll Leave With</h2>
+
+  <p>By the end of these eleven pieces, you will have done three things. You will have <strong>confirmed some intuitions</strong>: humor is in fact a powerful appeal in some categories, big ideas really do travel across markets and decades, and early branding really is measurable on a skip-button platform. You will have <strong>complicated others</strong>: originality is not the dimension of creative that matters most, &ldquo;more creative&rdquo; does not mean &ldquo;more elaborate,&rdquo; and the briefing rituals you may have inherited from elsewhere are not interchangeable across funnel stages. And you will have <strong>assembled a working definition</strong> of good creative that you can defend in a room of people who do not have one &mdash; which, in practice, is most of the rooms.</p>
+
+  <p>The deliverable is a vocabulary for <em>judging</em> the work, <em>briefing</em> it, and <em>recognizing</em> what is happening when an agency rolls a deck across the table. Most of you will spend your careers in the chair across from the people who make the work, not in the chair that makes it. That is the chair this vocabulary is built for.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — THE 11 PIECES (mini-TOC)
+     Notes for build:
+       • One-line teases below are first-pass; refine each as the corresponding
+         piece is finalized.
+       • Filenames assume a `creative-N-slug.html` pattern; adjust if the
+         nav.js convention changes.
+     ============================================================ -->
+<section class="section" id="pieces">
+  <div class="sec-label">The Section</div>
+  <h2>The Eleven Pieces</h2>
+
+  <p>The arc moves from foundations (why creative matters, how concepting works, what a Big Idea actually is), through craft (appeals, execution, humor, video), through funnel-stage application (awareness, helpful content, performance), and closes with two cross-cutting pieces (AI in creative work, and how to judge creative when it lands in front of you). The order is the recommended read order &mdash; but every piece stands on its own as reference once the week is over.</p>
+
+  <div class="toc-list">
+
+    <a class="toc-row" href="creative-1-why-creative.html">
+      <div class="toc-num">01</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Foundations &middot; 25 min</div>
+        <div class="toc-title">Why Creative Carries 60&ndash;70% of Effectiveness</div>
+        <div class="toc-tease">The economic case for creative quality as the single largest ROI multiplier in your control. HBR&rsquo;s five dimensions, IPA&rsquo;s field data, and the counter-intuitive finding that <em>elaboration</em> outperforms originality.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-2-brainstorming.html">
+      <div class="toc-num">02</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Concepting &middot; 30 min</div>
+        <div class="toc-title">Brainstorming Basics</div>
+        <div class="toc-tease">The &ldquo;controlled daydream.&rdquo; Diverge before converge, write the bad ideas first, and treat permission-to-fail as the <em>technique</em>, not the failure mode. Design-thinking sidebar; AI as concepting partner.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-3-big-idea.html">
+      <div class="toc-num">03</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Strategy &middot; 30 min</div>
+        <div class="toc-title">The Big Idea</div>
+        <div class="toc-tease">What separates a tactic from a strategic kernel that runs across PESO for years. Snickers&rsquo; &ldquo;You&rsquo;re Not You When You&rsquo;re Hungry&rdquo; as the centerpiece &mdash; one decade-long platform across 58 markets, won both creative <em>and</em> effectiveness awards.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-4-appeals-execution.html">
+      <div class="toc-num">04</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Craft &middot; 50 min</div>
+        <div class="toc-title">Appeals &amp; Execution</div>
+        <div class="toc-tease">Once you have a Big Idea, how do you execute it? The taxonomy of appeals, execution styles, and endorsers &mdash; when each earns its fee, and when each is dead weight on the budget.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-5-humor.html">
+      <div class="toc-num">05</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Appeal &middot; 15 min</div>
+        <div class="toc-title">Humor: When It Works, When It Doesn&rsquo;t</div>
+        <div class="toc-tease">The appeal every junior brief reaches for first. The categories where it travels, the categories where it dies, and the questions to ask before you greenlight it.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-6-video.html">
+      <div class="toc-num">06</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Format &middot; 15 min</div>
+        <div class="toc-title">Video: Brand-at-End vs. Brand-in-Five-Seconds</div>
+        <div class="toc-tease">Why a sixty-second cinema spot and a YouTube pre-roll require opposite craft despite being the same medium. The skip button is a different brief; the ABCD framework is how Google says to write to it.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-7-awareness.html">
+      <div class="toc-num">07</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Funnel &middot; Top &middot; 15 min</div>
+        <div class="toc-title">Awareness Creative</div>
+        <div class="toc-tease">When the job is mental availability and distinctive brand assets rather than next-quarter conversion. Ehrenberg-Bass, sound-off design, native-to-platform craft, and the strategic case for getting the brand on screen early.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-8-helpful-content.html">
+      <div class="toc-num">08</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Funnel &middot; Middle &middot; 20 min</div>
+        <div class="toc-title">Helpful Content</div>
+        <div class="toc-tease">The creative-differentiation problem in the middle of the funnel: most brands&rsquo; helpful content is interchangeable. The frameworks for making it actually distinctive &mdash; and the 2026 wrinkle of Answer Engine Optimization.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-9-performance.html">
+      <div class="toc-num">09</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Funnel &middot; Bottom &middot; 15 min</div>
+        <div class="toc-title">Performance Creative</div>
+        <div class="toc-tease">When the job is conversion right now: clear value prop in frame one, social proof, urgency, obvious CTA. The craft is making conversion mechanics work without looking like a flea-market poster.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-10-ai.html">
+      <div class="toc-num">10</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Cross-cutting &middot; 15 min</div>
+        <div class="toc-title">AI in Creative Work</div>
+        <div class="toc-tease">What AI is and is not actually doing to creative right now &mdash; 2026-grounded, neither hype nor doom. Pulls together the AI threads from #2, #3, #4, #7, #8, and #9 into one accounting.</div>
+      </div>
+    </a>
+
+    <a class="toc-row" href="creative-11-judging.html">
+      <div class="toc-num">11</div>
+      <div class="toc-body">
+        <div class="toc-kicker">Cross-cutting &middot; 20 min</div>
+        <div class="toc-title">How to Judge Creative</div>
+        <div class="toc-tease">The piece that does the most work for someone whose job will be approving creative rather than making it. The five-dimension rubric, the strategy-vs-execution split, and the vocabulary for giving notes that are not &ldquo;I don&rsquo;t like it.&rdquo;</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — HOW TO USE
+     ============================================================ -->
+<section class="section" id="how">
+  <div class="sec-label">Read Order</div>
+  <h2>How to Use This Section</h2>
+
+  <p>Read straight through if the week allows. The sequence has a reason: the case for creative comes first, then the <em>making</em> of creative (#2&ndash;#6), then the <em>application</em> of creative across funnel stages (#7&ndash;#9), then the two cross-cutting practical pieces (#10&ndash;#11). The order is built so each piece earns the next one. If you can only get to a subset, #10 and #11 in particular are worth bookmarking even past the week, because the AI landscape is moving quickly enough that &ldquo;current view&rdquo; this term will be a stale view next term, and the judging vocabulary in #11 is the kind of thing that earns its keep every time a deck lands on your desk.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Before You Read On</div>
+    <ul>
+      <li>Bring whichever working definition of &ldquo;creative&rdquo; you already have. Some of it will survive these pieces intact; some of it will not. That is the point.</li>
+      <li>The argument of the section is that <strong>creative quality is the largest controllable multiplier on marketing investment</strong> &mdash; and that you can learn to recognize it. Hold that as the through-line.</li>
+      <li>A defensible working definition is more valuable than a confident one you cannot defend. The marketing room rewards the former.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FORWARD NAVIGATION
+     Placed here (above glossary/references) so the natural next step
+     is reachable without scrolling past reference material. Intro has
+     no "previous" — single column.
+     ============================================================ -->
+<nav class="unit-nav only-next">
+  <a href="creative-1-why-creative.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#1 &mdash; Why Creative Carries 60&ndash;70% of Effectiveness</span>
+    <span class="unit-nav-tease">The economic case. The HBR study, the IPA data, and the case for treating creative as a 2&times; multiplier rather than a soft-skills concern.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <p>A short glossary for the intro &mdash; each subsequent piece carries its own. Full vocabulary builds up across the eleven pieces.</p>
+
+  <div class="glossary">
+    <p><strong><em>Creative (the artifact)</em></strong> &mdash; The message-and-craft layer of a campaign: the spot, the headline, the static, the script, plus the strategic kernel that gives the artifact something worth saying. The definition this section primarily defends, and the layer the eleven pieces unpack.</p>
+    <p><strong><em>Creative (the media choice)</em></strong> &mdash; The fourth common meaning of <em>creative</em>, and a real one: the choice of which paid, earned, shared, and owned channels carry the work, and in what mix. Treated here as the IMC and PESO apparatus you have already built &mdash; the medium the artifact flows through, not a separate piece in this section.</p>
+    <p><strong><em>IMC promotional mix</em></strong> &mdash; The full set of paid, owned, earned, and shared communication tools through which a brand reaches its audiences: advertising, sales promotion, PR, direct marketing, personal selling, digital and social, sponsorship, packaging, and the rest. The 5&ndash;10% line item that creative quality multiplies (or fails to). See <a href="imc.html">Core &middot; What is IMC</a>.</p>
+    <p><strong><em>Bang for buck</em></strong> &mdash; The colloquial name for the multiplier creative quality applies to marketing spend. Held empirically to roughly 2&times; in the foundational HBR study; the full case is in <a href="creative-1-why-creative.html">piece #1</a>.</p>
+    <p><strong><em>Working definition</em></strong> &mdash; A definition you can defend in a marketing room, not a definition memorized from a textbook. The intended deliverable of these eleven pieces.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Sources cited in this intro. Per-piece references appear on the individual pages.</p>
+
+  <div class="references">
+    <p class="ref">Reinartz, W., &amp; Saffert, P. (2013, June). <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Creativity in advertising: When it works and when it doesn&rsquo;t</a>. <em>Harvard Business Review</em>. https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt</p>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>

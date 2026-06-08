@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#1 — Why Creative Carries 60–70% of Effectiveness — cbmatthe</title>
+<meta name="description" content="The economic case for treating creative quality as the largest controllable multiplier on a marketing budget. The HBR study, the Nielsen meta-analysis, the IPA databank — and the five dimensions you should be able to name when judging the work.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Creative #1 ---- */
+
+  /* Wide-bleed figure — breaks the standard wrapper so wide charts can use
+     the full horizontal page. Surrounding prose stays at column width. */
+  .figure-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1400px;
+    margin: 28px auto;
+    padding: 0 var(--content-padding);
+  }
+  .figure-bleed .figure {
+    margin: 0;
+  }
+  @media (max-width: 720px) {
+    .figure-bleed {
+      width: auto;
+      left: auto;
+      transform: none;
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+
+  /* Pairings strip — the recreation of R&S "What Creativity Combinations
+     Work Best?" Each cell is a pair, sorted left (worst) to right (best). */
+  .pairings-strip {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+    margin: 14px 0 4px;
+    align-items: stretch;
+  }
+  .pair-cell {
+    background: var(--white);
+    padding: 12px 8px 14px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-top: 3px solid var(--cream-deep);
+    min-height: 170px;
+  }
+  .pair-cell.is-good { border-top-color: var(--red); }
+  .pair-cell.is-best { border-top-color: var(--red); background: var(--red-soft); }
+  .pair-cell .pc-dims {
+    font-family: var(--serif);
+    font-size: 12.5px;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .pair-cell .pc-dims em {
+    color: var(--red);
+    font-style: italic;
+    font-weight: 700;
+  }
+  .pair-cell .pc-plus {
+    color: var(--muted);
+    font-size: 11px;
+    display: block;
+    margin: 2px 0;
+  }
+  .pair-cell .pc-bar-wrap {
+    margin: 8px 0 6px;
+    height: 4px;
+    background: var(--cream);
+    position: relative;
+  }
+  .pair-cell .pc-bar {
+    position: absolute;
+    top: 0;
+    height: 4px;
+  }
+  .pair-cell .pc-bar.neg { background: var(--muted); right: 50%; }
+  .pair-cell .pc-bar.pos { background: var(--red); left: 50%; }
+  .pair-cell .pc-mid {
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    bottom: -2px;
+    width: 1px;
+    background: var(--ink);
+  }
+  .pair-cell .pc-eff {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1;
+    margin-top: 6px;
+  }
+  .pair-cell.is-good .pc-eff { color: var(--red); }
+  .pair-cell.is-bad .pc-eff { color: var(--muted); }
+  .pair-cell .pc-eff-lbl {
+    font-size: 9.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .pair-cell .pc-usage {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dotted var(--rule);
+  }
+  .pair-cell .pc-usage strong {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 12px;
+  }
+  .pairings-axis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .pairings-axis .ax-left { text-align: left; }
+  .pairings-axis .ax-right { text-align: right; }
+  @media (max-width: 900px) {
+    .pairings-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* "Is More Creativity Better?" — two side-by-side mini bar groups */
+  .cats-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 18px 0 6px;
+  }
+  .cats-panel {
+    background: var(--white);
+    padding: 18px 20px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .cats-panel h4 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+  .cats-panel .cats-sub {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .cats-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 56px;
+    gap: 10px;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .cats-row:last-child { border-bottom: none; }
+  .cats-row .cats-cat {
+    font-family: var(--serif);
+    font-size: 12.5px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .cats-row .cats-track {
+    height: 16px;
+    background: var(--cream);
+    position: relative;
+  }
+  .cats-row .cats-axis {
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    bottom: -3px;
+    width: 1px;
+    background: var(--ink);
+  }
+  .cats-row .cats-bar {
+    position: absolute;
+    top: 0;
+    height: 16px;
+  }
+  .cats-row .cats-bar.pos { background: var(--red); left: 50%; }
+  .cats-row .cats-bar.neg { background: var(--muted); right: 50%; }
+  .cats-row .cats-val {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink);
+    text-align: right;
+  }
+  .cats-row .cats-val.pos { color: var(--red); }
+  .cats-row .cats-val.neg { color: var(--muted); }
+  .cats-axis-base {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 90px 1fr 56px;
+    gap: 10px;
+    font-size: 9.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .cats-axis-base .axb-track {
+    display: flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 720px) {
+    .cats-pair { grid-template-columns: 1fr; }
+  }
+
+  /* Article-review sidebar — more substantial than the standard sidebar-card,
+     with a header that reads as a citation card. */
+  .article-card {
+    background: var(--white);
+    border-left: 3px solid var(--red);
+    padding: 20px 24px;
+    margin: 18px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .article-card .ac-kicker {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .article-card .ac-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .article-card .ac-meta {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .article-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .article-card p:last-child { margin-bottom: 0; }
+  .article-card .ac-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--red);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--red);
+    padding-bottom: 1px;
+  }
+  .article-card .ac-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* Small "scope" line that sits under each study h3 in The Receipts, telling
+     the reader what the study actually measured before they read the prose.
+     Candidate for promotion to permanent styles.css if other research-heavy
+     pages reuse it. */
+  .study-meta {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin: -4px 0 14px;
+    padding-left: 12px;
+    border-left: 2px solid var(--rule);
+    line-height: 1.5;
+  }
+
+  /* References list */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+  }
+
+  /* Unit nav */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 60px 0 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .unit-nav a {
+    display: block;
+    padding: 16px 20px;
+    background: var(--cream);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .unit-nav a:hover { background: var(--red-soft); }
+  .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .unit-nav-tease {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .unit-nav-prev { text-align: left; }
+  .unit-nav-next { text-align: right; }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-prev, .unit-nav-next { text-align: left; }
+  }
+
+  /* Glossary tightening */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Creative &middot; #1</div>
+    <h1>Why Creative Carries 60&ndash;70% of Effectiveness</h1>
+    <p class="lede">There is a school of thought in modern marketing that treats creative as the soft part of the work &mdash; the part the artists do at the end, after the strategists, the analysts, and the media buyers have finished the real decisions. The school has several names: the performance school, the data-driven school, the click-optimization school. It is louder in some rooms than in others, and it is the default position of most CFOs sitting across the table from most CMOs. Twenty years of well-documented evidence does not support it.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#receipts">The Receipts</a>
+    <a href="#crisis">The Crisis</a>
+    <a href="#what">What Creative Means</a>
+    <a href="#dimensions">Five Dimensions</a>
+    <a href="#counter">Counter-Intuitive</a>
+    <a href="#more">More Isn&rsquo;t Better</a>
+    <a href="#lever">The Lever</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW — the argument and the position to argue against
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Argument</h2>
+
+  <p>The school&rsquo;s premise is reasonable on its face. Targeting can be measured. Channel mix can be measured. Frequency, recency, even attention-second-by-attention-second can now be measured. Creative is the variable that sits at the front of the model and refuses to be parameterized, so it gets treated as the residual &mdash; the thing that &ldquo;matters&rdquo; but cannot be defended in a budget meeting. The result is the budget pattern most brands are running right now: enormous effort spent optimizing the inputs that can be measured, and a minor share of attention paid to the input that produces the largest multiplier on every other input.</p>
+
+  <p>This piece is the case the evidence makes. The <a href="creative-intro.html">intro</a> already placed the stake &mdash; five to ten percent of gross sales committed to promotion, eight to ten million dollars in a normal year on a hundred-million-dollar revenue base. This piece is the argument for why the line item underneath that number that decides whether the spend earns out is not the media plan, not the targeting strategy, and not the offer structure. It is the creative.</p>
+
+  <div class="callout">
+    <div class="callout-label">The position in one sentence</div>
+    <p>Among the variables that decide whether a marketing budget earns out, creative quality is the single largest one inside the brand&rsquo;s direct control &mdash; and when the work is sustained long enough for the carryover to compound, the multiplier on the rest of the budget is roughly two-to-tenfold depending on which study you read and what it measures.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — THE RECEIPTS
+     Three studies stacked. R&S, Nielsen Catalina, Binet & Field.
+     ============================================================ -->
+<section class="section" id="receipts">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The Receipts</div>
+  <h2>Three Studies, Same Direction</h2>
+
+  <p>The headline 60&ndash;70% in the title is a synthesis. The literature does not return a single number, because three different methodologies are measuring three slightly different things. What the literature does return is a convergent direction: every methodology that has tried to attribute commercial outcomes to the components of a marketing campaign has put creative at the top of the list. Three studies, sized differently, are worth knowing by name.</p>
+
+  <h3>Reinartz &amp; Saffert: roughly double the sales impact per euro</h3>
+  <p class="study-meta">What it measured: 437 German TV campaigns across 90 FMCG brands, 2005&ndash;2010, scored on five creativity dimensions by trained consumer raters, then run through a hierarchical sales-response model.</p>
+
+  <p>The foundational empirical work in this argument was published in the <em>Harvard Business Review</em> in June 2013 by two German researchers at the University of Cologne, Werner Reinartz and Peter Saffert. They studied <strong>437 television campaigns across 90 fast-moving consumer goods brands</strong> &mdash; body lotion, chewing gum, coffee, cola and lemonade, detergent, facial care, shampoo, shavers, yogurt &mdash; and asked a panel of trained consumer raters to score each campaign&rsquo;s creativity on five separate dimensions. They then ran the creativity scores against actual sales data for those products. The headline finding: <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">a euro invested in a highly creative campaign produced, on average, nearly double the sales impact of a euro invested in a non-creative campaign in the same category</a> <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">(Reinartz &amp; Saffert, 2013)</a>. The carryover dynamic mattered too &mdash; the creativity advantage was initially small in week one and gathered momentum as the campaign accumulated airtime.</p>
+
+  <div class="article-card">
+    <div class="ac-kicker">Article &middot; Source #1</div>
+    <div class="ac-title">Creativity in Advertising: When It Works and When It Doesn&rsquo;t</div>
+    <div class="ac-meta">Werner J. Reinartz &amp; Peter Saffert &middot; <em>Harvard Business Review</em>, June 2013</div>
+    <p>Reinartz and Saffert open by acknowledging the practitioner consensus that creative matters &mdash; quoting Stephan Vogel, then chief creative officer of Ogilvy &amp; Mather Germany: <em>&ldquo;Nothing is more efficient than creative advertising. Creative advertising is more memorable, longer lasting, works with less media spending, and builds a fan community&hellip;faster.&rdquo;</em> The honest part of the paper is that, before this study, there was almost no rigorous empirical evidence supporting that consensus. Laboratory experiments had shown that creative ads get more attention and produce more favorable attitudes; the link to sales was an article of faith.</p>
+    <p>Their contribution is the methodology &mdash; a consumer-survey instrument scoring campaigns on five separate creativity dimensions, run through a <em>hierarchical sales response model</em> that lets creative and media budget interact rather than treating them as independent inputs. The hierarchical structure is what surfaces the carryover finding: <em>&ldquo;in the real world, the longer a creative ad is aired, the more impact the creativity has on sales.&rdquo;</em> The headline result, quoted in every subsequent piece of creative-effectiveness research, is that a euro spent on a highly creative campaign produces roughly twice the sales impact of a euro spent on a non-creative one.</p>
+    <a class="ac-cta" href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Read the full HBR article &rarr;</a>
+    <span class="ac-cta-note">R&amp;S&rsquo;s subtler findings &mdash; which dimensions matter most, which pairings outperform, which categories punish additional creativity &mdash; are the substance of §04&ndash;§06 below.</span>
+  </div>
+
+  <h3>Nielsen Catalina: creative is 47% of measured sales lift</h3>
+  <p class="study-meta">What it measured: roughly 500 US CPG campaigns from 2016&ndash;early 2017, attributing observed sales lift to creative, reach, brand, targeting, recency, and context using receipt-level purchase data linked to media exposure.</p>
+
+  <p>The second study is larger in scope and more recent. <a href="https://www.nielsen.com/insights/2017/perspectives-want-a-successful-ad-get-creative/" target="_blank" rel="noopener">Nielsen Catalina Solutions, working from receipt-level sales data and media exposure data across nearly 500 CPG campaigns that ran in 2016 and early 2017</a>, attempted to attribute sales lift to the variables that produce it &mdash; creative, reach, brand factors, targeting, recency, context. Their result <a href="https://www.marketingcharts.com/advertising-trends-80662" target="_blank" rel="noopener">(Nielsen, 2017)</a>:</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-card-val">47%</div>
+      <div class="stat-card-lbl">Creative</div>
+      <div class="stat-card-sub">Largest single contributor to sales lift across all CPG campaigns measured</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-val">22%</div>
+      <div class="stat-card-lbl">Reach</div>
+      <div class="stat-card-sub">The second-largest contributor &mdash; less than half the size of creative&rsquo;s effect</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-val">31%</div>
+      <div class="stat-card-lbl">Everything Else</div>
+      <div class="stat-card-sub">Brand factors (15%), targeting (9%), recency (5%), context (2%) combined</div>
+    </div>
+  </div>
+
+  <p>Creative outweighed every other element they could measure. And the strong-versus-weak gap <em>inside</em> the creative variable was larger than the variable&rsquo;s overall weight: in <a href="https://blog.vidmob.com/creative-counts" target="_blank" rel="noopener">a follow-up Vidmob analysis, strong creative accounted for 89% of the brand&rsquo;s sales contribution and weak creative for only 16% (Vidmob, 2018)</a>. The same media plan running better creative did not yield a 20% improvement, or a 50% improvement &mdash; it yielded a five-to-sixfold improvement on the share of the result attributable to the creative line.</p>
+
+  <h3>Binet &amp; Field: an eleven-times share-growth multiplier</h3>
+  <p class="study-meta">What it measured: the IPA Effectiveness Databank, drawing on case studies submitted between 1996 and 2014, using creative-award status as a budget-independent proxy for creative quality and tracking share-of-market growth against share-of-voice.</p>
+
+  <p>The third study is the longest-running and the one that arguably carries the most weight inside the industry. <a href="https://ipa.co.uk/knowledge/effectiveness-research-analysis/les-binet-peter-field" target="_blank" rel="noopener">Les Binet and Peter Field of the IPA Effectiveness Databank</a> have spent more than two decades sorting campaigns by creative awarding &mdash; treating creative-award status as a proxy for creative quality independent of budget &mdash; and tracking the business outcomes. The strongest finding from their work, drawn from data spanning 1996 to 2014, is that <a href="https://www.slideshare.net/slideshow/binetandfield/252553543" target="_blank" rel="noopener">creatively-awarded campaigns historically delivered roughly eleven times the share-of-market growth per point of extra share-of-voice as non-awarded campaigns</a> <a href="https://www.slideshare.net/slideshow/binetandfield/252553543" target="_blank" rel="noopener">(Binet &amp; Field, IPA)</a>.</p>
+
+  <p>Note the unit. <em>Per point of extra share-of-voice</em>. That is the efficiency multiplier &mdash; not &ldquo;more output,&rdquo; but &ldquo;more output for the same media money,&rdquo; which is the only language a CFO actually responds to. The Binet &amp; Field finding is what underlies the <a href="brand-vs-performance.html">60/40 brand-versus-performance budget rule</a> you have already met in this course: brand-building work, when it is creatively strong, produces a long-tail return on share-of-voice spending that pure activation work cannot match.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The three studies do not all measure the same thing. The convergence is what matters: every methodology applied to a different body of data returns creative as the single largest controllable contributor to commercial outcomes.</div>
+  </div>
+
+  <p>Pick your number from the literature. Nielsen at 47%, with a strong-creative version climbing into the high eighties. Reinartz and Saffert at roughly 100% advantage per euro. Binet and Field at an eleven-fold multiplier on share-growth efficiency. <a href="https://www.warc.com/newsandopinion/opinion/its-time-to-put-creativity-back-into-effectiveness/en-gb/6152" target="_blank" rel="noopener">A more recent Kantar/WARC analysis returns roughly four times the profit ROI for high-quality creative over low-quality creative (Roach, 2023)</a>. The 60&ndash;70% in this page&rsquo;s title is not a precise statistic; it is a defensible synthesis of evidence that has been pointing the same direction for two decades.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — THE CRISIS THAT DOESN'T DISPROVE THE CASE
+     The IPA 2019 crisis report, handled as concession-then-attack.
+     ============================================================ -->
+<section class="section" id="crisis">
+  <div class="sec-num">02</div>
+  <div class="sec-label">The Honest Complication</div>
+  <h2>The Crisis That Doesn&rsquo;t Disprove the Case</h2>
+
+  <p>An argument made entirely from supporting evidence is not an argument, it is a press release. Two pieces of context complicate the case honestly and deserve to be on the table before the rest of the page is read.</p>
+
+  <p>The first is that Binet and Field, the same researchers who established the historical eleven-times multiplier, published a 2019 report titled <em>The Crisis in Creative Effectiveness</em>. <a href="https://www.marketingweek.com/crisis-creative-effectiveness/" target="_blank" rel="noopener">The multiplier had collapsed</a> &mdash; from roughly twelve percentage points of annual market-share gain per ten extra points of share-of-voice to about four by 2018, with <a href="https://www.contagious.com/news-and-views/creative-effectiveness-peter-field-IPA-crisis-report" target="_blank" rel="noopener">marketers under-allocating brand-building by at least 14 percentage points relative to the optimal mix</a> <a href="https://www.marketingweek.com/crisis-creative-effectiveness/" target="_blank" rel="noopener">(Marketing Week, 2020; Field, 2019)</a>. Their diagnosis was specific: the industry had used &ldquo;creative&rdquo; awards increasingly to celebrate work optimized for short-term sales activation, and the brand-building work that creative-effectiveness research had originally captured was being progressively underfunded.</p>
+
+  <p>The concession is on the table because it deserves to be. The decade-long pendulum swing toward performance and activation did real damage, on the data-driven school&rsquo;s own preferred terms, to the efficiency of creative investment.</p>
+
+  <p>The second piece of context is that the crisis is not an argument against creative. It is an argument against creative as decoration on a short-term activation budget. The multiplier still works. It works on the same mechanism it always worked on: distinctive ideas, built into distinctive assets, given enough time and repetition to build memory structures that bias the next purchase decision in the brand&rsquo;s favor. The crisis describes what happens when the industry tries to extract that effect from work that was never designed to produce it &mdash; weekly performance creative aimed at this month&rsquo;s conversion target, optimized into a thousand variants for A/B testing, none of which contribute to any consistent memory structure. The multiplier requires that the creative be built to last and that the brand actually fund it long enough for the carryover to compound. Reinartz and Saffert&rsquo;s hierarchical model says the same thing in different language. The case for creative is not the case for any creative; it is the case for sustained creative.</p>
+
+  <div class="callout">
+    <div class="callout-label">What this section is doing</div>
+    <p>The honest version of the bang-for-buck argument is conditional, not unconditional. Creative is the largest controllable multiplier <em>when the work satisfies the conditions the multiplier requires</em> &mdash; distinctive, sustained, properly funded against brand objectives rather than only activation objectives. The crisis is what the data does when those conditions stop being met. The rest of this piece is what those conditions look like in practice.</p>
+  </div>
+
+  <a class="ac-cta" href="https://www.contagious.com/news-and-views/creative-effectiveness-peter-field-IPA-crisis-report" target="_blank" rel="noopener">Read the IPA crisis report summary &rarr;</a>
+  <span class="ac-cta-note">Field&rsquo;s full diagnosis, with the 14-percentage-point under-allocation finding and the brand-vs-activation split data, is on the Contagious summary of the original IPA report.</span>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — WHAT "CREATIVE" ACTUALLY MEANS
+     Definitions: CAN, R&S 5 dimensions, "what creativity is NOT"
+     ============================================================ -->
+<section class="section" id="what">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Definitions</div>
+  <h2>What &ldquo;Creative&rdquo; Actually Means</h2>
+
+  <p>The argument so far has used <em>creative</em> as if it had a single referent. It does not, and a piece arguing for the importance of creative has an obligation to specify what is being argued for. Two frameworks help, and a third negative framing tightens both.</p>
+
+  <h3>Andrews &amp; Shimp: the CAN elements</h3>
+
+  <p>Andrews and Shimp&rsquo;s textbook treatment of advertising creativity names three properties any work must satisfy to count as creative in the technical sense <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener">(Andrews &amp; Shimp, 2018)</a>:</p>
+
+  <ul style="margin: 14px 0 18px 24px; line-height: 1.65;">
+    <li><strong><em>Connectedness</em></strong> &mdash; the work reflects empathy with the target audience and is relevant to the brand-choice decision the audience is actually making.</li>
+    <li><strong><em>Appropriateness</em></strong> &mdash; the message is on-target for the brand&rsquo;s positioning and aligned with its relative strengths against competitors.</li>
+    <li><strong><em>Novelty</em></strong> &mdash; the work differs from the audience&rsquo;s expectations of what an ad in this category looks like.</li>
+  </ul>
+
+  <p>They abbreviate the three as <strong>CAN</strong>. The point of the abbreviation is that all three are conjoint. A work that is novel but not connected is weird. A work that is connected but not appropriate is on-message for the wrong brand. A work that is appropriate but not novel is invisible in a competitive feed. The work is creative only when all three are present at once, and the most common failure mode of bad ads approved by clients who didn&rsquo;t know to ask for more is novelty without the other two &mdash; the brand spent a budget being weird and then wondered why nobody bought anything.</p>
+
+  <h3>What creative is <em>not</em></h3>
+
+  <p>The Medium essayist Gabriel Jasmine, writing in 2023 for a working audience of agency planners and creative directors, puts the same idea in negative form. The negation is doing work; what it strips away is the agency-side temptation to read &ldquo;novelty&rdquo; as the whole job. <a href="https://medium.com/@gabrieljasmineloh/the-research-backed-creative-formula-of-award-winning-ads-revealed-3436a775596c" target="_blank" rel="noopener">Being creative, she writes, is</a> <a href="https://medium.com/@gabrieljasmineloh/the-research-backed-creative-formula-of-award-winning-ads-revealed-3436a775596c" target="_blank" rel="noopener">(Jasmine, 2023)</a>:</p>
+
+  <ul style="margin: 14px 0 18px 24px; line-height: 1.7;">
+    <li>NOT acting out of the brand&rsquo;s personality;</li>
+    <li>NOT being obnoxious;</li>
+    <li>NOT putting the brand&rsquo;s reputation in jeopardy;</li>
+    <li>NOT merely about standing out.</li>
+  </ul>
+
+  <p>The four negations map almost cleanly onto Andrews and Shimp&rsquo;s CAN. Acting out of personality fails <em>appropriateness</em>. Being obnoxious or putting reputation at risk fails <em>connectedness</em>. And the last one is the explicit warning against the novelty-only failure mode: standing out is the necessary condition, not the sufficient one. The work has to stand out <em>and</em> connect <em>and</em> belong to the brand.</p>
+
+  <div class="article-card">
+    <div class="ac-kicker">Article &middot; Source #2</div>
+    <div class="ac-title">A Research-Backed Creativity Formula of Award-Winning Ads</div>
+    <div class="ac-meta">Gabriel Jasmine &middot; Medium, December 2023</div>
+    <p>Jasmine opens with the line every agency planner has heard one too many times from a client: <em>&ldquo;It&rsquo;s not creative enough.&rdquo;</em> The unspoken response, she notes, is the question the client cannot answer: <em>&ldquo;What&rsquo;s your standard for creativity, then?&rdquo;</em> The piece is her attempt to give that standard, drawing on creative-effectiveness research from James Hurman, Peter Field, the Leo Burnett 7+ scale, and neuroscience work on how novel ideas are generated.</p>
+    <p>The finding worth carrying forward from her piece is the <em>longevity</em> argument: brand-building creative needs at least six months to take effect, and short-term iteration on disconnected one-offs wastes the underlying investment. That conclusion is the bridge from the Reinartz &amp; Saffert hierarchical-model finding (creative effect compounds with airtime) to the working brief covered in §07: <em>build the kind of creative that can run for years, not the kind that wins this week&rsquo;s engagement number</em>.</p>
+    <a class="ac-cta" href="https://medium.com/@gabrieljasmineloh/the-research-backed-creative-formula-of-award-winning-ads-revealed-3436a775596c" target="_blank" rel="noopener">Read the full article on Medium &rarr;</a>
+    <span class="ac-cta-note">Jasmine&rsquo;s full two-layer framework (novelty + distinctiveness as the baseline; emotion + well-branded + longevity as the effectiveness attributes) is laid out in the original.</span>
+  </div>
+
+  <h3>The five-dimensional version</h3>
+
+  <p>Andrews and Shimp&rsquo;s <em>Novelty</em>, looked at carefully, is not one thing. The Reinartz and Saffert framework unpacks it into five separable dimensions &mdash; the subject of the next section.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — THE FIVE DIMENSIONS
+     Define each with an R&S example.
+     ============================================================ -->
+<section class="section" id="dimensions">
+  <div class="sec-num">04</div>
+  <div class="sec-label">The Five Dimensions</div>
+  <h2>How Creative Work Is Actually Scored</h2>
+
+  <p>What follows are the five dimensions Reinartz and Saffert used to score creative work, with the examples they cited from the German FMCG campaigns they studied. The vocabulary is worth memorizing; the next time you sit in a creative review, the question you are actually being asked is <em>which of these five dimensions does this work hit, and how many of them at once?</em></p>
+
+  <h3>1. Originality</h3>
+  <p>Elements that are rare, surprising, or move away from the obvious and commonplace. The standard category template is the opposite &mdash; the homemaker pleased by whiter whites, the perfume model on a sunlit terrace, the car cruising an empty mountain road. Coca-Cola&rsquo;s &ldquo;Happiness Factory&rdquo; commercial, which imagined the inside of a vending machine as a fantastical world of small creatures preparing each bottle, scored at the top of the originality dimension in the R&amp;S data.</p>
+
+  <h3>2. Flexibility</h3>
+  <p>The work links the product to a range of different uses or ideas, smoothly. A 2011&ndash;12 German campaign for Jacobs Krönung coffee showed a man handling a series of domestic challenges &mdash; washing dishes, sewing a button, dicing an onion, making a bed &mdash; while a group of women enjoyed coffee together. The brand connects to several life scenarios in a single execution.</p>
+
+  <h3>3. Elaboration</h3>
+  <p>The ad contains unexpected details or extends a simple idea into something more intricate. An Ehrmann fruit yogurt ad shows a woman eating yogurt; she licks her lips and her tongue is revealed to look like a strawberry. The basic idea (fruit yogurt) is elaborated by visualizing the consumer becoming what she is eating. The Wrigley&rsquo;s 5 gum execution with a man submerged in tiny metal balls that bounce off his skin, dramatizing the chewing-tingle, is the same elaboration move on a different basic claim.</p>
+
+  <h3>4. Synthesis</h3>
+  <p>Normally unrelated objects or ideas are blended or connected. Wrigley aired a commercial in which rabbits were corralled and fed bananas, berries, and melon, so that their buckteeth grew in as Juicy Fruit Squish chewing gum. Rabbits, livestock, chewing gum &mdash; three unrelated objects synthesized into a single story line.</p>
+
+  <h3>5. Artistic Value</h3>
+  <p>The production quality, the dialogue, the color palette, the music. Danone&rsquo;s Fantasia yogurt ran an animated commercial showing a woman floating on a flower petal through a sea of yogurt, surrounded by flowers laden with fruits. The scoring panel rated it at the top of the artistic-value dimension. Audiences often consume work scoring high on this dimension as something closer to a short film than a sales pitch &mdash; which is exactly the point of the dimension.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">What you can now do with these</div>
+    <ul>
+      <li>When a creative deck lands on your desk, name which of the five dimensions the work is doing. Not whether it is &ldquo;good.&rdquo; Which dimensions, and how many.</li>
+      <li>Notice when a piece of work is leaning entirely on one dimension. That is almost always a sign that more development is possible &mdash; not necessarily a sign that the work is bad.</li>
+      <li>Distinguish the dimension the work is doing well from the dimension the brand actually needs in this category. Coffee categories reward originality; body lotion categories don&rsquo;t. The five dimensions are not equally useful in every brief.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — THE COUNTER-INTUITIVE FINDING
+     Elaboration > originality. Combinations matter more.
+     Includes the wide-bleed pairings strip.
+     ============================================================ -->
+<section class="section" id="counter">
+  <div class="sec-num">05</div>
+  <div class="sec-label">The Counter-Intuitive Finding</div>
+  <h2>Originality Isn&rsquo;t the Headliner</h2>
+
+  <p>If you stopped a senior creative director on the street and asked which of the five dimensions matters most to ad effectiveness, the answer you would get is <em>Originality</em>. This is the default cultural assumption about what creative means in advertising, and it is the dimension agencies most heavily emphasize in pitching work and in entering it for awards. Reinartz and Saffert measured this directly: across the 437 campaigns in their dataset, originality and artistic value were the two dimensions agencies leaned on most, with elaboration trailing significantly behind.</p>
+
+  <p>The data does not return the answer the cultural assumption predicts. When the five dimensions were indexed against their individual impact on sales &mdash; overall creativity normalized to 1.0 &mdash; <strong>elaboration</strong> came in first at 1.32. Artistic value was second at 1.19. Originality and flexibility came in behind at 1.06 and 1.03. Synthesis trailed all the others at 0.45.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card highlight">
+      <div class="stat-card-val">1.32</div>
+      <div class="stat-card-lbl">Elaboration</div>
+      <div class="stat-card-sub">The strongest single dimension &mdash; and the one agencies underuse</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-val">1.19</div>
+      <div class="stat-card-lbl">Artistic Value</div>
+      <div class="stat-card-sub">Second-strongest individual effect</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-val">1.06</div>
+      <div class="stat-card-lbl">Originality</div>
+      <div class="stat-card-sub">The cultural default &mdash; weaker alone than agency emphasis suggests</div>
+    </div>
+  </div>
+
+  <h3>The combinations matter more than the dimensions</h3>
+
+  <p>The finding that matters most for working practice is not the ranking of single dimensions. It is the <em>combinations</em>. When Reinartz and Saffert looked at campaigns that scored above the median on at least two dimensions, the variation in sales effect among the pairings was substantially larger than the variation among individual dimensions on their own. Some pairs produced enormous lifts. Some pairs underperformed badly. And the pair the industry uses most often &mdash; <em>Flexibility</em> + <em>Elaboration</em>, accounting for 11.6% of all campaigns &mdash; turned out to be one of the lowest-performing of the ten possible combinations.</p>
+
+  <p>The chart below shows the full ranking. The horizontal axis sorts the ten possible pairs from least effective on the left to most effective on the right, indexed against the average effectiveness of all pairs at 1.0. Pairs running below average are shown in grey; pairs running above average are shown in red. The usage figure underneath each pair shows how often it appeared in the dataset &mdash; revealing that the industry distributed its creative effort almost evenly across the ten pairs, with no particular skew toward the ones that actually work.</p>
+
+  <div class="figure-bleed">
+    <div class="figure">
+      <div class="figure-label">Figure 1.1</div>
+      <div class="figure-title">What Creativity Combinations Work Best?</div>
+      <div class="figure-content">
+        <div class="pairings-strip">
+          <div class="pair-cell is-bad">
+            <div class="pc-dims">Flexibility <span class="pc-plus">+</span> Artistic Value</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar neg" style="width: 99%;"></div>
+              </div>
+              <div class="pc-eff">&minus;99%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>8.7%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-bad">
+            <div class="pc-dims">Flexibility <span class="pc-plus">+</span> Elaboration</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar neg" style="width: 59%;"></div>
+              </div>
+              <div class="pc-eff">&minus;59%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>11.6%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-bad">
+            <div class="pc-dims">Synthesis <span class="pc-plus">+</span> Artistic Value</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar neg" style="width: 29%;"></div>
+              </div>
+              <div class="pc-eff">&minus;29%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>8.8%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-bad">
+            <div class="pc-dims">Flexibility <span class="pc-plus">+</span> Synthesis</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar neg" style="width: 20%;"></div>
+              </div>
+              <div class="pc-eff">&minus;20%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>9.4%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-bad">
+            <div class="pc-dims">Synthesis <span class="pc-plus">+</span> Elaboration</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar neg" style="width: 5%;"></div>
+              </div>
+              <div class="pc-eff">&minus;5%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>9.7%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-bad">
+            <div class="pc-dims"><em>Originality</em> <span class="pc-plus">+</span> Flexibility</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar neg" style="width: 1%;"></div>
+              </div>
+              <div class="pc-eff">&minus;1%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>9.8%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-good">
+            <div class="pc-dims"><em>Originality</em> <span class="pc-plus">+</span> Synthesis</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar pos" style="width: 1%;"></div>
+              </div>
+              <div class="pc-eff">+1%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>10.7%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-good">
+            <div class="pc-dims">Elaboration <span class="pc-plus">+</span> Artistic Value</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar pos" style="width: 28%;"></div>
+              </div>
+              <div class="pc-eff">+28%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>10.5%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-best">
+            <div class="pc-dims"><em>Originality</em> <span class="pc-plus">+</span> Artistic Value</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar pos" style="width: 89%;"></div>
+              </div>
+              <div class="pc-eff">+89%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>10.9%</strong><br>of usage</div>
+          </div>
+          <div class="pair-cell is-best">
+            <div class="pc-dims"><em>Originality</em> <span class="pc-plus">+</span> Elaboration</div>
+            <div>
+              <div class="pc-bar-wrap">
+                <div class="pc-mid"></div>
+                <div class="pc-bar pos" style="width: 96%;"></div>
+              </div>
+              <div class="pc-eff">+96%</div>
+              <div class="pc-eff-lbl">Relative effectiveness</div>
+            </div>
+            <div class="pc-usage"><strong>9.9%</strong><br>of usage</div>
+          </div>
+        </div>
+        <div class="pairings-axis">
+          <div class="ax-left">&larr; Less effective</div>
+          <div class="ax-right">More effective &rarr;</div>
+        </div>
+      </div>
+      <div class="figure-caption">Recreated from <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Reinartz &amp; Saffert (2013)</a>. <em>Relative effectiveness</em> is sales uplift of a particular pairing relative to the average effectiveness of all ten pairings. The four pairs containing <em>originality</em> (italicized) appear in three of the four highest-performing combinations, despite originality&rsquo;s modest standalone effect &mdash; suggesting it operates as an enabler for the other dimensions rather than as the engine itself.</div>
+    </div>
+  </div>
+
+  <h3>Two practical takeaways from the chart</h3>
+
+  <p>First, the point that matters most in a pitch room: <strong>combinations of dimensions matter more than any single dimension on its own</strong>. Almost every effective campaign in the R&amp;S dataset scored above the median on at least two dimensions. The threshold for effective creative is not &ldquo;be the most original ad in the category.&rdquo; It is &ldquo;be present on more than one dimension at a time.&rdquo; The practical question to ask in a creative review is not <em>is this clever?</em> &mdash; it is <em>which two-or-more of the five dimensions is this work hitting, and is it hitting them strongly enough that the audience will notice?</em></p>
+
+  <p>Second, originality is an <em>enabler</em>, not the headliner. It appears in three of the four highest-performing combinations &mdash; but its solo contribution to sales is modest (1.06, third in the ranking). A fresh idea makes the other dimensions work better than they would alone; it does not, on its own, sell anything. The brief that asks for &ldquo;something original&rdquo; and nothing else is the brief that produces a campaign that wins attention, fails to convert, and gets blamed on creative when the real failure was the brief.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — MORE ISN'T ALWAYS BETTER
+     The category-specific finding. Recreated "Is More Creativity Better?" chart.
+     ============================================================ -->
+<section class="section" id="more">
+  <div class="sec-num">06</div>
+  <div class="sec-label">The Conditional Finding</div>
+  <h2>More Isn&rsquo;t Always Better</h2>
+
+  <p>A second R&amp;S finding deserves its own treatment, because it complicates the bang-for-buck argument in a useful way. Adding creativity is not always net positive. It depends on the category.</p>
+
+  <p>R&amp;S broke their nine product categories into two groups based on the average creativity level of advertising in each category. The low-creativity group included shampoo, detergent, body lotion, and face care &mdash; categories where most ads run a familiar performance-demonstration template. The high-creativity group included cola, coffee, shavers, and yogurt &mdash; categories where audiences have come to expect distinctive creative work. They then asked: <em>if you add one point of creativity to a campaign in this category, what happens to sales?</em></p>
+
+  <div class="figure-bleed">
+    <div class="figure">
+      <div class="figure-label">Figure 1.2</div>
+      <div class="figure-title">Is More Creativity Better? Sales Impact of a One-Point Creativity Increase, by Category</div>
+      <div class="figure-content">
+        <div class="cats-pair">
+
+          <div class="cats-panel">
+            <h4>Categories with low-creativity ads</h4>
+            <div class="cats-sub">In categories where the template is the template, adding creativity sometimes pays &mdash; and sometimes is actively punished.</div>
+
+            <div class="cats-row">
+              <div class="cats-cat">Shampoo</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar pos" style="width: 40%;"></div>
+              </div>
+              <div class="cats-val pos">+4%</div>
+            </div>
+            <div class="cats-row">
+              <div class="cats-cat">Detergent</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar pos" style="width: 40%;"></div>
+              </div>
+              <div class="cats-val pos">+4%</div>
+            </div>
+            <div class="cats-row">
+              <div class="cats-cat">Body lotion</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar neg" style="width: 20%;"></div>
+              </div>
+              <div class="cats-val neg">&minus;2%</div>
+            </div>
+            <div class="cats-row">
+              <div class="cats-cat">Face care</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar neg" style="width: 20%;"></div>
+              </div>
+              <div class="cats-val neg">&minus;2%</div>
+            </div>
+
+            <div class="cats-axis-base">
+              <div></div>
+              <div class="axb-track"><span>&minus;5%</span><span>0</span><span>+5%</span></div>
+              <div></div>
+            </div>
+          </div>
+
+          <div class="cats-panel">
+            <h4>Categories with high-creativity ads</h4>
+            <div class="cats-sub">Where the audience expects creative work, more sometimes returns sharp gains &mdash; and sometimes runs into hard diminishing returns.</div>
+
+            <div class="cats-row">
+              <div class="cats-cat">Shavers</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar pos" style="width: 80%;"></div>
+              </div>
+              <div class="cats-val pos">+8%</div>
+            </div>
+            <div class="cats-row">
+              <div class="cats-cat">Coffee</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar pos" style="width: 80%;"></div>
+              </div>
+              <div class="cats-val pos">+8%</div>
+            </div>
+            <div class="cats-row">
+              <div class="cats-cat">Cola</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar pos" style="width: 9%;"></div>
+              </div>
+              <div class="cats-val pos">&lt;+1%</div>
+            </div>
+            <div class="cats-row">
+              <div class="cats-cat">Yogurt</div>
+              <div class="cats-track">
+                <div class="cats-axis"></div>
+                <div class="cats-bar pos" style="width: 9%;"></div>
+              </div>
+              <div class="cats-val pos">&lt;+1%</div>
+            </div>
+
+            <div class="cats-axis-base">
+              <div></div>
+              <div class="axb-track"><span>&minus;5%</span><span>0</span><span>+10%</span></div>
+              <div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="figure-caption">Recreated from <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Reinartz &amp; Saffert (2013)</a>. Sales-impact change per one-point increase in overall creativity score, by category. The note worth carrying: <em>categories punish or reward creativity differently</em>, and the answer is not predictable from whether the category is &ldquo;creative&rdquo; on its face. Body lotion and face care are demonstrably punished for additional creativity; cola and yogurt show steep diminishing returns at the high-creativity end.</div>
+    </div>
+  </div>
+
+  <p>The mechanism is intuitive. In a category where every brand runs the same anodyne demonstration spot, any divergence from the template gets attention, and the attention converts &mdash; shampoo and detergent sit comfortably in that column. But two other low-creativity categories, <em>body lotion</em> and <em>face care</em>, were actively punished for adding creativity, with sales impact falling roughly 2% per added point. The body-care purchase wants reassurance and demonstration; the consumer is buying a known result and is suspicious of departures from the script.</p>
+
+  <p>The high-creativity end is no more uniform. <em>Coffee</em> and <em>shavers</em> returned roughly 8% sales lift per added creativity point &mdash; substantial. <em>Cola</em> and <em>yogurt</em>, in the same high-creativity quadrant, returned less than 1%. A cola brand running its tenth surprise visualization in a row is no longer surprising anyone; the marginal creativity point is buying nothing the brand can sell.</p>
+
+  <p>The argument does not collapse from this. There is no category in the R&amp;S data where the central finding (high-creative campaigns outperform low-creative campaigns) reverses outright. What collapses is the simple version of the argument &mdash; the version that treats creative as a single scalar that always pays. The real version is conditional on category: know whether your category rewards added creativity, know how much your category&rsquo;s curve has bent, and invest accordingly.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — WHY THIS LEVER SPECIFICALLY
+     Controllable vs. rented levers. Time-builds-effect.
+     Brand-durable creative frameworks vs. one-off social posts.
+     ============================================================ -->
+<section class="section" id="lever">
+  <div class="sec-num">07</div>
+  <div class="sec-label">The Bang-for-Buck Argument</div>
+  <h2>Why This Lever, Specifically</h2>
+
+  <p>There is a final argument that follows from the structure of marketing budgets, more than from any single study. Almost every other variable in a marketing plan is bought from someone outside the brand. Media is rented from publishers. Targeting data is rented from platforms. Distribution is rented from retailers. Talent is rented from agencies, which in turn rent it from the labor market. Even attribution, on the measurement side, is rented from vendors who decide what counts as a credited interaction.</p>
+
+  <p><strong>Creative is the lever the brand controls outright.</strong> It is the place the brand&rsquo;s actual decisions about who it is, what it stands for, and what it wants the consumer to feel get translated into something a consumer can see. It is also the lever that determines whether the rented variables produce returns or simply consume budget. A brilliantly-targeted, optimally-recency-managed media plan running mediocre creative is a budget destroyer. The same plan running creative that hits two or more of the R&amp;S dimensions returns roughly twice the sales impact per unit of spend. Neither the targeting nor the media plan got better &mdash; only the creative did.</p>
+
+  <h3>The time argument: durable frameworks beat clever one-offs</h3>
+
+  <p>The closing argument is about time. Reinartz and Saffert built their hierarchical sales-response model precisely because standard regression treats creative and budget as independent inputs and could not surface the interaction. The interaction it surfaced was specific:</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">In the real world, the longer a creative ad is aired, the more impact the creativity has on sales.</div>
+    <div class="pullquote-attr">&mdash; Reinartz &amp; Saffert, <em>Harvard Business Review</em>, 2013</div>
+  </div>
+
+  <p>The carryover dynamic is real and it is asymmetric. A strong creative idea given six months of consistent exposure builds memory structures that a series of disconnected weekly posts cannot build, no matter how much spend is poured through them. This is, structurally, the same argument that underlies brand-building itself: durable assets built consistently over time outperform a flurry of activity, because the consumer&rsquo;s memory is the actual asset being built. A brand is what people remember when they aren&rsquo;t looking at your ad; a creative idea is what gets remembered.</p>
+
+  <p>Which is why a <em>creative framework</em> designed to last &mdash; a Big Idea, in the language <a href="creative-3-big-idea.html">piece #3</a> will unpack &mdash; outperforms a flow of one-off ideas, even when the one-offs are individually clever. The framework operates on the same logic as the brand it serves. The Snickers <em>You&rsquo;re Not You When You&rsquo;re Hungry</em> platform has been running for more than a decade across fifty-plus markets; every individual execution is recognizably part of the same idea, and that consistency is the reason every individual execution gets credited to the same memory structure in the consumer&rsquo;s head. The platform compounds. A clever single Super Bowl spot does not.</p>
+
+  <p>The industry default for organic owned-channel work and most paid social, right now, is the opposite of a framework: weekly posts optimized for that week&rsquo;s engagement, individually clever, mutually disconnected, none of them building toward anything in particular. A meme on Monday, a product close-up on Wednesday, a customer testimonial on Friday, a holiday joke on Sunday &mdash; called &ldquo;content strategy.&rdquo; The accumulated effect on brand health is approximately zero, because there is no consistent creative idea for the audience&rsquo;s memory to encode.</p>
+
+  <div class="callout" style="border-left-color: var(--red); background: var(--cream);">
+    <div class="callout-label" style="color: var(--red);">The CFO version &mdash; and why 60/40 wins anyway</div>
+    <p>The CFO at the table wants the click. The CFO wants the discount window, the cart-abandonment email, the conversion this quarter that the dashboard can prove. The CFO is not wrong about any of those individually. What the CFO is wrong about is the implicit second claim &mdash; that the lower-funnel measurable work is where the money is best spent. The running theme of this course&rsquo;s creative section is <strong>the 60/40 brand-to-performance framework</strong> from Binet &amp; Field: roughly sixty cents of every marketing dollar to long-term, awareness-stage, emotional brand-building work; roughly forty to short-term activation. The CFO version of the question &mdash; <em>where do clicks come from?</em> &mdash; turns out to have a counterintuitive answer.</p>
+    <p>Recent <a href="https://19622650.fs1.hubspotusercontent-na1.net/hubfs/19622650/The%20Awareness%20Advantage%20Report.pdf" target="_blank" rel="noopener">research from Tracksuit and TikTok&rsquo;s <em>Awareness Advantage</em> study</a>, tracking 147 brands, found that brand awareness does not correlate with click-through rate at all &mdash; <em>but it correlates sharply with conversion rate</em>. Brands at roughly sixty percent awareness converted at <strong>2.86 times</strong> the rate of brands at twenty percent. Even a modest move from thirty to forty percent awareness returned 43% better performance efficiency. The upper-funnel emotional creative is what makes the lower-funnel performance creative pay. Piece <a href="creative-7-awareness-creative.html">#7 &mdash; <em>Awareness Creative: Top of the Funnel</em></a> is where that argument gets the full treatment with the Tracksuit data unpacked.</p>
+  </div>
+
+  <p>The IMC discipline you have already been building in this course &mdash; <a href="imc.html">coordinating paid, owned, earned, and shared</a> so the brand promise meets the consumer in one consistent voice &mdash; is the same mechanism the creative-effectiveness research is pointing to. <strong>A campaign that holds on a single creative kernel across <a href="peso.html">PESO</a> channels and across seasons builds the multiplier. A calendar of disconnected posts spends the budget without ever activating it.</strong></p>
+
+  <div class="callout">
+    <div class="callout-label">The argument, condensed</div>
+    <p>Creative is the controllable lever, it works on the same memory-structure mechanism that brand-building works on, and it returns its multiple only when the work is sustained long enough for the carryover to compound. Disconnected weekly content does not build the multiplier. A creative framework built to last across the entire IMC mix &mdash; the same idea, expressed differently across paid, owned, earned, and shared surfaces &mdash; does. The next ten pieces are how to make that happen on campaigns you are involved in approving.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">What you should be able to do after this piece</div>
+    <ul>
+      <li><strong>Name the position</strong> being argued against (the performance / data-driven school that treats creative as decorative) and articulate why the empirical record does not support it.</li>
+      <li><strong>Cite at least one of the three foundational studies</strong> &mdash; Reinartz &amp; Saffert, Nielsen Catalina, or Binet &amp; Field &mdash; with the headline finding and roughly the scope of the data behind it.</li>
+      <li><strong>Use the CAN framework</strong> (Connectedness, Appropriateness, Novelty) as a working definition of creative work, and recognize the novelty-only failure mode when you see it in a deck.</li>
+      <li><strong>Identify which of the five R&amp;S dimensions</strong> a piece of work is doing &mdash; and how many of them at once &mdash; rather than judging work as &ldquo;good&rdquo; or &ldquo;not good.&rdquo;</li>
+      <li><strong>Resist the originality-is-everything default</strong> and look for elaboration alongside it in any work being evaluated for serious investment.</li>
+      <li><strong>Diagnose your category</strong> as one that rewards added creativity or punishes it, before recommending heavier creative investment to a client.</li>
+      <li><strong>Argue for a durable creative framework</strong> across IMC channels in preference to a calendar of disconnected one-off posts, on the basis of the carryover and memory-structure mechanism.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="creative-intro.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">Creative &mdash; Start Here</span>
+    <span class="unit-nav-tease">The four meanings of <em>creative</em>, the stake the section is fighting over, and the eleven-piece arc.</span>
+  </a>
+  <a href="creative-2-brainstorming.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#2 &mdash; Brainstorming Basics</span>
+    <span class="unit-nav-tease">The &ldquo;controlled daydream.&rdquo; Diverge before converge, write the bad ideas first, and treat permission-to-fail as the technique, not the failure mode.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>The performance / data-driven school</em></strong> &mdash; the position this piece argues against. Treats creative as the soft residual of a marketing plan and concentrates investment on measurable inputs (targeting, attribution, media efficiency). Reasonable on its face; not supported by twenty years of effectiveness research.</p>
+    <p><strong><em>CAN elements</em></strong> &mdash; <strong>C</strong>onnectedness, <strong>A</strong>ppropriateness, <strong>N</strong>ovelty. Andrews &amp; Shimp&rsquo;s three conjoint properties of creative work. All three must be present at once; novelty alone is the most common failure mode.</p>
+    <p><strong><em>The five R&amp;S dimensions</em></strong> &mdash; <em>Originality</em>, <em>Flexibility</em>, <em>Elaboration</em>, <em>Synthesis</em>, <em>Artistic Value</em>. Reinartz &amp; Saffert&rsquo;s independently-scoreable axes of creative work. Elaboration is the strongest single-dimension effect on sales; originality is the most important <em>enabler</em> of other dimensions; synthesis is the weakest.</p>
+    <p><strong><em>Hierarchical sales response model</em></strong> &mdash; the statistical method R&amp;S developed because standard regression treats creativity and budget as independent inputs. The hierarchical version lets the two interact and surfaces the carryover finding (creative effect compounds with airtime).</p>
+    <p><strong><em>Carryover / compounding effect</em></strong> &mdash; the finding that creative effect grows over time as a campaign is sustained, because memory structures encode more strongly with repeated exposure. The reason a six-month campaign on one idea outperforms six months of weekly disconnected posts.</p>
+    <p><strong><em>The crisis in creative effectiveness</em></strong> &mdash; Binet &amp; Field&rsquo;s 2019 finding that the historical 11&times; share-growth multiplier for creatively-awarded campaigns had fallen to roughly 4&times; by 2018. Cause: industry pendulum toward short-term activation and under-allocation of brand-building budget. Not an argument against creative; an argument against creative-as-decoration on short-term work.</p>
+    <p><strong><em>Creative framework</em></strong> &mdash; a Big Idea designed to be expressed consistently across the IMC mix over years. The unit on which the carryover effect compounds. Distinct from a content calendar of one-off posts, which by structure cannot compound. Unpacked at length in <a href="creative-3-big-idea.html">piece #3</a>.</p>
+    <p><strong><em>Controllable vs. rented lever</em></strong> &mdash; the structural distinction between creative (the brand controls it outright) and most other marketing variables (rented from publishers, platforms, retailers, agencies, vendors). The bang-for-buck case rests on creative being the largest lever the brand directly owns.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Sources cited in this piece, in APA style. The two anchor articles &mdash; HBR and the Medium piece &mdash; appear first; the rest are the supporting effectiveness literature drawn from for the multi-study case.</p>
+
+  <div class="references">
+    <p class="ref">Reinartz, W., &amp; Saffert, P. (2013, June). <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Creativity in advertising: When it works and when it doesn&rsquo;t</a>. <em>Harvard Business Review</em>. https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt</p>
+    <p class="ref">Jasmine, G. (2023, December 4). <a href="https://medium.com/@gabrieljasmineloh/the-research-backed-creative-formula-of-award-winning-ads-revealed-3436a775596c" target="_blank" rel="noopener">A research-backed creativity formula of award-winning ads</a>. <em>Medium</em>. https://medium.com/@gabrieljasmineloh/the-research-backed-creative-formula-of-award-winning-ads-revealed-3436a775596c</p>
+    <p class="ref">Andrews, J. C., &amp; Shimp, T. A. (2018). <a href="https://www.amazon.com/Advertising-Promotion-Integrated-Marketing-Communications/dp/1337282650" target="_blank" rel="noopener"><em>Advertising, promotion, and other aspects of integrated marketing communications</em></a> (10th ed.). Cengage Learning.</p>
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener"><em>Advertising and promotion: An integrated marketing communications perspective</em></a> (13th ed.). McGraw Hill.</p>
+    <p class="ref">Binet, L., &amp; Field, P. (2013). <a href="https://dissidentchoir.com/60-40-binet-fields-landmark-research/" target="_blank" rel="noopener"><em>The long and the short of it: Balancing short- and long-term marketing strategies</em></a>. Institute of Practitioners in Advertising (IPA). https://dissidentchoir.com/60-40-binet-fields-landmark-research/</p>
+    <p class="ref">Binet, L., &amp; Field, P. (n.d.). <a href="https://ipa.co.uk/knowledge/effectiveness-research-analysis/les-binet-peter-field" target="_blank" rel="noopener">Effectiveness research and analysis: Les Binet &amp; Peter Field</a>. <em>Institute of Practitioners in Advertising</em>. https://ipa.co.uk/knowledge/effectiveness-research-analysis/les-binet-peter-field</p>
+    <p class="ref">Field, P. (2019, June). <a href="https://www.contagious.com/news-and-views/creative-effectiveness-peter-field-IPA-crisis-report" target="_blank" rel="noopener">The crisis in creative effectiveness</a> [Report]. <em>Institute of Practitioners in Advertising</em>. Summary via Contagious. https://www.contagious.com/news-and-views/creative-effectiveness-peter-field-IPA-crisis-report</p>
+    <p class="ref">Marketing Week. (2020, March 4). <a href="https://www.marketingweek.com/crisis-creative-effectiveness/" target="_blank" rel="noopener">Link between creativity and effectiveness &lsquo;broken&rsquo; as short-termism rises</a>. <em>Marketing Week</em>. https://www.marketingweek.com/crisis-creative-effectiveness/</p>
+    <p class="ref">Marketing Charts. (2017, October 18). <a href="https://www.marketingcharts.com/advertising-trends-80662" target="_blank" rel="noopener">Creative quality has biggest impact on ad effectiveness, but media&rsquo;s influence is growing</a>. <em>Marketing Charts</em>. https://www.marketingcharts.com/advertising-trends-80662</p>
+    <p class="ref">Nielsen. (2017, August). <a href="https://www.nielsen.com/insights/2017/perspectives-want-a-successful-ad-get-creative/" target="_blank" rel="noopener">Perspectives: Want a successful ad? Get creative</a>. <em>Nielsen</em>. https://www.nielsen.com/insights/2017/perspectives-want-a-successful-ad-get-creative/</p>
+    <p class="ref">Roach, T. (2023, March). <a href="https://www.warc.com/newsandopinion/opinion/its-time-to-put-creativity-back-into-effectiveness/en-gb/6152" target="_blank" rel="noopener">It&rsquo;s time to put creativity back into effectiveness</a>. <em>WARC</em>. https://www.warc.com/newsandopinion/opinion/its-time-to-put-creativity-back-into-effectiveness/en-gb/6152</p>
+    <p class="ref">Tracksuit &amp; TikTok. (2024). <a href="https://19622650.fs1.hubspotusercontent-na1.net/hubfs/19622650/The%20Awareness%20Advantage%20Report.pdf" target="_blank" rel="noopener"><em>The awareness advantage: How brand awareness drives performance marketing outcomes</em></a> [Report]. Tracksuit.</p>
+    <p class="ref">Vidmob. (2018). <a href="https://blog.vidmob.com/creative-counts" target="_blank" rel="noopener">Creative counts&hellip;the most. Here are the numbers to prove it</a>. <em>Vidmob Blog</em>. https://blog.vidmob.com/creative-counts</p>
+    <p class="ref">Cannes Lions &amp; WARC. (2020). <em>The creative effectiveness ladder: A 101 guide</em>. WARC. https://www.warc.com</p>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
