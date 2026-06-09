@@ -162,29 +162,32 @@
     font-weight: 600;
   }
 
-  /* Video grid 2x2 — used in §05 for the four comeback examples. Same
-     pattern as appeals-execution. */
+  /* Video grid 2x2 — same pattern as appeals-execution. Each tile uses a
+     thumbnail with a play-button overlay, year/length meta line, title,
+     editorial frame, and a CTA that reads "Watch on YouTube" as the
+     progressive-enhancement fallback. Click is intercepted by the
+     lightbox JS at the bottom of the page. */
   .video-2x2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin: 24px 0 18px;
+    margin: 24px 0 20px;
   }
   .video-tile {
-    background: var(--white);
-    border: 0.5px solid var(--cream-deep);
-    display: flex;
-    flex-direction: column;
+    display: block;
     text-decoration: none;
     color: inherit;
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
     transition: border-color 0.15s ease;
-    cursor: pointer;
   }
   .video-tile:hover { border-color: var(--red); }
   .video-tile-thumb {
+    position: relative;
+    width: 100%;
     aspect-ratio: 16 / 9;
-    background: var(--cream);
     overflow: hidden;
+    background: var(--cream);
   }
   .video-tile-thumb img {
     width: 100%;
@@ -192,11 +195,30 @@
     object-fit: cover;
     display: block;
   }
+  .video-tile-thumb::after {
+    content: '\25B6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding-left: 4px;
+    transition: background 0.15s ease;
+  }
+  .video-tile:hover .video-tile-thumb::after { background: var(--red); }
   .video-tile-body { padding: 14px 16px 16px; }
   .video-tile-meta {
     font-size: 11px;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--blue);
     font-weight: 600;
     margin-bottom: 6px;
@@ -210,20 +232,126 @@
     margin-bottom: 6px;
   }
   .video-tile-frame {
-    font-size: 13px;
+    font-size: 13.5px;
     line-height: 1.5;
     color: var(--ink-soft);
-    margin-bottom: 8px;
+    font-style: italic;
+    margin-bottom: 10px;
   }
   .video-tile-cta {
     font-size: 11px;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--red);
     font-weight: 600;
   }
+  .video-tile:hover .video-tile-cta { color: var(--ink); }
   @media (max-width: 720px) {
     .video-2x2 { grid-template-columns: 1fr; }
+  }
+
+  /* Video lightbox modal — opens when a .video-tile is clicked and plays
+     the embedded YouTube video without losing reading context. Without
+     this CSS the modal is in the DOM but invisible, so audio plays but
+     nothing renders. Progressive enhancement: if JS fails the tile's
+     href falls back to opening on YouTube. */
+  .video-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 14, 0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+  }
+  .video-lightbox.open { display: flex; }
+  .video-lightbox-stage {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+  .video-lightbox-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+  .video-lightbox-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .video-lightbox-close {
+    position: absolute;
+    top: -52px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    z-index: 2;
+  }
+  .video-lightbox-close:hover { background: var(--red); }
+  @media (max-width: 720px) {
+    .video-lightbox { padding: 2vw; }
+    .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
+  }
+
+  /* Expert-sidebar — the Instagram-post inset in §04. Floats right on
+     desktop next to the funnel-position prose; full-width on mobile.
+     The image is shown framed inside the card with a small editorial
+     caption beneath. */
+  .expert-sidebar {
+    float: right;
+    width: 300px;
+    margin: 6px 0 14px 24px;
+    background: var(--white);
+    border-top: 3px solid var(--blue);
+    padding: 16px 18px 18px;
+  }
+  .expert-sidebar-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .expert-sidebar-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 0.5px solid var(--cream-deep);
+    margin-bottom: 12px;
+  }
+  .expert-sidebar-caption {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .expert-sidebar-caption em {
+    color: var(--ink);
+    font-style: italic;
+  }
+  @media (max-width: 720px) {
+    .expert-sidebar {
+      float: none;
+      width: 100%;
+      margin: 18px 0 18px;
+    }
   }
 
   /* Bridge cue — same as appeals-execution. */
@@ -491,13 +619,24 @@
   <div class="sec-label">Top of funnel vs. moment of purchase</div>
   <h2>Where Humor Lives in the Funnel</h2>
 
+  <aside class="expert-sidebar">
+    <div class="expert-sidebar-label">From the feed</div>
+    <img class="expert-sidebar-image" src="assets/images/humor-needed.png" alt="Instagram post from @dtcnewsletter headlined 'Brands Aren't Funny Enough'">
+    <p class="expert-sidebar-caption">There is no shortage of takes online &mdash; from experts, ninjas, and gurus &mdash; about how brands should be funnier. Many of them come from people who do not appear to understand the funnel-position argument above. They treat humor as the only tool on the belt and walk around trying to hammer everything in sight with it, instead of recognizing that some briefs call for pliers or a screwdriver. The conflation usually runs <em>make memes, they&rsquo;re trendy</em> alongside <em>we do good video work</em>, without the underlying recognition that humor isn&rsquo;t always the answer. It is the tool they have, and they assume it works on everything because the tool is trendy.</p>
+  </aside>
+
   <p>The other constraint MBAs tend to miss is that humor&rsquo;s strategic placement is not just about brand category &mdash; it is about funnel position. <strong>Humor shows up almost exclusively at the top of the funnel</strong>, as a form of entertainment in service of awareness, brand-building, and distinctive-memory work. It almost never shows up in sales-promotion creative, direct-response advertising, retargeting, or anything at the moment of purchase &mdash; regardless of whether the brand is serious, credible, or playful by default.</p>
 
   <p>Watch a sale ad from a typically humorous brand. The Aviation Gin comedy machine that Ryan Reynolds built does not deploy when Aviation runs end-of-quarter pricing. The Bud Light BOGO ad will be flat-affect, fast, and entirely about the offer. The DoorDash Super Bowl spot was hilarious; the DoorDash retargeting ad that follows you around after you abandon a cart is not. Even brands whose entire identity is built on humor &mdash; e.l.f., Liquid Death, Old Spice &mdash; pull comedy out of the work when the goal is conversion.</p>
 
   <p>The reason is straightforward and worth stating directly. Humor introduces a second cognitive layer &mdash; the joke, on top of the message &mdash; that the audience has to process. At the awareness end of the funnel, that second layer <em>is</em> the asset; it is what gets the work remembered and shared. At the conversion end, the same second layer is friction. The viewer being asked to make a purchase decision needs one clear thing to do, an obvious reason to do it, and as little emotional noise as possible competing with the rational decision. <strong>A joke at the moment of purchase delays the call to action, dilutes the urgency, and shifts the register from transactional to entertainment &mdash; three things performance creative is specifically engineered against.</strong></p>
 
-  <p>The same pattern explains why brands positioned on credibility shy away from humor across the funnel, not just at the bottom. When a brand&rsquo;s entire positioning argument is &ldquo;trust us with serious decisions&rdquo; &mdash; McKinsey, Goldman Sachs, Patek Philippe, Northwestern Mutual, the Mayo Clinic &mdash; humor undermines the position whether the placement is awareness or performance. The audience reads the joke as a signal that the brand is not, in fact, taking the matter as seriously as the matter requires. <strong>The credibility register and the comic register cannot share a frame for long.</strong> Humor lives where attention needs to be earned; it leaves the room when trust needs to be banked.</p>
+  <div class="pullquote">
+    <p class="pullquote-text">&ldquo;People don&rsquo;t buy from clowns.&rdquo;</p>
+    <p class="pullquote-attr">Claude Hopkins &middot; <em>Scientific Advertising</em> &middot; 1923</p>
+  </div>
+
+  <p>Hopkins coined the line a century before anyone had to think about retargeting, but the maxim still works because the underlying psychology hasn&rsquo;t changed: the audience being asked to part with money needs to perceive the seller as serious about the transaction. Comedy works against that perception. The same pattern explains why brands positioned on credibility shy away from humor across the funnel, not just at the bottom. When a brand&rsquo;s entire positioning argument is &ldquo;trust us with serious decisions&rdquo; &mdash; McKinsey, Goldman Sachs, Patek Philippe, Northwestern Mutual, the Mayo Clinic &mdash; humor undermines the position whether the placement is awareness or performance. The audience reads the joke as a signal that the brand is not, in fact, taking the matter as seriously as the matter requires. <strong>The credibility register and the comic register cannot share a frame for long.</strong> Humor lives where attention needs to be earned; it leaves the room when trust needs to be banked.</p>
 </section>
 
 
@@ -539,9 +678,9 @@
 
   <div class="video-2x2">
 
-    <a href="https://www.youtube.com/watch?v=t2n0ykn4AKw" target="_blank" rel="noopener" class="video-tile">
+    <a href="https://www.youtube.com/watch?v=lW6fCFYcV_0" target="_blank" rel="noopener" class="video-tile">
       <div class="video-tile-thumb">
-        <img src="https://img.youtube.com/vi/t2n0ykn4AKw/hqdefault.jpg" alt="Apple R.I.P. Leon">
+        <img src="https://img.youtube.com/vi/lW6fCFYcV_0/hqdefault.jpg" alt="Apple R.I.P. Leon">
       </div>
       <div class="video-tile-body">
         <div class="video-tile-meta">Apple &middot; 2023 &middot; Film Grand Prix</div>
@@ -563,9 +702,9 @@
       </div>
     </a>
 
-    <a href="https://www.youtube.com/watch?v=vBYMFVh2TbE" target="_blank" rel="noopener" class="video-tile">
+    <a href="https://www.youtube.com/watch?v=EVePyMTFciI" target="_blank" rel="noopener" class="video-tile">
       <div class="video-tile-thumb">
-        <img src="https://img.youtube.com/vi/vBYMFVh2TbE/hqdefault.jpg" alt="CeraVe Super Bowl with Michael Cera">
+        <img src="https://img.youtube.com/vi/EVePyMTFciI/hqdefault.jpg" alt="CeraVe Super Bowl with Michael Cera">
       </div>
       <div class="video-tile-body">
         <div class="video-tile-meta">CeraVe &middot; Super Bowl 2024</div>
@@ -614,6 +753,25 @@
 
 
 <!-- ============================================================
+     UNIT NAV — sits between the body content and the reference
+     material (glossary + references). This is the style across the
+     section: prev/next first, vocabulary and sources last.
+     ============================================================ -->
+<nav class="unit-nav" aria-label="Section navigation">
+  <a href="creative-4-appeals-execution.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#4 &middot; Appeals &amp; Execution</span>
+    <span class="unit-nav-tease">The taxonomy of appeals, the twelve execution styles, the Kelman endorser psychology, and the negative-emotion appeals.</span>
+  </a>
+  <a href="creative-6-video.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#6 &middot; Video: Brand-at-End vs. Brand-in-5-Seconds</span>
+    <span class="unit-nav-tease">Why a 60-second branding spot and a 6-second pre-roll are opposite crafts &mdash; and what the skip button has done to narrative structure.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
      GLOSSARY
      ============================================================ -->
 <section class="section" id="glossary">
@@ -644,6 +802,7 @@
   <div class="references">
     <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <em>Advertising, promotion, and other aspects of integrated marketing communications</em> (10th ed., Chapter 11, &ldquo;The Role of Humor in Advertising,&rdquo; pp. 233&ndash;235). Cengage Learning.</p>
     <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <em>Advertising and promotion: An integrated marketing communications perspective</em> (13th ed., Chapter 9, humor as execution style, pp. 305&ndash;306). McGraw Hill.</p>
+    <p class="ref">Hopkins, C. C. (1923). <em>Scientific advertising</em>. Lord &amp; Thomas. The pioneering early-twentieth-century copywriting treatise where the phrase &ldquo;people don&rsquo;t buy from clowns&rdquo; originates &mdash; still cited as the foundational case for credibility-first selling at the moment of purchase.</p>
     <p class="ref">Tropp, J., &amp; Dobbelstein, T. (2025). The vampire effect: The role of humour and involvement level in advertisement recall and recognition. <em>International Review of Management and Marketing, 15</em>(1). The 443-participant study finding humor depresses brand and product recall, with low-involvement viewers most affected.</p>
     <p class="ref">Kantar. (2022, February). <em>How to get humour right in advertising</em>. The AdReaction and LINK findings on the receptivity, expressivity, involvement, and distinctiveness gains for humorous advertising.</p>
     <p class="ref">Kantar. (2023, August). <em>Starting to laugh again: The slow return of humour in advertising</em>. The 53%-to-34% two-decade decline and the 2022&ndash;2023 reversal.</p>
@@ -662,20 +821,8 @@
 
 
 <!-- ============================================================
-     UNIT NAV
+     END OF MAIN CONTENT
      ============================================================ -->
-<nav class="unit-nav" aria-label="Section navigation">
-  <a href="creative-4-appeals-execution.html" class="unit-nav-prev">
-    <span class="unit-nav-label">&larr; Previous</span>
-    <span class="unit-nav-title">#4 &middot; Appeals &amp; Execution</span>
-    <span class="unit-nav-tease">The taxonomy of appeals, the twelve execution styles, the Kelman endorser psychology, and the negative-emotion appeals.</span>
-  </a>
-  <a href="creative-6-video.html" class="unit-nav-next">
-    <span class="unit-nav-label">Next &rarr;</span>
-    <span class="unit-nav-title">#6 &middot; Video: Brand-at-End vs. Brand-in-5-Seconds</span>
-    <span class="unit-nav-tease">Why a 60-second branding spot and a 6-second pre-roll are opposite crafts &mdash; and what the skip button has done to narrative structure.</span>
-  </a>
-</nav>
 
 
 </main>
