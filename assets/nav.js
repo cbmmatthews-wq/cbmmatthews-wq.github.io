@@ -42,17 +42,17 @@ const navConfig = {
           label: 'Unit 5 — Creativity',
           submenu: [
             { label: 'Start Here',          href: 'creative-intro.html' },
-            { label: 'Why Creative',        href: 'creative-1-why-creative.html' },
-            { label: 'Brainstorming',       href: 'creative-2-brainstorming.html' },
-            { label: 'The Big Idea',        href: 'creative-3-big-idea.html' },
-            { label: 'Appeals & Execution', href: 'creative-4-appeals-execution.html' },
-            { label: 'Humor',               href: 'creative-5-humor.html' },
-            { label: 'Video',               href: 'creative-6-video.html' },
-            { label: 'Awareness',           href: 'creative-7-awareness.html' },
-            { label: 'Helpful Content',     href: 'creative-8-helpful-content.html' },
-            { label: 'Performance',         href: 'creative-9-performance.html' },
-            { label: 'AI in Creative',      href: 'creative-10-ai.html' },
-            { label: 'Judging Creative',    href: 'creative-11-judging.html' }
+            { label: '1 Why Creative',        href: 'creative-1-why-creative.html' },
+            { label: '2 Brainstorming',       href: 'creative-2-brainstorming.html' },
+            { label: '3 The Big Idea',        href: 'creative-3-big-idea.html' },
+            { label: '4 Appeals & Execution', href: 'creative-4-appeals-execution.html' },
+            { label: '5 Humor',               href: 'creative-5-humor.html' },
+            { label: '6 Video',               href: 'creative-6-video.html' },
+            { label: '7 Awareness',           href: 'creative-7-awareness.html' },
+            { label: '8 Helpful Content',     href: 'creative-8-helpful-content.html' },
+            { label: '9 Performance',         href: 'creative-9-performance.html' },
+            { label: '10 AI in Creative',      href: 'creative-10-ai.html' },
+            { label: '11 Judging Creative',    href: 'creative-11-judging.html' }
           ]
         }
         // Add more units here as they're built
@@ -79,17 +79,17 @@ const navConfig = {
             title: 'Creativity',
             items: [
               { label: 'Start Here',          href: 'creative-intro.html' },
-              { label: 'Why Creative',        href: 'creative-1-why-creative.html' },
-              { label: 'Brainstorming',       href: 'creative-2-brainstorming.html' },
-              { label: 'The Big Idea',        href: 'creative-3-big-idea.html' },
-              { label: 'Appeals & Execution', href: 'creative-4-appeals-execution.html' },
-              { label: 'Humor',               href: 'creative-5-humor.html' },
-              { label: 'Video',               href: 'creative-6-video.html' },
-              { label: 'Awareness',           href: 'creative-7-awareness.html' },
-              { label: 'Helpful Content',     href: 'creative-8-helpful-content.html' },
-              { label: 'Performance',         href: 'creative-9-performance.html' },
-              { label: 'AI in Creative',      href: 'creative-10-ai.html' },
-              { label: 'Judging Creative',    href: 'creative-11-judging.html' }
+              { label: '1 Why Creative',        href: 'creative-1-why-creative.html' },
+              { label: '2 Brainstorming',       href: 'creative-2-brainstorming.html' },
+              { label: '3 The Big Idea',        href: 'creative-3-big-idea.html' },
+              { label: '4 Appeals & Execution', href: 'creative-4-appeals-execution.html' },
+              { label: '5 Humor',               href: 'creative-5-humor.html' },
+              { label: '6 Video',               href: 'creative-6-video.html' },
+              { label: '7 Awareness',           href: 'creative-7-awareness.html' },
+              { label: '8 Helpful Content',     href: 'creative-8-helpful-content.html' },
+              { label: '9 Performance',         href: 'creative-9-performance.html' },
+              { label: '10 AI in Creative',      href: 'creative-10-ai.html' },
+              { label: '11 Judging Creative',    href: 'creative-11-judging.html' }
             ]
           },
           {
