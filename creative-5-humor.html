@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>#5 &mdash; Humor: When It Works, When It Doesn&rsquo;t &mdash; cbmatthe</title>
+<meta name="description" content="Humor is the appeal new MBAs reach for first. It is also the highest-variance creative choice in the playbook &mdash; Kantar's data, the vampire effect, why humor disappears at the moment of purchase, and the 2024 Cannes comeback after a two-decade retreat.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Creative #5 ---- */
+
+  /* Dialogue epigraph — the Person A / Person B exchange at the very top.
+     Renders as a quiet, italicized exchange block, slightly inset, that
+     sits as an epigraph above the page hero's argument. */
+  .dialogue-epigraph {
+    background: var(--white);
+    border-left: 3px solid var(--red);
+    padding: 18px 22px 18px;
+    margin: 0 0 28px;
+    max-width: 720px;
+  }
+  .dialogue-epigraph .dialogue-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .dialogue-epigraph .dialogue-line:last-child { margin-bottom: 0; }
+  .dialogue-epigraph .dialogue-speaker {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    margin-right: 8px;
+  }
+
+  /* Stat card — used for the four Kantar numbers in §01. Four tiles in
+     a row on desktop, two on tablet, one on mobile. */
+  .stat-card {
+    background: var(--white);
+    border-top: 3px solid var(--blue);
+    padding: 22px 22px 20px;
+    margin: 22px 0 14px;
+  }
+  .stat-card-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .stat-cell {
+    padding-right: 14px;
+    border-right: 0.5px solid var(--cream-deep);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell-number {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-cell-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .stat-cell:nth-child(2) { border-right: none; }
+  }
+  @media (max-width: 480px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    .stat-cell { border-right: none; border-bottom: 0.5px solid var(--cream-deep); padding-bottom: 12px; }
+    .stat-cell:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  /* Fit grid — two columns, "Where it works" vs "Where it dies", each
+     with a list of category-and-brand examples. */
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 22px 0 14px;
+  }
+  .fit-col {
+    background: var(--white);
+    padding: 20px 22px 22px;
+    border-top: 3px solid var(--ink);
+  }
+  .fit-col.is-works { border-top-color: var(--blue); }
+  .fit-col.is-dies { border-top-color: var(--red); }
+  .fit-col h4 {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+    margin: 0 0 12px;
+  }
+  .fit-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .fit-col li {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+  }
+  .fit-col li:last-child { border-bottom: none; }
+  .fit-col li strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  @media (max-width: 720px) {
+    .fit-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Pull-quote — the Dobbelstein quote in §02, formatted as a centered
+     serif blockquote with quote marks. */
+  .pullquote {
+    margin: 26px 0 18px;
+    padding: 22px 30px 22px 32px;
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    position: relative;
+  }
+  .pullquote-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .pullquote-attr {
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* Video grid 2x2 — used in §05 for the four comeback examples. Same
+     pattern as appeals-execution. */
+  .video-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0 18px;
+  }
+  .video-tile {
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+    cursor: pointer;
+  }
+  .video-tile:hover { border-color: var(--red); }
+  .video-tile-thumb {
+    aspect-ratio: 16 / 9;
+    background: var(--cream);
+    overflow: hidden;
+  }
+  .video-tile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-tile-body { padding: 14px 16px 16px; }
+  .video-tile-meta {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .video-tile-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .video-tile-frame {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .video-tile-cta {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 600;
+  }
+  @media (max-width: 720px) {
+    .video-2x2 { grid-template-columns: 1fr; }
+  }
+
+  /* Bridge cue — same as appeals-execution. */
+  .bridge-cue {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 28px 0 12px;
+  }
+
+  /* Working-test card — numbered list with red accent for the final
+     diagnostic in §06. */
+  .working-test {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    padding: 22px 24px 22px;
+    margin: 22px 0 18px;
+  }
+  .working-test-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .working-test ol {
+    margin: 0 0 0 22px;
+    padding: 0;
+  }
+  .working-test li {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+  }
+  .working-test li:last-child { border-bottom: none; }
+  .working-test li::marker {
+    font-family: var(--serif);
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* Unit nav — same as #4. */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 44px 0 24px;
+  }
+  .unit-nav a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    padding: 20px 22px 22px;
+    transition: border-color 0.15s ease;
+  }
+  .unit-nav a:hover { border-color: var(--red); }
+  .unit-nav .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .unit-nav .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .unit-nav .unit-nav-tease {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .unit-nav-next { text-align: right; }
+  .unit-nav a:hover .unit-nav-label { color: var(--ink); }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-next { text-align: left; }
+  }
+
+  /* Glossary — match other pages. */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Creative &middot; #5</div>
+    <h1>Humor: When It Works, When It Doesn&rsquo;t</h1>
+
+    <div class="dialogue-epigraph">
+      <p class="dialogue-line"><span class="dialogue-speaker">A</span>You remember that ad &mdash; the one with the dog doing the thing in the parking lot?</p>
+      <p class="dialogue-line"><span class="dialogue-speaker">B</span>Hilarious.</p>
+      <p class="dialogue-line"><span class="dialogue-speaker">A</span>Right?</p>
+      <p class="dialogue-line"><span class="dialogue-speaker">B</span>Who was it for?</p>
+      <p class="dialogue-line"><span class="dialogue-speaker">A</span>&hellip;I have no idea.</p>
+    </div>
+
+    <p class="lede">That silence has a name in the advertising literature: the <em>vampire effect</em>, the phenomenon where an ad&rsquo;s entertaining elements draw so much attention that the brand fades from memory. The ad worked at every level except the one that mattered &mdash; <strong>selling the thing the ad was supposed to sell.</strong></p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#case-for">The Case For</a>
+    <a href="#vampire">The Vampire Effect</a>
+    <a href="#fit">Category Fit</a>
+    <a href="#funnel">Funnel Position</a>
+    <a href="#variance">High-Variance Swing</a>
+    <a href="#comeback">The 2024 Comeback</a>
+    <a href="#working-test">Working Test</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Argument</h2>
+
+  <p>Humor is the appeal new MBAs reach for first in nearly every brief they write, and they reach for it because the data they encounter at first glance supports them. Humor scores higher on attention, on receptivity, on shareability, and on enjoyment than nearly any other appeal in the playbook. The data is right. <strong>What the data does not say, and what the trade press regularly forgets, is that humor is also the highest-variance creative choice on the menu.</strong> Humor that lands becomes the year&rsquo;s most-recalled work. Humor that misses produces ads nobody can attribute to the advertiser &mdash; and in some cases gets attributed to a competitor instead.</p>
+
+  <p>The contemporary picture is worth setting up before the argument. Kantar&rsquo;s data shows the share of advertising using humor declined from roughly 53% in 2000 to 34% by 2022, with the slide accelerating during the pandemic as brands worried that comedy would read as tone-deaf next to COVID, racial reckoning, and the broader purpose-driven era of 2018&ndash;2022. The retreat from humor coincided almost exactly with the rise of brand-purpose advertising as the dominant register in the industry. In 2024 Cannes Lions added a humor category for the first time in the festival&rsquo;s seventy-year history. The brands returning to humor first &mdash; Apple, Hellmann&rsquo;s, DoorDash, e.l.f., Liquid Death &mdash; are the brands taking share. <strong>The argument now coming from Kantar, System1, and the effectiveness shops is that the two-decade retreat from humor was a strategic error and the comeback is overdue.</strong></p>
+
+  <div class="callout">
+    <div class="callout-label">The position in one sentence</div>
+    <p>Humor is not a creative default to reach for because it&rsquo;s &ldquo;engaging&rdquo;; it is a high-variance strategic choice that demands more discipline than most appeals &mdash; fit-check the category, integrate the brand into the joke, test for misattribution, account for the demographic split, and accept that you are <strong>swinging for the fences with full knowledge that the strikeout is a real possibility.</strong></p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — THE CASE FOR
+     ============================================================ -->
+<section class="section" id="case-for">
+  <div class="sec-num">01</div>
+  <div class="sec-label">What the data says</div>
+  <h2>The Case For &mdash; Humor as an Effectiveness Multiplier</h2>
+
+  <p>Take the case Kantar makes, because it is the strongest data we have on humor&rsquo;s mechanics. The AdReaction study positions humor as the single most powerful enhancer of ad receptivity across every generation tested &mdash; Gen Z, Millennials, Gen X, Boomers all moved in the same direction when humor was the variable. Kantar&rsquo;s LINK ad-testing database, which scores tens of thousands of finished ads against brand-effect benchmarks, finds that humorous ads outperform their non-humorous counterparts by 27 percentile points on expressivity, 14 points on involvement, and 11 points on distinctiveness. Distinctiveness is the variable that matters most for category-overlapping brands, because it is the precondition for being remembered as different from competitors rather than as more of the same.</p>
+
+  <div class="stat-card">
+    <div class="stat-card-label">Kantar effectiveness data &middot; humor vs non-humor</div>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-cell-number">+27</div>
+        <div class="stat-cell-desc">percentile points more <strong>expressive</strong> (LINK)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number">+14</div>
+        <div class="stat-cell-desc">percentile points more <strong>involving</strong> (LINK)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number">50%</div>
+        <div class="stat-cell-desc">of Creative Effectiveness Award winners are humorous &mdash; <strong>vs. 33%</strong> of all ads tested</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number">+46</div>
+        <div class="stat-cell-desc">percentile points more <strong>Future Brand Demand</strong> for humorous vs. neutral (DMEXCO 2025)</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The over-indexing in award databases is the second piece of evidence. Roughly 33% of the ads Kantar tests use humor, but 50% of the Creative Effectiveness Award winners &mdash; the awards judged by consumers rather than by industry juries &mdash; incorporate humor. Effective work is funny at nearly double the rate of working-stock advertising. The 2025 DMEXCO/Kantar study, looking specifically at long-term brand growth, found that funny ads achieved up to 46 percentile points more in Future Brand Demand than emotionally neutral ones. Orlando Wood, whose work with System1 anchors much of the contemporary effectiveness conversation, argues in <em>Lemon</em> and <em>Look Out</em> that amusement and schadenfreude &mdash; humor at the expense of excessive rigidity or absent-mindedness &mdash; top the chart of positive emotional drivers of business effect. The argument is not that funny ads sell because funny is pleasant; it is that <strong>funny ads cut through the visual sameness of the feed and the commercial break in ways other appeals structurally cannot.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — THE VAMPIRE EFFECT
+     ============================================================ -->
+<section class="section" id="vampire">
+  <div class="sec-num">02</div>
+  <div class="sec-label">The cost</div>
+  <h2>The Vampire Effect &mdash; When the Joke Eats the Brand</h2>
+
+  <p>The case against humor begins with the question the trade press regularly elides: does anyone remember who paid for the ad?</p>
+
+  <p>The data is not equivocal. A 2025 Durban University of Technology study by Tropp and Dobbelstein, which tested 443 participants against six advertisements, found that humor in advertising measurably depressed both brand recall and product recall, and that low-involvement consumers &mdash; viewers not actively shopping in the category &mdash; were the most vulnerable to the effect. The category for this phenomenon, the <em>vampire effect</em>, predates the study and has been used in the recall literature since at least the late 1990s: entertaining elements (humor, celebrity, visual spectacle) drain attention from the brand the way the vampire drains the blood. The work is remembered; the advertiser is not.</p>
+
+  <p>The aggregate cost is substantial. Trade-press analysis citing Ehrenberg-Bass figures puts the share of TV ads that are both recalled and correctly attributed to the brand at roughly 16%. Most ads, in other words, are misattributed to a competitor or attributed to nobody. Humor amplifies this baseline failure mode because the structural payoff of a comic ad is the joke, and if the joke does not require the brand to land, the audience encodes the joke and discards the brand.</p>
+
+  <div class="pullquote">
+    <p class="pullquote-text">&ldquo;Humour is a double-edged sword. Used well, it makes adverts more enjoyable and increases engagement. But if it overshadows the brand, it defeats the purpose of advertising.&rdquo;</p>
+    <p class="pullquote-attr">Thomas Dobbelstein, Durban University of Technology &middot; 2025</p>
+  </div>
+
+  <p>The fix is not to abandon humor; it is to do what the GEICO Gecko does, which Dobbelstein calls integrating the brand into the joke itself. The Gecko <em>is</em> the comedy &mdash; there is no way to recall a GEICO ad without recalling GEICO. The same logic explains why Aflac integrated its duck into the corporate logo, why the Pillsbury Doughboy became an asset rather than an actor, and why Allstate&rsquo;s Mayhem character has outlasted three creative directors. <strong>Humor that places the brand next to the joke fails. Humor that makes the brand the agent of the joke survives.</strong> This is the first discipline of using the appeal seriously.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — CATEGORY FIT
+     ============================================================ -->
+<section class="section" id="fit">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Where it belongs and where it doesn&rsquo;t</div>
+  <h2>Category Fit &mdash; Humor Is Not a Default</h2>
+
+  <p>Even when the brand-integration discipline is observed, humor is not appropriate for every category, and this is where the MBA-instinct to reach for humor most often misfires. Ever seen a Mercedes-Benz commercial that made you laugh out loud? A Gucci campaign that played for jokes? A Rolex print ad with a punchline? The absence of comedy from these brands is not a creative failure; it is a strategic refusal. <strong>Luxury brands sell access to a register that humor undermines</strong> &mdash; the moment a luxury brand becomes funny, it stops being aspirational and starts being approachable, which is precisely the wrong move for a category whose entire pricing logic rests on distance from the everyday.</p>
+
+  <p>The same logic applies to financial advisors, private banking, wealth management, and life insurance, where the brand&rsquo;s job is to be the trusted gravity in the customer&rsquo;s planning. Charles Schwab does not crack jokes. Vanguard&rsquo;s tone is the deliberate absence of comedy. The rare exceptions in the financial-services category &mdash; Progressive&rsquo;s Flo, Allstate&rsquo;s Mayhem, GEICO&rsquo;s Gecko &mdash; work because all three brands deliberately positioned themselves as challengers against an industry full of solemn competitors, and the humor is the proof of the positioning rather than a violation of it. Organic and health-positioned food sits in the same constraint: the entire brand argument is that the product is serious about your wellbeing, which is hard to maintain alongside a comic register.</p>
+
+  <div class="fit-grid">
+    <div class="fit-col is-works">
+      <h4>Where humor tends to work</h4>
+      <ul>
+        <li><strong>FMCG &mdash;</strong> snacks, candy, soft drinks (Skittles, Snickers, Cheetos)</li>
+        <li><strong>Insurance challengers &mdash;</strong> Progressive, GEICO, Allstate, Aflac</li>
+        <li><strong>Tech and apps &mdash;</strong> Apple, DoorDash, Uber, Spotify</li>
+        <li><strong>Beer and spirits &mdash;</strong> Aviation Gin, Bud Light, Heineken</li>
+        <li><strong>Mass beauty &mdash;</strong> e.l.f., CeraVe, Old Spice</li>
+        <li><strong>Streaming &mdash;</strong> Tubi, Netflix promotional</li>
+        <li><strong>Quick-service restaurants &mdash;</strong> Applebee&rsquo;s, Wendy&rsquo;s, Liquid Death</li>
+      </ul>
+    </div>
+    <div class="fit-col is-dies">
+      <h4>Where humor tends to die</h4>
+      <ul>
+        <li><strong>Luxury &mdash;</strong> Gucci, Mercedes-Benz, Rolex, Louis Vuitton, Tiffany</li>
+        <li><strong>Wealth and private banking &mdash;</strong> Schwab, Vanguard, Fidelity, Morgan Stanley</li>
+        <li><strong>Premium health and pharma &mdash;</strong> oncology, cardiac, complex disease</li>
+        <li><strong>Traditional life insurance &mdash;</strong> Northwestern Mutual, MassMutual</li>
+        <li><strong>Organic and health-positioned food &mdash;</strong> the &ldquo;serious about wellness&rdquo; positioning</li>
+        <li><strong>B2B selling on credibility &mdash;</strong> consulting, audit, enterprise security</li>
+        <li><strong>Funeral, grief, and sensitive personal categories</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <p>This is not to say humor never belongs in difficult categories. Kantar specifically highlights the TENA Men incontinence campaign by AMV BBDO and the Milgamma Protekt nerve-damage campaign as cases where humor was the right tool for broaching subjects consumers actively avoid. The craft was making the joke fit the sensitivity of the subject rather than disregard it. The lesson is not that humor is incompatible with serious subjects &mdash; it is that <strong>humor is a strategic fit decision, not a category default</strong>, and the brief room&rsquo;s first job is to ask whether the category&rsquo;s positioning supports comedy or punishes it.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — FUNNEL POSITION
+     ============================================================ -->
+<section class="section" id="funnel">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Top of funnel vs. moment of purchase</div>
+  <h2>Where Humor Lives in the Funnel</h2>
+
+  <p>The other constraint MBAs tend to miss is that humor&rsquo;s strategic placement is not just about brand category &mdash; it is about funnel position. <strong>Humor shows up almost exclusively at the top of the funnel</strong>, as a form of entertainment in service of awareness, brand-building, and distinctive-memory work. It almost never shows up in sales-promotion creative, direct-response advertising, retargeting, or anything at the moment of purchase &mdash; regardless of whether the brand is serious, credible, or playful by default.</p>
+
+  <p>Watch a sale ad from a typically humorous brand. The Aviation Gin comedy machine that Ryan Reynolds built does not deploy when Aviation runs end-of-quarter pricing. The Bud Light BOGO ad will be flat-affect, fast, and entirely about the offer. The DoorDash Super Bowl spot was hilarious; the DoorDash retargeting ad that follows you around after you abandon a cart is not. Even brands whose entire identity is built on humor &mdash; e.l.f., Liquid Death, Old Spice &mdash; pull comedy out of the work when the goal is conversion.</p>
+
+  <p>The reason is straightforward and worth stating directly. Humor introduces a second cognitive layer &mdash; the joke, on top of the message &mdash; that the audience has to process. At the awareness end of the funnel, that second layer <em>is</em> the asset; it is what gets the work remembered and shared. At the conversion end, the same second layer is friction. The viewer being asked to make a purchase decision needs one clear thing to do, an obvious reason to do it, and as little emotional noise as possible competing with the rational decision. <strong>A joke at the moment of purchase delays the call to action, dilutes the urgency, and shifts the register from transactional to entertainment &mdash; three things performance creative is specifically engineered against.</strong></p>
+
+  <p>The same pattern explains why brands positioned on credibility shy away from humor across the funnel, not just at the bottom. When a brand&rsquo;s entire positioning argument is &ldquo;trust us with serious decisions&rdquo; &mdash; McKinsey, Goldman Sachs, Patek Philippe, Northwestern Mutual, the Mayo Clinic &mdash; humor undermines the position whether the placement is awareness or performance. The audience reads the joke as a signal that the brand is not, in fact, taking the matter as seriously as the matter requires. <strong>The credibility register and the comic register cannot share a frame for long.</strong> Humor lives where attention needs to be earned; it leaves the room when trust needs to be banked.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — HIGH-VARIANCE SWING
+     ============================================================ -->
+<section class="section" id="variance">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Home run or strikeout</div>
+  <h2>The High-Variance Swing</h2>
+
+  <p>The third thing the data argues, and the most useful for non-marketers about to sit in a brief room, is that humor&rsquo;s distribution of outcomes is bimodal. Humor either lands hard and produces year-defining work, or it misses and produces ads that disappear without being attributed to anyone. The middle of the distribution &mdash; competent humor that does its job adequately &mdash; is unusually empty compared to other appeals.</p>
+
+  <p>The 2024 Cannes Lions are the cleanest evidence available. System1&rsquo;s analysis of US and UK winners found that 75% used humor, up from 52% in 2023, which had itself been a substantial jump from 2022. YouGov and Spikes asked 3,500 American adults what made their favorite ad memorable, and humor contributed more than any other variable. <strong>But the same System1 analysis found that Cannes winners averaged only 2.3 stars on Test Your Ad &mdash; barely above the global average of 2.2.</strong> Award-winning humor wins awards, in other words, but does not automatically beat the median ad on long-term brand-building. The variance within humor is wider than the variance within most appeal types.</p>
+
+  <p>The misses, when they happen, are conspicuous. The Pepsi-Kendall Jenner ad misread the cultural moment in a way that turned a comic register into mockery of a serious protest movement. The Peloton &ldquo;wife&rdquo; Christmas spot landed as a dystopian portrait of a marriage rather than the aspirational gift-giving the brief intended. Both were professionally produced. Both swung at humor or near-humor and missed conspicuously enough to require crisis response.</p>
+
+  <p>Demographic split makes the variance worse. Research by Yoon and Lee in the <em>Journal of Current Issues &amp; Research in Advertising</em> found that men respond more positively to satire and spoof, while women evaluate sentimental comedy more favorably. Andrews&rsquo;s textbook treatment, citing earlier work, notes that aggressive and violent humor performs measurably worse with women audiences. Generation gaps are real: the deadpan provocation that works for Liquid Death and Surreal cereal with Gen Z does not transfer cleanly to Boomers. And cultural variance is largest of all &mdash; the British and Australian sarcasm registers that produce great work in their home markets often read as hostile in Germany, parts of East Asia, and other directness-preferring cultures. <strong>A humor execution that lands with one segment of the target often actively repels another segment of the same target.</strong></p>
+
+  <p>This is the home-run-or-strikeout dynamic at the level of the at-bat. Humor is the big swing. The brands that take the swing and connect &mdash; Aviation Gin under Ryan Reynolds, e.l.f.&rsquo;s ongoing run, Liquid Death, the CeraVe Super Bowl spot, Tubi&rsquo;s remote-control fakeout &mdash; produce work that other brands will benchmark against for years. The brands that take the swing and miss produce work that gets quietly buried, accompanied by an unhappy board meeting about agency selection. <strong>A brief that requires humor is a brief that has decided the upside is worth the downside, and that decision should be made consciously rather than by default.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — THE 2024 COMEBACK
+     ============================================================ -->
+<section class="section" id="comeback">
+  <div class="sec-num">06</div>
+  <div class="sec-label">The contemporary turn</div>
+  <h2>The Pandemic Dip and the 2024 Comeback</h2>
+
+  <p>The two-decade decline that produced the present comeback is worth walking through quickly, because it explains what the industry is currently learning the hard way.</p>
+
+  <p>Kantar&rsquo;s data is the clearest record. The share of advertising using humor as a creative strategy slid from roughly 53% globally in 2000 to 34% by 2022, with measurable acceleration during the 2008 financial crisis and again during the 2020&ndash;2022 pandemic. The retreat coincided almost exactly with the rise of brand-purpose advertising &mdash; the period during which &ldquo;values,&rdquo; &ldquo;mission,&rdquo; and &ldquo;stand for something&rdquo; became the dominant register in agency briefs. Brands worried, not unreasonably, that comedy would read as tone-deaf next to a pandemic, a racial reckoning, an economic crisis, and a culture that had become aggressively sensitive to perceived flippancy.</p>
+
+  <p>The 2023 reversal was led, somewhat oddly, by an awards keynote. BBDO Worldwide CEO Andrew Robertson stood up at Cannes Lions 2023 and argued that if brands wanted to make the world a better place, making people laugh was a defensible way to do it. The data was already moving in his direction: 52% of Film category winners that year were intentionally funny, up 43% from 2022. In 2024 Cannes added humor as a subcategory across thirteen existing Lions &mdash; the first such addition in the festival&rsquo;s history. DoorDash&rsquo;s &ldquo;All the Ads&rdquo; Super Bowl campaign won the Titanium Grand Prix that summer. Apple&rsquo;s R.I.P. Leon, Hellmann&rsquo;s Mayo Cat, and Uber&rsquo;s Gina campaign anchored a year in which <strong>the brands returning to humor first were demonstrably taking share from the brands that stayed solemn.</strong></p>
+
+  <p class="bridge-cue">The four spots that defined the 2024 comeback &mdash; same argument across different categories:</p>
+
+  <div class="video-2x2">
+
+    <a href="https://www.youtube.com/watch?v=t2n0ykn4AKw" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/t2n0ykn4AKw/hqdefault.jpg" alt="Apple R.I.P. Leon">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">Apple &middot; 2023 &middot; Film Grand Prix</div>
+        <div class="video-tile-title">R.I.P. Leon</div>
+        <div class="video-tile-frame">Watch &middot; the &ldquo;unsend message&rdquo; feature, in dark-comic frame.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=8J1iVYkFh7k" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/8J1iVYkFh7k/hqdefault.jpg" alt="Hellmann's Mayo Cat Super Bowl 2024">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">Hellmann&rsquo;s &middot; Super Bowl 2024</div>
+        <div class="video-tile-title">Mayo Cat</div>
+        <div class="video-tile-frame">Watch &middot; anti-food-waste platform without the lecture.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=vBYMFVh2TbE" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/vBYMFVh2TbE/hqdefault.jpg" alt="CeraVe Super Bowl with Michael Cera">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">CeraVe &middot; Super Bowl 2024</div>
+        <div class="video-tile-title">Michael CeraVe</div>
+        <div class="video-tile-frame">Watch &middot; brand integration through the gag itself.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=DTLM5o-9hYg" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/DTLM5o-9hYg/hqdefault.jpg" alt="DoorDash All the Ads">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">DoorDash &middot; 2024 Titanium Grand Prix</div>
+        <div class="video-tile-title">All the Ads</div>
+        <div class="video-tile-frame">Watch &middot; the year&rsquo;s biggest comedy-built-on-comedy idea.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — WORKING TEST
+     ============================================================ -->
+<section class="section" id="working-test">
+  <div class="sec-label">The diagnostic</div>
+  <h2>A Working Test for the Brief Room</h2>
+
+  <p>Before the team commits to a humor execution, five questions are worth working through. If the answer to any of them is unclear, the brief should not commit to humor yet &mdash; the variance is too wide and the downside too costly to default to a comic register without the discipline in place.</p>
+
+  <div class="working-test">
+    <div class="working-test-label">Five questions before committing to humor</div>
+    <ol>
+      <li>Is the brand the punchline-delivery vehicle &mdash; or is the brand standing next to a joke that doesn&rsquo;t need it?</li>
+      <li>Does the humor read as fit for the category&rsquo;s positioning, or against it? Would a luxury or trust-anchored competitor never run something like this?</li>
+      <li>Have you tested for misattribution &mdash; can the audience name your brand after they laugh, without prompting?</li>
+      <li>Does the humor survive the demographic split, or does it land with only one slice of the target while repelling another?</li>
+      <li>Is the joke the <em>proof</em> of the message &mdash; or just the wrapper around a message the joke is unrelated to?</li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>Vampire effect</em></strong> &mdash; the phenomenon where an ad&rsquo;s entertaining elements (humor, celebrity, visual spectacle) draw attention away from the brand to the point that brand recall and product recall measurably decline. Documented most recently by Tropp and Dobbelstein (2025). Low-involvement viewers are the most vulnerable.</p>
+    <p><strong><em>Misattribution</em></strong> &mdash; the related phenomenon where viewers correctly recall an ad but assign it to a competitor brand. Ehrenberg-Bass figures cited in the trade press put correctly-attributed TV ad recall at roughly 16%.</p>
+    <p><strong><em>Incongruity resolution</em></strong> &mdash; Andrews&rsquo;s framing for why humorous ads work cognitively. Viewers detect a mismatch (a baby talking like a CFO, an SUV being towed by hand), are provoked into resolving it, and the resolution produces a feeling of surprise that registers as the humorous response. The cognitive engagement is the mechanism, not the joke itself.</p>
+    <p><strong><em>Need for humor</em></strong> &mdash; Andrews&rsquo;s personality variable measuring the tendency to seek out amusement, wit, and nonsense. Audiences high on this trait respond more strongly to humorous advertising than audiences low on it &mdash; one of several individual-difference moderators that complicate humor&rsquo;s aggregate effectiveness.</p>
+    <p><strong><em>Schadenfreude</em></strong> &mdash; humor at the expense of excessive rigidity, single-mindedness, or absent-mindedness in a character or situation. Per Orlando Wood&rsquo;s System1 research, this and ordinary amusement rank highest among positive emotional drivers of business effect.</p>
+    <p><strong><em>Future Brand Demand</em></strong> &mdash; the long-term demand metric used by Kantar&rsquo;s LINK and BrandZ platforms. The 2025 DMEXCO study found humorous ads scored up to 46 percentile points higher on this metric than emotionally neutral ones.</p>
+    <p><strong><em>Star Rating</em></strong> &mdash; System1&rsquo;s 1.0&ndash;5.9 effectiveness score measuring long-term brand-building potential based on second-by-second emotional response. The global average is roughly 2.2 stars; 2024 Cannes winners averaged 2.3.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Textbook anchors are Andrews Ch. 11 (humor section) and Belch Ch. 9 (humor as execution style). Contemporary effectiveness sources from Kantar, System1, and the trade press follow.</p>
+
+  <div class="references">
+    <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <em>Advertising, promotion, and other aspects of integrated marketing communications</em> (10th ed., Chapter 11, &ldquo;The Role of Humor in Advertising,&rdquo; pp. 233&ndash;235). Cengage Learning.</p>
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <em>Advertising and promotion: An integrated marketing communications perspective</em> (13th ed., Chapter 9, humor as execution style, pp. 305&ndash;306). McGraw Hill.</p>
+    <p class="ref">Tropp, J., &amp; Dobbelstein, T. (2025). The vampire effect: The role of humour and involvement level in advertisement recall and recognition. <em>International Review of Management and Marketing, 15</em>(1). The 443-participant study finding humor depresses brand and product recall, with low-involvement viewers most affected.</p>
+    <p class="ref">Kantar. (2022, February). <em>How to get humour right in advertising</em>. The AdReaction and LINK findings on the receptivity, expressivity, involvement, and distinctiveness gains for humorous advertising.</p>
+    <p class="ref">Kantar. (2023, August). <em>Starting to laugh again: The slow return of humour in advertising</em>. The 53%-to-34% two-decade decline and the 2022&ndash;2023 reversal.</p>
+    <p class="ref">Kantar. (2024, June). <em>Cannes Lions 2024: Five takeaways for marketers</em>. The humor-category coverage and the Kenan Thompson session.</p>
+    <p class="ref">Kantar &amp; DMEXCO. (2025, September). <em>Kantar Media Reactions 2025: DMEXCO Edition</em>. The 46-percentile-point Future Brand Demand finding.</p>
+    <p class="ref">System1 Group. (2024, June). <em>Laughing Lions: The Cannes jury are seeing the funny side</em>. The 75%-of-winners-used-humor finding and the 2.3 vs. 2.2 Star Rating comparison.</p>
+    <p class="ref">Wood, O. (2021). <em>Look out: How to be effective in a world that wants you to fit in</em>. System1 Group. The case for amusement and schadenfreude as top emotional drivers.</p>
+    <p class="ref">Wood, O. (2019). <em>Lemon: How the advertising brain turned sour</em>. IPA. The longer-form argument for right-brained, character-driven, often-comic advertising as the underlying effectiveness driver.</p>
+    <p class="ref">The Drum. (2023, December). <em>After decades of consistent decline, humor in advertising is roaring back in 2024</em>. The Robertson keynote, the 43% jump, and the Cannes humor-category announcement.</p>
+    <p class="ref">Yoon, H. J., &amp; Lee, S. (2014). Do men and women laugh about different types of humor? A comparison of satire, sentimental comedy, and comic wit in print ads. <em>Journal of Current Issues &amp; Research in Advertising, 36</em>(1), 36&ndash;51. The gender-difference finding on satire vs. sentimental comedy.</p>
+    <p class="ref">Eisend, M. (2009). A meta-analysis of humor in advertising. <em>Journal of the Academy of Marketing Science, 37</em>(2), 191&ndash;203. The foundational meta-analytic treatment of humor effects.</p>
+    <p class="ref">Eisend, M. (2018). Explaining the use of humor in advertising: A meta-analysis. <em>Journal of Advertising, 47</em>(2), 144&ndash;161. The updated meta-analysis covering when and why humor is used.</p>
+    <p class="ref">Stanley, T. L. (2024, June 13). Laughing matters: How Cannes&rsquo; humor category could change advertising. <em>Adweek</em>. The industry response to the humor-category addition.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     UNIT NAV
+     ============================================================ -->
+<nav class="unit-nav" aria-label="Section navigation">
+  <a href="creative-4-appeals-execution.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#4 &middot; Appeals &amp; Execution</span>
+    <span class="unit-nav-tease">The taxonomy of appeals, the twelve execution styles, the Kelman endorser psychology, and the negative-emotion appeals.</span>
+  </a>
+  <a href="creative-6-video.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#6 &middot; Video: Brand-at-End vs. Brand-in-5-Seconds</span>
+    <span class="unit-nav-tease">Why a 60-second branding spot and a 6-second pre-roll are opposite crafts &mdash; and what the skip button has done to narrative structure.</span>
+  </a>
+</nav>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     VIDEO LIGHTBOX
+     ============================================================ -->
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true" role="dialog" aria-label="Video player">
+  <div class="video-lightbox-stage">
+    <button class="video-lightbox-close" type="button" aria-label="Close video">&times;</button>
+    <div class="video-lightbox-frame">
+      <iframe src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Embedded video player"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var lightbox = document.getElementById('videoLightbox');
+  if (!lightbox) return;
+  var iframe = lightbox.querySelector('iframe');
+  var closeBtn = lightbox.querySelector('.video-lightbox-close');
+
+  function toEmbedUrl(url) {
+    var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]+)/);
+    if (m) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1';
+    return null;
+  }
+
+  function openLightbox(url) {
+    var embed = toEmbedUrl(url);
+    if (!embed) return false;
+    iframe.src = embed;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    return true;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  var tiles = document.querySelectorAll('.video-tile');
+  for (var i = 0; i < tiles.length; i++) {
+    tiles[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (openLightbox(href)) e.preventDefault();
+    });
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
