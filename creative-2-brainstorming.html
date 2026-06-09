@@ -214,8 +214,11 @@
     .tech-row { grid-template-columns: 1fr; gap: 4px; }
   }
 
-  /* Video cards — reuse article-card pattern but tagged differently.
-     Two stacked rows of Ashley videos, each a small clickable card. */
+  /* Video cards — each a single clickable anchor that opens the YouTube
+     video in a lightbox via the script at the bottom of the page. If the
+     JS fails for any reason, the href falls back to opening in a new tab.
+     Cream background with blue left accent preserved from the section's
+     visual language; thumbnail (YouTube hqdefault) sits above the text. */
   .video-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -223,12 +226,49 @@
     margin: 22px 0 8px;
   }
   .video-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background: var(--cream);
-    padding: 18px 22px 20px;
     border-left: 3px solid var(--blue);
     transition: background 0.15s;
   }
   .video-card:hover { background: var(--blue-soft); }
+  .video-card .video-tile-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--cream-deep);
+  }
+  .video-card .video-tile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-card .video-tile-thumb::after {
+    content: '\25B6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding-left: 4px;
+    transition: background 0.15s ease;
+  }
+  .video-card:hover .video-tile-thumb::after { background: var(--blue); }
+  .video-card .vc-body {
+    padding: 18px 22px 20px;
+  }
   .video-card .vc-kicker {
     font-size: 10.5px;
     text-transform: uppercase;
@@ -251,18 +291,76 @@
     color: var(--ink-soft);
     margin-bottom: 10px;
   }
-  .video-card a.vc-link {
+  .video-card .vc-link {
     display: inline-block;
     font-size: 12px;
     color: var(--blue);
-    text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid var(--blue);
     padding-bottom: 1px;
   }
-  .video-card a.vc-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .video-card:hover .vc-link { color: var(--ink); border-bottom-color: var(--ink); }
   @media (max-width: 720px) {
     .video-list { grid-template-columns: 1fr; }
+  }
+
+  /* Video lightbox modal — opens when a .video-card is clicked and plays
+     the embedded YouTube video inside the page without losing the reader's
+     context. Progressive enhancement: if the JS at the bottom of the page
+     fails or never runs, the card's href falls back to opening the video
+     on YouTube in a new tab. */
+  .video-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 14, 0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+  }
+  .video-lightbox.open { display: flex; }
+  .video-lightbox-stage {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+  .video-lightbox-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+  .video-lightbox-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .video-lightbox-close {
+    position: absolute;
+    top: -52px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    z-index: 2;
+  }
+  .video-lightbox-close:hover { background: var(--red); }
+  @media (max-width: 720px) {
+    .video-lightbox { padding: 2vw; }
+    .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
   }
 
   /* References list — mirrors creative #1 */
@@ -732,30 +830,50 @@
   <p>The full set of videos worth watching if you want a working creative&rsquo;s voice on top of the textbook treatment:</p>
 
   <div class="video-list">
-    <div class="video-card">
-      <div class="vc-kicker">YouTube &middot; 11 min</div>
-      <div class="vc-title">How to Brainstorm: Pro Advertising Methods That Actually Fill the Page</div>
-      <div class="vc-note">The summary above. Best single starting point if you watch only one.</div>
-      <a class="vc-link" href="https://www.youtube.com/watch?v=2q4ri4pvVIQ&t=6s" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
-    </div>
-    <div class="video-card">
-      <div class="vc-kicker">YouTube</div>
-      <div class="vc-title">Creative Block? 3 Ways to Get Your Brain Unstuck</div>
-      <div class="vc-note">Advertising concepting tips for when the obvious lines are exhausted &mdash; companion to the optional games appendix below.</div>
-      <a class="vc-link" href="https://youtu.be/Qo7RZSO2YFg?si=I8cPYA3vzUbEC8zm" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
-    </div>
-    <div class="video-card">
-      <div class="vc-kicker">YouTube</div>
-      <div class="vc-title">On the creative process and where ideas actually come from</div>
-      <div class="vc-note">Rutstein on her own working method &mdash; useful pairing with the Young / Wallas / Sullivan material above.</div>
-      <a class="vc-link" href="https://www.youtube.com/watch?v=9pCUKOSXrjM&t=7s" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
-    </div>
-    <div class="video-card">
-      <div class="vc-kicker">YouTube Short &middot; &lt;1 min</div>
-      <div class="vc-title">A 60-second concepting tip</div>
-      <div class="vc-note">A short, sharp reminder. Good to send to a teammate who is stuck in the second trap.</div>
-      <a class="vc-link" href="https://www.youtube.com/shorts/m4KRoMxwvGc" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
-    </div>
+    <a href="https://www.youtube.com/watch?v=2q4ri4pvVIQ&t=6s" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/2q4ri4pvVIQ/hqdefault.jpg" alt="How to Brainstorm: Pro Advertising Methods That Actually Fill the Page">
+      </div>
+      <div class="vc-body">
+        <div class="vc-kicker">YouTube &middot; 11 min</div>
+        <div class="vc-title">How to Brainstorm: Pro Advertising Methods That Actually Fill the Page</div>
+        <div class="vc-note">The summary above. Best single starting point if you watch only one.</div>
+        <span class="vc-link">Watch on YouTube &rarr;</span>
+      </div>
+    </a>
+    <a href="https://youtu.be/Qo7RZSO2YFg?si=I8cPYA3vzUbEC8zm" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/Qo7RZSO2YFg/hqdefault.jpg" alt="Creative Block? 3 Ways to Get Your Brain Unstuck">
+      </div>
+      <div class="vc-body">
+        <div class="vc-kicker">YouTube</div>
+        <div class="vc-title">Creative Block? 3 Ways to Get Your Brain Unstuck</div>
+        <div class="vc-note">Advertising concepting tips for when the obvious lines are exhausted &mdash; companion to the optional games appendix below.</div>
+        <span class="vc-link">Watch on YouTube &rarr;</span>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=9pCUKOSXrjM&t=7s" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/9pCUKOSXrjM/hqdefault.jpg" alt="On the creative process and where ideas actually come from">
+      </div>
+      <div class="vc-body">
+        <div class="vc-kicker">YouTube</div>
+        <div class="vc-title">On the creative process and where ideas actually come from</div>
+        <div class="vc-note">Rutstein on her own working method &mdash; useful pairing with the Young / Wallas / Sullivan material above.</div>
+        <span class="vc-link">Watch on YouTube &rarr;</span>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/shorts/m4KRoMxwvGc" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/m4KRoMxwvGc/hqdefault.jpg" alt="A 60-second concepting tip">
+      </div>
+      <div class="vc-body">
+        <div class="vc-kicker">YouTube Short &middot; &lt;1 min</div>
+        <div class="vc-title">A 60-second concepting tip</div>
+        <div class="vc-note">A short, sharp reminder. Good to send to a teammate who is stuck in the second trap.</div>
+        <span class="vc-link">Watch on YouTube &rarr;</span>
+      </div>
+    </a>
   </div>
 
   <p>For more, the searchable archive of her full YouTube channel is at <a href="https://www.youtube.com/@StuffAboutAdvertising/videos" target="_blank" rel="noopener">youtube.com/@StuffAboutAdvertising</a>. Her short-form work lives at <a href="https://www.instagram.com/stuffaboutadvertising/" target="_blank" rel="noopener">@stuffaboutadvertising on Instagram</a> and <a href="https://www.tiktok.com/@stuffaboutadvertising" target="_blank" rel="noopener">on TikTok</a>, both of which are organized by topic via hashtag (<code>#concepting</code> and <code>#brainstorming</code> are the relevant ones for this section). The TikTok account is where she posts most often; the YouTube channel is where the longer, more pedagogical work lives.</p>
@@ -937,6 +1055,81 @@
     <div>Indiana University South Bend</div>
   </div>
 </footer>
+
+<!-- ============================================================
+     VIDEO LIGHTBOX
+     Single modal element that opens when any .video-card is clicked.
+     Handles YouTube watch URLs, youtu.be short URLs, and /shorts/ URLs.
+     Falls back to the card's href if the JS below fails to load.
+     ============================================================ -->
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true" role="dialog" aria-label="Video player">
+  <div class="video-lightbox-stage">
+    <button class="video-lightbox-close" type="button" aria-label="Close video">&times;</button>
+    <div class="video-lightbox-frame">
+      <iframe src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Embedded video player"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var lightbox = document.getElementById('videoLightbox');
+  if (!lightbox) return;
+  var iframe = lightbox.querySelector('iframe');
+  var closeBtn = lightbox.querySelector('.video-lightbox-close');
+
+  function toEmbedUrl(url) {
+    // YouTube watch URL, short URL, embed URL, or Shorts URL — use
+    // youtube-nocookie.com for better compatibility with referrer-policy
+    // restrictions (avoids Error 153)
+    var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]+)/);
+    if (m) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    // Vimeo
+    m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1';
+    return null;
+  }
+
+  function openLightbox(url) {
+    var embed = toEmbedUrl(url);
+    if (!embed) return false;
+    iframe.src = embed;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    return true;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // Intercept clicks on any .video-card element on the page
+  var tiles = document.querySelectorAll('.video-card');
+  for (var i = 0; i < tiles.length; i++) {
+    tiles[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (openLightbox(href)) e.preventDefault();
+    });
+  }
+
+  // Close on X button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close on backdrop click (but not on the stage or iframe)
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
 
 <script src="assets/nav.js"></script>
 <script src="assets/scrollspy.js"></script>
