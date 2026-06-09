@@ -309,49 +309,58 @@
     .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
   }
 
-  /* Expert-sidebar — the Instagram-post inset in §04. Floats right on
-     desktop next to the funnel-position prose; full-width on mobile.
-     The image is shown framed inside the card with a small editorial
-     caption beneath. */
+  /* Expert-sidebar — the Instagram-post counterpoint inset in §04.
+     Full-width dark block so it (a) shows the screenshot at readable
+     size and (b) doesn't create a float that the following pull quote
+     would overlap with. Image and editorial caption sit side-by-side
+     on desktop, stack on mobile. The image is a link to the full-size
+     asset so readers can open it in a new tab to see detail. */
   .expert-sidebar {
-    float: right;
-    width: 300px;
-    margin: 6px 0 14px 24px;
-    background: var(--white);
-    border-top: 3px solid var(--blue);
-    padding: 16px 18px 18px;
+    background: var(--ink);
+    color: #e8e4dc;
+    padding: 26px 30px 28px;
+    margin: 28px 0;
   }
   .expert-sidebar-label {
     font-family: var(--sans);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--blue);
+    letter-spacing: 0.14em;
+    color: var(--red-mid);
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
   }
+  .expert-sidebar-content {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .expert-sidebar-image-link {
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.15s ease;
+    text-decoration: none;
+  }
+  .expert-sidebar-image-link:hover { border-color: var(--red-mid); }
   .expert-sidebar-image {
     display: block;
     width: 100%;
     height: auto;
-    border: 0.5px solid var(--cream-deep);
-    margin-bottom: 12px;
   }
   .expert-sidebar-caption {
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d6d0c4;
+    margin: 0;
   }
   .expert-sidebar-caption em {
-    color: var(--ink);
+    color: #f5f0e8;
     font-style: italic;
   }
   @media (max-width: 720px) {
-    .expert-sidebar {
-      float: none;
-      width: 100%;
-      margin: 18px 0 18px;
-    }
+    .expert-sidebar { padding: 22px 22px 24px; }
+    .expert-sidebar-content { grid-template-columns: 1fr; gap: 18px; }
   }
 
   /* Bridge cue — same as appeals-execution. */
@@ -619,17 +628,21 @@
   <div class="sec-label">Top of funnel vs. moment of purchase</div>
   <h2>Where Humor Lives in the Funnel</h2>
 
-  <aside class="expert-sidebar">
-    <div class="expert-sidebar-label">From the feed</div>
-    <img class="expert-sidebar-image" src="assets/images/humor-needed.png" alt="Instagram post from @dtcnewsletter headlined 'Brands Aren't Funny Enough'">
-    <p class="expert-sidebar-caption">There is no shortage of takes online &mdash; from experts, ninjas, and gurus &mdash; about how brands should be funnier. Many of them come from people who do not appear to understand the funnel-position argument above. They treat humor as the only tool on the belt and walk around trying to hammer everything in sight with it, instead of recognizing that some briefs call for pliers or a screwdriver. The conflation usually runs <em>make memes, they&rsquo;re trendy</em> alongside <em>we do good video work</em>, without the underlying recognition that humor isn&rsquo;t always the answer. It is the tool they have, and they assume it works on everything because the tool is trendy.</p>
-  </aside>
-
   <p>The other constraint MBAs tend to miss is that humor&rsquo;s strategic placement is not just about brand category &mdash; it is about funnel position. <strong>Humor shows up almost exclusively at the top of the funnel</strong>, as a form of entertainment in service of awareness, brand-building, and distinctive-memory work. It almost never shows up in sales-promotion creative, direct-response advertising, retargeting, or anything at the moment of purchase &mdash; regardless of whether the brand is serious, credible, or playful by default.</p>
 
   <p>Watch a sale ad from a typically humorous brand. The Aviation Gin comedy machine that Ryan Reynolds built does not deploy when Aviation runs end-of-quarter pricing. The Bud Light BOGO ad will be flat-affect, fast, and entirely about the offer. The DoorDash Super Bowl spot was hilarious; the DoorDash retargeting ad that follows you around after you abandon a cart is not. Even brands whose entire identity is built on humor &mdash; e.l.f., Liquid Death, Old Spice &mdash; pull comedy out of the work when the goal is conversion.</p>
 
-  <p>The reason is straightforward and worth stating directly. Humor introduces a second cognitive layer &mdash; the joke, on top of the message &mdash; that the audience has to process. At the awareness end of the funnel, that second layer <em>is</em> the asset; it is what gets the work remembered and shared. At the conversion end, the same second layer is friction. The viewer being asked to make a purchase decision needs one clear thing to do, an obvious reason to do it, and as little emotional noise as possible competing with the rational decision. <strong>A joke at the moment of purchase delays the call to action, dilutes the urgency, and shifts the register from transactional to entertainment &mdash; three things performance creative is specifically engineered against.</strong></p>
+  <aside class="expert-sidebar">
+    <div class="expert-sidebar-label">From the feed &middot; the counter-take</div>
+    <div class="expert-sidebar-content">
+      <a href="assets/images/humor-needed.png" target="_blank" rel="noopener" class="expert-sidebar-image-link" aria-label="Open full-size Instagram post in new tab">
+        <img class="expert-sidebar-image" src="assets/images/humor-needed.png" alt="Instagram post from @dtcnewsletter headlined &lsquo;Brands Aren&rsquo;t Funny Enough&rsquo;">
+      </a>
+      <p class="expert-sidebar-caption">There is no shortage of takes online &mdash; from experts, ninjas, and gurus &mdash; about how brands should be funnier. Many of them come from people who do not appear to understand the funnel-position argument above. They treat humor as the only tool on the belt and walk around trying to hammer everything in sight with it, instead of recognizing that some briefs call for pliers or a screwdriver. The conflation usually runs <em>make memes, they&rsquo;re trendy</em> alongside <em>we do good video work</em>, without the underlying recognition that humor isn&rsquo;t always the answer. It is the tool they have, and they assume it works on everything because the tool is trendy.</p>
+    </div>
+  </aside>
+
+  <p>The reason humor doesn&rsquo;t belong at the bottom of the funnel is straightforward and worth stating directly. Humor introduces a second cognitive layer &mdash; the joke, on top of the message &mdash; that the audience has to process. At the awareness end of the funnel, that second layer <em>is</em> the asset; it is what gets the work remembered and shared. At the conversion end, the same second layer is friction. The viewer being asked to make a purchase decision needs one clear thing to do, an obvious reason to do it, and as little emotional noise as possible competing with the rational decision. <strong>A joke at the moment of purchase delays the call to action, dilutes the urgency, and shifts the register from transactional to entertainment &mdash; three things performance creative is specifically engineered against.</strong></p>
 
   <div class="pullquote">
     <p class="pullquote-text">&ldquo;People don&rsquo;t buy from clowns.&rdquo;</p>
