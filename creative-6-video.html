@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>#6 &mdash; Video: Brand-at-End vs. Brand-in-5-Seconds &mdash; cbmatthe</title>
+<meta name="description" content="Why a 60-second branding spot and a 6-second pre-roll are opposite crafts. The traditional story-first shape, the skippable hook-fast shape, what UGC is for, and how IMC weaves them together.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Creative #6 ---- */
+
+  /* Stat card — same pattern used in #5 for Kantar numbers. */
+  .stat-card {
+    background: var(--white);
+    border-top: 3px solid var(--blue);
+    padding: 22px 22px 20px;
+    margin: 22px 0 14px;
+  }
+  .stat-card-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .stat-cell {
+    padding-right: 14px;
+    border-right: 0.5px solid var(--cream-deep);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-cell-number {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-cell-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .stat-cell:nth-child(2) { border-right: none; }
+  }
+  @media (max-width: 480px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    .stat-cell { border-right: none; border-bottom: 0.5px solid var(--cream-deep); padding-bottom: 12px; }
+    .stat-cell:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  /* Shape comparison — side-by-side inline SVG of the two narrative arcs.
+     The whole figure sits in a white card with a caption beneath. */
+  .shape-figure {
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 24px 24px 22px;
+    margin: 22px 0 18px;
+  }
+  .shape-figure-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .shape-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  .shape-figure-caption {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 14px;
+    max-width: 720px;
+  }
+
+  /* Sequence-box — two-column comparison sitting above the SVG diagram.
+     Explains the order of brand, hook, and CTA in each arc, mirroring the
+     diagram visually so the reader maps the two side-by-side. */
+  .sequence-box {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    padding: 22px 24px 22px;
+    margin: 22px 0 18px;
+  }
+  .sequence-box-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .sequence-box-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .sequence-col {
+    padding-right: 14px;
+    border-right: 0.5px solid var(--cream-deep);
+  }
+  .sequence-col:last-child { border-right: none; padding-right: 0; padding-left: 14px; }
+  .sequence-col-head {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .sequence-col.is-classic .sequence-col-head { color: var(--blue); }
+  .sequence-col.is-skippable .sequence-col-head { color: var(--red); }
+  .sequence-list {
+    margin: 0 0 12px 22px;
+    padding: 0;
+  }
+  .sequence-list li {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 5px 0;
+  }
+  .sequence-list li strong { color: var(--ink); font-weight: 700; }
+  .sequence-list li::marker {
+    font-family: var(--serif);
+    color: var(--red);
+    font-weight: 700;
+  }
+  .sequence-col-note {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin: 0;
+    padding-top: 8px;
+    border-top: 0.5px solid var(--cream-deep);
+  }
+  .sequence-col-note strong { font-style: normal; color: var(--ink); }
+  @media (max-width: 720px) {
+    .sequence-box-grid { grid-template-columns: 1fr; gap: 18px; }
+    .sequence-col { border-right: none; border-bottom: 0.5px solid var(--cream-deep); padding-right: 0; padding-bottom: 16px; }
+    .sequence-col:last-child { border-bottom: none; padding-left: 0; padding-bottom: 0; }
+  }
+
+  /* Pull-quote — same as #5. */
+  .pullquote {
+    margin: 26px 0 18px;
+    padding: 22px 30px 22px 32px;
+    background: var(--cream);
+    border-left: 4px solid var(--red);
+    position: relative;
+  }
+  .pullquote-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .pullquote-attr {
+    font-family: var(--sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* Fit grid — two columns; reused from #5 for the &ldquo;where the shape
+     belongs&rdquo; vs. &ldquo;where it dies&rdquo; pattern. */
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 22px 0 14px;
+  }
+  .fit-col {
+    background: var(--white);
+    padding: 20px 22px 22px;
+    border-top: 3px solid var(--ink);
+  }
+  .fit-col.is-works { border-top-color: var(--blue); }
+  .fit-col.is-dies { border-top-color: var(--red); }
+  .fit-col h4 {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+    margin: 0 0 12px;
+  }
+  .fit-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .fit-col li {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+  }
+  .fit-col li:last-child { border-bottom: none; }
+  .fit-col li strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  @media (max-width: 720px) {
+    .fit-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Video grid 2x2 &mdash; same pattern as #4 and #5. */
+  .video-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0 20px;
+  }
+  .video-tile {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    transition: border-color 0.15s ease;
+  }
+  .video-tile:hover { border-color: var(--red); }
+  .video-tile-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .video-tile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-tile-thumb::after {
+    content: '\25B6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding-left: 4px;
+    transition: background 0.15s ease;
+  }
+  .video-tile:hover .video-tile-thumb::after { background: var(--red); }
+  .video-tile-body { padding: 14px 16px 16px; }
+  .video-tile-meta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .video-tile-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .video-tile-frame {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .video-tile-cta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    font-weight: 600;
+  }
+  .video-tile:hover .video-tile-cta { color: var(--ink); }
+  @media (max-width: 720px) {
+    .video-2x2 { grid-template-columns: 1fr; }
+  }
+
+  /* Video lightbox modal &mdash; same as #5. */
+  .video-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 14, 0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+  }
+  .video-lightbox.open { display: flex; }
+  .video-lightbox-stage {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+  .video-lightbox-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+  .video-lightbox-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .video-lightbox-close {
+    position: absolute;
+    top: -52px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    z-index: 2;
+  }
+  .video-lightbox-close:hover { background: var(--red); }
+  @media (max-width: 720px) {
+    .video-lightbox { padding: 2vw; }
+    .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
+  }
+
+  /* Bridge cue &mdash; same as #5. */
+  .bridge-cue {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 28px 0 12px;
+  }
+
+  /* Working-test card &mdash; same as #5. */
+  .working-test {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    padding: 22px 24px 22px;
+    margin: 22px 0 18px;
+  }
+  .working-test-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .working-test ol {
+    margin: 0 0 0 22px;
+    padding: 0;
+  }
+  .working-test li {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 8px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+  }
+  .working-test li:last-child { border-bottom: none; }
+  .working-test li::marker {
+    font-family: var(--serif);
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* Unit nav &mdash; same as #4/#5. */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 44px 0 24px;
+  }
+  .unit-nav a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    padding: 20px 22px 22px;
+    transition: border-color 0.15s ease;
+  }
+  .unit-nav a:hover { border-color: var(--red); }
+  .unit-nav .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .unit-nav .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .unit-nav .unit-nav-tease {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .unit-nav-next { text-align: right; }
+  .unit-nav a:hover .unit-nav-label { color: var(--ink); }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-next { text-align: left; }
+  }
+
+  /* Glossary &mdash; match other pages. */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Creative &middot; #6</div>
+    <h1>Video: Brand-at-End vs. Brand-in-5-Seconds</h1>
+    <p class="lede">A sixty-second branding spot and a six-second YouTube pre-roll look like the same medium and are produced by the same agencies, but they require opposite craft decisions at almost every level. <strong>The branding spot earns the brand reveal by making you fall in love with the story first. The skippable ad has to drop the brand on you before you can hit a button.</strong> Same medium, opposite shapes &mdash; and a third shape, user-generated content, that does a different job entirely.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#where-creative-pays">Where Creative Pays</a>
+    <a href="#traditional">Traditional Shape</a>
+    <a href="#skippable">Skippable Shape</a>
+    <a href="#two-cuts">Same Brand, Two Cuts</a>
+    <a href="#ugc">The UGC Question</a>
+    <a href="#imc-weave">The IMC Weave</a>
+    <a href="#working-test">Working Test</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Argument</h2>
+
+  <p>Video is the dominant ad format of the era, but &ldquo;video&rdquo; covers three quite different jobs that get treated as if they were one. The first is the traditional narrative spot &mdash; thirty or sixty seconds, broadcast or streamed, built around a story that earns the brand reveal at the end. The second is the skippable hook-fast format &mdash; YouTube pre-roll, TikTok in-feed, shorter CTV pods &mdash; where the viewer can punch out after five seconds and the brand has to lead, not land. The third is user-generated content (UGC), filmed on a phone by a customer or a creator, which trades creative distinctiveness for relatability and trust.</p>
+
+  <p>The MBA-instinct mistake is to treat these as interchangeable buckets of &ldquo;video spend&rdquo; in a media plan, then watch the agency hand back the same fifteen-second cut for the Super Bowl pre-show, the YouTube pre-roll, the Reels placement, and the TikTok ad. <strong>The same cut cannot do all four jobs because the four jobs have opposite craft requirements.</strong> What separates competent brands from sophisticated ones is recognizing the shape difference at the brief stage rather than at the placement stage.</p>
+
+  <div class="callout">
+    <div class="callout-label">The position in one sentence</div>
+    <p>Creative video earns its keep at the top of the funnel where attention has to be won; the shape of that creative is determined by whether the viewer can skip you or not, and a third format &mdash; UGC &mdash; pays for itself in trust rather than in creativity. <strong>The brands that figure out which shape goes where, and how to weave them together across a campaign, do better work than the brands that pick one and run it everywhere.</strong></p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — WHERE CREATIVE PAYS
+     ============================================================ -->
+<section class="section" id="where-creative-pays">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The funnel question, restated</div>
+  <h2>Where Creative Pays &mdash; and Where It Gets in the Way</h2>
+
+  <p>Section #1 of this unit made the case that creative quality is the single biggest ROI multiplier in your control &mdash; the Reinartz and Saffert HBR study of 437 campaigns found that highly creative campaigns generated nearly twice the sales impact per euro of low-creative ones. That finding is real, but it has a boundary, and the boundary is the funnel. Creative carries most of the weight at the awareness end. It carries almost none at the moment of purchase.</p>
+
+  <p>This is the same pattern we walked through with humor in #5 &mdash; comic register at the top, flat-affect performance creative at the bottom &mdash; and it generalizes past humor. <strong>Sales-promotion video with a discount, a deadline, or a fear appeal does not get better when you make it more creative; it usually gets worse.</strong> The Bud Light Memorial Day BOGO video does not need a story arc. The Honda end-of-year clearance spot does not need cinematography. The retargeting video that follows the cart abandonment does not need a twist. The job in each case is to communicate one offer, one timeframe, one action, and the cognitive overhead of a clever creative idea actively dilutes the message it sits on top of. Creativity at the moment of purchase reads as the seller not taking the transaction seriously, which is the wrong signal to send to a person being asked to part with money.</p>
+
+  <p>The same logic applies to the urgency and scarcity register that dominates sales-promotion video. &ldquo;Buy now while supplies last&rdquo; does not improve when wrapped in a thirty-second narrative. FOMO video is fast, factual, and unembarrassed about its motive &mdash; the creative job is removing friction, not adding charm. Negative-appeal video that leads with the cost of inaction (the ASPCA Sarah McLachlan spot, the anti-smoking testimonial) is the rare exception that needs craft, because the emotional register requires it &mdash; but even there, the craft is in service of the discomfort, not the entertainment. <strong>The pieces of video that genuinely earn the label <em>creative</em> live at the top and middle of the funnel, where the job is to be remembered tomorrow rather than to be acted on tonight.</strong> The rest of this piece is about the two shapes that work up there, and the third shape &mdash; UGC &mdash; that solves a different problem altogether.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — THE TRADITIONAL SHAPE
+     ============================================================ -->
+<section class="section" id="traditional">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Story first, brand at the end</div>
+  <h2>The Traditional Shape &mdash; Story First, Brand at the End</h2>
+
+  <p>The classic shape of a television commercial &mdash; carried forward intact into Connected TV, the longer pre-roll slots on ESPN and CNN, in-stream YouTube ads attached to long-form content, and the cinema spots that still run before features &mdash; is the inverse of how most people think advertising works. You do not lead with the brand. You make the audience love the story first, and then you reveal that the story belonged to the brand all along.</p>
+
+  <p>Two terms are worth defining here for readers who do not live in this vocabulary. <em>Pre-roll</em> is the video ad that plays before the content you actually wanted to watch &mdash; the YouTube ad before the music video, the streaming ad before the news clip on the CNN site, the spot before a highlight package on the ESPN app. <em>Connected TV (CTV)</em> is the same content delivery model on the television set itself: Hulu, Peacock, Roku, Paramount+, YouTube TV. CTV ads are typically pre-roll or mid-roll, often non-skippable, and inherit much of the traditional broadcast craft because the viewing context is the same &mdash; a person on a couch, watching a screen, in entertainment mode rather than scroll mode.</p>
+
+  <p>The reason brand-at-the-end works in that context is straightforward. The viewer is a captive audience, but a captive audience is not the same as a committed one. Viewers who already love your brand will sit through a brand-first ad; viewers who already use a competitor will tune out the moment the logo appears. <strong>I buy Tide, therefore I do not need to watch this video for Gain.</strong> An ad that opens with the Gain bottle has just lost half its potential audience in the first second &mdash; and that half is the half the campaign actually needed to convert. An ad that opens on a relatable problem, a character worth following, or a question worth answering keeps both halves of the room in their seats, and the brand reveal at the end is the payoff that converts watching into remembering.</p>
+
+  <p>The other thing the traditional shape buys you is pacing. A thirty-second spot is a small movie, and small movies have the same craft requirements as large ones &mdash; how long do you sit on the setup before you tip the audience to where the story is going; when does the music shift; when does the lighting change from cool to warm; how much time goes to the problem and how much to the solution. <strong>The pacing question is the same one a comedian asks about timing a punchline.</strong> Joke too early and the room is still settling in; joke too late and the room has moved on. The bad-hair-day setup before the Brand-X shampoo solution; the dim-lit cancer-diagnosis open before the warm-lit treatment-clinic reveal; the loud chaos of the kids&rsquo; school morning before the calm of the breakfast-cereal close &mdash; these are all pacing decisions, and the industry has spent roughly seventy years figuring out how long each beat is supposed to last. Characters, lighting, music, camera, and cut all sit downstream of that pacing question.</p>
+
+  <p>What that paced emotional build is actually doing, cognitively, is the part most non-marketers underestimate. <strong>Emotional intensity registers in memory at a much higher rate than rational information does</strong> &mdash; a viewer who feels something during an ad is dramatically more likely to remember the ad, and more importantly, to attach what they felt to the brand the ad belonged to. That attachment is what the research literature calls a <em>brand schema</em>: the existing mental model a person carries around about a brand &mdash; what it stands for, who it&rsquo;s for, what it feels like to use, what category it lives in, who its rivals are. When a well-paced spot lands an emotional moment in the same beat as the brand reveal, the emotion updates the schema. The schema is what gets retrieved later, in the aisle or on the search bar, when the category comes up. <em>Sticky</em>, in the sense Chip and Dan Heath made famous in <em>Made to Stick</em>, is what we call ideas that get understood, remembered, and acted on later. <strong>Traditional shape is the form of advertising most likely to produce sticky brand schemas</strong>, because pacing and emotion are the two levers schema-formation actually runs on.</p>
+
+  <p>The closest analog outside advertising is the short film, and the production craft is largely the same. The 2023 Apple R.I.P. Leon spot we used in #5 builds for forty seconds before the &ldquo;unsend&rdquo; feature gets named. Hellmann&rsquo;s Mayo Cat builds a full anti-food-waste platform before the product appears. The Budweiser Clydesdales Super Bowl spots in the 2010s often did not name the brand until the final two seconds. The discipline is the same in all three cases: the brand earns the reveal by giving the audience something worth watching before the reveal arrives. <strong>This is the form that has had decades to perfect itself, and on the right surfaces it still outperforms everything else.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — THE SKIPPABLE SHAPE
+     ============================================================ -->
+<section class="section" id="skippable">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Hook fast, brand first, skip button looming</div>
+  <h2>The Skippable Shape &mdash; Brand in 5 Seconds</h2>
+
+  <p>The skippable ad inverts the shape because the surface inverts the contract with the viewer. YouTube&rsquo;s TrueView format, the dominant skippable unit since 2010, lets the viewer hit a skip button after five seconds. TikTok and Reels do not even ask &mdash; the user is a thumb-flick away from the next video, and the average decision to keep watching or scroll happens inside three seconds. The leverage that gave the traditional spot its pacing &mdash; a captive audience willing to sit through the setup &mdash; is gone. The audience is allowed to leave, and they will, unless something happens immediately.</p>
+
+  <p>What &ldquo;something happens&rdquo; means is the entire craft question for the skippable format. Karen Nelson-Field&rsquo;s research at Amplified, which has measured how human attention actually flows across digital ad placements, is the cleanest record. Attention drops steeply with time, as she explains, from 80% of audience in second 1, to 50% by second 2 and 20% by second 3. The implication runs against the traditional shape: if the brand or its branding isn&rsquo;t visible early in the ad, it does not build memory. Her 2025 study with VCCP Media, <em>Hacking the Attention Economy</em>, tracked 20,000 views of 72 digital video ads and found that the majority (85%) of digital ads receive less than 2.5 seconds of attention &mdash; the threshold for creating a memorable impression. The same study established the strange-sounding upside: ads can actually be recalled by viewers after just 1.5 seconds &mdash; but only if there are distinctive brand assets in the frame.</p>
+
+  <div class="stat-card">
+    <div class="stat-card-label">The numbers that govern skippable video creative</div>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-cell-number">80%</div>
+        <div class="stat-cell-desc">of audience in <strong>second 1</strong>; 50% by second 2; <strong>20% by second 3</strong> (Nelson-Field)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number">85%</div>
+        <div class="stat-cell-desc">of digital ads receive <strong>less than 2.5 seconds</strong> of active attention</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number">1.5s</div>
+        <div class="stat-cell-desc">minimum attention to encode memory &mdash; <strong>only if distinctive brand assets are in frame</strong></div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-number">+30%</div>
+        <div class="stat-cell-desc">short-term sales lift for ads following the YouTube <strong>ABCDs framework</strong> (Google/Kantar)</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Google&rsquo;s response to that attention reality is the <em>ABCDs framework</em> &mdash; Attention, Branding, Connection, Direction &mdash; developed with Kantar after analyzing tens of thousands of ads run on YouTube. The framework reorders the traditional spot&rsquo;s logic. Campaigns following these guidelines achieve on average a 30% lift in short-term sales likelihood and a 17% lift in long-term brand contribution. The most consequential of the four letters is the B: introduce your brand or product early in the video. This ensures that even if viewers don&rsquo;t watch the entire ad, they still remember your brand. Google&rsquo;s own creative guidance recommends what they call an &ldquo;emerging story arc&rdquo; rather than the traditional slow build approach used in television. The story is still there, but the brand reveal moves to the front and the rest of the spot pays it off.</p>
+
+  <p>TikTok&rsquo;s data on its own platform tells the same story in even sharper form. The first 3 seconds determine 71% of whether users keep watching or scroll past. TikTok videos that maintain 70% to 85% retention in the first 3 seconds receive 2.2 times more total views than videos with lower retention rates, and content that breaks the 85% threshold gets disproportionate algorithmic distribution. Starting with your logo or product shot wastes the first 3 seconds. The hook has to do real cognitive work &mdash; a pattern interrupt, a contrarian claim, a visible product transformation, a question the viewer feels obligated to answer.</p>
+
+  <p class="bridge-cue">If the traditional shape is a film with a third-act reveal, the skippable shape is the opposite:</p>
+
+  <div class="pullquote">
+    <p class="pullquote-text">&ldquo;It is a bit like telling the conclusion of a movie before telling the story. It is also like hearing the punchline before the joke. But it is the format we live with on YouTube ads.&rdquo;</p>
+    <p class="pullquote-attr">The skippable-format inversion, in plain English</p>
+  </div>
+
+  <p>The pacing leverage the traditional spot relied on is unavailable. You do not get to build emotion across thirty seconds because the audience does not give you thirty seconds. You front-load the brand, front-load the product, front-load the value proposition, and the rest of the spot is the elaboration of the hook rather than the build toward it. <strong>This is the format we live with on YouTube and TikTok, and pretending it is the same craft as a Super Bowl spot is how brands waste pre-roll budget.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — SAME BRAND, TWO CUTS (the diagram)
+     ============================================================ -->
+<section class="section" id="two-cuts">
+  <div class="sec-num">04</div>
+  <div class="sec-label">The same campaign, the opposite shape</div>
+  <h2>Same Brand, Two Cuts</h2>
+
+  <p>The practical consequence of the shape difference is that a sophisticated brand running a campaign across both formats does not run the same cut in both places. The video posted to the brand&rsquo;s owned YouTube channel &mdash; where the audience is opt-in, the subscriber chose to be there, and the play button was an active decision &mdash; can use the traditional pacing because the contract with the viewer supports it. <strong>The TrueView ad version of the same campaign has to flip the shape entirely.</strong></p>
+
+  <div class="sequence-box">
+    <div class="sequence-box-label">Where the brand, the hook, and the CTA sit</div>
+    <div class="sequence-box-grid">
+      <div class="sequence-col is-classic">
+        <div class="sequence-col-head">Classic arc</div>
+        <ol class="sequence-list">
+          <li><strong>Setup / problem</strong> &mdash; the viewer is drawn into a story</li>
+          <li><strong>Build</strong> &mdash; emotional intensity rises through the spot</li>
+          <li><strong>Brand reveal</strong> &mdash; the brand earns the payoff at the end</li>
+          <li><strong>Hook or CTA</strong> &mdash; immediately follows the reveal: &ldquo;what do I do next?&rdquo;</li>
+        </ol>
+        <p class="sequence-col-note">Brand reveal and the &ldquo;what&rsquo;s next&rdquo; cue arrive <em>together</em>, in the same emotional moment.</p>
+      </div>
+      <div class="sequence-col is-skippable">
+        <div class="sequence-col-head">Skippable arc</div>
+        <ol class="sequence-list">
+          <li><strong>Hook + brand</strong> &mdash; both shown immediately, before the skip button arms</li>
+          <li><strong>Story</strong> &mdash; the elaboration plays out while attention falls off</li>
+          <li><strong>CTA</strong> &mdash; arrives at the last moment, often as text or a button</li>
+        </ol>
+        <p class="sequence-col-note"><strong>The brand identifier and opening hook are typically separated from the &ldquo;what&rsquo;s next&rdquo; stage by the entire body of the spot.</strong> The viewer has to remember the brand from second one across the decay to second twelve.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shape-figure">
+    <div class="shape-figure-label">The two narrative arcs, side by side</div>
+    <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" aria-label="Side-by-side comparison of the traditional brand-at-end narrative arc and the skippable brand-at-start arc">
+      <!-- Left panel: traditional shape -->
+      <g transform="translate(20, 20)">
+        <!-- frame -->
+        <rect x="0" y="0" width="320" height="280" fill="#ffffff" stroke="#e0d9cc" stroke-width="1"/>
+        <!-- title -->
+        <text x="160" y="24" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="15" font-weight="700" fill="#2A2420">Traditional &mdash; brand at the end</text>
+        <text x="160" y="44" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#6F6A66">30&ndash;60 sec &middot; CTV, in-stream, broadcast</text>
+        <!-- axis baseline -->
+        <line x1="30" y1="230" x2="290" y2="230" stroke="#d6cfc4" stroke-width="1"/>
+        <!-- y-axis label -->
+        <text x="20" y="135" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" transform="rotate(-90, 20, 135)">emotional intensity</text>
+        <!-- the rising arc -->
+        <path d="M 40 220 Q 100 215, 130 195 T 200 130 T 260 70" stroke="#4D7090" stroke-width="2.5" fill="none"/>
+        <!-- problem zone label -->
+        <text x="80" y="215" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" font-style="italic">setup / problem</text>
+        <!-- build zone -->
+        <text x="155" y="160" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" font-style="italic">build</text>
+        <!-- brand reveal marker -->
+        <circle cx="260" cy="70" r="6" fill="#BC5A44"/>
+        <text x="260" y="55" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#BC5A44">brand reveal</text>
+        <!-- time axis -->
+        <text x="40" y="250" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">0s</text>
+        <text x="290" y="250" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">30s</text>
+        <text x="160" y="270" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" font-style="italic">audience earned the reveal</text>
+      </g>
+      <!-- Right panel: skippable shape -->
+      <g transform="translate(380, 20)">
+        <!-- frame -->
+        <rect x="0" y="0" width="320" height="280" fill="#ffffff" stroke="#e0d9cc" stroke-width="1"/>
+        <!-- title -->
+        <text x="160" y="24" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="15" font-weight="700" fill="#2A2420">Skippable &mdash; brand in 5 seconds</text>
+        <text x="160" y="44" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#6F6A66">6&ndash;15 sec &middot; YouTube TrueView, TikTok, Reels</text>
+        <!-- axis baseline -->
+        <line x1="30" y1="230" x2="290" y2="230" stroke="#d6cfc4" stroke-width="1"/>
+        <!-- skip button line -->
+        <line x1="76" y1="60" x2="76" y2="225" stroke="#BC5A44" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="80" y="222" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="600" fill="#BC5A44">&larr; skip at 5s</text>
+        <!-- y-axis label -->
+        <text x="20" y="135" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" transform="rotate(-90, 20, 135)">attention / brand presence</text>
+        <!-- the front-loaded arc -->
+        <path d="M 40 220 L 50 90 Q 60 75, 80 75 L 220 95 Q 260 110, 280 150" stroke="#4D7090" stroke-width="2.5" fill="none"/>
+        <!-- hook marker -->
+        <circle cx="55" cy="82" r="6" fill="#BC5A44"/>
+        <text x="55" y="70" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#BC5A44">hook + brand</text>
+        <!-- sustain zone -->
+        <text x="155" y="115" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" font-style="italic">elaboration / sustain</text>
+        <!-- CTA marker -->
+        <text x="280" y="175" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" font-weight="600" fill="#2A2420">CTA</text>
+        <!-- time axis -->
+        <text x="40" y="250" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">0s</text>
+        <text x="290" y="250" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">15s</text>
+        <text x="160" y="270" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" font-style="italic">brand banked before the skip</text>
+      </g>
+    </svg>
+    <p class="shape-figure-caption">The left arc earns the brand reveal by building emotion the audience volunteers their attention to. The right arc front-loads brand and product because the audience can leave in five seconds; the rest of the spot is the elaboration that pays off the hook.</p>
+  </div>
+
+  <p>The same content, recut for the two surfaces, becomes two pieces of video that look almost unrelated. The owned-channel version opens on a relatable scene, builds for fifteen or twenty seconds, and reveals the brand at the climax. The TrueView version opens on the brand, names the product or the value in the first three seconds, and uses the remaining time to elaborate on the hook rather than build toward it. <strong>The most-clipped pre-roll campaign of the last decade &mdash; the GEICO &ldquo;Family&rdquo; spots that opened with &ldquo;You can&rsquo;t skip this ad, because it&rsquo;s already over&rdquo; &mdash; was the brand winking at the format itself.</strong> The household frozen mid-meal, the GEICO logo already shown, the ad effectively complete before the five-second skip was even available. The joke worked because GEICO had read the medium correctly: the brand had to land before the skip button, and they made the act of landing it the entertainment.</p>
+
+  <p>The cost of getting this wrong is straightforward. A traditional thirty-second spot recut into a six-second pre-roll loses the entire third act and ships the setup with no payoff. A skippable ad that opens like a thirty-second spot loses the audience before the reveal happens. The same campaign budget produces work that fails on both surfaces. <strong>The discipline is matching the shape to the placement, not the placement to the budget.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — THE UGC QUESTION
+     ============================================================ -->
+<section class="section" id="ugc">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Authentic, effective, and structurally uncreative</div>
+  <h2>The UGC Question &mdash; What It&rsquo;s Good For, What It Isn&rsquo;t</h2>
+
+  <p>The third major shape in contemporary video, and the one that has grown the fastest, is user-generated content &mdash; ads filmed by customers, creators, or paid UGC specialists on a phone, edited rough, designed to look like the organic content the user is already scrolling past rather than like an advertisement. The form&rsquo;s effectiveness is real and well-documented. The trade press loves the data, and the data is worth taking seriously: UGC posts achieve 6.9 times higher engagement compared to content produced by brands themselves, marketing campaigns that integrate user-generated content demonstrate 50% higher engagement rates compared to campaigns relying exclusively on brand-produced assets, and the cost of producing UGC is a small fraction of producing the equivalent volume of polished work. Trust scores, social proof, and post-click conversion all read better when the source is a person rather than a brand. None of that is in dispute.</p>
+
+  <p>The creativity case, however, is weaker, and this is where the form gets oversold. As #4 noted in passing, the qualities that make UGC effective &mdash; roughness, relatability, the texture of something a normal person made &mdash; are the same qualities a viewer reads as <em>I could have made that too</em>. Relatability and creative distinctiveness are nearly opposite criteria. The attention mechanisms creative video depends on &mdash; cognitive surprise, distinctive brand assets in frame, the emotional payoff of a narrative arc, the &ldquo;thumb-stop&rdquo; of an image the viewer has not seen before &mdash; are not what UGC, in aggregate, is selling. The Reinartz and Saffert dimensions that drove their near-doubling of sales impact (originality, elaboration, artistic value) are not what UGC delivers; the Nelson-Field 1.5-second threshold for memory encoding requires distinctive brand assets in frame, and most UGC is built to look <em>less</em> branded rather than more. <strong>UGC works precisely because it does not interrupt the feed; it is the feed.</strong> That is a feature for trust and a bug for top-of-mind memory.</p>
+
+  <p>This is not an argument against UGC. It is an argument against treating UGC as a substitute for the creative work that builds awareness and memory. <strong>UGC is excellent at lowering skepticism in a viewer who already has some familiarity with the brand</strong> &mdash; the comparison shopper reading reviews, the user watching the unboxing video before purchase, the prospect seeing the third or fourth dermatologist talk about CeraVe on their feed. It is poor at the job the traditional or skippable shape is built for: introducing a brand to an audience that does not know it yet, and lodging the name somewhere it can be retrieved later. Aggregate UGC reads as more of the same to a brain looking for something new, which is the wrong tool for the attention-and-memory problem creative video is supposed to solve.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — THE IMC WEAVE
+     ============================================================ -->
+<section class="section" id="imc-weave">
+  <div class="sec-num">06</div>
+  <div class="sec-label">The orchestration question</div>
+  <h2>The IMC Weave &mdash; Running Both Shapes</h2>
+
+  <p>The sophisticated answer to the trade-offs above is not to pick a shape; it is to run them in coordination across the campaign window. Across a week, a month, or a quarter, a well-orchestrated IMC plan uses each format for what each format is best at, and lets the formats reinforce each other rather than substitute for each other. <strong>Traditional narrative video does the emotional lift; the skippable cut keeps the brand in frame on platforms where attention is short; UGC handles trust and social proof at the point where the prospect is comparison-shopping or already in market.</strong> <strong style="color: var(--red);">1+1=3</strong> Each format is a different lever, and the brands that pull all three in concert get the benefit of all three.</p>
+
+  <p>The CeraVe Super Bowl campaign in 2024 is a clean example. The narrative anchor &mdash; the Michael Cera spot &mdash; was a Super Bowl-scale piece of traditional craft, brand reveal in the third act, written and shot to be loved as a comedy before it was understood as an ad. That spot ran on broadcast, on CTV, and as the long-form video on the brand&rsquo;s owned channels. Recut to fifteen-second TrueView pieces, the same campaign front-loaded the CeraVe pump bottle and the joke setup. <strong>And running underneath all of that, on TikTok and Instagram in volume, was a deep bench of dermatologist and creator UGC</strong> &mdash; the form of social proof that does the work the polished spots cannot do, which is to make a person comparing skincare products believe that other actual people use this one. The polished spots earned the attention; the UGC banked the trust; the two formats compounded.</p>
+
+  <p>The same pattern appears across most of the brands worth studying in 2024 and 2025. Liquid Death runs absurdist long-form films alongside relentless creator UGC. e.l.f. runs polished Super Bowl spots, recut TrueView for YouTube, short-form versions for Reels and TikTok, and a continuous creator stream underneath. Duolingo&rsquo;s owl mascot anchors the brand-distinctive memory work in narrative video; the TikTok feed runs the volume of UGC and creator content that makes the brand feel native to the platform. <strong>In every case the work is divided across formats by the job each format is best at, not bundled into a single cut and shipped everywhere.</strong></p>
+
+  <p>The MBA-practical version of this is that a video brief is not finished when the agency hands you the hero spot. It is finished when the agency has shown you how the hero spot becomes the pre-roll, how the pre-roll becomes the six-second bumper, how the brand-asset library that emerges from the hero spot powers the creator partnerships that follow, and how each piece does the job the others cannot. <strong>The cost of cutting that work short is the same campaign budget producing work that wins on no surface.</strong> The cost of doing it well is a campaign that compounds across surfaces because each surface is being asked for what it actually delivers.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — WORKING TEST
+     ============================================================ -->
+<section class="section" id="working-test">
+  <div class="sec-label">The diagnostic</div>
+  <h2>A Working Test for the Brief Room</h2>
+
+  <p>Before the team commits to a single cut, five questions are worth working through. Each one is a shape-decision in disguise, and answering them up front prevents the agency from shipping the same fifteen-second cut to every placement and calling it a campaign.</p>
+
+  <div class="working-test">
+    <div class="working-test-label">Five questions before commissioning the video</div>
+    <ol>
+      <li>Is the job awareness, helpful content, or conversion? Awareness rewards craft; conversion rewards clarity; reaching for cinematic creativity at the moment of purchase usually hurts more than it helps.</li>
+      <li>Can the viewer skip you? If yes, the brand and the product belong in the first three seconds and the rest of the spot elaborates on the hook. If no, the brand can earn its reveal at the end.</li>
+      <li>What are the distinctive brand assets &mdash; logo, color, character, sonic signature &mdash; that have to be in frame within 1.5 seconds for the impression to encode at all on a skippable surface?</li>
+      <li>Is the role of UGC in this campaign clearly trust and social proof at the comparison-shopping stage, or is it being asked to do awareness work it is not built for?</li>
+      <li>Has the hero spot been planned, in the brief, to be recut into the pre-roll, the bumper, the vertical Reels cut, and the creator-content brief &mdash; or is each placement being treated as its own ask?</li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     UNIT NAV
+     ============================================================ -->
+<nav class="unit-nav" aria-label="Section navigation">
+  <a href="creative-5-humor.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#5 &middot; Humor: When It Works, When It Doesn&rsquo;t</span>
+    <span class="unit-nav-tease">The vampire effect, the funnel-position constraint, the 2024 Cannes humor comeback, and why misattribution is the variance most briefs ignore.</span>
+  </a>
+  <a href="creative-7-awareness.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#7 &middot; Awareness Creative: Top of the Funnel</span>
+    <span class="unit-nav-tease">When the job is brand-building rather than &ldquo;buy now,&rdquo; the creative rules shift &mdash; mental availability, distinctive brand assets, and platform-native craft.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>Pre-roll</em></strong> &mdash; a video ad that plays before the content the viewer actually requested. The YouTube ad before the music video, the streaming ad before the news clip on the CNN or ESPN site, the spot before a highlight package in a sports app. Pre-rolls range from non-skippable bumpers (6 seconds, can&rsquo;t be skipped) to skippable TrueView (can be skipped after 5 seconds) to longer non-skippable in-stream units up to 30 seconds on premium CTV.</p>
+    <p><strong><em>Connected TV (CTV)</em></strong> &mdash; television content delivered over the internet rather than over the air or by cable, on a TV-screen device (a Roku, an Apple TV, a smart TV, a console). Hulu, Peacock, Paramount+, YouTube TV, and Tubi are all CTV environments. The viewing context resembles traditional television &mdash; couch, screen, captive viewer &mdash; which is why CTV ad creative inherits much of the traditional broadcast shape.</p>
+    <p><strong><em>TrueView</em></strong> &mdash; YouTube&rsquo;s skippable in-stream ad format, in which the viewer can skip after five seconds. Pricing is tied to whether the viewer watches at least thirty seconds (or the full ad if shorter), which means the brand only pays for ads people actually choose to watch &mdash; and is the structural reason the first five seconds matter so much.</p>
+    <p><strong><em>ABCDs framework</em></strong> &mdash; Attention, Branding, Connection, Direction. YouTube&rsquo;s data-backed creative guidance developed with Kantar after analyzing tens of thousands of ads. Campaigns following the framework averaged 30% short-term sales lift and 17% long-term brand contribution in the joint Google/Kantar study.</p>
+    <p><strong><em>Emerging story arc</em></strong> &mdash; Google&rsquo;s term for the inverted narrative shape recommended for skippable formats. Instead of building toward a brand reveal at the end, the ad reveals the brand or product early and uses the rest of the runtime to elaborate on the hook.</p>
+    <p><strong><em>Distinctive brand assets (DBAs)</em></strong> &mdash; Jenni Romaniuk&rsquo;s Ehrenberg-Bass term for the non-name elements that allow a brand to be recognized: the logo, the color palette, the character, the sonic logo, the typeface. On skippable surfaces, DBAs in frame within the first 1.5 seconds are the precondition for memory encoding.</p>
+    <p><strong><em>Mental availability</em></strong> &mdash; Byron Sharp&rsquo;s term for the ease with which a brand comes to mind in a purchase situation. Built over time through distinctive brand assets and consistent media presence; eroded when distinctive assets are absent or when impressions are misattributed to a competitor.</p>
+    <p><strong><em>Brand schema</em></strong> &mdash; the existing mental model a person carries about a brand: what it stands for, who it&rsquo;s for, what it feels like to use, what category it lives in, who its rivals are. Schemas are updated by repeated exposures, particularly emotionally-loaded ones, and are what gets retrieved when the category comes up later in real life. The traditional video shape, with its paced emotional build and end-of-spot brand reveal, is the format most likely to update a brand schema durably.</p>
+    <p><strong><em>Sticky</em></strong> &mdash; from Chip and Dan Heath&rsquo;s <em>Made to Stick</em>: an idea that gets understood at first contact, remembered over time, and acted on later. The six Heath principles (simple, unexpected, concrete, credible, emotional, story-driven) overlap heavily with the levers that make a video ad sticky &mdash; emotion and story being the two that the traditional shape is built around.</p>
+    <p><strong><em>User-generated content (UGC)</em></strong> &mdash; video or imagery filmed by customers or creators rather than by the brand or agency. Effective at trust, social proof, and lowering ad-skepticism; structurally weak at the cognitive-surprise and distinctive-encoding work that drives top-of-funnel awareness.</p>
+    <p><strong><em>Mid-roll</em></strong> &mdash; the ad break that appears partway through long-form video content, the way commercial breaks interrupt broadcast television. Mid-rolls have higher completion rates than pre-rolls because the viewer is already invested in the surrounding content.</p>
+    <p><strong><em>Bumper ad</em></strong> &mdash; a six-second non-skippable YouTube format designed for high-frequency reach. Too short for narrative; built almost entirely around a distinctive brand asset and a single message.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Textbook anchors are Belch Ch. 9 (creative tactics for broadcast and online video) and Andrews Ch. 11 (execution context for video appeals). Contemporary sources on attention, the ABCDs framework, TikTok hook data, and UGC effectiveness follow.</p>
+
+  <div class="references">
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener"><em>Advertising and promotion: An integrated marketing communications perspective</em></a> (13th ed., Chapter 9, &ldquo;Creative Tactics for Broadcast and Online Video,&rdquo; pp. 305&ndash;315). McGraw Hill.</p>
+    <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <a href="https://www.cengage.com/c/advertising-promotion-and-other-aspects-of-integrated-marketing-communications-10e-andrews-shimp/9781337282659/" target="_blank" rel="noopener"><em>Advertising, promotion, and other aspects of integrated marketing communications</em></a> (10th ed., Chapter 11, message appeals in broadcast and online video). Cengage Learning.</p>
+    <p class="ref">Reinartz, W., &amp; Saffert, P. (2013, June). <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Creativity in advertising: When it works and when it doesn&rsquo;t</a>. <em>Harvard Business Review, 91</em>(6). The 437-campaign, 90-brand FMCG study that anchors the &ldquo;creative is the biggest ROI multiplier&rdquo; argument in #1 of this section &mdash; with the funnel-position caveat developed here.</p>
+    <p class="ref">Google &amp; Kantar. (2021, April). <a href="https://support.google.com/google-ads/answer/14783551" target="_blank" rel="noopener"><em>The short &amp; the long of ABCDs effectiveness</em></a>. Google Ads. The Google/Kantar joint study establishing the 30% short-term sales lift and 17% long-term brand contribution attributable to ads built around the ABCDs framework. Retrieved from <a href="https://support.google.com/google-ads/answer/14783551" target="_blank" rel="noopener">support.google.com/google-ads/answer/14783551</a>.</p>
+    <p class="ref">YouTube Ads. (2025). <a href="https://www.youtube.com/intl/ALL_co/ads/abcds-of-effective-video-ads/" target="_blank" rel="noopener"><em>A guide to creating effective video ads: The ABCDs</em></a>. The four-principle framework &mdash; Attention, Branding, Connection, Direction &mdash; and the &ldquo;emerging story arc&rdquo; guidance for skippable surfaces. Retrieved from <a href="https://www.youtube.com/intl/ALL_co/ads/abcds-of-effective-video-ads/" target="_blank" rel="noopener">youtube.com/ads/abcds-of-effective-video-ads</a>.</p>
+    <p class="ref">Nelson-Field, K. (2020). <a href="https://www.google.com/search?q=Nelson-Field+2020+%22The+attention+economy+and+how+media+works%22+Palgrave" target="_blank" rel="noopener"><em>The attention economy and how media works: Simple truths for marketers</em></a>. Palgrave Macmillan. The foundational treatment of attention decay, mental availability, and the distinctive-brand-assets argument that runs through the skippable-format craft discussion.</p>
+    <p class="ref">Nelson-Field, K. (2023). <a href="https://www.google.com/search?q=Nelson-Field+2023+%22The+attention+economy%3A+A+category+blueprint%22" target="_blank" rel="noopener"><em>The attention economy: A category blueprint</em></a>. The sequel volume, covering attention measurement, mental availability, and the consequences of low-attention environments for brand growth.</p>
+    <p class="ref">Nelson-Field, K., &amp; VCCP Media. (2025, May). <a href="https://www.google.com/search?q=Nelson-Field+VCCP+2025+%22Hacking+the+attention+economy%22+Amplified+Intelligence" target="_blank" rel="noopener"><em>Hacking the attention economy</em></a>. The Amplified Intelligence and VCCP study of 20,000 views across 72 digital video ads. Established the 85%-under-2.5-seconds finding and the 1.5-second-with-distinctive-assets memory-encoding threshold.</p>
+    <p class="ref">The Media Leader. (2025, May 16). <a href="https://www.google.com/search?q=%22The+Media+Leader%22+%22Just+1.5+seconds+is+enough+for+ad+recall%22+attention" target="_blank" rel="noopener">Just 1.5 seconds is enough for ad recall, new attention study reveals</a>. <em>The Media Leader UK</em>. Coverage of the VCCP/Amplified study and the Nelson-Field threshold finding.</p>
+    <p class="ref">Bizcommunity. (2025, September). <a href="https://www.google.com/search?q=Bizcommunity+2025+%22Karen+Nelson-Field%22+%22attention+deficit%22" target="_blank" rel="noopener">Karen Nelson-Field: The attention deficit and how to overcome it</a>. Coverage of the second-by-second attention decay data &mdash; 80% / 50% / 20% across the first three seconds &mdash; used in the skippable-format argument.</p>
+    <p class="ref">Romaniuk, J. (2018). <a href="https://global.oup.com/academic/product/building-distinctive-brand-assets-9780190311506" target="_blank" rel="noopener"><em>Building distinctive brand assets</em></a>. Oxford University Press. The Ehrenberg-Bass treatment of the brand-asset library and the role of consistent, distinctive elements in mental availability.</p>
+    <p class="ref">Heath, C., &amp; Heath, D. (2007). <a href="https://www.penguinrandomhouse.com/books/77687/made-to-stick-by-chip-heath-and-dan-heath/" target="_blank" rel="noopener"><em>Made to stick: Why some ideas survive and others die</em></a>. Random House. The source of the contemporary use of &ldquo;sticky&rdquo; in marketing &mdash; six principles (simple, unexpected, concrete, credible, emotional, story) for ideas that get remembered and acted on.</p>
+    <p class="ref">Sharp, B. (2010). <a href="https://global.oup.com/academic/product/how-brands-grow-9780195573565" target="_blank" rel="noopener"><em>How brands grow</em></a>. Oxford University Press. The Ehrenberg-Bass argument for mental availability and physical availability as the two preconditions of brand growth.</p>
+    <p class="ref">Improvado. (2026). <a href="https://www.google.com/search?q=Improvado+2026+%22TikTok+advertising+guide+for+marketing+analysts%22" target="_blank" rel="noopener"><em>TikTok advertising guide for marketing analysts</em></a>. The 6-second view-rate diagnostic and the &ldquo;first 3 seconds determine 71% of whether users keep watching&rdquo; finding used in the skippable-format section.</p>
+    <p class="ref">TTS Vibes Insights. (2026, January). <a href="https://www.google.com/search?q=%22TTS+Vibes+Insights%22+2026+%22TikTok+first+3+seconds+hook+retention%22" target="_blank" rel="noopener"><em>TikTok first 3 seconds hook retention rate statistics</em></a>. The 70&ndash;85% retention threshold and the 2.2x distribution multiplier on videos that clear it.</p>
+    <p class="ref">Malthouse, E., et al. (2016). Cited in Kanuri, V., Maslowska, E., &amp; Hsu, L. (2024, November). <a href="https://www.google.com/search?q=Kanuri+Maslowska+Hsu+2024+%22Is+user-generated+content+a+double-edged+sword%22+California+Management+Review" target="_blank" rel="noopener">Is user-generated content (UGC) a double-edged sword for marketers?</a> <em>California Management Review</em>. The double-edged-sword treatment of UGC&rsquo;s effectiveness and creativity trade-offs.</p>
+    <p class="ref">Archive.com. (2026). <a href="https://www.google.com/search?q=Archive.com+2026+%2225+user-generated+content+engagement+statistics%22" target="_blank" rel="noopener"><em>25 user-generated content engagement statistics</em></a>. Source for the 6.9x engagement multiplier and 50% campaign-level engagement lift figures cited in the UGC section.</p>
+    <p class="ref">California Management Review. (2024, November 13). <a href="https://www.google.com/search?q=%22California+Management+Review%22+2024+%22user-generated+content%22+%22double-edged+sword%22" target="_blank" rel="noopener">Is user-generated content (UGC) a double-edged sword for marketers?</a> Background on the credibility-gain / control-loss trade-off and the integration of UGC into ATL campaigns.</p>
+    <p class="ref">GEICO. (2015). <a href="https://www.google.com/search?q=GEICO+%22Family%22+2015+unskippable+pre-roll+YouTube+TrueView" target="_blank" rel="noopener"><em>Family</em></a> &mdash; the unskippable-pre-roll campaign that ran on YouTube TrueView. The brand-winks-at-the-format example used in &sect;04, demonstrating brand-in-the-first-second discipline as a deliberate creative move.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     END OF MAIN CONTENT
+     ============================================================ -->
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     VIDEO LIGHTBOX
+     ============================================================ -->
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true" role="dialog" aria-label="Video player">
+  <div class="video-lightbox-stage">
+    <button class="video-lightbox-close" type="button" aria-label="Close video">&times;</button>
+    <div class="video-lightbox-frame">
+      <iframe src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Embedded video player"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var lightbox = document.getElementById('videoLightbox');
+  if (!lightbox) return;
+  var iframe = lightbox.querySelector('iframe');
+  var closeBtn = lightbox.querySelector('.video-lightbox-close');
+
+  function toEmbedUrl(url) {
+    var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]+)/);
+    if (m) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1';
+    return null;
+  }
+
+  function openLightbox(url) {
+    var embed = toEmbedUrl(url);
+    if (!embed) return false;
+    iframe.src = embed;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    return true;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  var tiles = document.querySelectorAll('.video-tile');
+  for (var i = 0; i < tiles.length; i++) {
+    tiles[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (openLightbox(href)) e.preventDefault();
+    });
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
