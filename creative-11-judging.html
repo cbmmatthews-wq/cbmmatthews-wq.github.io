@@ -348,14 +348,16 @@
 
 
 <!-- ============================================================
-     UNIT NAV — prev only.
-     #11 is the last content piece in the Creative section, so this
-     is intentionally self-contained — no "next." Inline override
-     of the grid to keep the prev link from stretching across the
-     full row width.
+     UNIT NAV — single card back to #10.
+     #11 is the last content piece, so this is intentionally
+     self-contained — no forward link. Uses the existing
+     `.unit-nav.only-next` modifier from styles.css to get the
+     single-column layout and left-aligned card; the inner anchor
+     uses `.unit-nav-next` as the CSS hook (the arrow and label
+     inside indicate this points backward to #10).
      ============================================================ -->
-<nav class="unit-nav" aria-label="Section navigation" style="grid-template-columns: 1fr;">
-  <a href="creative-10-ai.html" class="unit-nav-prev">
+<nav class="unit-nav only-next" aria-label="Section navigation">
+  <a href="creative-10-ai.html" class="unit-nav-next">
     <span class="unit-nav-label">&larr; Previous</span>
     <span class="unit-nav-title">#10 &middot; AI in Creative Work</span>
     <span class="unit-nav-tease">Six questions about AI&rsquo;s role across the IMC stages, posed to ChatGPT cold &mdash; and the baseline answer the most popular tool gives every marketer who asks.</span>
