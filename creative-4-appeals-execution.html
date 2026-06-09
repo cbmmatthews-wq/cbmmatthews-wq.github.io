@@ -345,6 +345,132 @@
     .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
   }
 
+  /* Deck of Brilliance text panels — two side-by-side panels presenting
+     the two named approaches from the brainstorming tool. */
+  .deck-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 26px 0 22px;
+  }
+  .deck-panel {
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 24px 26px 22px;
+  }
+  .deck-panel.is-problem { border-top-color: var(--red); }
+  .deck-panel.is-solution { border-top-color: var(--blue); }
+  .deck-panel-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .deck-panel.is-problem .deck-panel-label { color: var(--red); }
+  .deck-panel.is-solution .deck-panel-label { color: var(--blue); }
+  .deck-panel-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1.25;
+    margin: 0 0 14px;
+  }
+  .deck-panel-body {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .deck-panel-body p { margin-bottom: 10px; }
+  .deck-panel-body p:last-child { margin-bottom: 0; }
+  .deck-panel-attribution {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--blue);
+    font-style: italic;
+  }
+  @media (max-width: 720px) {
+    .deck-panels { grid-template-columns: 1fr; }
+  }
+
+  /* Hero video pair — two large side-by-side tiles for the anchoring
+     problem-vs-solution example. Bigger and more breathing room than
+     the standard .video-tile in the Subaru grid. */
+  .video-hero-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 26px 0 24px;
+  }
+  .video-hero .video-tile-body { padding: 18px 22px 22px; }
+  .video-hero .video-tile-meta {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+  .video-hero .video-tile-title {
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .video-hero .video-tile-frame {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .video-hero .video-tile-cta {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+  @media (max-width: 720px) {
+    .video-hero-pair { grid-template-columns: 1fr; }
+  }
+
+  /* Survey columns — two columns of compact tiles (one per approach)
+     showing additional examples. Each column has a header label and 4
+     stacked tiles. Tiles inherit from .video-tile but tighter. */
+  .video-survey {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 24px 0 18px;
+  }
+  .video-survey-col-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--cream-deep);
+  }
+  .video-survey-col.is-problem .video-survey-col-label { color: var(--red); border-bottom-color: var(--red); }
+  .video-survey-col.is-solution .video-survey-col-label { color: var(--blue); border-bottom-color: var(--blue); }
+  .video-survey-col .video-tile { margin-bottom: 14px; }
+  .video-survey-col .video-tile:last-child { margin-bottom: 0; }
+  .video-survey-col .video-tile .video-tile-body { padding: 12px 14px 14px; }
+  .video-survey-col .video-tile .video-tile-meta {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .video-survey-col .video-tile .video-tile-title {
+    font-size: 14px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .video-survey-col .video-tile .video-tile-frame {
+    font-size: 12.5px;
+    line-height: 1.45;
+    margin-bottom: 6px;
+  }
+  .video-survey-col .video-tile .video-tile-cta {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  @media (max-width: 720px) {
+    .video-survey { grid-template-columns: 1fr; }
+  }
+
   /* Glossary tightening — match creative #3 */
   .glossary p { margin-bottom: 10px; max-width: 760px; }
   .glossary p strong em { color: var(--red); font-style: italic; }
@@ -403,7 +529,184 @@
   </div>
 </section>
 
-<!-- INSERT POINT: Deck of Brilliance problem-vs-solution block with video links -->
+<!-- ============================================================
+     A WORKING TOOL — Deck of Brilliance / Problem vs Solution
+     A working concept-tool block between Overview and §01, giving
+     the reader two named routes out of the rational default before
+     the appeals/execution taxonomy begins.
+     ============================================================ -->
+<section class="section" id="deck-of-brilliance">
+  <div class="sec-label">A Working Tool</div>
+  <h2>Two Routes Out of the Rational Default</h2>
+
+  <p>The default execution choice, when the brief is rushed and the room is risk-averse, is the rational one &mdash; show the product, name the benefit, close. It works, in the narrow sense that matters to a quarterly dashboard. Rational executions are bottom-of-funnel workhorses; they get the click, they drive the conversion, they justify the spend. They are also where almost no real creative differentiation lives, which is why categories saturated in rational executions tend to read as interchangeable to the audience that watched them. The argument the rational-first school sometimes offers &mdash; that contemporary audiences, particularly Gen Z, claim to want &ldquo;straightforward and authentic&rdquo; advertising and resent obvious creative effort &mdash; is half-true in a way that misleads. Viewer-engagement data on those same audiences consistently shows them spending more time with content that surprises them than with content that confirms their expectations. <em>Authentic</em> describes the texture; it does not describe the strategic ask. <strong>The strategic ask is still surprise and delight, dressed in clothes that don&rsquo;t look like a 1990s television commercial.</strong></p>
+
+  <p><a href="https://deckofbrilliance.com" target="_blank" rel="noopener">Deck of Brilliance</a> is one of several concept-pushing tools designed to get a creative team out of the rational default and into work that is more memorable, more emotionally engaged, and more strategically defensible. The tool offers a deck of named prompts &mdash; different angles a brief can be attacked from when the rational answer feels obvious. The cleanest classical pair in the deck, and the one most teams can use immediately, is <em>Dramatize the Problem</em> versus <em>Dramatize the Solution</em>. Both are routes out of the rational default; both have produced category-defining work; and each demands a different choice about what the creative team leads with.</p>
+
+  <div class="deck-panels">
+    <div class="deck-panel is-problem">
+      <div class="deck-panel-label">Approach 1</div>
+      <h3 class="deck-panel-title">Dramatize the Problem</h3>
+      <div class="deck-panel-body">
+        <p>&ldquo;If the problem doesn&rsquo;t sting, the solution won&rsquo;t matter. So make the problem larger than life. Turn up the volume on the frustration, the waste, and the inconvenience. Turn the delay into a disaster. The itch into a meltdown. The awkward pause into a full-blown crisis.&rdquo;</p>
+        <p>&ldquo;Create a perfect storm for your characters to battle. Then, at the last moment, rescue them with a solution. This approach makes it more fun to watch, and it makes the fix feel sharper, smarter, and more significant when it finally arrives.&rdquo;</p>
+        <div class="deck-panel-attribution">&mdash; deckofbrilliance.com</div>
+      </div>
+    </div>
+    <div class="deck-panel is-solution">
+      <div class="deck-panel-label">Approach 2</div>
+      <h3 class="deck-panel-title">Dramatize the Solution</h3>
+      <div class="deck-panel-body">
+        <p>&ldquo;Lead with the solution instead of the problem. Start with a strange or dramatic situation caused by your product. Hold off on explaining. Let the viewer wonder what&rsquo;s going on. Then, in the final seconds, reveal the product with one sharp line that ties it all together.&rdquo;</p>
+        <p>&ldquo;That line is the key. Craft it till it shines. Write down as many fresh, honest, insightful ways to express your product&rsquo;s benefit as you can. The better the line, the more memorable the setup.&rdquo;</p>
+        <div class="deck-panel-attribution">&mdash; deckofbrilliance.com</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The cleanest contemporary pairing on the brief: HBO Go ran a campaign that lived in the first column; Prime Video, a few years later, ran one that lived in the second. Both worked. Watch them back to back.</p>
+
+  <div class="video-hero-pair">
+
+    <a href="https://www.youtube.com/watch?v=sylWyBnFBNM" target="_blank" rel="noopener" class="video-tile video-hero">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/sylWyBnFBNM/hqdefault.jpg" alt="HBO Go — Awkward Family Viewing">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">Problem &middot; 60s</div>
+        <div class="video-tile-title">HBO Go &middot; Awkward Family Viewing</div>
+        <div class="video-tile-frame">Watch &middot; the problem cranked to a perfect storm. A family member walks in at exactly the wrong moment.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=vSuvyC84QH0" target="_blank" rel="noopener" class="video-tile video-hero">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/vSuvyC84QH0/hqdefault.jpg" alt="Prime Video — Vikings, Great Shows Stay With You">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">Solution &middot; 60s</div>
+        <div class="video-tile-title">Prime Video &middot; Vikings, Great Shows Stay With You</div>
+        <div class="video-tile-frame">Watch &middot; the solution leads. Strange office behavior makes sense only at the very end.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+  </div>
+
+  <p>Once the lens is in place, the choice shows up everywhere. A short survey of work on each side of it:</p>
+
+  <div class="video-survey">
+
+    <div class="video-survey-col is-problem">
+      <div class="video-survey-col-label">Dramatize the Problem</div>
+
+      <a href="https://www.youtube.com/watch?v=YQNXJpuLKwU" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://img.youtube.com/vi/YQNXJpuLKwU/hqdefault.jpg" alt="St John Ambulance — Save the Boy">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">60s</div>
+          <div class="video-tile-title">St John Ambulance &middot; Save the Boy</div>
+          <div class="video-tile-frame">Watch &middot; the problem at its worst possible outcome, in real time.</div>
+          <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=2zoXjT0d9Jw" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://img.youtube.com/vi/2zoXjT0d9Jw/hqdefault.jpg" alt="Dove — Camera Shy">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">60s</div>
+          <div class="video-tile-title">Dove &middot; Camera Shy</div>
+          <div class="video-tile-frame">Watch &middot; the problem nobody names out loud, dramatized over a lifetime.</div>
+          <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://vimeo.com/105007097" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://vumbnail.com/105007097.jpg" alt="National Autistic Society — Sensory Overload">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">60s</div>
+          <div class="video-tile-title">National Autistic Society &middot; Sensory Overload</div>
+          <div class="video-tile-frame">Watch &middot; the problem rendered inside the audience&rsquo;s own nervous system.</div>
+          <div class="video-tile-cta">Watch on Vimeo &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://vimeo.com/40694039" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://vumbnail.com/40694039.jpg" alt="Olympus — Distorted Dogs">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">60s</div>
+          <div class="video-tile-title">Olympus &middot; Distorted Dogs</div>
+          <div class="video-tile-frame">Watch &middot; the photographer&rsquo;s problem, demonstrated on subjects that refuse to cooperate.</div>
+          <div class="video-tile-cta">Watch on Vimeo &rarr;</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="video-survey-col is-solution">
+      <div class="video-survey-col-label">Dramatize the Solution</div>
+
+      <a href="https://www.youtube.com/watch?v=2zwMWLE9fBU" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://img.youtube.com/vi/2zwMWLE9fBU/hqdefault.jpg" alt="Volkswagen — The Force">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">60s</div>
+          <div class="video-tile-title">Volkswagen &middot; The Force</div>
+          <div class="video-tile-frame">Watch &middot; sixty seconds of mystery. The reveal at the end makes sense of all of it.</div>
+          <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=joItR0DNlnc" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://img.youtube.com/vi/joItR0DNlnc/hqdefault.jpg" alt="Crest — You Can Say Anything with a Smile">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">Compilation &middot; 2:20</div>
+          <div class="video-tile-title">Crest &middot; You Can Say Anything with a Smile</div>
+          <div class="video-tile-frame">Watch &middot; three setups, three smiles. The line ties them together in retrospect.</div>
+          <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=-bcp67heYPs" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://img.youtube.com/vi/-bcp67heYPs/hqdefault.jpg" alt="Volkswagen — Surprisingly Ordinary Prices, Lamppost">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">30s</div>
+          <div class="video-tile-title">Volkswagen &middot; Surprisingly Ordinary Prices &middot; Lamppost</div>
+          <div class="video-tile-frame">Watch &middot; begin strange. Reveal in the last beat that the whole thing is about price.</div>
+          <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+        </div>
+      </a>
+
+      <a href="https://vimeo.com/388771368" target="_blank" rel="noopener" class="video-tile">
+        <div class="video-tile-thumb">
+          <img src="https://vumbnail.com/388771368.jpg" alt="Snickers — Fix the World, Super Bowl LIV">
+        </div>
+        <div class="video-tile-body">
+          <div class="video-tile-meta">75s</div>
+          <div class="video-tile-title">Snickers &middot; Fix the World</div>
+          <div class="video-tile-frame">Watch &middot; the premise scaled to civilization itself, then deflated to one candy bar.</div>
+          <div class="video-tile-cta">Watch on Vimeo &rarr;</div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
 
 
 <!-- ============================================================
