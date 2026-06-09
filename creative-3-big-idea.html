@@ -102,9 +102,12 @@
     color: var(--ink-soft);
   }
 
-  /* Video grid — used for Ashley's four and Julian Cole's two. Each card
-     has a thumbnail-sized placeholder area, title, presenter, and a
-     short editorial note. Renders 2-up on desktop, 1-up on mobile. */
+  /* Video grid — six clickable cards (Ashley's four and Julian Cole's two
+     plus Ogilvy archive). Each card is a single <a> that opens the YouTube
+     video in a lightbox via the script at the bottom of the page. If the
+     JS fails for any reason, the href falls back to opening in a new tab.
+     Renders 2-up on desktop, 1-up on mobile. Thumbnail (YouTube hqdefault)
+     leads each card. */
   .video-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -112,24 +115,51 @@
     margin: 22px 0 14px;
   }
   .video-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background: var(--white);
     border: 0.5px solid var(--cream-deep);
-    padding: 18px 18px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    transition: border-color 0.15s ease;
   }
-  .video-card .video-placeholder {
+  .video-card:hover { border-color: var(--red); }
+  .video-card .video-tile-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
     background: var(--cream);
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    height: 78px;
+  }
+  .video-card .video-tile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-card .video-tile-thumb::after {
+    content: '\25B6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px dashed var(--cream-deep);
+    font-size: 20px;
+    padding-left: 4px;
+    transition: background 0.15s ease;
+  }
+  .video-card:hover .video-tile-thumb::after { background: var(--red); }
+  .video-card-body {
+    padding: 14px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
   .video-card .video-presenter {
     font-size: 11px;
@@ -152,6 +182,65 @@
   }
   @media (max-width: 720px) {
     .video-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Video lightbox modal — opens when a .video-card is clicked and plays
+     the embedded YouTube video inside the page without losing the
+     reader's context. Progressive enhancement: if the JS at the bottom
+     of the page fails or never runs, the card's href falls back to
+     opening the video on YouTube in a new tab. */
+  .video-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 14, 0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+  }
+  .video-lightbox.open { display: flex; }
+  .video-lightbox-stage {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+  .video-lightbox-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+  .video-lightbox-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .video-lightbox-close {
+    position: absolute;
+    top: -52px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    z-index: 2;
+  }
+  .video-lightbox-close:hover { background: var(--red); }
+  @media (max-width: 720px) {
+    .video-lightbox { padding: 2vw; }
+    .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
   }
 
   /* Snickers stats — three KPIs from Whiteside / WARC. */
@@ -563,33 +652,49 @@
 
   <div class="video-grid">
 
-    <div class="video-card">
-      <a href="https://youtu.be/FjR2mLYnyx0" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
-      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
-      <div class="video-title"><a href="https://youtu.be/FjR2mLYnyx0" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Brief 101: From Brief to Big Idea (With Real Advertising Examples)</a></div>
-      <div class="video-note">Walks through a real creative brief and shows how the strategic idea emerges from it, using examples she&rsquo;s actually shipped. The closest video version of this section&rsquo;s &sect;01 and &sect;03 combined.</div>
-    </div>
+    <a href="https://youtu.be/FjR2mLYnyx0" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/FjR2mLYnyx0/hqdefault.jpg" alt="Creative Brief 101: From Brief to Big Idea">
+      </div>
+      <div class="video-card-body">
+        <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+        <div class="video-title">Creative Brief 101: From Brief to Big Idea (With Real Advertising Examples)</div>
+        <div class="video-note">Walks through a real creative brief and shows how the strategic idea emerges from it, using examples she&rsquo;s actually shipped. The closest video version of this section&rsquo;s &sect;01 and &sect;03 combined.</div>
+      </div>
+    </a>
 
-    <div class="video-card">
-      <a href="https://youtu.be/YA7hcZJf1MY" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
-      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
-      <div class="video-title"><a href="https://youtu.be/YA7hcZJf1MY" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Strategic Insights Explained: What Creatives Actually Need to Know</a></div>
-      <div class="video-note">The video most worth watching if you only watch one. Explains the difference between a research finding and a real strategic insight, with the kind of plainspoken examples that make the distinction stick.</div>
-    </div>
+    <a href="https://youtu.be/YA7hcZJf1MY" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/YA7hcZJf1MY/hqdefault.jpg" alt="Strategic Insights Explained: What Creatives Actually Need to Know">
+      </div>
+      <div class="video-card-body">
+        <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+        <div class="video-title">Strategic Insights Explained: What Creatives Actually Need to Know</div>
+        <div class="video-note">The video most worth watching if you only watch one. Explains the difference between a research finding and a real strategic insight, with the kind of plainspoken examples that make the distinction stick.</div>
+      </div>
+    </a>
 
-    <div class="video-card">
-      <a href="https://youtu.be/2rNcie1P8U0" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
-      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
-      <div class="video-title"><a href="https://youtu.be/2rNcie1P8U0" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Where Do Strategic Insights Actually Come From? (Research Methods for Advertising)</a></div>
-      <div class="video-note">The research-methods piece &mdash; how to read survey data, ethnographic notes, and social-listening reports for the line that turns into the insight. Pairs cleanly with &sect;02 above.</div>
-    </div>
+    <a href="https://youtu.be/2rNcie1P8U0" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/2rNcie1P8U0/hqdefault.jpg" alt="Where Do Strategic Insights Actually Come From?">
+      </div>
+      <div class="video-card-body">
+        <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+        <div class="video-title">Where Do Strategic Insights Actually Come From? (Research Methods for Advertising)</div>
+        <div class="video-note">The research-methods piece &mdash; how to read survey data, ethnographic notes, and social-listening reports for the line that turns into the insight. Pairs cleanly with &sect;02 above.</div>
+      </div>
+    </a>
 
-    <div class="video-card">
-      <a href="https://youtu.be/vYNVhlFD7BM" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
-      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
-      <div class="video-title"><a href="https://youtu.be/vYNVhlFD7BM" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Strategic Insights: The Foundation of Every Great Ad Campaign</a></div>
-      <div class="video-note">A more foundational treatment of why the insight is the part of the brief that the rest of the work either lives or dies by. Useful as a recap once you&rsquo;ve watched the other three.</div>
-    </div>
+    <a href="https://youtu.be/vYNVhlFD7BM" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/vYNVhlFD7BM/hqdefault.jpg" alt="Strategic Insights: The Foundation of Every Great Ad Campaign">
+      </div>
+      <div class="video-card-body">
+        <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+        <div class="video-title">Strategic Insights: The Foundation of Every Great Ad Campaign</div>
+        <div class="video-note">A more foundational treatment of why the insight is the part of the brief that the rest of the work either lives or dies by. Useful as a recap once you&rsquo;ve watched the other three.</div>
+      </div>
+    </a>
 
   </div>
 </section>
@@ -607,19 +712,27 @@
 
   <div class="video-grid">
 
-    <div class="video-card">
-      <a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
-      <div class="video-presenter">Julian Cole &middot; Planning Dirty</div>
-      <div class="video-title"><a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Strategy for Beginners (Learn in 7 Minutes)</a></div>
-      <div class="video-note">Julian&rsquo;s short, brisk explainer of where strategy fits in the workflow and how to tell a strategic idea from a creative execution &mdash; the distinction this whole piece is built around. Watch this one second; it lands faster after you&rsquo;ve seen Ashley.</div>
-    </div>
+    <a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/_VtCIjVVU2s/hqdefault.jpg" alt="Creative Strategy for Beginners (Learn in 7 Minutes)">
+      </div>
+      <div class="video-card-body">
+        <div class="video-presenter">Julian Cole &middot; Planning Dirty</div>
+        <div class="video-title">Creative Strategy for Beginners (Learn in 7 Minutes)</div>
+        <div class="video-note">Julian&rsquo;s short, brisk explainer of where strategy fits in the workflow and how to tell a strategic idea from a creative execution &mdash; the distinction this whole piece is built around. Watch this one second; it lands faster after you&rsquo;ve seen Ashley.</div>
+      </div>
+    </a>
 
-    <div class="video-card">
-      <a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
-      <div class="video-presenter">Archive footage &middot; David Ogilvy</div>
-      <div class="video-title"><a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">David Ogilvy &mdash; Big Ideas</a></div>
-      <div class="video-note">Ogilvy in his own voice on what a Big Idea is, how rare they are, and the cost of running campaigns without one. The twenty-Big-Ideas-in-a-career claim quoted in &sect;03 is from this lineage of writing and lectures.</div>
-    </div>
+    <a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener" class="video-card">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/-yvRNp-XtCE/hqdefault.jpg" alt="David Ogilvy — Big Ideas">
+      </div>
+      <div class="video-card-body">
+        <div class="video-presenter">Archive footage &middot; David Ogilvy</div>
+        <div class="video-title">David Ogilvy &mdash; Big Ideas</div>
+        <div class="video-note">Ogilvy in his own voice on what a Big Idea is, how rare they are, and the cost of running campaigns without one. The twenty-Big-Ideas-in-a-career claim quoted in &sect;03 is from this lineage of writing and lectures.</div>
+      </div>
+    </a>
 
   </div>
 </section>
@@ -714,20 +827,20 @@
   <p>Textbook anchors and the Whiteside / WARC Snickers article lead. Effie material follows. Supporting research is listed at the end.</p>
 
   <div class="references">
-    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <em>Advertising and promotion: An integrated marketing communications perspective</em> (13th ed., Chapter 8: Creative Strategy &mdash; Planning and Development, pp. 275&ndash;287). McGraw Hill.</p>
-    <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <em>Advertising, promotion, and other aspects of integrated marketing communications</em> (10th ed., Chapter 10: Effective and Creative Ad Messages, pp. 211&ndash;224). Cengage Learning.</p>
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <a href="https://www.amazon.com/Loose-Advertising-Promotion-George-Belch/dp/1266854665" target="_blank" rel="noopener"><em>Advertising and promotion: An integrated marketing communications perspective</em></a> (13th ed., Chapter 8: Creative Strategy &mdash; Planning and Development, pp. 275&ndash;287). McGraw Hill.</p>
+    <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <a href="https://www.cengage.com/c/advertising-promotion-and-other-aspects-of-integrated-marketing-communications-10e-andrews-shimp/9781337282659/" target="_blank" rel="noopener"><em>Advertising, promotion, and other aspects of integrated marketing communications</em></a> (10th ed., Chapter 10: Effective and Creative Ad Messages, pp. 211&ndash;224). Cengage Learning.</p>
     <p class="ref">Whiteside, S. (2020, October 29). <a href="https://www.warc.com/newsandopinion/opinion/effectiveness-insights-from-ten-years-of-snickers-youre-not-you-when-youre-hungry/en-gb/4179" target="_blank" rel="noopener">Effectiveness insights from ten years of Snickers&rsquo; &ldquo;You&rsquo;re not you when you&rsquo;re hungry&rdquo;</a>. <em>WARC</em>.</p>
-    <p class="ref">Hurman, J., &amp; Field, P. (2020). <em>The effectiveness code</em>. Cannes Lions and WARC. The six-stage Creative Effectiveness Ladder framework cited in &sect;05.</p>
-    <p class="ref">Effie Worldwide. (n.d.). <em>Brand Builder 101: Effie Collegiate program curriculum</em>. Effie Awards. Source of the insight-and-strategic-idea tip sheet and the one-sentence twenty-word rule used in &sect;02 and &sect;03.</p>
-    <p class="ref">Association of National Advertisers. (2018). <em>Better creative briefs</em>. ANA. Source of the nine &ldquo;must-have&rdquo; brief elements in &sect;01.</p>
-    <p class="ref">Reeves, R. (1961). <em>Reality in advertising</em>. Knopf. The original USP framework cited in &sect;04.</p>
-    <p class="ref">Ogilvy, D. (1963). <em>Confessions of an advertising man</em>. Atheneum. The brand image framework and the Big-Ideas-per-career observation cited in &sect;03 and &sect;04.</p>
-    <p class="ref">Trout, J., &amp; Ries, A. (1981). <em>Positioning: The battle for your mind</em>. McGraw-Hill. The positioning framework cited in &sect;04.</p>
-    <p class="ref">Sharp, B. (2010). <em>How brands grow: What marketers don&rsquo;t know</em>. Oxford University Press. Ehrenberg-Bass Institute&rsquo;s framework on distinctive brand assets cited in &sect;05.</p>
-    <p class="ref">Binet, L., &amp; Field, P. (2013). <em>The long and the short of it: Balancing short and long-term marketing strategies</em>. IPA. The six-month threshold and the 60/40 finding referenced in &sect;03 and &sect;05.</p>
-    <p class="ref">Kover, A. J. (1995). Copywriters&rsquo; implicit theories of communication: An exploration. <em>Journal of Consumer Research, 21</em>(4), 596&ndash;611. Source of the &ldquo;break through clutter and deliver a message&rdquo; framing for Big Ideas.</p>
-    <p class="ref">Rossiter, J. R., &amp; Bellman, S. (2005). <em>Marketing communications: Theory and applications</em>. Pearson. Source of the &ldquo;key benefit claim&rdquo; treatment.</p>
-    <p class="ref">Reynolds, T. J., &amp; Gutman, J. (1984). Advertising is image management. <em>Journal of Advertising Research, 24</em>(1), 27&ndash;36. The original MECCAS paper cited in the &sect;04 sidebar.</p>
+    <p class="ref">Hurman, J., &amp; Field, P. (2020). <a href="https://www.mm.be/userfiles/media/The%20effectiveness%20code.pdf" target="_blank" rel="noopener"><em>The effectiveness code</em></a>. Cannes Lions and WARC. The six-stage Creative Effectiveness Ladder framework cited in &sect;05.</p>
+    <p class="ref">Effie Worldwide. (n.d.). <a href="https://www.google.com/search?q=Effie+Worldwide+%22Brand+Builder+101%22+Collegiate+program+curriculum" target="_blank" rel="noopener"><em>Brand Builder 101: Effie Collegiate program curriculum</em></a>. Effie Awards. Source of the insight-and-strategic-idea tip sheet and the one-sentence twenty-word rule used in &sect;02 and &sect;03.</p>
+    <p class="ref">Association of National Advertisers. (2018). <a href="https://www.google.com/search?q=ANA+2018+%22Better+creative+briefs%22+Association+of+National+Advertisers" target="_blank" rel="noopener"><em>Better creative briefs</em></a>. ANA. Source of the nine &ldquo;must-have&rdquo; brief elements in &sect;01.</p>
+    <p class="ref">Reeves, R. (1961). <a href="https://www.google.com/search?q=Rosser+Reeves+1961+%22Reality+in+Advertising%22+Knopf" target="_blank" rel="noopener"><em>Reality in advertising</em></a>. Knopf. The original USP framework cited in &sect;04.</p>
+    <p class="ref">Ogilvy, D. (1963). <a href="https://www.google.com/search?q=David+Ogilvy+1963+%22Confessions+of+an+Advertising+Man%22+Atheneum" target="_blank" rel="noopener"><em>Confessions of an advertising man</em></a>. Atheneum. The brand image framework and the Big-Ideas-per-career observation cited in &sect;03 and &sect;04.</p>
+    <p class="ref">Trout, J., &amp; Ries, A. (1981). <a href="https://www.google.com/search?q=Trout+Ries+1981+%22Positioning%3A+The+Battle+for+Your+Mind%22+McGraw-Hill" target="_blank" rel="noopener"><em>Positioning: The battle for your mind</em></a>. McGraw-Hill. The positioning framework cited in &sect;04.</p>
+    <p class="ref">Sharp, B. (2010). <a href="https://global.oup.com/academic/product/how-brands-grow-9780195573565" target="_blank" rel="noopener"><em>How brands grow: What marketers don&rsquo;t know</em></a>. Oxford University Press. Ehrenberg-Bass Institute&rsquo;s framework on distinctive brand assets cited in &sect;05.</p>
+    <p class="ref">Binet, L., &amp; Field, P. (2013). <a href="https://ipa.co.uk/knowledge/publications-reports/the-long-and-the-short-of-it-balancing-short-and-long-term-marketing-strategies/" target="_blank" rel="noopener"><em>The long and the short of it: Balancing short and long-term marketing strategies</em></a>. IPA. The six-month threshold and the 60/40 finding referenced in &sect;03 and &sect;05.</p>
+    <p class="ref">Kover, A. J. (1995). <a href="https://doi.org/10.1086/209421" target="_blank" rel="noopener">Copywriters&rsquo; implicit theories of communication: An exploration</a>. <em>Journal of Consumer Research, 21</em>(4), 596&ndash;611. Source of the &ldquo;break through clutter and deliver a message&rdquo; framing for Big Ideas.</p>
+    <p class="ref">Rossiter, J. R., &amp; Bellman, S. (2005). <a href="https://www.google.com/search?q=Rossiter+Bellman+2005+%22Marketing+communications%3A+Theory+and+applications%22+Pearson" target="_blank" rel="noopener"><em>Marketing communications: Theory and applications</em></a>. Pearson. Source of the &ldquo;key benefit claim&rdquo; treatment.</p>
+    <p class="ref">Reynolds, T. J., &amp; Gutman, J. (1984). <a href="https://www.google.com/search?q=Reynolds+Gutman+1984+%22Advertising+is+image+management%22+Journal+Advertising+Research+MECCAS" target="_blank" rel="noopener">Advertising is image management</a>. <em>Journal of Advertising Research, 24</em>(1), 27&ndash;36. The original MECCAS paper cited in the &sect;04 sidebar.</p>
     <p class="ref">Rutstein, A. (n.d.). <a href="https://www.youtube.com/@StuffAboutAdvertising/videos" target="_blank" rel="noopener"><em>Stuff About Advertising</em></a> [YouTube channel]. Source for the four practitioner videos in &sect;07.</p>
     <p class="ref">Cole, J. (2023). <a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener"><em>Creative strategy for beginners (Learn in 7 minutes)</em></a> [Video]. Planning Dirty. The seven-minute strategy primer cited in &sect;08.</p>
     <p class="ref">Ogilvy, D. (n.d.). <a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener"><em>David Ogilvy on Big Ideas</em></a> [Archive video]. YouTube. The archival lecture used in &sect;08.</p>
@@ -748,6 +861,80 @@
     <div>Indiana University South Bend</div>
   </div>
 </footer>
+
+<!-- ============================================================
+     VIDEO LIGHTBOX
+     Single modal element that opens when any .video-card is clicked.
+     Handles YouTube URLs (both watch URLs and youtu.be short URLs).
+     Falls back to the card's href if the JS below fails to load.
+     ============================================================ -->
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true" role="dialog" aria-label="Video player">
+  <div class="video-lightbox-stage">
+    <button class="video-lightbox-close" type="button" aria-label="Close video">&times;</button>
+    <div class="video-lightbox-frame">
+      <iframe src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Embedded video player"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var lightbox = document.getElementById('videoLightbox');
+  if (!lightbox) return;
+  var iframe = lightbox.querySelector('iframe');
+  var closeBtn = lightbox.querySelector('.video-lightbox-close');
+
+  function toEmbedUrl(url) {
+    // YouTube watch URL or short URL — use youtube-nocookie.com for better
+    // compatibility with referrer-policy restrictions (avoids Error 153)
+    var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]+)/);
+    if (m) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    // Vimeo
+    m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1';
+    return null;
+  }
+
+  function openLightbox(url) {
+    var embed = toEmbedUrl(url);
+    if (!embed) return false;
+    iframe.src = embed;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    return true;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // Intercept clicks on any .video-card element on the page
+  var tiles = document.querySelectorAll('.video-card');
+  for (var i = 0; i < tiles.length; i++) {
+    tiles[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (openLightbox(href)) e.preventDefault();
+    });
+  }
+
+  // Close on X button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close on backdrop click (but not on the stage or iframe)
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
 
 <script src="assets/nav.js"></script>
 <script src="assets/scrollspy.js"></script>
