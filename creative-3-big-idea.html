@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#3 &mdash; The Big Idea: From Brief to Strategic Insight &mdash; cbmatthe</title>
+<meta name="description" content="What separates a tactic from a campaign-defining idea: the creative brief that produces it, the insight underneath it, the one-sentence discipline that articulates it, and the decade-long Snickers case that proves it works.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Creative #3 ---- */
+
+  /* Brief-elements table — 9 rows from Belch's ANA-derived creative brief.
+     Styled tight, with the row label as serif accent. */
+  .brief-table {
+    margin: 24px 0 14px;
+    border-top: 2px solid var(--ink);
+  }
+  .brief-row {
+    display: grid;
+    grid-template-columns: 56px 220px 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+    align-items: baseline;
+  }
+  .brief-row-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 18px;
+  }
+  .brief-row-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .brief-row-desc {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .brief-row { grid-template-columns: 40px 1fr; }
+    .brief-row-desc { grid-column: 1 / -1; padding-left: 54px; }
+  }
+
+  /* Insight rules — 6 boxed tips lifted from the Effie tip sheet, treated
+     as a 3x2 grid of small cards. The Effie material is short and listy
+     by nature; cards keep it scannable. */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 22px 0 12px;
+  }
+  .insight-card {
+    background: var(--white);
+    border-top: 3px solid var(--blue);
+    padding: 18px 18px 18px;
+  }
+  .insight-card-num {
+    font-family: var(--serif);
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .insight-card-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 900px) {
+    .insight-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .insight-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Styles-of-big-idea — four short entries shown as a tight list with
+     a serif label and a one-paragraph explanation. Belch's USP / brand
+     image / inherent drama / positioning. */
+  .styles-list .style-row {
+    padding: 16px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+  }
+  .styles-list .style-row:last-child { border-bottom: none; }
+  .styles-list .style-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  .styles-list .style-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* Video grid — used for Ashley's four and Julian Cole's two. Each card
+     has a thumbnail-sized placeholder area, title, presenter, and a
+     short editorial note. Renders 2-up on desktop, 1-up on mobile. */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 22px 0 14px;
+  }
+  .video-card {
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .video-card .video-placeholder {
+    background: var(--cream);
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed var(--cream-deep);
+  }
+  .video-card .video-presenter {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .video-card .video-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+  }
+  .video-card .video-note {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .video-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Snickers stats — three KPIs from Whiteside / WARC. */
+  .snickers-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 22px 0 16px;
+  }
+  .snickers-stat {
+    background: var(--cream);
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .snickers-stat-val {
+    font-family: var(--serif);
+    font-weight: 900;
+    color: var(--red);
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .snickers-stat-lbl {
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 560px) {
+    .snickers-stats { grid-template-columns: 1fr; }
+  }
+
+  /* MECCAS sidebar — boxed, slightly tinted aside for the means-end
+     content from Andrews. Visually distinct from main flow so a reader
+     can skip it if not interested in the academic apparatus. */
+  .meccas-side {
+    background: var(--cream);
+    border-left: 4px solid var(--blue);
+    padding: 26px 30px 24px;
+    margin: 30px 0 24px;
+  }
+  .meccas-side .oa-sub {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .meccas-side h3 {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1.3;
+    margin: 0 0 12px;
+  }
+  .meccas-side p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .meccas-side p:last-child { margin-bottom: 0; }
+  @media (max-width: 720px) {
+    .meccas-side { padding: 22px 22px 20px; }
+  }
+
+  /* Glossary tightening — same as creative #1 and #2 */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+
+  /* Unit nav lives in assets/styles.css now (centralized 2026-06-08). */
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Creative &middot; #3</div>
+    <h1>The Big Idea: From Brief to Strategic Insight</h1>
+    <p class="lede">A campaign is the assemblage of work. A Big Idea is the single creative thought that the assemblage is an expression of. Most marketing decks contain neither, and the failure is almost always upstream of execution &mdash; in the brief that never got written cleanly, the consumer insight that never got sharpened past a demographic, or the strategic idea that never got compressed into one sentence anyone could repeat from memory. <strong>This piece is about the discipline that produces real Big Ideas and the case study that proves the discipline pays off in dollars, not just in awards.</strong></p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#brief">The Creative Brief</a>
+    <a href="#insight">The Insight Underneath</a>
+    <a href="#bigidea">Articulating the Idea</a>
+    <a href="#styles">Styles of Big Ideas</a>
+    <a href="#snickers">Snickers: A Decade</a>
+    <a href="#classics">Other Classics</a>
+    <a href="#ashley">Ashley on the Brief</a>
+    <a href="#julian">Two More</a>
+    <a href="#ai">AI as a Partner</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Argument</h2>
+
+  <p>The position to argue against here is what we&rsquo;ll call the <em>execution-first school</em>: the view that the work of advertising is to produce a steady stream of attractive content, that &ldquo;the Big Idea&rdquo; is industry mythology held over from a Mad Men era when budgets were larger and consumers paid more attention, and that what matters now is a content calendar full of clever, individually-engaging posts. This view is appealing because it sounds modern, it matches the operating reality of most social-media teams, and it lets you ship work every week without ever resolving the harder question of what the brand is trying to say across the entirety of those weeks.</p>
+
+  <p>It is also the philosophy under which most expensive brands quietly underperform. The most-studied campaigns of the last twenty years &mdash; Dove&rsquo;s <em>Real Beauty</em>, MasterCard&rsquo;s <em>Priceless</em>, Apple&rsquo;s <em>Think Different</em>, and the centerpiece here, Snickers&rsquo; <em>You&rsquo;re Not You When You&rsquo;re Hungry</em> &mdash; share a single structural feature. <strong>Each is the working-out of one strategic idea, in one sentence, across years of executions. Not a campaign theme. An <em>idea</em>, in the precise sense that it could be written down, defended against alternatives, and used to reject work that wasn&rsquo;t expressing it.</strong> The producing discipline runs through three artifacts: a creative brief, a customer insight, and a strategic articulation of the Big Idea itself.</p>
+
+  <div class="callout">
+    <div class="callout-label">The position in one sentence</div>
+    <p>A Big Idea is not a campaign theme, not a tagline, and not a creative execution. <strong>It is the one-sentence strategic kernel &mdash; built on a real customer insight</strong>, captured in a real creative brief &mdash; that the campaign and all of its tactics are expressions of, and that ought to outlast any single ad by years.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — THE CREATIVE BRIEF
+     ============================================================ -->
+<section class="section" id="brief">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The Document</div>
+  <h2>The Creative Brief: What It Is, What It Does</h2>
+
+  <p>The creative brief is the document that translates a marketing problem into a creative assignment. It is the contract between the people who own the business outcome and the people who will produce the work, and <strong>it is the single most under-rated artifact in the advertising process.</strong> When the brief is sharp, the resulting work tends to be better than the agency or team it came from. When the brief is fuzzy, the work is a series of expensive guesses, no matter how talented the people executing it.</p>
+
+  <p>The Association of National Advertisers&rsquo; <em>Better Creative Briefs</em> report named the gap directly: <strong>a majority of clients believed they were providing clear briefings; only about a quarter of agency respondents agreed. That gap is the upstream cause of most downstream waste in advertising spend.</strong></p>
+
+  <p>The ANA&rsquo;s &ldquo;must-have&rdquo; elements are reproduced below. Read them less as a template and more as the questions a brief is supposed to answer before the work begins. Most failed briefs fail not because a row is missing, but because two or three rows contain corporate language nobody could act on &mdash; &ldquo;drive engagement,&rdquo; &ldquo;reach the modern consumer,&rdquo; &ldquo;build the brand.&rdquo;</p>
+
+  <div class="brief-table">
+    <div class="brief-row">
+      <div class="brief-row-num">1</div>
+      <div class="brief-row-name">Basic problem or issue</div>
+      <div class="brief-row-desc">What is the communication actually being asked to solve? Not the business problem (sales are down) but the communication piece of it (people who would like this product haven&rsquo;t heard of it; people who&rsquo;ve heard of it don&rsquo;t know what to do next).</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">2</div>
+      <div class="brief-row-name">Communication objectives</div>
+      <div class="brief-row-desc">What does success look like in measurable terms &mdash; awareness lift, association built, attitude moved, action taken? A brief without measurable objectives produces work nobody can grade.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">3</div>
+      <div class="brief-row-name">Target audience</div>
+      <div class="brief-row-desc">Not a demographic. A person, described with enough texture that the creative team could write dialogue for them. Demographics are sampling frames; insights live one layer deeper.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">4 *</div>
+      <div class="brief-row-name">Insights to drive creative work</div>
+      <div class="brief-row-desc">The real tension or truth about the target&rsquo;s relationship with the category. The row most often missing or weakest. See &sect;02 for what a real insight looks like.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">5 *</div>
+      <div class="brief-row-name">Key benefit or major selling idea</div>
+      <div class="brief-row-desc">The single thing the message is supposed to communicate. Singular. If there are three, there are zero.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">6 *</div>
+      <div class="brief-row-name">Reason to believe</div>
+      <div class="brief-row-desc">Why the audience should believe the benefit claim. Proof, demonstration, authority, or distinctive product truth. Without it, the benefit is a wish.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">7</div>
+      <div class="brief-row-name">Tone and brand personality</div>
+      <div class="brief-row-desc">How the brand sounds when it speaks. Not adjectives &mdash; show, do not tell. Reference voices, not abstractions.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">8</div>
+      <div class="brief-row-name">Deliverables</div>
+      <div class="brief-row-desc">What is being made, in what format, by when. Channel-agnostic when possible; channels follow the idea, not the other way around.</div>
+    </div>
+    <div class="brief-row">
+      <div class="brief-row-num">9</div>
+      <div class="brief-row-name">Measures of success</div>
+      <div class="brief-row-desc">Tied back to row 2. Specified before the work ships, not after, so the agency and the client share a definition of what &ldquo;it worked&rdquo; means.</div>
+    </div>
+  </div>
+
+  <p style="font-size: 13.5px; color: var(--muted); margin-top: 10px; margin-bottom: 22px;"><strong style="color: var(--red);">* Rows 4, 5, and 6 are most closely related to the Big Idea.</strong> Row 4 is the customer insight the idea is built from; row 5 is the singular thing the idea has to communicate; row 6 is what makes the audience believe it. The other six rows scope the assignment. These three are where the strategic work actually happens.</p>
+
+  <p>The two rows where briefs most often go thin are rows 3 (target audience) and 4 (insight). Most briefs paste in a demographic profile and call row 3 done; most put a research bullet in row 4 and call the insight done. The rest of this piece is about why those two rows have to be earned, and what happens when they are.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — THE INSIGHT UNDERNEATH
+     ============================================================ -->
+<section class="section" id="insight">
+  <div class="sec-num">02</div>
+  <div class="sec-label">The Hardest Row</div>
+  <h2>The Insight Underneath the Idea</h2>
+
+  <p><strong>An insight is not a data point</strong> or a research finding. It is a true thing about how the target audience actually experiences the category &mdash; <strong>usually a tension, an unspoken belief, or a behavior that does not match the stated attitude &mdash; that, once stated, makes the audience feel seen.</strong> The test is that the person it describes nods rather than learns. If they would read it and say <em>huh, interesting</em>, it is research. If they would say <em><strong>that&rsquo;s me</strong></em>, it is an insight.</p>
+
+  <div class="callout">
+    <div class="callout-label">The common failure mode</div>
+    <p>This is the row briefs most often fake. A common pattern is to fill row 4 with a category fact (&ldquo;consumers are increasingly health-conscious&rdquo;), a media truism (&ldquo;Gen Z spends six hours a day on their phones&rdquo;), or a self-flattering description of the brand&rsquo;s own positioning (&ldquo;consumers want premium experiences&rdquo;). None of those is wrong. None of them is an insight either, because none describes a real internal experience the audience would recognize as theirs.</p>
+  </div>
+
+  <p>The Effie Awards treat insight as the bridge between business challenge and strategic idea. Entries that present rationally-stated facts and call them insights routinely score lower than ones grounded in an emotional truth supported by primary research. The grid below distills the working rules from Effie&rsquo;s tip sheet &mdash; not because Effie is the only authority, but because it is one of the few places where the criteria are written down explicitly.</p>
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-card-num">01 &middot; Support with primary research</div>
+      <div class="insight-card-text">The submission should be backed by at least two pieces of primary research. Research is what makes an insight defensible against the room&rsquo;s pet theories. Without it, the insight is whoever spoke loudest.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-num">02 &middot; Generate as a team</div>
+      <div class="insight-card-text">Brainstorm insights without critique. Start with a hypothesis about what the customer wants. Ask <em>why?</em> several times, going deeper. The first answer is rarely the insight; it is the surface. The fourth or fifth answer often is.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-num">03 &middot; Make the leap from facts to feelings</div>
+      <div class="insight-card-text">The best insights are emotional, not rational. Have empathy. Take the leap from what the data says to what the data <em>means</em> emotionally to the person living the category. Then go back and substantiate the leap with research.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-num">04 &middot; Relevant to both customer and brand</div>
+      <div class="insight-card-text">An insight that is true about the customer but disconnected from anything the brand can credibly say is a poem, not a strategy. The insight has to lead to something the product or brand has, can do, or stands for.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-num">05 &middot; Get to the truth about people</div>
+      <div class="insight-card-text">That&rsquo;s the insight. Compare it to the brand&rsquo;s issue and craft an idea that creates an emotional bond. The principle is <em>single-mindedness</em>: one insight, one strategic idea. Two of each is zero of each.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-num">06 &middot; Articulate the path you took</div>
+      <div class="insight-card-text">The way you tell the story of how you arrived at the insight matters as much as the insight itself. You are trying to get the room &mdash; or the judges &mdash; to say <em>a-ha</em>. <em>A-ha</em> is the acceptance test.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Worked example &mdash; from a category fact to a real insight</div>
+    <p><strong>Category fact:</strong> people get hungry, and hunger affects their mood.</p>
+    <p><strong>Surface insight:</strong> hungry people are irritable, so a candy bar that fills you up is desirable.</p>
+    <p><strong>Real insight:</strong> when you&rsquo;re hungry you become a worse, weaker, more dramatic version of yourself &mdash; a social embarrassment that you, and your friends, recognize the moment it&rsquo;s named.</p>
+    <p>The category fact is true and useless. The surface insight is a product claim. The real insight produced ten years of Snickers advertising. See &sect;05.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — ARTICULATING THE BIG IDEA
+     ============================================================ -->
+<section class="section" id="bigidea">
+  <div class="sec-num">03</div>
+  <div class="sec-label">The Discipline</div>
+  <h2>One Sentence, Twenty Words, Built to Last</h2>
+
+  <p><strong>A Big Idea has to be writable on an index card, or it isn&rsquo;t finished.</strong> The Effie competition imposes a hard rule: the strategic idea must be expressible in <em>one sentence, twenty words or less</em>. The constraint exists because <strong>anything longer is, in practice, several ideas pretending to be one &mdash; and several ideas, however compatible, produce executions that point in different directions over time.</strong> This puts stress on the brand.</p>
+
+  <p>Three working tests apply, in order. First: is it a sentence about the consumer&rsquo;s world, or a sentence about the brand? Big Ideas live on the consumer side. <em>Just Do It</em> is about what the runner wants to overcome, not about what Nike sells. Second: is it elastic enough to spawn dozens of executions across years, formats, and markets, or is it really just one ad? <em>The ultimate driving machine</em> has produced fifty years of BMW work; <em>Where&rsquo;s the beef?</em> expired in eight months. Third: would a competitor be unable to use it credibly? If a rival could swap in their logo and the line would still work, it is not yet an idea &mdash; it is a category claim.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">&ldquo;The major selling idea should emerge as the strongest singular thing you can say about your product or service&hellip; be certain you can live with it; be sure it stands strong enough to remain the central issue in every ad and commercial in the campaign.&rdquo;</div>
+    <div class="pullquote-attr">&mdash; A. Jerome Jeweler, <em>Creative Strategy in Advertising</em>, quoted in Belch &amp; Belch, Ch. 8</div>
+  </div>
+
+  <p>The phrase to underline is <em>be certain you can live with it</em>. A Big Idea is a multi-year commitment, not a quarter&rsquo;s creative concept. David Ogilvy estimated in his memoir that he had produced no more than twenty real Big Ideas in his entire career &mdash; less than one every two working years from the most successful adman of the twentieth century. The rest of us should be skeptical of any deck that claims to contain three.</p>
+
+  <p><strong>This is why the strongest brands tie Big Ideas to a <em>moment in time</em> for the brand &mdash; a positioning shift, a category challenge, a cultural inflection &mdash; and commit to that idea for a decade or more, even as executions evolve.</strong> <a href="gucci-luxury-sport.html">Gucci&rsquo;s shift from logomania to luxury sport</a>, walked through on the brand examples page, is a useful case: the same house, the same heritage, the same Big Idea family (a luxury brand that signals belonging through codes only the in-group reads), expressed through executions that look completely different in 2015 and 2025. The idea stayed; the surface adjusted. That is what enduring brand work looks like.</p>
+
+  <p><strong>The opposite move &mdash; replacing the strategic idea every twelve to eighteen months as agency relationships rotate &mdash; is endemic in mid-tier consumer brands, and it is one of the better explanations for why mid-tier brands so consistently underperform leaders.</strong> Each new idea spends its first year erasing the last one, and <strong>the brand never accumulates</strong> the recognition compounding a stable platform produces. The <a href="brand-vs-performance.html">60/40 brand-to-performance argument</a> is the budget-level version of this finding; the Big Idea is the creative-level version.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — STYLES OF BIG IDEAS
+     ============================================================ -->
+<section class="section" id="styles">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Four Patterns</div>
+  <h2>How Big Ideas Actually Get Built</h2>
+
+  <p>If Big Ideas are this hard to produce, it helps to know that the produced ones tend to fall into a handful of patterns. Belch&rsquo;s textbook treatment names four classic approaches, each associated with a specific agency tradition and a body of work the approach produced. They are not formulas, and the best ideas tend to combine two of them, but they are the right vocabulary for a room that is trying to figure out which kind of idea the brief is actually asking for.</p>
+
+  <div class="styles-list">
+
+    <div class="style-row">
+      <div class="style-name">Unique selling proposition (USP)</div>
+      <div class="style-desc">Rosser Reeves&rsquo;s approach: identify a single product attribute competitors cannot or do not claim, and hammer it. The ad must make a proposition, the proposition must be unique to the brand, and it must be strong enough to move the mass market. Works when a real product difference exists; falls apart in categories where rivals copy attribute claims within a season. <em>FedEx: when it absolutely, positively has to be there overnight.</em></div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">Brand image</div>
+      <div class="style-desc">David Ogilvy&rsquo;s approach: in functionally-similar categories, advertising&rsquo;s job is to build a distinct image and personality for the brand. Every ad contributes to the same accumulating symbol, usually by associating the brand with culturally-loaded imagery &mdash; Marlboro with the cowboy, Tory Burch with worldly femininity, Apple with creative independence. Most contemporary luxury advertising sits here.</div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">Inherent drama</div>
+      <div class="style-desc">Leo Burnett&rsquo;s approach: every brand has something intrinsically interesting about it; the creative team&rsquo;s job is to find that latent drama and bring it to life warmly. Burnett&rsquo;s shop produced <em>Tony the Tiger</em>, Marlboro country, McDonald&rsquo;s Americana work, and Ruavieja&rsquo;s &ldquo;Time We Have Left&rdquo; calculator &mdash; all built on a quiet truth the brand was uniquely positioned to dramatize.</div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">Positioning</div>
+      <div class="style-desc">Trout and Ries&rsquo;s approach: advertising&rsquo;s job is to occupy a defensible place in the consumer&rsquo;s mind relative to competitors. Crest owns <em>cavity prevention</em>; Volvo, for decades, owned <em>safety</em>. A brand can position on product attribute, usage occasion, user type, or competitive frame. Subway&rsquo;s 2021 <em>Eat Fresh Refresh</em> repositioning is a recent example of a brand doing this consciously to escape a stagnant identity.</div>
+    </div>
+
+  </div>
+
+  <p>Andrews&rsquo;s textbook adds two further patterns useful for digital and social work. <em>Resonance</em> finds counterparts in the audience&rsquo;s lived experience &mdash; Dove&rsquo;s <em>Real Beauty</em> is canonical, built on the gap between actual women&rsquo;s bodies and the impossible models who had populated beauty advertising. <em>Emotional</em> bypasses argument and works on feeling &mdash; insurance, foods, fragrances, and most automotive work sits here. Contemporary practice combines them. The Snickers campaign in &sect;05 is at once positioning, emotional, and resonant.</p>
+
+  <div class="meccas-side">
+    <div class="oa-sub">Optional &middot; Skip if you&rsquo;re not interested in the academic apparatus</div>
+    <h3>MECCAS and the means-end chain</h3>
+    <p>Andrews&rsquo;s textbook offers a formal framework for connecting a product attribute to an emotional payoff, called <em>MECCAS</em> &mdash; Means-End Conceptualization of Components for Advertising Strategy. The logic is simple. Consumers do not want the product attribute; they want the consequence the attribute produces, and underneath that, the value the consequence reinforces. The structure runs: <em>Attribute &rarr; Consequence &rarr; Value</em>. A BMW 7-Series has 445 horsepower (attribute), which produces a feeling of being uncatchable on the road (consequence), which reinforces the value of power and social prestige (value). The advertising&rsquo;s job is to move the viewer up that ladder.</p>
+    <p>The research technique that surfaces these chains is called <em>laddering</em>: a one-on-one interview where the researcher asks about a product attribute, then asks <em>why is that important to you?</em> repeatedly until the answer terminates in a value &mdash; security, achievement, hedonism, self-direction, power, belonging. The Tory Burch ad reaches for self-direction-as-style; the GSK whooping-cough ad reaches for security; the Home Depot DIY ad reaches for achievement. None names the value out loud. The Big Idea is the bridge from the attribute on the package to the value the audience is actually buying.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — SNICKERS, A DECADE
+     ============================================================ -->
+<section class="section" id="snickers">
+  <div class="sec-num">05</div>
+  <div class="sec-label">The Centerpiece</div>
+  <h2>Snickers: Ten Years of One Idea</h2>
+
+  <p>If you wanted a single case study to prove that a real Big Idea, held for a decade, outperforms a stream of clever quarterly content, the strongest one available is Mars Wrigley&rsquo;s <em>You&rsquo;re Not You When You&rsquo;re Hungry</em> campaign for Snickers. It launched at the Super Bowl in February 2010 with an irritable Betty White getting tackled in a backyard football game. It is still running, in 58 markets, more than fifteen years later, and it is one of the rare campaigns to win both creative and effectiveness awards consistently &mdash; <strong>meaning the juries that prize originality and the juries that demand business results both keep voting for it.</strong></p>
+
+  <div class="snickers-stats">
+    <div class="snickers-stat">
+      <div class="snickers-stat-val">+15.9%</div>
+      <div class="snickers-stat-lbl">global sales lift in year one of the campaign</div>
+    </div>
+    <div class="snickers-stat">
+      <div class="snickers-stat-val">58 markets</div>
+      <div class="snickers-stat-lbl">running localized versions of the same idea</div>
+    </div>
+    <div class="snickers-stat">
+      <div class="snickers-stat-val">47 Cannes Lions</div>
+      <div class="snickers-stat-lbl">across 14 categories and 6 countries in the first decade</div>
+    </div>
+  </div>
+
+  <p>Stephen Whiteside&rsquo;s assessment for WARC and Cannes Lions identified four structural reasons the campaign has kept working at this scale. The first is the strength of the underlying insight: hunger does not just make you crave food, it makes you behave like a worse version of yourself. The insight is universally true, instantly recognizable, and impossible for any other category to claim. Most candy advertising sells indulgence or treat-yourself permission. Snickers sells <em>restoration of self</em>, and the framing is so good that the brand effectively owns the territory.</p>
+
+  <p>The second is consistency. WARC&rsquo;s David Tiltman calls Snickers &ldquo;a rare example of a brand keeping a single creative platform in the market&rdquo; over the long term, and points to converging research: the Ehrenberg-Bass Institute on distinctive brand assets, System1 on fluent devices, and the Binet-and-Field finding that campaigns need to be in-market for at least six months before long-term brand effects begin to show. Snickers has done that and then some. When COVID-19 intensified short-termism, the brands that thrived were the ones that kept building &mdash; brand-led long-term work in post-2010-recession Cannes winners actually <em>increased</em> by 85%, a counterpoint to the panic-cut instinct recessions trigger.</p>
+
+  <p>The third is the global-with-local architecture. The campaign was built from the outset to have global resonance with local execution. The team operates under shared tone-of-voice guidelines &mdash; one of which is the lovely rule that <em>if you&rsquo;ve got to work at it, it&rsquo;s not down-to-earth enough</em> &mdash; while individual markets translate the idea into culturally-specific moments. Snickers in Australia tied real-time discounts to spikes in social-media anger. Snickers in China inserted itself into the brutal study run-up for the gaokao college-entrance exam. Snickers in Japan brought the platform into anime fandom. The Big Idea stays constant; the cultural touchpoint is local.</p>
+
+  <p>The fourth is the use of humor. There is good evidence, including from Kantar, that humor in advertising has declined sharply over the last twenty years &mdash; partly because purpose-led advertising crowded it out, and partly because global campaigns avoid humor on the (incorrect) theory that funny doesn&rsquo;t travel. Whiteside cites <em>The Effectiveness Code</em> finding that humor appears in roughly 24% of work producing a sales spike, a hit rate substantially higher than its share of overall advertising. Snickers has been funny since the Betty White tackle. The platform allowed each market to find <em>its</em> funny, which is the only honest way to make humor scale across cultures.</p>
+
+  <div class="callout">
+    <div class="callout-label">The Snickers Big Idea, written under the twenty-word rule</div>
+    <p><em>When you&rsquo;re hungry, you&rsquo;re not yourself &mdash; and a Snickers is the fastest way back.</em> (Fifteen words. Consumer-side. Elastic. Defensible.)</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — OTHER CLASSICS
+     ============================================================ -->
+<section class="section" id="classics">
+  <div class="sec-num">06</div>
+  <div class="sec-label">More Examples</div>
+  <h2>Other Big Ideas, in One Sentence Each</h2>
+
+  <p>The discipline of the twenty-word rule is easier to learn against examples. The five below sustained one idea for years or decades, won both creative and effectiveness awards, and can each be re-articulated as a single sentence about the consumer&rsquo;s world.</p>
+
+  <div class="styles-list">
+
+    <div class="style-row">
+      <div class="style-name">Nike &mdash; Just Do It</div>
+      <div class="style-desc">The thing standing between you and the workout you should be doing is not your body; it is the conversation in your head. Ignore it and start. <em>(Insight: every recreational athlete already has the will and the equipment. What they lack is the override.)</em></div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">Dove &mdash; Real Beauty</div>
+      <div class="style-desc">The women in beauty advertising are not real, you know they aren&rsquo;t real, and the gap between them and you is the actual product the category has been selling. <em>(Insight: the beauty category had become a self-loathing engine for the women it claimed to serve. Naming that was the idea.)</em></div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">MasterCard &mdash; Priceless</div>
+      <div class="style-desc">Almost everything you buy is a means to something the credit card cannot put a price on. We&rsquo;re the way you get to those moments. <em>(Insight: payment is invisible until it fails. The brand that owns the emotional uses of money owns the category at the brand level.)</em></div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">Old Spice &mdash; The Man Your Man Could Smell Like</div>
+      <div class="style-desc">Women buy most of the body wash in American households. So the message goes to women, about the man they wish they were dating. <em>(Insight: the purchaser and the user are different people, and the category had been talking to the wrong one for decades.)</em></div>
+    </div>
+
+    <div class="style-row">
+      <div class="style-name">Apple &mdash; Think Different</div>
+      <div class="style-desc">The people you admire most in the twentieth century did not fit in. If you buy a computer, buy the one their kind of person would buy. <em>(Insight: the personal computer was being sold as a productivity tool. Apple repositioned it as a tool of identity.)</em></div>
+    </div>
+
+  </div>
+
+  <p>What ties these together &mdash; and ties them to Snickers &mdash; is that every one is articulated from the consumer&rsquo;s point of view rather than the brand&rsquo;s, every one took the form of a stable idea executed many ways for many years, and every one would fail the swap test: change the logo and the line would not survive.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — ASHLEY ON THE BRIEF
+     ============================================================ -->
+<section class="section" id="ashley">
+  <div class="sec-num">07</div>
+  <div class="sec-label">Videos</div>
+  <h2>Ashley Rutstein on Briefs, Insights, and Big Ideas</h2>
+
+  <p>Ashley Rutstein&rsquo;s YouTube channel <em>Stuff About Advertising</em> is the most practical short-form resource currently available on the brief-to-Big-Idea workflow. The four videos below cover the territory we&rsquo;re working in here, each a useful complement to the textbook framing &mdash; she walks through real briefs, real strategic insights, and real Big Ideas with the working-practitioner voice you cannot get from a textbook chapter. Watch in order if you have time; pick the second if you only watch one.</p>
+
+  <div class="video-grid">
+
+    <div class="video-card">
+      <a href="https://youtu.be/FjR2mLYnyx0" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
+      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+      <div class="video-title"><a href="https://youtu.be/FjR2mLYnyx0" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Brief 101: From Brief to Big Idea (With Real Advertising Examples)</a></div>
+      <div class="video-note">Walks through a real creative brief and shows how the strategic idea emerges from it, using examples she&rsquo;s actually shipped. The closest video version of this section&rsquo;s &sect;01 and &sect;03 combined.</div>
+    </div>
+
+    <div class="video-card">
+      <a href="https://youtu.be/YA7hcZJf1MY" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
+      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+      <div class="video-title"><a href="https://youtu.be/YA7hcZJf1MY" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Strategic Insights Explained: What Creatives Actually Need to Know</a></div>
+      <div class="video-note">The video most worth watching if you only watch one. Explains the difference between a research finding and a real strategic insight, with the kind of plainspoken examples that make the distinction stick.</div>
+    </div>
+
+    <div class="video-card">
+      <a href="https://youtu.be/2rNcie1P8U0" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
+      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+      <div class="video-title"><a href="https://youtu.be/2rNcie1P8U0" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Where Do Strategic Insights Actually Come From? (Research Methods for Advertising)</a></div>
+      <div class="video-note">The research-methods piece &mdash; how to read survey data, ethnographic notes, and social-listening reports for the line that turns into the insight. Pairs cleanly with &sect;02 above.</div>
+    </div>
+
+    <div class="video-card">
+      <a href="https://youtu.be/vYNVhlFD7BM" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
+      <div class="video-presenter">Ashley Rutstein &middot; Stuff About Advertising</div>
+      <div class="video-title"><a href="https://youtu.be/vYNVhlFD7BM" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Strategic Insights: The Foundation of Every Great Ad Campaign</a></div>
+      <div class="video-note">A more foundational treatment of why the insight is the part of the brief that the rest of the work either lives or dies by. Useful as a recap once you&rsquo;ve watched the other three.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 8 — TWO MORE
+     ============================================================ -->
+<section class="section" id="julian">
+  <div class="sec-num">08</div>
+  <div class="sec-label">Videos</div>
+  <h2>Two More: A Working Frame and the Master&rsquo;s Voice</h2>
+
+  <p>Two more videos worth your fifteen minutes. The first is Julian Cole&rsquo;s seven-minute primer on what strategy actually is &mdash; useful as a sanity check once you&rsquo;ve worked through the textbook material. The second is David Ogilvy himself on Big Ideas, which is worth watching not because the working language has stayed unchanged since 1980, but because hearing him define the artifact in his own voice anchors what the rest of the industry has been arguing about ever since.</p>
+
+  <div class="video-grid">
+
+    <div class="video-card">
+      <a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
+      <div class="video-presenter">Julian Cole &middot; Planning Dirty</div>
+      <div class="video-title"><a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">Creative Strategy for Beginners (Learn in 7 Minutes)</a></div>
+      <div class="video-note">Julian&rsquo;s short, brisk explainer of where strategy fits in the workflow and how to tell a strategic idea from a creative execution &mdash; the distinction this whole piece is built around. Watch this one second; it lands faster after you&rsquo;ve seen Ashley.</div>
+    </div>
+
+    <div class="video-card">
+      <a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener" class="video-placeholder" style="text-decoration:none; color:var(--red); background:var(--red-soft); border-color:var(--red); font-weight:600;">&#9658;&nbsp;&nbsp;WATCH ON YOUTUBE</a>
+      <div class="video-presenter">Archive footage &middot; David Ogilvy</div>
+      <div class="video-title"><a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">David Ogilvy &mdash; Big Ideas</a></div>
+      <div class="video-note">Ogilvy in his own voice on what a Big Idea is, how rare they are, and the cost of running campaigns without one. The twenty-Big-Ideas-in-a-career claim quoted in &sect;03 is from this lineage of writing and lectures.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 9 — AI AS A PARTNER
+     ============================================================ -->
+<section class="section" id="ai">
+  <div class="sec-num">09</div>
+  <div class="sec-label">A Modern Note</div>
+  <h2>Can AI Generate a Big Idea?</h2>
+
+  <p>It would be incomplete in 2026 to talk about Big Ideas without naming the question every student is already thinking. The honest short answer: large language models are useful in two of the three stages of this work, and unreliable in the one that matters most.</p>
+
+  <p>They help on the wings. AI is a strong partner for brief-writing &mdash; summarizing research, drafting target-audience descriptions, generating alternative phrasings, surfacing language patterns from a category. It is also strong for execution &mdash; the dozens of headlines a campaign needs once the Big Idea is set, alternative scripts, testing variants. The bottleneck in both stages is volume, and volume is what these models do.</p>
+
+  <p><strong>The place where they are unreliable is the middle stage &mdash; the move from <em>insight</em> to <em>strategic idea</em>.</strong> The reason is structural rather than technical, and unlikely to be resolved by larger models. A real insight is a true thing about how a particular audience experiences a particular category; the language model has access to what people have <em>written</em> about the category, which is not the same thing and is heavily biased toward the conventional wisdom the insight is supposed to disrupt. <strong>Ask a model for the insight underneath Snickers and you will get a paragraph about hunger affecting mood &mdash; the surface insight. The real insight that produced the campaign was not in the existing literature when the campaign was made.</strong> That was the point. Working summary: use AI on the wings of the workflow, not at the strategic center.</p>
+</section>
+
+
+<!-- ============================================================
+     TAKEAWAY
+     ============================================================ -->
+<section class="section" id="takeaway">
+  <div class="sec-label">Summary</div>
+  <h2>The Argument, in Five Lines</h2>
+
+  <div class="takeaway">
+    <div class="takeaway-label">If you remember nothing else</div>
+    <ul>
+      <li>A Big Idea is not a campaign theme or a tagline. It is the one-sentence strategic kernel that the campaign is an expression of.</li>
+      <li>The brief is the artifact that produces it. The two rows that matter most are <em>target audience</em> and <em>insight</em>. Most briefs fake both.</li>
+      <li>An insight is a true thing about how the audience experiences the category. The test is not <em>huh, interesting</em>. The test is <em>that&rsquo;s me</em>.</li>
+      <li>The strategic idea is twenty words or less, on the consumer&rsquo;s side, defensible against competitors, and built to last more than a year.</li>
+      <li>The Snickers campaign is the cleanest available proof that this discipline pays. A decade. 58 markets. Both creative and effectiveness awards.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="creative-2-brainstorming.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#2 &mdash; Brainstorming Basics</span>
+    <span class="unit-nav-tease">The controlled daydream, the two traps, the four hats, and the case for treating brainstorming as a craft with stages.</span>
+  </a>
+  <a href="creative-4-appeals-execution.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#4 &mdash; Appeals &amp; Execution</span>
+    <span class="unit-nav-tease">Once you have the Big Idea: the taxonomy of appeals, execution styles, and endorsers &mdash; when they earn their fee and when they don&rsquo;t.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>Big Idea</em></strong> &mdash; the single strategic thought that a multi-year campaign is the expression of. Distinct from a campaign theme (the surface running thread), a tagline (the verbal compression), and an execution (any one ad).</p>
+    <p><strong><em>Creative brief</em></strong> &mdash; the document that turns a marketing problem into a creative assignment. ANA&rsquo;s &ldquo;must-have&rdquo; elements are the nine rows in &sect;01.</p>
+    <p><strong><em>Insight</em></strong> &mdash; a true thing about how the target audience experiences the category, usually a tension or unspoken belief, that makes them nod rather than learn. The hardest row in the brief.</p>
+    <p><strong><em>Strategic idea</em></strong> &mdash; the bridge from insight to creative. The Effie discipline: one sentence, twenty words or less, single-minded.</p>
+    <p><strong><em>Major selling idea</em></strong> &mdash; Belch&rsquo;s term for the same artifact a planner would call the strategic idea or Big Idea. The central thought the entire campaign is built to communicate.</p>
+    <p><strong><em>Unique selling proposition (USP)</em></strong> &mdash; Rosser Reeves&rsquo;s approach: a proposition that is unique to the brand and strong enough to move the mass market. Works best when a real product difference exists.</p>
+    <p><strong><em>Brand image</em></strong> &mdash; David Ogilvy&rsquo;s approach: in functionally-similar categories, the ad&rsquo;s job is to contribute to an accumulating symbol of brand personality, usually by association with culturally-loaded imagery.</p>
+    <p><strong><em>Inherent drama</em></strong> &mdash; Leo Burnett&rsquo;s approach: every brand has a quiet truth that is intrinsically interesting; the creative team&rsquo;s job is to find it and dramatize it warmly.</p>
+    <p><strong><em>Positioning</em></strong> &mdash; Trout and Ries&rsquo;s approach: the place the brand occupies in the consumer&rsquo;s mind relative to competitors, on an attribute, usage occasion, user type, or competitive frame.</p>
+    <p><strong><em>Resonance / emotional styles</em></strong> &mdash; Andrews&rsquo;s extensions: resonance patterns the audience&rsquo;s actual lived experience (Dove); emotional advertising bypasses argument and works on feeling. Both common in contemporary work.</p>
+    <p><strong><em>MECCAS</em></strong> &mdash; means-end conceptualization of components for advertising strategy. The framework that connects a product attribute (means) to a consumer value (end) through the intermediate consequence the attribute produces.</p>
+    <p><strong><em>Laddering</em></strong> &mdash; the research method that surfaces the attribute-consequence-value chain, by asking <em>why is that important to you?</em> repeatedly until the answer terminates in a value.</p>
+    <p><strong><em>Distinctive brand assets</em></strong> &mdash; Ehrenberg-Bass&rsquo;s framing for taglines, colors, characters, sounds, and visual codes that consumers instinctively associate with a brand. The compounding logic that makes long-running campaigns increasingly efficient.</p>
+    <p><strong><em>Fluent device</em></strong> &mdash; System1&rsquo;s term for a recurring character or concept that runs ad to ad, easing audience recognition. The Geico gecko, Progressive&rsquo;s Flo, Allstate&rsquo;s Mayhem.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Textbook anchors and the Whiteside / WARC Snickers article lead. Effie material follows. Supporting research is listed at the end.</p>
+
+  <div class="references">
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <em>Advertising and promotion: An integrated marketing communications perspective</em> (13th ed., Chapter 8: Creative Strategy &mdash; Planning and Development, pp. 275&ndash;287). McGraw Hill.</p>
+    <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <em>Advertising, promotion, and other aspects of integrated marketing communications</em> (10th ed., Chapter 10: Effective and Creative Ad Messages, pp. 211&ndash;224). Cengage Learning.</p>
+    <p class="ref">Whiteside, S. (2020, October 29). <a href="https://www.warc.com/newsandopinion/opinion/effectiveness-insights-from-ten-years-of-snickers-youre-not-you-when-youre-hungry/en-gb/4179" target="_blank" rel="noopener">Effectiveness insights from ten years of Snickers&rsquo; &ldquo;You&rsquo;re not you when you&rsquo;re hungry&rdquo;</a>. <em>WARC</em>.</p>
+    <p class="ref">Hurman, J., &amp; Field, P. (2020). <em>The effectiveness code</em>. Cannes Lions and WARC. The six-stage Creative Effectiveness Ladder framework cited in &sect;05.</p>
+    <p class="ref">Effie Worldwide. (n.d.). <em>Brand Builder 101: Effie Collegiate program curriculum</em>. Effie Awards. Source of the insight-and-strategic-idea tip sheet and the one-sentence twenty-word rule used in &sect;02 and &sect;03.</p>
+    <p class="ref">Association of National Advertisers. (2018). <em>Better creative briefs</em>. ANA. Source of the nine &ldquo;must-have&rdquo; brief elements in &sect;01.</p>
+    <p class="ref">Reeves, R. (1961). <em>Reality in advertising</em>. Knopf. The original USP framework cited in &sect;04.</p>
+    <p class="ref">Ogilvy, D. (1963). <em>Confessions of an advertising man</em>. Atheneum. The brand image framework and the Big-Ideas-per-career observation cited in &sect;03 and &sect;04.</p>
+    <p class="ref">Trout, J., &amp; Ries, A. (1981). <em>Positioning: The battle for your mind</em>. McGraw-Hill. The positioning framework cited in &sect;04.</p>
+    <p class="ref">Sharp, B. (2010). <em>How brands grow: What marketers don&rsquo;t know</em>. Oxford University Press. Ehrenberg-Bass Institute&rsquo;s framework on distinctive brand assets cited in &sect;05.</p>
+    <p class="ref">Binet, L., &amp; Field, P. (2013). <em>The long and the short of it: Balancing short and long-term marketing strategies</em>. IPA. The six-month threshold and the 60/40 finding referenced in &sect;03 and &sect;05.</p>
+    <p class="ref">Kover, A. J. (1995). Copywriters&rsquo; implicit theories of communication: An exploration. <em>Journal of Consumer Research, 21</em>(4), 596&ndash;611. Source of the &ldquo;break through clutter and deliver a message&rdquo; framing for Big Ideas.</p>
+    <p class="ref">Rossiter, J. R., &amp; Bellman, S. (2005). <em>Marketing communications: Theory and applications</em>. Pearson. Source of the &ldquo;key benefit claim&rdquo; treatment.</p>
+    <p class="ref">Reynolds, T. J., &amp; Gutman, J. (1984). Advertising is image management. <em>Journal of Advertising Research, 24</em>(1), 27&ndash;36. The original MECCAS paper cited in the &sect;04 sidebar.</p>
+    <p class="ref">Rutstein, A. (n.d.). <a href="https://www.youtube.com/@StuffAboutAdvertising/videos" target="_blank" rel="noopener"><em>Stuff About Advertising</em></a> [YouTube channel]. Source for the four practitioner videos in &sect;07.</p>
+    <p class="ref">Cole, J. (2023). <a href="https://youtu.be/_VtCIjVVU2s" target="_blank" rel="noopener"><em>Creative strategy for beginners (Learn in 7 minutes)</em></a> [Video]. Planning Dirty. The seven-minute strategy primer cited in &sect;08.</p>
+    <p class="ref">Ogilvy, D. (n.d.). <a href="https://youtu.be/-yvRNp-XtCE" target="_blank" rel="noopener"><em>David Ogilvy on Big Ideas</em></a> [Archive video]. YouTube. The archival lecture used in &sect;08.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     END OF MAIN CONTENT
+     ============================================================ -->
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>

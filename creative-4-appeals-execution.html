@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>#4 &mdash; Appeals &amp; Execution: The Taxonomy and the Craft &mdash; cbmatthe</title>
+<meta name="description" content="The taxonomy of advertising appeals and execution styles, the underlying psychology of endorser influence, and the negative-emotion appeals (fear, guilt, sex) and music that don't get their own dedicated piece elsewhere in this section.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Creative #4 ---- */
+
+  /* Two-column comparison grid — used for rational vs emotional split. */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 22px 0 14px;
+  }
+  .compare-col {
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 20px 20px 18px;
+  }
+  .compare-col.is-blue { border-top-color: var(--blue); }
+  .compare-col.is-red { border-top-color: var(--red); }
+  .compare-col h4 {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+    margin: 0 0 10px;
+  }
+  .compare-col p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .compare-col p:last-child { margin-bottom: 0; }
+  @media (max-width: 720px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Subtype list — small entries with a label and a one-paragraph case. */
+  .subtype-list .subtype-row {
+    padding: 16px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+  }
+  .subtype-list .subtype-row:last-child { border-bottom: none; }
+  .subtype-list .subtype-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+  .subtype-list .subtype-desc {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .subtype-list .subtype-desc em.note {
+    color: var(--blue);
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+    font-size: 13.5px;
+  }
+
+  /* Execution-styles three-column grid — twelve cells, three across. */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 22px 0 14px;
+  }
+  .exec-card {
+    background: var(--cream);
+    padding: 16px 16px 16px;
+    border-left: 3px solid var(--blue);
+  }
+  .exec-card-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .exec-card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 900px) {
+    .exec-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .exec-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Kelman source-model table — three source attributes, three processes. */
+  .kelman-table {
+    margin: 22px 0 14px;
+    border-top: 2px solid var(--ink);
+  }
+  .kelman-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 0.5px solid var(--cream-deep);
+    align-items: baseline;
+  }
+  .kelman-row.header {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--red);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--ink);
+  }
+  .kelman-attr {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+  }
+  .kelman-process,
+  .kelman-result {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .kelman-row { grid-template-columns: 1fr; }
+    .kelman-row.header { display: none; }
+    .kelman-attr { font-size: 18px; margin-bottom: 4px; }
+    .kelman-process::before { content: 'Process: '; font-family: var(--serif); font-weight: 700; color: var(--blue); }
+    .kelman-result::before { content: 'Result: '; font-family: var(--serif); font-weight: 700; color: var(--blue); }
+  }
+
+  /* Negative-appeals three-stack — fear, guilt, sex side-by-side. */
+  .neg-stack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 22px 0 14px;
+  }
+  .neg-cell {
+    background: var(--white);
+    border-top: 3px solid var(--red);
+    padding: 18px 18px 18px;
+  }
+  .neg-cell-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .neg-cell-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .neg-cell-desc p { margin-bottom: 8px; }
+  .neg-cell-desc p:last-child { margin-bottom: 0; }
+  @media (max-width: 720px) {
+    .neg-stack { grid-template-columns: 1fr; }
+  }
+
+  /* Forward-pointer block — used in endorsers section to hand off to the
+     future social media / influencers piece. Distinct from .callout so a
+     reader scanning the page can spot the "see elsewhere" signal. */
+  .fwd-pointer {
+    background: var(--cream);
+    border-left: 4px solid var(--blue);
+    padding: 18px 22px;
+    margin: 22px 0 14px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .fwd-pointer .fwd-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .fwd-pointer strong { color: var(--ink); }
+
+  /* Subaru-style 2x2 video grid — YouTube thumbnails as clickable tiles
+     opening the video in a new tab on YouTube. Pattern lifted from the
+     Domino's "Pizza Turnaround" treatment in Unit 4C and adapted for a
+     2x2 layout where each tile carries its own thumbnail, year/length
+     meta, title, and one-line editorial frame. */
+  .video-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0 20px;
+  }
+  .video-tile {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    transition: border-color 0.15s ease;
+  }
+  .video-tile:hover { border-color: var(--red); }
+  .video-tile-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .video-tile-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .video-tile-thumb::after {
+    content: '\25B6';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    padding-left: 4px;
+    transition: background 0.15s ease;
+  }
+  .video-tile:hover .video-tile-thumb::after { background: var(--red); }
+  .video-tile-body {
+    padding: 14px 16px 16px;
+  }
+  .video-tile-meta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .video-tile-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .video-tile-frame {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .video-tile-cta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    font-weight: 600;
+  }
+  .video-tile:hover .video-tile-cta { color: var(--ink); }
+  @media (max-width: 720px) {
+    .video-2x2 { grid-template-columns: 1fr; }
+  }
+
+  /* Video lightbox modal — opens when a .video-tile is clicked and plays
+     the embedded YouTube or Vimeo video inside the page without losing
+     the reader's context. Progressive enhancement: if the JS at the
+     bottom of the page fails or never runs, the tile's href falls back
+     to opening the video on YouTube / Vimeo in a new tab. */
+  .video-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 14, 0.92);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+  }
+  .video-lightbox.open { display: flex; }
+  .video-lightbox-stage {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+  .video-lightbox-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  }
+  .video-lightbox-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .video-lightbox-close {
+    position: absolute;
+    top: -52px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+    z-index: 2;
+  }
+  .video-lightbox-close:hover { background: var(--red); }
+  @media (max-width: 720px) {
+    .video-lightbox { padding: 2vw; }
+    .video-lightbox-close { top: -44px; width: 36px; height: 36px; }
+  }
+
+  /* Glossary tightening — match creative #3 */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+
+  /* Unit nav lives in assets/styles.css. */
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Creative &middot; #4</div>
+    <h1>Appeals &amp; Execution: The Taxonomy and the Craft</h1>
+    <p class="lede">A Big Idea written on an index card is not yet an ad. Between the idea and the work the audience actually sees sit two enormous decisions: the <em>appeal</em> &mdash; the lever the message will pull in the consumer&rsquo;s head &mdash; and the <em>execution</em> &mdash; the format and craft through which that lever gets pulled. Both decisions are usually treated as templates the strategist picks from a list. <strong>Both are, in fact, where most strategies live or die.</strong></p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#appeal">Rational vs. Emotional</a>
+    <a href="#rational">Rational Subtypes</a>
+    <a href="#emotional">Emotional &amp; Variants</a>
+    <a href="#execution">Execution Styles</a>
+    <a href="#endorsers">Endorsers</a>
+    <a href="#negative">Fear, Guilt, Sex</a>
+    <a href="#music">Music</a>
+    <a href="#comparative">Comparative</a>
+    <a href="#subliminal">Subliminal</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Argument</h2>
+
+  <p>The position to argue against here is what we&rsquo;ll call the <em>appeal-as-template school</em>: the view that there is, for each category, a right appeal to use &mdash; insurance gets fear, beer gets humor, luxury gets aspiration, financial services gets trust, fast food gets price-and-value &mdash; and the strategist&rsquo;s job is to identify the matching template and ship the work. This view is appealing because it is teachable, it makes media-mix decisions easier, and it generates a steady stream of competently-built campaigns that nobody can argue with. It also produces a category of advertising that all looks alike, all sells the same things in the same registers, and all underperforms what the brand could have done if it had been willing to choose differently.</p>
+
+  <p>The honest picture is the opposite. <strong>The appeal choice is the strategic decision, not a category default.</strong> A Big Idea articulated as <em>restore the customer&rsquo;s sense of self</em> can be executed as a fear appeal (look what happens when you don&rsquo;t), an emotional appeal (here is what restoration feels like), a humor appeal (here is the comic disaster of the unrestored self), or a comparative appeal (our product restores; theirs doesn&rsquo;t). Each of those choices commits the brand to a different relationship with the audience, a different reading of the category, and a different set of executions over the next three to five years. <strong>The template would say <em>candy bar = humor</em> and stop there. Snickers, working inside the candy-bar category, chose <em>humor about a real human truth</em> and built ten years of category-defining work on a non-template choice.</strong> The category did not dictate the appeal. The strategists did, and the strategists could have chosen otherwise.</p>
+
+  <p>This piece walks the taxonomy &mdash; appeals (rational, emotional, hybrid), execution styles (twelve of them), the endorser apparatus through the underlying Kelman psychology, the negative-emotion appeals (fear, guilt, sex), the role of music, the case for and against comparative advertising, and a short aside on the persistent myth of subliminal influence. The print, television, and digital production-craft layers, and the client-side evaluation checklist, are treated in later pieces in this section.</p>
+
+  <div class="callout">
+    <div class="callout-label">The position in one sentence</div>
+    <p>The appeal-and-execution layer is not a template applied to a finished strategy. <strong>It is the strategy in its operative form</strong> &mdash; the choice that determines what the audience actually feels, remembers, and does &mdash; and the strategist&rsquo;s job is to make the choice on the merits of the brand and the audience, not on the conventions of the category.</p>
+  </div>
+</section>
+
+<!-- INSERT POINT: Deck of Brilliance problem-vs-solution block with video links -->
+
+
+<!-- ============================================================
+     SECTION 1 — RATIONAL vs EMOTIONAL
+     ============================================================ -->
+<section class="section" id="appeal">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The First Lever</div>
+  <h2>Rational vs. Emotional: What the Evidence Actually Says</h2>
+
+  <p>Advertising appeals fall into two broad families, and almost every textbook treatment opens with the split. <em>Rational</em> appeals address the audience&rsquo;s practical, functional, or utilitarian need for the product: features, benefits, performance claims, reasons to buy. <em>Emotional</em> appeals address the audience&rsquo;s social and psychological needs: how the purchase feels, what it signals, what it transforms, what it relieves. Belch lists five subtypes under the rational umbrella (feature, competitive advantage, price, news, popularity) and a much longer list under the emotional one (safety, love, pride, nostalgia, pleasure, status, belonging, and so on). Most introductory treatments stop there and ask the student to match appeals to product categories.</p>
+
+  <p>The introductory treatment is incomplete because it obscures the most important finding in the literature. <strong>Hamish Pringle and Peter Field analyzed 880 case studies of award-winning UK and international campaigns and found that campaigns with purely emotional content were nearly twice as likely to generate large profit gains as campaigns using only rational content &mdash; and, crucially, also outperformed campaigns that mixed the two.</strong> Emotional-only campaigns also reduced price sensitivity and held up better during recessions. The Binet-and-Field follow-up work has consistently produced the same pattern: brand-building (which is overwhelmingly emotional) drives long-term sales, while rational sales activation drives short-term response &mdash; and the long-term effect, when measured honestly, is roughly four times larger.</p>
+
+  <div class="compare-grid">
+    <div class="compare-col is-blue">
+      <h4>Rational appeals work best when&hellip;</h4>
+      <p>The product has a real, defensible, demonstrable difference in performance, price, or feature set &mdash; and the audience is in active research mode (high involvement, considered purchase, business-to-business).</p>
+      <p>The buyer has to justify the purchase to someone else &mdash; a spouse, a finance committee, a procurement officer. Rational copy gives them the language.</p>
+      <p>The category itself is technical or risk-laden &mdash; insurance, medical devices, industrial equipment &mdash; and credibility flows from evidence rather than feeling.</p>
+    </div>
+    <div class="compare-col is-red">
+      <h4>Emotional appeals work best when&hellip;</h4>
+      <p>The product is functionally similar to its competitors &mdash; which describes most consumer-packaged-goods categories, most financial services, and most fashion-and-beauty work.</p>
+      <p>The brand needs to be remembered between purchase occasions &mdash; which describes almost every category. Emotional ads are better remembered than rational ones, with effect sizes that are no longer in dispute.</p>
+      <p>The buyer is the user &mdash; or the buyer is making the purchase on behalf of an emotional relationship (gift, parenting, household provision).</p>
+    </div>
+  </div>
+
+  <p>The interesting and underappreciated case is the hybrid. <strong>Subaru&rsquo;s &ldquo;Love&rdquo; campaign &mdash; the longest-running and most studied automotive emotional platform in the modern era &mdash; was launched in 2007 after a decade of rational-feature advertising failed to grow the brand.</strong> Subaru had been hammering the rational subset for years: safety, all-wheel drive, dependability, value. The ads were competent and the sales were flat. Research into existing Subaru owners turned up the unexpected datum: owners did not talk about their cars the way Subaru had been talking about them. They talked about love. The campaign rebuild &mdash; same product attributes, same target safety messaging, same all-wheel-drive proof points &mdash; reframed the rational content inside an emotional envelope: <em>Love. It&rsquo;s what makes a Subaru a Subaru.</em> The result was thirteen consecutive years of record sales and the &ldquo;Share the Love&rdquo; year-end donation event that has since contributed more than $200 million to charity.</p>
+
+  <p>The campaign, in four spots across sixteen years &mdash; same Big Idea, different executions of it:</p>
+
+  <div class="video-2x2">
+
+    <a href="https://www.youtube.com/watch?v=6atL-n0WhbA" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/6atL-n0WhbA/hqdefault.jpg" alt="Subaru Share the Love &amp; Big Brothers Big Sisters">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">2010 &middot; 30s</div>
+        <div class="video-tile-title">Share the Love &middot; Big Brothers Big Sisters</div>
+        <div class="video-tile-frame">Watch &middot; year three, the platform becomes a giving program.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=SoIisKmjq08" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/SoIisKmjq08/hqdefault.jpg" alt="Subaru LOVE — Cutting the Cord">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">2014 &middot; 30s</div>
+        <div class="video-tile-title">Cutting the Cord</div>
+        <div class="video-tile-frame">Watch &middot; the kid leaves for college, and the Subaru stays.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=lmEkuACGSvk" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/lmEkuACGSvk/hqdefault.jpg" alt="Subaru LOVE — Making Memories (Extended)">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">2017 &middot; 60s</div>
+        <div class="video-tile-title">Making Memories (Extended)</div>
+        <div class="video-tile-frame">Watch &middot; sixty seconds of what the rational ads couldn&rsquo;t say.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=gnyilFSoMXA" target="_blank" rel="noopener" class="video-tile">
+      <div class="video-tile-thumb">
+        <img src="https://img.youtube.com/vi/gnyilFSoMXA/hqdefault.jpg" alt="Subaru Loves to Care">
+      </div>
+      <div class="video-tile-body">
+        <div class="video-tile-meta">2026 &middot; 30s</div>
+        <div class="video-tile-title">Loves to Care</div>
+        <div class="video-tile-frame">Watch &middot; nineteen years in, the platform still running.</div>
+        <div class="video-tile-cta">Watch on YouTube &rarr;</div>
+      </div>
+    </a>
+
+  </div>
+
+  <p>The lesson is not that emotional always beats rational. The lesson is that the rational content is almost never the appeal &mdash; it is the proof. The appeal is the feeling the proof is in service of. Subaru did not stop selling all-wheel drive in 2007; it stopped selling all-wheel drive <em>as the point</em>. <strong>The point became what all-wheel drive allowed the customer to feel: that the company they had given $35,000 to was on their side when they sent their kid off to college, drove their family through a storm, or handed the car down a generation.</strong> This is the move most rational-first brand managers have not learned to make.</p>
+
+  <div class="callout">
+    <div class="callout-label">A working test for the brief room</div>
+    <p>When the team has settled on a rational appeal, ask: <em>could a competitor make the same claim with equal credibility?</em> If yes, the appeal is a category claim, not a brand claim &mdash; and the brand is competing on attention rather than on meaning. The fix is usually to re-anchor the appeal in the emotional consequence the rational attribute produces, then run the rational evidence underneath it as proof. Subaru&rsquo;s safety becomes love. Volvo&rsquo;s engineering becomes parental responsibility. Apple&rsquo;s build quality becomes craft as identity. The rational survives; it just stops trying to be the point.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — RATIONAL SUBTYPES
+     ============================================================ -->
+<section class="section" id="rational">
+  <div class="sec-num">02</div>
+  <div class="sec-label">The Family of Five</div>
+  <h2>Rational Subtypes &mdash; and When Each Earns Its Fee</h2>
+
+  <p>Belch&rsquo;s five rational subtypes are not interchangeable. Each has a specific use, and the recurring mistake in client-side approval is to accept any rational appeal as <em>fine</em> without asking which of the five is actually doing the work.</p>
+
+  <div class="subtype-list">
+
+    <div class="subtype-row">
+      <div class="subtype-name">Feature appeal</div>
+      <div class="subtype-desc">Dominant attributes of the product are presented as the case for purchase. Lists specifications, capabilities, ingredients. Works best for technical or high-involvement categories where the buyer is actively comparing &mdash; cars, electronics, business-to-business equipment, financial products. American Express&rsquo;s Blue Cash Everyday Card ads listing where you get 3% back vs 2% back vs 1% back are the textbook example. <em class="note">Risk: in low-involvement categories, feature copy gets ignored. The reader skims; the features blur.</em></div>
+    </div>
+
+    <div class="subtype-row">
+      <div class="subtype-name">Competitive advantage</div>
+      <div class="subtype-desc">Direct or indirect comparison against a named or implied rival, claiming superiority on a specific attribute. The Pepsi-vs-Coke fist-punch ad and the Geico-vs-the-other-guy three-apples-versus-a-slice ad both live here. Treated at length in &sect;08 (comparative advertising). <em class="note">Earns its fee when a challenger brand has a real, demonstrable advantage; backfires when the comparison gives the leader free attention.</em></div>
+    </div>
+
+    <div class="subtype-row">
+      <div class="subtype-name">Favorable price</div>
+      <div class="subtype-desc">The price offer is the dominant message element. Retailer sale ads, fast-food value menus, airline fare campaigns. Southwest&rsquo;s &ldquo;Wanna Get Away&rdquo; family is a long-running national example. Effective for price-sensitive segments and during economic downturns. <em class="note">Hazard: chronic price advertising trains the audience to wait for the discount and erodes the price the brand can command at full margin.</em></div>
+    </div>
+
+    <div class="subtype-row">
+      <div class="subtype-name">News appeal</div>
+      <div class="subtype-desc">An announcement &mdash; a product launch, a meaningful feature upgrade, a new service area, a milestone &mdash; carries the message. Works best when the news is genuinely new and meaningful to the target. Airlines announcing new routes; consumer-electronics brands announcing model refreshes. <em class="note">The graveyard category: news appeals applied to non-news. A product re-skin with a press release attached is not news. Most rational copy framed as news is really feature copy in a worse outfit.</em></div>
+    </div>
+
+    <div class="subtype-row">
+      <div class="subtype-name">Product/service popularity</div>
+      <div class="subtype-desc">The bandwagon. Number of customers, market-share claim, expert endorsements, leadership position. Titleist&rsquo;s &ldquo;#1 ball in golf&rdquo; positioning is the canonical case &mdash; the popularity of the brand among tour professionals does most of the persuasive work for the amateur golfer. <em class="note">Most defensible when the claim is verifiable and the leadership is durable. Loses force when used by brands that aren&rsquo;t actually leading, since the audience reads the implicit comparison.</em></div>
+    </div>
+
+  </div>
+
+  <p>The selection question that matters in the room is not <em>which rational appeal?</em> It is <em>what is the audience&rsquo;s relationship to the category at the moment the ad lands?</em> A buyer in active research mode rewards feature copy and ignores feeling. A buyer in passive recognition mode &mdash; the much larger group, statistically &mdash; rewards distinctive emotional cues and ignores feature copy. <strong>Most rational appeals fail because the brand assumed the audience was in research mode when they were in recognition mode.</strong> The corrective is a question worth asking out loud in any creative review: <em>at the moment this ad reaches the target, is the target shopping, or are they doing something else and we are interrupting?</em> The answer changes which subtype, if any, is the right call.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — EMOTIONAL APPEALS & VARIANTS
+     ============================================================ -->
+<section class="section" id="emotional">
+  <div class="sec-num">03</div>
+  <div class="sec-label">The Larger Family</div>
+  <h2>Emotional Appeals &mdash; and the Three Useful Cousins</h2>
+
+  <p>Emotional appeals span a much wider territory than the rational five, partly because every distinct human feeling is an available lever and partly because the same feeling can be addressed in different registers &mdash; aspirational, defensive, nostalgic, reparative. Belch&rsquo;s textbook lists more than twenty named feelings spanning personal states (safety, joy, nostalgia, pride) and social states (status, belonging, embarrassment, acceptance). The taxonomy is less important than the underlying mechanism, which is that <strong>an emotional appeal works by establishing the consumption of the brand as the resolution &mdash; or the avoidance &mdash; of a feeling the audience already has.</strong></p>
+
+  <p>The three variants worth naming explicitly, because each describes a working pattern that recurs across categories and is regularly miscategorized as a separate &ldquo;style,&rdquo; are transformational ads, reminder ads, and teaser ads. None is technically an appeal in the rational/emotional sense; each is a strategic posture an emotional appeal can adopt. Knowing the names helps the room recognize what the work is actually trying to do.</p>
+
+  <h3>Transformational ads</h3>
+  <p>The term comes from Christopher Puto and William Wells. A transformational ad is one that &ldquo;associates the experience of using the brand with a unique set of psychological characteristics which would not typically be associated with the brand experience to the same degree without exposure to the advertisement.&rdquo; In plain English: <strong>the ad teaches the audience how to feel about the consumption of the product, so that when they consume it they feel that way.</strong> Vrbo&rsquo;s &ldquo;Only Your People&rdquo; campaign is built almost entirely on transformational logic &mdash; the ad is not about the rental platform; it is about what a vacation home <em>feels</em> like once you understand the platform exists. Travel, luxury, and lifestyle categories rely heavily on transformational work because the product itself is mostly an excuse for the experience the ad is selling.</p>
+
+  <h3>Reminder ads</h3>
+  <p>The aim is mental availability rather than persuasion. Build awareness, keep the brand name in mind, hold the slot in front of consumers. Used heavily by category leaders and by seasonal brands. The clever Tic Tac &ldquo;You lost me at hello&rdquo; reminder ad (a play on the <em>Jerry Maguire</em> line, with the obvious freshen-your-breath subtext) is a typical example &mdash; nothing is being argued; the brand is just keeping the slot. <strong>Most digital banner advertising functions as reminder advertising whether or not the brand intended it to.</strong> The click-through rates are tiny, but the incidental brand-name exposure produces small, durable familiarity gains through what psychologists call the <em>mere exposure effect</em>.</p>
+
+  <h3>Teaser ads</h3>
+  <p>Mystery as the appeal. The ad mentions or hints at the product without showing it, building curiosity, interest, or speculation about an upcoming launch. Used most often by movie studios, automotive brands launching new models, and consumer-electronics companies preceding major announcements. Research by Thorbj&oslash;rnsen and colleagues found that online teasers pre-announcing a new product generate more positive word-of-mouth than launch-day ads alone. <strong>The hazard is overextension &mdash; a teaser campaign that runs too long stops teasing and starts annoying.</strong> The discipline is to give the audience enough information that they feel inside the secret rather than locked out of it.</p>
+
+  <h3>User-generated content</h3>
+  <p>The recent and consequential addition to this family. UGC inverts the usual production model &mdash; instead of the brand and agency making the ad, the customers do, and the brand curates and amplifies the strongest pieces. Frito-Lay&rsquo;s long-running &ldquo;Crash the Super Bowl&rdquo; competition was the early high-profile example; more recently Airbnb&rsquo;s &ldquo;Made Possible by Hosts&rdquo; campaign used real photographs from real stays in real homes to generate emotional resonance the brand could not have manufactured at the same authenticity. The advantage is credibility; the cost is loss of control. <strong>UGC works best when the brand has already done the strategic work of articulating what the audience experience is &mdash; the user-generated content fills the frame the strategy provided, rather than substituting for the strategy itself.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — EXECUTION STYLES
+     ============================================================ -->
+<section class="section" id="execution">
+  <div class="sec-num">04</div>
+  <div class="sec-label">The Twelve</div>
+  <h2>Execution Styles &mdash; The Taxonomy in Twelve Cells</h2>
+
+  <p>Once the appeal is chosen, the execution style is the format the appeal will take. The same appeal can run in any of the twelve styles below; the same style can carry any appeal. Belch&rsquo;s list is the working vocabulary. Memorize it less as a list to recite than as a checklist for diagnosis &mdash; when an ad isn&rsquo;t working, the diagnosis usually points at one of these twelve cells.</p>
+
+  <div class="exec-grid">
+
+    <div class="exec-card">
+      <div class="exec-card-name">Straight sell / factual</div>
+      <div class="exec-card-desc">A direct presentation of the product&rsquo;s information. Picture, headline, copy, claim. The L&rsquo;Or&eacute;al Elvive Total Repair 5 ad &mdash; product photo plus claim about damaged hair &mdash; is canonical. Workhorse for high-involvement categories.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Scientific / technical evidence</div>
+      <div class="exec-card-desc">Lab results, clinical findings, endorsements from scientific or medical bodies. The American Council on Dental Therapeutics seal that made Crest dominant. Neutrogena&rsquo;s &ldquo;most recommended by dermatologists.&rdquo;</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Demonstration</div>
+      <div class="exec-card-desc">Show the product working, ideally against a foil or in a difficult condition. Varilux progressive lenses showing the dinner menu clearly vs blurred. Highly effective on TV and video because sight-plus-motion proves what copy can only claim.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Comparison</div>
+      <div class="exec-card-desc">Direct or indirect side-by-side against a competitor. Covered at length in &sect;08. Most effective when a real distinct advantage exists and the comparison clarifies it for an audience that hadn&rsquo;t noticed.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Testimonial</div>
+      <div class="exec-card-desc">A satisfied customer (or endorser &mdash; see &sect;05) speaks from personal experience. Jenny Craig&rsquo;s before-and-after testimonial spots are the textbook example. The Federal Trade Commission has rules about authenticity of personal-use claims that the team should know.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Slice of life</div>
+      <div class="exec-card-desc">A staged problem-and-solution vignette in a recognizable domestic or workplace setting. The audience is supposed to recognize the problem and want the solution. Higher production budgets needed for credibility; smaller advertisers should avoid.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Animation</div>
+      <div class="exec-card-desc">Cartoons, CG, puppets, illustrated characters. Strong for children&rsquo;s categories (cereals, snacks); also used by major brands for narrative short films &mdash; Chipotle&rsquo;s &ldquo;Back to the Start&rdquo; and &ldquo;A Future Begins&rdquo; are the high-profile recent cases.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Personality symbol</div>
+      <div class="exec-card-desc">A recurring character or mascot &mdash; human, animal, or animated &mdash; carries the brand. The Aflac duck, the Geico gecko, Progressive&rsquo;s Flo, the Pillsbury Doughboy, Tony the Tiger. The longest-running competitive advantage in the insurance category is that everyone knows the gecko.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Imagery</div>
+      <div class="exec-card-desc">Visual rather than informational. Used heavily in fashion, fragrance, luxury, automotive. May be usage imagery (the product being used in an evocative context) or user imagery (the kind of person who uses it). Most contemporary luxury work sits here.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Dramatization</div>
+      <div class="exec-card-desc">A compressed narrative arc &mdash; exposition, conflict, climax, resolution &mdash; in thirty or sixty seconds, with the product or service as the agent of resolution. Truth Initiative&rsquo;s &ldquo;Truth About Opioids&rdquo; spots are a current high-impact example.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Humor</div>
+      <div class="exec-card-desc">Treated separately and at length in <a href="creative-5-humor.html">#5 of this section</a>. Used in roughly half of all television advertising globally; its effectiveness depends almost entirely on how well it is executed, not on the choice to be funny.</div>
+    </div>
+
+    <div class="exec-card">
+      <div class="exec-card-name">Combinations</div>
+      <div class="exec-card-desc">Most actual ads combine two or more styles. Slice-of-life carrying humor; dramatization wrapped around demonstration; animation deploying a personality symbol. The cells are diagnostic, not exclusive. The job is to recognize which combinations are doing the work.</div>
+    </div>
+
+  </div>
+
+  <p>The diagnostic use of this taxonomy is the reason to learn it. When work is failing in research or in market, the team should be able to say <em>which</em> style the ad is operating in and whether the style is appropriate for the appeal, the audience, and the medium. <strong>An emotional appeal executed as a straight-sell loses most of its power. A rational appeal executed as imagery loses most of its evidence. A demonstration that nobody watches all the way through is a wasted demonstration.</strong> The taxonomy is the language for naming which of those mismatches is happening.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — ENDORSERS (trimmed: Kelman psychology + Walker Hayes + forward-pointer)
+     ============================================================ -->
+<section class="section" id="endorsers">
+  <div class="sec-num">05</div>
+  <div class="sec-label">A Special Case</div>
+  <h2>Endorsers: The Underlying Psychology</h2>
+
+  <p>The endorser literature is large, the dollar amounts are conspicuous, and the textbook treatment is increasingly stuck in a 2010s celebrity worldview that no longer describes how most brands actually source third-party voices. The underlying psychology, however, is durable &mdash; and is the same whether the third-party voice is a movie star, a retired athlete, a TikTok creator with two million followers, or a verified user posting an unboxing video. <strong>Herbert Kelman&rsquo;s 1961 source-attribute model is the framework worth knowing because it applies cleanly to all of them.</strong></p>
+
+  <p>Kelman&rsquo;s claim is that a source influences an audience through one of three distinct mechanisms, each tied to a different attribute the source possesses. The mechanisms are not interchangeable. A celebrity, influencer, or testimonial that works through one mechanism cannot generally be substituted for one that works through another &mdash; and most failed endorsements, ancient or contemporary, are failures of fit between the source&rsquo;s actual attribute and the mechanism the brand needed.</p>
+
+  <div class="kelman-table">
+    <div class="kelman-row header">
+      <div>Attribute</div>
+      <div>Process</div>
+      <div>What the audience does</div>
+    </div>
+    <div class="kelman-row">
+      <div class="kelman-attr">Credibility</div>
+      <div class="kelman-process">Internalization &mdash; the audience accepts the source&rsquo;s position as their own. Built from expertise and trustworthiness. Durable: the changed attitude survives even if the audience forgets where it came from.</div>
+      <div class="kelman-result">Adopts the belief as their own. The dermatologist on the skincare ad; the engineer on the equipment ad; Oprah on the book she recommends.</div>
+    </div>
+    <div class="kelman-row">
+      <div class="kelman-attr">Attractiveness</div>
+      <div class="kelman-process">Identification &mdash; the audience adopts the source&rsquo;s beliefs because they want to be like the source. Built from similarity, familiarity, and liking. Less durable: the borrowed belief fades when the source moves on.</div>
+      <div class="kelman-result">Wants to associate with the source and copies their consumption choices. &ldquo;I want to be like Mike&rdquo; in the Gatorade Jordan campaign.</div>
+    </div>
+    <div class="kelman-row">
+      <div class="kelman-attr">Power</div>
+      <div class="kelman-process">Compliance &mdash; the audience does what the source wants because they hope to gain reward or avoid sanction. Built from the source&rsquo;s ability to administer consequences. Rare in mass media; more common in personal selling and B2B negotiation.</div>
+      <div class="kelman-result">Conforms behaviorally without necessarily changing underlying beliefs. The big-box retailer telling a small supplier what packaging will be accepted on the shelf.</div>
+    </div>
+  </div>
+
+  <p>The model forces the question worth asking out loud in the room: <em>which mechanism are we paying this person to provide?</em> The vast majority of high-priced celebrity endorsements operate through identification (attractiveness), not credibility &mdash; LeBron James is not selling Kia because he is an automotive expert; he is selling Kia because being seen in a Kia, by association, becomes a thing a person who admires LeBron James could conceivably do. Most influencer marketing works the same way at a smaller scale. The implicit deal is that some of the source&rsquo;s attractiveness rubs off on the brand &mdash; which works while the source remains attractive in the relevant sense and fails the moment they don&rsquo;t.</p>
+
+  <p>The recent case worth knowing is Applebee&rsquo;s &ldquo;Fancy Like.&rdquo; Country singer Walker Hayes released a song in 2021 that named Applebee&rsquo;s menu items by name &mdash; the Bourbon Street Steak, the Oreo Shake &mdash; in lyrics describing an average couple treating the restaurant as fine dining. Applebee&rsquo;s president John Cywinski heard the song, learned that Hayes was an actual regular customer, and licensed the music. The brand brought back the Oreo Shake (which had been cut during the pandemic), built TV and in-store work around the song, and rode the resulting TikTok cultural moment to thirteen percent same-store-sales gains for the quarter and the 2022 Grand Effie Award. <strong>The Effie jury&rsquo;s comment is the line worth keeping: &ldquo;it was clear that the team was following the lead of culture versus trying to create it.&rdquo;</strong> Most celebrity-endorsement work inverts that logic &mdash; the brand picks a famous person and bends their image to fit. The work that lasts more often runs the other way: the brand finds a source whose existing image already <em>is</em> the brand, and borrows what&rsquo;s already there undisturbed. Kelman&rsquo;s model says identification is more durable when the source&rsquo;s attractiveness is genuine to begin with, which is the same point in older language.</p>
+
+  <div class="fwd-pointer">
+    <div class="fwd-label">Forward pointer</div>
+    <p>The contemporary version of the endorser question &mdash; <strong>celebrities vs. influencers vs. user-generated voices, micro vs. macro influencers, paid partnerships vs. organic creator content, and how source credibility actually compounds (or doesn&rsquo;t) on social platforms</strong> &mdash; is treated in <a href="creative-7-awareness.html">#7 (Awareness Creative)</a> and the social-media pieces that follow. The Kelman framework above is the underlying psychology; the specifics of how to recruit, brief, and compensate sources at every scale belong in those later pieces.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — FEAR, GUILT, SEX
+     ============================================================ -->
+<section class="section" id="negative">
+  <div class="sec-num">06</div>
+  <div class="sec-label">The Negative Appeals</div>
+  <h2>Fear, Guilt, Sex: When the Lever Is a Feeling You&rsquo;d Rather Avoid</h2>
+
+  <p>Three appeals form their own subcategory because they work by recruiting feelings the audience would generally prefer to avoid &mdash; or, in the case of sex, by recruiting attention to feelings the audience approaches but which the category cannot deliver on its own. The literature on each is substantial and the working rules are well established. All three are also the appeals most likely to be misused by brands that mistake intensity for effectiveness.</p>
+
+  <div class="neg-stack">
+
+    <div class="neg-cell">
+      <div class="neg-cell-name">Fear</div>
+      <div class="neg-cell-desc">
+        <p>Used most heavily for products that address either <em>social disapproval</em> (breath, body odor, dental whiteness) or <em>physical danger</em> (insurance, smoke detectors, anti-drinking-and-driving public-service work).</p>
+        <p>The early theoretical claim was that the relationship between fear intensity and persuasion was an inverted-U &mdash; moderate fear most persuasive. The evidence has since collapsed that model. A meta-analysis of more than 100 fear-appeal studies concluded the relationship is linear: <strong>stronger fear, more persuasion</strong>, provided the audience also believes the recommended action will actually work (response efficacy) and that they themselves are capable of taking it (self-efficacy).</p>
+        <p>Practical: fear without a clear, doable solution doesn&rsquo;t persuade; it depresses.</p>
+      </div>
+    </div>
+
+    <div class="neg-cell">
+      <div class="neg-cell-name">Guilt</div>
+      <div class="neg-cell-desc">
+        <p>About 1 in 20 magazine ads contains a guilt appeal. The mechanism: assert or imply that not buying / not using the product is a failure to meet a responsibility the audience already feels they have. Pet-insurance ads (<em>your pet will never know you couldn&rsquo;t afford treatment, but you will</em>) are canonical. Parenting categories use guilt heavily.</p>
+        <p>The working caveat: guilt appeals fail when the audience perceives manipulation. If the ad reads as a guilt trip with a commercial agenda, the appeal mitigates rather than amplifies the feeling.</p>
+        <p>Most effective in categories where the audience is already worried about how others will judge their behavior &mdash; smoking around children, secondhand consequences, the obligations of provision.</p>
+      </div>
+    </div>
+
+    <div class="neg-cell">
+      <div class="neg-cell-name">Sex</div>
+      <div class="neg-cell-desc">
+        <p>Three working roles. <strong>Stopping power</strong>: the ad gets noticed because of attractive models in provocative poses (Three Olives vodka). <strong>Recall</strong>: only when the sexual content is genuinely relevant to the product category and execution. <strong>Emotional response</strong>: arousal, lust, or aspiration that transfers to the brand &mdash; canonically the 1990s Diet Coke construction-worker spot.</p>
+        <p>The downside is real and documented. Explicit sexual content interferes with processing of message arguments and reduces comprehension. Audiences may be offended by depictions of either gender as objects. The Miller Lite &ldquo;Catfight&rdquo; spot during the NFL is the canonical case of attention bought at the cost of brand damage.</p>
+        <p>Working rule: sex earns its place when it is structurally relevant to what the product actually does. Otherwise it&rsquo;s noise.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <p>What ties the three together is that each amplifies the audience&rsquo;s involvement with the message &mdash; the audience cannot ignore an appeal that activates a primary emotion the way they can ignore most product-feature copy. The cost is that primary emotions are dangerous to play with: a fear appeal that overshoots produces avoidance and rejection; a guilt appeal that reads as manipulative produces resentment; a sexual appeal that reads as exploitative produces offense and reputational damage. <strong>The intensity that makes these appeals work also makes them the appeals most likely to overcook into something the brand cannot recover from.</strong></p>
+
+  <p>The related case worth knowing is the <em>scarcity</em> appeal &mdash; <em>only a few left</em>, <em>limited edition</em>, <em>selling fast</em>. Brehm&rsquo;s theory of psychological reactance explains it: people react against any effort to reduce their freedom of choice, and a constrained option becomes more desirable than it was before the constraint was named. Scarcity works when the persuader is credible and the constraint is real; it falls apart when audiences learn the &ldquo;limited&rdquo; offer renews every month.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — MUSIC
+     ============================================================ -->
+<section class="section" id="music">
+  <div class="sec-num">07</div>
+  <div class="sec-label">The Audio Layer</div>
+  <h2>Music: The Most Underrated Element in the Room</h2>
+
+  <p>A Nielsen study working title gives the rule in one phrase: &ldquo;I Second That Emotion: The Emotive Power of Music in Advertising.&rdquo; The study&rsquo;s finding, replicated across other research, is that <strong>commercials with music outperform commercials without on creativity, empathy, emotive power, and information transfer.</strong> Some practitioners go further and estimate that music accounts for as much as half of a commercial&rsquo;s emotional effectiveness. The estimate is hard to verify and probably depends on the category, but the directional claim is correct: in any production where the medium allows audio, the music decision is one of the two or three biggest creative calls and is routinely treated as a post-production afterthought.</p>
+
+  <p>The mechanism is classical conditioning. The often-cited experiment from the consumer-behavior literature paired slides of a ballpoint pen with either music from the movie <em>Grease</em> (positive unconditioned stimulus) or classical Indian music unfamiliar to the American audience (negative US). <strong>When asked to choose a pen, 79 percent of participants who saw the pen paired with Grease chose the advertised pen; 30 percent of those who saw it paired with the unfamiliar music did.</strong> Nothing about the pen had changed. The music transferred its emotional valence onto the product.</p>
+
+  <p>This is also why the licensing decision matters. Two artifacts get licensed when a brand uses a piece of music: the <em>musical composition</em> (notes and words) and the <em>master recording</em> (the specific performance by the original artist). The master recording is usually much more expensive and is what Google paid for when it licensed The Beatles&rsquo; &ldquo;Help!&rdquo; for the &ldquo;Here to Help&rdquo; campaign. The composition alone is cheaper and lets the brand commission a sound-alike performance &mdash; common, but lower-impact, because the audience&rsquo;s emotional memory is attached to the original recording. <strong>If the campaign needs the audience&rsquo;s actual emotional memory of the song, the master recording is the only path.</strong></p>
+
+  <h3>Jingles, audio logos, and the sonic identity layer</h3>
+  <p>A jingle is a specific type of <em>audio logo</em> &mdash; a short, repeatable sound, riff, or sung phrase that becomes a recognizable brand asset. The most effective audio logos in the Veritonic 2022 annual rating include Folgers (&ldquo;The best part of waking up&hellip;&rdquo;), Arby&rsquo;s (&ldquo;We have the meats&rdquo;), Safelite (&ldquo;Safelite repair, Safelite replace&rdquo;), and State Farm (&ldquo;Like a good neighbor, State Farm is there&rdquo;). Folgers&rsquo;s jingle, which dates to the early 1980s, is still the top-rated audio logo in current consumer research. <strong>Sonic distinctive brand assets compound over time the same way visual ones do</strong>, and brands that abandon their sonic logo in favor of needle-drop licensing fashion are usually trading durable equity for short-term feel.</p>
+
+  <p>The contemporary case worth knowing is Apple Music&rsquo;s &ldquo;Heard in Apple Ads&rdquo; playlist &mdash; a curated list of songs that have appeared in Apple commercials over the years. Apple has built a reputation for finding relatively obscure tracks that became hits after the company featured them, an effect the music industry now calls the &ldquo;Apple Bump.&rdquo; The strategic move is not that Apple has good taste in music; it is that Apple recognized that the cultural cachet of being the brand that introduces emerging music is worth more than the licensing fees of established hits. Music selection became identity selection.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 8 — COMPARATIVE
+     ============================================================ -->
+<section class="section" id="comparative">
+  <div class="sec-num">08</div>
+  <div class="sec-label">The Direct Move</div>
+  <h2>Comparative Advertising: When It Works, When It Backfires</h2>
+
+  <p>Comparative advertising is, formally, advertising that compares the brand directly or indirectly to a named or implied competitor and claims superiority on one or more attributes. It is legal and common in the United States and the United Kingdom; illegal or sharply restricted in many other countries, including Belgium, Hong Kong, and Korea. The classic direct case is the Pepsi-Coke ad in which a Pepsi can lands a decisive punch on a Coke can. The classic indirect case is the Geico ad showing three apples (Geico) next to a single slice (&ldquo;the other guy&rdquo;).</p>
+
+  <p>The strategic question with comparative advertising is not whether to compare but whether the brand actually has a comparison worth drawing. <strong>Comparative ads work best for challenger brands that have a real, defensible, demonstrable advantage on an attribute the audience cares about.</strong> The comparison clarifies what the audience would not have noticed on its own. The same comparison is a strategic mistake for category leaders, because direct comparison gives the smaller competitor free attention and elevates them to apparent peerhood with the leader. The standard advice has been consistent for decades: leaders don&rsquo;t name challengers.</p>
+
+  <p>Research on indirect-vs-direct framing has produced one consistent finding worth knowing: <strong>direct comparison is more effective at positioning the brand as superior to a <em>specific</em> competitor; indirect comparison is more effective at positioning the brand as superior to <em>the category</em>.</strong> The Geico apples-and-slice ad operates in the second mode; the Pepsi-Coke punch operates in the first. The brand has to decide which positioning it actually wants. Direct comparison sharpens against a rival; indirect comparison defends a category position. They are not interchangeable.</p>
+
+  <p>Credibility is the additional gate. Comparative claims are more effective when supported by one or more of three credibility builders: an independent research organization attesting to the comparison, impressive test results presented in the ad, or a trusted spokesperson making the comparison personally. Without one of these, the audience reads the comparison as the brand simply asserting its own superiority &mdash; which they have learned to discount.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 9 — SUBLIMINAL (short aside)
+     ============================================================ -->
+<section class="section" id="subliminal">
+  <div class="sec-num">09</div>
+  <div class="sec-label">An Aside</div>
+  <h2>Subliminal Messages: A Curiosity Worth a Page</h2>
+
+  <p>This section is short on purpose. The persistent public myth that advertisers routinely use subliminal techniques &mdash; messages delivered below the threshold of conscious perception &mdash; began with James Vicary&rsquo;s 1957 claim of flashing &ldquo;Drink Coca-Cola&rdquo; and &ldquo;Eat Popcorn&rdquo; at a New Jersey movie theater and producing dramatic sales lifts. <strong>Vicary never produced his data, never replicated the experiment, and in subsequent interviews admitted the original study was a marketing stunt for his own consulting practice.</strong> The myth survived intact anyway, fueled by Wilson Key&rsquo;s 1970s and 1980s books claiming routine sexual embeds in ice cubes and food photography. The methodology has not held up.</p>
+
+  <p>The honest summary, from Timothy Moore&rsquo;s widely-cited <em>Journal of Marketing</em> review: subliminal perception is real &mdash; people can perceive stimuli without conscious awareness &mdash; but the effects are weak, and in any realistic market context they are overwhelmed by the ordinary, conscious stimuli already competing for the consumer&rsquo;s attention. <strong>Supraliminal advertising already has trouble influencing behavior. Subliminal advertising is weaker still, in a louder room.</strong> The narrow exception is <em>subliminal priming</em>, which can activate cognitions an audience already has when the audience&rsquo;s need state matches the prime &mdash; conditions restrictive enough that practical advertising application is essentially nil. The ethics question matters more than the efficacy question: the technique would be objectionable if it worked. It mostly doesn&rsquo;t, which is why it&rsquo;s a textbook curiosity rather than the controversy the public believes it to be.</p>
+</section>
+
+
+<!-- ============================================================
+     TAKEAWAY
+     ============================================================ -->
+<section class="section" id="takeaway">
+  <div class="sec-label">Summary</div>
+  <h2>The Argument, in Six Lines</h2>
+
+  <div class="takeaway">
+    <div class="takeaway-label">If you remember nothing else</div>
+    <ul>
+      <li>The appeal-and-execution layer is not a template applied to a finished strategy. It <em>is</em> the strategy in operative form.</li>
+      <li>Rational vs emotional is not a coin flip. Pringle and Field found purely-emotional campaigns nearly twice as likely to produce large profit gains as rational-only or hybrid. Rational content earns its place as <em>proof</em> for the emotional appeal, not as the appeal itself.</li>
+      <li>The five rational subtypes (feature, competitive, price, news, popularity) and the dozen-plus emotional registers each have specific use cases. Choosing one without articulating <em>why this one</em> is the most common upstream failure.</li>
+      <li>Endorser influence runs through Kelman&rsquo;s three mechanisms &mdash; credibility (internalization), attractiveness (identification), or power (compliance). Same psychology whether the source is a Hollywood star or a TikTok creator. The contemporary specifics come later.</li>
+      <li>Fear, guilt, and sex appeals trade intensity for risk. Each works under specific conditions and overcooks easily. Music is the most underrated element in any production with audio.</li>
+      <li>Comparative advertising is a challenger&rsquo;s tool, not a leader&rsquo;s. Subliminal advertising mostly doesn&rsquo;t work.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="creative-3-big-idea.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#3 &mdash; The Big Idea</span>
+    <span class="unit-nav-tease">The brief that produces it, the insight underneath, the one-sentence discipline, and the Snickers case that proves it pays.</span>
+  </a>
+  <a href="creative-5-humor.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#5 &mdash; Humor</span>
+    <span class="unit-nav-tease">The appeal students reach for first in every brief they ever write. When it works, when it dies, and the recent industry swing back to funny.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>Advertising appeal</em></strong> &mdash; the lever the message pulls in the consumer&rsquo;s head. Two broad families: rational (functional, utilitarian) and emotional (psychological, social). The first lever in execution; usually settled before the execution style.</p>
+    <p><strong><em>Creative execution style</em></strong> &mdash; the format the appeal takes in the finished work. Twelve named styles in Belch&rsquo;s taxonomy (&sect;04). The appeal and the execution are partly independent; the same appeal can run in many styles.</p>
+    <p><strong><em>Informational / rational appeal</em></strong> &mdash; appeal focused on practical, functional, or utilitarian need. Subtypes: feature, competitive advantage, price, news, popularity.</p>
+    <p><strong><em>Emotional appeal</em></strong> &mdash; appeal focused on social or psychological need. Pringle and Field finding: nearly 2x as effective as rational-only at producing large profit gains.</p>
+    <p><strong><em>Transformational ad</em></strong> &mdash; Puto and Wells&rsquo;s term for an ad that teaches the audience how to feel about consuming the product, so they feel that way when they consume it. Common in travel, luxury, and lifestyle.</p>
+    <p><strong><em>Reminder advertising</em></strong> &mdash; advertising whose goal is mental availability, not persuasion. Used by category leaders and for seasonal categories. Most digital banner advertising functions as reminder advertising whether intended to or not.</p>
+    <p><strong><em>Teaser advertising</em></strong> &mdash; advertising that mentions but does not show the product, building curiosity for a launch. Used by movie studios, automakers, consumer electronics. Fails when extended too long.</p>
+    <p><strong><em>User-generated content (UGC)</em></strong> &mdash; ads or messages created by consumers rather than the brand or agency. Authentic but loss-of-control trade-off. Works best when the brand has already articulated the audience experience the UGC fills.</p>
+    <p><strong><em>Mere exposure effect</em></strong> &mdash; the psychological finding that repeated exposure to a stimulus produces favorable feelings toward it, even without active processing. The underlying logic of why banner ads with low click-through still produce brand effect.</p>
+    <p><strong><em>Kelman&rsquo;s source attributes</em></strong> &mdash; the 1961 framework Andrews builds the endorser chapter around. Three attributes (credibility, attractiveness, power) operating through three processes (internalization, identification, compliance).</p>
+    <p><strong><em>Internalization</em></strong> &mdash; the process by which a credible source produces durable attitude change. The audience accepts the source&rsquo;s position as their own and retains it even if the source is forgotten.</p>
+    <p><strong><em>Identification</em></strong> &mdash; the process by which an attractive source produces attitude change. The audience adopts the source&rsquo;s beliefs because they wish to be like the source. Less durable than internalization.</p>
+    <p><strong><em>Compliance</em></strong> &mdash; the process by which a powerful source produces behavioral change. Rare in mass advertising; common in personal selling and B2B.</p>
+    <p><strong><em>Protection Motivation Theory</em></strong> &mdash; the framework for fear appeals. For a fear appeal to produce action, the audience must perceive the threat as real, the recommended response as effective (response efficacy), and themselves as capable of taking it (self-efficacy).</p>
+    <p><strong><em>Psychological reactance</em></strong> &mdash; Brehm&rsquo;s theory underlying scarcity appeals. People react against perceived restrictions on choice by valuing the restricted option more highly.</p>
+    <p><strong><em>Subliminal perception</em></strong> &mdash; perception of stimuli below the conscious threshold of awareness. A real phenomenon with weak effects, easily overwhelmed by ordinary supraliminal stimuli. The cultural myth substantially overstates the working effect in advertising contexts.</p>
+    <p><strong><em>Subliminal priming</em></strong> &mdash; the narrow exception to the subliminal-doesn&rsquo;t-work conclusion. Below-threshold cues can activate existing cognitions in audiences whose need-state matches the prime. Effects are small, conditions restrictive, ethics contested.</p>
+    <p><strong><em>Comparative advertising</em></strong> &mdash; advertising that directly or indirectly compares the brand to a competitor and claims superiority. Legal in the US and UK; restricted elsewhere. Best used by challengers with real distinct advantages.</p>
+    <p><strong><em>Jingle</em></strong> &mdash; a short, repeatable musical phrase carrying the brand or campaign theme. A specific kind of audio logo. Folgers&rsquo;s &ldquo;Best part of waking up&rdquo; is the longest-running effective contemporary jingle.</p>
+    <p><strong><em>Audio logo</em></strong> &mdash; any short, recognizable sonic element (sound, riff, voiceover) that functions as a brand asset. Sonic distinctive brand assets compound the same way visual ones do.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Textbook anchors are Belch Ch. 9 and Andrews Ch. 11. Supplementary academic and industry sources follow.</p>
+
+  <div class="references">
+    <p class="ref">Belch, G. E., &amp; Belch, M. A. (2023). <em>Advertising and promotion: An integrated marketing communications perspective</em> (13th ed., Chapter 9: Creative Strategy &mdash; Implementation and Evaluation, pp. 288&ndash;323). McGraw Hill.</p>
+    <p class="ref">Shimp, T. A., &amp; Andrews, J. C. (2018). <em>Advertising, promotion, and other aspects of integrated marketing communications</em> (10th ed., Chapter 11: Endorsers and Message Appeals in Advertising, pp. 226&ndash;244). Cengage Learning.</p>
+    <p class="ref">Kelman, H. C. (1961). Processes of opinion change. <em>Public Opinion Quarterly, 25</em>(1), 57&ndash;78. The source-attribute model that the endorser literature still builds on.</p>
+    <p class="ref">Pringle, H., &amp; Field, P. (2008). <em>Brand immortality: How brands can live long and prosper</em>. Kogan Page. The 880-campaign analysis showing emotional-only campaigns nearly twice as effective as rational or hybrid.</p>
+    <p class="ref">Binet, L., &amp; Field, P. (2013). <em>The long and the short of it: Balancing short and long-term marketing strategies</em>. IPA. The brand-building / sales-activation framework underlying the 60/40 guideline.</p>
+    <p class="ref">Puto, C. P., &amp; Wells, W. D. (1984). Informational and transformational advertising: The differential effects of time. <em>Advances in Consumer Research, 11</em>, 638&ndash;643. The original transformational-ad framework cited in &sect;03.</p>
+    <p class="ref">Moore, T. E. (1982). Subliminal advertising: What you see is what you get. <em>Journal of Marketing, 46</em>(2), 38&ndash;47. The methodological review cited in &sect;09; still the cleanest statement of the case against subliminal effects.</p>
+    <p class="ref">Brehm, J. W. (1966). <em>A theory of psychological reactance</em>. Academic Press. The framework underlying scarcity appeals.</p>
+    <p class="ref">Veritonic. (2022). <em>Annual audio logo report</em>. Veritonic. The current sonic-asset rankings cited in &sect;07.</p>
+    <p class="ref">Hao, T. (2022, June 14). Applebee&rsquo;s TikTok-viral Walker Hayes collab wins 2022 U.S. Grand Effie. <em>Advertising Age</em>. The Effie write-up of the Applebee&rsquo;s case cited in &sect;05.</p>
+    <p class="ref">Reinartz, W., &amp; Saffert, P. (2013, June). Creativity in advertising: When it works and when it doesn&rsquo;t. <em>Harvard Business Review</em>. The 437-campaign creative-effectiveness study referenced as connective tissue with #1 of this section.</p>
+    <p class="ref">Nielsen. (2015). <em>I second that emotion: The emotive power of music in advertising</em>. Nielsen Catalina Solutions. The music-and-effectiveness finding cited in &sect;07.</p>
+    <p class="ref">Scott, L. M. (1990). Understanding jingles and needledrop: A rhetorical approach to music in advertising. <em>Journal of Consumer Research, 17</em>(2), 223&ndash;236. Reference for the jingle / audio-logo discussion in &sect;07.</p>
+    <p class="ref">Fishman, C. (2015, June 13). Past celebrity endorsers who ran into trouble. <em>Advertising Age</em>. Background source on celebrity-trouble cases referenced in &sect;05.</p>
+    <p class="ref">Carrillat, F. A., D&rsquo;Astous, A., &amp; Lazure, J. (2013). For better or worse? What to do when celebrity endorsements go bad. <em>Journal of Advertising Research, 53</em>(1), 15&ndash;30. The brand-fit-and-revocation research that informs the underlying psychology in &sect;05.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     END OF MAIN CONTENT
+     ============================================================ -->
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     VIDEO LIGHTBOX
+     Single modal element that opens when any .video-tile is clicked.
+     Handles both YouTube and Vimeo via URL detection. Falls back to
+     the tile's href if the JS below fails to load.
+     ============================================================ -->
+<div class="video-lightbox" id="videoLightbox" aria-hidden="true" role="dialog" aria-label="Video player">
+  <div class="video-lightbox-stage">
+    <button class="video-lightbox-close" type="button" aria-label="Close video">&times;</button>
+    <div class="video-lightbox-frame">
+      <iframe src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" title="Embedded video player"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var lightbox = document.getElementById('videoLightbox');
+  if (!lightbox) return;
+  var iframe = lightbox.querySelector('iframe');
+  var closeBtn = lightbox.querySelector('.video-lightbox-close');
+
+  function toEmbedUrl(url) {
+    // YouTube watch URL or short URL — use youtube-nocookie.com for better
+    // compatibility with referrer-policy restrictions (avoids Error 153)
+    var m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]+)/);
+    if (m) return 'https://www.youtube-nocookie.com/embed/' + m[1] + '?autoplay=1&rel=0';
+    // Vimeo
+    m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1';
+    return null;
+  }
+
+  function openLightbox(url) {
+    var embed = toEmbedUrl(url);
+    if (!embed) return false;
+    iframe.src = embed;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    return true;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    iframe.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // Intercept clicks on any .video-tile element on the page
+  var tiles = document.querySelectorAll('.video-tile');
+  for (var i = 0; i < tiles.length; i++) {
+    tiles[i].addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (openLightbox(href)) e.preventDefault();
+    });
+  }
+
+  // Close on X button
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // Close on backdrop click (but not on the stage or iframe)
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
