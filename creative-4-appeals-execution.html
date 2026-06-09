@@ -471,6 +471,68 @@
     .video-survey { grid-template-columns: 1fr; }
   }
 
+  /* Bridge cue — the "watch what's next" setup line that introduces a
+     video block. Larger, serif, semi-bold; reads as a heading even
+     though it sits in prose flow. */
+  .bridge-cue {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 28px 0 12px;
+  }
+
+  /* Unit nav at the bottom — two card-style links (previous / next)
+     side by side. Styled here so the page doesn't depend on external
+     CSS to make the arrows and titles look right. */
+  .unit-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 44px 0 24px;
+  }
+  .unit-nav a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--white);
+    border: 0.5px solid var(--cream-deep);
+    padding: 20px 22px 22px;
+    transition: border-color 0.15s ease;
+  }
+  .unit-nav a:hover { border-color: var(--red); }
+  .unit-nav .unit-nav-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .unit-nav .unit-nav-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .unit-nav .unit-nav-tease {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .unit-nav-next { text-align: right; }
+  .unit-nav a:hover .unit-nav-label { color: var(--ink); }
+  @media (max-width: 720px) {
+    .unit-nav { grid-template-columns: 1fr; }
+    .unit-nav-next { text-align: left; }
+  }
+
   /* Glossary tightening — match creative #3 */
   .glossary p { margin-bottom: 10px; max-width: 760px; }
   .glossary p strong em { color: var(--red); font-style: italic; }
@@ -541,7 +603,9 @@
 
   <p>The default execution choice, when the brief is rushed and the room is risk-averse, is the rational one &mdash; show the product, name the benefit, close. It works, in the narrow sense that matters to a quarterly dashboard. Rational executions are bottom-of-funnel workhorses; they get the click, they drive the conversion, they justify the spend. They are also where almost no real creative differentiation lives, which is why categories saturated in rational executions tend to read as interchangeable to the audience that watched them. The argument the rational-first school sometimes offers &mdash; that contemporary audiences, particularly Gen Z, claim to want &ldquo;straightforward and authentic&rdquo; advertising and resent obvious creative effort &mdash; is half-true in a way that misleads. Viewer-engagement data on those same audiences consistently shows them spending more time with content that surprises them than with content that confirms their expectations. <em>Authentic</em> describes the texture; it does not describe the strategic ask. <strong>The strategic ask is still surprise and delight, dressed in clothes that don&rsquo;t look like a 1990s television commercial.</strong></p>
 
-  <p><a href="https://deckofbrilliance.com" target="_blank" rel="noopener">Deck of Brilliance</a> is one of several concept-pushing tools designed to get a creative team out of the rational default and into work that is more memorable, more emotionally engaged, and more strategically defensible. The tool offers a deck of named prompts &mdash; different angles a brief can be attacked from when the rational answer feels obvious. The cleanest classical pair in the deck, and the one most teams can use immediately, is <em>Dramatize the Problem</em> versus <em>Dramatize the Solution</em>. Both are routes out of the rational default; both have produced category-defining work; and each demands a different choice about what the creative team leads with.</p>
+  <p><a href="https://deckofbrilliance.com" target="_blank" rel="noopener">Deck of Brilliance</a> is one of several concept-pushing tools designed to get a creative team out of the rational default and into work that is more memorable, more emotionally engaged, and more strategically defensible. The tool offers a deck of named prompts &mdash; different angles a brief can be attacked from when the rational answer feels obvious. The cleanest classical pair in the deck, and the one most teams can use immediately, is <strong><em>Dramatize the Problem</em> versus <em>Dramatize the Solution</em>.</strong> Both are routes out of the rational default; both have produced category-defining work; and <strong>each demands a different choice about what the creative team leads with.</strong></p>
+
+  <h3>Problem vs Solution, Dramatized</h3>
 
   <div class="deck-panels">
     <div class="deck-panel is-problem">
@@ -564,7 +628,7 @@
     </div>
   </div>
 
-  <p>The cleanest contemporary pairing on the brief: HBO Go ran a campaign that lived in the first column; Prime Video, a few years later, ran one that lived in the second. Both worked. Watch them back to back.</p>
+  <p class="bridge-cue">The cleanest contemporary pairing on the brief: HBO Go ran a campaign that lived in the first column; Prime Video, a few years later, ran one that lived in the second. Both worked. Watch them back to back.</p>
 
   <div class="video-hero-pair">
 
@@ -594,7 +658,7 @@
 
   </div>
 
-  <p>Once the lens is in place, the choice shows up everywhere. A short survey of work on each side of it:</p>
+  <p class="bridge-cue">Once the lens is in place, the choice shows up everywhere. A short survey of work on each side of it:</p>
 
   <div class="video-survey">
 
@@ -738,7 +802,7 @@
 
   <p>The interesting and underappreciated case is the hybrid. <strong>Subaru&rsquo;s &ldquo;Love&rdquo; campaign &mdash; the longest-running and most studied automotive emotional platform in the modern era &mdash; was launched in 2007 after a decade of rational-feature advertising failed to grow the brand.</strong> Subaru had been hammering the rational subset for years: safety, all-wheel drive, dependability, value. The ads were competent and the sales were flat. Research into existing Subaru owners turned up the unexpected datum: owners did not talk about their cars the way Subaru had been talking about them. They talked about love. The campaign rebuild &mdash; same product attributes, same target safety messaging, same all-wheel-drive proof points &mdash; reframed the rational content inside an emotional envelope: <em>Love. It&rsquo;s what makes a Subaru a Subaru.</em> The result was thirteen consecutive years of record sales and the &ldquo;Share the Love&rdquo; year-end donation event that has since contributed more than $200 million to charity.</p>
 
-  <p>The campaign, in four spots across sixteen years &mdash; same Big Idea, different executions of it:</p>
+  <p class="bridge-cue">The campaign, in four spots across sixteen years &mdash; same Big Idea, different executions of it:</p>
 
   <div class="video-2x2">
 
