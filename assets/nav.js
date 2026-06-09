@@ -18,9 +18,15 @@ const navConfig = {
       dropdown: [
         { label: 'Intro: A Course Built Against the Current', href: 'intro.html' },
         { label: 'Unit 1 — IMC',                href: 'unit-1-imc.html' },
-        { label: 'Unit 2A — Brand Foundations', href: 'unit-2a-brand-foundations.html' },
-        { label: 'Unit 2B — Brand Mechanics',   href: 'unit-2b-brand-mechanics.html' },
-        { label: 'Unit 2C — Blanding',          href: 'unit-2c-blanding.html' },
+        {
+          // Non-clickable parent. Hovering it reveals the flyout below.
+          label: 'Unit 2',
+          submenu: [
+            { label: 'Unit 2A — Brand Foundations', href: 'unit-2a-brand-foundations.html' },
+            { label: 'Unit 2B — Brand Mechanics',   href: 'unit-2b-brand-mechanics.html' },
+            { label: 'Unit 2C — Blanding',          href: 'unit-2c-blanding.html' }
+          ]
+        },
         { label: 'Unit 3 — STP',                href: 'unit-3-stp.html' },
         {
           // Non-clickable parent. Hovering it reveals the flyout below.
@@ -29,6 +35,24 @@ const navConfig = {
             { label: 'Unit 4A — Getting Through', href: 'unit-4a-getting-through.html' },
             { label: 'Unit 4B — Deciding',        href: 'unit-4b-deciding.html' },
             { label: 'Unit 4C — Moving Them',     href: 'unit-4c-moving.html' }
+          ]
+        },
+        {
+          // Non-clickable parent. Hovering it reveals the flyout below.
+          label: 'Unit 5 — Creativity',
+          submenu: [
+            { label: 'Start Here',          href: 'creative-intro.html' },
+            { label: 'Why Creative',        href: 'creative-1-why-creative.html' },
+            { label: 'Brainstorming',       href: 'creative-2-brainstorming.html' },
+            { label: 'The Big Idea',        href: 'creative-3-big-idea.html' },
+            { label: 'Appeals & Execution', href: 'creative-4-appeals-execution.html' },
+            { label: 'Humor',               href: 'creative-5-humor.html' },
+            { label: 'Video',               href: 'creative-6-video.html' },
+            { label: 'Awareness',           href: 'creative-7-awareness.html' },
+            { label: 'Helpful Content',     href: 'creative-8-helpful-content.html' },
+            { label: 'Performance',         href: 'creative-9-performance.html' },
+            { label: 'AI in Creative',      href: 'creative-10-ai.html' },
+            { label: 'Judging Creative',    href: 'creative-11-judging.html' }
           ]
         }
         // Add more units here as they're built
@@ -49,6 +73,23 @@ const navConfig = {
               { label: 'Repetition',        href: 'repetition.html' },
               { label: 'Brand vs. Perf',    href: 'brand-vs-performance.html' },
               { label: '2024 Ad Spend',     href: 'ad-spend.html' }
+            ]
+          },
+          {
+            title: 'Creativity',
+            items: [
+              { label: 'Start Here',          href: 'creative-intro.html' },
+              { label: 'Why Creative',        href: 'creative-1-why-creative.html' },
+              { label: 'Brainstorming',       href: 'creative-2-brainstorming.html' },
+              { label: 'The Big Idea',        href: 'creative-3-big-idea.html' },
+              { label: 'Appeals & Execution', href: 'creative-4-appeals-execution.html' },
+              { label: 'Humor',               href: 'creative-5-humor.html' },
+              { label: 'Video',               href: 'creative-6-video.html' },
+              { label: 'Awareness',           href: 'creative-7-awareness.html' },
+              { label: 'Helpful Content',     href: 'creative-8-helpful-content.html' },
+              { label: 'Performance',         href: 'creative-9-performance.html' },
+              { label: 'AI in Creative',      href: 'creative-10-ai.html' },
+              { label: 'Judging Creative',    href: 'creative-11-judging.html' }
             ]
           },
           {
