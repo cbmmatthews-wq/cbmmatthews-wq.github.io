@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#4 — Doing It Better — cbmatthe</title>
+<meta name="description" content="The practical advice piece. How to actually run social media well in 2026 given the picture from Parts 1–3: start with an honest audit, match channels to jobs, navigate the UGC-creator brand paradox, fund creative production properly, and replace broken click attribution with MMM and incrementality testing.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Social #4 ---- */
+
+  /* Two-column source grid */
+  .source-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+    max-width: 820px;
+  }
+  .source-grid-2 .source-card { margin: 0; max-width: none; }
+  @media (max-width: 720px) {
+    .source-grid-2 { grid-template-columns: 1fr; }
+  }
+
+  /* Audit checklist — used in §02 to present the audit framework as a
+     working set of questions a reader could actually run. */
+  .audit-card {
+    background: var(--white);
+    padding: 22px 26px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin: 22px 0;
+    max-width: 820px;
+  }
+  .audit-card-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .audit-card-sub {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .audit-section {
+    margin-bottom: 14px;
+  }
+  .audit-section:last-child { margin-bottom: 0; }
+  .audit-section-label {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .audit-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+  }
+  .audit-section li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 5px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .audit-section li::before {
+    content: '\25A1';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--red);
+    font-size: 13px;
+  }
+
+  /* References list */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+  }
+
+  /* Glossary tightening */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Rethinking Social &middot; #4</div>
+    <h1>Doing It Better</h1>
+    <p class="lede">Three pieces of diagnostic work the unit is done with. Social isn&rsquo;t what your CEO thinks it is (<a href="social-1-state.html">Part 1</a>); organic isn&rsquo;t a reach channel anymore but has real jobs to do (<a href="social-2-organic.html">Part 2</a>); paid social is more expensive, less measurable, and less universal than the late-2010s version (<a href="social-3-paid.html">Part 3</a>). This piece is the practical follow-up. Given the picture, what do you actually do on Monday morning?</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#audit">Start With an Audit</a>
+    <a href="#channels-to-jobs">Match Channels to Jobs</a>
+    <a href="#ugc-paradox">The UGC Brand Paradox</a>
+    <a href="#creative-volume">Creative at Volume</a>
+    <a href="#attribution">Attribution Workarounds</a>
+    <a href="#ceo-conversation">The CEO Conversation</a>
+    <a href="#next">What&rsquo;s Next</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>From Diagnosis to Prescription</h2>
+
+  <p>Most of the work in this unit so far has been negative space &mdash; describing what social media isn&rsquo;t, why the &ldquo;just throw it on social&rdquo; theory fails, why posting more is the wrong answer, why running ads is more complicated than it sounds. Negative-space arguments are easier to make than positive ones, because the failure modes are well-documented and the data is hard to argue with. The harder argument, and the one most consultants skip, is what to actually do instead.</p>
+
+  <p>This piece tries to land that argument. It assumes you&rsquo;ve read Parts 1&ndash;3 and accepted the picture. It also assumes you&rsquo;re going to have to recommend something to a client, a CEO, or a team you&rsquo;re responsible for, and that &ldquo;social media is broken, here are six articles about why&rdquo; is not, on its own, a recommendation. The six sections below are roughly the working sequence: <strong>audit what&rsquo;s there, match channels to jobs, navigate the creator-and-UGC question carefully, fund creative production properly, replace broken click attribution with something durable, and prepare the conversation you&rsquo;re going to have with the person holding the budget.</strong></p>
+
+  <div class="callout">
+    <div class="callout-label">A note on what this piece doesn&rsquo;t do</div>
+    <p>This isn&rsquo;t a tactics piece. There&rsquo;s no &ldquo;15 hashtags that work in 2026&rdquo; section, no &ldquo;best time to post on TikTok&rdquo; chart. Tactics churn every few months as platforms change algorithms; the structural recommendations below are intended to hold across that churn. The brands doing this well are mostly making the same structural choices regardless of which platform is currently up or down. The tactics follow from the structure, not the other way around.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — START WITH AN AUDIT
+     ============================================================ -->
+<section class="section" id="audit">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Diagnostic First</div>
+  <h2>Start With an Honest Audit</h2>
+
+  <p>Before changing anything, find out what the brand is actually doing. This sounds obvious. Almost nobody does it, because the audit produces uncomfortable answers and the team running social usually isn&rsquo;t incentivized to surface them. A useful audit answers four questions, in this order:</p>
+
+  <div class="audit-card">
+    <div class="audit-card-title">The Social Audit (four questions, in order)</div>
+    <div class="audit-card-sub">Run this once a year minimum, twice a year ideally. The honest answers are usually different from the dashboard answers.</div>
+
+    <div class="audit-section">
+      <div class="audit-section-label">01 &mdash; What is each channel actually doing?</div>
+      <ul>
+        <li>List every active social presence (paid and organic) by platform.</li>
+        <li>For each, name the job the channel is doing: reach, activation, research, service, voice, community, advocacy, or something else.</li>
+        <li>If the answer for any channel is &ldquo;not sure,&rdquo; or &ldquo;all of the above,&rdquo; that channel is being mismanaged. The fix is to assign one or two clear jobs and stop measuring against the others.</li>
+      </ul>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-section-label">02 &mdash; What metric is each channel actually being judged by?</div>
+      <ul>
+        <li>For each channel, list the top three metrics being reported up the chain.</li>
+        <li>Mark which of those metrics match the channel&rsquo;s job (see &sect;06 of <a href="social-2-organic.html#dashboard">Part 2</a> for the job-specific metric sets).</li>
+        <li>Mark which are platform-default metrics (reach, engagement rate) reported because the dashboard makes them easy &mdash; not because they reflect the channel&rsquo;s actual purpose.</li>
+        <li>The gap between &ldquo;what the channel is for&rdquo; and &ldquo;what it&rsquo;s judged by&rdquo; is the single largest source of organic-program misallocation.</li>
+      </ul>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-section-label">03 &mdash; Who&rsquo;s doing the work, and is it resourced honestly?</div>
+      <ul>
+        <li>How many human hours per week go into each channel? (Most brands underestimate by half.)</li>
+        <li>Of the content being produced, how much is original vs. recycled / repurposed / AI-generated?</li>
+        <li>What&rsquo;s the production budget for creative? (If the answer is &ldquo;we use existing product photography,&rdquo; that&rsquo;s the answer; flag it.)</li>
+        <li>If the channel is genuinely being run by one person with no production budget and an AI tool, is that resourcing matched to what the channel is supposed to deliver?</li>
+      </ul>
+    </div>
+
+    <div class="audit-section">
+      <div class="audit-section-label">04 &mdash; What does the attribution stack actually report?</div>
+      <ul>
+        <li>What platforms&rsquo; in-dashboard attribution is being used as the primary measurement?</li>
+        <li>Is Conversions API implemented? On which channels?</li>
+        <li>Is there any out-of-platform measurement (MMM, incrementality testing, geo-lift)? If so, do its results align with platform-reported attribution, or diverge?</li>
+        <li>If divergence is large (it usually is, post-ATT), which one is being trusted for budget decisions?</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>The audit&rsquo;s most common output is not a strategic surprise. It&rsquo;s a list of misalignments &mdash; channels being judged by metrics that don&rsquo;t match what they&rsquo;re doing, work being done by people whose hours don&rsquo;t match the program&rsquo;s ambitions, attribution being trusted that the platforms themselves describe as estimated. Fixing the misalignments is more valuable than any tactic-level change because tactics applied to a misaligned program just amplify the misalignment. Start here.</p>
+
+  <p>A note worth flagging: industry reporting consistently shows that <strong>most marketing departments don&rsquo;t fund social content production beyond the existing assets they happened to have lying around</strong>, and a growing share have effectively handed the work to one person juggling multiple platforms alongside other marketing responsibilities &mdash; with AI tools picking up the slack on whichever days that person can&rsquo;t. The phenomenon isn&rsquo;t hypothetical; it&rsquo;s the modal organic social program at most mid-sized brands as of 2026. Question 3 of the audit is the one most likely to surface it. The honest version of the resource conversation is in &sect;04 below (creative production), but the audit is where it has to start.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — MATCH CHANNELS TO JOBS
+     ============================================================ -->
+<section class="section" id="channels-to-jobs">
+  <div class="sec-num">02</div>
+  <div class="sec-label">The Allocation Move</div>
+  <h2>Match Each Channel to the Job It&rsquo;s Actually Good At</h2>
+
+  <p>The most important strategic shift inside a social program in 2026 is the move from <em>doing social</em> to <em>doing specific jobs on specific channels</em>. Most brands are still organized around the former &mdash; one team responsible for &ldquo;our social presence,&rdquo; running a content calendar that crosses platforms, judged on aggregate metrics. The brands doing it well are organized around the latter. Each channel has one or two named jobs; each job has its own metrics and its own resourcing; the channels aren&rsquo;t being asked to do work they&rsquo;re not built for.</p>
+
+  <p>Pulling the threads from Parts 2 and 3 together, here&rsquo;s the rough working allocation for most B2C brands in 2026:</p>
+
+  <ul style="margin: 14px 0 18px 24px; line-height: 1.7;">
+    <li><strong>Top-of-funnel awareness</strong> &mdash; mostly <em>not</em> paid social. CTV, podcast advertising, OOH, search-engine paid for category-level queries, and brand-aligned creator content. Paid social CPMs at 2025&ndash;26 levels are not cost-competitive with CTV for pure awareness. <a href="social-3-paid.html#ctv">See Part 3 &sect;07</a>.</li>
+    <li><strong>Mid-funnel consideration</strong> &mdash; this is where paid social actually earns its keep, especially TikTok and Instagram Reels via creator partnerships and well-produced brand-account content that respects platform conventions. Also where LinkedIn paid earns its keep for B2B.</li>
+    <li><strong>Conversion / activation</strong> &mdash; paid social retargeting and lookalike acquisition. The single best job paid social does. Don&rsquo;t starve this; this is where the ROAS lives.</li>
+    <li><strong>Research and listening</strong> &mdash; organic, primarily on Reddit, Discord, niche communities, and the comment sections of your category. Cheapest market research instrument that has ever existed; most brands run it as an afterthought.</li>
+    <li><strong>Customer service</strong> &mdash; organic, on the platforms where your customers actually complain (usually X for SaaS and travel, Facebook for CPG and retail, Instagram and TikTok for DTC and fashion). Resource this like the channel it has become; 73% of customers will buy from a competitor if you don&rsquo;t respond <a href="#ref-sprout-2025" class="cite">(Sprout Social, 2025)</a>.</li>
+    <li><strong>Community</strong> &mdash; brand-owned surfaces (Discord servers, private Facebook groups, branded Slack), supplemented by LinkedIn for B2B and Reddit where the community welcomes the brand. Not Facebook or Instagram brand pages.</li>
+    <li><strong>Brand voice and distinctiveness</strong> &mdash; selective, low-volume, high-quality organic posting on platforms where the work compounds (LinkedIn, the brand&rsquo;s own newsletter, Substack if applicable, and Instagram if the brand has genuine visual identity). The job that pays off over years, not quarters.</li>
+  </ul>
+
+  <p>The pattern is the structural shift the unit has been arguing toward. <strong>The brand-page broadcast model that the discipline built between 2010 and 2018 doesn&rsquo;t do most of these jobs well, and the brands getting social right are mostly working around the brand-page model entirely.</strong> They have brand pages because they have to, and the brand pages do brand voice and customer service. Everything else &mdash; the awareness, the activation, the community, the research &mdash; happens somewhere else, on channels matched to the specific job.</p>
+
+  <p>One more thing worth saying here, because it&rsquo;s what <a href="social-5-imc-callbacks.html">Part 5</a> will pick up in more detail. The funnel-stage question is one of the most common framing errors in social-media strategy: <em>which stage of the funnel is social for?</em> The honest answer is that social isn&rsquo;t one funnel-stage channel &mdash; different jobs above sit at different stages. Treating social as a single TOFU channel was the late-2010s mistake; treating it as a single BOFU channel (the BOFU-as-organic trap from <a href="social-2-organic.html#bofu-trap">Part 2 &sect;02</a>) is the 2020s version of the same mistake. The right answer is that each channel within social is doing different funnel work, and the funnel mapping is part of the audit.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — UGC AND CREATOR PARADOX
+     ============================================================ -->
+<section class="section" id="ugc-paradox">
+  <div class="sec-num">03</div>
+  <div class="sec-label">The Big Tension</div>
+  <h2>The UGC and Creator Paradox</h2>
+
+  <p>Here&rsquo;s a question that doesn&rsquo;t resolve cleanly. <strong>If user-generated content and creator partnerships drive substantially more trust, engagement, and conversion than brand-controlled content &mdash; and the data says they do &mdash; then how does a brand build its own distinctive identity if most of the visible work is being made by people who aren&rsquo;t the brand?</strong> The tension is real, it&rsquo;s underexamined in the consultant literature, and getting it wrong produces brands that have great metrics and no recognizable identity.</p>
+
+  <h3>The trust gap is real and measurable</h3>
+
+  <p>Start with the data the consultant pitch decks lead with, because the numbers are striking and they&rsquo;re not made up. The Emplifi Q1 2026 benchmarks analysis &mdash; the freshest credible source &mdash; runs as the first anchor here.</p>
+
+  <div class="article-card">
+    <div class="ac-kicker">Anchor Source #1</div>
+    <div class="ac-title">User-Generated Content Drives 6.7x Higher Conversions for Brands</div>
+    <div class="ac-meta">Emplifi Q1 2026 Social Media Marketing Benchmarks &middot; April 2026</div>
+    <p>Tracking tens of thousands of US brands using Emplifi&rsquo;s social marketing platform, the Q1 2026 analysis reports that <strong>UGC-driven conversions ran 6.73&times; higher than brand-driven content in Q1 2026 &mdash; up from 4.27&times; in Q4 2025</strong>, a 57% quarter-over-quarter increase. The supporting data is consistent across multiple trackers: <strong>92% of consumers report trusting peer-created content over brand communications</strong>; <strong>UGC is 2.4&times; more likely to be perceived as authentic than brand content</strong>; <strong>product pages featuring UGC convert 74% higher</strong>; <strong>79% of people say UGC highly impacts their purchasing decisions</strong> <a href="#ref-flowbox-2026" class="cite">(Flowbox, 2026)</a>; <a href="#ref-autofaceless-2026" class="cite">(AutoFaceless, 2026)</a>.</p>
+    <p>The mechanism is the trust gap. Consumers have learned to discount brand-produced content as marketing; they extend less discount to content produced by people who aren&rsquo;t obviously selling something. The gap is structural and gets wider as AI-generated brand content fills feeds &mdash; the more synthetic the surrounding feed, the more valuable the genuinely human voice becomes. As Emplifi&rsquo;s CMO Susan Ganeshan put it: <em>&ldquo;more than 90% of the people we surveyed said that authentic engagement builds trust, and 85% said they would pay more for brands they perceive as authentic.&rdquo;</em></p>
+    <a class="ac-cta" href="https://www.morningstar.com/news/pr-newswire/20260429cl45459/user-generated-content-drives-67x-higher-conversions-for-brands-new-data-shows" target="_blank" rel="noopener">Read the Emplifi Q1 2026 report summary &rarr;</a>
+    <span class="ac-cta-note">Emplifi is a paid social-marketing platform, so the framing favors UGC adoption; the underlying conversion-lift data is consistent with parallel research from Flowbox, inBeat, JoinBrands, and Stack Influence cited in the references.</span>
+  </div>
+
+  <h3>The brand-distinctiveness problem most of those reports skip</h3>
+
+  <p>Here&rsquo;s the thing the consultant deck doesn&rsquo;t address. If UGC converts at 6&times; the rate of brand content, and you replace your brand content with UGC, your conversion rate goes up. Great. <em>What happens to brand distinctiveness over time?</em></p>
+
+  <p>The <a href="creative-1-why-creative.html">creative-effectiveness research</a> in this course makes a specific case about <em>distinctive brand assets</em>: the recognizable colors, characters, slogans, visual codes, and narrative consistency that, accumulated over years, make a brand identifiable to consumers and harder for competitors to substitute for. Distinctive brand assets are what cause a consumer staring at a shelf, or scrolling a feed, to recognize <em>your</em> brand without consciously processing it. They&rsquo;re what makes Kleenex synonymous with tissues (<a href="social-1-state.html#followers">Part 1 &sect;06</a>), what makes the Nike swoosh do what it does, what makes <em>"You're Not You When You're Hungry"</em> recognizable as Snickers without the logo on screen.</p>
+
+  <p>UGC by structure doesn&rsquo;t build distinctive brand assets. It builds <em>category trust</em> and <em>product trust</em> &mdash; both of which are valuable, neither of which accrues durably to <em>you</em>. A customer who watches a TikTok review of an athleisure top and buys the brand isn&rsquo;t building a memory structure around the brand&rsquo;s distinctive visual identity, because the brand&rsquo;s distinctive visual identity wasn&rsquo;t in the video. They&rsquo;re building a memory structure around &ldquo;this category of product, recommended by this person.&rdquo; <strong>The next time that customer is in the market, the trust they built transfers to whichever brand the next creator they trust happens to recommend.</strong></p>
+
+  <p>This is the paradox in two sentences. UGC converts better than brand content in the short window. UGC builds less brand equity than brand content over the long window. A brand that fully outsources to UGC and creators is borrowing trust against a future in which the trust doesn&rsquo;t belong to it. A brand that ignores UGC and runs only its own polished content is leaving conversion on the table now and being trust-discounted by an audience that has learned to read brand-controlled content with skepticism.</p>
+
+  <h3>The synthesis that actually works</h3>
+
+  <p>The brands that navigate this well don&rsquo;t pick a side. They run a deliberate hybrid that uses each kind of content for the job it&rsquo;s good at:</p>
+
+  <ul style="margin: 14px 0 18px 24px; line-height: 1.65;">
+    <li><strong>Brand-controlled content carries distinctive brand assets and strategic narrative.</strong> Low volume, high quality, consistent over years. Lives on the brand&rsquo;s own surfaces (newsletter, brand-page hero content, brand-led campaign moments, the website). The point isn&rsquo;t to compete with UGC for conversion; it&rsquo;s to be the thing UGC is ultimately attributing back to. <a href="creative-1-why-creative.html">Creative-1</a> in this course is, more or less, the brief.</li>
+    <li><strong>Creator partnerships carry the brand&rsquo;s strategic narrative through someone else&rsquo;s authentic voice.</strong> The trick is partner selection: the creators chosen are ones whose existing voice already aligns with the brand&rsquo;s strategic positioning, so the creator&rsquo;s authenticity reinforces &mdash; rather than competes with &mdash; the brand&rsquo;s distinctiveness. The brand has the final say on partner choice, brief framing, and which content gets amplified. The creator has the final say on how the work feels.</li>
+    <li><strong>Pure UGC (organic reviews, unprompted posts, user-tagged content) carries social proof at the moment of conversion.</strong> Lives on product pages, in retargeting ads, in the bottom of the funnel. The brand&rsquo;s job is to curate &mdash; selecting which UGC to amplify and how to integrate it, not producing it.</li>
+  </ul>
+
+  <p>The integration is the work. A brand that has clear positioning will attract creators whose voice fits naturally, will produce brand-controlled content that reinforces what those creators say, and will curate UGC that lands in the same narrative space. None of the three streams competes with the others; each amplifies the others. <strong>The brand isn&rsquo;t absent from the creator and UGC work &mdash; the brand is invisible in the moment of production and very visible in the moment of curation.</strong> The integration is what the brand actually does.</p>
+
+  <div class="callout">
+    <div class="callout-label">The diagnostic question for any UGC/creator strategy</div>
+    <p>If a customer saw the creator video, the UGC review, and the brand&rsquo;s own hero campaign &mdash; without knowing which was which &mdash; would they identify all three as the same brand? If yes, the integration is working. If no, the creator work and the UGC are borrowing trust against a brand identity they aren&rsquo;t building. The diagnostic catches the most common failure mode: brands that have a distinctive identity in their own work and a generic identity in their creator and UGC work, which over time produces a brand that&rsquo;s diluted by its own activation strategy.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — CREATIVE AT VOLUME
+     ============================================================ -->
+<section class="section" id="creative-volume">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Production Resourcing</div>
+  <h2>Fund Creative Production Like It Matters (Because It Does Now)</h2>
+
+  <p>The single largest budget-allocation change most brands need to make in 2026 follows directly from the AppsFlyer finding cited in <a href="social-3-paid.html#advantage">Part 3 &sect;06</a>: <strong>creative quality now drives 70&ndash;80% of paid social performance</strong>, up from roughly 30&ndash;40% in the pre-ATT era. The decline of precise targeting means the variable creative is competing against has mostly evaporated. Most marketing budgets are still allocated against the pre-2022 ratio, which is to say: most teams are paying for media against a model where targeting was the biggest controllable lever, while operating in a market where creative is.</p>
+
+  <p>The implication isn&rsquo;t complicated: <strong>increase the share of the budget going into creative production, decrease the share going into platform targeting craft, and increase the volume of creative variants in market at any given time.</strong> Motion&rsquo;s analysis of 550,000+ ads found that only 5&ndash;8% become real winners and roughly 50% never get meaningful spend &mdash; meaning the performance distribution is long-tailed, and the brand that produces 20 variants will outperform the brand that produces three, because the brand with 20 variants is more likely to land in the 5&ndash;8% by sheer surface area. The volume isn&rsquo;t the goal; the volume is the search mechanism for finding the winners.</p>
+
+  <h3>What "fund creative properly" actually looks like</h3>
+
+  <p>Three practical moves matter more than any specific tactic.</p>
+
+  <p><strong>First, modular asset systems.</strong> A single &ldquo;ad&rdquo; in 2026 is rarely one piece of content; it&rsquo;s a system of headlines, value propositions, visuals, and calls-to-action that get recombined into dozens of variants for testing. Build the modular system once; combine the modules to produce the volume; cycle out losers and double down on winners. This is the actual unit economics of creative production for paid social, and most brands still produce ads one at a time.</p>
+
+  <p><strong>Second, creator partnerships as creative production pipeline, not just as media buy.</strong> The same creator who appears in a brand-paid placement can produce three or four pieces of derivative content that get used as ad creative, organic posts, and product-page UGC. The cost-per-asset comes way down when the brand structures partnerships to produce content libraries rather than single placements. Influencer marketing economics are starting to look more like content production than like media buying for the brands paying attention.</p>
+
+  <p><strong>Third, AI used responsibly &mdash; for ideation, drafting, and variation, not for final output.</strong> Generative tools are now good enough to produce dozens of headline variants, alt versions of static visuals, and B-roll for video edits. Used inside a modular system, AI tools can multiply creative output substantially without producing the AI-slop problem covered in <a href="social-1-state.html#disengaged">Part 1 &sect;03</a> &mdash; because the brand&rsquo;s human-led work sits at the strategic and creative-direction layer, and AI handles execution variants. The brands using AI badly are using it to replace human judgment; the brands using it well are using it to extend human-led work.</p>
+
+  <div class="source-card">
+    <div class="source-card-source">Motion / Sovran &middot; March 2026</div>
+    <div class="source-card-title"><a href="https://sovran.ai/benchmarks/meta-ads-cpm-by-industry" target="_blank" rel="noopener">Creative volume and the long-tailed performance distribution</a></div>
+    <div class="source-card-frame">The data behind the &ldquo;more variants&rdquo; argument. Motion&rsquo;s analysis of 550,000+ ads from 6,000+ advertisers.</div>
+    <ul>
+      <li><strong>Only 5&ndash;8% of paid social ads become real winners.</strong> The performance distribution is long-tailed; most variants underperform.</li>
+      <li><strong>Approximately 50% of ads never get meaningful spend at all.</strong> The algorithm rapidly identifies and starves the bottom half.</li>
+      <li>Implication: the brand with more variants in market has more chances to land in the top 5&ndash;8%. <strong>Creative volume isn&rsquo;t about saturating attention; it&rsquo;s about running enough hypotheses through the algorithm to find the winners.</strong></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — ATTRIBUTION WORKAROUNDS
+     ============================================================ -->
+<section class="section" id="attribution">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Measurement</div>
+  <h2>Replace Broken Click Attribution With Something Durable</h2>
+
+  <p><a href="social-3-paid.html#attribution">Part 3 &sect;05</a> walked through how iOS 14.5 through iOS 26 broke the click-attribution model paid social ran on for the better part of a decade. The practical question for Part 4 is what to use instead. The honest answer is a layered system &mdash; no single replacement does the whole job &mdash; with three components that are increasingly being adopted by serious marketing teams.</p>
+
+  <div class="article-card">
+    <div class="ac-kicker">Anchor Source #2</div>
+    <div class="ac-title">Marketing Mix Modeling Guide 2026 &mdash; MMM vs. Attribution</div>
+    <div class="ac-meta">Improvado &middot; June 2026</div>
+    <p>The most current operational guide to the measurement methodology that&rsquo;s replacing multi-touch attribution as the strategic-budgeting framework for most serious marketers. <strong>Marketing mix modeling (MMM)</strong> is a statistical method that correlates aggregate marketing spend by channel against aggregate outcomes (sales, revenue) using regression to estimate each channel&rsquo;s incremental contribution &mdash; without any user-level tracking. The methodology has been around since the 1960s; it&rsquo;s come roaring back since 2021 specifically because it&rsquo;s privacy-durable by design.</p>
+    <p>The case for MMM in 2026 is the case the attribution data made for itself when it broke. <strong>71% of brands are reducing their reliance on user-level data</strong> (eMarketer, 2025); <strong>41% of marketers face attribution challenges directly</strong>; <strong>74% cite privacy blind spots in their measurement</strong> (MediaPost, 2025). MMM doesn&rsquo;t care about iOS opt-outs because it doesn&rsquo;t use individual identifiers. Google deprecated its older MMM tool (LightweightMMM) in January 2025 and replaced it with Meridian; Meta open-sourced Robyn. Both are now standard tools in the larger-brand measurement stack.</p>
+    <a class="ac-cta" href="https://improvado.io/blog/what-is-marketing-mix-modeling-complete-guide" target="_blank" rel="noopener">Read the full MMM guide at Improvado &rarr;</a>
+    <span class="ac-cta-note">Improvado is a marketing-analytics platform, so they have an interest in selling MMM; the methodology is well-established and the broader 2025&ndash;26 industry consensus is consistent &mdash; MMM is the strategic-budgeting framework that&rsquo;s replacing multi-touch attribution.</span>
+  </div>
+
+  <h3>The three-layer measurement stack</h3>
+
+  <p>The brands measuring social well in 2026 use three measurement systems in combination, each answering a different question.</p>
+
+  <ul style="margin: 14px 0 18px 24px; line-height: 1.7;">
+    <li><strong>Server-side event tracking via Conversions API (CAPI)</strong> &mdash; for tactical, day-to-day attribution. CAPI sends conversion events from the brand&rsquo;s own server back to Meta (and equivalents on other platforms), bypassing browser-level privacy restrictions. It&rsquo;s the most accurate observed-conversion data available in 2026, but it&rsquo;s still only tactical &mdash; campaign optimization within a platform, not cross-channel budget allocation.</li>
+    <li><strong>Marketing mix modeling (MMM)</strong> &mdash; for strategic budgeting. MMM looks at aggregate spend across all channels (paid social, CTV, search, email, OOH, even offline) against business outcomes, and produces channel-level incremental-contribution estimates. The output answers the CFO&rsquo;s real question (&ldquo;what would happen if we moved $1M from paid social to CTV?&rdquo;) better than any in-platform attribution can. Run quarterly or twice yearly.</li>
+    <li><strong>Incrementality testing (geo-lift, holdout tests)</strong> &mdash; for ground-truth validation. Periodically turn off a channel in a specific geography or for a specific audience cohort and measure the actual sales impact. Slow and expensive, but the only methodology that produces ground-truth causal evidence. Used to validate the MMM and tactical attribution, not to run day-to-day operations.</li>
+  </ul>
+
+  <p>The three layers answer different questions and shouldn&rsquo;t be confused with each other. In-platform CAPI tells you which paid social campaigns to optimize day-to-day. MMM tells you how to allocate budget across channels at the quarterly or annual level. Incrementality testing tells you whether either of the first two is approximately right. <strong>Trusting one to do all three is the modern equivalent of trusting Facebook&rsquo;s 2018 dashboard &mdash; it&rsquo;s a single vendor&rsquo;s estimate of its own performance, and treating it as ground truth is the same mistake one layer deeper.</strong></p>
+
+  <div class="callout">
+    <div class="callout-label">If you implement only one thing</div>
+    <p>If the budget is tight and you can only implement one of these three, implement MMM. Even a rough MMM &mdash; Meta&rsquo;s open-source Robyn is free and runs on basic spend-and-outcome data &mdash; produces strategic budgeting insights an order of magnitude more reliable than the in-platform attribution most teams are still relying on. The MMM doesn&rsquo;t replace CAPI for tactical optimization, but it answers the big budget questions in a way the broken attribution stack can&rsquo;t.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — THE CEO CONVERSATION
+     ============================================================ -->
+<section class="section" id="ceo-conversation">
+  <div class="sec-num">06</div>
+  <div class="sec-label">The Hard Part</div>
+  <h2>The Conversation With the Person Holding the Budget</h2>
+
+  <p>Everything above is the technical work. The harder work, in most organizations, is the conversation that has to happen with the CEO or CFO or whoever decides what the social-media program is supposed to be doing. Most of the recommendations in this piece &mdash; <em>spend less on posting volume, more on creative production; reallocate awareness budget to CTV; trust MMM over Meta&rsquo;s dashboard; resource customer service on social like the channel it has become</em> &mdash; require buy-in from someone who probably still thinks of social media the way they did in 2017. The misallocation loop from <a href="social-1-state.html#ceo-problem">Part 1 &sect;07</a> is, in the end, a conversation problem.</p>
+
+  <p>The version of the conversation that tends to work has three moves.</p>
+
+  <p><strong>First, lead with the audit, not with the recommendation.</strong> If you walk in saying &ldquo;we need to triple the creative production budget,&rdquo; you&rsquo;ll lose. If you walk in with the audit from &sect;01 above &mdash; here&rsquo;s what each channel is doing, here&rsquo;s what each channel is being judged by, here&rsquo;s the gap, here&rsquo;s what&rsquo;s producing the underperformance &mdash; the recommendation falls out of the analysis instead of arriving as a budget ask. The CEO is much more likely to fund a reallocation than to fund a request for more.</p>
+
+  <p><strong>Second, frame social as a portfolio, not as a channel.</strong> The framing the CEO probably still has is <em>&ldquo;social media is one thing we do, and it should produce one set of results.&rdquo;</em> The framing they need is <em>&ldquo;social media is six different jobs running on a shared technical infrastructure, and each one needs to be funded and measured separately.&rdquo;</em> The portfolio framing makes the budget questions clearer (where to cut, where to add) and the measurement questions easier (what to expect from each piece).</p>
+
+  <p><strong>Third, surface the comparison to CTV explicitly.</strong> One of the most useful conversations a marketing leader can have with a CEO in 2026 is the &ldquo;here&rsquo;s where the budget actually goes when it leaves social&rdquo; conversation, grounded in the IAB data from <a href="social-3-paid.html#ctv">Part 3 &sect;07</a>. If 36% of new CTV money in 2025 came from social budgets, that&rsquo;s industry-wide validation that the reallocation is happening &mdash; not a controversial new theory. The CEO would much rather hear &ldquo;here&rsquo;s how the industry is moving and here&rsquo;s our version of the same move&rdquo; than &ldquo;we want to do something none of our competitors are doing yet.&rdquo;</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The diagnostic work of this unit produces a recommendation. The CEO conversation produces the budget. They&rsquo;re not the same job, and the first one doesn&rsquo;t survive without the second one.</div>
+  </div>
+
+  <p>One more thing &mdash; and it&rsquo;s the closing argument of this piece. The brands that get social right in 2026 are not the ones with the cleverest tactics or the largest budgets. They&rsquo;re the ones whose marketing leadership has done the work of resetting the CEO&rsquo;s expectations to match what the channel actually is. The tactics, the creative production budget, the MMM implementation, the CTV reallocation &mdash; all of that follows from the expectation reset. Without the reset, every individual improvement gets re-measured against the wrong yardstick and the program drifts back to the 2014 default. With the reset, the rest of the work has a chance to compound.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">The Monday-morning to-do list, condensed</div>
+    <ul>
+      <li><strong>Run the four-question audit</strong> from &sect;01. Don&rsquo;t skip the third question about resourcing &mdash; it&rsquo;s where the honest answers usually surface.</li>
+      <li><strong>Assign each active channel one or two named jobs</strong> from the &sect;02 list. Stop judging channels against jobs they&rsquo;re not doing.</li>
+      <li><strong>Map the brand&rsquo;s current UGC and creator work against the integration test</strong> in &sect;03: would the work be recognizable as your brand without the logo? If not, fix the integration before scaling the program.</li>
+      <li><strong>Move budget from media/targeting craft into creative production.</strong> Volume of variants matters more than volume of spend; you need both, but you&rsquo;ve probably been over-investing in one and under-investing in the other.</li>
+      <li><strong>Implement CAPI for tactical attribution and at least a rough MMM for strategic budgeting.</strong> Stop trusting in-platform attribution as ground truth.</li>
+      <li><strong>Have the CEO conversation.</strong> The technical recommendations don&rsquo;t hold without the expectation reset.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     COMING UP NEXT
+     ============================================================ -->
+<section class="section" id="next">
+  <div class="sec-label">What&rsquo;s Coming</div>
+  <h2>The Last Piece</h2>
+
+  <p>The unit closes with one more piece. <a href="social-5-imc-callbacks.html"><strong>Part 5 &mdash; How This Hits IMC, PESO, Funnel, and Brand vs. Performance.</strong></a> This unit has been arguing about social media; the rest of the course has been building frameworks (<a href="imc.html">IMC</a>, <a href="peso.html">PESO</a>, <a href="funnel.html">the funnel</a>, <a href="brand-vs-performance.html">brand vs. performance</a>) that mostly predate the social-media collapse this unit has documented. Part 5 is where the frameworks get updated to match the picture &mdash; including the funnel-stage question already flagged in &sect;02 above, which is one of the most common framing errors in social-media strategy and deserves its own treatment.</p>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="social-3-paid.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#3 &mdash; Paid Social</span>
+    <span class="unit-nav-tease">CPM/CPC/CPA mechanics, the iOS 14.5&ndash;26 attribution collapse, Advantage+ and the creative callback, and the CTV reallocation taking 36% of new ad dollars from social.</span>
+  </a>
+  <a href="social-5-imc-callbacks.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">#5 &mdash; IMC, PESO, Funnel &amp; Brand vs. Performance</span>
+    <span class="unit-nav-tease">The synthesis. Updating the frameworks you&rsquo;ve already learned to match what social has become. The funnel-stage problem most teams haven&rsquo;t resolved, and where each social job sits in PESO and brand-vs-performance terms.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>Social audit</em></strong> &mdash; the four-question diagnostic in &sect;01: what is each channel doing, what is each judged by, who&rsquo;s doing the work and is it honestly resourced, and what does the attribution stack actually report. Run annually; the misalignments surfaced here are usually more valuable than any tactic-level change.</p>
+    <p><strong><em>Channel-to-job allocation</em></strong> &mdash; the strategic move from &ldquo;our social presence&rdquo; (one team, one calendar, aggregate metrics) to specific named jobs on specific channels, each with its own metrics and resourcing. The structural pattern most brands need to adopt to escape the misallocation loop.</p>
+    <p><strong><em>The UGC-brand paradox</em></strong> &mdash; the tension between (a) UGC&rsquo;s 6.7&times; higher conversion rate vs. brand content and (b) UGC&rsquo;s structural inability to build distinctive brand assets, which accrue only to brand-controlled creative work. Resolved by deliberate hybrid: brand voice for distinctiveness, creators for narrative-aligned authenticity, pure UGC for conversion-window social proof.</p>
+    <p><strong><em>Distinctive brand assets</em></strong> &mdash; the recognizable colors, characters, slogans, visual codes, and narrative consistency that, accumulated over years, make a brand identifiable without the logo on screen. The thing UGC structurally can&rsquo;t build for you. See <a href="creative-1-why-creative.html">creative-effectiveness research</a> for the full case.</p>
+    <p><strong><em>Modular asset systems</em></strong> &mdash; creative production approach that builds reusable components (headlines, value propositions, visuals, calls-to-action) that combine into many ad variants for testing. The unit economics of creative production at the volume Advantage+ requires.</p>
+    <p><strong><em>Marketing Mix Modeling (MMM)</em></strong> &mdash; statistical method that correlates aggregate marketing spend by channel against aggregate business outcomes (sales, revenue) using regression. Privacy-durable because it uses no user-level identifiers. The strategic-budgeting framework that&rsquo;s replacing multi-touch attribution post-ATT. Google&rsquo;s Meridian and Meta&rsquo;s Robyn are the major open-source implementations.</p>
+    <p><strong><em>Incrementality testing</em></strong> &mdash; experimental methodology that turns off a channel in a specific geography or for a specific audience cohort and measures the actual sales impact. The only measurement method that produces ground-truth causal evidence; used to validate MMM and tactical attribution rather than to run day-to-day operations.</p>
+    <p><strong><em>The three-layer measurement stack</em></strong> &mdash; the combination of CAPI (tactical day-to-day), MMM (strategic budgeting), and incrementality testing (ground-truth validation) used by sophisticated 2026 measurement programs. Each answers a different question; trusting any one to do all three is the modern equivalent of trusting Facebook&rsquo;s 2018 dashboard.</p>
+    <p><strong><em>The CEO conversation</em></strong> &mdash; the buy-in conversation that has to happen for the technical recommendations to survive. Three-move structure: lead with the audit, frame social as a portfolio rather than a channel, surface the CTV-reallocation comparison explicitly. Without the conversation, every technical improvement drifts back to the 2014 default within a quarter.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Sources cited in this piece, in APA style. Anchor sources (Emplifi UGC benchmarks and Improvado MMM Guide) appear first; the rest are alphabetical.</p>
+
+  <div class="references">
+
+    <p class="ref" id="ref-emplifi-q1-2026">Emplifi. (2026, April 29). <a href="https://www.morningstar.com/news/pr-newswire/20260429cl45459/user-generated-content-drives-67x-higher-conversions-for-brands-new-data-shows" target="_blank" rel="noopener">User-generated content drives 6.7x higher conversions for brands, new data shows</a>. <em>Emplifi Q1 2026 Social Media Marketing Benchmarks</em>, via PR Newswire. https://www.morningstar.com/news/pr-newswire/20260429cl45459/</p>
+
+    <p class="ref" id="ref-improvado-mmm-2026">Improvado. (2026, June). <a href="https://improvado.io/blog/what-is-marketing-mix-modeling-complete-guide" target="_blank" rel="noopener">Marketing mix modeling guide 2026 &mdash; MMM explained</a>. <em>Improvado Blog</em>. https://improvado.io/blog/what-is-marketing-mix-modeling-complete-guide</p>
+
+    <p class="ref" id="ref-autofaceless-2026">AutoFaceless. (2026, March 9). <a href="https://autofaceless.ai/blog/ugc-statistics-2026" target="_blank" rel="noopener">User-generated content (UGC) statistics 2026: Market size, trust &amp; conversion data</a>. <em>AutoFaceless Blog</em>. https://autofaceless.ai/blog/ugc-statistics-2026</p>
+
+    <p class="ref" id="ref-digitalapplied-2026">Digital Applied. (2026). <a href="https://www.digitalapplied.com/blog/marketing-mix-modeling-2026-mmm-vs-attribution-playbook" target="_blank" rel="noopener">Marketing mix modeling 2026: MMM vs. attribution guide</a>. <em>Digital Applied Blog</em>. https://www.digitalapplied.com/blog/marketing-mix-modeling-2026-mmm-vs-attribution-playbook</p>
+
+    <p class="ref" id="ref-flowbox-2026">Flowbox. (2026, February 18). <a href="https://getflowbox.com/blog/user-generated-content-statistics/" target="_blank" rel="noopener">User-generated content statistics: UGC stats compilation</a>. <em>Flowbox Blog</em>. https://getflowbox.com/blog/user-generated-content-statistics/</p>
+
+    <p class="ref" id="ref-inbeat-2025">inBeat Agency. (2025). <a href="https://inbeat.agency/blog/ugc-statistics" target="_blank" rel="noopener">50 UGC statistics + strategic implications for your brand in 2025</a>. <em>inBeat Agency Blog</em>. https://inbeat.agency/blog/ugc-statistics</p>
+
+    <p class="ref" id="ref-measured-mmm-2026">Measured. (2026, March 1). <a href="https://www.measured.com/faq/real-life-media-mix-modeling-mmm-examples-true-incrementality/" target="_blank" rel="noopener">Ten real-life Media Mix Modeling (MMM) examples: How leading brands uncover true incrementality</a>. <em>Measured</em>. https://www.measured.com/faq/real-life-media-mix-modeling-mmm-examples-true-incrementality/</p>
+
+    <p class="ref" id="ref-stack-influence-2025">Stack Influence. (2025, October 31). <a href="https://stackinfluence.com/ugc-vs-brand-generated-content-authenticy-wins/" target="_blank" rel="noopener">UGC vs. brand-generated content: Why authenticity wins</a>. <em>Stack Influence Blog</em>. https://stackinfluence.com/ugc-vs-brand-generated-content-authenticy-wins/</p>
+
+    <p class="ref" id="ref-sprout-2025">Sprout Social. (2025). <a href="https://sproutsocial.com/insights/social-media-customer-service-statistics/" target="_blank" rel="noopener">The 2025 Sprout Social Index</a>. <em>Sprout Social Insights</em>. https://sproutsocial.com/insights/social-media-customer-service-statistics/</p>
+
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>

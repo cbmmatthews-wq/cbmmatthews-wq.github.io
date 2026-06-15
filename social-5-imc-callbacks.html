@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#5 — How This Hits IMC, PESO, Funnel & Brand vs. Performance — cbmatthe</title>
+<meta name="description" content="The synthesis piece. Updating the frameworks already covered in this course — IMC, PESO, the marketing funnel, and the 60/40 brand-vs-performance split — to match what social has actually become. Includes the funnel-stage question most teams haven't resolved, and the closing argument for the whole unit.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for Social #5 ---- */
+
+  /* Funnel-stage mapping table — used in §02 to land which social job
+     sits at which funnel stage. */
+  .funnel-map {
+    margin: 22px 0 18px;
+    max-width: 820px;
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .funnel-map-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .funnel-map-row:last-child { border-bottom: none; }
+  .funnel-map-stage {
+    background: var(--cream);
+    padding: 18px 18px;
+    border-right: 1px solid var(--rule);
+  }
+  .funnel-map-stage-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .funnel-map-stage-sub {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .funnel-map-content {
+    padding: 16px 20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .funnel-map-content strong { color: var(--ink); }
+  .funnel-map-content em {
+    color: var(--red);
+    font-style: italic;
+    font-size: 12.5px;
+  }
+  @media (max-width: 640px) {
+    .funnel-map-row { grid-template-columns: 1fr; }
+    .funnel-map-stage { border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+
+  /* References list */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+  }
+
+  /* Glossary tightening */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">M544 &middot; Rethinking Social &middot; #5</div>
+    <h1>How This Hits IMC, PESO, Funnel &amp; Brand vs. Performance</h1>
+    <p class="lede">Most of the frameworks you&rsquo;ve already learned in this course &mdash; <a href="imc.html">IMC</a>, <a href="peso.html">PESO</a>, the <a href="funnel.html">marketing funnel</a>, and the <a href="brand-vs-performance.html">60/40 brand-versus-performance split</a> &mdash; were developed at a moment when social media still meant roughly what it meant in 2014: a unified channel where brands could reach followers organically, run targeted paid campaigns with reliable attribution, and use the resulting visibility to do both awareness and conversion work. That moment is over. The frameworks still hold; the inputs to them have changed substantially. This piece is where the update happens.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#funnel-stage">The Funnel-Stage Question</a>
+    <a href="#peso-update">PESO, Updated</a>
+    <a href="#brand-perf">Brand vs. Performance</a>
+    <a href="#imc-update">IMC, Updated</a>
+    <a href="#closing">The Closing Argument</a>
+    <a href="#unit-condensed">The Whole Unit</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Frameworks Still Work. The Inputs Changed.</h2>
+
+  <p>Four pieces of diagnostic and prescriptive work behind us. <a href="social-1-state.html">Part 1</a> documented what social has become. <a href="social-2-organic.html">Part 2</a> argued what organic is for now. <a href="social-3-paid.html">Part 3</a> walked through what paid social is for now and how it broke. <a href="social-4-doing-better.html">Part 4</a> laid out the practical moves &mdash; audit, channel-to-job allocation, the UGC paradox, creative volume, MMM, the CEO conversation. The remaining work is to take the conclusions back to the frameworks that organize the rest of this course and see what needs updating.</p>
+
+  <p>Three observations frame the rest of this piece.</p>
+
+  <p>The first is that the frameworks are durable. <strong>IMC, PESO, the funnel, and brand vs. performance all still describe how marketing actually works in 2026</strong>; they just describe a different distribution of channels filling each cell than they did in 2014. The frameworks don&rsquo;t need to be replaced. They need to be re-populated with the current state of the channels.</p>
+
+  <p>The second is that the most common framing error this unit set out to correct is the one that runs across all four frameworks at once: <strong>treating &ldquo;social media&rdquo; as a single channel</strong>. In IMC terms, social isn&rsquo;t one voice; in PESO terms, social spans three of the four cells; in funnel terms, social isn&rsquo;t one stage; in brand-vs-performance terms, social isn&rsquo;t one side of the split. The unitary &ldquo;social media&rdquo; concept is the analytical mistake that breaks every framework that tries to incorporate it. Disaggregating social into its actual jobs is what makes the frameworks work again.</p>
+
+  <p>The third is that the funnel-stage question deserves its own treatment. It&rsquo;s the most common version of the unitary error, and it&rsquo;s the one that pushes brands into the worst misallocation patterns. It goes first.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — THE FUNNEL-STAGE QUESTION
+     ============================================================ -->
+<section class="section" id="funnel-stage">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The Most Common Framing Error</div>
+  <h2>The Funnel-Stage Question Nobody Resolves Cleanly</h2>
+
+  <p>One of the most common conversations inside a marketing department over the past fifteen years has gone something like this. <em>&ldquo;Where in the funnel does social media sit?&rdquo;</em> The team picks one answer. They build the program around it. The answer turns out to be partially right and partially wrong, the program underperforms in ways the team can&rsquo;t explain, and the next quarter someone proposes a different answer. The cycle repeats.</p>
+
+  <h3>The history of the wrong answer</h3>
+
+  <p>Three eras, three wrong answers.</p>
+
+  <p><strong>2010&ndash;2016: Social as TOFU.</strong> The first wave of social-media marketing treated the channel as a top-of-funnel awareness machine. The logic was that organic reach was high (16%-ish on Facebook in 2012), virality was real, and social was a place to attract people who didn&rsquo;t know your brand yet. The strategy was &ldquo;build a presence, post engaging content, watch your audience grow, win the awareness battle.&rdquo; This worked, more or less, while reach lasted &mdash; and then it didn&rsquo;t.</p>
+
+  <p><strong>2016&ndash;2020: Social as MOFU.</strong> As organic reach collapsed and targeting capabilities matured, the working theory shifted. Social became the mid-funnel nurture channel &mdash; the place where you took people who already knew your brand and moved them closer to a purchase decision through retargeting, sponsored content, and brand-storytelling work. This worked too, until ATT broke the targeting infrastructure (<a href="social-3-paid.html#attribution">Part 3 &sect;05</a>) and the mid-funnel work started looking less efficient than it had.</p>
+
+  <p><strong>2020&ndash;present: Social as BOFU.</strong> Under pressure from CFOs to show attributable ROI, most brands quietly slid social toward the bottom of the funnel. Organic posts became sale announcements (the BOFU-as-organic trap from <a href="social-2-organic.html#bofu-trap">Part 2 &sect;02</a>); paid social became almost exclusively conversion-and-retargeting-focused; awareness-stage work moved to CTV, podcasts, and other channels. This <em>works</em> for the conversion job, but treating social as a single BOFU channel produces brands without distinctive identity, organic feeds that read as ads, and over-reliance on retargeting audiences that eventually get exhausted.</p>
+
+  <p>Three eras, three wrong answers. The pattern they share is the framing error from the overview above: <em>treating social as one funnel-stage channel.</em></p>
+
+  <h3>The actual answer</h3>
+
+  <p>Social isn&rsquo;t one funnel-stage channel. Each of the jobs catalogued in <a href="social-2-organic.html#what-its-for">Part 2 &sect;04</a> and <a href="social-3-paid.html#what-paid-is-for">Part 3 &sect;08</a> sits at a different funnel stage. The correct mapping looks more like this:</p>
+
+  <div class="funnel-map">
+    <div class="funnel-map-row">
+      <div class="funnel-map-stage">
+        <div class="funnel-map-stage-name">TOFU</div>
+        <div class="funnel-map-stage-sub">Awareness</div>
+      </div>
+      <div class="funnel-map-content">
+        <strong>Mostly NOT paid social CPM</strong> at current prices &mdash; CTV, podcast, paid search for category-level queries, and OOH do this work better per dollar. <strong>Selectively organic on TikTok via creators</strong> for brands whose content fits the platform; <strong>LinkedIn for B2B</strong> awareness through employee advocacy and thought-leadership. <em>The "social as TOFU" thesis from 2010&ndash;2016 stopped being true with the reach collapse.</em>
+      </div>
+    </div>
+
+    <div class="funnel-map-row">
+      <div class="funnel-map-stage">
+        <div class="funnel-map-stage-name">MOFU</div>
+        <div class="funnel-map-stage-sub">Consideration</div>
+      </div>
+      <div class="funnel-map-content">
+        <strong>Paid social earns its keep here</strong> &mdash; via well-produced brand-account content, creator partnerships, and Reels/Shorts/TikTok in the platforms&rsquo; native genres. <strong>Organic listening</strong> on Reddit, Discord, and category comment sections feeds the message development. <em>This is where social-as-channel does some of its most legitimate work.</em>
+      </div>
+    </div>
+
+    <div class="funnel-map-row">
+      <div class="funnel-map-stage">
+        <div class="funnel-map-stage-name">BOFU</div>
+        <div class="funnel-map-stage-sub">Conversion</div>
+      </div>
+      <div class="funnel-map-content">
+        <strong>Paid social retargeting and lookalike acquisition</strong> &mdash; the single best job paid social does, and where most of the ROAS lives. <strong>UGC and creator content on product pages</strong> (<a href="social-4-doing-better.html#ugc-paradox">Part 4 &sect;03</a>) closes the trust gap at the moment of decision. <em>This part is real and well-funded; the mistake is treating it as the whole job.</em>
+      </div>
+    </div>
+
+    <div class="funnel-map-row">
+      <div class="funnel-map-stage">
+        <div class="funnel-map-stage-name">Post-purchase</div>
+        <div class="funnel-map-stage-sub">Loyalty / advocacy</div>
+      </div>
+      <div class="funnel-map-content">
+        <strong>Organic customer service</strong> on the platforms where customers actually complain &mdash; the cheapest interactions-per-resolved-issue any service team will run. <strong>Community on brand-owned surfaces</strong> (Discord, private groups). <strong>EGC and employee advocacy</strong>. <em>This is where the long-term brand-loyalty work happens, and it&rsquo;s the most under-resourced job in most social programs.</em>
+      </div>
+    </div>
+  </div>
+
+  <p>The mapping is the point. <strong>Social isn&rsquo;t TOFU, MOFU, or BOFU. It&rsquo;s a portfolio of jobs running across all four stages, and each job needs to be allocated against the stage it actually serves.</strong> The brands stuck in the &ldquo;is social TOFU or BOFU&rdquo; debate are the brands whose social programs are about to underperform, because the question itself is wrong.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — PESO UPDATED
+     ============================================================ -->
+<section class="section" id="peso-update">
+  <div class="sec-num">02</div>
+  <div class="sec-label">PESO, 2026 Edition</div>
+  <h2>The PESO Model With Updated Inputs</h2>
+
+  <p>The <a href="peso.html">PESO framework</a> &mdash; Paid, Earned, Shared, Owned &mdash; remains the cleanest way to think about brand visibility across the channels a marketing program runs on. The cell definitions didn&rsquo;t change. The channels filling each cell did, and the weighting between them has shifted noticeably since 2018.</p>
+
+  <p><strong>Paid</strong> still means paid media: ads bought against impressions, clicks, or conversions. The cell got more expensive (<a href="social-3-paid.html#cpm-rise">Part 3 &sect;04</a>: Meta CPMs up 20% YoY), less measurable (<a href="social-3-paid.html#attribution">Part 3 &sect;05</a>: attribution collapse), and more competitive against alternatives that didn&rsquo;t exist at meaningful scale in 2018 (<a href="social-3-paid.html#ctv">Part 3 &sect;07</a>: CTV reallocation). Within Paid, the share going to paid social has either flattened or contracted at most brands &mdash; not because paid social stopped working, but because CTV, retail media, and CTV-adjacent channels are absorbing the awareness-oriented portion of what used to be social-only budgets.</p>
+
+  <p><strong>Earned</strong> &mdash; press coverage, mentions, organic shares from non-followers, third-party endorsements &mdash; is harder than ever to obtain in 2026, partly because the journalism industry that traditionally produced earned media has contracted, and partly because the &ldquo;virality&rdquo; mechanism that once let earned media compound on social platforms is mostly gone (<a href="social-1-state.html#numbers">Part 1 &sect;05</a>). What earned media remains is concentrated in <em>dark social</em> &mdash; the customer who DMs your article to a group chat, the Slack channel where decision-makers compare vendors &mdash; and the most-cited industry estimate is that <strong>84&ndash;95% of sharing now happens in dark social channels</strong> brands can&rsquo;t see directly <a href="#ref-intentamplify-2025" class="cite">(Intent Amplify, 2025)</a>. Earned media still happens; it&rsquo;s mostly invisible to brand analytics, which is a different problem than not happening.</p>
+
+  <p><strong>Shared</strong> &mdash; the original peer-to-peer social-platform sharing mechanism &mdash; has been the most disrupted cell of the four. The mechanism that used to power it (your followers re-sharing your content to their followers via the social graph) doesn&rsquo;t work the way it did. The work formerly done in this cell has fragmented into three places: <em>UGC and creator content</em> (which functions as shared media at the moment of creation but lives on paid placements at the moment of distribution), <em>employee-generated content</em> (which the algorithms weight as friend-and-people signal, not brand signal), and <em>dark social</em> (which has absorbed most of the genuine peer-sharing activity). The cell didn&rsquo;t disappear; the channels filling it scattered.</p>
+
+  <p><strong>Owned</strong> &mdash; the channels the brand directly controls &mdash; gained importance significantly as the other three cells got harder. The website, the email list, the SMS list, and increasingly the brand-owned community surfaces (Discord servers, private Facebook groups, branded Slack channels) are now the channels with the most reliable distribution. Email open rates haven&rsquo;t collapsed the way organic social reach did. SMS opens at 95%+. Brand-owned community surfaces reach 100% of their members. <strong>The &ldquo;old-fashioned&rdquo; channels in this cell are now structurally the most modern thing in a marketing program</strong> &mdash; not because they&rsquo;re new, but because they&rsquo;re the only channels left where the brand fully controls who sees its message and when.</p>
+
+  <div class="callout">
+    <div class="callout-label">The 2026 PESO rebalance, condensed</div>
+    <p><strong>Paid</strong>: still robust but more expensive and less attributable, with awareness budget partially migrating to CTV. <strong>Earned</strong>: mostly invisible (dark social), but not gone &mdash; just unmeasurable through public analytics. <strong>Shared</strong>: scattered into UGC, creator content, EGC, and dark social. The original mechanism is broken; the cell&rsquo;s function is now distributed across the other three. <strong>Owned</strong>: more important than ever &mdash; email, SMS, and brand-owned community surfaces are now the most reliable distribution mechanisms a brand has. <em>Under-invest here at your peril.</em></p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — BRAND VS PERFORMANCE
+     ============================================================ -->
+<section class="section" id="brand-perf">
+  <div class="sec-num">03</div>
+  <div class="sec-label">60/40, Updated</div>
+  <h2>Brand vs. Performance, Re-Read for 2026</h2>
+
+  <p>The <a href="brand-vs-performance.html">60/40 brand-to-performance split</a> from Binet &amp; Field was originally derived from IPA Effectiveness Databank analysis covering pre-2014 marketing campaigns &mdash; the period before iOS 14.5, before the AI-targeting era, before CTV displaced linear, before AI slop changed what an authentic feed looks like. The ratio holds up surprisingly well to the 2026 picture. What changed is which channels fill each side of the split.</p>
+
+  <h3>The 60% brand-building half</h3>
+
+  <p>In the 2014 version of the framework, brand-building work was a mix of TV, OOH, print, and a meaningful share of social-platform awareness work (paid awareness campaigns, organic brand-page content). The 2026 version of that 60% looks substantially different in channel mix even though the percentage is roughly the same:</p>
+
+  <ul style="margin: 12px 0 16px 24px; line-height: 1.65;">
+    <li><strong>CTV and streaming-platform ads</strong> &mdash; absorbed most of the awareness-oriented budget that used to live in social CPM campaigns.</li>
+    <li><strong>Podcast and audio advertising</strong> &mdash; smaller share but growing, particularly effective for narrative-led brand work.</li>
+    <li><strong>Paid search at the brand-and-category level</strong> &mdash; capturing in-market searchers for the category (not just the brand).</li>
+    <li><strong>Brand-controlled creative across owned channels</strong> &mdash; newsletter, brand-page hero content, brand-led campaign moments on the website. The low-volume, high-quality work covered in <a href="social-2-organic.html#what-its-for">Part 2 &sect;04</a>.</li>
+    <li><strong>Creator partnerships chosen for narrative alignment</strong> &mdash; the &ldquo;invisible in production, visible in curation&rdquo; work from <a href="social-4-doing-better.html#ugc-paradox">Part 4 &sect;03</a>. Counts as brand-building when done with strategic intent.</li>
+    <li><strong>OOH and print where they still apply</strong> &mdash; smaller share but still real for category-relevant brand-building.</li>
+  </ul>
+
+  <p>The point worth carrying: the 60% half didn&rsquo;t shrink. <em>It just stopped being mostly social.</em> Brands that have kept their brand-building share at 60% but failed to migrate the channel mix &mdash; still running brand-awareness campaigns on Facebook and Instagram at 2026 CPMs &mdash; are paying roughly twice as much per impression as the alternative would cost on CTV, while reaching audiences less likely to be paying attention to a feed-based static ad than to a 30-second streaming spot.</p>
+
+  <h3>The 40% performance half</h3>
+
+  <p>This is where paid social mostly lives now. Lookalike acquisition, retargeting, conversion-optimized creative for in-market audiences, the activation work paid social genuinely does well at. Email and SMS direct-response work also lives here. The performance half got more concentrated in social and direct-response channels as the brand-building work migrated out, which is approximately the inverse of what the &ldquo;just throw it on social&rdquo; theory predicted.</p>
+
+  <p>The error to flag, since brands keep making it: <strong>treating social as both brand and performance simultaneously, without separating the work</strong>. The brand-vs-performance framework requires that you know which campaigns are doing which job and budget them against the appropriate half of the split. A paid social campaign trying to do brand-building AND drive immediate conversions is usually doing both badly, and reading its dashboard against either metric produces the misallocation. Pick the side of the split each campaign serves; measure it accordingly; resist the pressure to make conversion-optimized campaigns earn awareness credit and vice versa.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — IMC UPDATED
+     ============================================================ -->
+<section class="section" id="imc-update">
+  <div class="sec-num">04</div>
+  <div class="sec-label">IMC for the New Channel Mix</div>
+  <h2>Integrated Marketing Communications, Updated</h2>
+
+  <p>The core principle of <a href="imc.html">IMC</a> &mdash; that a brand should speak with one consistent voice across all the channels and surfaces a customer encounters &mdash; remains correct. The implementation got harder for two reasons.</p>
+
+  <p>The first is that the number of relevant channels has gone up substantially. A 2014 IMC implementation had to coordinate roughly six to eight surfaces (TV, print, OOH, website, email, three or four social platforms). A 2026 IMC implementation has to coordinate fifteen-plus &mdash; the original six, plus CTV, podcast, retail media, multiple paid social platforms in different roles, creator partnerships, UGC integration on product pages, community surfaces, customer service across multiple platforms, and dark-social signal management. The orchestration work is more complex by a substantial multiple.</p>
+
+  <p>The second, and harder, is that <strong>some of the surfaces aren&rsquo;t brand-controlled</strong>. The IMC implementation in 2014 was mostly about controlling brand-owned messaging; the implementation in 2026 has to extend brand consistency to creator content, UGC, employee posts, and community-member-generated material &mdash; surfaces where the brand has indirect influence at most. This isn&rsquo;t a contradiction of IMC; it&rsquo;s a more demanding version of it. The brand consistency that used to live in &ldquo;use the brand book everywhere&rdquo; now lives in &ldquo;choose partners whose existing voice already aligns with the brand book, and curate the integration so it reads as one whole.&rdquo;</p>
+
+  <p>The practical move is the one this whole unit has been building toward: <strong>treat social not as one IMC channel but as multiple distinct contributors to the IMC mix.</strong> The brand&rsquo;s LinkedIn presence, its TikTok creator partnerships, its X customer service work, its Reddit listening, its Discord community, and its paid Meta retargeting are all doing different jobs and need to be coordinated as if they were separate channels (because functionally they are). The IMC discipline is harder than it was in 2014; the framework still gets you to the right answer, but the inputs require a portfolio approach rather than a single-channel approach.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — CLOSING ARGUMENT
+     ============================================================ -->
+<section class="section" id="closing">
+  <div class="sec-num">05</div>
+  <div class="sec-label">The Whole Unit, In One Argument</div>
+  <h2>What Rethinking Social Actually Amounts To</h2>
+
+  <p>The phrase <em>rethinking social</em> in the unit&rsquo;s title might suggest that the unit is arguing for some sweeping replacement of social-as-channel with something else. It isn&rsquo;t. The argument across five pieces is narrower and more useful than that. The argument is:</p>
+
+  <p><strong>Stop treating social media as one thing.</strong> The single most common error across every framework this course has covered &mdash; IMC, PESO, the funnel, brand vs. performance &mdash; is the assumption that social is a unitary channel with a single role, a single audience, and a single set of metrics. It isn&rsquo;t, and treating it as one is what produces the misallocation loop from <a href="social-1-state.html#ceo-problem">Part 1 &sect;07</a>, the BOFU-as-organic trap from <a href="social-2-organic.html#bofu-trap">Part 2 &sect;02</a>, the funnel-stage debate from &sect;01 above, and most of the underperformance most marketing teams are quietly experiencing on their social programs in 2026.</p>
+
+  <p>The brands getting this right have done the work of disaggregating. They&rsquo;ve named each job their social program is doing, matched each job to the channel best suited to do it, resourced each one against the work it actually requires, and measured each one against a metric that reflects its purpose. They&rsquo;ve stopped asking &ldquo;how is our social media doing?&rdquo; and started asking &ldquo;how is each of these specific jobs doing on each of these specific channels?&rdquo; The aggregate answers that come out of those specific questions are what the dashboards used to pretend to provide.</p>
+
+  <p>The frameworks &mdash; IMC, PESO, the funnel, the 60/40 split &mdash; do the same work they always did, once the inputs are populated with the disaggregated channel mix. The conclusion isn&rsquo;t that the rest of this course&rsquo;s thinking is obsolete; the conclusion is that the rest of this course&rsquo;s thinking applies more clearly than ever, once you stop trying to make &ldquo;social media&rdquo; fit into a slot it was never going to fit into.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The point of this unit was never to argue that social is dead, or that brands should leave it. The point was to make &ldquo;social&rdquo; a more useful word &mdash; one specific enough to make better decisions with.</div>
+  </div>
+
+  <p>That&rsquo;s the rethinking. It&rsquo;s smaller than the unit title suggests, and it&rsquo;s also the thing most marketing teams haven&rsquo;t done yet. The advantage available to the brands and the students who do this work first is the same advantage that&rsquo;s available any time the industry is collectively running on a model two cycles out of date: clearer thinking produces better allocation, better allocation produces better outcomes, and the outcomes compound in the direction of whoever updated the model first.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — THE WHOLE UNIT, CONDENSED
+     ============================================================ -->
+<section class="section" id="unit-condensed">
+  <div class="sec-label">For the Reader Who Skipped to the End</div>
+  <h2>The Unit, in Seven Bullets</h2>
+
+  <p>Each bullet maps to one major argument from one of the five pieces. If you only remember seven things from <em>Rethinking Social</em>, these are the seven.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">The whole unit in seven bullets</div>
+    <ul>
+      <li><strong>Social isn&rsquo;t a social network anymore.</strong> The major platforms became algorithmic media feeds with a comment section somewhere between 2018 and 2024. The "social" in the name is mostly nostalgic. (<a href="social-1-state.html">Part 1</a>)</li>
+      <li><strong>Followers aren&rsquo;t the customer base.</strong> Kleenex has 56,500 Instagram followers against a customer base of hundreds of millions of Americans. Heinz has Instagram + Facebook reaching roughly 0.6% of its US user base under generous assumptions. Social is where a tiny visible slice of the audience interacts &mdash; not where the audience lives. (<a href="social-1-state.html#followers">Part 1 &sect;06</a>)</li>
+      <li><strong>Organic isn&rsquo;t a reach channel anymore. It&rsquo;s a research, service, community, and voice channel.</strong> The pre-2018 playbook ("post consistently, build community, watch it grow") describes a version of organic distribution that no longer exists. The jobs organic is genuinely good at don&rsquo;t include reach. (<a href="social-2-organic.html">Part 2</a>)</li>
+      <li><strong>Paid social got more expensive, less measurable, and less universal.</strong> Meta CPMs up 20% YoY in 2025; iOS 14.5&ndash;26 broke click attribution; Advantage+ moved the lever from targeting craft to creative quality; 36% of new CTV ad spend in 2025 was reallocated from social. (<a href="social-3-paid.html">Part 3</a>)</li>
+      <li><strong>Creative quality is now 70&ndash;80% of paid social performance.</strong> The decline of precise targeting roughly doubled the importance of creative. Brands under-investing in creative production are paying that cost twice &mdash; higher CPMs and lower performance. (<a href="social-3-paid.html#advantage">Part 3 &sect;06</a>)</li>
+      <li><strong>UGC and creators close the trust gap; the brand has to do the integration.</strong> Pure UGC converts at 6.7&times; brand content but doesn&rsquo;t build distinctive brand assets. The synthesis is hybrid: brand voice for distinctiveness, creators for narrative-aligned authenticity, UGC for conversion-window social proof. The brand is invisible in production, visible in curation. (<a href="social-4-doing-better.html#ugc-paradox">Part 4 &sect;03</a>)</li>
+      <li><strong>Social isn&rsquo;t one funnel-stage channel.</strong> It&rsquo;s a portfolio of jobs across all four stages. The "is social TOFU or BOFU" debate is the wrong question; the right question is which specific social jobs sit at which stages, and that mapping is what most teams haven&rsquo;t done. (&sect;01 above)</li>
+    </ul>
+  </div>
+
+  <p>The unit ends here. The frameworks &mdash; <a href="imc.html">IMC</a>, <a href="peso.html">PESO</a>, <a href="funnel.html">the funnel</a>, <a href="brand-vs-performance.html">brand vs. performance</a> &mdash; remain where you found them. The <a href="creative-1-why-creative.html">creative-effectiveness work</a> connects to all of this in ways the unit kept flagging: the decline of precise targeting made creative quality more important than it was when the research was originally done, not less. The honest version of the course&rsquo;s argument across all of these pieces is consistent: the discipline is harder than the consultant decks suggest, the rewards still go to the brands that do the harder work, and the frameworks you&rsquo;ve learned in this course are exactly the frameworks that get you to the harder work clearly. Use them.</p>
+</section>
+
+
+<!-- ============================================================
+     FORWARD / BACK NAVIGATION
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="social-4-doing-better.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">#4 &mdash; Doing It Better</span>
+    <span class="unit-nav-tease">The audit, channel-to-job matching, the UGC brand paradox, creative production at volume, MMM as the post-ATT attribution answer, and the CEO conversation.</span>
+  </a>
+  <a href="index.html" class="unit-nav-next">
+    <span class="unit-nav-label">Back to start &rarr;</span>
+    <span class="unit-nav-title">Course home</span>
+    <span class="unit-nav-tease">Return to the course index. Or jump to the related units: creative effectiveness, IMC, PESO, brand vs. performance.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>The unitary fallacy</em></strong> &mdash; the analytical error of treating &ldquo;social media&rdquo; as a single channel with one role, one audience, and one set of metrics. The framing error this unit set out to correct, present in every common framework (PESO, IMC, funnel, brand-vs-performance) when social is plugged in without disaggregation.</p>
+    <p><strong><em>The funnel-stage question</em></strong> &mdash; the historically-asked question &ldquo;where in the funnel does social sit?&rdquo;, which has cycled through TOFU (2010&ndash;2016), MOFU (2016&ndash;2020), and BOFU (2020&ndash;present) answers, each of them partly right and structurally incomplete. The honest answer is that social isn&rsquo;t one funnel-stage channel; each of its jobs sits at a different stage.</p>
+    <p><strong><em>PESO 2026 rebalance</em></strong> &mdash; the shift in channel weighting across Paid/Earned/Shared/Owned since 2018: <strong>Paid</strong> robust but more expensive and partly migrating to CTV; <strong>Earned</strong> mostly invisible (dark social); <strong>Shared</strong> scattered across UGC, creator content, EGC, and dark social; <strong>Owned</strong> structurally more important than ever, with email, SMS, and brand-owned community surfaces as the most reliable distribution mechanisms in a 2026 program.</p>
+    <p><strong><em>The 60/40, re-read</em></strong> &mdash; Binet &amp; Field&rsquo;s brand-to-performance split still holds at roughly 60/40, but the channels filling each side have shifted. Brand-building (60%) now mostly lives in CTV, podcast, paid search at category level, brand-controlled creative on owned channels, and narrative-aligned creator partnerships &mdash; not in social brand-awareness CPM campaigns. Performance (40%) is more concentrated in paid social activation, retargeting, search, and direct-response channels.</p>
+    <p><strong><em>The IMC orchestration problem</em></strong> &mdash; the structural challenge that integrated marketing communications has 15+ relevant channels in 2026 (vs. ~6&ndash;8 in 2014) and that some of those channels (creator content, UGC, EGC, dark social) aren&rsquo;t brand-controlled. The IMC discipline now requires extending brand consistency to surfaces the brand only indirectly influences, mostly via partner selection and curation.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Part 5 is mostly synthesis &mdash; the sources cited here are the foundational works the synthesis draws on. The empirical sources behind the specific claims (CPMs, attribution, UGC conversion lift, etc.) are in the references for Parts 1&ndash;4.</p>
+
+  <div class="references">
+
+    <p class="ref" id="ref-binet-field-2013">Binet, L., &amp; Field, P. (2013). <a href="https://dissidentchoir.com/60-40-binet-fields-landmark-research/" target="_blank" rel="noopener"><em>The long and the short of it: Balancing short- and long-term marketing strategies</em></a>. Institute of Practitioners in Advertising (IPA). https://dissidentchoir.com/60-40-binet-fields-landmark-research/</p>
+
+    <p class="ref" id="ref-binet-field-2019">Binet, L., &amp; Field, P. (2019). <a href="https://www.contagious.com/news-and-views/creative-effectiveness-peter-field-IPA-crisis-report" target="_blank" rel="noopener">The crisis in creative effectiveness</a> [Report]. <em>Institute of Practitioners in Advertising</em>. https://www.contagious.com/news-and-views/creative-effectiveness-peter-field-IPA-crisis-report</p>
+
+    <p class="ref" id="ref-intentamplify-2025">Intent Amplify. (2025, August 7). <a href="https://intentamplify.com/blog/dark-social/" target="_blank" rel="noopener">Dark social: 84% of sharing happens where analytics cannot track it</a>. <em>Intent Amplify</em>. https://intentamplify.com/blog/dark-social/</p>
+
+    <p class="ref" id="ref-reinartz-saffert-2013">Reinartz, W., &amp; Saffert, P. (2013, June). <a href="https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt" target="_blank" rel="noopener">Creativity in advertising: When it works and when it doesn&rsquo;t</a>. <em>Harvard Business Review</em>. https://hbr.org/2013/06/creativity-in-advertising-when-it-works-and-when-it-doesnt</p>
+
+    <p class="ref" id="ref-sharp-2010">Sharp, B. (2010). <em>How brands grow: What marketers don&rsquo;t know</em>. Oxford University Press. The foundational text on distinctive brand assets and the buyer-base dynamics that underlie the brand-vs-performance framework.</p>
+
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
