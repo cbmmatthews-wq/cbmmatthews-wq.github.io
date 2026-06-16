@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>UGC: What the Headlines Get Wrong &mdash; cbmatthe</title>
+<meta name="description" content="A corrective to the &ldquo;UGC has replaced marketing&rdquo; claim. UGC is the contemporary form of the customer testimonial: real, useful, oversold, and increasingly manufactured. It has a job description, not a universal mandate.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for the UGC standalone ---- */
+
+  /* Matrix figure — the 2x2 in §02. Same wrapper pattern as creative-6's shape-figure. */
+  .matrix-figure {
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 24px 24px 22px;
+    margin: 26px 0 18px;
+  }
+  .matrix-figure-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .matrix-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  .matrix-figure-caption {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 14px;
+    max-width: 720px;
+  }
+
+  /* Silent-tax thesis callout — bigger and more declarative than the standard callout.
+     Cream background, heavier ink-colored bar, serif italic, larger text. */
+  .thesis-callout {
+    margin: 26px 0;
+    padding: 28px 32px;
+    background: var(--cream);
+    border-left: 6px solid var(--ink);
+    max-width: 820px;
+  }
+  .thesis-callout-text {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .thesis-callout { padding: 22px 24px; }
+    .thesis-callout-text { font-size: 20px; }
+  }
+
+  /* Examples grid — 4 cards, 2x2 on desktop, single column on narrow. */
+  .examples-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 22px 0;
+    max-width: 860px;
+  }
+  .example-card {
+    background: var(--white);
+    padding: 20px 22px 18px;
+    border-top: 3px solid var(--red);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .example-card-mode {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .example-card-brand {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .example-card-stat {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--blue);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .example-card-body {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .example-card-body strong { color: var(--ink); }
+  @media (max-width: 720px) {
+    .examples-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Fostering UGC grid — same shape as examples but with blue accent to signal it's
+     a different kind of card (levers, not exemplars). */
+  .fostering-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 22px 0;
+    max-width: 860px;
+  }
+  .lever-card {
+    background: var(--white);
+    padding: 20px 22px 18px;
+    border-top: 3px solid var(--blue);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .lever-card-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .lever-card-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .lever-card-body {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .lever-card-body strong { color: var(--ink); }
+  @media (max-width: 720px) {
+    .fostering-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Brand-test grid — 4-column ranking. Vertical rule between brands on desktop. */
+  .brand-test-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 22px 0;
+    max-width: 860px;
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 22px 0 18px;
+  }
+  .brand-test-col {
+    padding: 0 18px;
+    border-right: 1px solid var(--cream-deep);
+  }
+  .brand-test-col:last-child { border-right: none; }
+  .brand-test-col-rank {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .brand-test-col-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .brand-test-col-body {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .brand-test-col-body strong { color: var(--ink); }
+  @media (max-width: 860px) {
+    .brand-test-grid { grid-template-columns: 1fr 1fr; padding: 18px 0 12px; }
+    .brand-test-col { border-right: none; border-bottom: 1px solid var(--cream-deep); padding: 14px 18px; }
+    .brand-test-col:nth-child(2) { border-right: none; }
+    .brand-test-col:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 480px) {
+    .brand-test-grid { grid-template-columns: 1fr; }
+    .brand-test-col:not(:last-child) { border-bottom: 1px solid var(--cream-deep); }
+  }
+
+  /* Tighten the in-section turn — the bold lead-in for "Why Gen Z says UGC was their first contact" */
+  .turn-lead {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    line-height: 1.35;
+    max-width: 760px;
+  }
+
+  /* Glossary entry tightening (matches social-2) */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+
+  /* References list */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Standalone &middot; The Corrective</div>
+    <h1>UGC: What the Headlines Get Wrong</h1>
+    <p class="lede">User-generated content is the contemporary form of one of advertising&rsquo;s oldest tools &mdash; the customer testimonial &mdash; and most of what the trend writers call a revolution is better understood as the testimonial scaled, distributed across new platforms, and produced by a labor pool that didn&rsquo;t exist five years ago. The form is real and useful. It has a job description, not a universal mandate. This piece is the case that the &ldquo;UGC has replaced marketing&rdquo; headline gets the data right and the conclusion wrong.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#headlines">Headlines &amp; History</a>
+    <a href="#where-it-fits">Where It Fits</a>
+    <a href="#silent-tax">Silent Tax</a>
+    <a href="#authenticity">Authenticity &amp; PESO</a>
+    <a href="#examples">Real Examples</a>
+    <a href="#fostering">Fostering UGC</a>
+    <a href="#brand-test">Brand Test</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<div class="callout" style="border-left-color: var(--ink); background: var(--cream); margin: 24px 0 0; padding: 16px 22px;">
+  <p style="font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ink); margin: 0; line-height: 1.5;">A corrective for when a CEO sends you a LinkedIn carousel claiming UGC has replaced the marketing function. <strong style="font-style: normal;">The data in the carousel is mostly real. The conclusion isn&rsquo;t.</strong></p>
+</div>
+
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Form Is Real. The Headline Is Wrong.</h2>
+
+  <p>The headlines say user-generated content is replacing marketing. The headlines are mostly wrong &mdash; not because the data is wrong, but because the job description the data implies is wrong. <strong>Every tool in the marketer&rsquo;s kit is used differently depending on industry, brand differentiation, and the goal of the moment. Outliers exist.</strong> UGC is no exception: it has a job description, not a universal mandate, and treating it as one is how most &ldquo;UGC-first&rdquo; programs end up reporting engagement metrics that don&rsquo;t move sales.</p>
+
+  <p>This piece is the corrective. Creative-6 &sect;05 and Part 4 &sect;03 cover how to integrate UGC into a campaign without destroying the brand over time; this piece exists to answer a different question. <em>Has UGC actually replaced the marketing function the way undergrads, consultants, and a meaningful slice of trade-press headlines now claim?</em> No. It has filled a specific mid-funnel social-proof slot better than brand-produced content can &mdash; and treating it as a top-to-bottom substitute is the misallocation at the heart of the &ldquo;UGC replaced marketing&rdquo; claim. The argument that follows: the form is real and useful, the headlines are right about the data, and the data is measuring a narrow job the form was built for.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — HEADLINES & HISTORY
+     ============================================================ -->
+<section class="section" id="headlines">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The data and the ancestor</div>
+  <h2>Headlines &amp; History</h2>
+
+  <p>The headlines aren&rsquo;t lying. UGC product pages convert at multiples of brand-produced pages &mdash; Emplifi&rsquo;s working figure is around 6.7&times; the conversion rate <a href="#ref-emplifi" class="cite">(Emplifi, 2024)</a>. UGC posts achieve roughly 6.9&times; the engagement of brand-produced content <a href="#ref-archive" class="cite">(Archive, 2026)</a>. Marketing campaigns that integrate UGC show about 50% higher engagement than campaigns that don&rsquo;t. Trust scores on peer content consistently outrun trust scores on brand content; in most surveys, &ldquo;people like me&rdquo; beats &ldquo;the brand&rdquo; by margins that are no longer interesting because the result keeps replicating. The consultant deck has this data right. The trade press has this data right. If a CEO sent you a LinkedIn carousel making the UGC-replaces-marketing claim, the underlying numbers in that carousel are almost certainly real.</p>
+
+  <p>What the carousel didn&rsquo;t say is what those numbers measure. Every one of the figures above is measured at the conversion stage of the journey, on audiences that already had some prior brand familiarity, in comparisons against brand-produced content asked to do the same conversion-window job. The numbers are real; the job description they imply is narrower than the headlines admit. This matters because the form being celebrated has a much older lineage than the headlines remember.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">The data is right. The job description it implies is wrong.</div>
+  </div>
+
+  <p>UGC is the contemporary form of the customer testimonial &mdash; and the testimonial is one of the oldest tools in the kit. The Listerine &ldquo;halitosis&rdquo; testimonials of the 1920s ran the original template: a real-sounding person, a relatable problem, the product as the resolution. Folgers built decades of brand growth on the &ldquo;I switched my husband&rsquo;s coffee and he didn&rsquo;t notice&rdquo; reaction-shot format. Toyota&rsquo;s 1990s &ldquo;real Toyota owners, not actors&rdquo; campaign borrowed the same trust mechanic. Direct-response infomercials are essentially uninterrupted testimonial reels. <strong>The testimonial was always a specific-job tool &mdash; credibility, social proof, skepticism reduction &mdash; and was never the whole campaign.</strong> What&rsquo;s new in 2025 is the volume, the distribution platforms, and the labor pool that produces the content. What is not new is the underlying job.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — WHERE IT FITS (with the 2x2 matrix)
+     ============================================================ -->
+<section class="section" id="where-it-fits">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Evidence formats, not funnel stages</div>
+  <h2>Where It Fits</h2>
+
+  <p>The argument that UGC has replaced marketing usually rests, implicitly, on a particular reading of the funnel &mdash; that the discrete stages from awareness to consideration to purchase have collapsed, and that one piece of UGC can move a viewer through all of them. The funnel critique is genuine; the conclusion isn&rsquo;t. McKinsey&rsquo;s consumer-decision-journey work argued more than fifteen years ago that consumers move through a more circular path &mdash; initial consideration, active evaluation, purchase, post-purchase, advocacy &mdash; and that peer input and word of mouth weigh heavily in active evaluation and after purchase <a href="#ref-mckinsey" class="cite">(Court et al., 2009)</a>. UGC fits naturally into the messy middle of that model. <strong>It does not fit naturally into the parts the model still calls awareness or decision.</strong></p>
+
+  <p>The working frame: UGC and influencer content are better understood as <em>evidence formats</em> than as fixed funnel stages. The question isn&rsquo;t where they live on a vertical diagram. The question is what kind of evidence the audience needs at a given moment, and whether the form being deployed produces that kind of evidence. The diagram below plots UGC&rsquo;s effectiveness across the two dimensions that matter: how much brand-building the campaign needs to do, and how much trust or proof the audience needs to see.</p>
+
+  <div class="matrix-figure">
+    <div class="matrix-figure-label">Where UGC actually earns its keep</div>
+    <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" aria-label="Two-by-two matrix showing UGC effectiveness across brand-build need and trust or proof need dimensions">
+      <!-- Y-axis label, rotated -->
+      <text x="22" y="240" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#6F6A66" letter-spacing="1" transform="rotate(-90, 22, 240)">BRAND-BUILD NEED</text>
+      <text x="48" y="60" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">high</text>
+      <text x="48" y="425" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">low</text>
+
+      <!-- X-axis label -->
+      <text x="375" y="465" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="700" fill="#6F6A66" letter-spacing="1">TRUST / PROOF NEED</text>
+      <text x="60" y="445" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">low</text>
+      <text x="690" y="445" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66">high</text>
+
+      <!-- Top-left quadrant: Traditional brand creative -->
+      <rect x="60" y="40" width="315" height="190" fill="#ffffff" stroke="#d6cfc4" stroke-width="1"/>
+      <text x="217" y="66" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="14" font-weight="700" fill="#2A2420">Traditional brand creative</text>
+      <text x="217" y="95" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">Super Bowl spots,</text>
+      <text x="217" y="111" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">anthemic campaigns,</text>
+      <text x="217" y="127" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">distinctive brand assets</text>
+      <text x="217" y="160" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">UGC contributes little here.</text>
+      <text x="217" y="176" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">The form is designed</text>
+      <text x="217" y="192" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">to look unbranded.</text>
+
+      <!-- Top-right quadrant: Integration zone -->
+      <rect x="375" y="40" width="315" height="190" fill="#ffffff" stroke="#d6cfc4" stroke-width="1"/>
+      <text x="532" y="66" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="14" font-weight="700" fill="#2A2420">The integration zone</text>
+      <text x="532" y="95" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">Brand creative AND</text>
+      <text x="532" y="111" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">UGC running together</text>
+      <text x="532" y="127" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">(the CeraVe model)</text>
+      <text x="532" y="160" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">UGC layers credibility on</text>
+      <text x="532" y="176" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">top of the awareness the</text>
+      <text x="532" y="192" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">polished work established.</text>
+
+      <!-- Bottom-left quadrant: Null zone -->
+      <rect x="60" y="230" width="315" height="190" fill="#ffffff" stroke="#d6cfc4" stroke-width="1"/>
+      <text x="217" y="256" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="14" font-weight="700" fill="#2A2420">UGC&rsquo;s null zone</text>
+      <text x="217" y="285" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">Commodity categories,</text>
+      <text x="217" y="301" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">low brand stakes,</text>
+      <text x="217" y="317" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#4C4743">low proof requirements</text>
+      <text x="217" y="350" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Nobody needs permission</text>
+      <text x="217" y="366" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">to buy; UGC adds nothing</text>
+      <text x="217" y="382" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">the product can&rsquo;t supply.</text>
+
+      <!-- Bottom-right quadrant: UGC HOME (emphasized) -->
+      <rect x="375" y="230" width="315" height="190" fill="#f0e8e6" stroke="#BC5A44" stroke-width="2.5"/>
+      <text x="532" y="258" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="16" font-weight="700" fill="#BC5A44">UGC LIVES HERE</text>
+      <text x="532" y="288" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#2A2420" font-weight="600">Mid-funnel social proof,</text>
+      <text x="532" y="305" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#2A2420" font-weight="600">comparison shopping,</text>
+      <text x="532" y="321" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11.5" fill="#2A2420" font-weight="600">review-stage research</text>
+      <text x="532" y="352" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#4C4743">The audience already</text>
+      <text x="532" y="368" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#4C4743">recognizes the brand and</text>
+      <text x="532" y="384" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#4C4743">needs proof people use it.</text>
+
+      <!-- Axis frames -->
+      <line x1="58" y1="38" x2="58" y2="422" stroke="#6F6A66" stroke-width="1"/>
+      <line x1="58" y1="422" x2="692" y2="422" stroke="#6F6A66" stroke-width="1"/>
+    </svg>
+    <p class="matrix-figure-caption">UGC dominates the high-trust, low-brand-build quadrant: the mid-funnel comparison-shopping and review-stage research where the audience already has some brand familiarity and needs proof that real people use the thing. It is structurally mediocre to ineffective in every other quadrant.</p>
+  </div>
+
+  <p>The right-hand column is where the form has effect. The bottom-right is its home &mdash; an audience that already recognizes the brand and is making a comparison-stage decision, where peer evidence is the kind of proof that closes the sale. The top-right is the integration zone, where polished brand creative and UGC run together because the campaign has to do both jobs (the CeraVe Super Bowl model covered in creative-6). The left-hand column is mostly where the form doesn&rsquo;t earn its keep. Top-left is the work of distinctive brand assets, cognitive surprise, and emotional arc &mdash; things UGC is structurally bad at because it&rsquo;s designed to <em>look</em> unbranded. Bottom-left is the null zone, where the product is so commoditized nobody needs convincing in either direction.</p>
+
+  <p><strong>A short word on STP.</strong> Segmentation, targeting, and positioning all run through the algorithm rather than the brand. UGC&rsquo;s distribution is decided by recommendation logic optimizing for engagement signal, not for fit against a specific psychographic. Positioning gets communicated by which creators a brand chooses to work with &mdash; and the brand loses much of that selection control once the content is in the wild. For narrow B2B segments or particular psychographics, UGC is the wrong instrument.</p>
+
+  <p class="turn-lead">Why Gen Z says UGC was their first contact &mdash; and is usually wrong about it.</p>
+
+  <p>Gen Z viewers (and many millennials) will say they discovered a brand &ldquo;on TikTok&rdquo; or &ldquo;because someone in my feed had it.&rdquo; The self-report is mostly wrong, for three structural reasons. UGC is engineered to look less branded, which means it carries fewer of the distinctive assets the brain needs to encode a brand on first exposure. The algorithm serves UGC to viewers who already show affinity signals for the category, which means the supposed first contact is usually preceded by exposures the viewer doesn&rsquo;t remember. And the form does social-proof work &mdash; proof presupposes prior recognition, because you cannot validate what you don&rsquo;t recognize. <strong>What UGC usually closes, something else opened</strong> &mdash; a friend&rsquo;s offhand mention, an in-store glance, a paid impression three weeks earlier, a Super Bowl spot the viewer claims not to remember. Recency makes the most recent touch feel like the first. <strong>This connects back to the course&rsquo;s opening claim: you do not have to like an ad for it to be effective.</strong> Something built the awareness UGC later validated. Treating UGC as the first step, when it&rsquo;s usually the second, is how the discipline misallocates against itself.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — THE SILENT TAX
+     ============================================================ -->
+<section class="section" id="silent-tax">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Primary vs. secondary demand</div>
+  <h2>The Silent Tax</h2>
+
+  <div class="thesis-callout">
+    <p class="thesis-callout-text">This is the silent tax on UGC programs in commoditized categories.</p>
+  </div>
+
+  <p>A great UGC post for a protein powder gets the viewer thinking <em>&ldquo;I should look into protein powder&rdquo;</em> &mdash; not <em>&ldquo;I should look into THIS protein powder.&rdquo;</em> When the brand cue is structurally suppressed &mdash; and suppressing the brand cue is what makes the form look unscripted, which is what gives it the trust premium &mdash; the viewer encodes the category, not the brand. <strong>UGC, in aggregate, often grows primary demand for the category more efficiently than secondary demand for the specific brand running the campaign.</strong> This is the silent tax: the brand pays for the production, the content drives sales, but a meaningful share of the lift lands at competitors whose products were the closest substitute the moment the viewer went looking.</p>
+
+  <p>The exceptions are brands with a distinctive asset that survives even under-produced footage: the CeraVe pump bottle shape, the Stanley cup color-and-silhouette, the Apple bite, the Hoka outsole, the Patagonia patch. Pattern: brand assets distinctive enough to survive under-production get the UGC benefit without paying the category-uplift tax. <strong>The brands paying the most silent tax are the ones whose category is crowded and whose distinctive assets are weakest</strong> &mdash; which is most of the brands buying UGC programs from agencies right now.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Primary demand for the category. Secondary &mdash; at best &mdash; for the brand.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — AUTHENTICITY, PESO & BRAND-DRIFT
+     ============================================================ -->
+<section class="section" id="authenticity">
+  <div class="sec-num">04</div>
+  <div class="sec-label">The substrate is eroding</div>
+  <h2>Authenticity &amp; PESO</h2>
+
+  <p>The form&rsquo;s biggest problem isn&rsquo;t its job description. It&rsquo;s that the substrate the job depends on &mdash; authenticity, or more precisely the audience&rsquo;s belief in authenticity &mdash; is being eroded by the same infrastructure that made UGC scalable in the first place.</p>
+
+  <p>Modern UGC sits on two tiers. The first is genuinely organic: a customer or fan posts unprompted because the product mattered enough to share, and the brand re-amplifies. This tier exists but is shrinking as a share of what gets called UGC. The second is intentional: paid creators, paid &ldquo;UGC specialists&rdquo; working on flat fees, AI eye-tracking tools that fake natural off-script eye movement, AI-generated stills and video deliberately roughened up with prompts that add pores, imperfect hair, clothing wrinkles, and unflattering lighting. Tools like nano-banana can manufacture a video that <em>reads</em> as somebody&rsquo;s iPhone footage from their kitchen counter while having been generated entirely from a text prompt. <strong>The classic Folgers or Toyota testimonial had a control structure</strong> &mdash; real customer, signed release, brand-supervised production, traceable identity. Modern UGC frequently has none of that, which is both the source of its trust premium and the source of its emerging credibility problem.</p>
+
+  <p>The infrastructure beneath the form is doing the rest of the work. Cloudflare reported in late 2025 that bot traffic now exceeds human traffic on HTML requests &mdash; by December, humans generated about 47% of requests while bots generated more than half <a href="#ref-cloudflare" class="cite">(Cloudflare, 2025)</a>. The implication for UGC is direct: if a substantial share of social discourse is being driven by automated accounts, the &ldquo;people are saying&rdquo; signal that UGC trades on is no longer reliably attributable to people. The Cracker Barrel logo crisis in August 2025 made the mechanism concrete. PeakMetrics analysis found that 44.5% of social media posts mentioning the new logo in the first 24 hours were likely bot-authored <a href="#ref-peakmetrics" class="cite">(Guszkowski, 2025)</a>; Cyabra estimated the manufactured outrage correlated with a 10.5% stock drop, or roughly $100 million in market value, before the company reversed the redesign <a href="#ref-cyabra" class="cite">(Cyabra, 2026)</a>.</p>
+
+  <p>The meta-point: <strong>the authenticity premium UGC trades on is being eroded by the same infrastructure that makes UGC easy to manufacture at scale.</strong> If the audience comes to believe any given piece of &ldquo;real-person&rdquo; content could have been generated, paid for, or amplified by bots, the trust bonus on &ldquo;this looks unscripted&rdquo; gets discounted across the whole form. We may be near peak utility for raw UGC, and the brands optimizing hardest for it are the ones most exposed when the authenticity signal compresses.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Authenticity is no longer a property of the content. It&rsquo;s a production value.</div>
+  </div>
+
+  <p>A quick word on <strong>PESO</strong>. Pure organic UGC reads as earned (the customer chose to post) or shared (the brand re-shared the organic post). Hired creators and paid UGC specialists are structurally paid media, even when they read as earned. That&rsquo;s the category fraud at the heart of the form: paid content collecting the trust premium of earned media, with FTC disclosures often missing or scrolled past. <strong>This is the bridge to the influencer piece</strong> &mdash; once UGC is paid, the line between UGC and influencer content blurs to the point of being mostly a rate-card distinction.</p>
+
+  <p>The resolution for brand-drift uses the same lever as the resolution for authenticity: <strong>brand invisible in production, visible in curation.</strong> The brand doesn&rsquo;t try to control what individual creators or customers post. It controls which posts get amplified, framed, paid against, and absorbed into owned channels. Production decentralized, curation centralized &mdash; that&rsquo;s what keeps a UGC program from drifting into whatever the loudest creators happen to be doing this quarter. The operational playbook lives in <a href="creative-6-video.html#ugc">creative-6 &sect;05</a>.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — REAL EXAMPLES (cards block)
+     ============================================================ -->
+<section class="section" id="examples">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Four cases, four modes</div>
+  <h2>Real Examples</h2>
+
+  <p>Four UGC examples that work &mdash; chosen because each demonstrates a different mode of the form rather than a different industry. e.l.f. and Apple show what happens when a brand structures the prompt. GoPro shows the advocacy loop where post-purchase content becomes pre-purchase awareness. Stanley shows the rare case where advocacy creates mass awareness rather than the other way around. <strong>All four work for the same underlying reason: the brand maintained curation discipline even when production was distributed.</strong></p>
+
+  <div class="examples-grid">
+
+    <div class="example-card">
+      <div class="example-card-mode">The challenge</div>
+      <div class="example-card-brand">e.l.f. Cosmetics &mdash; #EyesLipsFace</div>
+      <div class="example-card-stat">5 million user videos &middot; 7 billion views</div>
+      <div class="example-card-body">A platform-native hashtag challenge with original music, structured prompt, and creator participation generated a genuine wave of consumer-produced content. <strong>Top-of-funnel reach AND consideration in the same campaign</strong> &mdash; not because UGC did the awareness work alone, but because the brand built the structured prompt that made participation make sense <a href="#ref-shorty" class="cite">(Shorty Awards, n.d.)</a>.</div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-mode">The advocacy loop</div>
+      <div class="example-card-brand">GoPro &mdash; Million Dollar Challenge</div>
+      <div class="example-card-stat">42,446 submissions &middot; 126 countries</div>
+      <div class="example-card-body">The textbook case. Customers buy the camera, produce adventure footage, and the footage becomes product proof for the next prospect. <strong>Post-purchase content loops back into awareness and consideration</strong> because nothing demonstrates what a GoPro does better than what a GoPro actually shot in the wild <a href="#ref-gopro" class="cite">(GoPro, 2023)</a>.</div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-mode">UGC as curated asset</div>
+      <div class="example-card-brand">Apple &mdash; Shot on iPhone</div>
+      <div class="example-card-stat">77 photographers &middot; 24 countries &middot; global OOH</div>
+      <div class="example-card-body">Customer photos placed on billboards, bus shelters, train stations, and Apple Store displays. <strong>The cleanest &ldquo;brand invisible in production, visible in curation&rdquo; demonstration anywhere.</strong> Apple didn&rsquo;t shoot the photos. Apple selected them, framed them, and paid for the placement <a href="#ref-benamic" class="cite">(Benamic, 2019)</a>.</div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-mode">The reverse funnel</div>
+      <div class="example-card-brand">Stanley Quencher</div>
+      <div class="example-card-stat">Lackluster early sales &rarr; top-selling SKU</div>
+      <div class="example-card-body">The Buy Guide blog and Instagram account revived a stagnant product through recommendation, affiliate selling, and a pivot toward colors, women buyers, and lifestyle use. Wholesale orders of 5,000 units sold out in an hour. <strong>Advocacy preceded mass awareness</strong>; the funnel ran backward <a href="#ref-stanley" class="cite">(Dean, 2024)</a>.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — FOSTERING UGC (levers cards block)
+     ============================================================ -->
+<section class="section" id="fostering">
+  <div class="sec-num">06</div>
+  <div class="sec-label">Building the conditions</div>
+  <h2>Fostering UGC</h2>
+
+  <p>Is there anything a brand can do to <em>cause</em> UGC to happen organically? The realistic answer: yes, but it&rsquo;s an environment problem, not a campaign brief. Brands with the best organic UGC pipelines aren&rsquo;t asking customers to post. They&rsquo;ve built four conditions in which posting feels natural &mdash; design that invites a photo, moments engineered to be share-worthy, structured prompts when a creative ask is appropriate, and a reward structure that signals the brand notices. None of these is &ldquo;go viral.&rdquo; All four reach back to the testimonial tradition: build the conditions, and the testimonial follows.</p>
+
+  <div class="fostering-grid">
+
+    <div class="lever-card">
+      <div class="lever-card-num">LEVER 01</div>
+      <div class="lever-card-title">Design the prompt</div>
+      <div class="lever-card-body">Make the product itself the invitation. Stanley&rsquo;s colors-and-silhouette, Hydroflask&rsquo;s sticker culture, Glossier&rsquo;s packaging engineered for the bathroom-shelf shot, Apple&rsquo;s unboxing ritual. <strong>The product is the brief.</strong> Customers don&rsquo;t need to be asked when the object is structured to be photographed.</div>
+    </div>
+
+    <div class="lever-card">
+      <div class="lever-card-num">LEVER 02</div>
+      <div class="lever-card-title">Make the moment</div>
+      <div class="lever-card-body">Activations and rituals that generate a posting-worthy event. Hoka at race finish lines, Peloton&rsquo;s leaderboard celebrations, IKEA store visits documented as content, in-store experiences engineered for the camera. <strong>You don&rsquo;t ask a runner to post a finish-line photo.</strong> The moment does the asking.</div>
+    </div>
+
+    <div class="lever-card">
+      <div class="lever-card-num">LEVER 03</div>
+      <div class="lever-card-title">Run the challenge</div>
+      <div class="lever-card-body">Hashtag campaigns and contests when there&rsquo;s a specific creative ask. Lay&rsquo;s &ldquo;Do Us a Flavor,&rdquo; Apple&rsquo;s Shot on iPhone Challenge, GoPro&rsquo;s Photo of the Day, e.l.f.&rsquo;s #EyesLipsFace. Works when the prompt is structured and the reward is real &mdash; money, recognition, or actual feature placement, not just a repost.</div>
+    </div>
+
+    <div class="lever-card">
+      <div class="lever-card-num">LEVER 04</div>
+      <div class="lever-card-title">Reward the posting</div>
+      <div class="lever-card-body">Repost with attribution. Reply to creators. Send the occasional surprise gift to high-posting customers. <strong>Silence trains people not to bother.</strong> This is also where loyalty programs, brand-insider tiers, and ambassador programs earn their structural keep &mdash; they convert &ldquo;customer&rdquo; into &ldquo;named participant in the brand&rsquo;s story.&rdquo;</div>
+    </div>
+
+  </div>
+
+  <p><strong>Notice what the best organic UGC programs aren&rsquo;t doing: they aren&rsquo;t begging.</strong> The brand doesn&rsquo;t post &ldquo;tag us in your photos!&rdquo; under every product launch. The conditions do the work. Begging produces forced UGC that reads as forced and converts the way forced testimonials always convert in any era of advertising history &mdash; which is to say, badly.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — THE BRAND TEST
+     ============================================================ -->
+<section class="section" id="brand-test">
+  <div class="sec-num">07</div>
+  <div class="sec-label">Industries and four brands</div>
+  <h2>The Brand Test</h2>
+
+  <p>The same logic that places UGC in a quadrant places it in an industry. High-fit categories are visible, socially consumed, and peer-signal driven &mdash; beauty, mass apparel, fitness, food and beverage, travel, consumer electronics for everyday use, baby and parenting. Low-fit categories trade on exclusivity, regulatory authority, or expert credibility &mdash; luxury, B2B, financial services, pharma, high-consideration durables, professional services. The footwear comparison the course has already worked through is a useful test of how the same industry can fit UGC very differently depending on where the brand sits.</p>
+
+  <div class="brand-test-grid">
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Needs UGC most</div>
+      <div class="brand-test-col-name">Hoka</div>
+      <div class="brand-test-col-body">Built bottom-up on the running community&rsquo;s earned-at-the-finish-line content. Race finish lines generate UGC the way fireworks generate phone footage. <strong>UGC is native to how the brand got here.</strong> The brand-test risk: as Hoka matures, the form that built it needs balance against the distinctive-asset work the brand now needs (see <a href="hoka-on-vs-nike.html">Hoka vs. On vs. Nike</a>).</div>
+    </div>
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Meaningful but secondary</div>
+      <div class="brand-test-col-name">On</div>
+      <div class="brand-test-col-body">Premium positioning was paid into existence first, with brand-controlled creative and retail-environment storytelling. UGC layers credibility on top of paid awareness &mdash; <strong>proof that real runners actually use the product, not just models.</strong> Real role; not allowed to become the primary creative engine, because the premium price requires polish UGC structurally undercuts.</div>
+    </div>
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Supplementary</div>
+      <div class="brand-test-col-name">Nike</div>
+      <div class="brand-test-col-body">Has the mental availability already. The Swoosh is one of the most distinctive brand assets in the world; consumers don&rsquo;t need UGC to learn the brand exists. <strong>UGC serves cultural relevance and conversion-window social proof &mdash; not awareness work.</strong> The awareness budget goes elsewhere.</div>
+    </div>
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Counterproductive</div>
+      <div class="brand-test-col-name">Gucci</div>
+      <div class="brand-test-col-body">Luxury premium comes from exclusivity. The form&rsquo;s whole point is to look like something ordinary people made &mdash; <strong>which is exactly the perception that erodes willingness to pay 8&times; a comparable handbag.</strong> Running paid UGC for a luxury brand is the same category error as a Macy&rsquo;s clearance sale (see <a href="gucci-luxury-sport.html">Gucci: From Logomania to Luxury Sport</a>).</div>
+    </div>
+
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-text">A luxury brand running paid UGC is the same category error as a clearance sale &mdash; just slower and harder to reverse.</div>
+  </div>
+
+
+  <!-- ============================================================
+       CLOSING (no subnav entry, sits below Brand Test)
+       ============================================================ -->
+  <h3 style="margin-top: 32px;">Closing &mdash; and what&rsquo;s next</h3>
+
+  <p>The corrective in one paragraph: UGC isn&rsquo;t replacing marketing. It&rsquo;s filling a specific mid-funnel social-proof job better than brand-produced content can &mdash; and it does that job partly by being structurally bad at the other jobs in the campaign. The trade-off is real, the form is real, and the integration playbook is in the unit. None of that is the same as the headline claim. <strong>The form has a job description. It is not a universal mandate.</strong></p>
+
+  <p>This connects back to where the course began. <strong>You do not have to like an ad for it to be effective.</strong> Something built the awareness that UGC later validated. The mistake undergrads keep making &mdash; and a meaningful number of marketing professionals chasing engagement metrics keep making &mdash; is mistaking the closer for the opener. The protein-powder TikTok worked because the brand was already on the shelf of a Whole Foods the viewer walked past on Tuesday. The skincare unboxing converted because a friend mentioned the brand three weeks ago. Crediting the last touch as the first touch is the attribution lie that holds up the &ldquo;UGC replaced marketing&rdquo; story; collapsing the journey to a single visible step is what makes the headline possible.</p>
+
+  <p>One more thing the unit will pick up in the influencer piece. Pure UGC has a structural problem: it doesn&rsquo;t compound. Random posts don&rsquo;t build audience equity. Brands and creators are increasingly responding by moving toward serialized formats &mdash; recurring shows, sketch-comedy episodes, narrative arcs that play across multiple posts. <strong>Full treatment lives in the influencer piece.</strong> Read this piece first; the authenticity, PESO, and primary-vs-secondary-demand definitions established here get reused there.</p>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY (not in subnav, sits at the bottom)
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>User-generated content (UGC)</em></strong> &mdash; video, imagery, or written content produced by customers or non-employee creators rather than by the brand or its agency. Effective at trust, social proof, and skepticism reduction. Structurally weak at distinctive-asset work and top-of-funnel awareness, because the form is designed to look unbranded.</p>
+    <p><strong><em>Creator content</em></strong> &mdash; content produced by a paid or contracted social-media creator. Often visually similar to UGC but operationally a paid-media transaction. The relevant distinction is structural compensation, not aesthetic.</p>
+    <p><strong><em>Paid UGC</em></strong> &mdash; content produced by a paid UGC specialist, designed to look like organic UGC. Structurally paid media reading as earned. The category-fraud problem at the heart of the form, especially when FTC disclosures are missing or scrolled past.</p>
+    <p><strong><em>Primary vs. secondary demand</em></strong> &mdash; primary demand is for the product category; secondary demand is for the specific brand. UGC frequently grows primary demand more efficiently than secondary, which is the silent tax in commoditized categories.</p>
+    <p><strong><em>Distinctive brand asset</em></strong> &mdash; a visual, sonic, or structural cue (color, shape, sound, mascot, packaging signature) so consistently associated with the brand that it survives even under-produced footage. The mechanism that lets a UGC post still encode the brand <a href="#ref-romaniuk" class="cite">(Romaniuk, 2018)</a>.</p>
+    <p><strong><em>Authenticity premium</em></strong> &mdash; the trust bonus the audience gives content that reads as unscripted compared to content that reads as produced. Eroding as the audience becomes aware of AI-generated and bot-amplified content.</p>
+    <p><strong><em>Curation discipline</em></strong> &mdash; the operational principle that holds UGC programs together: brand invisible in production, visible in curation. The brand controls which posts get amplified, framed, paid against, and absorbed into owned channels &mdash; without trying to control what individual creators or customers post in the first place.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES (not in subnav)
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Anchor sources first (McKinsey for the journey reframe, the Cracker Barrel bot evidence, and the Cloudflare bot-traffic data); the rest are alphabetical.</p>
+
+  <div class="references">
+
+    <p class="ref" id="ref-mckinsey">Court, D., Elzinga, D., Mulder, S., &amp; Vetvik, O. J. (2009, June 1). <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-consumer-decision-journey" target="_blank" rel="noopener">The consumer decision journey</a>. <em>McKinsey Quarterly</em>. The foundational case for the circular journey model and the weight peer input carries in active evaluation and post-purchase.</p>
+
+    <p class="ref" id="ref-peakmetrics">Guszkowski, J. (2025, September 29). <a href="https://www.restaurantbusinessonline.com/technology/cracker-barrel-logo-backlash-was-fueled-bots-data-shows" target="_blank" rel="noopener">Cracker Barrel logo backlash was fueled by bots, data shows</a>. <em>Restaurant Business</em>. PeakMetrics analysis: 44.5% of posts mentioning the logo redesign in the first 24 hours were likely bot-authored.</p>
+
+    <p class="ref" id="ref-cyabra">Cyabra. (2026, February 23). <a href="https://cyabra.com/blog/21-fake-profiles-engineered-cracker-barrels-10-5-million-logo-crisis/" target="_blank" rel="noopener">How fake profiles amplified Cracker Barrel&rsquo;s $100M logo crisis</a>. <em>Cyabra Blog</em>. Coordinated fake-profile activity correlated with Cracker Barrel&rsquo;s 10.5% stock drop and ~$100M in lost market value.</p>
+
+    <p class="ref" id="ref-cloudflare">Cloudflare. (2025). <a href="https://blog.cloudflare.com/" target="_blank" rel="noopener">Year in Review 2025: Internet traffic, AI crawlers, and bot activity</a>. <em>Cloudflare Radar</em>. By late 2025 humans generated ~47% of HTML requests; bots (AI plus non-AI) exceeded 50%.</p>
+
+    <p class="ref" id="ref-archive">Archive.com. (2026). <a href="https://www.google.com/search?q=Archive.com+2026+%2225+user-generated+content+engagement+statistics%22" target="_blank" rel="noopener">25 user-generated content engagement statistics</a>. Source for the 6.9&times; engagement and 50% campaign-lift figures.</p>
+
+    <p class="ref" id="ref-benamic">Benamic. (2019, August 27). <a href="https://www.benamic.com/blog/promotional-perfection-apples-shot-on-iphone-campaign-using-user-generated-content/" target="_blank" rel="noopener">Promotional perfection: Apple&rsquo;s &ldquo;Shot on iPhone&rdquo; campaign using user-generated content</a>. <em>Benamic</em>. Apple gathered images from 77 photographers in 24 countries; later Shot on iPhone Challenge expanded to billboard, store, and online display.</p>
+
+    <p class="ref" id="ref-dean">Dean, G. (2024, January 27). <a href="https://www.businessinsider.com/stanley-cup-brand-history-quencher-bottle-tiktok-target-buy-guide-2024-1" target="_blank" rel="noopener">How Stanley went from making sturdy bottles for laborers to becoming an &ldquo;it&rdquo; status symbol</a>. <em>Business Insider</em>. The Buy Guide&rsquo;s role in reviving the Quencher; wholesale orders selling out in under an hour.</p>
+    <p class="ref" id="ref-stanley" style="display:none;">[anchor &mdash; see Dean (2024) above]</p>
+
+    <p class="ref" id="ref-emplifi">Emplifi. (2024). <a href="https://emplifi.io/resources/blog/" target="_blank" rel="noopener">UGC and product-page conversion benchmarks</a>. <em>Emplifi</em>. Source of the widely-cited 6.7&times; conversion-lift figure for UGC product pages.</p>
+
+    <p class="ref" id="ref-gopro">GoPro. (2023, April 26). <a href="https://investor.gopro.com/press-releases/press-release-details/2023/GoPros-5th-Million-Dollar-Challenge-Breaks-Records-Awards-1-Million-to-HERO11-Black--Mini-Camera-Customers-Globally/" target="_blank" rel="noopener">GoPro&rsquo;s 5th Million Dollar Challenge breaks records, awards $1 million to HERO11 customers globally</a>. <em>GoPro Investor Relations</em>. 42,446 submissions from 126 countries; final reel made entirely from customer footage.</p>
+
+    <p class="ref" id="ref-romaniuk">Romaniuk, J. (2018). <a href="https://global.oup.com/academic/product/building-distinctive-brand-assets-9780190311506" target="_blank" rel="noopener"><em>Building distinctive brand assets</em></a>. Oxford University Press. The Ehrenberg-Bass treatment of the brand-asset library and mental availability.</p>
+
+    <p class="ref" id="ref-shorty">Shorty Awards. (n.d.). <a href="https://shortyawards.com/13th/elf-cosmetics-innovation-on-tiktok" target="_blank" rel="noopener">e.l.f. Cosmetics&rsquo; innovation on TikTok</a>. <em>The Shorty Awards</em>. 10 billion total views across e.l.f. TikTok campaigns; #EyesLipsFace generated 5 million user videos and 7 billion views.</p>
+
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>

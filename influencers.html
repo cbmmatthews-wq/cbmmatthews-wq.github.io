@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Influencers: The Rented Audience &mdash; cbmatthe</title>
+<meta name="description" content="Companion to the UGC standalone. Influencers move real money, but the form has built-in decay. A working analysis of tiers, EMV, the shoppable frontier, show-ification, and the structural traps that make rotational creator programs harder to evaluate than the headlines admit.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ---- Local additions for the Influencers standalone ----
+     Pattern parallels ugc.html: a thesis-callout for the central
+     argument (here, "The Rented Audience"), an examples-grid for
+     case-study source cards, a brand-test grid, and a custom SVG
+     figure for the creator-tier pyramid. */
+
+  /* Pyramid figure — the creator-tier diagram in §03. Same wrapper
+     shape as the UGC matrix-figure: ink-bar top, white surface,
+     italic caption underneath. */
+  .pyramid-figure {
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 24px 24px 22px;
+    margin: 26px 0 18px;
+  }
+  .pyramid-figure-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .pyramid-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  .pyramid-figure-caption {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 14px;
+    max-width: 720px;
+  }
+
+  /* Thesis-callout — the "Rented Audience" line. Copies UGC piece's
+     silent-tax callout: cream ground, heavy ink bar, big serif italic. */
+  .thesis-callout {
+    margin: 26px 0;
+    padding: 28px 32px;
+    background: var(--cream);
+    border-left: 6px solid var(--ink);
+    max-width: 820px;
+  }
+  .thesis-callout-text {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .thesis-callout { padding: 22px 24px; }
+    .thesis-callout-text { font-size: 20px; }
+  }
+
+  /* Examples grid — 4 source cards, 2x2 on desktop. Inherits
+     ugc.html's example-card pattern. */
+  .examples-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 22px 0;
+    max-width: 860px;
+  }
+  .example-card {
+    background: var(--white);
+    padding: 20px 22px 18px;
+    border-top: 3px solid var(--red);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .example-card.is-counter {
+    border-top-color: var(--blue);
+  }
+  .example-card-mode {
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .example-card.is-counter .example-card-mode { color: var(--blue); }
+  .example-card-brand {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .example-card-stat {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--blue);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .example-card.is-counter .example-card-stat { color: var(--red); }
+  .example-card-body {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .example-card-body strong { color: var(--ink); }
+  @media (max-width: 720px) {
+    .examples-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Traps grid — 5 stacked cards in §07. Blue accent to signal
+     "structural risk" rather than "exemplar." Slightly different
+     than the lever cards in UGC but same family. */
+  .traps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 22px 0;
+    max-width: 860px;
+  }
+  .trap-card {
+    background: var(--white);
+    padding: 20px 22px 18px;
+    border-top: 3px solid var(--blue);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .trap-card-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .trap-card-title {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .trap-card-body {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .trap-card-body strong { color: var(--ink); }
+  .trap-card.is-wide { grid-column: 1 / -1; }
+  @media (max-width: 720px) {
+    .traps-grid { grid-template-columns: 1fr; }
+    .trap-card.is-wide { grid-column: auto; }
+  }
+
+  /* Brand-test grid — identical to UGC piece's. Re-declared so the
+     page is self-contained if styles.css moves. */
+  .brand-test-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 22px 0;
+    max-width: 860px;
+    background: var(--white);
+    border-top: 3px solid var(--ink);
+    padding: 22px 0 18px;
+  }
+  .brand-test-col {
+    padding: 0 18px;
+    border-right: 1px solid var(--cream-deep);
+  }
+  .brand-test-col:last-child { border-right: none; }
+  .brand-test-col-rank {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .brand-test-col-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.1;
+  }
+  .brand-test-col-body {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .brand-test-col-body strong { color: var(--ink); }
+  @media (max-width: 860px) {
+    .brand-test-grid { grid-template-columns: 1fr 1fr; padding: 18px 0 12px; }
+    .brand-test-col { border-right: none; border-bottom: 1px solid var(--cream-deep); padding: 14px 18px; }
+    .brand-test-col:nth-child(2) { border-right: none; }
+    .brand-test-col:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  @media (max-width: 480px) {
+    .brand-test-grid { grid-template-columns: 1fr; }
+    .brand-test-col:not(:last-child) { border-bottom: 1px solid var(--cream-deep); }
+  }
+
+  /* Bold in-section lead-in, copied from UGC piece. */
+  .turn-lead {
+    font-family: var(--serif);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 17px;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    line-height: 1.35;
+    max-width: 760px;
+  }
+
+  /* Glossary entries (matches UGC piece). */
+  .glossary p { margin-bottom: 10px; max-width: 760px; }
+  .glossary p strong em { color: var(--red); font-style: italic; }
+
+  /* References list (matches UGC piece). */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Standalone &middot; The Rented Audience</div>
+    <h1>Influencers: The Rented Audience</h1>
+    <p class="lede">The companion piece to the UGC standalone. Influencers move real money &mdash; the CeraVe, Dunkin, and TikTok Shop numbers are not vapor &mdash; and the form has built-in decay the headlines about it do not mention. You are not buying an audience. You are renting one. The form has multiple job descriptions, structural traps the disciplines hasn&rsquo;t fully reckoned with, and a funnel placement that is shifting under everyone&rsquo;s feet right now.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#not-ugc">Not UGC With a Name</a>
+    <a href="#timeline">From the $1M Post</a>
+    <a href="#tiers">The Tiers</a>
+    <a href="#emv">EMV &amp; Measurement</a>
+    <a href="#shoppable">Shoppable Frontier</a>
+    <a href="#show-ification">Show-ification</a>
+    <a href="#traps">The Traps</a>
+    <a href="#brand-test">Brand Test</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<div class="callout" style="border-left-color: var(--ink); background: var(--cream); margin: 24px 0 0; padding: 16px 22px;">
+  <p style="font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ink); margin: 0; line-height: 1.5;">A corrective for the version of the &ldquo;marketing is dead&rdquo; story that swapped UGC out and put influencers in. <strong style="font-style: normal;">The data underneath this version is stronger. The conclusion is still wrong.</strong></p>
+</div>
+
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>The Concession Is Bigger. The Attack Is More Specific.</h2>
+
+  <p>The Gen Z and popular-press version of this argument is that marketing as a discipline has been replaced by a roster of twenty-somethings with phones, and the proof is in the receipts. Hyram Yarbro drove $2.4 million in earned-media-equivalent value for CeraVe across 55 posts in a single year <a href="#ref-tribe" class="cite">(Tribe Dynamics, 2021)</a>. Charli D&rsquo;Amelio&rsquo;s signature Dunkin&rsquo; cold brew lifted overall cold-brew sales 45% on its second day in market <a href="#ref-tubefilter" class="cite">(Spangler, 2020)</a>. TikTok Shop crossed $100 million in single-day US sales on Black Friday 2024 <a href="#ref-mediapost" class="cite">(Olenski, 2024)</a>. The data is real. Like the UGC version of this story, it does not prove what the headline draws from it.</p>
+
+  <p>The <a href="ugc.html">UGC piece</a> took a corrective posture: the form is real but oversold, the job description narrower than the headlines admit. This piece concedes more &mdash; influencers move money UGC structurally cannot &mdash; and attacks more specifically. The form has built-in time decay, structural credibility hazards that compound across an industry, and a funnel placement shifting under everyone&rsquo;s feet right now in ways the discipline hasn&rsquo;t fully reckoned with. The headline that influencers replaced marketing makes the same category error as the UGC version &mdash; confusing a powerful tool for a universal mandate. The vocabulary established in the UGC piece gets reused here without being re-argued: evidence formats versus funnel stages, primary versus secondary demand, PESO (paid creator content as paid media reading as earned), the authenticity premium and its erosion, the curation-discipline principle (<em>brand invisible in production, visible in curation</em>), and the testimonial ancestry the whole form sits inside.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — NOT UGC WITH A NAME
+     ============================================================ -->
+<section class="section" id="not-ugc">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Structural differences from UGC</div>
+  <h2>Not UGC With a Name</h2>
+
+  <p>The cleanest mistake undergrads make about influencers is to treat them as UGC with an account name attached. The aesthetic similarity is real &mdash; an influencer&rsquo;s TikTok and a UGC specialist&rsquo;s TikTok often look indistinguishable on the feed &mdash; but the economics underneath are different in ways that change every downstream decision.</p>
+
+  <p>Four structural differences matter. <strong>Audience compounding</strong>: the creator owns equity that took years to build; the brand rents access on the duration of the contract. A UGC specialist&rsquo;s post dies in the algorithm; an influencer&rsquo;s post lives on a feed the audience already chose to follow. <strong>Parasocial trust</strong>: the audience has something resembling a relationship with the creator &mdash; one-sided, but real enough to move spending. UGC has no person attached. <strong>FTC disclosure</strong>: paid influencer content sits inside a formal regulatory framework (the 2023 endorsement guides are the current floor) that paid UGC mostly evades by virtue of looking unattributed <a href="#ref-ftc" class="cite">(Hall Render, 2024)</a>. <strong>Rate cards</strong>: influencers are paid for audience access plus content; UGC specialists for content alone &mdash; different things at very different prices.</p>
+
+  <p>The cleaner mental model: an influencer post is closer to ad placement on someone else&rsquo;s broadcast than it is to UGC. You are buying inventory in a venue someone else built and curates &mdash; not earning organic word of mouth. On the PESO map the UGC piece set up, paid creator content is structurally paid media reading as earned, at a price per impression typically ten to a hundred times higher than equivalent paid UGC. <strong>The trust premium is being collected, and the structural fact that justifies it &mdash; the venue is rented &mdash; is being elided in most of the conversation about the form.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — TIMELINE
+     ============================================================ -->
+<section class="section" id="timeline">
+  <div class="sec-num">02</div>
+  <div class="sec-label">A short history of the form</div>
+  <h2>From the $1M Post to the Rotational Roster</h2>
+
+  <p>The shape of the influencer business has changed twice in a decade, and the popular press has only really tracked the first change. A compact timeline is worth carrying in your head because the brand-side economics work out differently in each era.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item is-major">
+      <div class="timeline-date">2014&ndash;2018</div>
+      <div class="timeline-title">The mega era</div>
+      <div class="timeline-body">
+        <p>Instagram becomes the venue for fame. Kardashian rate cards reach the high six figures. Hopper HQ&rsquo;s 2024 Instagram Rich List puts Cristiano Ronaldo at roughly $3.23 million per sponsored post, Lionel Messi at $2.6 million, Kim Kardashian at $2.2 million <a href="#ref-glewee" class="cite">(Glewee, 2024)</a>. One mega-celebrity, one post, one massive impression buy. The job is awareness and cultural signal; the tier is the only one that scales high enough to be Super-Bowl-equivalent on a single feed.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2020</div>
+      <div class="timeline-title">Lockdown and the first credibility crisis</div>
+      <div class="timeline-body">
+        <p>The pandemic strands lifestyle influencers in destinations their audience cannot reach. Travel content continues; the audience is locked down. The aspirational distance that gives the form its appeal inverts to read as out-of-touch overnight &mdash; and the credibility hit on the lifestyle category persists past the moment.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2021&ndash;2023</div>
+      <div class="timeline-title">The micro/nano shift</div>
+      <div class="timeline-body">
+        <p>Brands discover that 50 mid-tier creators for $X frequently outperform 1 mega for $X. TikTok&rsquo;s algorithm favors smaller accounts in a way Instagram&rsquo;s graph-feed never did. The rotational pattern emerges &mdash; 4 to 6 creators per month, sub-$10,000 each, replaced regularly. CeraVe&rsquo;s influencer network expanded 120% year-over-year, reaching roughly 3,500 contracted creators <a href="#ref-tribe" class="cite">(Tribe Dynamics, 2021)</a>.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item is-major">
+      <div class="timeline-date">2024&ndash;2026</div>
+      <div class="timeline-title">Shoppable + show-ification + AI</div>
+      <div class="timeline-body">
+        <p>TikTok Shop hits $100 million in single-day US sales on Black Friday 2024 <a href="#ref-mediapost" class="cite">(Olenski, 2024)</a>. Brands start serializing creator content into recurring formats &mdash; show-ification &mdash; because random posts don&rsquo;t compound the way episodes do. AI-generated influencers (Lil Miquela, Aitana L&oacute;pez) compete for budget in fashion and lifestyle slots. The era is small, distributed, increasingly measured &mdash; and structurally harder to evaluate than the headline-grade mega era ever was.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <p>The headline-grade era was a brief window, not the norm &mdash; and it&rsquo;s the era the popular press still talks about, partly because the numbers were spectacular and partly because the cast was already famous. The actual shape of the business in 2025&ndash;2026 is much smaller, much more distributed, and much more boring to write a headline about. <strong>It is also where the money goes.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — THE TIERS (with pyramid figure)
+     ============================================================ -->
+<section class="section" id="tiers">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Mega to nano</div>
+  <h2>The Tiers</h2>
+
+  <p>The creator economy has five rough tiers, defined by audience size and the kind of job the brand is hiring for. The pyramid below is the standard breakdown. The point of the diagram is not the bracket math &mdash; rates vary by category, platform, and posting frequency &mdash; but the inverse relationship between reach and engagement, which is the structural fact that justifies the rotational pattern most brands now run.</p>
+
+  <div class="pyramid-figure">
+    <div class="pyramid-figure-label">The creator economy &mdash; tiers, jobs, and prices</div>
+    <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" aria-label="Pyramid diagram showing five creator tiers from mega at the top to nano at the bottom, with audience size, typical price per post, and the job each tier is best at.">
+      <!-- Pyramid tiers, top to bottom -->
+      <!-- MEGA -->
+      <polygon points="280,30 440,30 470,95 250,95" fill="#BC5A44" stroke="#7A1A1A" stroke-width="1.5"/>
+      <text x="360" y="58" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="17" font-weight="700" fill="#ffffff">MEGA</text>
+      <text x="360" y="78" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#ffffff">1M+ followers</text>
+      <text x="490" y="62" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#2A2420">$50K&ndash;$3M / post</text>
+      <text x="490" y="78" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Awareness &middot; cultural signal</text>
+      <text x="230" y="62" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Ronaldo &middot; Kardashians</text>
+      <text x="230" y="78" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Charli &middot; Selena Gomez</text>
+
+      <!-- MACRO -->
+      <polygon points="250,95 470,95 500,170 220,170" fill="#CC8774" stroke="#7A1A1A" stroke-width="1.5"/>
+      <text x="360" y="125" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="16" font-weight="700" fill="#ffffff">MACRO</text>
+      <text x="360" y="148" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#ffffff">250K&ndash;1M followers</text>
+      <text x="520" y="130" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#2A2420">$5K&ndash;$50K / post</text>
+      <text x="520" y="146" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Category authority</text>
+      <text x="520" y="162" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Career creators</text>
+      <text x="200" y="130" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Hyram Yarbro (peak)</text>
+      <text x="200" y="146" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Mikayla Nogueira</text>
+
+      <!-- MID -->
+      <polygon points="220,170 500,170 540,260 180,260" fill="#4D7090" stroke="#0C3D7A" stroke-width="1.5"/>
+      <text x="360" y="200" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="16" font-weight="700" fill="#ffffff">MID</text>
+      <text x="360" y="225" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#ffffff">50K&ndash;250K followers</text>
+      <text x="360" y="245" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#ffffff" font-weight="600">Rotational workhorse</text>
+      <text x="555" y="205" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#2A2420">$1K&ndash;$10K / post</text>
+      <text x="555" y="221" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Niche credibility +</text>
+      <text x="555" y="237" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">measurable conversion</text>
+      <text x="165" y="205" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Most of any brand&rsquo;s</text>
+      <text x="165" y="221" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">monthly creator program</text>
+
+      <!-- MICRO -->
+      <polygon points="180,260 540,260 590,360 130,360" fill="#6885A1" stroke="#0C3D7A" stroke-width="1.5"/>
+      <text x="360" y="295" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="16" font-weight="700" fill="#ffffff">MICRO</text>
+      <text x="360" y="320" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#ffffff">10K&ndash;50K followers</text>
+      <text x="360" y="338" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#ffffff">High engagement &middot; niche</text>
+      <text x="605" y="297" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#2A2420">$200&ndash;$2K / post</text>
+      <text x="605" y="313" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Community trust</text>
+      <text x="605" y="329" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Conversion-stage proof</text>
+
+      <!-- NANO -->
+      <polygon points="130,360 590,360 660,440 60,440" fill="#D2DBE3" stroke="#4D7090" stroke-width="1.5"/>
+      <text x="360" y="395" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="16" font-weight="700" fill="#2A2420">NANO</text>
+      <text x="360" y="418" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="11" fill="#2A2420">1K&ndash;10K followers</text>
+      <text x="675" y="397" font-family="Source Sans 3, sans-serif" font-size="11" font-weight="600" fill="#2A2420">Often product-only</text>
+      <text x="675" y="413" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">Boundary with UGC</text>
+      <text x="675" y="429" font-family="Source Sans 3, sans-serif" font-size="10.5" font-style="italic" fill="#6F6A66">gets fuzzy here</text>
+
+      <!-- Inverse arrows on left -->
+      <line x1="50" y1="60" x2="50" y2="420" stroke="#6F6A66" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+      <defs>
+        <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 5 9 L 10 0 z" fill="#6F6A66"/>
+        </marker>
+      </defs>
+      <text x="30" y="240" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" letter-spacing="1" transform="rotate(-90, 30, 240)">Engagement rate rises &rarr;</text>
+
+      <line x1="690" y1="60" x2="690" y2="420" stroke="#6F6A66" stroke-width="1.5"/>
+      <text x="710" y="240" font-family="Source Sans 3, sans-serif" font-size="10" fill="#6F6A66" letter-spacing="1" transform="rotate(-90, 710, 240)">&larr; Reach rises</text>
+    </svg>
+    <p class="pyramid-figure-caption">Mega buys awareness and cultural signal. Macro buys category authority. Mid and micro do the rotational conversion work that absorbs most of any brand&rsquo;s monthly creator budget. Nano is the boundary where the line between &ldquo;paid creator&rdquo; and &ldquo;paid customer with a phone&rdquo; gets blurry.</p>
+  </div>
+
+  <p>The rotational pattern is the working shape of most brand programs now &mdash; four to six mid-and-micro creators a quarter, one to three posts each, swap underperformers monthly. The aggregate looks like UGC in volume but is operationally a media buy: brand controls casting, brief, and approval; creators control voice and cadence. Where the money goes maps onto where the form fits: beauty and skincare, food and beverage CPG, fashion, fitness, supplements, mobile gaming, tech accessories, travel. Where it rarely lands: B2B (LinkedIn creators an emerging exception), insurance, financial services, pharma, high-consideration durables, and luxury &mdash; with the mega-only exception covered in the brand test below. <strong>The pattern matches the UGC piece&rsquo;s: visible, socially consumed, peer-signal categories work; exclusivity and expert-credibility categories mostly don&rsquo;t.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — EMV & THE MEASUREMENT PROBLEM
+     ============================================================ -->
+<section class="section" id="emv">
+  <div class="sec-num">04</div>
+  <div class="sec-label">What the numbers actually measure</div>
+  <h2>EMV and the Measurement Problem</h2>
+
+  <p>The CeraVe and Hyram case is the textbook integration example, and it shows both what the form does at its best and what the headline number doesn&rsquo;t prove. Tribe Dynamics, the influencer-analytics vendor supplying most EMV figures in the trade press, tracked CeraVe&rsquo;s earned-media-value from May 2020 through April 2021 at $30.1 million &mdash; a 70% year-over-year jump. Hyram Yarbro alone drove $2.4 million of that across 55 posts <a href="#ref-tribe" class="cite">(Tribe Dynamics, 2021)</a>. CeraVe&rsquo;s parent L&rsquo;Or&eacute;al reports that Hyram&rsquo;s 2020 coverage corresponded with roughly an 89% global sales increase that year <a href="#ref-wiki-cerave" class="cite">(Wikipedia, 2025)</a>. What made the case work was structural fit: Hyram&rsquo;s pre-existing voice was an ingredient-list-decoding skincare specialist recommending affordable products, and CeraVe was already on his recommendation list before the brand engaged him. The partnership amplified an organic baseline rather than manufacturing one &mdash; the curation-discipline principle the UGC piece argued for, applied at influencer scale.</p>
+
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="example-card-mode">The textbook integration</div>
+      <div class="example-card-brand">CeraVe &mdash; Hyram Yarbro</div>
+      <div class="example-card-stat">$2.4M EMV &middot; 55 posts &middot; 1 year</div>
+      <div class="example-card-body">Hyram had pre-existing skincare credibility built on ingredient-list authority, and was already recommending CeraVe before the brand engaged him. The partnership amplified what was already happening rather than scripting it. <strong>Brand invisible in production, visible in curation</strong> &mdash; the UGC piece&rsquo;s principle, applied at influencer scale <a href="#ref-tribe" class="cite">(Tribe Dynamics, 2021)</a>.</div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-mode">Creator-product collaboration</div>
+      <div class="example-card-brand">Dunkin&rsquo; &mdash; &ldquo;The Charli&rdquo;</div>
+      <div class="example-card-stat">+57% app downloads &middot; +20%/+45% cold-brew</div>
+      <div class="example-card-body">Charli D&rsquo;Amelio&rsquo;s actual go-to Dunkin&rsquo; order became a menu SKU. The product was the IP, not an endorsement &mdash; and the drink had to taste good for the conversion to retain. Cold-brew sales lifted 20% on day one and 45% on day two; app downloads jumped 57% off launch-day <a href="#ref-tubefilter" class="cite">(Spangler, 2020)</a>.</div>
+    </div>
+  </div>
+
+  <p class="turn-lead">What EMV is, and what it isn&rsquo;t.</p>
+
+  <p>The figure the trade press carries forward from cases like this is Earned Media Value &mdash; an impression-equivalent number generated by counting mentions, engagements, and views, then applying a media-cost-per-impression rate to estimate what equivalent paid placement would have cost. EMV is a media-cost proxy, not a sales-attribution number. A $2.4 million EMV for Hyram is not $2.4 million in attributable CeraVe sales; it is what equivalent paid impressions would have cost in another channel. It&rsquo;s the influencer industry&rsquo;s honest answer to the attribution problem &mdash; real attribution for influencer content is broken in the same way display-ad attribution is broken &mdash; but it deserves more skepticism than it gets in the press releases.</p>
+
+  <p>This connects to the UGC piece&rsquo;s silent-tax point. Even when an influencer drives demonstrable lift, the lift frequently lands on the category rather than the specific brand &mdash; primary demand grows faster than secondary. Hyram is unusual because his recommendations explicitly named the brand and contrasted it against the closest substitute. Most rotational mid-creator programs lack that specificity &mdash; they generate beauty content with a CeraVe pump bottle in frame, which grows the category as efficiently as it grows the brand.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">EMV measures what equivalent paid impressions would have cost. It is not a sales number, and the press releases keep treating it like one.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — THE SHOPPABLE FRONTIER
+     ============================================================ -->
+<section class="section" id="shoppable">
+  <div class="sec-num">05</div>
+  <div class="sec-label">TikTok Shop and the funnel that won&rsquo;t hold still</div>
+  <h2>The Shoppable Frontier</h2>
+
+  <p>The 2024&ndash;2026 hinge in the influencer business is TikTok Shop. Black Friday 2024 was the first single day the platform&rsquo;s US shopping arm crossed $100 million in sales &mdash; triple the previous year, with shopper count up 165% YoY for the Black Friday/Cyber Monday window <a href="#ref-mediapost" class="cite">(Olenski, 2024)</a>. Beauty led. Medicube, the Korean skincare brand owned by APR Corp., has built a network of roughly 34,000 affiliated creators and crossed $102.9 million in cumulative TikTok Shop revenue, with hashtag content generating around 864,000 video posts and 13 billion views <a href="#ref-medicube" class="cite">(Tramicheck, 2025)</a>. The parent company&rsquo;s stock rose roughly 200% in 2025.</p>
+
+  <div class="examples-grid">
+    <div class="example-card">
+      <div class="example-card-mode">The platform breakthrough</div>
+      <div class="example-card-brand">TikTok Shop &mdash; Black Friday 2024</div>
+      <div class="example-card-stat">$100M+ single day &middot; 3&times; YoY</div>
+      <div class="example-card-body">The first time a US social-commerce platform crossed the $100 million single-day threshold. Beauty led; Crocs, Fenty Beauty, Est&eacute;e Lauder, and The Ordinary all reported strong days. Cumulative US TikTok Shop revenue projected several billion for 2025 <a href="#ref-mediapost" class="cite">(Olenski, 2024)</a>.</div>
+    </div>
+
+    <div class="example-card is-counter">
+      <div class="example-card-mode">When the staging is too visible</div>
+      <div class="example-card-brand">Poppi &mdash; the vending machines</div>
+      <div class="example-card-stat">32 machines &middot; Super Bowl LIX</div>
+      <div class="example-card-body">Poppi sent branded vending machines to 32 selected creators ahead of its 2025 Super Bowl ad. The activation drew immediate backlash for tone-deafness &mdash; pink hardware to already-wealthy creators while audiences fielded tariffs and inflation. One social-media analyst called the backlash unprecedented in the form&rsquo;s history <a href="#ref-marketingbrew" class="cite">(Hayward, 2025)</a>.</div>
+    </div>
+  </div>
+
+  <p class="turn-lead">A note on the funnel placement &mdash; the part of this no one has finished arguing.</p>
+
+  <p>The textbook map (see the <a href="funnel.html">funnel page</a>) places influencer content near the top of the funnel: awareness, brand association, cultural signal. That placement was always a half-truth. The CeraVe case worked because the brand was already on drugstore shelves before Hyram&rsquo;s coverage; the Charli case worked because Dunkin&rsquo; was already on every commuter&rsquo;s corner. Influencer content, like UGC, performs better when the brand is already partially recognized &mdash; the form does proof and amplification more efficiently than cold introduction. <strong>Influencer content turns out to be a closer cousin of UGC than the headline rates make it look.</strong></p>
+
+  <p>What&rsquo;s genuinely new in 2024&ndash;2026 is the commission-driven creator model TikTok Shop made operational at scale. A creator can take a partnership with no flat fee and instead a commission, often around 15%, on attributable sales. This is not the default &mdash; most TikTok creators still take flat-fee deals, and most brand programs still pay impressions &mdash; but where it applies, the creator gets paid for closing the sale rather than for impressions. The content tilts toward bottom-of-funnel review-and-demonstrate formats and away from aspirational ones. <strong>Where any given creator sits in the funnel is becoming a function of the deal structure, not of the form.</strong> The clean awareness-tool placement is breaking down; what replaces it isn&rsquo;t finished yet.</p>
+
+  <p>The Poppi case is the cautionary edge in this same shift. The vending-machine activation was orchestrated to generate creator content during Super Bowl week; what it generated instead was unscripted critique of the form itself. Some of the backlash was about cost &mdash; pink hardware mailed to already-wealthy creators when the audience was feeling inflation and tariffs &mdash; and some was about visible staging. <strong>When the staging is too visible, the authenticity premium collapses backward, and the brand is left holding all the cost without the trust mechanism that was supposed to pay for it.</strong></p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — SHOW-IFICATION
+     ============================================================ -->
+<section class="section" id="show-ification">
+  <div class="sec-num">06</div>
+  <div class="sec-label">Why one-off posts don&rsquo;t compound</div>
+  <h2>Show-ification</h2>
+
+  <p>The structural problem the UGC piece flagged in its closing &mdash; random posts don&rsquo;t build audience equity for the brand &mdash; is driving the second-most-interesting shift in the form right now. The trade press is calling it &ldquo;show-ification.&rdquo; The pattern: brands serialize creator content into recurring formats, sketch episodes, narrative arcs, and characters that the audience anticipates over time. Episode-three viewers are pre-warmed by episodes one and two; the brand accumulates audience equity rather than buying a single impression. Liquid Death has run absurdist branded sketch segments for years; Duolingo&rsquo;s owl mascot has crossed into creator content across multiple accounts; Surreal cereal&rsquo;s celebrity-cameo format (a fake testimonial, played for the comedic gap) ran continuously through 2024 and 2025 <a href="#ref-billiondollarboy" class="cite">(Billion Dollar Boy, 2025)</a>. The earlier branded-content era &mdash; the Netflix-style brand documentaries circa 2018&ndash;2022 &mdash; mostly failed because production was too expensive and the audience never quite materialized. Show-ification is the cheaper, lighter, platform-native version: live where the audience already is, use the creator&rsquo;s existing format as the chassis, accumulate brand presence as a serial.</p>
+
+  <p>The honest concession is that the trend is real and does generate audience equity one-off posts cannot. <strong>The attack is that show-ification requires a creator partnership long enough to actually serialize</strong> &mdash; in direct tension with the rotational pattern most brand programs run. Quarterly creator rotation is structurally incompatible with monthly serial-episode buildouts. Brands that want compounding equity have to commit to longer partnerships with fewer creators, which means concentrating risk in a smaller roster <a href="#ref-digiday" class="cite">(Digiday, 2025)</a>. Risk concentration is the trade for compounding. The brands doing show-ification well (Liquid Death, Duolingo, Surreal) tend to be doing it with macro-or-larger partners on multi-month commitments; the brands chasing micro-rotation can&rsquo;t easily get there.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — THE TRAPS
+     ============================================================ -->
+<section class="section" id="traps">
+  <div class="sec-num">07</div>
+  <div class="sec-label">Five structural risks the form doesn&rsquo;t advertise</div>
+  <h2>The Structural Traps</h2>
+
+  <div class="thesis-callout">
+    <p class="thesis-callout-text">You&rsquo;re not buying an audience. You&rsquo;re renting one. When you stop paying, the access ends.</p>
+  </div>
+
+  <p>The form&rsquo;s biggest structural problem is the one its sales decks do not mention. The creator&rsquo;s audience is the creator&rsquo;s asset, not the brand&rsquo;s &mdash; the brand rents access on contract terms, and when the contract ends, the access ends. Effectiveness fades the same way an ad campaign&rsquo;s effectiveness fades when the spend stops, which means influencer-driven lift behaves more like ad-driven lift than like genuine word of mouth. Below: five structural traps that follow from the rented-venue fact, ordered from the cleanest to the messiest.</p>
+
+  <div class="traps-grid">
+
+    <div class="trap-card">
+      <div class="trap-card-num">TRAP 01</div>
+      <div class="trap-card-title">The rented venue</div>
+      <div class="trap-card-body">The brand pays for access to an audience the creator built. When the contract ends, the access ends &mdash; just like an ad campaign ends. Influencer-driven sales lift decays on a timeline measurable in weeks, not the years that genuine word-of-mouth lift can sustain. <strong>The campaign builds the creator&rsquo;s asset more than the brand&rsquo;s.</strong> Brand-side compounding only happens when the brand&rsquo;s distinctive assets in the content are strong enough to encode independent of the creator. Most rotational programs aren&rsquo;t.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-card-num">TRAP 02</div>
+      <div class="trap-card-title">Tone-deafness as category feature</div>
+      <div class="trap-card-body">The form depends on aspiration &mdash; a lifestyle slightly out of reach the audience can imagine joining. Economic shocks can move &ldquo;slightly out of reach&rdquo; to &ldquo;actively offensive&rdquo; overnight. The 2020 lockdown turned travel content from inspiration to insult. The 2024&ndash;2026 tariff-and-inflation moment is doing the same thing to luxury-haul content and Poppi-grade activation budgets <a href="#ref-marketingbrew" class="cite">(Hayward, 2025)</a>. The form has no fast correction mechanism, and creators built on aspirational content face the choice between staying in character and reading the room in real time.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-card-num">TRAP 03</div>
+      <div class="trap-card-title">Category drift &amp; the suddenly-new-favorite problem</div>
+      <div class="trap-card-body">A creator who built credibility on Topic X starts promoting Brand G in unrelated Category Y, and the audience reads the tonal shift before it reads the disclosure. The form&rsquo;s credibility transfers within the creator&rsquo;s domain and breaks outside it. The audience-side data is now backing this up. <strong>Coresight Research found that 35% of Gen Z consumers regretted at least one purchase made via TikTok or Instagram</strong> &mdash; not because of price, but because the product didn&rsquo;t live up to the hype <a href="#ref-coresight" class="cite">(Kadence, 2025)</a>. Adobe&rsquo;s parallel survey clocked more than 1 in 4 TikTok users regretting impulse buys driven by shopping influencers <a href="#ref-adobe" class="cite">(Adobe, 2024)</a>. The audience is starting to discount the &ldquo;new favorite&rdquo; reveal at exactly the rate it shows up in the data, which is to say: not enough to stop the buy, but enough to stop the second one.</div>
+    </div>
+
+    <div class="trap-card">
+      <div class="trap-card-num">TRAP 04</div>
+      <div class="trap-card-title">FTC disclosure &amp; the scripting tax</div>
+      <div class="trap-card-body">The 2023 FTC endorsement guides &mdash; the first major revision since 2009 &mdash; tightened the &ldquo;clear and conspicuous&rdquo; standard and explicitly warned that platform-native disclosure tools are not sufficient on their own <a href="#ref-ftc" class="cite">(Hall Render, 2024)</a>. Enforcement is spotty but real. The structural tax: compliant disclosure compresses the trust premium that&rsquo;s the whole point of the form, and the trust premium gets paid for whether the disclosure is compliant or not. Worse, when brands write the post and the creator reads it &mdash; common enough &mdash; the content is structurally a paid testimonial with a parasocial wrapper, and audiences are getting good at spotting the seams.</div>
+    </div>
+
+    <div class="trap-card is-wide">
+      <div class="trap-card-num">TRAP 05</div>
+      <div class="trap-card-title">Scandal exposure &mdash; including the residual kind</div>
+      <div class="trap-card-body">The creator is the asset. A creator who blows up takes the brand&rsquo;s investment with them. The reference case is Morphe and James Charles &mdash; 2021 misconduct allegations cost the brand its tentpole partnership, and Morphe eventually declared bankruptcy. <strong>The point the trade press undersells: residual exposure doesn&rsquo;t end with the contract.</strong> Co-branded inventory on shelves, archived sponsored posts the algorithm still surfaces, retailer co-marketing materials, the brand&rsquo;s own owned-channel content featuring the creator &mdash; all of it stays loaded and ready to detonate if the creator becomes radioactive months or years after the partnership ended <a href="#ref-phyllo" class="cite">(Phyllo, 2026)</a>. Brand-side hygiene now requires not just severance but active scrubbing, and even that doesn&rsquo;t reach the archived posts on the creator&rsquo;s own feed that audiences can resurface. Add the platform-algorithm risk nobody on the brand side controls &mdash; 40 to 60% engagement compression overnight has become a routine product of the platforms&rsquo; tuning cycles &mdash; and the form&rsquo;s downside profile starts to look meaningfully heavier than the upside cases suggest.</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ============================================================
+     SECTION 8 — BRAND TEST
+     ============================================================ -->
+<section class="section" id="brand-test">
+  <div class="sec-num">08</div>
+  <div class="sec-label">Hoka, On, Nike, Gucci &mdash; revised</div>
+  <h2>The Brand Test</h2>
+
+  <p>The same four-brand test from the UGC piece, with the rankings shifted in important ways. Influencer fit is not about <em>whether</em> the form works for the brand; it&rsquo;s about <em>which tier</em> of creator the brand can credibly work with. The structural rule that organizes this: the influencer&rsquo;s stratum has to match or exceed the brand&rsquo;s stratum. Luxury brands borrow celebrity mystique upward; mass brands borrow audience access downward. Get the tier wrong and the brand pays for a form that erodes its positioning while it generates impressions.</p>
+
+  <div class="brand-test-grid">
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Needs influencers least</div>
+      <div class="brand-test-col-name">Hoka</div>
+      <div class="brand-test-col-body">Built bottom-up on the running community&rsquo;s organic UGC at finish lines (see <a href="ugc.html#brand-test">UGC piece</a>). Influencer programs would be supplementary at best. <strong>Sponsored elite athletes are celebrity-athlete deals, not influencer rotation.</strong> The trap: chasing fitness influencers for cultural relevance risks diluting the running-authenticity asset Hoka already owns.</div>
+    </div>
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Mid-tier rotation</div>
+      <div class="brand-test-col-name">On</div>
+      <div class="brand-test-col-body">Premium positioning plus lifestyle aesthetic fits the mid-tier creator playbook. The Coco Gauff partnership (2024) is the model: a celebrity athlete who fits the lifestyle position, not a generic running influencer. <strong>Fashion-adjacent fitness creators fit On&rsquo;s &ldquo;running but also athleisure&rdquo; positioning</strong> in a way they would not fit Hoka&rsquo;s.</div>
+    </div>
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Mega-only</div>
+      <div class="brand-test-col-name">Nike</div>
+      <div class="brand-test-col-body">Already has the mental availability. Doesn&rsquo;t need creator rotation for awareness. Where influencers fit: athletes (LeBron, Serena, Coco &mdash; the last to On&rsquo;s benefit) and culture-defining mega-creators. <strong>Treating Nike as a brand that should run mid/micro rotational programs is a category error.</strong> Athlete deals are influencer marketing at the only tier that fits the brand&rsquo;s scale.</div>
+    </div>
+
+    <div class="brand-test-col">
+      <div class="brand-test-col-rank">Mega-only &mdash; flipped from UGC</div>
+      <div class="brand-test-col-name">Gucci</div>
+      <div class="brand-test-col-body"><strong>This is where the influencer piece diverges from the UGC piece.</strong> UGC erodes luxury exclusivity. Mega-celebrity partnerships do the opposite &mdash; Harry Styles for Gucci, Zendaya for Bulgari, Beyonc&eacute; for Tiffany. The exclusivity is preserved because the celebrity is also exclusive. <strong>Mid-tier rotation would corrupt the positioning; mega-celebrity association reinforces it.</strong> (See <a href="gucci-luxury-sport.html">Gucci: Logomania to Luxury Sport</a>.)</div>
+    </div>
+
+  </div>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Luxury borrows celebrity mystique upward. Mass borrows audience access downward. Cross the wrong way and the form erodes the positioning it&rsquo;s supposed to reinforce.</div>
+  </div>
+
+
+  <!-- ============================================================
+       CLOSING (no subnav entry)
+       ============================================================ -->
+  <h3 style="margin-top: 32px;">Closing &mdash; and where this fits</h3>
+
+  <p>The corrective in one paragraph: influencers haven&rsquo;t replaced marketing. They are marketing &mdash; one of the more interesting tools in the kit, with tier-specific job descriptions, industry-specific fit patterns, structural traps that compound, and a funnel placement currently shifting from the textbook awareness slot toward something messier the discipline hasn&rsquo;t finished mapping. The Hyram and Charli cases work. The mega-influencer luxury cases work. The rotational micro programs work, sometimes, when the audience fit is genuine and the rotation is managed against the residual scandal risk. <strong>None of that is the same as the headline claim.</strong> The form has multiple job descriptions. It is not a universal mandate.</p>
+
+  <p>This connects back to where the course began and where the UGC piece landed. <strong>You don&rsquo;t have to like an ad for it to be effective.</strong> The influencer-side corollary: you can like a creator&rsquo;s recommendation without that recommendation being valid. Liking the speaker is not the same as the message being true. The Coresight finding &mdash; 35% of Gen Z regretting at least one TikTok-or-Instagram-driven purchase &mdash; is the audience-side version of the same point. Read alongside the UGC piece, this is the contemporary creator ecosystem in two parts &mdash; sharing the PESO classification, authenticity-premium erosion, primary-versus-secondary-demand pattern, and curation-discipline principle, while differing on labor model, regulatory floor, funnel placement, and brand-test rankings (Gucci flips). The integration playbook lives in <a href="creative-6-video.html#ugc">Creative-6 &sect;05</a>; the audience-side critique lives in the UGC piece you already read. This one adds the rented-venue economics and the traps that follow.</p>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <div class="sec-label">Vocabulary</div>
+  <h2>Glossary</h2>
+
+  <div class="glossary">
+    <p><strong><em>Influencer / creator</em></strong> &mdash; a person who has built an audience on a social platform and rents access to that audience to brands in exchange for paid content. Operationally a paid media transaction, even when the content reads as earned word of mouth.</p>
+    <p><strong><em>Mega / macro / mid / micro / nano</em></strong> &mdash; the five-tier breakdown of creators by audience size. Mega (1M+) buys awareness and cultural signal; macro (250K&ndash;1M) buys category authority; mid (50K&ndash;250K) and micro (10K&ndash;50K) do the rotational conversion work; nano (1K&ndash;10K) is the boundary with paid UGC. Engagement rates rise as audience size falls.</p>
+    <p><strong><em>Earned Media Value (EMV)</em></strong> &mdash; an impression-equivalent valuation generated by counting mentions, engagements, and views, then applying a media-cost rate to estimate what equivalent paid placement would have cost. Vendor-supplied (Tribe Dynamics, Influence Hunter, others). A media-cost proxy, not a sales-attribution number.</p>
+    <p><strong><em>Parasocial trust</em></strong> &mdash; the one-sided relationship-feeling an audience develops with a creator they follow over time. The mechanism that makes influencer recommendations land harder than equivalent brand messages.</p>
+    <p><strong><em>FTC disclosure</em></strong> &mdash; the regulatory framework requiring paid endorsement content to be clearly and conspicuously identified as paid. The 2023 endorsement guides update tightened the standard and explicitly warned that platform-native disclosure tools (Paid Partnership tags, Commercial Content toggles) are not sufficient on their own.</p>
+    <p><strong><em>Rented audience</em></strong> &mdash; the structural fact at the center of the form: the brand pays for access to an audience the creator built, on the contract&rsquo;s duration. Effectiveness fades when the spend stops, the way it does with paid advertising and unlike how it does with genuine word of mouth.</p>
+    <p><strong><em>Show-ification</em></strong> &mdash; the 2025&ndash;2026 shift toward serialized creator content &mdash; recurring formats, sketch episodes, narrative arcs &mdash; that builds audience equity for the brand over time rather than buying a single impression. Operationally requires longer partnerships than the rotational micro model, in tension with most brand programs&rsquo; current shape.</p>
+    <p><strong><em>TikTok Shop commission model</em></strong> &mdash; a creator-compensation structure (typically around 15% of attributable sales) that pays for conversion rather than impressions. Not the default for most creators, but increasingly common in beauty and CPG. Shifts the creator&rsquo;s economic incentives away from aspirational top-of-funnel content and toward review-and-demonstrate bottom-of-funnel formats.</p>
+    <p><strong><em>Residual scandal exposure</em></strong> &mdash; the brand&rsquo;s ongoing risk from a past creator partnership after the contract has ended. Co-branded inventory, archived sponsored posts, retailer co-marketing, and the creator&rsquo;s own feed history all remain loaded if the creator becomes radioactive months or years later.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p>Anchor sources first (Tribe Dynamics for the CeraVe/Hyram numbers, the Dunkin&rsquo; figures, the TikTok Shop Black Friday milestone, and the Coresight regret survey); the rest are alphabetical.</p>
+
+  <div class="references">
+
+    <p class="ref" id="ref-tribe">Tribe Dynamics. (2021). <a href="https://www.tribedynamics.com/blog/cerave-drugstore-skincare-gen-z-influencers" target="_blank" rel="noopener">How CeraVe became a skincare staple for Gen Z influencers</a>. <em>Tribe Dynamics</em>. Source for CeraVe&rsquo;s $30.1M EMV (May 2020&ndash;April 2021, +70% YoY), Hyram Yarbro&rsquo;s $2.4M EMV across 55 posts, and the 120% YoY expansion of the brand&rsquo;s creator network to ~3,500 partners. https://www.tribedynamics.com/blog/cerave-drugstore-skincare-gen-z-influencers</p>
+
+    <p class="ref" id="ref-tubefilter">Spangler, T. (2020, September 23). <a href="https://www.tubefilter.com/2020/09/23/charli-damelio-dunkin-donuts-sales-app-downloads/" target="_blank" rel="noopener">Charli D&rsquo;Amelio sells hundreds of thousands of signature Dunkin&rsquo; drinks, triggers 57% spike in app downloads</a>. <em>Tubefilter</em>. Source for the 57% app-download lift on launch day, the 20% day-one and 45% day-two cold-brew sales boosts, and the &ldquo;hundreds of thousands of drinks within the first five days&rdquo; figure. https://www.tubefilter.com/2020/09/23/charli-damelio-dunkin-donuts-sales-app-downloads/</p>
+
+    <p class="ref" id="ref-mediapost">Olenski, S. (2024, December 6). <a href="https://www.mediapost.com/publications/article/401656/tiktok-shop-hits-100m-in-black-friday-sales.html" target="_blank" rel="noopener">TikTok Shop hits $100M in Black Friday sales</a>. <em>MediaPost</em>. Source for the $100M+ single-day record on US Black Friday 2024 (3&times; YoY), the 165% YoY increase in shoppers across the Black Friday/Cyber Monday weekend, and the top-brand list (Crocs, Fenty Beauty, Est&eacute;e Lauder, Medicube, The Ordinary). https://www.mediapost.com/publications/article/401656/tiktok-shop-hits-100m-in-black-friday-sales.html</p>
+
+    <p class="ref" id="ref-coresight">Kadence International. (2025, September 19). <a href="https://kadence.com/knowledge/tiktok-made-me-buy-it-but-did-i-keep-it/" target="_blank" rel="noopener">TikTok made me buy it. But did I keep it?</a> <em>Kadence</em>. Citing 2023 Coresight Research survey: 35% of Gen Z consumers regretted at least one purchase made via TikTok or Instagram &mdash; not because of price, but because the product didn&rsquo;t live up to the hype, was rarely used, or was forgotten. https://kadence.com/knowledge/tiktok-made-me-buy-it-but-did-i-keep-it/</p>
+
+    <p class="ref" id="ref-adobe">Adobe Express. (2024). <a href="https://adobe.com/express/learn/blog/perceptions-of-shopping-influencers" target="_blank" rel="noopener">Perceptions of shopping influencers</a>. <em>Adobe Express Blog</em>. Survey: 1 in 2 TikTok users spent $100+ on impulse purchases via shopping influencers in the past year; more than 1 in 4 regretted those purchases; Gen X regret rate (31%) higher than Gen Z (25%) or millennials (25%). https://adobe.com/express/learn/blog/perceptions-of-shopping-influencers</p>
+
+    <p class="ref" id="ref-billiondollarboy">Billion Dollar Boy. (2025). <a href="https://www.billiondollarboy.com/" target="_blank" rel="noopener">The state of creator marketing 2025</a>. <em>Billion Dollar Boy</em>. Source on serialized creator content (&ldquo;show-ification&rdquo;) and the move from one-off paid posts toward recurring formats. https://www.billiondollarboy.com/</p>
+
+    <p class="ref" id="ref-digiday">Digiday. (2025). <a href="https://digiday.com/marketing/" target="_blank" rel="noopener">How brands are extending creator partnerships into multi-month serial content</a>. <em>Digiday</em>. Trade coverage of the serialization trend, including the tension with rotational micro-creator program structures. https://digiday.com/marketing/</p>
+
+    <p class="ref" id="ref-ftc">Hall Render Killian Heath &amp; Lyman. (2024, July 17). <a href="https://hallrender.com/2024/07/17/a-year-later-revisiting-ftcs-updated-endorsement-guides/" target="_blank" rel="noopener">A year later &mdash; revisiting FTC&rsquo;s updated endorsement guides</a>. <em>Hall Render</em>. Analysis of the 2023 FTC endorsement guides revision (the first major update since 2009) and the &ldquo;clear and conspicuous&rdquo; disclosure standard; explicit warning that platform-native tools (Paid Partnership tags, Commercial Content toggles) are not sufficient on their own. https://hallrender.com/2024/07/17/a-year-later-revisiting-ftcs-updated-endorsement-guides/</p>
+
+    <p class="ref" id="ref-glewee">Glewee. (2024, November 25). <a href="https://glewee.com/blog/highest-paid-influencers-on-instagram/" target="_blank" rel="noopener">The 20 highest-paid influencers on Instagram in 2024</a>. <em>Glewee</em>. Source citing Hopper HQ&rsquo;s annual Instagram Rich List: Cristiano Ronaldo $3.23M/post, Lionel Messi $2.6M, Kylie Jenner $2.4M, Kim Kardashian $2.2M. https://glewee.com/blog/highest-paid-influencers-on-instagram/</p>
+
+    <p class="ref" id="ref-hayward">Hayward, K. (2025, February 13). <a href="https://www.marketingbrew.com/stories/2025/02/13/poppi-olipop-super-bowl-vending-machine-campaign-controversy" target="_blank" rel="noopener">How Poppi&rsquo;s Super Bowl vending machine campaign spiraled out of control</a>. <em>Marketing Brew</em>. Source for the 32-vending-machine activation ahead of Super Bowl LIX, the tone-deafness backlash, the Olipop competitive response, and the &ldquo;unprecedented in influencer marketing&rdquo; assessment from social-media consultant Jack Appleby. https://www.marketingbrew.com/stories/2025/02/13/poppi-olipop-super-bowl-vending-machine-campaign-controversy</p>
+    <p class="ref" id="ref-marketingbrew" style="display:none;">[anchor &mdash; see Hayward (2025) above]</p>
+
+    <p class="ref" id="ref-medicube">Tramicheck. (2025, April 30). <a href="https://www.tramicheck.com/newsletter/premium-brands-win-big-on-tiktok-shop-medicubes-102m-case-study" target="_blank" rel="noopener">Premium brands win big on TikTok Shop: Medicube&rsquo;s $102M case study</a>. <em>Tramicheck Newsletter</em>. Source for Medicube&rsquo;s $102.9M cumulative TikTok Shop revenue, 1M units sold, 33,900 affiliated creators, and 30% creator commission structure. Cross-referenced with Modern Retail (2026) for the 864K hashtag posts and 13B views figures and the 219% YoY GMV growth. https://www.tramicheck.com/newsletter/premium-brands-win-big-on-tiktok-shop-medicubes-102m-case-study</p>
+
+    <p class="ref" id="ref-phyllo">Getphyllo. (2026, January 21). <a href="https://www.getphyllo.com/post/case-studies-in-influencer-marketing-gone-wrong" target="_blank" rel="noopener">Case studies in influencer marketing gone wrong</a>. <em>Phyllo Blog</em>. Source for the Morphe / James Charles case &mdash; the 2021 misconduct allegations, the partnership termination under public pressure, and the residual brand exposure that contributed to Morphe&rsquo;s eventual bankruptcy. https://www.getphyllo.com/post/case-studies-in-influencer-marketing-gone-wrong</p>
+
+    <p class="ref" id="ref-wiki-cerave">Wikipedia. (2025). <a href="https://en.wikipedia.org/wiki/Hyram_Yarbro" target="_blank" rel="noopener">Hyram Yarbro</a>. <em>Wikipedia</em>. Reference for the ~89% global CeraVe sales increase in 2020 corresponding with Hyram&rsquo;s coverage, and the $3.2M media-impact-value figure for the March&ndash;October 2020 window. https://en.wikipedia.org/wiki/Hyram_Yarbro</p>
+
+  </div>
+</section>
+
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
