@@ -119,7 +119,9 @@ const navConfig = {
             items: [
               { label: 'Does Advertising Raise Prices?', href: 'advertising-and-prices.html' },
               { label: 'Cause Marketing',                href: 'cause-marketing.html' },
-              { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' }
+              { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' },
+              { label: 'UGC',                            href: 'ugc.html' },
+              { label: 'Influencers',                    href: 'influencers.html' }
             ]
           }
         ]
