@@ -1514,3 +1514,404 @@ pre.ascii-figure {
   .unit-nav { grid-template-columns: 1fr; }
   .unit-nav-prev, .unit-nav-next { text-align: left; }
 }
+
+/* ==========================================================================
+   ARTICLE CARD — promoted from creative-1's local CSS to the global file.
+   Used for the 2-3 ANCHOR sources per page that get the full treatment:
+   source kicker, title, meta line, multi-paragraph framing, optional CTA.
+   ========================================================================== */
+.article-card {
+  background: var(--white);
+  border-left: 3px solid var(--red);
+  padding: 20px 24px;
+  margin: 18px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  max-width: 820px;
+}
+.article-card .ac-kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+.article-card .ac-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.article-card .ac-meta {
+  font-size: 12.5px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.article-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.article-card p:last-child { margin-bottom: 0; }
+
+/* ==========================================================================
+   SOURCE CARD — workhorse for cited sources.
+   Lighter than .article-card. Used for the many sources beyond the 2-3
+   anchors. Pattern: small frame + bulleted highlights so the reader gets
+   the substance without clicking through.
+   Use .source-card.dissent for contrarian / "nothing's broken" voices —
+   blue accent so readers can tell at a glance it's a counter-voice.
+   ========================================================================== */
+.source-card {
+  background: var(--white);
+  border-left: 3px solid var(--rule);
+  padding: 14px 18px 16px;
+  margin: 14px 0;
+  max-width: 820px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.source-card-source {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.source-card-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 15.5px;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.source-card-title a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+.source-card-title a:hover {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+.source-card-frame {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.source-card-frame:last-child { margin-bottom: 0; }
+.source-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+}
+.source-card li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.source-card li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--rule);
+  font-weight: 700;
+}
+.source-card li:last-child { margin-bottom: 0; }
+.source-card li strong { color: var(--ink); font-weight: 700; }
+
+/* Dissenting / counter-view variant — blue accent, "COUNTER-VIEW" label */
+.source-card.dissent {
+  border-left-color: var(--blue);
+}
+.source-card.dissent .source-card-source {
+  color: var(--blue);
+}
+.source-card.dissent li::before {
+  color: var(--blue);
+  opacity: 0.4;
+}
+
+/* ==========================================================================
+   IN-TEXT CITATION — (Author, Year) clickable pill.
+   Subtle by default; underlines on hover. Anchors to the entry in the
+   reference list at the bottom of the page.
+   ========================================================================== */
+.cite {
+  color: var(--red);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--red);
+  font-size: 0.92em;
+  white-space: nowrap;
+  transition: color 0.15s, border-bottom-style 0.15s;
+}
+.cite:hover {
+  color: var(--ink);
+  border-bottom-style: solid;
+  border-bottom-color: var(--ink);
+}
+
+/* ==========================================================================
+   TIMELINE — vertical narrative of dated hinge events.
+   Used on the social media unit for the platform-pivot timeline (2006-2024).
+   ========================================================================== */
+.timeline {
+  margin: 28px 0;
+  max-width: 820px;
+  position: relative;
+  padding-left: 32px;
+  border-left: 2px solid var(--rule);
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 24px;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -39px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--red);
+}
+.timeline-item.is-major::before {
+  background: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+  width: 14px;
+  height: 14px;
+  left: -40px;
+  top: 5px;
+}
+.timeline-date {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--red);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+.timeline-item.is-major .timeline-date {
+  color: var(--ink);
+  font-size: 19px;
+}
+.timeline-title {
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.timeline-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.timeline-body p { margin-bottom: 6px; max-width: none; }
+.timeline-body p:last-child { margin-bottom: 0; }
+
+/* ==========================================================================
+   PLATFORM-REACH BAR CHART — pure CSS horizontal bars used on the social
+   unit to compare organic reach by platform. Single visual scale so the
+   reader can eyeball the magnitudes.
+   ========================================================================== */
+.reach-chart {
+  margin: 22px 0 12px;
+  max-width: 820px;
+  background: var(--white);
+  padding: 22px 24px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.reach-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 70px;
+  gap: 14px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.reach-row:last-of-type { border-bottom: none; }
+.reach-platform {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+}
+.reach-track {
+  height: 18px;
+  background: var(--cream);
+  position: relative;
+}
+.reach-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  background: var(--red);
+}
+.reach-bar.is-high { background: var(--ink); }
+.reach-value {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  text-align: right;
+}
+.reach-note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .reach-row {
+    grid-template-columns: 80px 1fr 56px;
+    gap: 10px;
+  }
+  .reach-platform { font-size: 13px; }
+}
+
+/* ==========================================================================
+   SCENARIO BOX — short decision-scenarios used in the Rethinking Social unit
+   to give students concrete decision-making practice. Pattern: question,
+   prompt, then a "what to ask / what to recommend" answer in a nested
+   white panel. The ::before badge says SCENARIO so it reads as a teaching
+   moment rather than a sidebar.
+   ========================================================================== */
+.scenario {
+  background: var(--cream);
+  border-left: 4px solid var(--ink);
+  padding: 26px 28px 22px;
+  margin: 28px 0;
+  max-width: 820px;
+  position: relative;
+}
+.scenario::before {
+  content: 'SCENARIO';
+  position: absolute;
+  top: -10px;
+  left: 22px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 4px 10px;
+}
+.scenario-prompt {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+.scenario-answer {
+  background: var(--white);
+  padding: 14px 18px 16px;
+  margin-top: 6px;
+  border-left: 3px solid var(--red);
+}
+.scenario-answer-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.scenario-answer p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+  max-width: none;
+}
+.scenario-answer p:last-child { margin-bottom: 0; }
+.scenario-answer strong { color: var(--ink); }
+.scenario-answer ul {
+  margin: 6px 0 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: none;
+}
+.scenario-answer li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 4px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.scenario-answer li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   JOBS TABLE — the channel-to-job allocation table used as the centerpiece
+   of Social #4 §02. Built as a table for clean column alignment; styled
+   to match the rest of the social unit's visual treatment.
+   ========================================================================== */
+.section table.jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 22px 0;
+  font-size: 13.5px;
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.section table.jobs-table th {
+  background: var(--ink);
+  color: var(--white);
+  padding: 11px 13px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.section table.jobs-table td {
+  padding: 11px 13px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  line-height: 1.5;
+  font-size: 13px;
+}
+.section table.jobs-table td:first-child {
+  font-family: var(--serif);
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 14px;
+  width: 18%;
+}
+.section table.jobs-table td:nth-child(2) { color: var(--ink-soft); }
+.section table.jobs-table td:nth-child(3) { color: var(--muted); font-style: italic; }
+.section table.jobs-table td:nth-child(4) { color: var(--ink-soft); font-size: 12.5px; }
+.section table.jobs-table tr:last-child td { border-bottom: none; }
+.section table.jobs-table tr:nth-child(even) td { background: var(--paper); }
+@media (max-width: 720px) {
+  .section table.jobs-table { font-size: 12px; }
+  .section table.jobs-table th,
+  .section table.jobs-table td { padding: 9px 10px; }
+  .section table.jobs-table td:first-child { font-size: 13px; }
+}
