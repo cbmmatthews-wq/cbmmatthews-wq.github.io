@@ -121,7 +121,8 @@ const navConfig = {
               { label: 'Cause Marketing',                href: 'cause-marketing.html' },
               { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' },
               { label: 'UGC',                            href: 'ugc.html' },
-              { label: 'Influencers',                    href: 'influencers.html' }
+              { label: 'Influencers',                    href: 'influencers.html' },
+              { label: 'V8+Energy Personas',             href: 'v8-personas.html' }
             ]
           }
         ]
