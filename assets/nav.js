@@ -2,8 +2,9 @@
 // nav.js — top navigation + back-to-top button, defined once,
 //          rendered on every page automatically.
 // To add a note: add to the M544 Notes dropdown.
-// To add a Core/Quick Hit/Example: add to the relevant column in the Resources
+// To add a Core/Social/Quick Hit: add to the relevant column in the Resources
 // mega menu.
+// To add an Example: add to the Examples top-level dropdown.
 // =============================================================================
 
 const navConfig = {
@@ -54,6 +55,17 @@ const navConfig = {
             { label: '10 AI in Creative',      href: 'creative-10-ai.html' },
             { label: '11 Judging Creative',    href: 'creative-11-judging.html' }
           ]
+        },
+        {
+          // Non-clickable parent. Hovering it reveals the flyout below.
+          label: 'Unit 6 — Rethinking Social',
+          submenu: [
+            { label: '1 The State of Social',   href: 'social-1-state.html' },
+            { label: '2 Organic / Owned',       href: 'social-2-organic.html' },
+            { label: '3 Paid Social',           href: 'social-3-paid.html' },
+            { label: '4 Doing It Better',       href: 'social-4-doing-better.html' },
+            { label: '5 IMC Callbacks',         href: 'social-5-imc-callbacks.html' }
+          ]
         }
         // Add more units here as they're built
       ]
@@ -93,24 +105,34 @@ const navConfig = {
             ]
           },
           {
+            title: 'Social',
+            items: [
+              { label: '1 The State of Social', href: 'social-1-state.html' },
+              { label: '2 Organic / Owned',     href: 'social-2-organic.html' },
+              { label: '3 Paid Social',         href: 'social-3-paid.html' },
+              { label: '4 Doing It Better',     href: 'social-4-doing-better.html' },
+              { label: '5 IMC Callbacks',       href: 'social-5-imc-callbacks.html' }
+            ]
+          },
+          {
             title: 'Quick Hits',
             items: [
               { label: 'Does Advertising Raise Prices?', href: 'advertising-and-prices.html' },
               { label: 'Cause Marketing',                href: 'cause-marketing.html' },
               { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' }
             ]
-          },
-          {
-            title: 'Examples',
-            items: [
-              { label: 'Nike: Same Soul, Different Words',  href: 'nike-same-soul.html' },
-              { label: 'Off the Swoosh Path: Hoka & On',    href: 'off-the-swoosh-path.html' },
-              { label: 'Gucci: From Logomania to Luxury Sport', href: 'gucci-luxury-sport.html' }
-              // Add more examples here as they're built
-            ]
           }
         ]
       }
+    },
+    {
+      label: 'Examples',
+      dropdown: [
+        { label: 'Nike: Same Soul, Different Words',      href: 'nike-same-soul.html' },
+        { label: 'Off the Swoosh Path: Hoka & On',        href: 'off-the-swoosh-path.html' },
+        { label: 'Gucci: From Logomania to Luxury Sport', href: 'gucci-luxury-sport.html' }
+        // Add more examples here as they're built
+      ]
     }
   ]
 };
@@ -125,7 +147,7 @@ const navConfig = {
   const activeStyle = ' style="color:var(--red);border-left-color:var(--red);"';
 
   const itemsHTML = navConfig.items.map(item => {
-    // Mega menu (3-column dropdown)
+    // Mega menu (multi-column dropdown)
     if (item.megaMenu) {
       const colsHTML = item.megaMenu.columns.map(col => {
         const body = col.items.length === 0
