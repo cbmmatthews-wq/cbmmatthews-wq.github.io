@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V8+Energy — Persona Development</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #c8391b;
+    --red-light: #faf0ed;
+    --red-mid: #f0c4b8;
+    --ink: #1a1410;
+    --ink-mid: #4a3f38;
+    --ink-light: #9b8f88;
+    --cream: #fdf8f4;
+    --white: #ffffff;
+    --border: #e8ddd7;
+    --teal: #0f6e56;
+    --teal-light: #e1f5ee;
+    --amber: #854f0b;
+    --amber-light: #faeeda;
+    --section-gap: 6rem;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--white);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: var(--red);
+    opacity: 0.12;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: var(--red);
+    opacity: 0.08;
+  }
+
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red-mid);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+
+  header h1 em {
+    color: #f0997b;
+    font-style: italic;
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: #c4b5ae;
+    max-width: 520px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* PROGRESS TRACK */
+  .progress-track {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .track-step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .track-step:hover .step-label { color: var(--red); }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--red-light);
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-label {
+    font-size: 12px;
+    color: var(--ink-mid);
+    font-weight: 400;
+    padding: 0 12px;
+    white-space: nowrap;
+  }
+
+  .step-connector {
+    width: 32px;
+    height: 1px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  /* MAIN LAYOUT */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    padding: var(--section-gap) 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .section-header p {
+    margin-top: 1rem;
+    font-size: 15px;
+    color: var(--ink-mid);
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  /* PROMPT BUBBLES */
+  .prompt-block {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 12px 12px 12px 2px;
+    padding: 1rem 1.25rem;
+    font-size: 14px;
+    font-style: italic;
+    color: #d4c8c2;
+    margin-bottom: 2rem;
+    position: relative;
+    max-width: 580px;
+  }
+
+  .prompt-block::before {
+    content: 'User prompt';
+    display: block;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red-mid);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  /* PERSONA CARDS */
+  .persona-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .persona-card + .persona-card {
+    margin-top: 1.5rem;
+  }
+
+  .persona-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .persona-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 3px;
+  }
+
+  .persona-role {
+    font-size: 13px;
+    color: var(--ink-light);
+  }
+
+  .label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .bio-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-mid);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 400;
+  }
+
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-coral { background: var(--red-light); color: var(--red); }
+  .tag-amber { background: var(--amber-light); color: var(--amber); }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 0.5rem;
+  }
+
+  .stat {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0.75rem;
+  }
+
+  .stat-val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+
+  .motives {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .motive {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .motive p {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  .motive-sub {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 1px;
+  }
+
+  .quote-block {
+    border-left: 3px solid var(--red);
+    padding-left: 1rem;
+    margin-top: 1.25rem;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+  }
+
+  /* PROSE SECTIONS */
+  .prose {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .prose h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .prose p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink-mid);
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* RATING CARDS */
+  .rating-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .rating-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .rating-persona {
+    font-size: 12px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .rating-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .rating-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    font-weight: 400;
+  }
+
+  .rating-denom {
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+
+  .rating-bar {
+    height: 4px;
+    background: var(--red-light);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .rating-fill {
+    height: 100%;
+    background: var(--red);
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .rating-note {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  /* NEEDS LIST */
+  .needs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .need-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .need-category {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .need-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .need-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  /* ACTIONABLE FRAMEWORK */
+  .framework {
+    background: var(--ink);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .framework h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+  }
+
+  .framework-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .framework-col {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1rem;
+  }
+
+  .framework-col-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f0997b;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .framework-col p {
+    font-size: 13px;
+    color: #c4b5ae;
+    line-height: 1.65;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: var(--section-gap);
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--section-gap) 0 0;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .rating-grid, .needs-grid, .framework-row { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .progress-track { gap: 0; overflow-x: auto; padding: 1rem; }
+    .step-label { display: none; }
+    .step-connector { width: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="header-eyebrow">V8+Energy · Consumer Persona Development</p>
+  <h1>From <em>first draft</em> to<br>actionable insight</h1>
+  <p class="header-sub">A documented progression showing how AI-generated personas evolve — and what they still need from you.</p>
+</header>
+
+<nav class="progress-track">
+  <a class="track-step" href="#step1"><span class="step-num">1</span><span class="step-label">First attempt</span></a>
+  <span class="step-connector"></span>
+  <a class="track-step" href="#step2"><span class="step-num">2</span><span class="step-label">Refined</span></a>
+  <span class="step-connector"></span>
+  <a class="track-step" href="#step3"><span class="step-num">3</span><span class="step-label">With brief</span></a>
+  <span class="step-connector"></span>
+  <a class="track-step" href="#step4"><span class="step-num">4</span><span class="step-label">AI vs. research</span></a>
+  <span class="step-connector"></span>
+  <a class="track-step" href="#step5"><span class="step-num">5</span><span class="step-label">Ratings</span></a>
+  <span class="step-connector"></span>
+  <a class="track-step" href="#step6"><span class="step-num">6</span><span class="step-label">What's needed</span></a>
+</nav>
+
+<main>
+
+  <!-- STEP 1 -->
+  <section id="step1">
+    <div class="section-header">
+      <p class="section-eyebrow">Step 01 — First attempt</p>
+      <h2>The unprompted persona</h2>
+      <p>Asked with no demographic constraints, no strategic context. Pure pattern-matching from training data.</p>
+    </div>
+
+    <div class="prompt-block">"Create a persona for someone who drinks V8+Energy."</div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="avatar">MT</div>
+        <div>
+          <p class="persona-name">Marcus T., 34</p>
+          <p class="persona-role">Regional sales manager — Columbus, OH · HHI ~$85k</p>
+        </div>
+      </div>
+
+      <p class="label">Lifestyle tags</p>
+      <div class="tags">
+        <span class="tag tag-coral">Moderately health-conscious</span>
+        <span class="tag tag-teal">Busy parent</span>
+        <span class="tag tag-amber">Suburban commuter</span>
+        <span class="tag tag-teal">Casual athlete</span>
+        <span class="tag tag-coral">Social drinker, not a partier</span>
+        <span class="tag tag-amber">Brand-loyal once comfortable</span>
+      </div>
+
+      <p class="label">Who he is</p>
+      <p class="bio-text">Marcus is perpetually in motion. Between back-to-back client calls, school pickups, and a twice-weekly flag football league, he needs sustained energy — not a jolt. He's skeptical of traditional energy drinks ("too fratty, too much crash") but doesn't want to feel like he's sipping green juice. V8+Energy hits a middle ground he can justify to himself: it sounds like a vegetable, it tastes like a drink, and it's in the fridge next to the Gatorade at every gas station he stops at.</p>
+
+      <p class="label">At a glance</p>
+      <div class="stats-row">
+        <div class="stat"><p class="stat-val">1–2 cans/day</p><p class="stat-lbl">Consumption</p></div>
+        <div class="stat"><p class="stat-val">Gas station / grocery</p><p class="stat-lbl">Purchase point</p></div>
+        <div class="stat"><p class="stat-val">"Earned it" mindset</p><p class="stat-lbl">Self-perception</p></div>
+      </div>
+
+      <p class="label">Why V8+Energy specifically</p>
+      <div class="motives">
+        <div class="motive"><div class="dot"></div><p>The vegetable/fruit juice framing lets him feel like he's not "doing an energy drink" — it's a permission structure</p></div>
+        <div class="motive"><div class="dot"></div><p>Lower caffeine (80mg) vs. Monster/Rockstar means no jitter spiral during afternoon calls</p></div>
+        <div class="motive"><div class="dot"></div><p>It doesn't look like an energy drink in a meeting — the can reads "normal"</p></div>
+        <div class="motive"><div class="dot"></div><p>Wife approved it; that matters more than he'd admit</p></div>
+      </div>
+
+      <p class="quote-block">"It's not like I'm slamming a Reign before a Zoom. It's basically juice with a little kick."</p>
+    </div>
+
+    <div class="callout">
+      Note: "Wife approved it" and the flag football detail are creative flourishes, not data points. The persona is internally coherent because it was built to be — not because it reflects a real finding.
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- STEP 2 -->
+  <section id="step2">
+    <div class="section-header">
+      <p class="section-eyebrow">Step 02 — Light refinement</p>
+      <h2>Adding a second Marcus</h2>
+      <p>Same brief, same name, slight variation — illustrating how little differentiation you get without strategic direction.</p>
+    </div>
+
+    <div class="prompt-block">"Let's modify this slightly, but just focus on writing one. Yes, they are 30–45. Yes, they are at least middle income or higher. Yes, they are probably at least somewhat health conscious."</div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="avatar">MT</div>
+        <div>
+          <p class="persona-name">Marcus T., 34 — revised</p>
+          <p class="persona-role">Regional sales manager — Columbus, OH · HHI $90k+</p>
+        </div>
+      </div>
+
+      <p class="label">Lifestyle tags</p>
+      <div class="tags">
+        <span class="tag tag-teal">Moderately health-conscious</span>
+        <span class="tag tag-coral">Busy parent</span>
+        <span class="tag tag-amber">Suburban commuter</span>
+        <span class="tag tag-teal">Gym 2x/week</span>
+        <span class="tag tag-coral">Reads labels occasionally</span>
+      </div>
+
+      <p class="label">Who he is</p>
+      <p class="bio-text">Marcus cares about what he puts in his body — in a practical rather than ideological way. He tracks his steps, gets an annual physical, and quietly swapped soda for sparkling water two years ago. V8+Energy fits because the branding signals "smart choice" without demanding that he think too hard about it. It's already in the grocery aisle he shops every week.</p>
+
+      <p class="label">Why this product</p>
+      <div class="motives">
+        <div class="motive"><div class="dot"></div><p>Vegetable/juice framing provides a permission structure — it's not "an energy drink"</p></div>
+        <div class="motive"><div class="dot"></div><p>Lower caffeine means no jitter or crash during afternoon calls</p></div>
+        <div class="motive"><div class="dot"></div><p>Convenience: already in his regular grocery run</p></div>
+      </div>
+
+      <p class="quote-block">"It's basically juice with a little pick-me-up. Not like I'm chugging a Monster."</p>
+    </div>
+
+    <div class="callout">
+      Shifting demographics narrowed the persona but didn't differentiate it. "Marcus 2" and "Marcus 1" are essentially the same person with a slightly tidier wardrobe. Without a strategic brief — a question this persona is supposed to answer — the output converges.
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- STEP 3 -->
+  <section id="step3">
+    <div class="section-header">
+      <p class="section-eyebrow">Step 03 — With a real brief</p>
+      <h2>A different type emerges</h2>
+      <p>Same demographic constraints, but a deliberate shift to a female persona — producing meaningfully different behavioral drivers.</p>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="avatar">JK</div>
+        <div>
+          <p class="persona-name">Jen K., 38</p>
+          <p class="persona-role">Marketing director — Atlanta, GA · HHI $120k+</p>
+        </div>
+      </div>
+
+      <p class="label">Lifestyle tags</p>
+      <div class="tags">
+        <span class="tag tag-teal">Actively health-conscious</span>
+        <span class="tag tag-coral">Working parent</span>
+        <span class="tag tag-amber">Label reader</span>
+        <span class="tag tag-teal">Gym 3x/week</span>
+        <span class="tag tag-coral">Skeptical of "wellness" marketing</span>
+        <span class="tag tag-amber">Convenience-driven</span>
+      </div>
+
+      <p class="label">Who she is</p>
+      <p class="bio-text">Jen knows enough about nutrition to be choosy, but not so rigid that she refuses shortcuts. She meal preps on Sundays, tracks her steps, and has quietly sworn off soda — but she's not about to pretend she doesn't need help getting through a 3pm back-to-back. V8+Energy fits into her life because it doesn't feel like a compromise. The ingredient list is short enough that she doesn't cringe reading it, and the juice-forward branding means it doesn't look out of place next to her water bottle on a conference table.</p>
+
+      <p class="label">At a glance</p>
+      <div class="stats-row">
+        <div class="stat"><p class="stat-val">1 can/day</p><p class="stat-lbl">Typical intake</p></div>
+        <div class="stat"><p class="stat-val">2–4pm</p><p class="stat-lbl">Usual window</p></div>
+        <div class="stat"><p class="stat-val">Grocery pickup</p><p class="stat-lbl">How she buys it</p></div>
+      </div>
+
+      <p class="label">Why this product</p>
+      <div class="motives">
+        <div class="motive"><div class="dot"></div><p>"Permissible indulgence" framing — it reads as juice first, energy drink second<p class="motive-sub">That ordering matters to her self-image</p></p></div>
+        <div class="motive"><div class="dot"></div><p>Manageable caffeine dose<p class="motive-sub">80mg is enough to feel it; low enough not to worry about it</p></p></div>
+        <div class="motive"><div class="dot"></div><p>No artificial sweetener aftertaste<p class="motive-sub">A dealbreaker with most diet energy drinks she's tried</p></p></div>
+        <div class="motive"><div class="dot"></div><p>Works with her existing routine<p class="motive-sub">Already in the grocery aisle; no special trip, no subscription</p></p></div>
+      </div>
+
+      <p class="quote-block">"I'm not doing an energy drink. It's basically a juice with some green tea in it."</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- STEP 4 -->
+  <section id="step4">
+    <div class="section-header">
+      <p class="section-eyebrow">Step 04 — The honest argument</p>
+      <h2>Are AI personas good enough?</h2>
+      <p>The case for using them as starting points — and where they break down.</p>
+    </div>
+
+    <div class="prompt-block">"Many people online swear 'just use AI. Don't waste time making personas the traditional way. Who cares if they are a little more generic or stereotypical.' What would you say to that?"</div>
+
+    <div class="prose">
+      <h3>The "just use AI" crowd has a point — but they're solving the wrong problem.</h3>
+      <p>AI-generated personas are pattern-matching exercises. They synthesize what <em>tends to be true</em> about a demographic based on training data. That's genuinely useful for getting something on the board fast, for alignment conversations, or for gut-checking whether your team is even thinking about the same kind of person. The speed argument is real.</p>
+      <p>But the criticism lands hard in one specific place: the insight that drives a good creative or strategic decision almost never comes from what's <em>typical</em>. It comes from the tension, the contradiction, the thing that's slightly off. Why does someone who reads labels still buy a product with "energy" in the name? What's the specific moment of weakness or permission that makes them reach for it? Those details don't live in training data — they live in interviews, in ethnography, in watching someone pause in a grocery aisle.</p>
+      <p>AI personas are also self-confirming. The persona is coherent because it was built to be coherent. A real research process would surface people who <em>don't</em> fit the pattern, and those outliers are often where the most interesting strategy lives.</p>
+      <p>The honest version of the advice: <strong>use AI to get to a first draft in ten minutes, then pressure-test it against real humans before you act on it.</strong></p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- STEP 5 -->
+  <section id="step5">
+    <div class="section-header">
+      <p class="section-eyebrow">Step 05 — Self-assessment</p>
+      <h2>Rating the personas on accuracy & actionability</h2>
+      <p>Scored 1–10 on how well each would hold up in a real creative or strategy context.</p>
+    </div>
+
+    <div class="prompt-block">"Go back and rate how accurate or actionable your first 3 were on a scale of 1–10."</div>
+
+    <div class="rating-grid">
+      <div class="rating-card">
+        <p class="rating-persona">Persona 01</p>
+        <p class="rating-name">Marcus — unprompted</p>
+        <p class="rating-score">5</p>
+        <p class="rating-denom">out of 10</p>
+        <div class="rating-bar"><div class="rating-fill" style="width:50%"></div></div>
+        <p class="rating-note">Built to illustrate the category, not reflect a real finding. Creative flourishes ("wife approved it") were authored, not observed. Useful as a conversation starter, not a strategic input.</p>
+      </div>
+      <div class="rating-card">
+        <p class="rating-persona">Persona 02</p>
+        <p class="rating-name">Marcus — refined</p>
+        <p class="rating-score">6</p>
+        <p class="rating-denom">out of 10</p>
+        <div class="rating-bar"><div class="rating-fill" style="width:60%"></div></div>
+        <p class="rating-note">Tightening demographics helped, but the rationalizations still felt authored rather than observed. Barely differentiated from Persona 01.</p>
+      </div>
+      <div class="rating-card">
+        <p class="rating-persona">Persona 03</p>
+        <p class="rating-name">Jen — with brief</p>
+        <p class="rating-score">7</p>
+        <p class="rating-denom">out of 10</p>
+        <div class="rating-bar"><div class="rating-fill" style="width:70%"></div></div>
+        <p class="rating-note">The label-reader tension is a real, documented behavior pattern in the better-for-you beverage space. The 2–4pm window reflects actual category patterns. Still a composite — confident enough to present, not rigorous enough to bet a campaign on.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>None of them would replace 8–10 consumer interviews. All of them would survive a kickoff deck.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- STEP 6 -->
+  <section id="step6">
+    <div class="section-header">
+      <p class="section-eyebrow">Step 06 — The brief I needed</p>
+      <h2>What would have made these actionable</h2>
+      <p>For personas to drive content strategy and be measurable, the inputs matter as much as the outputs.</p>
+    </div>
+
+    <div class="prompt-block">"What information should I have provided to create more accurate personas — ones we could use for creative/content and test against real analytics?"</div>
+
+    <p class="label" style="margin-bottom:1rem;">What you could bring directly to the AI</p>
+    <div class="needs-grid">
+      <div class="need-card">
+        <p class="need-category">Data you already own</p>
+        <p class="need-title">Existing customer data</p>
+        <p class="need-desc">Purchase frequency, basket composition, channel source. Even aggregated data replaces demographic guesswork with behavioral characterization.</p>
+      </div>
+      <div class="need-card">
+        <p class="need-category">Voice of customer</p>
+        <p class="need-title">Reviews, verbatims, comments</p>
+        <p class="need-desc">The language real people use to describe why they buy is irreplaceable. Raw text — social comments, survey responses, support tickets — can be processed for themes and tensions.</p>
+      </div>
+      <div class="need-card">
+        <p class="need-category">Strategic context</p>
+        <p class="need-title">Competitive frame</p>
+        <p class="need-desc">Are you conquesting Red Bull drinkers? Retaining people who might trade up to Celsius? The strategic frame changes who the relevant personas even are.</p>
+      </div>
+      <div class="need-card">
+        <p class="need-category">Marketing goal</p>
+        <p class="need-title">The specific brief</p>
+        <p class="need-desc">"Create content," "defend shelf space," and "launch in a new region" are three different briefs — and they'd produce three different personas even from identical underlying data.</p>
+      </div>
+    </div>
+
+    <p class="label" style="margin-bottom:1rem;">What's worth gathering before acting on any persona</p>
+    <div class="needs-grid">
+      <div class="need-card">
+        <p class="need-category">Primary research</p>
+        <p class="need-title">5–6 qualitative interviews</p>
+        <p class="need-desc">Gives you the actual language, the actual moment of purchase, the actual internal monologue. The source of real tension and nuance.</p>
+      </div>
+      <div class="need-card">
+        <p class="need-category">Quantitative if budget allows</p>
+        <p class="need-title">Segmentation data</p>
+        <p class="need-desc">A cluster analysis or conjoint study tells you whether there are actually three meaningfully different buyer types — or two, or five — rather than an invented number.</p>
+      </div>
+      <div class="need-card">
+        <p class="need-category">Channel behavior</p>
+        <p class="need-title">Retail & purchase context</p>
+        <p class="need-desc">A gas station impulse buyer is behaviorally different from someone who adds V8+Energy to a weekly grocery order, even if they look identical demographically.</p>
+      </div>
+      <div class="need-card">
+        <p class="need-category">The most skipped step</p>
+        <p class="need-title">What you can actually do differently</p>
+        <p class="need-desc">For each segment: a distinct channel, a distinct message hypothesis, and a distinct success metric. Without these three, you have descriptions. With them, you have a testable experiment.</p>
+      </div>
+    </div>
+
+    <div class="framework">
+      <h3>The three things each persona needs to close the analytics loop</h3>
+      <div class="framework-row">
+        <div class="framework-col">
+          <p class="framework-col-label">Reach</p>
+          <p>A distinct channel or placement where you can actually reach this segment separately — paid social, in-store, email, etc.</p>
+        </div>
+        <div class="framework-col">
+          <p class="framework-col-label">Message hypothesis</p>
+          <p>A specific creative or copy angle you're testing against this persona — not a generic brand message, but a testable bet.</p>
+        </div>
+        <div class="framework-col">
+          <p class="framework-col-label">Success metric</p>
+          <p>A distinct KPI that would tell you it worked — click-through, conversion, recall, repeat purchase. Different for each persona.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>V8+Energy · Persona Development Documentation · Built with Claude</p>
+</footer>
+
+</body>
+</html>
