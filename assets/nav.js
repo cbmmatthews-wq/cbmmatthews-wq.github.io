@@ -146,7 +146,8 @@ const navConfig = {
               { label: 'Influencers',                    href: 'influencers.html' },
               { label: 'V8+Energy Personas',             href: 'v8-personas.html' },
               { label: 'Earning Earned',                 href: 'earning-earned.html' },
-              { label: 'Share-Worthy',                   href: 'share-worthy.html' }
+              { label: 'Share-Worthy',                   href: 'share-worthy.html' },
+              { label: 'Social Field Notes',             href: 'social-field-notes.html' }
             ]
           },
           {
