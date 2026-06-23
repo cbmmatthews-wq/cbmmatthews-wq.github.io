@@ -144,7 +144,9 @@ const navConfig = {
               { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' },
               { label: 'UGC',                            href: 'ugc.html' },
               { label: 'Influencers',                    href: 'influencers.html' },
-              { label: 'V8+Energy Personas',             href: 'v8-personas.html' }
+              { label: 'V8+Energy Personas',             href: 'v8-personas.html' },
+              { label: 'Earning Earned',                 href: 'earning-earned.html' },
+              { label: 'Share-Worthy',                   href: 'share-worthy.html' }
             ]
           },
           {
