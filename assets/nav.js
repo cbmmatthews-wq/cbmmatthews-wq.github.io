@@ -2,9 +2,10 @@
 // nav.js — top navigation + back-to-top button, defined once,
 //          rendered on every page automatically.
 // To add a note: add to the M544 Notes dropdown.
-// To add a Core/Social/Quick Hit: add to the relevant column in the Resources
-// mega menu.
-// To add an Example: add to the Examples top-level dropdown.
+// To add a Core / Project Context / Creativity / Social item: add to the
+// relevant column in the Resources mega menu.
+// To add a Quick Hit or Example: add to the relevant column in the
+// Quick Hits / Examples mega menu.
 // =============================================================================
 
 const navConfig = {
@@ -42,7 +43,7 @@ const navConfig = {
           // Non-clickable parent. Hovering it reveals the flyout below.
           label: 'Unit 5 — Creativity',
           submenu: [
-            { label: 'Start Here',          href: 'creative-intro.html' },
+            { label: 'Start Here',            href: 'creative-intro.html' },
             { label: '1 Why Creative',        href: 'creative-1-why-creative.html' },
             { label: '2 Brainstorming',       href: 'creative-2-brainstorming.html' },
             { label: '3 The Big Idea',        href: 'creative-3-big-idea.html' },
@@ -52,8 +53,8 @@ const navConfig = {
             { label: '7 Awareness',           href: 'creative-7-awareness.html' },
             { label: '8 Helpful Content',     href: 'creative-8-helpful-content.html' },
             { label: '9 Performance',         href: 'creative-9-performance.html' },
-            { label: '10 AI in Creative',      href: 'creative-10-ai.html' },
-            { label: '11 Judging Creative',    href: 'creative-11-judging.html' }
+            { label: '10 AI in Creative',     href: 'creative-10-ai.html' },
+            { label: '11 Judging Creative',   href: 'creative-11-judging.html' }
           ]
         },
         {
@@ -88,9 +89,23 @@ const navConfig = {
             ]
           },
           {
+            title: 'Project Context',
+            items: [
+              { label: 'Intro · Background',          href: 'context-intro.html' },
+              { label: '01 · Category',               href: 'context-1-category.html' },
+              { label: '02 · Growth',                 href: 'context-2-growth.html' },
+              { label: '03 · Position & Price',       href: 'context-3-position.html' },
+              { label: '04 · Distribution',           href: 'context-4-distribution.html' },
+              { label: '05 · Marketing Spend',        href: 'context-5-spend.html' },
+              { label: '06 · Promotions',             href: 'context-6-promotions.html' },
+              { label: 'Tool A · Segment',            href: 'context-tool-a-segment.html' },
+              { label: 'Tool B · Evidence',           href: 'context-tool-b-evidence.html' }
+            ]
+          },
+          {
             title: 'Creativity',
             items: [
-              { label: 'Start Here',          href: 'creative-intro.html' },
+              { label: 'Start Here',            href: 'creative-intro.html' },
               { label: '1 Why Creative',        href: 'creative-1-why-creative.html' },
               { label: '2 Brainstorming',       href: 'creative-2-brainstorming.html' },
               { label: '3 The Big Idea',        href: 'creative-3-big-idea.html' },
@@ -100,8 +115,8 @@ const navConfig = {
               { label: '7 Awareness',           href: 'creative-7-awareness.html' },
               { label: '8 Helpful Content',     href: 'creative-8-helpful-content.html' },
               { label: '9 Performance',         href: 'creative-9-performance.html' },
-              { label: '10 AI in Creative',      href: 'creative-10-ai.html' },
-              { label: '11 Judging Creative',    href: 'creative-11-judging.html' }
+              { label: '10 AI in Creative',     href: 'creative-10-ai.html' },
+              { label: '11 Judging Creative',   href: 'creative-11-judging.html' }
             ]
           },
           {
@@ -113,7 +128,14 @@ const navConfig = {
               { label: '4 Doing It Better',     href: 'social-4-doing-better.html' },
               { label: '5 IMC Callbacks',       href: 'social-5-imc-callbacks.html' }
             ]
-          },
+          }
+        ]
+      }
+    },
+    {
+      label: 'Quick Hits / Examples',
+      megaMenu: {
+        columns: [
           {
             title: 'Quick Hits',
             items: [
@@ -124,18 +146,18 @@ const navConfig = {
               { label: 'Influencers',                    href: 'influencers.html' },
               { label: 'V8+Energy Personas',             href: 'v8-personas.html' }
             ]
+          },
+          {
+            title: 'Examples',
+            items: [
+              { label: 'Nike: Same Soul, Different Words',      href: 'nike-same-soul.html' },
+              { label: 'Off the Swoosh Path: Hoka & On',        href: 'off-the-swoosh-path.html' },
+              { label: 'Gucci: From Logomania to Luxury Sport', href: 'gucci-luxury-sport.html' }
+              // Add more examples here as they're built
+            ]
           }
         ]
       }
-    },
-    {
-      label: 'Examples',
-      dropdown: [
-        { label: 'Nike: Same Soul, Different Words',      href: 'nike-same-soul.html' },
-        { label: 'Off the Swoosh Path: Hoka & On',        href: 'off-the-swoosh-path.html' },
-        { label: 'Gucci: From Logomania to Luxury Sport', href: 'gucci-luxury-sport.html' }
-        // Add more examples here as they're built
-      ]
     }
   ]
 };
