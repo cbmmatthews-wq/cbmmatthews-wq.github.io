@@ -5,7 +5,8 @@
 // To add a Core / Project Context / Creativity / Social item: add to the
 // relevant column in the Resources mega menu.
 // To add a Quick Hit or Example: add to the relevant column in the
-// Quick Hits / Examples mega menu.
+// Quick Hits / Examples mega menu. Quick Hits is split into two columns
+// for layout balance — put new items in Quick Hits 2 until it fills up.
 // =============================================================================
 
 const navConfig = {
@@ -144,10 +145,17 @@ const navConfig = {
               { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' },
               { label: 'UGC',                            href: 'ugc.html' },
               { label: 'Influencers',                    href: 'influencers.html' },
-              { label: 'V8+Energy Personas',             href: 'v8-personas.html' },
-              { label: 'Earning Earned',                 href: 'earning-earned.html' },
-              { label: 'Share-Worthy',                   href: 'share-worthy.html' },
-              { label: 'Social Field Notes',             href: 'social-field-notes.html' }
+              { label: 'V8+Energy Personas',             href: 'v8-personas.html' }
+            ]
+          },
+          {
+            title: 'Quick Hits 2',
+            items: [
+              { label: 'Earning Earned',        href: 'earning-earned.html' },
+              { label: 'Share-Worthy',          href: 'share-worthy.html' },
+              { label: 'Social Field Notes',    href: 'social-field-notes.html' },
+              { label: 'Do Celebrities Sell?',  href: 'celebrity-effectiveness.html' }
+              // Add more Quick Hits here as they're built
             ]
           },
           {
