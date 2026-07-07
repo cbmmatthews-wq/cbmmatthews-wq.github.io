@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do Celebrities Actually Sell Anything? — cbmatthe</title>
+<meta name="description" content="What celebrity endorsement actually buys, and what it doesn't. The Knoll & Matthes meta-analysis, the vampire effect, schema-congruity fit, the voiceover advantage, and why 70% of 2026 Super Bowl ads used celebrities even though the research finds no average effect.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* References list — same treatment as earning-earned and share-worthy */
+  .references .ref {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-indent: -24px;
+    padding-left: 24px;
+    max-width: 760px;
+  }
+
+  /* Fit table — three-tier schema-congruity summary */
+  .fit-table {
+    width: 100%;
+    max-width: 820px;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .fit-table th {
+    background: var(--ink);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    text-align: left;
+  }
+  .fit-table td {
+    padding: 14px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .fit-table tr:last-child td { border-bottom: none; }
+  .fit-table tr td:first-child {
+    font-weight: 700;
+    color: var(--ink);
+    width: 25%;
+  }
+  .fit-table tr.moderate td:first-child { color: var(--red); }
+
+  /* Voice-only bullet list — a bit tighter than default */
+  .voice-list {
+    max-width: 820px;
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 20px;
+  }
+  .voice-list li {
+    padding: 10px 0 10px 16px;
+    border-left: 2px solid var(--cream-deep);
+    margin-bottom: 6px;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .voice-list li strong {
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  /* Big stat — used for the 30% → 70% opening and the Ronaldo number */
+  .big-stat {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 28px;
+    align-items: center;
+    background: var(--white);
+    padding: 22px 28px;
+    margin: 20px 0 24px;
+    max-width: 820px;
+    border-left: 4px solid var(--red);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .big-stat-num {
+    font-family: var(--serif);
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .big-stat-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .big-stat-text-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  @media (max-width: 600px) {
+    .big-stat { grid-template-columns: 1fr; gap: 8px; }
+    .big-stat-num { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Do Celebrities Actually Sell Anything?</div>
+    <h1>Do Celebrities Actually Sell Anything?</h1>
+    <p class="lede">The largest study on the question found essentially zero average effect on awareness, attitudes, or purchase intent when every celebrity campaign was pooled together. Meanwhile, more than seven in ten Super Bowl commercials in 2026 featured a famous face. The market is spending against a research finding that says the spending doesn&rsquo;t work &mdash; which usually means either the market is wrong, or the research is being read wrong, or both.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#framing">The Framing</a>
+    <a href="#effective">What &ldquo;Effective&rdquo; Buys</a>
+    <a href="#meta">The Meta-Analysis</a>
+    <a href="#age">Age &amp; Cohort</a>
+    <a href="#fans">Fans &amp; Skeptics</a>
+    <a href="#influencers">Vs. Influencers</a>
+    <a href="#fit">Fit &amp; Congruity</a>
+    <a href="#voice">Voiceovers</a>
+    <a href="#cost">What It Costs</a>
+    <a href="#references">References</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OPENING FRAMING
+     ============================================================ -->
+<section class="section" id="framing">
+  <p>Two claims about celebrity endorsement dominate the conversation and both are wrong in the same way. The first is that a famous face reliably moves product &mdash; the naive intuition every brand manager has walked into a pitch with since the 1950s. The second is that celebrities have been quietly replaced by creators, and the smart money now spends on TikTok. The first exaggerates what celebrities do. The second underestimates what they still do. The useful question sits between them: under what specific conditions does a celebrity endorsement earn back what the brand paid for it, and what is the brand actually buying when it writes the check?</p>
+
+  <p>The gap between the research and the market behavior is worth pausing on before going further. Academic studies on celebrity effectiveness lean skeptical. Advertisers lean the other way, and they lean harder every year.</p>
+
+  <div class="big-stat">
+    <div class="big-stat-num">30% &rarr; 70%</div>
+    <div class="big-stat-text">
+      <span class="big-stat-text-label">Super Bowl ads featuring a celebrity</span>
+      In 2010, roughly one-third of Super Bowl commercials featured a celebrity. In 2026, more than seven in ten did &mdash; a share that has almost inverted in fifteen years, according to iSpot data reported by <em>The Hollywood Reporter</em> <a href="#ref-vlessing-2026" class="cite">(Vlessing, 2026)</a>.
+    </div>
+  </div>
+
+  <p>Something is happening in the middle of those two facts. The most defensible reading is that celebrity endorsement <em>on average</em> does very little, but under the right specific conditions it does quite a lot &mdash; and the brands who understand which conditions are which are the ones still writing $5 million talent checks. The rest of this piece is an attempt to name those conditions.</p>
+</section>
+
+
+<!-- ============================================================
+     WHAT "EFFECTIVE" ACTUALLY MEANS
+     ============================================================ -->
+<section class="section" id="effective">
+  <div class="sec-label">Definitions First</div>
+  <h2>What &ldquo;Effective&rdquo; Actually Buys</h2>
+
+  <p>Half of the confusion around celebrity advertising is that different people mean different things by the word <em>effective</em>. A celebrity endorsement can succeed at any of the following without doing any of the others: interrupt attention long enough that an unfamiliar brand gets noticed, generate publicity the brand couldn&rsquo;t have earned on its own, raise recognition scores in a tracking study, transfer some of the celebrity&rsquo;s personality onto the brand&rsquo;s equity, or persuade a skeptical buyer to try something they wouldn&rsquo;t otherwise have tried. Those are five different outcomes with five different failure modes. Treating them as one thing is what produces the &ldquo;celebrity ads work / celebrity ads don&rsquo;t work&rdquo; argument that runs in circles at every marketing conference.</p>
+
+  <p>The concession most defenders of celebrity advertising deserve is that the top of the funnel really is where fame does its best work. A celebrity face is unusually good at breaking attention in a feed or a commercial break. That&rsquo;s a real capability and it isn&rsquo;t nothing. The attack is that too many brands then treat attention as if it were persuasion, and the two are not the same &mdash; a viewer can be riveted for thirty seconds by an actor she recognizes and walk away from the ad unable to name the sponsor.</p>
+
+  <div class="callout">
+    <div class="callout-label">The vampire effect</div>
+    <p>When an attention-grabbing device inside an ad &mdash; a celebrity, a joke, a piece of erotic imagery &mdash; consumes so much of the viewer&rsquo;s cognitive attention that the advertised brand or product gets forgotten. The metaphor is that the celebrity <em>sucks dry</em> the brand equity the endorsement was supposed to build. Eye-tracking research finds the effect is meaningfully worse when the celebrity has no obvious link to the product than when the pairing makes intuitive sense <a href="#ref-erfgen-2015" class="cite">(Erfgen et al., 2015)</a>.</p>
+  </div>
+
+  <p>The practical implication is that measuring the wrong thing gives the wrong verdict on the endorsement. Views, celebrity recognition, and social buzz will tell a flattering story about almost any campaign that put a famous person on screen. The honest measures are branded recall (do people remember <em>who</em> was advertised, not just <em>who was in it</em>), message comprehension, search lift on the brand&rsquo;s own name, foot traffic, and sales attributable to exposure. If a brand isn&rsquo;t willing to be judged on those, it should be honest that it&rsquo;s buying publicity and cultural association rather than persuasion &mdash; a legitimate goal, but a different one, and it should be priced accordingly.</p>
+</section>
+
+
+<!-- ============================================================
+     THE META-ANALYSIS
+     ============================================================ -->
+<section class="section" id="meta">
+  <div class="sec-label">The Research</div>
+  <h2>The Meta-Analysis Nobody Quotes Correctly</h2>
+
+  <p>The most-cited study on celebrity effectiveness is Knoll and Matthes&rsquo; 2017 meta-analysis in the <em>Journal of the Academy of Marketing Science</em>, which pooled 46 experimental studies covering 10,357 participants. It is the closest thing to a definitive answer the field has produced, and it is regularly cited to prove opposite conclusions.</p>
+
+  <div class="callout" style="border-left-color: var(--ink); background: var(--cream);">
+    <div class="callout-label" style="color: var(--ink);">The finding worth sitting with</div>
+    <p>Pooling every study together, Knoll and Matthes found almost no average effect of celebrity endorsement on awareness, attitude toward the ad, or purchase intention. The blanket answer to &ldquo;do celebrities work&rdquo; is, at the aggregate level, approximately <em>no</em> <a href="#ref-knoll-matthes-2017" class="cite">(Knoll &amp; Matthes, 2017)</a>.</p>
+  </div>
+
+  <p>Read superficially, that&rsquo;s a rebuke to the entire practice. Read carefully, it&rsquo;s the opposite. The reason the average is near zero is that the sample includes campaigns where the celebrity was a strong fit and the ad worked well, campaigns where the fit was weak and the ad backfired, and everything in between. When the researchers controlled for the variables that actually matter &mdash; endorser credibility, product fit, message design, the comparison being used in the study &mdash; the effects became sharply positive or sharply negative depending on the combination.</p>
+
+  <p>Two specific numbers from the analysis are worth naming. The largest positive effect (Cohen&rsquo;s <em>d</em> of about .90 &mdash; large by social-science standards) came from male actors who matched well with an implicitly endorsed product. The largest negative effect (<em>d</em> of about −.96) came from female models who <em>didn&rsquo;t</em> match well with an explicitly endorsed product. The meta-analysis also found that celebrity endorsements performed worse than endorsements from quality seals, awards, or endorser brands &mdash; which is a genuinely deflating finding for the practice, and one the trade press almost never mentions <a href="#ref-knoll-matthes-2017" class="cite">(Knoll &amp; Matthes, 2017)</a>.</p>
+
+  <p>The useful summary is that fame, by itself, is a coin flip. What determines whether the coin lands right-side up is a set of conditions the industry has actually been studying for decades &mdash; congruity, credibility, format, audience. The rest of this piece walks through them.</p>
+</section>
+
+
+<!-- ============================================================
+     AGE AND COHORT
+     ============================================================ -->
+<section class="section" id="age">
+  <div class="sec-label">Audience</div>
+  <h2>Age, Cohort, and the Source of Fame</h2>
+
+  <p>The intuitive story most brand managers carry into strategy meetings is that Gen X and Boomers are the &ldquo;celebrity generations&rdquo; because they grew up on network television, while Gen Z is post-celebrity because they grew up on YouTube and TikTok. That story has a shred of truth in it and mostly misreads what changed.</p>
+
+  <p>What actually changed is the <em>source</em> of fame, not the fact of it. The media environment older cohorts grew up in produced a small number of very large stars &mdash; movie actors, sitcom leads, athletes in televised sports &mdash; who were recognized across most of the country. That makes older celebrities useful for reaching a national mass audience, because they are one of the last remaining categories of thing everyone knows. It doesn&rsquo;t mean older consumers are more persuadable. YouGov&rsquo;s 2024 survey actually found the opposite: 52% of Gen Z and 44% of Millennials said they enjoyed ads featuring their favorite celebrities, compared with 28% of Gen X and just 18% of Boomers <a href="#ref-fernandes-2024" class="cite">(Fernandes, 2024)</a>. Older consumers recognize the traditional stars. They are noticeably less warm to celebrity ads as a format.</p>
+
+  <p>Gen Z is not immune to fame either &mdash; the source has simply moved. A YouTube host with eight million subscribers, a TikTok creator whose format has spawned a genre, a professional streamer, a podcast personality with a dedicated fanbase: these people function as celebrities inside specific communities even when they are invisible outside them. Pew Research found that 72% of social-media users aged 18 to 29 followed influencers or content creators, compared with 44% of those aged 30 to 49, 26% of those aged 50 to 64, and 12% of adults 65 and older <a href="#ref-faverio-anderson-2022" class="cite">(Faverio &amp; Anderson, 2022)</a>. The fame machinery still exists. It just runs on a different set of tracks, and the tracks are narrower and more specialized.</p>
+
+  <p>The strategic implication is that the choice between a &ldquo;traditional&rdquo; celebrity and a creator is not a generational question. It&rsquo;s a reach-versus-relevance question, and the answer depends on which the brand actually needs.</p>
+</section>
+
+
+<!-- ============================================================
+     FANS AND SKEPTICS
+     ============================================================ -->
+<section class="section" id="fans">
+  <div class="sec-label">Who&rsquo;s Actually Moved</div>
+  <h2>Fans, Non-Fans, and Skeptics</h2>
+
+  <p>Every celebrity endorsement faces the same underlying problem: the audience is not one audience. It&rsquo;s at least three, and each responds to a famous face differently.</p>
+
+  <p>Fans of the celebrity are the easiest audience to move. Strong attachment to a celebrity can improve attitudes toward both the ad and the brand, and it does so even when the celebrity endorses several other products at the same time <a href="#ref-ilicic-webster-2011" class="cite">(Ilicic &amp; Webster, 2011)</a>. The pairing works partly because the fan is already predisposed to interpret the celebrity charitably &mdash; the ad becomes an opportunity to see someone they already like doing something they can approve of, and the goodwill transfers to the sponsor as part of that emotional package.</p>
+
+  <p>Non-fans are the group where the endorsement most often fails, and it fails in a specific way. A viewer who is neutral on the celebrity may still consider the message on its merits. A viewer who dislikes the celebrity, or sees the endorsement as an obvious paycheck, may actively resist the attempted transfer. Research on ad skepticism finds that celebrity preference substantively affects whether positive feelings toward the endorser translate into positive attitudes toward the advertised brand &mdash; without that preference, the mechanism doesn&rsquo;t fire, and it can run in reverse when the viewer&rsquo;s dislike is strong enough <a href="#ref-kang-2020" class="cite">(Kang, 2020)</a>.</p>
+
+  <p>The uncomfortable implication for anyone selling celebrity strategy is that celebrity advertising is partly self-selecting: people who already like the celebrity or the brand may respond well, and people outside both fan bases may notice the ad without accepting its argument. The larger and more polarizing the celebrity, the sharper this split. This is one of the arguments for choosing an ambassador whose public identity is broadly likeable rather than intensely loved by a subset &mdash; the total addressable audience is bigger, even if the peak enthusiasm inside it is lower.</p>
+</section>
+
+
+<!-- ============================================================
+     CELEBRITIES VS. INFLUENCERS
+     ============================================================ -->
+<section class="section" id="influencers">
+  <div class="sec-label">The Comparison That Won&rsquo;t Stay Settled</div>
+  <h2>Celebrities Versus Influencers</h2>
+
+  <p>The pitch deck most agencies bring to a young brand argues that traditional celebrities are dead and that the future is creators. The pitch deck most established agencies bring to a legacy brand argues the opposite. Both are wrong, and the meta-analysis that settled the question exists.</p>
+
+  <p>A 2024 meta-analysis in <em>Social Media + Society</em> compared celebrity endorsements and social-media-influencer endorsements across a large body of experimental studies and found no significant overall difference in persuasive effect between them. Both worked when the endorser was credible and relevant to the product; both failed when they weren&rsquo;t. What did move the needle inside the analysis was influencer scale: mega-influencers could be more persuasive than celebrities in some conditions, while nano-influencers &mdash; the very small accounts sometimes celebrated as the &ldquo;authentic&rdquo; option &mdash; could be less persuasive than either <a href="#ref-lee-2024" class="cite">(Lee et al., 2024)</a>.</p>
+
+  <p>The productive way to think about the choice is that celebrities and influencers are answering different marketing briefs, and the honest question is which brief the brand actually has. A national celebrity is useful when the goal is fast, broad awareness in an audience with limited pre-existing attachment to the brand. A focused creator is more useful when the goal is demonstration, comparison, ongoing relationship, or credibility inside a specific community that already trusts that creator&rsquo;s judgment. A pitch that assumes one is universally superior to the other is a pitch trying to sell what its agency already knows how to make.</p>
+</section>
+
+
+<!-- ============================================================
+     FIT AND CONGRUITY
+     ============================================================ -->
+<section class="section" id="fit">
+  <div class="sec-label">The Variable That Matters Most</div>
+  <h2>Fit, Congruity, and Michael Jordan</h2>
+
+  <p>Of every variable that came out of the Knoll and Matthes meta-analysis, the one that mattered most and the one most brands still handle worst was fit &mdash; the perceived match between the celebrity and the product. Fit is what determines whether the celebrity comes across as a natural spokesperson or a rented one, and the research on it is more specific than most brand managers realize.</p>
+
+  <p>Michael Jordan and Nike are the textbook case of high congruity. Jordan&rsquo;s athletic performance gave the shoes technical credibility. His competitive persona gave the brand material to build the Air Jordan identity around. There was almost no interpretive work required from the viewer &mdash; a great basketball player endorsing basketball shoes reads as obviously correct. Jordan and Hanes underwear was a weaker functional match on paper. Basketball ability does not confer expertise in men&rsquo;s underwear. What Hanes was buying was familiarity, likeability, humor, and broad appeal &mdash; not proof of product performance. It worked, but it worked through a different mechanism than the Nike deal did.</p>
+
+  <p>A hypothetical Jordan/Tropicana partnership &mdash; imagined here because it never happened &mdash; falls between the two. An elite athlete can plausibly stand for health, morning energy, and a routine, but athletic success doesn&rsquo;t establish any expertise about orange juice. The link is coherent without being tight, which turns out to be the interesting zone.</p>
+
+  <p>Research on schema congruity has consistently found that a <em>moderately unexpected</em> celebrity-product match can outperform either a perfect match or a total mismatch. A perfect match is understood instantly and forgotten just as fast. A total mismatch produces confusion and pulls the viewer out of the ad. A moderate mismatch makes the viewer pause briefly to reconcile what they&rsquo;re seeing, and the reconciliation itself is a small cognitive win that transfers positive affect to the brand <a href="#ref-lee-thorson-2008" class="cite">(Lee &amp; Thorson, 2008)</a>.</p>
+
+  <table class="fit-table">
+    <thead>
+      <tr>
+        <th>Level of Fit</th>
+        <th>Example</th>
+        <th>Likely Response</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Highly congruent</td>
+        <td>Michael Jordan &amp; Nike basketball shoes</td>
+        <td>Immediate credibility. Low friction, low surprise. Works but doesn&rsquo;t linger.</td>
+      </tr>
+      <tr class="moderate">
+        <td>Moderately congruent</td>
+        <td>An elite athlete &amp; a breakfast product</td>
+        <td>Requires a small amount of cognitive work to connect. Often the strongest option, because the small &ldquo;aha&rdquo; transfers to the brand.</td>
+      </tr>
+      <tr>
+        <td>Highly incongruent</td>
+        <td>An athlete &amp; a product that conflicts with athletic performance</td>
+        <td>Attention gets captured, but the endorsement reads as manufactured. High vampire-effect risk.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The counterintuitive lesson from the congruity research is that brand managers habitually over-rate the obvious pairing. A celebrity whose fit is <em>too</em> perfect gets processed without any cognitive engagement &mdash; the viewer sees it, agrees with it, and forgets it. A celebrity whose fit rewards a small amount of interpretive work often lands harder, provided the interpretation is available at all. What matters is that the connection be discoverable, not immediate.</p>
+</section>
+
+
+<!-- ============================================================
+     VOICEOVERS
+     ============================================================ -->
+<section class="section" id="voice">
+  <div class="sec-label">A Different Format</div>
+  <h2>The Underrated Voice-Only Play</h2>
+
+  <p>A celebrity voiceover is a specific solution to the vampire-effect problem. The famous person contributes tone, humor, or authority to the ad, but never occupies the visual center of the screen &mdash; leaving the product, the visual story, and the brand identity room to do their own work. The viewer thinks, &ldquo;I know that voice,&rdquo; and sometimes needs several exposures to place it, and that unresolved recognition holds attention across repeated viewings in a way a fully-revealed celebrity face rarely does.</p>
+
+  <p>Recent research on this format found that recognizing an unnamed celebrity voice creates a small &ldquo;aha&rdquo; moment that measurably increases enjoyment of the ad and improves evaluations of the brand &mdash; the discovery itself becomes part of the reward structure of watching <a href="#ref-hall-carlson-gentry-2024" class="cite">(Hall, Carlson, &amp; Gentry, 2024)</a>. It is one of the more underrated techniques in the celebrity toolkit, partly because it&rsquo;s cheaper (voice work requires hours in a booth, not days on a set) and partly because it works quietly &mdash; nobody claps for a voiceover the way they clap for a Super Bowl cameo.</p>
+
+  <p>A short list of the ones running in market right now, most of which took years for audiences to identify:</p>
+
+  <ul class="voice-list">
+    <li><strong>Will Arnett</strong> &mdash; Reese&rsquo;s and GMC. The gravelly, sardonic delivery gives both brands an assertive and slightly amused personality without putting a face in the frame <a href="#ref-ispot-arnett" class="cite">(iSpot, n.d.)</a>.</li>
+    <li><strong>Kelsey Grammer</strong> &mdash; the original GEICO Gecko voice in 1999, in a formal American register that later evolved into the Cockney the character is known for today. Grammer is American, not British; the switch to a British-inflected gecko came with the actors who followed him <a href="#ref-looper-2025" class="cite">(Lemieux, 2025)</a>.</li>
+    <li><strong>Ving Rhames</strong> &mdash; Arby&rsquo;s &ldquo;We Have the Meats.&rdquo; Voice of the brand for about a decade before Arby&rsquo;s finally put him on screen in 2024, a reveal that itself became a piece of earned media <a href="#ref-lbb-2024" class="cite">(Little Black Book, 2024)</a>.</li>
+    <li><strong>Kiefer Sutherland</strong> &mdash; Apple voiceovers <a href="#ref-cbs-2006" class="cite">(CBS News, 2006)</a>.</li>
+    <li><strong>Queen Latifah</strong> &mdash; Pizza Hut voiceovers <a href="#ref-cbs-2006" class="cite">(CBS News, 2006)</a>.</li>
+    <li><strong>Julia Roberts</strong> &mdash; AOL voiceovers <a href="#ref-cbs-2006" class="cite">(CBS News, 2006)</a>.</li>
+  </ul>
+
+  <p>The format doesn&rsquo;t eliminate reputation risk once audiences identify the speaker &mdash; a celebrity in trouble is a celebrity in trouble regardless of whether they were on the screen or in the audio track. It also can&rsquo;t do the top-of-funnel work a visible celebrity can. What it does well is add personality and craft to an ad without stealing the frame from the product, which is exactly the vampire-effect problem stated as a solution.</p>
+</section>
+
+
+<!-- ============================================================
+     WHAT IT COSTS
+     ============================================================ -->
+<section class="section" id="cost">
+  <div class="sec-label">The Invoice</div>
+  <h2>What Celebrities Actually Cost</h2>
+
+  <p>Any argument about effectiveness has to eventually meet the fees, because the fees are what turn a marketing-strategy question into a return-on-investment one. The public numbers on celebrity talent are approximate, but the range is well-established enough to reason about honestly.</p>
+
+  <h3>Super Bowl talent, specifically</h3>
+
+  <p>For the biggest single advertising stage in American television, <em>Adweek</em> reported that most celebrity fees for 2026 Super Bowl commercials came in below $5 million, with the majority sitting in a $1 million to $3 million range. A-list talent could earn $3 million to $5 million, with a handful of exceptional deals reaching $10 million depending on script, scale, and scope of work. Small cameos requiring only hours on set could fall into five- or six-figure territory <a href="#ref-bradley-2026" class="cite">(Bradley, 2026)</a>. <em>The Hollywood Reporter</em> reported a similar range for the 2025 game the year before &mdash; $3 million to $5 million for A-list leads, with total campaign costs (media, production, talent, digital extension, PR) landing anywhere from $10&ndash;12 million on the low end to well over $20 million on the high end <a href="#ref-weprin-2025" class="cite">(Weprin, 2025)</a>.</p>
+
+  <p>The interesting data point is that talent fees for the Super Bowl have actually softened somewhat over the last two years, even as the media rate for a 30-second spot has held at $8&ndash;10 million <a href="#ref-vlessing-2026" class="cite">(Vlessing, 2026)</a>. Brands are getting more disciplined about paying for names, partly because the media costs alone leave less headroom for talent, and partly because ensembles of smaller cameos have proven to work about as well as one massive A-lister check &mdash; the McConaughey/Cooper/Posey Uber Eats spots, the multi-star Xfinity <em>Jurassic Park</em> reunion, the Michelob Ultra ski-lodge ensemble.</p>
+
+  <h3>The Affleck and Clooney models</h3>
+
+  <p>The generic Super Bowl fee is a bad model for the two celebrity deals actually worth studying, both of which show a different logic underneath the paycheck.</p>
+
+  <div class="callout" style="border-left-color: var(--red); background: var(--red-soft);">
+    <div class="callout-label">Ben Affleck &amp; Dunkin, 2023</div>
+    <p><em>Entertainment Tonight</em> reported Affleck&rsquo;s deal at more than $10 million, with Jennifer Lopez making just over $1 million for her drive-through cameo. Affleck developed the concept, directed the spot, starred in it, and committed to a follow-up campaign <a href="#ref-dominic-2023" class="cite">(Dominic, 2023)</a>. What made the deal work wasn&rsquo;t the fee &mdash; it was that Affleck had spent years being photographed with Dunkin coffee and talking about his daily habit in interviews. The commercial formalized an association the tabloid ecosystem had already established for free. That&rsquo;s the strongest possible version of celebrity endorsement: the brand pays to make explicit something the audience already believed.</p>
+  </div>
+
+  <p>George Clooney and Nespresso is the other end of the same insight, played out over a decade and a half. Clooney has been the face of Nespresso internationally since 2006 <a href="#ref-nespresso-2015" class="cite">(Nespresso, 2015)</a>. <em>The Guardian</em> reported in 2020 that he had earned more than $40 million from the arrangement over the years <a href="#ref-cumming-2020" class="cite">(Cumming, 2020)</a>. Nespresso wasn&rsquo;t renting Clooney&rsquo;s fame for one commercial &mdash; they were building a decade-long visual system in which his image, tone, and self-effacing humor became inseparable from the brand&rsquo;s premium positioning. The unit economics of a long-term ambassador spread across many years and many campaigns look very different from the unit economics of a one-shot Super Bowl cameo, and they usually look better.</p>
+
+  <h3>Instagram posts, comparatively</h3>
+
+  <p>The other useful comparison is what a brand pays a top celebrity for a single sponsored Instagram post. Hopper HQ&rsquo;s 2024 estimates &mdash; the most current widely-cited data on the question &mdash; placed Cristiano Ronaldo at about $3.4 million per post. Kylie Jenner was estimated at $2.4 million, Kim Kardashian at $2.17 million, Khloé Kardashian at $1.85 million, Kendall Jenner at $1.76 million, Kourtney Kardashian at $1.34 million <a href="#ref-hopper-2024" class="cite">(Hopper HQ, 2024)</a>.</p>
+
+  <div class="big-stat">
+    <div class="big-stat-num">$3.4M</div>
+    <div class="big-stat-text">
+      <span class="big-stat-text-label">Ronaldo &middot; one Instagram post</span>
+      Hopper HQ&rsquo;s 2024 estimate for a single sponsored post from Cristiano Ronaldo, whose Instagram following now exceeds 600 million. A Super Bowl commercial runs dozens or hundreds of times across TV, streaming, and social; a Ronaldo post is one piece of content on one day. The comparison should force the honest question: what does the brand actually get more of, per dollar spent?
+    </div>
+  </div>
+
+  <p>The comparison is not clean, because the two things do different work. A Super Bowl commercial runs across broadcast, streaming, social clips, YouTube, and press coverage for weeks. A sponsored Instagram post is one piece of content, though it accesses the celebrity&rsquo;s enormous existing follower base and lives on their account after the campaign. What the numbers do establish is that top-of-market celebrity fees are not obviously more expensive per exposure than the going rate for other attention purchases &mdash; and they are dramatically cheaper than the naming-rights deals many of the same brands are also running. <em>Forbes</em> reported that U.S. companies spend nearly $900 million a year on stadium and arena naming rights across the seven major professional sports leagues, with individual agreements sometimes exceeding $20 million a year <a href="#ref-newcomb-2025" class="cite">(Newcomb, 2025)</a>.</p>
+
+  <p>The right frame for the fees isn&rsquo;t whether a given celebrity costs a lot of money in absolute terms &mdash; they do, and it&rsquo;s eye-watering the first time you see it. The right frame is what the same budget buys elsewhere, what the celebrity does that the alternative doesn&rsquo;t, and whether the brand has any way to measure whether it got what it paid for.</p>
+
+  <div class="pullquote">
+    <p class="pullquote-text">A celebrity buys attention. Persuasion has to be earned separately &mdash; through fit, credibility, format, and everything the brand does around the endorsement to make the endorsement mean something.</p>
+    <p class="pullquote-attr">The one sentence version of this piece</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>The largest meta-analysis on the question found essentially <strong>no average effect</strong> of celebrity endorsement on awareness, ad attitudes, or purchase intent &mdash; but sharply positive or sharply negative effects once fit, credibility, and format are controlled for. &ldquo;Do celebrities work&rdquo; is the wrong question. &ldquo;Under what conditions&rdquo; is the right one.</li>
+      <li>Fame is best at the top of the funnel. Confusing attention for persuasion is the failure mode most celebrity campaigns die of.</li>
+      <li>The <strong>vampire effect</strong> is real: attention-grabbing endorsers can dominate the ad so completely that the brand gets forgotten. Weak fit makes it worse.</li>
+      <li>Younger cohorts are more receptive to celebrity ads than older ones (52% of Gen Z, 18% of Boomers). The source of fame has changed; the psychology hasn&rsquo;t.</li>
+      <li>Fans transfer goodwill readily. Non-fans and skeptics often don&rsquo;t &mdash; and can reject the endorsement outright. Broadly likeable beats intensely loved by a subset for most brands.</li>
+      <li>Celebrities vs. influencers is not a categorical contest. Both work under similar conditions; both fail under similar ones. The choice is about reach vs. relevance, not old vs. new.</li>
+      <li><strong>Moderate incongruity</strong> often outperforms perfect fit. The small cognitive &ldquo;aha&rdquo; of reconciling an unexpected pairing transfers to the brand more than an obvious pairing does.</li>
+      <li>Voiceovers are underrated. They contribute personality without stealing the frame from the product &mdash; the vampire effect stated as a solution.</li>
+      <li>2026 Super Bowl fees ran mostly $1&ndash;5M for talent, with total campaigns in the $10&ndash;20M+ range. The Affleck/Dunkin and Clooney/Nespresso deals are the two worth studying because they formalize existing associations or build long-term visual systems, rather than renting fame by the second.</li>
+      <li>The market is voting with dollars: 30% of Super Bowl ads had celebrities in 2010, more than 70% did in 2026. The research doesn&rsquo;t say advertisers are wrong to spend. It says they need to be specific about what they&rsquo;re buying.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section references" id="references">
+  <div class="sec-label">Sources</div>
+  <h2>References</h2>
+
+  <p class="ref" id="ref-bradley-2026">Bradley, B. (2026, February 9). <a href="https://www.adweek.com/convergent-tv/heres-how-much-celebrities-got-paid-for-2026-super-bowl-ads/" target="_blank" rel="noopener"><em>Here&rsquo;s how much celebrities got paid for 2026 Super Bowl ads</em></a>. Adweek.</p>
+
+  <p class="ref" id="ref-cbs-2006">CBS News. (2006). <a href="https://www.cbsnews.com/news/whose-voice-is-that/" target="_blank" rel="noopener"><em>Whose voice is that?</em></a></p>
+
+  <p class="ref" id="ref-cumming-2020">Cumming, E. (2020, July 14). <a href="https://www.theguardian.com/food/2020/jul/14/nespresso-coffee-capsule-pods-branding-clooney-nestle-recycling-environment" target="_blank" rel="noopener"><em>How Nespresso&rsquo;s coffee revolution got ground down</em></a>. The Guardian.</p>
+
+  <p class="ref" id="ref-dominic-2023">Dominic, A. (2023). <a href="https://www.etonline.com/ben-affleck-and-jennifer-lopez-score-millions-for-super-bowl-commercial-exclusive-199065" target="_blank" rel="noopener"><em>Ben Affleck and Jennifer Lopez score millions for Super Bowl commercial</em></a>. Entertainment Tonight.</p>
+
+  <p class="ref" id="ref-erfgen-2015">Erfgen, C., Zenker, S., &amp; Sattler, H. (2015). <a href="https://doi.org/10.1016/j.jretconser.2014.11.007" target="_blank" rel="noopener"><em>The vampire effect: When do celebrity endorsers harm brand recall?</em></a> Journal of Retailing and Consumer Services, 22, 155&ndash;163.</p>
+
+  <p class="ref" id="ref-faverio-anderson-2022">Faverio, M., &amp; Anderson, M. (2022, November 21). <a href="https://www.pewresearch.org/short-reads/2022/11/21/for-shopping-phones-are-common-and-influencers-have-become-a-factor-especially-for-young-adults/" target="_blank" rel="noopener"><em>For shopping, phones are common and influencers have become a factor, especially for young adults</em></a>. Pew Research Center.</p>
+
+  <p class="ref" id="ref-fernandes-2024">Fernandes, J. (2024). <a href="https://yougov.com/en-us/articles/50754-how-different-generations-engage-with-ads" target="_blank" rel="noopener"><em>How different generations engage with ads</em></a>. YouGov.</p>
+
+  <p class="ref" id="ref-hall-carlson-gentry-2024">Hall, M. J., Carlson, L., &amp; Gentry, J. W. (2024). <a href="https://doi.org/10.1016/j.jbusres.2023.114495" target="_blank" rel="noopener"><em>&ldquo;Aha! I knew that voice sounded familiar!&rdquo; Recognizing a non-identified voice-over endorser increases ad enjoyment via moments of insight</em></a>. Journal of Business Research, 174, 114495.</p>
+
+  <p class="ref" id="ref-hopper-2024">Hopper HQ. (2024). <a href="https://www.hopperhq.com/instagram-rich-list/" target="_blank" rel="noopener"><em>2024 Instagram Rich List</em></a>.</p>
+
+  <p class="ref" id="ref-ilicic-webster-2011">Ilicic, J., &amp; Webster, C. M. (2011). <a href="https://doi.org/10.1016/j.ausmj.2011.10.005" target="_blank" rel="noopener"><em>Effects of multiple endorsements and consumer&ndash;celebrity attachment on attitude and purchase intention</em></a>. Australasian Marketing Journal, 19(4), 230&ndash;237.</p>
+
+  <p class="ref" id="ref-ispot-arnett">iSpot. (n.d.). <a href="https://www.ispot.tv/topic/actor-actress/TS/will-arnett" target="_blank" rel="noopener"><em>Will Arnett TV commercials</em></a>.</p>
+
+  <p class="ref" id="ref-kang-2020">Kang, J. (2020). <a href="https://doi.org/10.1111/jpr.12242" target="_blank" rel="noopener"><em>The effect of ad skepticism and celebrity preference on brand attitude change in celebrity-endorsed advertising</em></a>. Japanese Psychological Research, 62(1), 26&ndash;38.</p>
+
+  <p class="ref" id="ref-knoll-matthes-2017">Knoll, J., &amp; Matthes, J. (2017). <a href="https://doi.org/10.1007/s11747-016-0503-8" target="_blank" rel="noopener"><em>The effectiveness of celebrity endorsements: A meta-analysis</em></a>. Journal of the Academy of Marketing Science, 45, 55&ndash;75.</p>
+
+  <p class="ref" id="ref-lbb-2024">Little Black Book. (2024). <a href="https://lbbonline.com/news/voice-of-arbys-ving-rhames-finally-shows-his-face" target="_blank" rel="noopener"><em>Voice of Arby&rsquo;s Ving Rhames finally shows his face</em></a>.</p>
+
+  <p class="ref" id="ref-lee-thorson-2008">Lee, J. G., &amp; Thorson, E. (2008). <a href="https://doi.org/10.2501/S0021849908080446" target="_blank" rel="noopener"><em>The impact of celebrity&ndash;product incongruence on the effectiveness of product endorsement</em></a>. Journal of Advertising Research, 48(3), 433&ndash;449.</p>
+
+  <p class="ref" id="ref-lee-2024">Lee, J., Walter, N., Hayes, J. L., &amp; Golan, G. J. (2024). <a href="https://doi.org/10.1177/20563051241269269" target="_blank" rel="noopener"><em>Do influencers influence? A meta-analytic comparison of celebrities and social media influencers effects</em></a>. Social Media + Society, 10(3).</p>
+
+  <p class="ref" id="ref-looper-2025">Lemieux, M. (2025, September 29). <a href="https://www.looper.com/1978084/frasier-kelsey-grammer-voiced-geico-gecko-commercials/" target="_blank" rel="noopener"><em>A beloved Frasier actor originally voiced the Gecko in Geico&rsquo;s commercials</em></a>. Looper.</p>
+
+  <p class="ref" id="ref-nespresso-2015">Nespresso. (2015). <a href="https://www.prnewswire.com/news-releases/nespresso-introduces-george-clooney-as-new-us-brand-ambassador-300169328.html" target="_blank" rel="noopener"><em>Nespresso introduces George Clooney as new U.S. brand ambassador</em></a>. PR Newswire.</p>
+
+  <p class="ref" id="ref-newcomb-2025">Newcomb, T. (2025, December 1). <a href="https://www.forbes.com/sites/timnewcomb/2025/12/01/brands-spend-nearly-900-million-on-venue-naming-rights-in-us/" target="_blank" rel="noopener"><em>Brands spend nearly $900 million on venue naming rights in U.S.</em></a> Forbes.</p>
+
+  <p class="ref" id="ref-vlessing-2026">Vlessing, E. (2026, February 5). <a href="https://www.hollywoodreporter.com/business/business-news/2026-super-bowl-ads-stars-ai-comedy-1236490270/" target="_blank" rel="noopener"><em>Inside the 2026 Super Bowl ads with AI, stars and comedy pieces</em></a>. The Hollywood Reporter.</p>
+
+  <p class="ref" id="ref-weprin-2025">Weprin, A. (2025). <a href="https://www.hollywoodreporter.com/business/business-news/star-salaries-super-bowl-ads-1236129182/" target="_blank" rel="noopener"><em>Star salaries for Super Bowl ads: $3 million&ndash;$5 million fees are norm this year as spots lean into celebs</em></a>. The Hollywood Reporter.</p>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
