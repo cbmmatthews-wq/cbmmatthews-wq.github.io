@@ -7,6 +7,127 @@
 <meta name="description" content="A Core page on the role of repetition in advertising. Why one exposure rarely works, how wearout sets in, the amplifier effect of cross-channel repetition, the gap between consumer self-report and behavior, and practical rules for frequency planning.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ============================================================
+   FLOATED FIGURE + LIGHTBOX  (Assemblo Rule of Seven)
+   ============================================================ */
+.fig-float{
+  --fig-w: 250px;
+  float: right;
+  width: var(--fig-w);
+  margin: 4px 0 18px 30px;
+  clear: right;
+}
+.fig-zoom{
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 3px;
+  background: #fff;
+  cursor: zoom-in;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+.fig-zoom:hover,
+.fig-zoom:focus-visible{
+  box-shadow: 0 6px 20px rgba(0,0,0,.16);
+  transform: translateY(-2px);
+  outline: none;
+}
+.fig-zoom img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.fig-zoom-badge{
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  background: rgba(20,20,20,.72);
+  color: #fff;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .18s ease;
+  pointer-events: none;
+}
+.fig-zoom:hover .fig-zoom-badge,
+.fig-zoom:focus-visible .fig-zoom-badge{ opacity: 1; }
+
+.fig-float figcaption{
+  margin-top: 9px;
+  font-size: .78rem;
+  line-height: 1.45;
+  color: var(--muted, #6f6f6f);
+}
+.fig-float figcaption a{ color: inherit; }
+.fig-float-clear{ clear: both; }
+
+/* --- lightbox --- */
+.lb-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  background: rgba(14,14,16,.90);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 48px 20px 56px;
+  text-align: center;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.lb-overlay.is-open{ display: block; }
+.lb-overlay img{
+  display: inline-block;
+  width: min(474px, 92vw);
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  cursor: zoom-out;
+}
+.lb-close{
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.lb-close:hover{ background: rgba(255,255,255,.26); }
+.lb-hint{
+  margin-top: 14px;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
+body.lb-locked{ overflow: hidden; }
+
+@media (max-width: 760px){
+  .fig-float{
+    float: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 22px auto 26px;
+  }
+  .lb-overlay{ padding: 44px 12px 40px; }
+}
+</style>
 </head>
 <body>
 
@@ -35,10 +156,23 @@
 <main class="wrapper">
 
 <section class="section">
+  <figure class="fig-float" style="--fig-w: 250px;">
+    <button type="button" class="fig-zoom"
+            data-lightbox-src="assets/images/assemblo.png"
+            data-lightbox-alt="Assemblo infographic titled Repetition Is Key: people need to see a message seven times before it sinks in. A winding path traces one person's day through seven numbered ad exposures, each time-stamped from 07:03 to 20:56."
+            aria-label="Enlarge the Assemblo Rule of Seven infographic">
+      <img src="assets/images/assemblo.png" alt="Assemblo infographic titled Repetition Is Key: people need to see a message seven times before it sinks in. A winding path traces one person's day through seven numbered ad exposures, each time-stamped from 07:03 to 20:56.">
+      <span class="fig-zoom-badge" aria-hidden="true">&#10530;</span>
+    </button>
+    <figcaption>The Rule of Seven, one day at a time. Click to enlarge. Source: <a href="https://assemblo.com/blog/repetition-is-key-why-frequency-makes-your-marketing-effective/" target="_blank" rel="noopener">Assemblo</a>.</figcaption>
+  </figure>
+
   <p>There's a piece of folk wisdom in advertising called the <strong>Rule of Seven</strong>, which says a consumer needs to see a message roughly seven times before it sinks in. Like most folk wisdom in marketing, the specific number is wrong, the underlying intuition is right, and the working version that practitioners actually use is more nuanced than either. The agency Assemblo published a widely-circulated visualization of the Rule of Seven that walks a consumer through a typical day's worth of exposures: a TV ad in the morning, a bus stop ad on the commute, a magazine ad at the coffee shop, an Instagram ad on the phone, a billboard during the afternoon, a radio spot in the car, a TV ad at night. Seven touches across one day, across formats and contexts, before the message has had enough exposures to take hold.</p>
 
   <p>You can see the full graphic at <a href="https://assemblo.com/blog/repetition-is-key-why-frequency-makes-your-marketing-effective/" target="_blank" rel="noopener">assemblo.com</a>. Meta's internal research, working with newer behavioral data, suggests the number on Instagram and Facebook is closer to thirteen exposures before consumer action against an ad spikes. Different channels and different purchase categories produce different numbers. What stays constant across all the research is that <em>one exposure almost never works</em>, and that this fact has shaped the entire economic model of advertising for a hundred years.</p>
 </section>
+
+<div class="fig-float-clear"></div>
 
 <section class="section" id="one-exposure">
   <h2>6.1 Why One Exposure Doesn't Work</h2>
@@ -123,6 +257,20 @@
   </div>
 </section>
 
+<nav class="unit-nav">
+  <a href="touch-points.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">05 &middot; Touch Points</span>
+    <span class="unit-nav-tease">Company-created, intrinsic, unexpected, customer-initiated. Control and impact pull in opposite directions.</span>
+  </a>
+  <a href="brand-vs-performance.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">07 &middot; Brand vs. Performance</span>
+    <span class="unit-nav-tease">The 60/40 principle, what the IPA research actually says, and the deviations that matter.</span>
+  </a>
+</nav>
+
+
 <section class="section" id="more-views">
   <h2>More Views</h2>
 
@@ -176,6 +324,58 @@
 
 <script src="assets/nav.js"></script>
 <script src="assets/scrollspy.js"></script>
+
+<script>
+/* Lightbox for [data-lightbox-src] triggers */
+(function () {
+  var overlay = document.getElementById('lbOverlay');
+  if (!overlay) return;
+  var img = overlay.querySelector('img');
+  var closeBtn = overlay.querySelector('.lb-close');
+  var lastTrigger = null;
+
+  function open(src, alt, trigger) {
+    lastTrigger = trigger || null;
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lb-locked');
+    overlay.scrollTop = 0;
+    closeBtn.focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-locked');
+    img.src = '';
+    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+  }
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-lightbox-src]');
+    if (trigger) {
+      e.preventDefault();
+      open(trigger.getAttribute('data-lightbox-src'),
+           trigger.getAttribute('data-lightbox-alt'),
+           trigger);
+      return;
+    }
+    if (e.target === overlay || e.target === img || e.target === closeBtn) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+  });
+})();
+</script>
+
+<div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Enlarged image" aria-hidden="true">
+  <button type="button" class="lb-close" aria-label="Close">&times;</button>
+  <img src="" alt="">
+  <div class="lb-hint">Click anywhere or press Esc to close</div>
+</div>
 
 </body>
 </html>

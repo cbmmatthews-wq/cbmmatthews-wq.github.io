@@ -8,6 +8,127 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+/* ============================================================
+   FLOATED FIGURE + LIGHTBOX  (Assemblo Rule of Seven)
+   ============================================================ */
+.fig-float{
+  --fig-w: 250px;
+  float: right;
+  width: var(--fig-w);
+  margin: 4px 0 18px 30px;
+  clear: right;
+}
+.fig-zoom{
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 3px;
+  background: #fff;
+  cursor: zoom-in;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+.fig-zoom:hover,
+.fig-zoom:focus-visible{
+  box-shadow: 0 6px 20px rgba(0,0,0,.16);
+  transform: translateY(-2px);
+  outline: none;
+}
+.fig-zoom img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.fig-zoom-badge{
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  background: rgba(20,20,20,.72);
+  color: #fff;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .18s ease;
+  pointer-events: none;
+}
+.fig-zoom:hover .fig-zoom-badge,
+.fig-zoom:focus-visible .fig-zoom-badge{ opacity: 1; }
+
+.fig-float figcaption{
+  margin-top: 9px;
+  font-size: .78rem;
+  line-height: 1.45;
+  color: var(--muted, #6f6f6f);
+}
+.fig-float figcaption a{ color: inherit; }
+.fig-float-clear{ clear: both; }
+
+/* --- lightbox --- */
+.lb-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  background: rgba(14,14,16,.90);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 48px 20px 56px;
+  text-align: center;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.lb-overlay.is-open{ display: block; }
+.lb-overlay img{
+  display: inline-block;
+  width: min(474px, 92vw);
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  cursor: zoom-out;
+}
+.lb-close{
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.lb-close:hover{ background: rgba(255,255,255,.26); }
+.lb-hint{
+  margin-top: 14px;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
+body.lb-locked{ overflow: hidden; }
+
+@media (max-width: 760px){
+  .fig-float{
+    float: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 22px auto 26px;
+  }
+  .lb-overlay{ padding: 44px 12px 40px; }
+}
+</style>
 </head>
 <body>
 
@@ -25,11 +146,12 @@
     <a href="#overview">Overview</a>
     <a href="#imc">IMC</a>
     <a href="#peso">PESO</a>
-    <a href="#money">Money</a>
+    <a href="#funnel">Funnel</a>
     <a href="#six-elements">6 Elements</a>
     <a href="#touch-points">Touch Points</a>
     <a href="#repetition">Repetition</a>
     <a href="#brand-vs-perf">Brand vs. Perf</a>
+    <a href="#money">Money</a>
   </div>
   <div class="subnav-progress"></div>
 </nav>
@@ -283,6 +405,13 @@
     </table>
   </div>
 
+  <div class="sidebar-card is-red">
+    <h3>Should you split your effort 25% across all four categories?</h3>
+    <p>No. PESO isn't a balanced-budget rule. Its job is to make sure all four kinds of exposure are on the table when you plan, so you don't default to running everything through paid advertising as if it were the only tool you owned.</p>
+    <p>The right ratio depends on what kind of business you are and what part of the year it is. Most brands integrate all four through the bulk of the year, then shift heavily toward paid and direct activation at peak sales moments &mdash; Black Friday for a retailer, tax season for H&amp;R Block, the open-enrollment window for an insurer &mdash; letting the other quadrants take a back seat until the spike passes.</p>
+    <p>PESO reminds you all four exist. It doesn't tell you how to weight them. That's a separate strategic decision.</p>
+  </div>
+
   <h3>2.2 The Flywheel</h3>
 
   <p>The strategic point that comes out of putting these two figures side by side is that the four quadrants feed each other. Paid seeds the audience that builds the owned channels. Quality content on owned channels eventually earns coverage. Earned coverage and quality content together produce shared activity. Shared activity, when it's working, reduces the amount of paid spend needed to reach the next layer of audience. A healthy IMC program is not four separate motions running in parallel. It's a flywheel.</p>
@@ -313,77 +442,160 @@
 
 
 <!-- ============================================================
-     SECTION 3 — MONEY
+     SECTION 3 - THE FUNNEL
      ============================================================ -->
-<section class="section" id="money">
+<section class="section" id="funnel">
   <div class="sec-num">03</div>
-  <div class="sec-label">2024 Ad Spend</div>
-  <h2>Where the Money Actually Goes</h2>
+  <div class="sec-label">The Customer Journey</div>
+  <h2>The Marketing Funnel &mdash; Where Each Tool Plays</h2>
 
-  <p>Before we get into the six elements of the promotional mix, it is worth pausing on a simple question that pop culture consistently gets wrong: where does marketing money actually go?</p>
+  <p>Marketers have been trying to model the customer's journey from "never heard of this product" to "bought it twice" since at least 1898, when an advertising writer named E. St. Elmo Lewis sketched out a four-stage model called AIDA: Attention, Interest, Desire, Action. The model survived in textbooks for over a hundred and twenty years, which is a remarkable run for a framework developed when most ads were posters and most sales happened door-to-door. It survived partly because it was correct in its general shape (people do move through stages on the way to purchase) and partly because nothing simpler came along to replace it.</p>
 
-  <p>The $390 billion advertising figure from the Intro is the standard number for pure advertising. The broader category — ad plus marketing including events, sponsorships, direct mail, shopper marketing, and other below-the-line activity — came to <strong>$551.9 billion</strong> in 2024 in the United States alone. Either way the scale is large enough to be hard to internalize. What matters here is not the headline number but the breakdown, because the breakdown contradicts almost everything the public conversation about marketing tells you.</p>
+  <p>The modern reformulation collapses Interest and Desire into a single middle stage called Consideration, giving us three stages instead of four. Marketers refer to them as <strong>ToFU</strong> (Top of Funnel, Awareness), <strong>MoFU</strong> (Middle of Funnel, Consideration), and <strong>BoFU</strong> (Bottom of Funnel, Action). The relabeling sounds like jargon, but the three-stage version is cleaner. The original distinction between Interest and Desire was always slippery. Strong (1925), who popularized AIDA in marketing, admitted the two stages blurred into each other. Collapsing them lets the framework map directly onto the brand-versus-performance budget split that defines most modern marketing planning.</p>
 
-  <p>Four charts. Four reality checks. Each one is included because each one corrects a specific piece of pop-culture marketing wisdom. We will return to this material in more depth later in the course when we get to media planning. For now, the goal is to make sure you are looking at the same map the people actually allocating budgets are looking at.</p>
+  <p>The shape of the funnel matters. It is a funnel and not a cylinder because every stage leaks. Of the people who become aware of your brand, only some will consider it. Of the people who consider, only some will buy. Of the people who buy once, only some will buy again. The job of marketing analytics, increasingly, is to measure the leak rate at each stage and figure out which stage is bleeding worst. A brand with weak awareness has a top-of-funnel problem. A brand with strong awareness and weak sales has a middle-or-bottom problem. The diagnosis matters because the fix is different in each case, and a lot of marketing budget gets wasted on solving the wrong problem.</p>
 
-  <div class="chart-grid">
-    <div class="chart-card">
-      <div class="chart-title">Figure 1.3 · Total Spend by Channel, 2024</div>
-      <div class="chart-sub">$551.9B total ad &amp; marketing spend, U.S.</div>
-      <div class="chart-container"><canvas id="totalChart"></canvas></div>
-      <div class="chart-legend" id="totalLegend"></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Figure 1.4 · Digital vs. Traditional Split, 2024</div>
-      <div class="chart-sub">65.4% digital · 34.6% traditional</div>
-      <div class="chart-container"><canvas id="splitChart"></canvas></div>
-      <div class="chart-legend" id="splitLegend"></div>
-    </div>
-  </div>
-
-  <p>The single largest line in U.S. marketing is digital search — Google and Bing ads, mostly — at $123.6 billion, which is bigger than the next three channels combined. The "TikTok is everything" position is contradicted on the first chart of the breakdown. TikTok is a real channel, but it lives inside social media, which itself is the second-largest category overall, not the first.</p>
-
-  <p>Digital has clearly won the aggregate fight. Roughly 65 cents of every advertising dollar in 2024 went to a digital channel, and that share grows a little more every year. But traditional did not disappear. Linear TV alone is still nearly $59 billion. Direct mail remains a $37.5 billion industry. Radio is $10.9 billion. The honest framing is that digital won in volume while specific traditional channels remain disproportionately effective for specific purposes, which is why sophisticated marketers still use them.</p>
-
-  <div class="chart-grid">
-    <div class="chart-card">
-      <div class="chart-title">Figure 1.5 · Social Media Spend by Platform</div>
-      <div class="chart-sub">~$82.7B platform spend · Meta dominates</div>
-      <div class="chart-container"><canvas id="socialChart"></canvas></div>
-      <div class="chart-legend" id="socialLegend"></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Figure 1.6 · Where Influencer Dollars Go</div>
-      <div class="chart-sub">$8.1B influencer marketing · +23.7% YoY</div>
-      <div class="chart-container"><canvas id="influencerChart"></canvas></div>
-      <div class="chart-legend" id="influencerLegend"></div>
+  <div class="figure">
+    <div class="figure-label">Figure 1.3</div>
+    <div class="figure-title">The Marketing Funnel</div>
+    <div class="funnel-figure">
+      <div class="funnel-tier tier-tofu">
+        <div class="funnel-stage">ToFU &middot; Awareness</div>
+        <div class="funnel-quote">"I didn't know this existed."</div>
+        <div class="funnel-tools">TV &middot; OOH &middot; Display &middot; PR &middot; Sponsorships &middot; Influencer content &middot; Brand social</div>
+      </div>
+      <div class="funnel-tier tier-mofu">
+        <div class="funnel-stage">MoFU &middot; Consideration</div>
+        <div class="funnel-quote">"I'm comparing options."</div>
+        <div class="funnel-tools">Email &middot; Retargeting &middot; Content &middot; Reviews &middot; Owned social &middot; Video</div>
+      </div>
+      <div class="funnel-tier tier-bofu">
+        <div class="funnel-stage">BoFU &middot; Action</div>
+        <div class="funnel-quote">"I'm ready to buy."</div>
+        <div class="funnel-tools">Search &middot; Retargeting &middot; Sales promo &middot; Direct &middot; Personal selling</div>
+      </div>
+      <div class="funnel-result">Purchase &middot; Loyalty</div>
     </div>
   </div>
 
-  <p>The social media ad market looks competitive from outside and consolidated from inside. Meta — Facebook and Instagram combined — captured $64.6 billion, roughly 74% of all U.S. social media advertising in 2024. TikTok, despite the cultural noise around it, sits at $8.7 billion. The platforms that get the most conversation are not the platforms that get the most budget, and the gap between them is enormous.</p>
+  <p>A few things in this map deserve a note. Retargeting appears at two stages because it works in both places. It is the mechanic that pulls people from Consideration back down to Action when they have drifted. Search advertising sits at the bottom because search ads only appear when someone is already searching for you, which means they are already aware. You cannot build awareness with search; you can only harvest it. Sales promotions &mdash; coupons, discounts, limited-time offers &mdash; live at the bottom because they convert people who were already close, not because they pull cold prospects into consideration.</p>
 
-  <p>Influencer marketing is real and growing fast — about 24% year over year — but the total is $8.1 billion. That is roughly 10% of what Meta alone collected in platform advertising, and meaningfully less than what U.S. companies spent on radio. Meta's ad business is about eight times the size of all U.S. influencer marketing combined. The public conversation about influencers dramatically overstates their share of actual marketing budgets, and the assumption that brands are "moving all their money to influencers" is contradicted by every serious data source.</p>
+  <h3>3.1 Earlier Models</h3>
 
-  <h3>3.1 What This Map Actually Tells You</h3>
+  <p>The funnel above synthesizes more than a century of similar models. Three earlier formulations are worth knowing, both because they still appear in textbooks and because they show where the modern version came from.</p>
 
-  <p>A few patterns worth carrying forward.</p>
+  <div class="figure">
+    <div class="figure-label">Figure 1.4</div>
+    <div class="figure-title">AIDA &mdash; The Original (Lewis, 1898)</div>
+    <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" style="max-width: 640px; width: 100%; height: auto; display: block; margin: 0 auto;" role="img" aria-label="AIDA funnel: four stacked tiers labeled Attention, Interest, Desire, Action, narrowing from top to bottom.">
+      <polygon points="100,40 600,40 575,130 125,130" fill="#EAD0C3" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="93" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#2A2420">Attention</text>
 
-  <p>First, the channels people talk about most are not the channels brands spend the most on. Cultural attention and economic scale are almost completely decoupled. TikTok dominates conversation; search dominates spend. Influencers dominate LinkedIn thought leadership; direct mail dominates actual budgets in many B2B categories.</p>
+      <polygon points="125,130 575,130 550,220 150,220" fill="#DCAEA0" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="183" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#2A2420">Interest</text>
 
-  <p>Second, "digital vs. traditional" is the wrong framing. Within digital, search behaves nothing like social, which behaves nothing like CTV, which behaves nothing like programmatic display. Within traditional, linear TV behaves nothing like direct mail, which behaves nothing like out-of-home. The interesting tradeoffs are inside each category, not between the two big categories.</p>
+      <polygon points="150,220 550,220 525,310 175,310" fill="#CC8774" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="273" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#ffffff">Desire</text>
 
-  <p>Third, none of these allocations are necessarily <em>correct</em>. They are what U.S. marketers actually spent. Some of that spending was strategic. Some of it was inertia. Some of it was vendor capture, where a brand keeps buying a channel because they've always bought it and switching feels risky. Just because $123 billion went to search doesn't mean that was the right $123 billion. Part of what you'll learn in this course is how to look at allocations like these and ask the harder question: <em>was the spend actually advancing the brand's strategic goals, or was it just easier to defend?</em></p>
+      <polygon points="175,310 525,310 500,400 200,400" fill="#BC5A44" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="363" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#ffffff">Action</text>
+    </svg>
+    <div class="figure-caption">E. St. Elmo Lewis's original four-stage model. The ancestor of every modern funnel.</div>
+  </div>
 
-  <p>We will return to this breakdown in real depth later in the course in the section on media planning. For now, when you see someone confidently claim that marketing has moved entirely to social, or that nobody does TV anymore, or that influencer marketing has displaced advertising, you have the numbers to push back.</p>
+  <p>The 1898 version was about advertising copy specifically, but the structure generalized. Each stage names a job the message has to do to move a prospect to the next stage. "Attention" earns the look, "Interest" earns the engagement, "Desire" earns the want, "Action" earns the sale. The labels are dated but the underlying intuition has held up. Strong (1925) brought AIDA into mainstream marketing teaching, and from there it spread to nearly every advertising textbook published in the twentieth century.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 1.5</div>
+    <div class="figure-title">Enhanced AIDA &mdash; With Loyalty and Advocacy</div>
+    <svg viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" style="max-width: 640px; width: 100%; height: auto; display: block; margin: 0 auto;" role="img" aria-label="Enhanced AIDA funnel: five stacked tiers labeled Awareness, Consideration, Action, Loyalty, Advocacy. Top three are red-toned; bottom two are blue-toned to indicate the post-purchase phase.">
+      <polygon points="100,40 600,40 575,130 125,130" fill="#EAD0C3" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="93" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#2A2420">Awareness</text>
+
+      <polygon points="125,130 575,130 550,220 150,220" fill="#CC8774" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="183" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#ffffff">Consideration</text>
+
+      <polygon points="150,220 550,220 525,310 175,310" fill="#BC5A44" stroke="#BC5A44" stroke-width="2"/>
+      <text x="350" y="273" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#ffffff">Action</text>
+
+      <polygon points="175,310 525,310 500,400 200,400" fill="#6885A1" stroke="#4D7090" stroke-width="2"/>
+      <text x="350" y="363" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#ffffff">Loyalty</text>
+
+      <polygon points="200,400 500,400 475,490 225,490" fill="#4D7090" stroke="#4D7090" stroke-width="2"/>
+      <text x="350" y="453" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="24" font-weight="700" fill="#ffffff">Advocacy</text>
+    </svg>
+    <div class="figure-caption">Interest and Desire collapse into Consideration; two new stages handle post-purchase. Blue tones mark the post-purchase phase as visually distinct from the acquisition funnel.</div>
+  </div>
+
+  <p>The next significant addition was the recognition that the funnel doesn't end at purchase. A satisfied customer becomes a loyal customer, and a loyal customer can become an advocate &mdash; someone whose word-of-mouth pulls new prospects into the top of the funnel. This is where the "funnel" metaphor starts to break down, because the bottom of the funnel begins feeding the top of it. Modern frameworks either extend the funnel downward (the version above) or replace it with a loop (the version below).</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 1.6</div>
+    <div class="figure-title">The Consumer Decision Journey &mdash; McKinsey's Loyalty Loop</div>
+    <svg viewBox="0 0 700 540" xmlns="http://www.w3.org/2000/svg" style="max-width: 640px; width: 100%; height: auto; display: block; margin: 0 auto;" role="img" aria-label="McKinsey Consumer Decision Journey: a circular flow showing Initial Consideration, Active Evaluation, Moment of Purchase, and Postpurchase Experience, with a dashed inner Loyalty Loop arrow that skips back from Postpurchase directly to Moment of Purchase, bypassing Initial Consideration and Active Evaluation.">
+      <defs>
+        <marker id="arrowred" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#BC5A44"/>
+        </marker>
+        <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4D7090"/>
+        </marker>
+      </defs>
+
+      <!-- Outer journey arcs (clockwise) -->
+      <path d="M 415 95 A 180 180 0 0 1 525 285" fill="none" stroke="#BC5A44" stroke-width="2.5" marker-end="url(#arrowred)"/>
+      <path d="M 525 295 A 180 180 0 0 1 415 485" fill="none" stroke="#BC5A44" stroke-width="2.5" marker-end="url(#arrowred)"/>
+      <path d="M 285 485 A 180 180 0 0 1 175 295" fill="none" stroke="#BC5A44" stroke-width="2.5" marker-end="url(#arrowred)"/>
+      <path d="M 175 285 A 180 180 0 0 1 285 95" fill="none" stroke="#BC5A44" stroke-width="2.5" marker-end="url(#arrowred)"/>
+
+      <!-- Top: Initial Consideration -->
+      <rect x="250" y="30" width="200" height="65" fill="#f5f0e8" stroke="#BC5A44" stroke-width="2" rx="6"/>
+      <text x="350" y="58" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="700" fill="#2A2420">Initial Consideration</text>
+      <text x="350" y="80" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="12" fill="#4C4743">Brand set in mind</text>
+
+      <!-- Right: Active Evaluation -->
+      <rect x="495" y="255" width="195" height="65" fill="#f5f0e8" stroke="#BC5A44" stroke-width="2" rx="6"/>
+      <text x="592" y="283" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="700" fill="#2A2420">Active Evaluation</text>
+      <text x="592" y="305" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="12" fill="#4C4743">Research and compare</text>
+
+      <!-- Bottom: Moment of Purchase -->
+      <rect x="250" y="485" width="200" height="65" fill="#f5f0e8" stroke="#BC5A44" stroke-width="2" rx="6"/>
+      <text x="350" y="513" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="700" fill="#2A2420">Moment of Purchase</text>
+      <text x="350" y="535" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="12" fill="#4C4743">Decision point</text>
+
+      <!-- Left: Postpurchase Experience -->
+      <rect x="10" y="255" width="195" height="65" fill="#f5f0e8" stroke="#BC5A44" stroke-width="2" rx="6"/>
+      <text x="107" y="283" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="16" font-weight="700" fill="#2A2420">Postpurchase</text>
+      <text x="107" y="305" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="12" fill="#4C4743">Use, support, share</text>
+
+      <!-- Inner loyalty loop (curved arrow from Postpurchase to Moment of Purchase, bypassing right side) -->
+      <path d="M 205 320 Q 220 430 248 485" fill="none" stroke="#4D7090" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrowblue)"/>
+
+      <!-- Loyalty Loop label -->
+      <text x="135" y="395" font-family="'Playfair Display', Georgia, serif" font-size="15" font-weight="700" font-style="italic" fill="#4D7090">Loyalty</text>
+      <text x="145" y="415" font-family="'Playfair Display', Georgia, serif" font-size="15" font-weight="700" font-style="italic" fill="#4D7090">Loop</text>
+    </svg>
+    <div class="figure-caption">Based on Court, D., Elzinga, D., Mulder, S., &amp; Vetvik, O. J. (2009). <em>The Consumer Decision Journey</em>. McKinsey Quarterly, June 2009. <a href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-consumer-decision-journey" target="_blank" rel="noopener">Read the original</a>.</div>
+  </div>
+
+  <p>McKinsey's reframe replaces the linear funnel with a loop. The four stages are still recognizable &mdash; they map roughly onto Awareness, Consideration, Action, and Postpurchase &mdash; but the diagram emphasizes that the journey doesn't end at purchase. The <em>loyalty loop</em> is the central insight: customers who are happy with the product skip the early stages entirely on their next purchase. They don't return to "initial consideration." They go straight to "moment of purchase." For a brand with strong retention, this inner loop is where most of the long-term revenue comes from.</p>
+
+  <p>The pedagogical use of these older models isn't that any of them is the "right" one. It's that each version of the funnel highlights something the others don't. AIDA is sharpest about the cognitive work of advertising copy. The expanded version foregrounds post-purchase. McKinsey's loop refuses to pretend the journey ends at the cash register. The modern three-stage funnel (Figure 1.3 above) is the working consensus, but knowing the variants helps explain why different marketing texts use slightly different vocabulary for the same underlying idea.</p>
+
+  <h3>3.2 Funnel Coverage Is the Job</h3>
+
+  <p>The argumentative point that comes out of all of this, and the one worth carrying forward into the rest of this course: most marketing failures are not creative failures. They are funnel-coverage failures. A brand that runs only bottom-funnel tactics eventually starves, because nothing is filling the top of the funnel with new prospects. A brand that runs only top-funnel tactics generates awareness with no path to purchase, which is the Solo Stove problem we will examine later. The marketing manager's real job, when they are being honest about it, is to look at the funnel and ask: <em>where are we under-invested?</em> Not <em>which campaign won this week?</em> The first question is strategic. The second is theater.</p>
+
+  <p>One preview of where this leads. The research on long-run marketing effectiveness, summarized most influentially by Binet and Field at the Institute of Practitioners in Advertising, suggests that established brands should be investing roughly 60% of their marketing budget in upper-funnel brand-building and 40% in lower-funnel performance activation. The 60/40 principle is not a universal law &mdash; startups and luxury brands and seasonal businesses each have good reasons to deviate &mdash; but it is the closest thing to a default that modern marketing has. Section 7 goes into the 60/40 framework in depth.</p>
 
   <div class="takeaway">
     <div class="takeaway-label">Takeaway</div>
     <ul>
-      <li>Total U.S. ad + marketing spend in 2024: $551.9B (about $390B if you count only pure advertising).</li>
-      <li>Digital search is the single largest channel, larger than the next three combined.</li>
-      <li>Meta captured roughly 74% of all U.S. social media ad spend. The "competitive social market" is mostly a story.</li>
-      <li>Influencer marketing is real and growing, but at $8.1B is smaller than radio, smaller than direct mail, and about one-eighth the size of Meta's ad business.</li>
-      <li>Cultural attention and economic scale are decoupled. The channels people talk about most are not the channels brands spend the most on.</li>
+      <li>The modern funnel has three stages: ToFU (Awareness), MoFU (Consideration), BoFU (Action).</li>
+      <li>Earlier models &mdash; AIDA, the expanded loyalty/advocacy version, McKinsey's loyalty loop &mdash; each surface something the others miss. The modern three-stage version is the working consensus.</li>
+      <li>Different marketing tools do their best work at different stages. Coverage at every stage is the job.</li>
+      <li>Most marketing failures are not creative failures. They are funnel-coverage failures.</li>
+      <li>The 60/40 principle (60% brand-building, 40% performance) is the default starting point for established brands.</li>
     </ul>
   </div>
 </section>
@@ -592,9 +804,22 @@
   <div class="sec-label">Frequency &amp; Compounding</div>
   <h2>Repetition, Wearout, and the Amplifier Effect</h2>
 
+  <figure class="fig-float" style="--fig-w: 130px;">
+    <button type="button" class="fig-zoom"
+            data-lightbox-src="assets/images/assemblo.png"
+            data-lightbox-alt="Assemblo infographic titled Repetition Is Key: people need to see a message seven times before it sinks in. A winding path traces one person's day through seven numbered ad exposures, each time-stamped from 07:03 to 20:56."
+            aria-label="Enlarge the Assemblo Rule of Seven infographic">
+      <img src="assets/images/assemblo.png" alt="Assemblo infographic titled Repetition Is Key: people need to see a message seven times before it sinks in. A winding path traces one person's day through seven numbered ad exposures, each time-stamped from 07:03 to 20:56.">
+      <span class="fig-zoom-badge" aria-hidden="true">&#10530;</span>
+    </button>
+    <figcaption>The Rule of Seven, one day at a time. Click to enlarge. Source: <a href="https://assemblo.com/blog/repetition-is-key-why-frequency-makes-your-marketing-effective/" target="_blank" rel="noopener">Assemblo</a>.</figcaption>
+  </figure>
+
   <p>There's a piece of folk wisdom in advertising called the <strong>Rule of Seven</strong>, which says a consumer needs to see a message roughly seven times before it sinks in. Like most folk wisdom in marketing, the specific number is wrong, the underlying intuition is right, and the working version that practitioners actually use is more nuanced than either. The agency Assemblo published a widely-circulated visualization of the Rule of Seven that walks a consumer through a typical day's worth of exposures: a TV ad in the morning, a bus stop ad on the commute, a magazine ad at the coffee shop, an Instagram ad on the phone, a billboard during the afternoon, a radio spot in the car, a TV ad at night. Seven touches across one day, across formats and contexts, before the message has had enough exposures to take hold.</p>
 
   <p>You can see the full graphic at <a href="https://assemblo.com/blog/repetition-is-key-why-frequency-makes-your-marketing-effective/" target="_blank" rel="noopener">assemblo.com</a>. Meta's internal research, working with newer behavioral data, suggests the number on Instagram and Facebook is closer to thirteen exposures before consumer action against an ad spikes. Different channels and different purchase categories produce different numbers. What stays constant across all the research is that <em>one exposure almost never works</em>, and that this fact has shaped the entire economic model of advertising for a hundred years.</p>
+
+<div class="fig-float-clear"></div>
 
   <h3>6.1 Why One Exposure Doesn't Work</h3>
 
@@ -745,6 +970,95 @@
       <li>The right question isn't "brand or performance?" It's "what does this business currently need most?"</li>
     </ul>
   </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 8 - MONEY
+     ============================================================ -->
+<section class="section" id="money">
+  <div class="sec-num">08</div>
+  <div class="sec-label">2024 Ad Spend</div>
+  <h2>Where the Money Actually Goes</h2>
+
+  <p>A simple question sits underneath every planning decision in this unit, and pop culture consistently gets it wrong: where does marketing money actually go?</p>
+
+  <p>The $390 billion advertising figure is the standard number for pure advertising. The broader category &mdash; ad plus marketing including events, sponsorships, direct mail, shopper marketing, and other below-the-line activity &mdash; came to <strong>$551.9 billion</strong> in 2024 in the United States alone. Either way the scale is large enough to be hard to internalize. What matters here is not the headline number but the breakdown, because the breakdown contradicts almost everything the public conversation about marketing tells you.</p>
+
+  <p>Four charts. Four reality checks. Each one is included because each one corrects a specific piece of pop-culture marketing wisdom. We will return to this material in more depth later in the course when we get to media planning. For now, the goal is to make sure you are looking at the same map the people actually allocating budgets are looking at.</p>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.12 · Total Spend by Channel, 2024</div>
+      <div class="chart-sub">$551.9B total ad &amp; marketing spend, U.S.</div>
+      <div class="chart-container"><canvas id="totalChart"></canvas></div>
+      <div class="chart-legend" id="totalLegend"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.13 · Digital vs. Traditional Split, 2024</div>
+      <div class="chart-sub">65.4% digital · 34.6% traditional</div>
+      <div class="chart-container"><canvas id="splitChart"></canvas></div>
+      <div class="chart-legend" id="splitLegend"></div>
+    </div>
+  </div>
+
+  <p>The single largest line in U.S. marketing is digital search — Google and Bing ads, mostly — at $123.6 billion, which is bigger than the next three channels combined. The "TikTok is everything" position is contradicted on the first chart of the breakdown. TikTok is a real channel, but it lives inside social media, which itself is the second-largest category overall, not the first.</p>
+
+  <p>Digital has clearly won the aggregate fight. Roughly 65 cents of every advertising dollar in 2024 went to a digital channel, and that share grows a little more every year. But traditional did not disappear. Linear TV alone is still nearly $59 billion. Direct mail remains a $37.5 billion industry. Radio is $10.9 billion. The honest framing is that digital won in volume while specific traditional channels remain disproportionately effective for specific purposes, which is why sophisticated marketers still use them.</p>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.14 · Social Media Spend by Platform</div>
+      <div class="chart-sub">~$82.7B platform spend · Meta dominates</div>
+      <div class="chart-container"><canvas id="socialChart"></canvas></div>
+      <div class="chart-legend" id="socialLegend"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Figure 1.15 · Where Influencer Dollars Go</div>
+      <div class="chart-sub">$8.1B influencer marketing · +23.7% YoY</div>
+      <div class="chart-container"><canvas id="influencerChart"></canvas></div>
+      <div class="chart-legend" id="influencerLegend"></div>
+    </div>
+  </div>
+
+  <p>The social media ad market looks competitive from outside and consolidated from inside. Meta — Facebook and Instagram combined — captured $64.6 billion, roughly 74% of all U.S. social media advertising in 2024. TikTok, despite the cultural noise around it, sits at $8.7 billion. The platforms that get the most conversation are not the platforms that get the most budget, and the gap between them is enormous.</p>
+
+  <p>Influencer marketing is real and growing fast — about 24% year over year — but the total is $8.1 billion. That is roughly 10% of what Meta alone collected in platform advertising, and meaningfully less than what U.S. companies spent on radio. Meta's ad business is about eight times the size of all U.S. influencer marketing combined. The public conversation about influencers dramatically overstates their share of actual marketing budgets, and the assumption that brands are "moving all their money to influencers" is contradicted by every serious data source.</p>
+
+  <h3>8.1 What This Map Actually Tells You</h3>
+
+  <p>A few patterns worth carrying forward.</p>
+
+  <p>First, the channels people talk about most are not the channels brands spend the most on. Cultural attention and economic scale are almost completely decoupled. TikTok dominates conversation; search dominates spend. Influencers dominate LinkedIn thought leadership; direct mail dominates actual budgets in many B2B categories.</p>
+
+  <p>Second, "digital vs. traditional" is the wrong framing. Within digital, search behaves nothing like social, which behaves nothing like CTV, which behaves nothing like programmatic display. Within traditional, linear TV behaves nothing like direct mail, which behaves nothing like out-of-home. The interesting tradeoffs are inside each category, not between the two big categories.</p>
+
+  <p>Third, none of these allocations are necessarily <em>correct</em>. They are what U.S. marketers actually spent. Some of that spending was strategic. Some of it was inertia. Some of it was vendor capture, where a brand keeps buying a channel because they've always bought it and switching feels risky. Just because $123 billion went to search doesn't mean that was the right $123 billion. Part of what you'll learn in this course is how to look at allocations like these and ask the harder question: <em>was the spend actually advancing the brand's strategic goals, or was it just easier to defend?</em></p>
+
+  <p>We will return to this breakdown in real depth later in the course in the section on media planning. For now, when you see someone confidently claim that marketing has moved entirely to social, or that nobody does TV anymore, or that influencer marketing has displaced advertising, you have the numbers to push back.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Total U.S. ad + marketing spend in 2024: $551.9B (about $390B if you count only pure advertising).</li>
+      <li>Digital search is the single largest channel, larger than the next three combined.</li>
+      <li>Meta captured roughly 74% of all U.S. social media ad spend. The "competitive social market" is mostly a story.</li>
+      <li>Influencer marketing is real and growing, but at $8.1B is smaller than radio, smaller than direct mail, and about one-eighth the size of Meta's ad business.</li>
+      <li>Cultural attention and economic scale are decoupled. The channels people talk about most are not the channels brands spend the most on.</li>
+    </ul>
+  </div>
+
+  <h3>Data Sources</h3>
+
+  <p>The four charts above draw from industry data sources for 2024 U.S. ad and marketing spend. Underlying sources and methodology notes for each figure:</p>
+
+  <p><strong>Figure 1.12 &middot; Total Spend by Channel.</strong> Winterberry Group <em>2024 Annual Marketing &amp; Advertising Spend Outlook</em>; eMarketer <em>US Ad Spending 2024</em> (via Statista). Digital video excludes CTV. Events includes trade shows and experiential/sponsorship. "Other digital" includes audio, influencer, email/SMS, mobile gaming, and affiliate/lead gen.</p>
+
+  <p><strong>Figure 1.13 &middot; Digital vs. Traditional Split.</strong> Derived from the same Winterberry / eMarketer dataset. Digital total ($357B) sums digital search, social media, digital display, digital video, CTV/streaming, and other digital. Traditional total ($191B) sums linear TV, events &amp; sponsorships, direct mail, shopper marketing, OOH, print, and radio.</p>
+
+  <p><strong>Figure 1.14 &middot; Social Media Spend by Platform.</strong> eMarketer <em>US Social Network Ad Spending 2024</em>; WARC Media Platform Insights (Meta US $64.6B = Facebook + Instagram); Omdia / Variety (TikTok US $8B). Influencer marketing ($8.1B) is included here as a comparison point even though it isn't a single platform's ad revenue.</p>
+
+  <p><strong>Figure 1.15 &middot; Where Influencer Dollars Go.</strong> eMarketer <em>"State of Influencer-Brand Deals 2024"</em> ($8.14B total). YouTube is classified under digital video in the total-spend chart but is included here as a top influencer-marketing platform.</p>
 </section>
 
 
@@ -906,7 +1220,7 @@
 <script src="assets/nike-strip.js"></script>
 
 <!-- ============================================================
-     CHART DATA + RENDERING (Section 3 pie charts)
+     CHART DATA + RENDERING (Section 8 pie charts)
      ============================================================ -->
 <script>
 const totalData = {
@@ -984,6 +1298,58 @@ buildChart('splitChart', splitData, 'splitLegend');
 buildChart('socialChart', socialData, 'socialLegend');
 buildChart('influencerChart', influencerData, 'influencerLegend');
 </script>
+
+<script>
+/* Lightbox for [data-lightbox-src] triggers */
+(function () {
+  var overlay = document.getElementById('lbOverlay');
+  if (!overlay) return;
+  var img = overlay.querySelector('img');
+  var closeBtn = overlay.querySelector('.lb-close');
+  var lastTrigger = null;
+
+  function open(src, alt, trigger) {
+    lastTrigger = trigger || null;
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lb-locked');
+    overlay.scrollTop = 0;
+    closeBtn.focus();
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lb-locked');
+    img.src = '';
+    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+  }
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-lightbox-src]');
+    if (trigger) {
+      e.preventDefault();
+      open(trigger.getAttribute('data-lightbox-src'),
+           trigger.getAttribute('data-lightbox-alt'),
+           trigger);
+      return;
+    }
+    if (e.target === overlay || e.target === img || e.target === closeBtn) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+  });
+})();
+</script>
+
+<div class="lb-overlay" id="lbOverlay" role="dialog" aria-modal="true" aria-label="Enlarged image" aria-hidden="true">
+  <button type="button" class="lb-close" aria-label="Close">&times;</button>
+  <img src="" alt="">
+  <div class="lb-hint">Click anywhere or press Esc to close</div>
+</div>
 
 </body>
 </html>

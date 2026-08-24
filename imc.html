@@ -84,11 +84,74 @@
 
   <p>Television does things that email cannot. Email does things that out-of-home cannot. A TikTok influencer does things that a CFO presenting at an investor day cannot. The IMC manager's job is to make sure all of those executions are reinforcing the same strategic story, not to make sure they all sound the same.</p>
 
-  <!-- Nike worked-example callout (replaces the original dark sidebar) -->
-  <div class="callout">
-    <div class="callout-label">Worked Example</div>
-    <p><a href="nike-same-soul.html"><strong>Nike: Same Soul, Different Words &rarr;</strong></a></p>
-    <p>The textbook case of band-not-parrot done right. Eighteen Nike campaigns from 1977 to today, a brand voice that varies its slogans while staying unmistakably itself, plus a 34-image strip view of the campaign visuals.</p>
+  <!-- Nike Sidebar -->
+  <div class="sidebar-card">
+    <h3>Same Soul, Different Words</h3>
+    <div class="sidebar-card-sub">Nike, the brand that never repeats itself but always says the same thing</div>
+
+    <p>The textbook example of band-not-parrot done right is Nike, which is interesting because most people assume the opposite. The popular read is that Nike is locked into <em>"Just Do It"</em> and repeats it endlessly. The actual practice is more sophisticated. Nike is consistent at the level of <strong>idea</strong>. It is highly adaptable at the level of <strong>execution</strong>.</p>
+
+    <p>Over the past twenty years, Nike has repeatedly stepped away from the literal <em>"Just Do It"</em> phrase while still reinforcing the same underlying meaning: effort, identity, and pushing limits. Many of the brand's most recognized campaigns operate under headlines that don't prominently feature the original tagline at all:</p>
+
+    <ul>
+      <li><strong>Find Your Greatness</strong> (2012)</li>
+      <li><strong>Dream Crazy</strong> (2018, the Kaepernick campaign)</li>
+      <li><strong>You Can't Stop Us</strong> (2020)</li>
+      <li><strong>Play New</strong> (2021)</li>
+      <li><strong>Better For It</strong> (women-focused, 2015)</li>
+      <li><strong>Why Do It?</strong> (a more recent reframe aimed at younger audiences)</li>
+    </ul>
+
+    <p>Each of these is a different headline, a different tone, and a different story angle. None of them sounds like the others. All of them are unmistakably Nike. The brand is not coordinating around a repeated tagline. It is coordinating around a shared emotional and cultural space. Athletes, stories, and cultural moments carry the message, which means a long-form film, a social post, and a retail activation can all reinforce the same idea without any of them sounding alike.</p>
+
+    <p>This flexibility gives Nike a structural advantage in digital and social environments. By varying headlines and angles across campaigns, the brand effectively A/B tests at scale. Performance data shapes which messages get amplified, refined, or retired, rather than broadcasting one line across every touch point. A campaign built to run two months in traditional media can run alongside social executions where something new trends every few days. On social, surprise and delight fade fast. Post the same idea for a week and it's already stale. Repetition simply functions differently online than off. Nike has understood this for at least a decade. Many of its competitors are still figuring it out.</p>
+
+    <p>What Nike does is considerably harder than it looks. Maintaining a consistent core idea — the belief in effort, identity, and human potential — while allowing the wording and visuals to shift across campaigns requires real discipline. It is too easy for less focused brands to scatter, chasing likes or trending formats. It is too easy for individual teams to push in their own creative directions without anchoring back to the central idea. Brand cohesion is not a natural state. It is something that has to be actively protected.</p>
+
+    <p>The takeaway: Nike doesn't succeed by rigidly repeating <em>"Just Do It."</em> It succeeds by anchoring everything in a central idea strong enough to evolve, varied enough in execution that audiences never tune it out. The phrase may change. The feeling never does.</p>
+
+    <div class="sidebar-card-tag">Don't chase. Anchor.</div>
+
+    <div class="sidebar-sub-heading">Even More Nike Slogans and Themes Beyond <em>"Just Do It"</em></div>
+
+    <div class="campaign-list">
+      <p>
+        <strong>There Is No Finish Line</strong> (1977, their first major brand slogan, focused on perpetual athletic pursuit),
+        <strong>Just Do It</strong> (1988&ndash;present, debuted in a TV spot with 80-year-old marathoner Walt Stack and created by Wieden+Kennedy),
+        <strong>Bo Knows</strong> (1989, the Bo Jackson cross-training campaign with Bo Diddley),
+        <strong>If You Let Me Play</strong> (1995, women's empowerment campaign tying sports participation to statistical benefits for girls),
+        <strong>I Can</strong> (1990s, a short-lived attempt to replace Just Do It that was eventually abandoned),
+        <strong>Tag</strong> (2002, the chase-through-the-city spot that won the Cannes Grand Prix),
+        <strong>My Better Is Better Than Your Better</strong> (2008, training-focused campaign aimed at the Under Armour rivalry during the Beijing Olympics),
+        <strong>Write the Future</strong> (2010, World Cup campaign directed by Alejandro Gonz&aacute;lez I&ntilde;&aacute;rritu starring Ronaldo, Rooney, and Federer),
+        <strong>Play With Heart</strong> (early 2010s, team-sports campaign promoting grit and grassroots athletes),
+        <strong>Find Your Greatness</strong> (2012, London Olympics campaign focused on everyday athletes after Nike lost official sponsorship to Adidas),
+        <strong>Better For It</strong> (2015, women-focused campaign on the inner monologue of working out),
+        <strong>Equality</strong> (2017&ndash;2018, racial and gender equity campaign featuring LeBron James and Megan Rapinoe),
+        <strong>Dream Crazy</strong> (2018, the Colin Kaepernick campaign built on <em>"Believe in something, even if it means sacrificing everything,"</em> which sparked both protests and praise and won an Emmy),
+        <strong>Dream Crazier</strong> (2019, follow-up narrated by Serena Williams celebrating female athletes who challenged stereotypes and shattered records),
+        <strong>You Can't Stop Us</strong> (2020, split-screen pandemic-era spot about resilience across sports),
+        <strong>Play New</strong> (2021, campaign encouraging trying new sports without the pressure to be good),
+        <strong>So Win</strong> (2024&ndash;2025, Super Bowl return narrated by Doechii built around female athletes including Caitlin Clark),
+        <strong>Why Do It?</strong> (2025, reframe of Just Do It aimed at younger audiences afraid of failure).
+      </p>
+    </div>
+  </div>
+
+  <!-- Nike Campaign Strip — visual punctuation after the sidebar argument -->
+  <div class="nike-strip-wrap">
+    <p class="nike-strip-hint">Auto-advancing slideshow of all 34 Nike campaign images. Hover to pause, click any image to enlarge, or use the arrows to step through manually.</p>
+
+    <div class="strip-container">
+      <div class="strip-track" id="track"></div>
+      <button class="strip-arrow prev" id="stripPrev" aria-label="Previous image">&lsaquo;</button>
+      <button class="strip-arrow next" id="stripNext" aria-label="Next image">&rsaquo;</button>
+    </div>
+
+    <div class="strip-controls">
+      <div>34 images &middot; auto-advances every <span id="speedLabel">2.0s</span></div>
+      <button id="pauseBtn">Pause</button>
+    </div>
   </div>
 </section>
 
@@ -128,6 +191,15 @@
   </div>
 </section>
 
+<nav class="unit-nav">
+  <a href="peso.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">02 &middot; PESO</span>
+    <span class="unit-nav-tease">Paid, earned, shared, owned. The four kinds of exposure and why channel monoculture is amateur hour.</span>
+  </a>
+</nav>
+
+
 <section class="section" id="more-views">
   <h2>More Views</h2>
 
@@ -160,6 +232,16 @@
 
 </main>
 
+<!-- Lightbox — appears when an image in the strip is clicked -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="nav prev" id="lbPrev" aria-label="Previous">&lsaquo;</button>
+  <button class="nav next" id="lbNext" aria-label="Next">&rsaquo;</button>
+  <img id="lbImg" src="" alt="">
+  <div class="meta" id="lbMeta"></div>
+</div>
+
+
 <footer class="footer">
   <div class="footer-inner">
     <div>&copy; 2026 Curtis B. Matthews</div>
@@ -169,6 +251,7 @@
 
 <script src="assets/nav.js"></script>
 <script src="assets/scrollspy.js"></script>
+<script src="assets/nike-strip.js"></script>
 
 </body>
 </html>
