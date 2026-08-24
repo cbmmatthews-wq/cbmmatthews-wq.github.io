@@ -1,7 +1,7 @@
 // =============================================================================
 // nav.js — top navigation + back-to-top button, defined once,
 //          rendered on every page automatically.
-// To add a note: add to the M544 Notes dropdown.
+// To add a unit: add to the Class Units dropdown.
 // To add a Core / Project Context / Creativity / Social item: add to the
 // relevant column in the Resources mega menu.
 // To add a Quick Hit or Example: add to the relevant column in the
@@ -17,7 +17,7 @@ const navConfig = {
   items: [
     { label: 'Home', href: 'index.html' },
     {
-      label: 'M544 Notes',
+      label: 'Class Units',
       dropdown: [
         { label: 'Intro: A Course Built Against the Current', href: 'intro.html' },
         { label: 'Unit 1 — IMC',                href: 'unit-1-imc.html' },
