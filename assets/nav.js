@@ -58,17 +58,8 @@ const navConfig = {
             { label: '11 Judging Creative',   href: 'creative-11-judging.html' }
           ]
         },
-        {
-          // Non-clickable parent. Hovering it reveals the flyout below.
-          label: 'Unit 6 — Rethinking Social',
-          submenu: [
-            { label: '1 The State of Social',   href: 'social-1-state.html' },
-            { label: '2 Organic / Owned',       href: 'social-2-organic.html' },
-            { label: '3 Paid Social',           href: 'social-3-paid.html' },
-            { label: '4 Doing It Better',       href: 'social-4-doing-better.html' },
-            { label: '5 IMC Callbacks',         href: 'social-5-imc-callbacks.html' }
-          ]
-        }
+        // Unit 6 is being rebuilt; greyed out and non-clickable for now.
+        { label: 'Unit 6 — Coming soon', href: '#', disabled: true }
         // Add more units here as they're built
       ]
     },
@@ -119,16 +110,6 @@ const navConfig = {
               { label: '10 AI in Creative',     href: 'creative-10-ai.html' },
               { label: '11 Judging Creative',   href: 'creative-11-judging.html' }
             ]
-          },
-          {
-            title: 'Social',
-            items: [
-              { label: '1 The State of Social', href: 'social-1-state.html' },
-              { label: '2 Organic / Owned',     href: 'social-2-organic.html' },
-              { label: '3 Paid Social',         href: 'social-3-paid.html' },
-              { label: '4 Doing It Better',     href: 'social-4-doing-better.html' },
-              { label: '5 IMC Callbacks',       href: 'social-5-imc-callbacks.html' }
-            ]
           }
         ]
       }
@@ -143,8 +124,6 @@ const navConfig = {
               { label: 'Does Advertising Raise Prices?', href: 'advertising-and-prices.html' },
               { label: 'Cause Marketing',                href: 'cause-marketing.html' },
               { label: 'Zone of Indifference',           href: 'zone-of-indifference.html' },
-              { label: 'UGC',                            href: 'ugc.html' },
-              { label: 'Influencers',                    href: 'influencers.html' },
               { label: 'V8+Energy Personas',             href: 'v8-personas.html' }
             ]
           },
@@ -225,9 +204,12 @@ const navConfig = {
           </li>`;
         }
 
-        const cls = sub.disabled ? 'disabled' : '';
+        // Disabled items render greyed out and don't navigate anywhere.
+        if (sub.disabled) {
+          return `<li><a href="#" class="disabled" onclick="return false;" aria-disabled="true" style="opacity:0.45;cursor:default;pointer-events:none;">${sub.label}</a></li>`;
+        }
         const isHere = sub.href.toLowerCase() === here ? activeStyle : '';
-        return `<li><a href="${sub.href}" class="${cls}"${isHere}>${sub.label}</a></li>`;
+        return `<li><a href="${sub.href}"${isHere}>${sub.label}</a></li>`;
       }).join('');
 
       return `<li class="topnav-item">
