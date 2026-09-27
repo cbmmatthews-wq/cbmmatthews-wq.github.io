@@ -90,6 +90,7 @@ const navConfig = {
               { label: '04 · Distribution',           href: 'context-4-distribution.html' },
               { label: '05 · Marketing Spend',        href: 'context-5-spend.html' },
               { label: '06 · Promotions',             href: 'context-6-promotions.html' },
+              { label: '07 · Competition',            href: 'context-7-competition.html' },
               { label: 'Tool A · Segment',            href: 'context-tool-a-segment.html' },
               { label: 'Tool B · Evidence',           href: 'context-tool-b-evidence.html' }
             ]
