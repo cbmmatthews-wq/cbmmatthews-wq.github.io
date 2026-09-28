@@ -58,8 +58,17 @@ const navConfig = {
             { label: '11 Judging Creative',   href: 'creative-11-judging.html' }
           ]
         },
-        // Unit 6 is being rebuilt; greyed out and non-clickable for now.
-        { label: 'Unit 6 — Coming soon', href: '#', disabled: true }
+        {
+          // Non-clickable parent. Hovering it reveals the flyout below.
+          label: 'Unit 6 — Social Media',
+          submenu: [
+            { label: '1 The State of Social',   href: 'social-1-state.html' },
+            { label: '2 Organic / Owned',       href: 'social-2-organic.html' },
+            { label: '3 Paid Social',           href: 'social-3-paid.html' },
+            { label: '4 Doing It Better',       href: 'social-4-doing-better.html' },
+            { label: '5 IMC, PESO & Callbacks', href: 'social-5-imc-callbacks.html' }
+          ]
+        }
         // Add more units here as they're built
       ]
     },
@@ -110,6 +119,28 @@ const navConfig = {
               { label: '9 Performance',         href: 'creative-9-performance.html' },
               { label: '10 AI in Creative',     href: 'creative-10-ai.html' },
               { label: '11 Judging Creative',   href: 'creative-11-judging.html' }
+            ]
+          },
+          {
+            title: 'Social',
+            items: [
+              { label: '1 The State of Social',   href: 'social-1-state.html' },
+              { label: '2 Organic / Owned',       href: 'social-2-organic.html' },
+              { label: '3 Paid Social',           href: 'social-3-paid.html' },
+              { label: '4 Doing It Better',       href: 'social-4-doing-better.html' },
+              { label: '5 IMC, PESO & Callbacks', href: 'social-5-imc-callbacks.html' },
+              { separator: true },
+              // Companion readings — held back pending revision. Muted (grey
+              // italic) and non-clickable; drop `disabled: true` to publish.
+              { label: 'Influencers',       href: 'influencers.html',  muted: true, disabled: true },
+              { label: 'UGC',               href: 'ugc.html',          muted: true, disabled: true },
+              { separator: true },
+              // Working guides. Not built yet: muted + disabled so they show
+              // in the menu without sending anyone to a 404. Remove
+              // `disabled: true` on each as its page goes live.
+              { label: 'Content Pillars',   href: 'content-pillars.html',    muted: true, disabled: true },
+              { label: 'Hooks & CTAs',      href: 'hooks-and-ctas.html',     muted: true, disabled: true },
+              { label: 'Social Media Audit', href: 'social-media-audit.html', muted: true, disabled: true }
             ]
           }
         ]
@@ -170,8 +201,21 @@ const navConfig = {
           ? '<div class="topnav-megamenu-empty">Coming soon</div>'
           : `<ul class="topnav-megamenu-list">${
               col.items.map(sub => {
-                const isHere = sub.href.toLowerCase() === here ? activeStyle : '';
-                return `<li><a href="${sub.href}"${isHere}>${sub.label}</a></li>`;
+                // A horizontal rule between groups of items.
+                if (sub.separator) {
+                  return '<li aria-hidden="true" style="border-top:1px solid var(--rule);margin:7px 0 6px;"></li>';
+                }
+                // Muted items render grey and italic (companion readings).
+                const mutedStyle = sub.muted ? 'font-style:italic;color:var(--muted);' : '';
+                // Not-yet-built items render muted and don't navigate.
+                if (sub.disabled) {
+                  return `<li><a href="#" class="disabled" onclick="return false;" aria-disabled="true" style="${mutedStyle}opacity:0.6;cursor:default;pointer-events:none;">${sub.label}</a></li>`;
+                }
+                const isHere = sub.href.toLowerCase() === here;
+                const style = isHere
+                  ? ` style="${mutedStyle}color:var(--red);"`
+                  : (mutedStyle ? ` style="${mutedStyle}"` : '');
+                return `<li><a href="${sub.href}"${style}>${sub.label}</a></li>`;
               }).join('')
             }</ul>`;
         return `<div class="topnav-megamenu-col">
