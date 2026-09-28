@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>#3 — Paid Social: Just Run Ads, Right? — cbmatthe</title>
-<meta name="description" content="If organic is broken and we should just buy ads, why is that complicated too? CPMs up 20% YoY across every industry, iOS 14.5–26 broke attribution, AI broad-targeting replaced precise targeting, and 36% of new CTV ad spend was reallocated from social budgets in 2025. The fallback theory needs the same examination organic just got.">
+<meta name="description" content="If organic is broken and we should just buy ads, why is that complicated too? CPMs up 20% YoY across every industry, iOS 14.5–26 broke attribution, AI broad-targeting replaced precise targeting, and 36% of advertisers raising CTV budgets pulled some of it from social. The fallback theory needs the same examination organic just got.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <style>
@@ -25,69 +25,33 @@
 
   /* CTV reallocation donut chart — pure CSS, three slices on a conic gradient.
      Used in §07 to show where 2025's new CTV ad dollars came from. */
-  .donut-wrap {
+  @media (max-width: 640px) {
+  }
+
+  /* Funding-source bars — overlapping shares, not a pie */
+  .funding-bars { margin: 20px 0 8px; }
+  .fb-row {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 28px;
+    grid-template-columns: 120px 1fr 48px;
+    gap: 12px;
     align-items: center;
-    margin: 22px 0 18px;
-    max-width: 820px;
-    background: var(--white);
-    padding: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 5px 0;
   }
-  .donut {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: conic-gradient(
-      var(--red) 0deg 130deg,
-      var(--blue) 130deg 260deg,
-      var(--ink) 260deg 360deg
-    );
-    position: relative;
-    margin: 0 auto;
-  }
-  .donut::after {
-    content: '';
-    position: absolute;
-    inset: 22%;
-    background: var(--white);
-    border-radius: 50%;
-  }
-  .donut-legend { font-size: 13.5px; line-height: 1.55; }
-  .donut-legend .leg-row {
-    display: grid;
-    grid-template-columns: 16px 1fr 50px;
-    gap: 10px;
-    align-items: center;
-    padding: 6px 0;
-    border-bottom: 1px dotted var(--rule);
-  }
-  .donut-legend .leg-row:last-of-type { border-bottom: none; }
-  .donut-legend .leg-swatch {
-    width: 14px;
-    height: 14px;
-    border-radius: 2px;
-  }
-  .donut-legend .leg-swatch.red { background: var(--red); }
-  .donut-legend .leg-swatch.blue { background: var(--blue); }
-  .donut-legend .leg-swatch.ink { background: var(--ink); }
-  .donut-legend .leg-label {
-    font-family: var(--sans);
-    color: var(--ink);
-  }
-  .donut-legend .leg-label strong { display: block; font-weight: 700; }
-  .donut-legend .leg-label span { color: var(--muted); font-size: 12px; }
-  .donut-legend .leg-pct {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--ink);
-    text-align: right;
+  .fb-label { font-size: 13.5px; color: var(--ink); }
+  .fb-track { background: var(--cream-deep, #eee); height: 16px; }
+  .fb-bar { background: var(--blue); height: 100%; }
+  .fb-bar.red { background: var(--red); }
+  .fb-val { font-family: var(--serif); font-weight: 700; font-size: 15px; text-align: right; color: var(--ink); }
+  .fb-note {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
   }
   @media (max-width: 640px) {
-    .donut-wrap { grid-template-columns: 1fr; gap: 18px; }
+    .fb-row { grid-template-columns: 92px 1fr 42px; gap: 8px; }
   }
 
   /* References list */
@@ -149,7 +113,7 @@
 
   <p>Part 2 made the case that organic social media isn&rsquo;t broken &mdash; it&rsquo;s narrower. It does research, customer service, community, voice, and listening, but it doesn&rsquo;t do mass reach anymore, and treating it as a reach channel is what produces most of the program failures the unit has been cataloging. The natural follow-up question, the one the hypothetical CFO at the table is now asking, is straightforward: <em>OK, so we can&rsquo;t expect organic to drive growth. Fine. Let&rsquo;s just put the budget into paid social instead. We&rsquo;ll buy the impressions, target the people we want, get the clicks. That&rsquo;s what paid social is for. Easy.</em> That fallback has the same shape as the &ldquo;just throw it on social&rdquo; and &ldquo;just post consistently&rdquo; arguments the first two pieces dismantled. It&rsquo;s reasonable on its face. It also describes a paid-social ecosystem that has changed substantially since most CFOs formed their working theory of how it works.</p>
 
-  <p>The first is cost. <strong>Meta CPMs increased roughly 20% year-over-year in 2025, every industry, no exceptions</strong> <a href="#ref-triplewhale-2026" class="cite">(Triple Whale, 2026)</a>. Some industries took 30&ndash;38% increases. The auctions are bid up; the cost to reach a thousand humans on Meta&rsquo;s platforms is roughly double what it was four years ago and rising. The second is measurement. <strong>iOS 14.5 in April 2021 collapsed the tracking infrastructure that paid social ran on</strong>; subsequent Apple updates (iOS 17 in 2024, iOS 26 in 2025) tightened the screws further. Roughly 75% of iOS users opted out of cross-app tracking, and Meta&rsquo;s ability to attribute conversions to specific ads dropped 30&ndash;40% almost immediately <a href="#ref-leoads-2026" class="cite">(LeoAds, 2026)</a>. The third is competition for the budget. <strong>In 2025, 36% of new Connected TV ad spend came from reallocated social budgets</strong> <a href="#ref-iab-2025" class="cite">(IAB, 2025)</a>. A meaningful share of growth budgets is already moving from social to streaming.</p>
+  <p>The first is cost. <strong>Meta CPMs increased roughly 20% year-over-year in 2025, every industry, no exceptions</strong> <a href="#ref-triplewhale-2026" class="cite">(Triple Whale, 2026)</a>. Some industries took 30&ndash;38% increases. The auctions are bid up; the cost to reach a thousand humans on Meta&rsquo;s platforms is roughly double what it was four years ago and rising. The second is measurement. <strong>iOS 14.5 in April 2021 collapsed the tracking infrastructure that paid social ran on</strong>; subsequent Apple updates (iOS 17 in 2023, iOS 26 in 2025) tightened the screws further. Roughly 75% of iOS users opted out of cross-app tracking, and Meta&rsquo;s ability to attribute conversions to specific ads dropped 30&ndash;40% almost immediately <a href="#ref-leoads-2026" class="cite">(LeoAds, 2026)</a>. The third is competition for the budget. <strong>In 2025, 36% of new Connected TV ad spend came from reallocated social budgets</strong> <a href="#ref-iab-2025" class="cite">(IAB, 2025)</a>. A meaningful share of growth budgets is already moving from social to streaming.</p>
 
   <p>None of this means paid social is broken in the way organic-as-reach-channel is broken. Paid social still works. The honest case for what it&rsquo;s actually good at in 2026 sits at the end of this piece. But the path between &ldquo;just run ads&rdquo; and producing reliable returns is more complicated, more expensive, and requires more skill than it did when most marketing teams learned how to do it. The rest of this piece is the specifics.</p>
 
@@ -169,7 +133,7 @@
   <div class="sec-label">The Cost Mechanics</div>
   <h2>CPM, CPC, CPA: Three Numbers Measuring Different Things</h2>
 
-  <p>The single most common rookie misallocation in paid social is confusing the three cost metrics, which measure three completely different things and apply to three completely different campaign objectives. The whole rest of the piece depends on these definitions being clean, so they go first.</p>
+  <p>The single most common rookie misallocation in paid social is confusing the three cost metrics, which measure three completely different things and belong to different jobs. <strong>CPM &mdash; cost per thousand impressions &mdash; is the awareness metric.</strong> You buy it when the goal is for people to see something, which puts it at the top of the funnel alongside reach, video views, and brand lift. <strong>CPC and CPA &mdash; cost per click and cost per acquisition &mdash; are the performance metrics</strong>, bought when the goal is an action, which puts them at the bottom of the funnel alongside leads, sign-ups, and purchases. The funnel language from your IMC coursework maps onto the billing model directly: <em>ToFu buys impressions, BoFu buys outcomes.</em> The mistake is grading one against the other&rsquo;s scorecard.</p>
 
   <div class="stat-grid">
     <div class="stat-card">
@@ -297,7 +261,7 @@
   <div class="sec-label">The Counterintuitive Bit, Continued</div>
   <h2>Why Paid Beats Organic on Conversion, Even Though Paid Reaches Strangers</h2>
 
-  <p><a href="social-2-organic.html#paradox">Part 2 &sect;03</a> previewed the finding that catches most undergrads off guard: <em>paid social converts at higher rates than organic social, even though organic reaches your existing followers</em> &mdash; people who chose to follow you, who are by definition warmer to your brand than strangers. The result feels backwards. It isn&rsquo;t. The mechanics are worth unpacking in full because they&rsquo;re also what makes paid social actually work in 2026.</p>
+  <p><a href="social-2-organic.html#paradox">Part 2 &sect;03</a> introduced the finding that catches most undergrads off guard: <em>paid social converts at higher rates than organic, even though organic reaches the people who chose to follow the brand.</em> Part 2 establishes why. This section covers the mechanics, because they are also what makes paid social work at all in 2026.</p>
 
   <h3>Brand familiarity is not the same thing as purchase intent</h3>
 
@@ -307,7 +271,7 @@
 
   <p>What paid social actually optimizes for &mdash; in the Advantage+ era especially, more on which below &mdash; is behavioral signal that indicates <em>in-market intent</em>. People who&rsquo;ve been visiting product pages in the category. People who&rsquo;ve abandoned a cart on a competitor&rsquo;s site. People who match the behavioral profile of recent converters via lookalike modeling. These audiences may have lower brand familiarity with the advertiser specifically. They have substantially higher current intent to buy <em>something in the category</em>.</p>
 
-  <p>Per impression, intent beats familiarity for short-window conversion. Every time. The reason organic looks &ldquo;warmer&rdquo; in a casual analysis &mdash; the audience knows your brand &mdash; is the same reason it converts worse: knowing your brand and being in-market for what you sell are two different things, and the second is what closes a sale this week.</p>
+  <p>Per impression, intent generally beats familiarity for short-window conversion. Organic looks &ldquo;warmer&rdquo; on paper and colder at the checkout, because warmth and readiness-to-buy are different properties, and only one of them closes this week.</p>
 
   <div class="pullquote">
     <div class="pullquote-text">Organic reaches the people who like you. Paid reaches the people who are buying. These are mostly different people, and they convert at very different rates.</div>
@@ -315,7 +279,7 @@
 
   <h3>The implication for the brand-vs-performance debate</h3>
 
-  <p>This is also where the <a href="brand-vs-performance.html">brand-vs-performance</a> framework you&rsquo;ve already met in this course connects to social specifically. Organic social &mdash; doing the jobs catalogued in <a href="social-2-organic.html#what-its-for">Part 2 &sect;04</a> &mdash; is brand-building work. It pays off on multi-year horizons through familiarity, voice, trust, and dark social. Paid social is mostly activation work. It pays off this quarter through conversion of in-market intent. Treating either as a substitute for the other is the misallocation. The <strong>60/40 brand-to-performance budget split from Binet &amp; Field</strong>, which underlies your <a href="creative-1-why-creative.html">creative-effectiveness work</a>, applies at the channel level too: organic social = the brand half; paid social = part of the activation half. Trying to extract activation results from organic and brand-building from paid is what most accounts have spent the past five years quietly failing at.</p>
+  <p>This is where the <a href="brand-vs-performance.html">brand-versus-performance framework</a> attaches to social specifically. Paid social sits on the performance side by construction: it finds in-market signal and converts it. Organic sits on the brand side &mdash; familiarity, voice, and the memory structures that make a paid ad land when it arrives. Judging either by the other&rsquo;s metric produces the same wrong answer twice. <a href="social-5-imc-callbacks.html">Part 5</a> works through the split in full.</p>
 
   <div class="callout">
     <div class="callout-label">The honest comparison, condensed</div>
@@ -390,7 +354,7 @@
   <div class="sec-label">The Privacy Chapter</div>
   <h2>How iOS 14.5 Through iOS 26 Broke Paid Social Measurement</h2>
 
-  <p><a href="social-1-state.html#pivots">Part 1 &sect;02</a> introduced iOS 14.5 / App Tracking Transparency as one of the two platform pivots that ended the 2014-era social model. The full mechanics belong here. The short version is that between 2021 and 2026, Apple progressively dismantled the cross-app behavioral tracking infrastructure that paid social ran on, and Meta&rsquo;s ability to attribute conversions to specific ads degraded substantially and hasn&rsquo;t recovered.</p>
+  <p><a href="social-1-state.html#pivots">Part 1 &sect;02</a> introduced iOS 14.5 and App Tracking Transparency as the pivot that broke measurement. This is the operational version: what stopped working, in what order, and what advertisers are left with.</p>
 
   <div class="timeline">
     <div class="timeline-item is-major">
@@ -410,7 +374,7 @@
     </div>
 
     <div class="timeline-item is-major">
-      <div class="timeline-date">September 2024</div>
+      <div class="timeline-date">June 2023 (shipped September 2023)</div>
       <div class="timeline-title">iOS 17 &mdash; Link Tracking Protection</div>
       <div class="timeline-body">
         <p>Apple adds Link Tracking Protection to Safari Private Browsing, which strips tracking parameters from URLs &mdash; including <em>fbclid</em>, the identifier Meta uses to connect an ad click to a conversion event on the advertiser&rsquo;s site <a href="#ref-dojoai-2026" class="cite">(DOJO AI, 2026)</a>. For iOS users in private browsing, the link between &ldquo;clicked the ad&rdquo; and &ldquo;converted on the brand&rsquo;s site&rdquo; is severed at the URL level.</p>
@@ -427,9 +391,9 @@
 
     <div class="timeline-item is-major">
       <div class="timeline-date">January 12, 2026</div>
-      <div class="timeline-title">Meta removes 7-day and 28-day attribution windows</div>
+      <div class="timeline-title">Meta removes the long view-through windows</div>
       <div class="timeline-body">
-        <p>Meta&rsquo;s Ads Manager drops the two longer attribution windows from the default reporting view, leaving advertisers with shorter (1-day click, 7-day view) windows that materially under-count delayed conversions <a href="#ref-dojoai-2026" class="cite">(DOJO AI, 2026)</a>. Brands whose products have a multi-day consideration cycle now see less of their actual conversion volume in Meta&rsquo;s reporting, regardless of which iOS the customer was on.</p>
+        <p>Meta stops returning data for the <strong>7-day view</strong> and <strong>28-day view</strong> attribution windows &mdash; the two settings that credited a conversion to an ad someone <em>saw but never clicked</em>. Click-based windows survive intact (1-day, 7-day, and 28-day click), as does 1-day view. The distinction matters: what Meta removed was the most generous and least defensible form of credit, not long-window measurement in general. Deprecated API calls return empty data rather than an error, so dashboards broke quietly, and accounts that leaned on view-through credit saw <strong>reported conversions fall 15&ndash;40% overnight with no change in actual sales</strong> <a href="#ref-dojoai-2026" class="cite">(DOJO AI, 2026)</a>. Any comparison spanning January 12 is measuring two different things.</p>
       </div>
     </div>
   </div>
@@ -441,10 +405,10 @@
   <ul style="margin: 14px 0 18px 24px; line-height: 1.65;">
     <li><strong>Observed conversions</strong> &mdash; events the platform can actually see, mostly from users who didn&rsquo;t opt out of tracking and used browsers without privacy protections. A shrinking share of the total.</li>
     <li><strong>Modeled conversions</strong> &mdash; statistical estimates of conversions that probably happened but couldn&rsquo;t be observed. Reported as if they were real events. Increasingly the larger share of the &ldquo;conversions&rdquo; line on the dashboard.</li>
-    <li><strong>Server-side events via CAPI</strong> &mdash; conversions tracked from the advertiser&rsquo;s own server back to Meta, bypassing browser-level privacy restrictions. The most accurate source available in 2026, but requires technical implementation most brands haven&rsquo;t fully invested in.</li>
+    <li><strong>Server-side events via CAPI</strong> &mdash; conversions sent from the advertiser&rsquo;s own server to Meta, so measurement depends less on browser-side signals. It doesn&rsquo;t sidestep consent or privacy obligations &mdash; the advertiser still needs a lawful basis for the data it sends. The most accurate source available in 2026, but requires technical implementation most brands haven&rsquo;t fully invested in.</li>
   </ul>
 
-  <p>The implication for any reading of paid-social ROI is sharp: <strong>the conversion numbers in Meta&rsquo;s dashboard are not a measurement, they&rsquo;re an estimate.</strong> Specifically, an estimate produced by Meta, who has a financial incentive to model in the direction that makes campaigns look like they worked. None of this is conspiratorial &mdash; Meta is open about the methodology &mdash; but the implication for how seriously to take conversion attribution from social is that you should treat it the way you&rsquo;d treat any other vendor-reported metric: as one input, not as ground truth.</p>
+  <p>The implication for any reading of paid-social ROI is sharp. <strong>Platform attribution blends directly observed events, server-side signals, and modeled estimates into one number that reads like a measurement.</strong> It is a reasonable basis for tactical optimization &mdash; which of these ads is working better &mdash; and it is not an independent measure of incremental effect, which is the question of what would have happened without the ads. Meta is open about the methodology, so nothing here is conspiratorial; the point is structural. A number produced by the seller, describing the seller&rsquo;s contribution, is not the number to bring to a budget argument on its own. <a href="social-4-doing-better.html#attribution">Part 4 &sect;05</a> covers what to put beside it.</p>
 
   <div class="source-card">
     <div class="source-card-source">DOJO AI &middot; March 2026</div>
@@ -470,11 +434,19 @@
 
   <p>Meta&rsquo;s response to the targeting and measurement collapse of 2021&ndash;2024 was, in retrospect, the most consequential strategic shift in paid social since the Facebook IPO. The company couldn&rsquo;t recover the precise user-level targeting that ATT had broken, so instead it built an AI system &mdash; <em>Advantage+</em> &mdash; that worked on broad audiences and aggregate behavioral patterns rather than individual user signal. By 2025, Advantage+ campaigns were the default recommendation for most advertisers on the platform.</p>
 
-  <p>The practical change is that the advertiser does less of the targeting work and Meta&rsquo;s algorithm does more of it. Where a 2018 paid social campaign was configured with detailed interest, demographic, and behavioral targeting (and the success of the campaign turned heavily on how well the targeting was set up), a 2026 Advantage+ campaign is given a wide audience definition, a budget, a set of creative assets, and a conversion objective &mdash; and the algorithm figures out who to show the ads to. Some hand-targeting is still possible for specific tests, but the platform is unmistakably pushing toward AI-broad as the standard.</p>
+  <p>The practical change is that the advertiser does less targeting work and Meta&rsquo;s algorithm does more. Where a 2018 buyer built detailed interest-and-behavior stacks by hand, an Advantage+ campaign takes a budget, a conversion objective, a broad audience, and a pile of creative, then works out for itself who should see which asset. The targeting craft that defined the job largely moved inside the system.</p>
+
+
+  <div class="callout" style="border-left-color: var(--red); background: var(--cream);">
+    <div class="callout-label" style="color: var(--red);">The part the case studies leave out: Advantage+ needs volume</div>
+    <p>Machine learning needs examples. Meta&rsquo;s system learns which people convert for a given advertiser by watching that advertiser&rsquo;s conversions, which means <strong>the quality of the targeting is a function of how much conversion data the account generates.</strong> A brand producing thousands of purchases a month feeds the model constantly and gets precision the old manual targeting never reached. A brand producing forty purchases a month feeds it slowly, sits in the learning phase far longer, exits it less often, and gets a blunter instrument &mdash; or never exits at all, since a campaign that can&rsquo;t accumulate enough conversions in a week keeps restarting its education.</p>
+    <p>This is why the advice is so lopsided. The consultants publishing Advantage+ case studies work with accounts spending six figures a month &mdash; the ones openly advertising that they&rsquo;re happy to talk with brands at <strong>$100K+ in monthly spend</strong> &mdash; and the playbook they teach was built where data is abundant. Apply it to a $5,000-a-month account and the same settings behave differently: slower learning, wider swings, longer stretches before the algorithm finds anything, and far less tolerance for testing, because every test consumes conversion volume the model needed.</p>
+    <p><strong>The smaller the account, the more the burden shifts back to things the advertiser controls directly</strong> &mdash; the offer, the creative, the landing experience, the audience definition &mdash; and the more expensive it becomes to treat automation as a substitute for judgment. Meta&rsquo;s January 2026 attribution change made this worse for small accounts specifically: fewer reported conversions means less signal for the same system to learn from.</p>
+  </div>
 
   <h3>What this means for who actually does the work</h3>
 
-  <p>Two things shift. First, the difference between a great media buyer and an average one narrows substantially, because most of the targeting decisions that used to be the buyer&rsquo;s craft are now made by the algorithm. Second, and far more important &mdash; the difference between great creative and average creative <em>widens</em>, because creative is now the largest variable the advertiser still controls. The algorithm can&rsquo;t optimize a bad ad into a good one; it can only optimize a good ad to a better audience.</p>
+  <p>Two things shift. The gap between a great media buyer and an average one narrows, because most of the decisions that separated them are now made by the system. And the gap between great creative and average creative widens, because creative is the main input the advertiser still controls.</p>
 
   <div class="source-card">
     <div class="source-card-source">Sovran / AppsFlyer &middot; March 2026</div>
@@ -491,19 +463,19 @@
     <h3>The Self-Defeating Loop the Vendor Industry Built on Top of This</h3>
     <div class="sidebar-card-sub">Meta&rsquo;s system demands genuinely new creative. The market is selling the opposite.</div>
     <p>The trade press read the &ldquo;creative is 70&ndash;80% of performance&rdquo; finding correctly. The vendor industry that built on top of it didn&rsquo;t. The dominant product category that emerged in 2024&ndash;2025 was <strong>AI-prompt libraries for social creative</strong> &mdash; courses, paid Substacks, prompt-pack downloads, agency offerings &mdash; all selling some version of the same pitch: <em>use these proven hooks, plug them into ChatGPT, generate ten variants per hook, ship the volume.</em></p>
-    <p>The problem is that <strong>the prompts are convergent.</strong> Every team buying the same prompt library generates variations of the same generic hooks (&ldquo;Tired of X? Try Y.&rdquo; &ldquo;Stop doing X. Start doing Y.&rdquo; &ldquo;The one thing nobody tells you about X.&rdquo;). Ten variants of a generic hook aren&rsquo;t ten variants &mdash; they&rsquo;re the same dead idea ten times, dressed slightly differently. Meta&rsquo;s algorithm doesn&rsquo;t reward repetition at scale; it rewards creative that lands <em>differently</em> with different audiences. The vendor playbook produces, at industrial volume, exactly what Advantage+ punishes.</p>
-    <p>Two things follow. First, the brands that read the &ldquo;creative is 70&ndash;80% of performance&rdquo; finding and concluded &ldquo;buy a prompt library and 10x the variants&rdquo; ended up running ten times the AI slop &mdash; same idea, faster cycle time, slightly worse performance because the platform deprioritized convergent content. Second, the brands that read the same finding and concluded &ldquo;invest in genuinely different creative work&rdquo; opened a widening gap on the brands that took the cheaper interpretation. The Advantage+ era didn&rsquo;t democratize creative; it made the difference between real creative judgment and AI-templated output more financially consequential, not less.</p>
-    <p>The right way to use AI in this environment is the way <a href="social-4-doing-better.html#creative-volume">Part 4 &sect;04</a> lays out: AI for ideation, drafting, and variation <em>inside a creatively novel modular system that the brand built</em>. The variation is only as creative as the framework feeding it. If the framework is a generic hook from a prompt pack, the variation is generic too. If the framework is original brand work, AI multiplies original brand work.</p>
+    <p>The problem is convergence. Every team buying the same prompt library generates variants of the same generic hooks, which is the creative equivalent of the slop flood in <a href="social-1-state.html#disengaged">Part 1 &sect;03</a>: more output, less distinctiveness, and a delivery system that has already seen this ad a thousand times this quarter.</p>
+    <p>So the brands that read &ldquo;creative is 70&ndash;80% of performance&rdquo; and concluded &ldquo;buy a prompt library&rdquo; are optimizing the wrong variable: they bought volume when the finding was about <em>quality and distinctiveness</em>. The right use of AI is the one <a href="social-4-doing-better.html#creative-volume">Part 4 &sect;04</a> describes &mdash; ideation, drafting, and variation inside a creative system with a point of view &mdash; rather than as a replacement for having one.</p>
+    
     <div class="sidebar-card-tag">The lever moved from targeting to creative. The market figured this out and immediately started selling tools that defeat the point.</div>
   </div>
 
-  <p>This is the moment to make the callback this piece has been building toward. The argument the <a href="creative-1-why-creative.html">creative-effectiveness work</a> made &mdash; that creative carries 60&ndash;70% of marketing effectiveness, that it&rsquo;s the controllable lever the brand owns outright, that it deserves more investment than most teams give it &mdash; isn&rsquo;t just still true in paid social. It&rsquo;s <em>more</em> true than when those studies were originally done. The targeting variable that creative effectiveness research had to compete against in 2013 is mostly gone now. What&rsquo;s left is creative, audience selection done by Meta&rsquo;s algorithm, and budget. The brand&rsquo;s decision space has narrowed to mostly creative.</p>
+  <p>Which is the callback this piece has been building toward. The creative-effectiveness argument &mdash; that creative quality is the largest controllable driver of advertising performance &mdash; used to be a claim about persuasion. In the Advantage+ era it is also a claim about distribution: creative is the variable the delivery system reads, so weak creative doesn&rsquo;t just persuade less. It gets delivered less, and costs more per impression for the privilege.</p>
 
   <div class="pullquote">
     <div class="pullquote-text">The decline of precise targeting hasn&rsquo;t reduced the importance of creative in paid social. It has roughly doubled it.</div>
   </div>
 
-  <p>The reverse is also true: brands that under-invest in creative production now pay the cost twice. The first cost is direct &mdash; their ads perform worse on the platform&rsquo;s relevance scoring, so they pay higher CPMs to reach the same audience (Meta rewards relevance with lower auction prices). The second cost is indirect &mdash; the variance between top-performing creative and bottom-performing creative on the same product is now wider than at any point in the platform&rsquo;s history, so brands without enough creative volume to find their winners are running entirely on losers and middlers. Neither is fatal individually. Together they describe the gap between brands that grew through paid social in 2025 and brands that quietly stalled.</p>
+  <p>The reverse is also true, and the cost lands twice. An under-invested brand pays directly, in worse creative that the algorithm declines to distribute, and again in media efficiency, because weak creative raises CPMs on the same inventory. Creative is no longer the cheap part of the campaign to cut. It is the input the whole delivery system now optimizes around.</p>
 </section>
 
 
@@ -521,7 +493,7 @@
     <div class="ac-kicker">Anchor Source #2</div>
     <div class="ac-title">2025 Digital Video Ad Spend &amp; Strategy Report</div>
     <div class="ac-meta">Interactive Advertising Bureau (IAB), in partnership with Advertiser Perceptions and Guideline &middot; April 2025</div>
-    <p>The industry-standard tracking of digital video ad spend, now in its twelfth year. The 2025 edition&rsquo;s headline finding is the reallocation pattern: <strong>of every new dollar flowing into CTV in 2025, 36% came from linear TV budgets, 36% came from social media budgets, and the remaining 28% came from other digital channels</strong> (online video, paid search, display). CTV ad spend grew <strong>16% year-over-year in 2024 and is projected to keep growing double-digits</strong> through 2027 &mdash; outpacing every other major ad channel.</p>
+    <p>The industry-standard tracking of digital video ad spend, now in its twelfth year. The 2025 edition&rsquo;s headline finding is the reallocation pattern: <strong>among advertisers increasing CTV spend, 36% named reallocated social budgets as one source of that increase &mdash; tied with linear TV at 36%, and ahead of online video (34%), paid search (32%), and display (31%)</strong>. Advertisers could name more than one source, so these are overlapping shares of respondents, not slices of a single pie. CTV ad spend grew <strong>16% year-over-year in 2024 and is projected to keep growing double-digits</strong> through 2027 &mdash; outpacing every other major ad channel.</p>
     <p>The mechanism is straightforward. CTV (streaming on smart TVs &mdash; Disney+, Netflix with ads, Hulu, Prime Video, Tubi, YouTube on TV, etc.) offers something paid social can&rsquo;t at current CPMs: large-screen, sound-on, full-attention exposure to audiences identified via streaming-service first-party data. <strong>53% of marketers in IAB&rsquo;s survey called CTV more brand-safe than social.</strong> 69% described it as &ldquo;must-buy&rdquo; for their 2025 media plans. The brands moving budget aren&rsquo;t leaving social entirely; they&rsquo;re reallocating the awareness-oriented portion of their social spend to a channel that does awareness work better at the current price points.</p>
     <a class="ac-cta" href="https://www.iab.com/news/ctv-rebounds-to-double-digit-growth-in-2024/" target="_blank" rel="noopener">Read the IAB 2025 report summary &rarr;</a>
     <span class="ac-cta-note">The full report is gated; the IAB news summary covers the key findings. MNTN Research, Nielsen, and Wurl all have parallel CTV tracking that confirms the directional trend.</span>
@@ -529,28 +501,16 @@
 
   <h3>Where the CTV growth is coming from</h3>
 
-  <div class="donut-wrap">
-    <div class="donut" aria-hidden="true"></div>
-    <div class="donut-legend">
-      <div class="leg-row">
-        <div class="leg-swatch red"></div>
-        <div class="leg-label"><strong>Linear TV</strong><span>Reallocated from broadcast/cable budgets</span></div>
-        <div class="leg-pct">36%</div>
-      </div>
-      <div class="leg-row">
-        <div class="leg-swatch blue"></div>
-        <div class="leg-label"><strong>Social Media</strong><span>Reallocated from Meta, TikTok, etc.</span></div>
-        <div class="leg-pct">36%</div>
-      </div>
-      <div class="leg-row">
-        <div class="leg-swatch ink"></div>
-        <div class="leg-label"><strong>Other Digital</strong><span>Search, display, online video</span></div>
-        <div class="leg-pct">28%</div>
-      </div>
-    </div>
+  <div class="funding-bars">
+    <div class="fb-row"><div class="fb-label">Linear TV</div><div class="fb-track"><div class="fb-bar" style="width: 36%;"></div></div><div class="fb-val">36%</div></div>
+    <div class="fb-row"><div class="fb-label">Social media</div><div class="fb-track"><div class="fb-bar red" style="width: 36%;"></div></div><div class="fb-val">36%</div></div>
+    <div class="fb-row"><div class="fb-label">Online video</div><div class="fb-track"><div class="fb-bar" style="width: 34%;"></div></div><div class="fb-val">34%</div></div>
+    <div class="fb-row"><div class="fb-label">Paid search</div><div class="fb-track"><div class="fb-bar" style="width: 32%;"></div></div><div class="fb-val">32%</div></div>
+    <div class="fb-row"><div class="fb-label">Display</div><div class="fb-track"><div class="fb-bar" style="width: 31%;"></div></div><div class="fb-val">31%</div></div>
+    <div class="fb-note"><strong>Read this carefully.</strong> Each bar is the share of CTV-increasing advertisers who named that channel as <em>a</em> source of the money. Respondents could name several, so the bars overlap and deliberately do not sum to 100%. This is not a breakdown of where CTV dollars came from.</div>
   </div>
 
-  <p>The number worth pausing on is the second one. <strong>Roughly one out of every three new dollars going into CTV in 2025 used to be social budget.</strong> That isn&rsquo;t happening because CMOs decided social was &ldquo;dead&rdquo; &mdash; the data in &sect;04 above shows social spend is still growing in absolute terms. It&rsquo;s happening because the awareness-oriented portion of social budgets, the portion that used to live in CPM-bought reach campaigns on Facebook and Instagram, has found a better home at current price points.</p>
+  <p>The line worth pausing on is the social one. <strong>More than a third of the advertisers putting more money into CTV say some of it came out of social.</strong> Note what the finding does and doesn&rsquo;t support: it establishes that social budgets are a common funding source for CTV increases, and it does not say what share of CTV dollars came from social, nor how much money moved. It isn&rsquo;t happening because CMOs decided social was dead &mdash; &sect;04 shows social spend still growing in absolute terms. It&rsquo;s happening because the awareness-oriented part of social spending found a better price per attentive impression somewhere else.</p>
 
   <h3>The counter-trend worth noting</h3>
 
@@ -588,7 +548,7 @@
   <div class="sec-label">The Honest Pitch</div>
   <h2>What Paid Social Is Actually Good For in 2026</h2>
 
-  <p>After seven sections of complications, the natural reaction is to write paid social off the way most readers were tempted to write organic off after Part 1. That would be wrong. Paid social is still one of the most effective conversion-oriented channels available to most brands, and the brands abandoning it entirely in favor of CTV are mostly making the same mistake the brands abandoning organic for paid made &mdash; misreading what each channel is actually for.</p>
+  <p>After seven sections of complications, the natural reaction is to write paid social off the way readers were tempted to write organic off after Part 2. That would be the same error in the other direction. Paid social is more expensive, less measurable, and less universally applicable than it was in 2018 &mdash; and it remains one of the most effective direct-response channels available to most brands. What&rsquo;s gone is the assumption that it&rsquo;s the answer to every objective.</p>
 
   <p>Here&rsquo;s the honest case for what paid social does well in 2026.</p>
 
@@ -624,7 +584,7 @@
       <li><strong>The conversion paradox is structural, not accidental.</strong> Paid reaches in-market intent; organic reaches brand familiarity; intent beats familiarity for short-window conversion.</li>
       <li><strong>Attribution is now an estimate, not a measurement.</strong> Meta&rsquo;s dashboard reports modeled conversions alongside observed ones. Treat platform attribution as one input, not ground truth.</li>
       <li><strong>Advantage+ moved the lever from targeting to creative.</strong> Creative quality now drives 70&ndash;80% of paid social performance. The brand with more creative variants in market has more chances to land in the top-performing 5&ndash;8%.</li>
-      <li><strong>36% of new CTV ad spend in 2025 came from social budgets.</strong> The awareness-oriented portion of social spending has found a better home at current price points; treat paid social primarily as an activation channel, not awareness.</li>
+      <li><strong>Social budgets are a common source of CTV increases</strong> &mdash; 36% of advertisers raising CTV spend named them, tied with linear TV. The awareness-oriented portion of social spending has found a better home at current price points; treat paid social primarily as an activation channel, not awareness.</li>
       <li><strong>What paid social still does well:</strong> activation of in-market intent, retargeting, lookalike acquisition, creative testing, platform-specific audiences. What it doesn&rsquo;t: top-of-funnel awareness at current CPMs, intent-led search capture, long-cycle B2B consideration.</li>
     </ul>
   </div>
