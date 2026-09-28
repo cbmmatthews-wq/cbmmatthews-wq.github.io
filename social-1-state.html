@@ -34,6 +34,278 @@
     padding-left: 24px;
   }
 
+
+  /* ---- Thesis panel: the unit's organizing claim ---------------------- */
+  .thesis {
+    background: var(--ink);
+    color: var(--paper);
+    margin: 30px 0 6px;
+    padding: 34px 40px 36px;
+    border-top: 5px solid var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+  /* oversized ghost quote mark, echoing the ghost numerals elsewhere */
+  .thesis::after {
+    content: "\201D";
+    position: absolute;
+    right: 18px;
+    bottom: -46px;
+    font-family: var(--serif);
+    font-size: 190px;
+    line-height: 1;
+    color: rgba(245, 240, 232, 0.07);
+    pointer-events: none;
+  }
+  .thesis-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red-mid);
+    margin-bottom: 16px;
+  }
+  .thesis-claim {
+    font-family: var(--serif);
+    font-size: clamp(21px, 2.6vw, 29px);
+    line-height: 1.34;
+    font-weight: 400;
+    color: var(--paper);
+    margin: 0;
+    max-width: 30em;
+    position: relative;
+    z-index: 1;
+  }
+  .thesis-jobs {
+    font-style: italic;
+    color: var(--red-mid);
+    white-space: normal;
+  }
+  .thesis-kicker {
+    font-family: var(--sans);
+    font-size: clamp(15px, 1.5vw, 17px);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--paper);
+    margin: 20px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(245, 240, 232, 0.22);
+    max-width: 30em;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 720px) {
+    .thesis { padding: 26px 22px 28px; }
+    .thesis::after { font-size: 130px; bottom: -32px; right: 8px; }
+  }
+
+
+  /* ---- Statement box: a claim that needs to stop the reader ----------- */
+  .statement {
+    background: var(--cream);
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    padding: 26px 30px 24px;
+    margin: 26px 0;
+  }
+  .statement-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+  }
+  .statement-text {
+    font-family: var(--serif);
+    font-size: clamp(19px, 2.1vw, 24px);
+    line-height: 1.36;
+    color: var(--ink);
+    margin: 0 0 16px;
+    max-width: 34em;
+  }
+  .statement-body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 38em;
+  }
+  @media (max-width: 720px) {
+    .statement { padding: 20px 20px 18px; }
+  }
+
+
+  /* ---- Full-bleed black image blocks ---------------------------------- */
+  body { overflow-x: clip; }
+  .fullbleed {
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    width: 100vw;
+  }
+  .imgstrip {
+    background: #14100d;
+    padding: 40px 0 34px;
+    margin-top: 34px;
+    margin-bottom: 34px;
+  }
+  .imgstrip-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(18px, 4vw, 44px);
+  }
+  .imgstrip-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red-mid);
+    margin-bottom: 18px;
+  }
+  .imgstrip-caption {
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: rgba(245, 240, 232, 0.88);
+    max-width: 76ch;
+    margin: 20px 0 0;
+  }
+  .imgstrip-caption + .imgstrip-caption { margin-top: 14px; }
+  .imgstrip-caption a { color: var(--red-mid); }
+  .imgstrip-meta {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: rgba(245, 240, 232, 0.42);
+    margin: 18px 0 0;
+  }
+
+  /* grid variant (lack-of-views, coastal) */
+  .imggrid {
+    display: grid;
+    gap: 14px;
+  }
+  .imggrid-3 { grid-template-columns: repeat(3, 1fr); }
+  .imggrid-cell {
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #0b0908;
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+  }
+  .imggrid-cell:hover { opacity: 0.86; }
+  .imggrid-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .imggrid-note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px 6px;
+  }
+  .imggrid-note p {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(245, 240, 232, 0.92);
+    margin: 0 0 12px;
+  }
+  .imggrid-note p:last-child { margin-bottom: 0; }
+  .imggrid-note a { color: var(--red-mid); }
+
+  /* slider variant (viral, random) */
+  .strip-container.dark {
+    background: #0b0908;
+    border-top: none;
+    border-bottom: none;
+    height: 360px;
+  }
+  .strip-container.dark::after {
+    background: linear-gradient(to right, transparent, #0b0908);
+    width: 48px;
+  }
+  .strip-container.dark figure {
+    background: #0b0908;
+    cursor: zoom-in;
+  }
+  .imgstrip-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .imgstrip-btn {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: rgba(245, 240, 232, 0.9);
+    background: rgba(245, 240, 232, 0.08);
+    border: 1px solid rgba(245, 240, 232, 0.22);
+    padding: 5px 13px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .imgstrip-btn:hover {
+    background: rgba(245, 240, 232, 0.16);
+    border-color: var(--red-mid);
+  }
+  .imgstrip-count {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(245, 240, 232, 0.5);
+  }
+
+  /* lightbox */
+  .imglb {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 7, 0.94);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 40px 60px;
+  }
+  .imglb.open { display: flex; }
+  .imglb img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .imglb button {
+    position: absolute;
+    background: rgba(245, 240, 232, 0.1);
+    border: 1px solid rgba(245, 240, 232, 0.3);
+    color: var(--paper);
+    font-family: var(--serif);
+    font-size: 26px;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+  }
+  .imglb .lb-close { top: 20px; right: 22px; font-size: 22px; }
+  .imglb .lb-prev { left: 14px; top: 50%; transform: translateY(-50%); }
+  .imglb .lb-next { right: 14px; top: 50%; transform: translateY(-50%); }
+
+  @media (max-width: 820px) {
+    .imggrid-3 { grid-template-columns: repeat(2, 1fr); }
+    .strip-container.dark { height: 240px; }
+    .imgstrip { padding: 28px 0 24px; }
+  }
+  @media (max-width: 520px) {
+    .imggrid-3 { grid-template-columns: 1fr 1fr; }
+    .imggrid-note { grid-column: 1 / -1; }
+  }
+
   /* Glossary tightening */
   .glossary p { margin-bottom: 10px; max-width: 760px; }
   .glossary p strong em { color: var(--red); font-style: italic; }
@@ -52,10 +324,11 @@
 </header>
 
 <div class="wrapper">
-  <div class="callout" style="border-left-color: var(--ink); background: var(--cream); margin: 24px 0 0; padding: 22px 26px;">
-    <div class="callout-label" style="color: var(--ink);">The unit&rsquo;s organizing claim</div>
-    <p style="font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--ink); margin: 0; line-height: 1.45;">Social media is no longer one channel. It&rsquo;s a bundle of different jobs &mdash; research, service, awareness, conversion, community, voice &mdash; and each needs its own audience, content, budget, and metric. <strong style="font-style: normal;">The mistake is treating them as one free advertising channel.</strong></p>
-  </div>
+  <aside class="thesis">
+    <div class="thesis-eyebrow">The unit&rsquo;s organizing claim</div>
+    <p class="thesis-claim">Social media is no longer one channel. It&rsquo;s a bundle of different jobs &mdash; <span class="thesis-jobs">research, service, awareness, conversion, community, voice</span> &mdash; and each needs its own audience, content, budget, and metric.</p>
+    <p class="thesis-kicker">The mistake is treating them as one free advertising channel.</p>
+  </aside>
 </div>
 
 <nav class="subnav">
@@ -86,9 +359,15 @@
 
   <p>The phrase you&rsquo;ll hear in a thousand conference rooms is some variant of <em>&ldquo;we should just be more active on social.&rdquo;</em> It usually arrives without any specific channel in mind, without any specific audience in mind, and without any specific outcome in mind. The implicit theory is that social is so big and so cheap that simply <em>being there, posting consistently, occasionally being clever</em> is sufficient. Followers will accrue. Posts will reach those followers. Good posts will go viral. Sales will follow. The work is to post; the platform will do the rest.</p>
 
-  <p>The trouble is not that this theory was always wrong. The trouble is that it was a reasonable description of how Facebook and (early) Instagram and Twitter actually worked roughly between 2008 and 2017, and it stopped being a reasonable description somewhere around 2018, and almost nobody updated the theory. It&rsquo;s still the position your CEO holds. It&rsquo;s still the advice you&rsquo;ll get from most generalist marketing books published before 2022. It&rsquo;s the framework most of your classmates are using to make recommendations to clients on group projects right now &mdash; partly because they use social media themselves and assume their personal experience of it transfers to a brand&rsquo;s experience of it.</p>
+  <p>The trouble is not that the theory was always wrong. It was a fair description of how Facebook, early Instagram, and Twitter worked between roughly 2008 and 2017, it stopped being one around 2018, and almost nobody updated it. It&rsquo;s the position your CEO holds, the advice in most generalist marketing books published before 2022, and the framework most of your classmates are using on group projects right now &mdash; partly because they use social themselves and assume their own experience of it transfers to a brand&rsquo;s.</p>
 
-  <p>That assumption &mdash; that personal use predicts brand use &mdash; is the first thing to be careful about. <strong>Just because you personally use social media for entertainment and information doesn&rsquo;t mean it&rsquo;s the right channel for a brand to invest in.</strong> You&rsquo;re using it as a consumer in a default-on, recommendation-fed, casual posture. A brand trying to reach you is fighting the same algorithm that&rsquo;s feeding you AI-generated raccoon videos and your cousin&rsquo;s vacation photos. Your behavior as a user tells you very little about whether the brand will land.</p>
+  <p>None of what follows is an argument that the channel is shrinking. It isn&rsquo;t. <a href="https://datareportal.com/reports/digital-2026-global-overview-report" target="_blank" rel="noopener">DataReportal counted roughly 5.8 billion social media identities in April 2026, about 294 million more than a year earlier</a> <a href="#ref-datareportal-2026" class="cite">(DataReportal, 2026)</a>. That&rsquo;s more than nine out of ten internet users, each active on six or so platforms, spending something on the order of <strong>18 hours a week</strong> &mdash; roughly two and a half hours a day, or about a sixth of their waking life &mdash; inside social and video feeds. Per-person time has plateaued since about 2023, but it plateaued at a historic high while the population kept growing. Social media is a larger part of daily life than it has ever been.</p>
+
+  <div class="statement">
+    <div class="statement-eyebrow">The trap inside that number</div>
+    <p class="statement-text">People value social for entertainment, for connection, for surprise and delight with a little information mixed in. <strong>None of that value is transferable to a brand by default.</strong></p>
+    <p class="statement-body">The size of the channel is what makes the leap feel safe: everyone is here, for hours a day, so surely a brand should be too. But you experience the platform as a consumer &mdash; default-on, recommendation-fed, casual. A brand trying to reach you is fighting the same algorithm that&rsquo;s feeding you AI-generated raccoon videos and your cousin&rsquo;s vacation photos, and it&rsquo;s asking for attention you came here to spend on something else. <em>How much people use social tells you how much attention exists. It tells you nothing about how much of it a brand can have.</em></p>
+  </div>
 
   <div class="callout">
     <div class="callout-label">What this unit is doing</div>
@@ -97,10 +376,10 @@
 
   <div class="callout" style="border-left-color: var(--red); background: var(--cream);">
     <div class="callout-label" style="color: var(--red);">One scope note before we start</div>
-    <p>This unit reads through a <strong>consumer-brand / CPG / DTC lens</strong>. The examples (Kleenex, Heinz, Wendy&rsquo;s, Liquid Death), the platform priorities (Instagram, TikTok, Facebook), and the audience math (large customer base, small follower base, broad cultural reach as the goal) all reflect that lens. The mechanics of the channel apply across categories &mdash; reach collapsed for everybody, attribution broke for everybody, dark social grew for everybody. The <em>conclusions</em> diverge. <strong>B2B</strong> plays a different game (LinkedIn is the primary channel; the social graph still mostly works there; the buyer is a small committee rather than a mass audience). <strong>Higher ed and nonprofits</strong> have different success metrics (donations, applications, advocacy) that don&rsquo;t reduce to retail sales math. <strong>Local businesses</strong> often get more value from social-as-search (Google Business profile, Instagram location tags) than from social-as-broadcast. When the recommendations in this unit don&rsquo;t obviously fit your situation, the mismatch is usually category, not mechanics &mdash; translate the principle, replace the example.</p>
+    <p>This unit reads through a <strong>consumer-brand / CPG / DTC lens</strong>. The examples (Kleenex, Heinz, Wendy&rsquo;s, Liquid Death), the platform priorities, and the audience math all reflect that lens. The mechanics apply across categories &mdash; reach collapsed for everybody, attribution broke for everybody &mdash; but the conclusions diverge. <strong>B2B</strong> plays a different game (LinkedIn is the primary channel; the buyer is a small committee). <strong>Higher ed and nonprofits</strong> measure donations, applications, and advocacy rather than retail sales. <strong>Local businesses</strong> often get more from social-as-search than social-as-broadcast. When a recommendation here doesn&rsquo;t fit your situation, the mismatch is usually category, not mechanics &mdash; translate the principle, replace the example.</p>
   </div>
 
-  <p>Five pieces follow. <a href="social-1-state.html">This one</a> is the state of the world. <a href="social-2-organic.html">Piece #2</a> is on organic / owned social &mdash; what it&rsquo;s for now, given that it isn&rsquo;t for reach anymore. <a href="social-3-paid.html">Piece #3</a> is on paid social &mdash; the CPM math, the privacy and attribution collapse, and why some of that budget is bleeding to Connected TV. <a href="social-4-doing-better.html">Piece #4</a> is the practical follow-up: given everything Parts 1&ndash;3 establish, how do you actually run social media well in 2026? <a href="social-5-imc-callbacks.html">Piece #5</a> ties it back to the IMC, PESO, funnel, and brand-vs-performance frameworks you&rsquo;ve already learned.</p>
+  <p>Five pieces follow: this one on the state of the channel, <a href="social-2-organic.html">#2</a> on what organic is for now that it isn&rsquo;t for reach, <a href="social-3-paid.html">#3</a> on paid social and where that budget is going, <a href="social-4-doing-better.html">#4</a> on how to run the channel well, and <a href="social-5-imc-callbacks.html">#5</a> on what all of it does to IMC, PESO, the funnel, and brand vs. performance. Two standalone companions &mdash; <a href="ugc.html">UGC</a> and <a href="influencers.html">influencers</a> &mdash; sit alongside Part 4.</p>
 </section>
 
 
@@ -112,76 +391,57 @@
   <div class="sec-label">2006&ndash;2017</div>
   <h2>What Social Used to Be</h2>
 
-  <p>Picture a backpacker in an internet caf&eacute; in Pondicherry, India, in late 2006. The blog platform he&rsquo;s been using to keep his friends back home updated keeps crashing. The guy at the next terminal shows him Facebook. The photo uploads are easy. The friend-tagging works. The updates are short. He switches. <a href="https://www.exchangewire.com/blog/2025/07/01/social-media-isnt-social-its-just-media/" target="_blank" rel="noopener">That story is from Dan Gee, who runs a media-investment firm in London</a> <a href="#ref-gee-2025" class="cite">(Gee, 2025)</a>, and it&rsquo;s a useful place to anchor what social media actually was when it worked.</p>
+  <p>Early social platforms were what the name advertised: <em>social-graph</em> networks, where the relationships between users decided what got shown to whom. Your feed carried your friends&rsquo; posts in roughly the order they were posted, and a brand you followed appeared on the same terms as everyone else. <a href="https://blog.hootsuite.com/organic-reach-declining/" target="_blank" rel="noopener">Facebook&rsquo;s average organic reach in 2012 was roughly 16% of followers per post</a> <a href="#ref-hootsuite-2026" class="cite">(Hootsuite, 2026)</a>: a page with 100,000 fans could expect 16,000 of them to see an update without spending a dollar. Against print, broadcast, or direct mail, that was an extraordinary deal &mdash; buy the follower base once, collect the reach indefinitely. <strong>&ldquo;Social is free&rdquo;</strong> wasn&rsquo;t a CEO fantasy in 2012. It was approximately true.</p>
 
-  <p>It was a network of <em>people you knew</em>, plus a few you wanted to know. Your feed showed posts from your friends in roughly the order they were posted. If you posted something, your friends saw it. If a brand you followed posted something, you saw that too &mdash; on the same terms as everyone else. The platforms genuinely were what the name advertised: <em>social</em> networks, in the technical sense of social-graph networks, surfaces where the relationships between users determined what got shown to whom.</p>
-
-  <p>The numbers from that era reflect this. <a href="https://blog.hootsuite.com/organic-reach-declining/" target="_blank" rel="noopener">Facebook&rsquo;s average organic reach in 2012 was roughly 16% of followers per post</a> <a href="#ref-hootsuite-2026" class="cite">(Hootsuite, 2026)</a>. A brand with 100,000 fans could reasonably expect 16,000 of them to see any given update without spending a dollar. By the standards of any previous mass medium &mdash; print, broadcast, direct mail &mdash; that was an extraordinary deal. You bought it once (building the follower base), and you collected the reach forever. The phrase <strong>&ldquo;social is free&rdquo;</strong> wasn&rsquo;t a CEO fantasy in 2012. It was approximately true.</p>
-
-  <p>It was also the era when social-media-as-marketing-discipline got built. Tools, agency divisions, content calendars, the &ldquo;3-2-1 rule&rdquo; for post mix, the &ldquo;always be posting&rdquo; consultant industry &mdash; all of that infrastructure was developed against a 10&ndash;16% organic reach baseline. Most of it is still being taught. Almost none of the assumptions underneath it still hold.</p>
+  <p>It was also when social-media-as-marketing-discipline got built: the tools, the agency divisions, the content calendars, the &ldquo;3-2-1 rule&rdquo; for post mix, the always-be-posting consultant industry. All of it was designed against a 10&ndash;16% organic reach baseline, and most of it is still being taught.</p>
 
   <div class="callout">
     <div class="callout-label">The asymmetry to remember</div>
-    <p>The toolkit, the conventional wisdom, and the &ldquo;just be active on social&rdquo; advice all date from a period when social platforms actually distributed brand content. The platforms stopped doing that. The advice didn&rsquo;t.</p>
+    <p>The toolkit, the conventional wisdom, and the &ldquo;just be active on social&rdquo; advice all date from a period when the platforms actually distributed brand content. The platforms stopped. The advice didn&rsquo;t.</p>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 2 — THE PLATFORM PIVOTS (2018-2024)
-     Supply-side: what platforms did
+     SECTION 2 — THE PLATFORM PIVOTS (2018-2025)
      ============================================================ -->
 <section class="section" id="pivots">
   <div class="sec-num">02</div>
-  <div class="sec-label">2018&ndash;2024</div>
-  <h2>The Platform Pivots</h2>
+  <div class="sec-label">2018&ndash;2025</div>
+  <h2>What Changed, in Five Moves</h2>
 
-  <p>What happened between &ldquo;social is essentially free&rdquo; and &ldquo;your post reaches 1% of your followers&rdquo; is a sequence of platform decisions, not a single event. Two are worth naming exactly because they get cited in everything that follows.</p>
-
-  <h3>January 2018 &mdash; the &ldquo;Meaningful Interactions&rdquo; News Feed change</h3>
-
-  <p>On January 11, 2018, Mark Zuckerberg announced that Facebook&rsquo;s News Feed algorithm would be rewritten to prioritize <em>&ldquo;meaningful social interactions&rdquo;</em> &mdash; posts from friends and family, content that sparked conversation &mdash; over content from businesses, brands, and media companies <a href="#ref-axios-2018" class="cite">(Axios, 2018)</a>. In his own words: <a href="https://www.axios.com/2018/01/12/facebook-making-major-change-t-1515717798" target="_blank" rel="noopener">&ldquo;you&rsquo;ll see less public content like posts from businesses, brands, and media&rdquo;</a> <a href="#ref-axios-2018" class="cite">(Axios, 2018)</a>. The framing was about user well-being. The effect was approximately what the cynics in the room said it would be: brand organic reach collapsed almost overnight, and the only reliable way to put a brand post back in front of users was to pay to promote it.</p>
-
-  <p>The data is dramatic. <a href="https://www.linkedin.com/pulse/year-facebook-became-advertising-platform-christopher-madden" target="_blank" rel="noopener">A Christchurch nonprofit tracked its own Facebook organic reach across 2018&ndash;2020 and watched it fall from a range of 40&ndash;90% of followers at the start of 2018 to under 10% by year&rsquo;s end</a> <a href="#ref-madden-2021" class="cite">(Madden, 2021)</a>. The same data point appears across countless industry analyses: the algorithm rewrite was, as one observer put it bluntly, <em>the moment Facebook stopped being a social network and became an advertising platform</em>. Paid reach, naturally, was not affected by the change.</p>
-
-  <h3>April 2021 &mdash; iOS 14.5 and the App Tracking Transparency framework</h3>
-
-  <p>The second pivot was Apple&rsquo;s, not Meta&rsquo;s. With iOS 14.5 in April 2021, Apple introduced App Tracking Transparency: every app that wanted to track a user across other apps and websites had to ask the user&rsquo;s permission first, with a system-level prompt the developer couldn&rsquo;t style or hide. Roughly 75% of iOS users opted out <a href="#ref-leoads-2026" class="cite">(LeoAds, 2026)</a>. <a href="https://www.leoads.ai/answers/meta-ads/meta-ads-privacy-changes-impact/" target="_blank" rel="noopener">Meta&rsquo;s tracking accuracy fell by 30&ndash;40% almost immediately</a>, and the precision targeting that had powered the entire paid social model became substantially worse.</p>
-
-  <p>The full mechanics of ATT and its consequences belong to <a href="social-3-paid.html">Piece #3 on paid social</a>. For now: the second pivot is the one that made measuring social much harder than it used to be, which created the strange situation we&rsquo;re in now, where everyone agrees social is huge but nobody can say exactly what it&rsquo;s producing.</p>
-
-  <h3>The pivots, in order</h3>
+  <p>The distance between &ldquo;social is essentially free&rdquo; and &ldquo;your post reaches 1% of your followers&rdquo; is a sequence of platform decisions rather than a single event. Two of them do most of the work in everything that follows. In <strong>January 2018</strong>, Facebook rewrote the News Feed to prioritize <em>&ldquo;meaningful social interactions&rdquo;</em> &mdash; posts from friends and family over content from businesses, brands, and media <a href="#ref-axios-2018" class="cite">(Axios, 2018)</a>. The framing was user well-being; the effect was that brand organic reach collapsed and paying to promote became the only reliable way back into the feed. Paid reach was unaffected. In <strong>April 2021</strong>, Apple&rsquo;s iOS 14.5 required apps to ask permission before tracking users across other apps and websites. Roughly 75% of iOS users declined, and <a href="https://www.leoads.ai/answers/meta-ads/meta-ads-privacy-changes-impact/" target="_blank" rel="noopener">Meta&rsquo;s tracking accuracy fell 30&ndash;40% almost immediately</a> <a href="#ref-leoads-2026" class="cite">(LeoAds, 2026)</a>. The first pivot broke distribution; the second broke measurement. Full mechanics of the second are in <a href="social-3-paid.html">Part 3</a>.</p>
 
   <div class="timeline">
     <div class="timeline-item">
       <div class="timeline-date">2006&ndash;2012</div>
       <div class="timeline-title">The expansion era</div>
       <div class="timeline-body">
-        <p>Facebook opens to the public (2006), Twitter launches (2006), Instagram launches (2010). Social graph is the distribution mechanism. Brand pages get organic reach in the 10&ndash;16% range. The toolkit and the conventional wisdom that still circulate were built here. Facebook&rsquo;s May 2012 IPO begins the long, quiet decline in organic reach as monetization pressure builds.</p>
+        <p>Social graph is the distribution mechanism; brand pages get 10&ndash;16% organic reach. Facebook&rsquo;s 2012 IPO starts the long, quiet decline as monetization pressure builds.</p>
       </div>
     </div>
 
     <div class="timeline-item is-major">
-      <div class="timeline-date">January 11, 2018</div>
-      <div class="timeline-title">Meaningful Interactions News Feed update</div>
+      <div class="timeline-date">January 2018</div>
+      <div class="timeline-title">Meaningful Interactions</div>
       <div class="timeline-body">
-        <p>Zuckerberg announces that Facebook will prioritize content from friends and family over content from businesses, brands, and media. Brand organic reach falls off a cliff within twelve months. The 2018 update is the moment the &ldquo;social is free&rdquo; assumption stopped being true and became a relic.</p>
+        <p>Facebook prioritizes friends and family over brands and media. Brand reach falls off a cliff within twelve months. <a href="https://www.linkedin.com/pulse/year-facebook-became-advertising-platform-christopher-madden" target="_blank" rel="noopener">One nonprofit tracked its own reach from a 40&ndash;90% range down to under 10% inside the year</a> <a href="#ref-madden-2021" class="cite">(Madden, 2021)</a>.</p>
       </div>
     </div>
 
     <div class="timeline-item is-major">
-      <div class="timeline-date">April 26, 2021</div>
+      <div class="timeline-date">April 2021</div>
       <div class="timeline-title">iOS 14.5 / App Tracking Transparency</div>
       <div class="timeline-body">
-        <p>Apple requires apps to ask permission to track users across apps and websites. Roughly 75% of iOS users opt out. Meta&rsquo;s tracking accuracy drops 30&ndash;40%. Precision targeting and attribution &mdash; the things that made paid social work the way it had &mdash; both degrade substantially and don&rsquo;t recover. A COVID-era usage spike masks the underlying decline for a year or two; when the spike subsides, the structural problem resumes.</p>
+        <p>Roughly 75% of iOS users opt out of cross-app tracking. Precision targeting and attribution both degrade and don&rsquo;t recover. A COVID usage spike masks the decline for a year or two.</p>
       </div>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-date">2022&ndash;2024</div>
-      <div class="timeline-title">Algorithmic feeds + the AI content flood</div>
+      <div class="timeline-title">Discovery feeds + the AI content flood</div>
       <div class="timeline-body">
-        <p>Instagram, Facebook, YouTube, and eventually LinkedIn all pivot toward TikTok-style algorithmic discovery feeds &mdash; whose content you see is now decided by the algorithm&rsquo;s read of what will hold attention, not by who you follow. At the same time, generative AI tools become cheap, fast, and good enough to produce low-effort content at industrial scale. Merriam-Webster will name <em>slop</em> its 2025 Word of the Year.</p>
+        <p>Instagram, Facebook, YouTube, and eventually LinkedIn pivot to TikTok-style feeds: what you see is the algorithm&rsquo;s bet on what holds attention, not who you follow. Generative tools simultaneously make low-effort content nearly free to produce.</p>
       </div>
     </div>
 
@@ -189,116 +449,68 @@
       <div class="timeline-date">January 2025</div>
       <div class="timeline-title">X Premium becomes pay-to-be-seen</div>
       <div class="timeline-body">
-        <p>X (formerly Twitter) sharpens the engagement divide between paying and non-paying accounts. Non-Premium accounts see <em>essentially zero</em> organic reach in a large share of cases. This is the canary: it&rsquo;s the most extreme version of a model the other platforms have been edging toward for years.</p>
+        <p>Non-Premium accounts see essentially zero organic reach in a large share of cases &mdash; the most extreme version of a model the other platforms have been edging toward for years.</p>
       </div>
     </div>
   </div>
 
-  <p>One observation on the supply side: every step in this sequence had a business rationale that made sense from the platform&rsquo;s point of view. Facebook needed advertising revenue. Apple wanted privacy as a competitive feature. TikTok had proven that algorithmic feeds beat social-graph feeds for time-on-app. Each individual decision was defensible. The aggregate is a system that no longer distributes brand content the way it used to, and was never going to start again.</p>
-
   <div class="callout">
     <div class="callout-label">Who the customer was, and wasn&rsquo;t</div>
-    <p>Brands and marketers were never the customer in any of these decisions. The users were the customer for the platforms (sort of), and the advertisers were the customer for Meta&rsquo;s ad business. The free-reach era that built the marketing-on-social discipline was a side effect, not a promise. When the side effect stopped serving the platform&rsquo;s business, it ended.</p>
+    <p>Every step had a rationale that made sense from the platform&rsquo;s side: Facebook needed ad revenue, Apple wanted privacy as a competitive feature, TikTok had proven discovery feeds beat graph feeds for time-on-app. Brands were never the customer in any of these decisions. The free-reach era that built the discipline was a side effect, and when the side effect stopped serving the platform&rsquo;s business, it ended.</p>
   </div>
 </section>
 
 
-<!-- ============================================================
-     SECTION 3 — WHY AUDIENCES DISENGAGED (demand side)
-     ============================================================ -->
 <section class="section" id="disengaged">
   <div class="sec-num">03</div>
   <div class="sec-label">The Demand-Side Story</div>
   <h2>Why Audiences Disengaged</h2>
 
-  <p>The platform pivots are one half of the story. The other half is what audiences did in response &mdash; which the &ldquo;platforms killed organic reach&rdquo; narrative often skips, because it&rsquo;s less satisfying to blame your customers than to blame Mark Zuckerberg. Engagement isn&rsquo;t just down because the algorithm shows fewer brand posts. It&rsquo;s also down because people aren&rsquo;t engaging the way they used to with the posts they <em>do</em> see. Four reasons.</p>
+  <p>The platform pivots are half the story. The other half is what audiences did in response, which the &ldquo;platforms killed organic reach&rdquo; narrative tends to skip, because blaming your customers is less satisfying than blaming Mark Zuckerberg. Engagement is down partly because the algorithm shows fewer brand posts, and partly because people stopped engaging with the brand posts they do see. Four reasons.</p>
 
   <h3>1. Over-marketing and over-posting</h3>
 
   <p>The first reason is straightforward and partly self-inflicted by the industry. As organic reach dropped, the standard consultant advice became <em>post more</em>. If 4% reach was the new normal, the math implied that posting four times as often would restore the absolute numbers. The math was wrong. Posting more crowded feeds with more brand content from the same brands, which trained users to scroll past brand content faster, which raised the bar for any individual post to earn engagement, which made the average post perform worse, which led to recommendations to <em>post even more</em>. The discipline ate itself.</p>
 
-  <p>The other version of this is the over-promotional feed: organic posts that read like discounted-product ads, calls-to-action where there used to be content, every other post a sale. The user response to an organic feed that&rsquo;s functionally a BOFU ad reel is the same as the user response to actual ads &mdash; they scroll past faster, and the algorithm interprets the scroll-past as low quality and shows the brand to fewer people next time. This is the trap your <a href="creative-7-awareness.html">awareness creative</a> notes warn against in a different context: short-term activation cannibalizing long-term reach.</p>
+  <p>The related failure is the over-promotional feed: organic posts that read like discounted-product ads, calls-to-action where content used to be. Users treat that feed the way they treat actual ads &mdash; they scroll past faster &mdash; and the algorithm reads the scroll-past as low quality and shows the brand to fewer people next time. It&rsquo;s the trap your <a href="creative-7-awareness.html">awareness creative</a> notes warn about in another context: short-term activation cannibalizing long-term reach.</p>
 
   <h3>2. AI slop</h3>
 
-  <p>The second reason is the one your students will recognize on sight even if they can&rsquo;t name it. Generative AI tools became cheap, fast, and good enough in 2023&ndash;2025 to produce video, image, and text content at industrial scale. The output isn&rsquo;t good. It isn&rsquo;t supposed to be good. It just has to be cheap enough and plausible enough to earn engagement-based ad revenue, which it does, and so the feeds filled up with it. <a href="https://www.npr.org/2025/12/24/nx-s1-5629169/2025-has-seen-an-explosion-of-ai-generated-slop" target="_blank" rel="noopener">NPR did a year-end roundup in December 2025</a> <a href="#ref-npr-2025" class="cite">(NPR, 2025)</a>; <a href="https://vervocity.io/what-is-ai-slop/" target="_blank" rel="noopener">Merriam-Webster named &ldquo;slop&rdquo; its 2025 Word of the Year</a> <a href="#ref-merriam-2025" class="cite">(Merriam-Webster, 2025)</a>; <a href="https://dig.watch/updates/ai-slop-content-social-media" target="_blank" rel="noopener">the Macquarie Dictionary and the American Dialect Society did the same</a> <a href="#ref-digwatch-2026" class="cite">(Digital Watch, 2026)</a>.</p>
+  <p>The second reason is the one you&rsquo;ll recognize on sight. Generative tools became cheap, fast, and good enough in 2023&ndash;2025 to produce video, image, and text at industrial scale. The output isn&rsquo;t good and isn&rsquo;t meant to be; it only has to be cheap and plausible enough to earn engagement-based ad revenue, which it is. <a href="https://vervocity.io/what-is-ai-slop/" target="_blank" rel="noopener">Merriam-Webster named <em>slop</em> its 2025 Word of the Year</a>, defining it as low-quality digital content produced in quantity by AI <a href="#ref-merriam-2025" class="cite">(Merriam-Webster, 2025)</a>; <a href="https://www.npr.org/2025/12/24/nx-s1-5629169/2025-has-seen-an-explosion-of-ai-generated-slop" target="_blank" rel="noopener">NPR&rsquo;s year-end coverage</a> tracked how thoroughly it saturated feeds <a href="#ref-npr-2025" class="cite">(NPR, 2025)</a>.</p>
 
-  <div class="source-grid-2">
-    <div class="source-card">
-      <div class="source-card-source">NPR &middot; Dec 2025</div>
-      <div class="source-card-title"><a href="https://www.npr.org/2025/12/24/nx-s1-5629169/2025-has-seen-an-explosion-of-ai-generated-slop" target="_blank" rel="noopener">2025 has seen an explosion of AI-generated slop</a></div>
-      <div class="source-card-frame">NPR&rsquo;s year-end coverage of how AI content saturated feeds in 2025 and what that means going into 2026.</div>
-      <ul>
-        <li>AI content has moved from <strong>novelty to norm</strong> &mdash; users now expect to see synthetic content in their feeds, regardless of platform.</li>
-        <li>The lines between AI content and authentic content blur even when content is labeled, contributing to a sense that <strong>AI slop is inescapable online</strong>.</li>
-        <li>Political and institutional accounts (including the White House and DHS) now post AI-generated meme content, normalizing it further.</li>
-      </ul>
-    </div>
 
-    <div class="source-card">
-      <div class="source-card-source">Vervocity &middot; Jan 2026</div>
-      <div class="source-card-title"><a href="https://vervocity.io/what-is-ai-slop/" target="_blank" rel="noopener">What is AI Slop? Merriam-Webster&rsquo;s 2025 Word</a></div>
-      <div class="source-card-frame">Useful definitional piece for what &ldquo;slop&rdquo; actually means and why dictionaries picked it.</div>
-      <ul>
-        <li>Merriam-Webster defined slop as <strong>&ldquo;low-quality digital content usually produced in quantity by means of artificial intelligence.&rdquo;</strong></li>
-        <li>Mentions of &ldquo;AI slop&rdquo; spiked in 2025, with <strong>negative sentiment peaking at 54% in October</strong> (Meltwater data).</li>
-        <li>For brands: authentic, human, specific content is now the differentiator &mdash; not because it&rsquo;s artistically superior, but because it&rsquo;s the part of the feed that isn&rsquo;t synthetic.</li>
-      </ul>
-    </div>
-  </div>
+  <p>The brand consequence is twofold. <strong>Audiences trust feeds less</strong> &mdash; <a href="https://aiinasia.com/life/ai-slop-eroding-social-media-experience" target="_blank" rel="noopener">most users report finding content less trustworthy when they suspect it&rsquo;s AI-generated</a> <a href="#ref-aiinasia-2025" class="cite">(AI in Asia, 2025)</a> &mdash; which is a structural problem in a medium where audiences came looking for authenticity and have no reliable way to tell what&rsquo;s real. And the bar for <em>worth my attention</em> rose with the volume of competing content. The denominator changed; the brand&rsquo;s one post did not.</p>
 
-  <p>The brand consequence of the slop flood is twofold. <strong>Audiences trust feeds less.</strong> <em>(In a medium where audiences have increasingly come looking for authenticity, lower trust is a structural problem &mdash; what feels real may or may not be, and the user has no good way to tell.)</em> <a href="https://aiinasia.com/life/ai-slop-eroding-social-media-experience" target="_blank" rel="noopener">A Raptive study cited in industry coverage found that the majority of users find content less trustworthy when they suspect it&rsquo;s AI-generated</a> <a href="#ref-aiinasia-2025" class="cite">(AI in Asia, 2025)</a>. And the bar for what counts as <em>worth my attention</em> rose, because the volume of competing content rose. A brand post in 2018 competed with a few hundred friends&rsquo; updates and a handful of other brands the user followed. The same brand post in 2025 competes with that, plus thousands of algorithmically-surfaced creator clips, plus an indefinite supply of synthetic content optimized for engagement. The denominator changed; the numerator (the brand&rsquo;s one post) did not.</p>
-
-  <div class="sidebar-card">
-    <h3>The noise denominator</h3>
-    <div class="sidebar-card-sub">How loud is the social feed, compared to the channels brands grew up on?</div>
-    <p>Television is the canonical &ldquo;noisy&rdquo; channel &mdash; an hour of broadcast TV carries roughly <strong>15 minutes of ads</strong>, or about <strong>25 to 28 commercials per hour</strong> at the current mix of 15- and 30-second spots <a href="#ref-mock-tv-2025" class="cite">(MOCK Agency, 2025)</a>. That was the saturation case in the trade press of the 1990s, and the per-hour figure has barely moved since.</p>
-    <p>The feeds run at a different order of magnitude. Recent tracking puts mobile feed scroll speeds at <strong>three to four posts per second</strong> on Instagram &mdash; the user has roughly a quarter of a second to be stopped by the post before it&rsquo;s gone <a href="#ref-creatorflow-2026" class="cite">(Creatorflow, 2026)</a>. Averaging engaged dwell time with scroll-past time produces something on the order of <strong>2&ndash;3 seconds per post</strong>, which means the feed serves roughly <strong>1,200 to 1,800 posts per hour</strong>. US users average <strong>2 hours and 16 minutes</strong> per day across the platforms <a href="#ref-statista-social-2025" class="cite">(Statista, 2025)</a>, which works out to something on the order of <strong>2,700 to 4,000 competing posts per day</strong>, every day.</p>
-    <p>The brand post the CEO wants to &ldquo;go viral&rdquo; isn&rsquo;t competing against five other things, or fifty. It&rsquo;s competing against thousands of competing units per hour, most of them designed by full-time creators or AI tools optimized to win the same quarter-second the brand is trying to win. <strong>Television&rsquo;s 28-ads-per-hour was the saturation case. Social runs at roughly 40 to 60 times that density.</strong></p>
-    <div class="sidebar-card-tag">The denominator changed by orders of magnitude. The brand&rsquo;s one post did not.</div>
+  <div class="callout">
+    <div class="callout-label">The denominator problem</div>
+    <p>Television was the canonical noisy channel &mdash; roughly <strong>25 to 28 commercials</strong> in an hour of broadcast <a href="#ref-mock-tv-2025" class="cite">(MOCK Agency, 2025)</a>. A feed has no comparable ceiling. The brand&rsquo;s one post competes against an effectively unlimited supply of friends, creators, entertainment, news, and synthetic content, most of it produced by people or systems working full-time to win the same second of attention. <strong>Attention scarcity is the constraint, not the number of competing advertisers.</strong></p>
   </div>
 
   <h3>3. Persuasion fatigue and the &ldquo;everyone is selling me something&rdquo; problem</h3>
 
-  <p>Three of every four pieces of content on most feeds is now either an ad, a sponsored post, an influencer placement, an affiliate link, or an organic post designed to sell something. The user response is the obvious one: you stop trusting the feed as a source of information about your friends&rsquo; lives or things you want to know about, and you start treating it as a marketing channel to be defended against. The technical term for the resulting state &mdash; well-documented in advertising research for decades &mdash; is <strong><em>advertising avoidance</em></strong>. The casual term is <em>scrolling without reading anything</em>.</p>
+  <p>Most of what moves through a feed now is an ad, a sponsored post, an influencer placement, an affiliate link, or an organic post built to sell something. The user response is the obvious one: stop treating the feed as information about your friends&rsquo; lives and start treating it as a marketing channel to be defended against. Advertising research has a name for the resulting state &mdash; <strong><em>advertising avoidance</em></strong>. The casual term is scrolling without reading anything.</p>
 
   <p>The consumer side of this is now well-documented. <a href="https://hootsuite.widen.net/s/qtspqz6xpr/smconsumer2024_report_en" target="_blank" rel="noopener">Hootsuite&rsquo;s 2024 Social Media Consumer Report</a> <a href="#ref-hootsuite-consumer-2024" class="cite">(Hootsuite, 2024)</a> found that <strong>52% of consumers say they&rsquo;re exhausted by self-promotional brand content</strong> &mdash; not by ads specifically, but by the broader pattern of brand accounts treating the feed as a venue for selling. A majority of consumers, telling researchers they are tired of brand presence on the channels brands are working hardest to be present on.</p>
 
-  <p>The Hootsuite report sorts its findings into three themes that map onto the rest of this unit &mdash; <em>Sins &amp; Virtues</em>, <em>Building a High-Value Following</em>, and <em>Paid vs. Earned vs. Shared</em> &mdash; and the most useful single artifact in this section. Twenty minutes to skim.</p>
+  <p>The report sorts its findings into three themes &mdash; <em>Sins &amp; Virtues</em>, <em>Building a High-Value Following</em>, and <em>Paid vs. Earned vs. Shared</em> &mdash; and is worth twenty minutes of skimming: <a href="https://hootsuite.widen.net/s/qtspqz6xpr/smconsumer2024_report_en" target="_blank" rel="noopener">Hootsuite, <em>The Social Media Consumer Report 2024</em></a>. Three findings carry the argument here:</p>
 
-  <a href="https://hootsuite.widen.net/s/qtspqz6xpr/smconsumer2024_report_en" target="_blank" rel="noopener" style="display: block; padding: 18px 22px; background: #bccad9; margin: 18px 0 0; text-decoration: none; transition: background 0.15s; border-left: 4px solid var(--blue);">
-    <span style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 4px;">Open the report &rarr;</span>
-    <span style="display: block; font-family: var(--serif); font-size: 19px; color: var(--ink); font-weight: 700;">Hootsuite &middot; The Social Media Consumer Report 2024</span>
-    <span style="display: block; font-size: 13px; color: var(--ink-soft); margin-top: 4px; line-height: 1.4;">Three themes, roughly 30 pages, well-designed. Most cited stat: 52% of consumers exhausted by self-promotional brand content. Most actionable section: <em>Building a High-Value Following</em> (page 18). Best teaser for the PESO question: <em>Paid vs. Earned vs. Shared</em> (page 27).</span>
-  </a>
-
-  <div style="background: var(--blue-soft); padding: 18px 24px 14px; margin: 0 0 24px;">
-    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue); font-weight: 700; margin-bottom: 10px;">Highlights from &ldquo;Sins &amp; Virtues&rdquo; (pp. 7&ndash;17)</div>
-    <ul style="margin: 0 0 0 22px;">
-      <li><strong>The five worst brand sins (% who&rsquo;ve unfollowed or hidden a brand in the last 12 months for this):</strong> clickbait 76%, inauthentic content 68%, boring content 68%, repetitive content 68%, angling for engagement metrics 63%. Posting more without saying more is in the top five.</li>
-      <li><strong>Active Shoppers (the followers most likely to actually buy) are less forgiving, not more.</strong> They&rsquo;re 7&ndash;11% more likely than Casual Followers to unfollow a brand over &ldquo;forgivable&rdquo; sins like emoji overuse or misused slang. The high-value follower is the harshest critic of weak craft.</li>
-      <li><strong>What consumers want instead: new, funny, inspiring.</strong> 56% want content that teaches them something new; 55% want content that makes them laugh; 47% want content that inspires them. Active Shoppers also want <em>surprising</em> content more than 2&times; as often as Casual Followers do.</li>
-      <li><strong>Topics to stay away from:</strong> political policies 46%, religion 37%, gender identity 31%, gender equity 27%, racial equity 24%. The ratios reverse for younger audiences, but the modal consumer doesn&rsquo;t want brands in these spaces.</li>
-      <li><strong>Topics where brands are welcome:</strong> sporting events (55% welcome brand participation), pop culture moments (47%), unfolding news (45%), social justice (43%). Cultural fluency is rewarded; political opinion is not.</li>
-    </ul>
-  </div>
+  <ul style="margin: 12px 0 18px 22px; line-height: 1.6;">
+    <li>The five things most likely to make someone unfollow or hide a brand: clickbait (76%), inauthentic content (68%), boring content (68%), repetitive content (68%), and openly angling for engagement (63%). <em>Posting more without saying more is on the list.</em></li>
+    <li>Active Shoppers &mdash; the followers most likely to actually buy &mdash; are <strong>harsher</strong> critics of weak craft than casual followers, not more forgiving.</li>
+    <li>What consumers say they want instead: to learn something new (56%), to laugh (55%), to be inspired (47%).</li>
+  </ul>
 
   <h3>4. The retreat to private channels (dark social)</h3>
 
-  <p>The fourth reason is the one that doesn&rsquo;t show up in any platform&rsquo;s public metrics, because it&rsquo;s happening on platforms whose metrics aren&rsquo;t public. <a href="https://intentamplify.com/blog/dark-social/" target="_blank" rel="noopener">Industry estimates put as much as 84&ndash;95% of all content sharing through &ldquo;dark social&rdquo; channels &mdash; private messaging apps (WhatsApp, iMessage, Signal, Telegram), workplace tools (Slack, Teams), and invite-only communities (Discord, private subreddits, niche LinkedIn groups)</a> <a href="#ref-intentamplify-2025" class="cite">(Intent Amplify, 2025)</a>. The trustworthy conversation, the thing that used to happen in a Facebook comment thread in 2012, moved into group chats and Discord servers a long time ago.</p>
+  <p>The fourth reason doesn&rsquo;t appear in any platform&rsquo;s public metrics, because it isn&rsquo;t happening on platforms with public metrics. A large share of genuine peer sharing now moves through <a href="https://intentamplify.com/blog/dark-social/" target="_blank" rel="noopener">private channels</a> <a href="#ref-intentamplify-2025" class="cite">(Intent Amplify, 2025)</a> &mdash; messaging apps, workplace tools like Slack and Teams, and invite-only communities such as Discord servers and private subreddits. The conversation that used to happen in a Facebook comment thread in 2012 moved into group chats a long time ago.</p>
 
-  <div class="source-card">
-    <div class="source-card-source">NoGood &middot; Nov 2025</div>
-    <div class="source-card-title"><a href="https://nogood.io/blog/dark-social/" target="_blank" rel="noopener">Dark Social Is Shaping Brand Growth & Visibility</a></div>
-    <div class="source-card-frame">Useful piece on the iceberg model of social sharing &mdash; what&rsquo;s visible on public platforms is a small fraction of where conversations about brands actually happen.</div>
-    <ul>
-      <li>Estimate: roughly <strong>95% of content sharing happens on dark social</strong>, beyond the reach of standard web analytics.</li>
-      <li>Decision-maker conversations in B2B &mdash; the ones that shortlist your brand or knock it off the list &mdash; happen in Slack DMs, private Discords, LinkedIn DMs. None of it is tracked.</li>
-      <li>Brands that figured this out (Notion is a frequently-cited example) <strong>build their own private communities</strong> with moderators and ambassadors, rather than trying to chase the conversation onto random platforms.</li>
-    </ul>
-  </div>
+  <p>It&rsquo;s worth noticing what that implies about the platforms themselves. <strong>Some of the largest and fastest-growing &ldquo;social&rdquo; platforms were never social platforms in the marketing sense at all.</strong> WhatsApp reports roughly 3 billion monthly users, and DataReportal&rsquo;s 2026 data shows it generating more daily sessions than any other major social app <a href="#ref-datareportal-2026" class="cite">(DataReportal, 2026)</a>. It is a messaging utility with no feed for a brand to appear in, no follower graph to build, and no public metrics to report. The same is true of iMessage, Signal, Telegram, and the group-chat layer inside every other app.</p>
 
-  <p>Several smaller currents reinforced these four: generation-cohort effects, the public discourse about social media&rsquo;s mental-health costs, algorithm-fatigue from users who can no longer predict their feeds, the chilling effect of toxic comment sections on participation, and platform fragmentation. None would carry the engagement collapse alone; together with the four above, they explain its severity.</p>
+  <p>Ideas that originate on the public feeds are very likely a large part of what gets forwarded into those rooms &mdash; the screenshot, the link, the clip a friend sends with <em>you need to see this</em> attached. That forwarding is where a recommendation actually carries weight, because it arrives from a person rather than an algorithm. And there is no way to measure it. The share is unmeasurable by definition, which is the point rather than a gap in the research: <strong>much of what is being said about a brand is happening behind a closed door, and the brand has no way in and no way to count it.</strong></p>
+
+  <p>Brands that recognized this early build and moderate their own private surfaces rather than chasing the conversation across public platforms. Notion is the frequently cited case: unpaid community ambassadors run its Discord, answer questions, and produce educational material, and the brand gets product feedback that reaches it through no other channel <a href="#ref-nogood-2025" class="cite">(NoGood, 2025)</a>. <a href="social-2-organic.html">Part 2</a> treats this as one of organic&rsquo;s real jobs.</p>
+
+  <p>Smaller currents reinforced all four: cohort effects, the public argument about social media and mental health, algorithm fatigue among users who can no longer predict their own feeds, toxic comment sections suppressing participation, and platform fragmentation. None would carry the engagement collapse alone; together with the four above they explain its severity.</p>
 
   <div class="takeaway">
     <div class="takeaway-label">The demand-side picture, condensed</div>
@@ -325,68 +537,23 @@
 
   <div class="callout" style="border-left-color: var(--red); background: var(--cream);">
     <div class="callout-label" style="color: var(--red);">A scoping note on the punchy claim</div>
-    <p><strong>People still use social media socially.</strong> The DMs, the group chats, the niche subreddits, the Discord servers, the back-channel conversation between two old colleagues in a LinkedIn comment thread &mdash; that&rsquo;s all still social in the original sense of the word. What changed is narrower than the headline implies: <em>the main public feeds stopped being reliable social-graph distribution systems for brands.</em> Users haven&rsquo;t left the platforms; they&rsquo;ve relocated the social activity (public feed = consume; DMs = converse). For users, the consequence is that the conversation moved. <strong>For marketers, the consequence is sharper: the channel that used to distribute brand content via the social graph mostly doesn&rsquo;t do that anymore.</strong> Keep that asymmetry in mind every time you read &ldquo;social isn&rsquo;t social anymore&rdquo; in this unit &mdash; the claim is from the brand-distribution vantage, not the user-experience one. People still like the platforms. The platforms just stopped working the way brands assumed they did.</p>
+    <p><strong>People still use social media socially.</strong> The DMs, the group chats, the niche subreddits, the Discord servers &mdash; all still social in the original sense. What changed is narrower than the headline: <em>the main public feeds stopped being reliable social-graph distribution systems for brands.</em> Users relocated the social activity rather than abandoning it &mdash; public feed to consume, DMs to converse. People still like the platforms; the platforms stopped working the way brands assumed they did.</p>
   </div>
 
   <div class="article-card">
     <div class="ac-kicker">Anchor Source #1</div>
     <div class="ac-title">Social Media Isn&rsquo;t Social. It&rsquo;s Just Media.</div>
     <div class="ac-meta">Dan Gee &middot; <em>ExchangeWire</em>, July 2025</div>
-    <p>Gee is co-founder of Media Futures Market, a London media-investment firm. The piece opens with his own Pondicherry internet-caf&eacute; story from 2006 to anchor what social media originally was &mdash; a way to stay in touch with friends and family that was genuinely social. It then argues that the current platforms have evolved into something fundamentally different: <em>&ldquo;TikTok, Instagram, Threads, YouTube Shorts &mdash; they&rsquo;re all variations of the same product: a mobile media channel. A feed of stuff. It&rsquo;s not about who you know anymore. It&rsquo;s about what the algo thinks you&rsquo;ll look at for long enough to monetise. You&rsquo;re not part of a community. You&rsquo;re an audience.&rdquo;</em></p>
-    <p>The implication for marketers is direct. Gee notes that according to Meta&rsquo;s own disclosures, the volume of friend-generated content on its platforms is in sharp decline; people still use these apps in massive numbers, but they&rsquo;re no longer behaving socially &mdash; <em>&ldquo;scrolling, not talking. Watching, not replying.&rdquo;</em> Meanwhile marketers continue to build &ldquo;social content calendars,&rdquo; manage &ldquo;community&rdquo; channels, and obsess over comments and replies on platforms where the social layer has largely dissolved. The piece is the most-cited single articulation of what your students are about to learn the hard way on their own group projects.</p>
+    <p>Gee is co-founder of Media Futures Market, a London media-investment firm. The piece opens with his 2006 Pondicherry internet-caf&eacute; story to anchor what social media originally was, then argues that the current platforms have become something else: <em>&ldquo;It&rsquo;s not about who you know anymore&rdquo;</em> but about what the algorithm expects will hold attention long enough to monetize. His formulation of the shift is the one worth carrying: <em>&ldquo;You&rsquo;re not part of a community. You&rsquo;re an audience.&rdquo;</em> He notes that by Meta&rsquo;s own disclosures, friend-generated content on its platforms is in sharp decline &mdash; people use the apps in enormous numbers but behave differently inside them, scrolling rather than talking. Meanwhile marketers keep building &ldquo;social content calendars&rdquo; and managing &ldquo;community&rdquo; channels on surfaces where the social layer has largely dissolved.</p>
     <a class="ac-cta" href="https://www.exchangewire.com/blog/2025/07/01/social-media-isnt-social-its-just-media/" target="_blank" rel="noopener">Read the full piece at ExchangeWire &rarr;</a>
     <span class="ac-cta-note">Gee&rsquo;s argument is the lens to keep in mind through the rest of this unit. The reach numbers in &sect;05, the conversion paradox in <a href="social-3-paid.html">Part 3</a>, and the &ldquo;rebuild a community&rdquo; argument in <a href="social-4-doing-better.html">Part 4</a> all sit on top of it.</span>
   </div>
 
-  <p>Gee is not alone in this read. There&rsquo;s a small academic literature making the same case from a different angle &mdash; one that&rsquo;s less about marketing efficiency and more about what social platforms have stopped doing for civic life.</p>
+  <p>Gee is not alone, and the parallel argument from the academic side is less about marketing efficiency than about what the platforms stopped doing for civic life. <a href="https://arxiv.org/pdf/2503.11714" target="_blank" rel="noopener">Deb Roy (MIT), Lawrence Lessig (Harvard), and Audrey Tang</a> argue that systems optimized for engagement reward provocation over the listen-and-test-ideas behavior real communities require, producing what they call a broadcast posture on platforms originally framed as town squares <a href="#ref-roy-2025" class="cite">(Roy et al., 2025)</a>. Duncan Brumby, writing in <a href="https://interactions.acm.org/archive/view/may-june-2025/rebuilding-the-digital-town-square-designing-social-media-for-meaningful-connection-again" target="_blank" rel="noopener">ACM Interactions</a>, notes that X now sits largely silent for the professional and academic community it once hosted, and that the gathering didn&rsquo;t stop &mdash; it relocated to Bluesky, Discord, newsletters, and group chats <a href="#ref-brumby-2025" class="cite">(Brumby, 2025)</a>. Both point where the dark-social finding points: the community work moved to surfaces that report nothing publicly.</p>
 
-  <div class="source-card">
-    <div class="source-card-source">arXiv &middot; Feb 2025</div>
-    <div class="source-card-title"><a href="https://arxiv.org/pdf/2503.11714" target="_blank" rel="noopener">Conversation Networks &mdash; Roy, Lessig, Tang</a></div>
-    <div class="source-card-frame">An academic paper from Deb Roy (MIT), Lawrence Lessig (Harvard), and Audrey Tang (former Taiwan digital minister) arguing that platforms designed to maximize engagement actively pull users away from the kinds of meaningful community conversations social media originally promised.</div>
-    <ul>
-      <li>Platforms are <strong>optimized for engagement</strong>, which favors provocation and conflict over the listen-and-test-ideas behavior actual communities require.</li>
-      <li>The result is what the authors call a <strong>broadcast posture</strong> &mdash; users shout at each other rather than talk with each other &mdash; on systems originally framed as town squares.</li>
-      <li>For marketing purposes, the implication is similar to Gee&rsquo;s: the platforms have stopped doing the &ldquo;community&rdquo; work, and brand strategies built on participating in community conversations on these platforms are misaligned with what the platforms actually reward.</li>
-    </ul>
-  </div>
+  <p>Not everyone accepts the thesis, and the dissent comes in two grades. The consultant version holds that organic still works <a href="https://www.yourpathfinder.io/post/uncategorized/organic-social-media-isnt-dead/" target="_blank" rel="noopener">&ldquo;when done right&rdquo;</a> &mdash; post consistently, go platform-native, focus on the audience &mdash; without engaging the reach data directly <a href="#ref-pathfinder-2026" class="cite">(Pathfinder, 2026)</a>. Read it for the tone; it&rsquo;s the tone of a social-media-management retainer pitch, and recognizing it is half of resisting it. The sharper version comes from the growth agency NoGood, which concedes the old playbook is gone and argues the path forward runs through human creativity, intellectual authority, and platform-specific work &mdash; <a href="https://nogood.io/blog/future-of-organic-social-2026/" target="_blank" rel="noopener">TikTok-as-search, employee-generated content, brand-owned communities</a> <a href="#ref-nogood-2026" class="cite">(NoGood, 2025)</a>. That second position is close to where <a href="social-4-doing-better.html">Part 4</a> lands.</p>
 
-  <div class="source-card">
-    <div class="source-card-source">ACM Interactions &middot; May 2025</div>
-    <div class="source-card-title"><a href="https://interactions.acm.org/archive/view/may-june-2025/rebuilding-the-digital-town-square-designing-social-media-for-meaningful-connection-again" target="_blank" rel="noopener">Rebuilding the Digital Town Square</a> &mdash; Duncan Brumby</div>
-    <div class="source-card-frame">A more reflective piece from the CHI (human-computer interaction) community, asking where professional and social conversation has actually gone now that the major platforms have stopped serving that purpose well.</div>
-    <ul>
-      <li>The author observes that X (the former Twitter), once central to academic and professional discourse, <strong>&ldquo;now lies mostly silent&rdquo;</strong> after the Musk acquisition.</li>
-      <li>People didn&rsquo;t stop wanting to gather &mdash; they moved to <strong>different surfaces</strong> (Bluesky, Discord, private newsletters, group chats). The communal energy didn&rsquo;t disappear; the public platforms stopped capturing it.</li>
-      <li>Tracks with the dark social finding above: most of the meaningful community work has migrated to channels that don&rsquo;t show up in public engagement metrics.</li>
-    </ul>
-  </div>
-
-  <p>Not everyone agrees with the thesis. The two cards below land the most useful counter-voices.</p>
-
-  <div class="source-card dissent">
-    <div class="source-card-source">Counter-view &middot; Pathfinder, Feb 2026</div>
-    <div class="source-card-title"><a href="https://www.yourpathfinder.io/post/uncategorized/organic-social-media-isnt-dead/" target="_blank" rel="noopener">Organic Social Media Isn&rsquo;t Dead. It&rsquo;s Just Grown Up.</a></div>
-    <div class="source-card-frame">The most representative version of the &ldquo;nothing&rsquo;s broken, you just need to work harder&rdquo; argument. Worth reading because most of the consultant world still talks this way.</div>
-    <ul>
-      <li>Acknowledges reach is harder but argues organic <strong>still works &ldquo;when done right&rdquo;</strong> &mdash; consistent posting, platform-native content, genuine audience focus.</li>
-      <li>Doesn&rsquo;t directly engage the reach-collapse data; the framing is that posting volume and content quality solve the problem.</li>
-      <li>Read it for the tone &mdash; it&rsquo;s the tone you&rsquo;ll hear from consultants pitching social-media-management retainers, and recognizing it is half of resisting it.</li>
-    </ul>
-  </div>
-
-  <div class="source-card dissent">
-    <div class="source-card-source">Counter-view &middot; NoGood, Dec 2025</div>
-    <div class="source-card-title"><a href="https://nogood.io/blog/future-of-organic-social-2026/" target="_blank" rel="noopener">The Future of Organic Social in 2026</a></div>
-    <div class="source-card-frame">A more sophisticated version of the not-dead case. NoGood is a growth agency, so the framing is built-in, but the analysis is sharper than the Pathfinder piece.</div>
-    <ul>
-      <li>Concedes directly: <strong>&ldquo;If you&rsquo;re still posting like it&rsquo;s 2024, you&rsquo;ve already lost the plot&rdquo;</strong> &mdash; in other words, the old playbook is gone.</li>
-      <li>Argues the path forward is <strong>human creativity, intellectual authority, original taste</strong>, plus platform-specific work (TikTok-as-search, employee-generated content, brand-owned communities).</li>
-      <li>Sits closer to what Part 4 of this unit will argue: organic isn&rsquo;t dead, but the thing it&rsquo;s for has changed substantially, and the path forward looks more like what <em>Pathfinder</em> dismisses as &ldquo;harder&rdquo; than like a continuation of the 2018 playbook.</li>
-    </ul>
-  </div>
-
-  <p>The honest version of the dispute is narrower than the headlines on either side suggest. Almost nobody serious now believes that posting consistently with no paid support produces 2014-level results in 2026. The disagreement is about what the path forward looks like. The &ldquo;organic isn&rsquo;t dead&rdquo; camp argues for working harder and smarter on the same channels. The &ldquo;social isn&rsquo;t social anymore&rdquo; camp argues for a more substantial rethink &mdash; including the possibility that some of what brands are still trying to do on Facebook or Instagram organic should probably move to dark social, creator partnerships, or off-social channels entirely. <a href="social-4-doing-better.html">Part 4 picks up that thread.</a></p>
+  <p>The honest version of the dispute is narrower than either set of headlines. Almost nobody serious argues that consistent posting without paid support produces 2014-level results in 2026. The disagreement is about the path forward: work harder and smarter on the same channels, or accept a more substantial rethink in which some of what brands still attempt on Facebook and Instagram organic moves to dark social, creator partnerships, or off-social channels entirely. <a href="social-4-doing-better.html">Part 4 picks up that thread.</a></p>
 </section>
 
 
@@ -399,21 +566,19 @@
   <div class="sec-label">The Data</div>
   <h2>What the Numbers Actually Say</h2>
 
-  <p>The argument so far has been mostly thesis. The reach data is the part that&rsquo;s easy to look up and hard to argue with. Several industry trackers measure this; they don&rsquo;t all return identical numbers, but they all return numbers in roughly the same direction, and they all show the same arc since 2012. The second anchor source for this unit pulls them together better than anyone else.</p>
+  <p>The argument so far has been mostly thesis. The reach data is the part that&rsquo;s easy to look up and hard to argue with. Trackers don&rsquo;t return identical numbers, but they return numbers pointing the same direction, and they show the same arc since 2012.</p>
 
   <div class="article-card">
     <div class="ac-kicker">Anchor Source #2</div>
     <div class="ac-title">TikTok Brand Follower Counts Rose 200% in 2025 While Instagram Organic Reach Fell Up to 40%: A Complete Platform-by-Platform Breakdown</div>
-    <div class="ac-meta">ALM Corp, drawing on Emplifi data &middot; February 2026</div>
-    <p>The most current platform-by-platform analysis available as of this writing. ALM Corp synthesizes Emplifi&rsquo;s paid-placement and follower-count data with engagement-rate trackers from Socialinsider and others. The headline finding for our purposes is the spread &mdash; reach and engagement are not declining uniformly across platforms; the picture varies a lot by platform, by content format, and by whether you&rsquo;re organic or paid.</p>
-    <p>Two findings to carry forward. First, on Facebook, <strong>live video and link posts saw the most organic reach</strong> in 2025 &mdash; running counter to the conventional advice to chase Reels. Live broadcasts generate active participation signals (real-time comments) that the algorithm weights heavily. Second, on Instagram, <strong>paid CPMs hit roughly $2.50 per thousand impressions at the Q4 2025 peak</strong>, the highest of any platform in the report. The pattern is the one this whole unit is trying to surface: the channels still work for the brands willing to use them in the specific ways the platforms currently reward, and the cost of reach has been steadily rising even as organic reach has fallen.</p>
+    <div class="ac-meta">ALM Corp, drawing on Emplifi data &middot; February 2026 <a href="#ref-almcorp-2026" class="cite">(ALM Corp, 2026a)</a></div>
+    <p>The most current platform-by-platform synthesis available as of this writing, pulling together Emplifi&rsquo;s paid-placement and follower data with engagement trackers from Socialinsider and others. The useful finding is the spread: reach and engagement aren&rsquo;t declining uniformly, and the picture varies by platform, by format, and by whether you&rsquo;re organic or paid. One counter-intuitive detail worth carrying &mdash; on Facebook, <strong>live video and link posts drew the most organic reach</strong> in 2025, running against the standard advice to chase Reels, because live broadcasts generate the real-time comment signal the algorithm weights heavily.</p>
     <a class="ac-cta" href="https://almcorp.com/blog/tiktok-brand-growth-instagram-organic-reach-decline-2025/" target="_blank" rel="noopener">Read the full ALM Corp analysis &rarr;</a>
-    <span class="ac-cta-note">The full piece has additional platform-level data on TikTok follower growth (the &ldquo;up 200%&rdquo; finding), engagement decline by tier on Instagram, and the Q4 2025 CPM peak data. The numbers below are pulled from this analysis and from Hootsuite&rsquo;s parallel tracking.</span>
   </div>
 
   <h3>Reach by platform, 2025&ndash;2026</h3>
 
-  <p>Multiple tracking services agree on the rough direction, even where they disagree on exact percentages. The chart below uses approximate central estimates. <em>The differences across platforms are larger than the differences across measurement methods</em> &mdash; which is the point.</p>
+  <p>Read the chart below as a snapshot, not a law. Trackers disagree on the exact percentages, platforms redefine what they count often enough that year-over-year comparisons drift, and reach varies sharply by account size, format, and category. <em>The spread between platforms is larger than the spread between measurement methods</em> &mdash; that spread is the durable finding; the decimal points are not.</p>
 
   <div class="reach-chart">
     <div class="reach-row">
@@ -447,7 +612,7 @@
     <div class="reach-note">Approximate organic reach per post as a share of follower base, 2025&ndash;2026. Sources: <a href="https://blog.hootsuite.com/organic-reach-declining/" target="_blank" rel="noopener">Hootsuite</a>, <a href="https://martech.zone/organic-reach-is-dead-how-to-grow-on-social-media/" target="_blank" rel="noopener">Martech Zone</a>, <a href="https://almcorp.com/blog/tiktok-brand-growth-instagram-organic-reach-decline-2025/" target="_blank" rel="noopener">ALM Corp / Emplifi</a>, <a href="https://almcorp.com/blog/social-media-engagement-decline-2025-instagram-linkedin-threads/" target="_blank" rel="noopener">ALM Corp engagement report</a>. The chart shows the four major B2C platforms; LinkedIn organic reach runs higher (~25%) but is outside the scope of this unit. X figure applies to non-Premium accounts post-January 2025.</div>
   </div>
 
-  <p>For comparison, Facebook&rsquo;s organic reach in 2012 was roughly <strong>16%</strong> &mdash; off the right edge of the chart above by an order of magnitude. The chart isn&rsquo;t showing a decline; it&rsquo;s showing the floor that decline left behind. Visualized at scale, the gap is the picture:</p>
+  <p>Facebook&rsquo;s 2012 organic reach was roughly <strong>16%</strong> &mdash; off the right edge of that chart by an order of magnitude. The chart isn&rsquo;t showing a decline; it&rsquo;s showing the floor the decline left behind.</p>
 
   <div class="sidebar-card" style="background: var(--white); padding: 0; margin: 18px 0 22px;">
     <svg viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; display: block; background: var(--cream);">
@@ -484,16 +649,33 @@
     <div class="sidebar-card-tag" style="padding: 12px 16px 14px;">Approximate Facebook organic reach per post, as a percentage of follower base. 2012 figure from contemporary Edgerank-era tracking; 2025 figure from Hootsuite, Martech Zone, ALM Corp / Emplifi (2025&ndash;2026 averages). The trajectory between them isn&rsquo;t linear &mdash; reach took its biggest single drop after Facebook&rsquo;s January 2018 &ldquo;meaningful interactions&rdquo; update covered in &sect;02 &mdash; but the endpoints are the picture.</div>
   </div>
 
+  <div class="callout" style="border-left-color: var(--red); background: var(--cream);">
+    <div class="callout-label" style="color: var(--red);">The complication: the ceiling went up while the average went down</div>
+    <p>The obvious objection to everything above is the TikTok that did four million views from a 4,000-follower account. It&rsquo;s a real objection, and the answer sharpens the argument rather than weakening it. Discovery feeds don&rsquo;t distribute to your followers; they audition your post against everyone else&rsquo;s for a stranger&rsquo;s attention. That raised the ceiling &mdash; reaching two million people who&rsquo;ve never heard of you was impossible on a 2013 graph feed &mdash; and lowered the average, because the typical post now loses that audition. <strong>Distribution moved from reliable and small to unpredictable and occasionally enormous.</strong> The brands held up as proof that social still works the old way (Duolingo, Liquid Death, Wendy&rsquo;s) are the visible winners of that lottery, with real craft behind the entries. Planning a program around winning it is not a strategy, and the expected value of any given post fell even as the maximum rose.</p>
+    <p style="margin-top: 14px;">There&rsquo;s a second cost the view count never shows. <a href="https://sproutsocial.com/insights/press/the-days-of-trend-chasing-are-over-new-research-from-sprout-social-reveals-a-third-of-consumers-think-jumping-on-viral-trends-is-embarrassing-for-brands/" target="_blank" rel="noopener">Sprout Social&rsquo;s 2025 Index asked 4,000 consumers how they read brands jumping on viral trends</a> <a href="#ref-sprout-index-2025" class="cite">(Sprout Social, 2025)</a>. Forty percent said it&rsquo;s cool. <strong>Thirty-three percent said it&rsquo;s embarrassing.</strong> Twenty-seven percent said it only works inside the first 24 to 48 hours of a trend&rsquo;s life &mdash; which is roughly the time it takes most brands to get a post through legal and approvals. Trend participation is therefore a bet placed with a third of the audience wincing, on a window that has usually closed by the time the brand can act, in a format the algorithm reads as derivative because it has already seen it a thousand times. There is also a trade argument, harder to pin down but widely reported by practitioners, that a viral hit can depress engagement on everything a brand posts after it.</p>
+  </div>
+
+  <div class="imgstrip fullbleed">
+    <div class="imgstrip-inner">
+      <div class="imgstrip-label">Nine opinions on going viral</div>
+      <div class="strip-container dark" data-strip="viral" data-height="360"></div>
+      <div class="imgstrip-controls">
+        <button class="imgstrip-btn" data-strip-prev="viral" aria-label="Previous image">&lsaquo;</button>
+        <button class="imgstrip-btn" data-strip-pause="viral">Pause</button>
+        <button class="imgstrip-btn" data-strip-next="viral" aria-label="Next image">&rsaquo;</button>
+        <span class="imgstrip-count" data-strip-count="viral"></span>
+      </div>
+      <p class="imgstrip-caption">Search for advice on how to go viral and you will find an endless supply of it. Some of it converges. Much of it contradicts, because one person is coaching an underdog makeup brand and the next is telling a dental practice how to blow up, and those are not the same problem. The nine posts above come at it from the other direction: they ask whether viral should be the goal at all, and what it costs when you get it. That question is worth more to a brand than any of the tactics.</p>
+      <p class="imgstrip-meta">Instagram screenshots collected September 2026 &middot; click any image to enlarge</p>
+    </div>
+  </div>
+
   <h3>Engagement, separately</h3>
 
-  <p>Reach is whether the post appears in front of someone. Engagement is whether they do anything when it does. Both numbers fell. <a href="https://almcorp.com/blog/social-media-engagement-decline-2025-instagram-linkedin-threads/" target="_blank" rel="noopener">ALM Corp&rsquo;s engagement-decline analysis</a> <a href="#ref-almcorp-engagement-2026" class="cite">(ALM Corp, 2026b)</a> tracked engagement drops in 2025 across every major platform, with Instagram declining 28% year-over-year on the median post. Median X engagement rate hit <em>0.03%</em>. Threads, which is growing rapidly in raw user numbers, saw an 18% engagement decline as user count expanded faster than activity per user.</p>
+  <p>Reach is whether the post appears in front of someone; engagement is whether they do anything about it. Both fell. <a href="https://almcorp.com/blog/social-media-engagement-decline-2025-instagram-linkedin-threads/" target="_blank" rel="noopener">ALM Corp&rsquo;s engagement analysis</a> <a href="#ref-almcorp-engagement-2026" class="cite">(ALM Corp, 2026b)</a> found 2025 declines across every major platform &mdash; Instagram down 28% year-over-year on the median post, median X engagement at 0.03%, and Threads down 18% as its user count grew faster than activity per user.</p>
 
   <p>The combined math is brutal. A brand with 100,000 Facebook fans posting a typical update reaches roughly 1,500 followers (1.5% reach) and gets engagement at roughly 0.11% of those reached &mdash; <strong>under two interactions on a post that nominally has a hundred-thousand-person audience.</strong> The post looks healthy on the brand&rsquo;s internal dashboard (reach: 1,500 &check;; engagement rate: 0.11% &asymp; industry average &check;), and produces approximately zero business value.</p>
 
-  <div class="callout">
-    <div class="callout-label">The number to memorize</div>
-    <p>Facebook&rsquo;s 2012 organic reach: roughly <strong>16%</strong>. Facebook&rsquo;s 2025 organic reach: roughly <strong>1&ndash;2%</strong>. That&rsquo;s the order-of-magnitude collapse the rest of this unit is responding to. Everything else &mdash; the algorithm theory, the AI slop, the privacy regime, the CTV reallocation &mdash; is decoration on that one ratio.</p>
-  </div>
 </section>
 
 
@@ -505,21 +687,20 @@
   <div class="sec-label">The Kleenex Test</div>
   <h2>Followers Aren&rsquo;t Reach. And Reach Isn&rsquo;t the Customer Base.</h2>
 
-  <p>One of the most common analytical errors in marketing meetings is the implicit assumption that <em>follower count</em> on social media equals <em>the brand&rsquo;s actual customer base</em>. It feels reasonable. Big brand, lots of customers, lots of followers, lots of people who see the posts &mdash; that&rsquo;s how the math seems to work. It isn&rsquo;t how the math actually works, and the cleanest way to see that is to look at a brand whose customer base is one of the largest in American consumer goods. Let&rsquo;s examine Kleenex.</p>
+  <p>A common analytical error in marketing meetings is the assumption that <em>follower count</em> is a rough stand-in for <em>the brand&rsquo;s customer base</em>. Big brand, many customers, many followers, many people seeing the posts. That isn&rsquo;t how the math works, and the cleanest way to see it is a brand whose customer base is among the largest in American consumer goods.</p>
 
   <h3>What &ldquo;Kleenex-sized&rdquo; actually means</h3>
 
-  <p>Kleenex is dominant in a way that is hard to overstate. The brand has been on US shelves since 1924. It reaches <strong>roughly 90% of US households</strong> through near-universal retail distribution &mdash; supermarkets, drugstores, mass merchandise, online <a href="#ref-adhoc-2026" class="cite">(Ad-Hoc News, 2026)</a>. It holds approximately <strong>45% of the US facial tissue market</strong>, with some industry trackers putting that figure closer to 60% depending on how the category is sliced <a href="#ref-cetrix-2024" class="cite">(Cetrix, 2024)</a>. Its name has been generically adopted to mean &ldquo;facial tissue&rdquo; in casual American English &mdash; a status linguists call a <em>generic trademark</em> and that brands spend enormous sums of money trying to achieve, because it indicates the brand has stopped being one option in a category and become the category itself. Coca-Cola, Google, Band-Aid, and Kleenex.</p>
+  <p>Kleenex has been on US shelves since 1924, reaches <strong>roughly 90% of US households</strong> through near-universal retail distribution <a href="#ref-adhoc-2026" class="cite">(Ad-Hoc News, 2026)</a>, and holds something like <strong>45% of the US facial tissue market</strong> <a href="#ref-cetrix-2024" class="cite">(Cetrix, 2024)</a>. Its name is a <em>generic trademark</em> &mdash; used to mean facial tissue in casual American English, the status brands spend fortunes chasing because it means the brand stopped being an option in the category and became the category. Coca-Cola, Google, Band-Aid, Kleenex.</p>
 
   <p>Now the social numbers. As of this writing, Kleenex has roughly <strong>56,500 followers on Instagram</strong>. According to Socialblade tracking, the brand averages <strong>21 likes and one share per post</strong>, with an engagement rate of <strong>0.04%</strong>. Not four percent. Not point-four percent. <em>Point-zero-four percent.</em> The same brand has roughly <strong>708,000 followers on Facebook</strong>; the last twenty-five posts show like counts in the <em>8-to-20</em> range. Eight to twenty likes. On a page with more than seven hundred thousand declared fans <a href="#ref-socialblade-kleenex-2026" class="cite">(Socialblade, 2026)</a>.</p>
 
-  <p>Put the numbers next to each other and the picture becomes obvious. Kleenex&rsquo;s actual customer base runs to hundreds of millions of Americans who use the product casually and routinely. Kleenex&rsquo;s Instagram following is 56,500 people &mdash; on the order of <em>one in several thousand</em> of the brand&rsquo;s actual users. And the slice of that fraction that engages with any given post is, on average, twenty-one humans. You could uncharitably summarize this as &ldquo;nobody cares.&rdquo; The more accurate version is sharper: <strong>a brand that reaches nine out of every ten American households at retail has, on social media, a visible audience small enough to fit in a high-school auditorium &mdash; and the share of that audience that interacts with any given post is essentially negligible against the brand&rsquo;s actual scale.</strong></p>
+  <p>Kleenex&rsquo;s customer base runs to hundreds of millions of Americans. Its Instagram following is 56,500 people, on the order of <em>one in several thousand</em> of the brand&rsquo;s actual users, and the slice of that fraction engaging with any given post averages twenty-one humans. <strong>A brand that reaches nine of every ten American households at retail has a social audience small enough to fit in a high-school auditorium, and a per-post interaction count that is negligible against its actual scale.</strong></p>
 
   <div class="sidebar-card">
     <h3>The Heinz Version of the Same Math</h3>
     <div class="sidebar-card-sub">Different brand, same gap between actual customers and social-visible audience.</div>
-    <p>Heinz is roughly the same kind of brand running into the same math problem. The brand is used by nearly <strong>200 million Americans</strong> <a href="#ref-heinz-newsweek-2021" class="cite">(Newsweek, 2021)</a> &mdash; a Statista-derived figure based on consumer use rather than household purchase data, which is the closest available proxy for the brand&rsquo;s actual reach into American households. The average Heinz Instagram post earns around <strong>1,500&ndash;1,600 likes</strong>. Run those numbers together and an average post is liked by roughly <em>one Heinz user in 124,000</em>. Even a strong-looking Instagram engagement rate does not mean the brand is reaching or activating most of its users. It means a tiny visible slice of the audience is interacting.</p>
-    <p>Add the Instagram and Facebook followings together &mdash; and generously assume zero overlap between the two follower lists, which is an overcount in practice &mdash; and the combined social-following population is roughly <strong>0.6%</strong> of the brand&rsquo;s actual US user base. That does not mean social media is useless for Heinz. It means social is not the same thing as the customer base.</p>
+    <p>Heinz runs into the same math. The brand is used by nearly <strong>200 million Americans</strong> <a href="#ref-heinz-newsweek-2021" class="cite">(Newsweek, 2021)</a>, and the average Heinz Instagram post earns around <strong>1,500&ndash;1,600 likes</strong> &mdash; roughly <em>one Heinz user in 124,000</em>. Add the Instagram and Facebook followings together, generously assuming no overlap, and the combined social following is about <strong>0.6%</strong> of the brand&rsquo;s US user base. A healthy-looking engagement rate doesn&rsquo;t mean the brand is activating its users; it means a small visible slice is interacting.</p>
     <div class="sidebar-card-tag">Most customers buy the brand, use the brand, recognize the brand, and never follow the brand.</div>
   </div>
 
@@ -527,31 +708,38 @@
     <div class="pullquote-text">Social media is not where the whole brand audience lives. It is where a tiny, visible slice of the audience interacts.</div>
   </div>
 
+
+  <div class="imgstrip fullbleed">
+    <div class="imgstrip-inner">
+      <div class="imgstrip-label">&ldquo;Only&rdquo; 100 likes</div>
+      <div class="imggrid imggrid-3">
+        <figure class="imggrid-cell"><img src="assets/images/social/lack-of-views-05/social01-01.png" alt="Carousel slide 1 on low view counts for small accounts" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/lack-of-views-05/social01-02.png" alt="Carousel slide 2 on low view counts for small accounts" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/lack-of-views-05/social01-03.png" alt="Carousel slide 3 on low view counts for small accounts" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/lack-of-views-05/social01-04.png" alt="Carousel slide 4 on low view counts for small accounts" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/lack-of-views-05/social01-05.png" alt="Carousel slide 5 on low view counts for small accounts" loading="lazy" decoding="async"></figure>
+        <div class="imggrid-note">
+          <p>The same finding as the Kleenex math, arriving as encouragement. A creator carousel telling small accounts to stop measuring themselves against 10,000 likes is, underneath the pep talk, a description of how distribution now works: <strong>reach is small by default, for nearly everyone.</strong></p>
+          <p>Note what the advice becomes once that&rsquo;s accepted. Not <em>get more views</em>. Position yourself as the authority, show up consistently, build something that converts 200 right people rather than chasing 200,000 of the wrong ones. That is a brand strategy wearing a creator&rsquo;s clothes &mdash; and it is roughly where <a href="social-2-organic.html">Part 2</a> ends up.</p>
+        </div>
+      </div>
+      <p class="imgstrip-meta">Instagram screenshots collected September 2026 &middot; click any image to enlarge</p>
+    </div>
+  </div>
+
   <h3>The follower-count fallacy</h3>
 
-  <p>The other version of this confusion is the assumption that <em>growing</em> the follower count is itself the work. <em>If we get to 100,000 followers, our posts will reach 100,000 people.</em> They will not. At Facebook&rsquo;s current ~1.5% organic reach, a 100,000-follower page reaches about 1,500 people per post. <strong>Going from 50,000 followers to 100,000 followers doubles your nominal audience but only adds about 750 actually-reached humans per post.</strong> The marginal return on follower-acquisition activity at current organic reach levels is approximately the cost of acquiring those followers divided by 1.5% &mdash; which is to say, roughly a 67&times; worse deal than it was when reach was 100%.</p>
+  <p>The second version of the confusion is that <em>growing</em> the follower count is itself the work. At Facebook&rsquo;s current reach, a 100,000-follower page reaches about 1,500 people per post, so <strong>doubling the page from 50,000 to 100,000 followers adds roughly 750 actually-reached humans per post.</strong> Follower acquisition is being priced as though reach still followed it. It doesn&rsquo;t.</p>
 
-  <p>And the engagement rate that does come back &mdash; the likes and shares on the small slice of followers actually reached &mdash; gets aggregated, dashboarded, and reported as if it represents the brand&rsquo;s relationship with its customer base. It doesn&rsquo;t. The Kleenex dashboard reports 0.04% engagement and looks &ldquo;in line with industry average,&rdquo; the Heinz dashboard reports healthy-looking like counts per post; both numbers describe a tiny audience that is not the customer base and was never going to be.</p>
+  <p>The engagement that does come back &mdash; likes and shares from the sliver of followers actually reached &mdash; gets aggregated, dashboarded, and reported as if it described the brand&rsquo;s relationship with its customers. Kleenex&rsquo;s 0.04% reads as &ldquo;in line with industry average.&rdquo; Heinz&rsquo;s like counts look healthy. Both numbers describe an audience that was never the customer base.</p>
 
-  <p><em>This is the same problem Hootsuite&rsquo;s 2024 consumer report frames as <strong>&ldquo;building a high-value following&rdquo;</strong> &mdash; the recognition that a follower count, even a large one, is not the same thing as a base of followers who actually do anything commercially useful for the brand. The Kleenex math is one way to see it; the Hootsuite framing is another.</em></p>
+  <p><em>Hootsuite&rsquo;s consumer report frames the same problem as <strong>&ldquo;building a high-value following&rdquo;</strong>: the question is which followers, not how many. Three findings from that chapter cut against a purely dismissive reading of the Kleenex math:</em></p>
 
-  <a href="https://hootsuite.widen.net/s/qtspqz6xpr/smconsumer2024_report_en" target="_blank" rel="noopener" style="display: block; padding: 18px 22px; background: #bccad9; margin: 18px 0 0; text-decoration: none; transition: background 0.15s; border-left: 4px solid var(--blue);">
-    <span style="display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 4px;">Open the report &rarr;</span>
-    <span style="display: block; font-family: var(--serif); font-size: 19px; color: var(--ink); font-weight: 700;">Hootsuite &middot; Building a High-Value Following (p. 18)</span>
-    <span style="display: block; font-size: 13px; color: var(--ink-soft); margin-top: 4px; line-height: 1.4;">The chapter that argues followers and commercial intent are correlated more strongly than the &ldquo;social as vanity&rdquo; thesis admits &mdash; without contradicting the Kleenex math, because Hootsuite&rsquo;s point is about which followers, not how many.</span>
-  </a>
-
-  <div style="background: var(--blue-soft); padding: 18px 24px 14px; margin: 0 0 24px;">
-    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--blue); font-weight: 700; margin-bottom: 10px;">Highlights from &ldquo;Building a High-Value Following&rdquo; (pp. 18&ndash;26)</div>
-    <ul style="margin: 0 0 0 22px;">
-      <li><strong>70% of people who follow a brand on social have explicit plans to buy from it</strong> (soon or in the future), and <strong>59% have already purchased</strong> from a brand they follow. Following ≠ buying, but the overlap is much higher than the &ldquo;social is for vanity metrics&rdquo; framing assumes.</li>
-      <li><strong>If Gen Z follows a brand, they&rsquo;re 2&times; as likely as Boomers to plan a near-term purchase.</strong> The youngest cohort is also the highest-intent cohort once they&rsquo;ve opted in &mdash; the same cohort the discipline is worst at retaining via tactics built for the 2014 audience.</li>
-      <li><strong>77% rank brand social presence at 5+ out of 10 in influencing their purchase decisions</strong> &mdash; meaning that even when followers are a tiny slice of the customer base (the Kleenex problem), the slice that follows treats the brand&rsquo;s social presence as substantively informing what they buy.</li>
-      <li><strong>The most-appealing reason to follow a brand is communicating in a relatable, authentic way (65%)</strong>, followed by inspiring content (57%), a compelling point of view in the brand&rsquo;s area of expertise (56%), and timely responses to questions (53%).</li>
-      <li><strong>The single LEAST appealing thing a brand can do to win followers is maintain an active social presence by consistently posting and interacting (64% rate this least appealing).</strong> This is striking empirical evidence for the unit&rsquo;s &sect;07 argument that the discipline&rsquo;s default &ldquo;post more&rdquo; reflex is the opposite of what high-value followers actually want.</li>
-      <li><strong>Active Shoppers care about consistency and broader cultural POV (44%) more than Casual Followers (~31%).</strong> The followers most likely to buy are the ones who notice when a brand is showing up substantively versus filling space.</li>
-    </ul>
-  </div>
+  <ul style="margin: 12px 0 20px 22px; line-height: 1.6;">
+    <li><strong>70% of people who follow a brand plan to buy from it</strong> and 59% already have. The followers are few, but they are not idle spectators.</li>
+    <li><strong>77% rate a brand&rsquo;s social presence at 5 or better out of 10</strong> in influencing what they buy &mdash; so the tiny slice that follows treats the account as substantive input.</li>
+    <li><strong>The least appealing thing a brand can do to earn a follow is post and interact constantly</strong> (64% rate it least appealing). That is direct empirical evidence against the &ldquo;post more&rdquo; reflex.</li>
+  </ul>
 
   <h3>Three audiences, three different jobs</h3>
 
@@ -575,14 +763,14 @@
     </div>
   </div>
 
-  <p>The paid ad reaches strangers. The organic post reaches a small fraction of the people who&rsquo;ve already declared interest. The direct send reaches the loyalists. Each is appropriate for a different kind of marketing job. <strong>The error is assuming that &ldquo;put it on social&rdquo; covers all three.</strong> It covers only two, both badly: the paid version pretends to reach strangers but does so at increasing cost and decreasing precision, and the organic version pretends to reach a brand&rsquo;s &ldquo;community&rdquo; but actually reaches a tiny scattered slice of it &mdash; a slice that is itself a tiny scattered slice of the brand&rsquo;s actual customer base.</p>
+  <p>Each audience suits a different job. <strong>The error is assuming &ldquo;put it on social&rdquo; covers all three.</strong> It covers two, both partially: the paid version reaches strangers at rising cost and falling precision, and the organic version reaches a scattered slice of the people who already declared interest &mdash; itself a scattered slice of the customer base.</p>
 
   <div class="takeaway">
-    <div class="takeaway-label">The Kleenex takeaway, in three sentences</div>
+    <div class="takeaway-label">The Kleenex chain</div>
     <ul>
-      <li><strong>Customer base &ne; follower count.</strong> Even the biggest, most-distributed consumer brands have social followings that are a tiny fraction of their actual customers.</li>
-      <li><strong>Follower count &ne; reach.</strong> Even when a brand has a large follower count, organic distribution shows the post to a small share of those followers per post.</li>
-      <li><strong>Reach &ne; engagement.</strong> Even when the post is shown, only a small share of those reached respond &mdash; meaning the visible interaction on social represents a doubly-filtered tiny slice of the customer base, not the customer base itself.</li>
+      <li><strong>Customer base &ne; follower count.</strong> The biggest brands have followings that are a rounding error against their customers.</li>
+      <li><strong>Follower count &ne; reach.</strong> Organic shows the post to a small share of those followers.</li>
+      <li><strong>Reach &ne; engagement.</strong> A small share of those reached respond &mdash; so visible interaction is a doubly filtered sliver, not the customer base.</li>
     </ul>
   </div>
 
@@ -609,35 +797,50 @@
   <div class="sec-label">The Misallocation Loop</div>
   <h2>Why CEOs Still Think Social Is Free</h2>
 
-  <p>The closing argument of this piece is the one most likely to be useful in the rooms you&rsquo;ll actually sit in over the next decade. The reach-collapse data has been in the trade press for years. The &ldquo;social isn&rsquo;t social anymore&rdquo; thesis is well-articulated. So why hasn&rsquo;t the operating assumption inside most marketing departments changed?</p>
+  <p>The reach-collapse data has been in the trade press for years and the &ldquo;social isn&rsquo;t social anymore&rdquo; thesis is well articulated. So why hasn&rsquo;t the operating assumption inside most marketing departments moved?</p>
 
   <div class="callout">
     <div class="callout-label">The kitchen-sink trap</div>
-    <p>The three-audiences finding in &sect;06 sets up a related failure mode worth naming. Some media &mdash; OOH, TV, search &mdash; are mostly used for one job in the funnel; nobody asks a billboard to <em>also</em> close the sale or build community. Social can do more than one job, which is real. But brands often respond to that flexibility by asking every post to do all of them at once: surprise and delight, build emotional connection, feel authentic, showcase the product, drive traffic, and close a sale. Call it the <strong>(everything-but-the) kitchen-sink strategy</strong>. Because social is treated as free, the response to having multiple jobs isn&rsquo;t to schedule them out across a week or month &mdash; it&rsquo;s to throw everything into a single post and hope for the best. The post does none of the jobs well, engagement drops, and the cycle of expectation-mismatch resumes. The fix isn&rsquo;t fewer jobs; it&rsquo;s sequencing the jobs deliberately. (<a href="social-2-organic.html">Part 2&rsquo;s content-calendar treatment</a> picks up the sequencing problem.)</p>
+    <p>Nobody asks a billboard to <em>also</em> close the sale and build community. Social can do more than one job, which is real &mdash; but brands often answer that flexibility by asking every post to do all of them at once: surprise, build emotional connection, feel authentic, showcase the product, drive traffic, close a sale. Because the channel is treated as free, the jobs never get sequenced across a week or a month; they get stacked into one post. The post does none of them well. The fix isn&rsquo;t fewer jobs &mdash; it&rsquo;s sequencing them deliberately, which is what <a href="social-2-organic.html">Part 2&rsquo;s content-calendar treatment</a> is about.</p>
   </div>
 
   <p>The most honest answer is that there&rsquo;s a self-reinforcing loop &mdash; call it <strong><em>the misallocation loop</em></strong> &mdash; and it&rsquo;s hard to break. It goes something like this:</p>
 
   <ol style="margin: 14px 0 18px 24px; line-height: 1.65;">
-    <li><strong>The CEO believes social is essentially free.</strong> This belief was approximately true in 2014, and most CEOs formed their working theory of social media somewhere between 2010 and 2017.</li>
-    <li><strong>Therefore social receives a low investment.</strong> A junior marketer, maybe an intern, manages it. There&rsquo;s a content calendar; there&rsquo;s a tool subscription; there&rsquo;s no real budget for production, creative, or paid amplification of organic posts.</li>
-    <li><strong>Low investment produces low-quality work.</strong> A junior team, working without a real budget, against a vague brief, on platforms whose distribution mechanics they don&rsquo;t fully understand, produces forgettable content. The content earns roughly the engagement it deserves, which is to say very little.</li>
-    <li><strong>Attribution can&rsquo;t prove anything either way.</strong> Because social&rsquo;s attribution to actual business outcomes has gotten worse since iOS 14.5 (see <a href="social-3-paid.html">Part 3</a>), it&rsquo;s difficult to make a defensible case in front of a CFO that the program is producing value, and equally difficult to prove it isn&rsquo;t. The dashboard shows reach and engagement numbers in the &ldquo;industry average&rdquo; band, which reads as &ldquo;fine&rdquo; to anyone not looking too hard.</li>
-    <li><strong>The CEO&rsquo;s prior is confirmed.</strong> Social is &ldquo;free&rdquo; (it has a small budget), it&rsquo;s &ldquo;working&rdquo; (the metrics are average), and there&rsquo;s no compelling case to change the investment. Therefore the investment stays low. Therefore the work stays mediocre. Therefore the outcomes stay invisible.</li>
-    <li><strong>Creativity is the lever that gets starved.</strong> The variable creative-effectiveness research identifies as the single largest driver of marketing performance gets the smallest budget, the least senior attention, and the least testing infrastructure &mdash; on the channel that needs it most.</li>
+    <li><strong>The CEO believes social is essentially free.</strong> That belief was approximately true in 2014, and most CEOs formed their theory of social somewhere between 2010 and 2017.</li>
+    <li><strong>So social gets a low investment.</strong> A junior marketer or an intern runs it. There&rsquo;s a calendar and a tool subscription, and no real budget for production, creative, or paid amplification.</li>
+    <li><strong>Low investment produces forgettable work</strong>, which earns roughly the engagement it deserves.</li>
+    <li><strong>Attribution can&rsquo;t settle it either way.</strong> Since ATT (see <a href="social-3-paid.html">Part 3</a>), it&rsquo;s hard to prove the program produces value and equally hard to prove it doesn&rsquo;t. The dashboard sits in the &ldquo;industry average&rdquo; band, which reads as fine to anyone not looking closely.</li>
+    <li><strong>The prior is confirmed.</strong> Social is &ldquo;free&rdquo; (small budget) and &ldquo;working&rdquo; (average metrics), so the investment stays where it is, so the work stays mediocre, so the outcomes stay invisible.</li>
+    <li><strong>Creativity is the lever that gets starved.</strong> The variable <a href="creative-1-why-creative.html">creative-effectiveness research identifies as the largest controllable driver of performance</a> gets the smallest budget and the least senior attention &mdash; and unlike the other steps, starvation leaves no visible artifact. It produces absences: variants not made, ideas not tested, distinctive assets not built.</li>
   </ol>
 
-  <p>The creativity step is the one most likely to be invisible to the CEO holding the budget. The other steps in the loop produce visible artifacts &mdash; a hire, a calendar, a dashboard. Creative starvation just produces absences: variants not made, ideas not tested, distinctive brand assets not built. And the absences happen on the variable that <a href="creative-1-why-creative.html">creative-effectiveness research identifies as the largest controllable driver of marketing performance</a> &mdash; the same variable <a href="social-3-paid.html#advantage">Meta&rsquo;s Advantage+ era</a> has made even more concentrated in paid social (now 70&ndash;80% of performance, up from 30&ndash;40% pre-2022). The thing being starved is the thing that now matters most.</p>
 
-  <p>This loop is genuinely difficult to escape because every step inside it is locally rational. The CEO isn&rsquo;t wrong to be skeptical of unprovable returns. The junior team isn&rsquo;t wrong to produce what their resources allow. The dashboard isn&rsquo;t wrong to surface the metrics the platforms make available. The loop is wrong only in the aggregate &mdash; the resulting investment level is well below what the channel would justify if anybody could see what it was actually producing.</p>
 
-  <p>This isn&rsquo;t a theoretical loop. Practitioners report being inside it in roughly the terms you&rsquo;d expect. <a href="https://www.hootsuite.com/research/social-media-career-report/happiness-and-hardships" target="_blank" rel="noopener">Hootsuite&rsquo;s 2023 Social Media Career Report</a> <a href="#ref-hootsuite-career-2023" class="cite">(Hootsuite, 2023)</a> surveyed working social media managers about what makes the job hard. <strong>56% said their bosses don&rsquo;t understand social media</strong> &mdash; the single most-cited hardship in the survey. The CEO problem this section describes isn&rsquo;t a caricature of unreasonable executives. It&rsquo;s the modal experience of the people inside marketing departments trying to do the work.</p>
+  <div class="imgstrip fullbleed">
+    <div class="imgstrip-inner">
+      <div class="imgstrip-label">Everybody has a theory</div>
+      <div class="strip-container dark" data-strip="random" data-height="320"></div>
+      <div class="imgstrip-controls">
+        <button class="imgstrip-btn" data-strip-prev="random" aria-label="Previous image">&lsaquo;</button>
+        <button class="imgstrip-btn" data-strip-pause="random">Pause</button>
+        <button class="imgstrip-btn" data-strip-next="random" aria-label="Next image">&rsaquo;</button>
+        <span class="imgstrip-count" data-strip-count="random"></span>
+      </div>
+      <p class="imgstrip-caption">Opinions on how to make your social media work are a dime a dozen. Twenty-three of them, collected in an afternoon, are above. The loop described in this section is fed by exactly this: an infinite supply of confident, free, contradictory advice, arriving faster than anyone can test it.</p>
+      <p class="imgstrip-meta">Instagram screenshots collected September 2026 &middot; click any image to enlarge</p>
+    </div>
+  </div>
+
+  <p>The loop is hard to escape because every step inside it is locally rational. The CEO isn&rsquo;t wrong to be skeptical of unprovable returns. The junior team isn&rsquo;t wrong to produce what its resources allow. The dashboard isn&rsquo;t wrong to surface the metrics the platforms publish. The loop is wrong only in aggregate.</p>
+
+  <p>This isn&rsquo;t theoretical. <a href="https://www.hootsuite.com/research/social-media-career-report/happiness-and-hardships" target="_blank" rel="noopener">Hootsuite&rsquo;s 2023 Social Media Career Report</a> <a href="#ref-hootsuite-career-2023" class="cite">(Hootsuite, 2023)</a> asked working social media managers what makes the job hard, and <strong>56% said their bosses don&rsquo;t understand social media</strong> &mdash; the most-cited hardship in the survey. The CEO problem isn&rsquo;t a caricature; it&rsquo;s the modal experience of the people doing the work.</p>
 
   <div class="pullquote">
     <div class="pullquote-text">Low expectations, low internal support, low investment, low attribution, low outcomes. The cycle confirms itself.</div>
   </div>
 
-  <p>The way out is some combination of (a) honest measurement of what organic actually contributes (covered in <a href="social-2-organic.html">Part 2</a>), (b) understanding what paid social can and can&rsquo;t do, and at what cost (covered in <a href="social-3-paid.html">Part 3</a>), and (c) being prepared to make a case to the CEO that distinguishes the channel social media <em>used to be</em> from the channel it <em>has become</em>. That last conversation is roughly what <a href="social-5-imc-callbacks.html">Part 5</a> arms you for.</p>
+  <p>The way out combines honest measurement of what organic actually contributes (<a href="social-2-organic.html">Part 2</a>), a clear view of what paid can and can&rsquo;t do and at what cost (<a href="social-3-paid.html">Part 3</a>), and a case to the CEO that separates the channel social <em>used to be</em> from the channel it <em>became</em> (<a href="social-5-imc-callbacks.html">Part 5</a>).</p>
 
   <p>For now, the diagnostic move is the simplest one. The next time someone says <em>&ldquo;we should just be more active on social,&rdquo;</em> ask three follow-up questions:</p>
 
@@ -670,13 +873,31 @@
   <div class="sec-label">What&rsquo;s Coming</div>
   <h2>The Rest of the Unit</h2>
 
+  <div class="imgstrip fullbleed">
+    <div class="imgstrip-inner">
+      <div class="imgstrip-label">An agency arguing itself out of a retainer</div>
+      <div class="imggrid imggrid-3">
+        <figure class="imggrid-cell"><img src="assets/images/social/coastal-06/social01-coastal-01.png" alt="Coastal Collective Marketing carousel, slide 1 of 6" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/coastal-06/social01-coastal-02.png" alt="Coastal Collective Marketing carousel, slide 2 of 6" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/coastal-06/social01-coastal-03.png" alt="Coastal Collective Marketing carousel, slide 3 of 6" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/coastal-06/social01-coastal-04.png" alt="Coastal Collective Marketing carousel, slide 4 of 6" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/coastal-06/social01-coastal-05.png" alt="Coastal Collective Marketing carousel, slide 5 of 6" loading="lazy" decoding="async"></figure>
+        <figure class="imggrid-cell"><img src="assets/images/social/coastal-06/social01-coastal-06.png" alt="Coastal Collective Marketing carousel, slide 6 of 6" loading="lazy" decoding="async"></figure>
+      </div>
+      <p class="imgstrip-caption">Coastal Collective Marketing opens this six-slide carousel with <em>&ldquo;Please don&rsquo;t hire us if your entire marketing budget is going into organic social media&rdquo;</em> and closes by insisting it isn&rsquo;t a cash grab. The caption makes the argument plainly: their most successful clients are the ones whose entire budget <em>isn&rsquo;t</em> going to them, because a good strategy has range. One campaign gives the social team something to talk about; the social content gives email its context; paid amplifies whatever is already resonating; each touchpoint teaches you something about what the audience actually cares about. Marketing stops being a pile of separate tasks and starts behaving like a system.</p>
+      <p class="imgstrip-caption">That is an integrated marketing communications argument, made by an agency on Instagram, against its own short-term interest. It is also the bridge out of this piece: everything Parts 2 through 4 establish about what organic and paid can each do is only useful once the channels are working as a system rather than as a list. <a href="social-5-imc-callbacks.html">Part 5</a> is where that gets formalized.</p>
+      <p class="imgstrip-meta">Instagram screenshots collected September 2026 &middot; click any image to enlarge</p>
+    </div>
+  </div>
+
+
   <p>Part 1 has been the framing. The next four pieces are the practical work.</p>
 
   <p><a href="social-2-organic.html"><strong>Part 2 &mdash; Organic / Owned Social: What It&rsquo;s For Now.</strong></a> If organic isn&rsquo;t a reach channel anymore, what is it? Audience research, social listening, customer service, employee advocacy, community on platforms where community still works, creator partnerships, dark-social signal. Each of these is a real job; none of them is the &ldquo;go viral and acquire customers&rdquo; job most CEOs are imagining when they say &ldquo;do more on social.&rdquo;</p>
 
-  <p><a href="social-3-paid.html"><strong>Part 3 &mdash; Paid Social: Just Run Ads, Right?</strong></a> The fallback theory: if organic is broken, buy reach instead. This piece is the math on why that&rsquo;s also more complicated than it sounds. CPMs are up roughly 20% year-over-year on Meta. Attribution is broken by ATT. AI broad-targeting has replaced the precise targeting that paid social was famous for. And 36% of new CTV ad spend in 2025 was reallocated from social budgets &mdash; not to replace MoFU or BoFU conversion work, which paid social still does, but because Connected TV is where audiences now spend 30 minutes to two hours inside a single piece of content with relatively little competing noise. It&rsquo;s the channel where the emotional, brand-building creative work that&rsquo;s gotten nearly impossible to do in a three-second feed scroll can actually land.</p>
+  <p><a href="social-3-paid.html"><strong>Part 3 &mdash; Paid Social: Just Run Ads, Right?</strong></a> The fallback theory: if organic is broken, buy reach instead. CPMs are up roughly 20% year-over-year on Meta, attribution degraded badly after ATT, and AI broad-targeting has replaced the precise targeting paid social was famous for. Among advertisers increasing Connected TV spend in 2025, <strong>36% named reallocated social budgets as a source</strong>, tied with linear TV &mdash; because CTV is where audiences sit inside one piece of content for thirty minutes or more, which is where brand-building creative can still land.</p>
 
-  <p><a href="social-4-doing-better.html"><strong>Part 4 &mdash; Doing It Better.</strong></a> The practical advice piece. Given everything Parts 1&ndash;3 establish, how do you actually run social media well in 2026? Including how to think about rebuilding community on the channels where it&rsquo;s still possible, how to avoid the BOFU-ads-as-organic trap, and what creator and UGC work actually buys you that brand-controlled posting doesn&rsquo;t.</p>
+  <p><a href="social-4-doing-better.html"><strong>Part 4 &mdash; Doing It Better.</strong></a> The practical piece: given Parts 1&ndash;3, how do you actually run social in 2026? The audit, matching channels to jobs, the UGC and creator question, creative volume, and what to put in front of the person holding the budget.</p>
 
   <p><a href="social-5-imc-callbacks.html"><strong>Part 5 &mdash; How This Hits IMC, PESO, Funnel, and Brand vs. Performance.</strong></a> The synthesis. If the picture in Parts 1&ndash;4 is right, several of the frameworks you&rsquo;ve already learned in this course need updating. Part 5 is the &ldquo;here&rsquo;s how it all reconnects&rdquo; piece.</p>
 </section>
@@ -708,7 +929,7 @@
     <p><strong><em>Meaningful Interactions</em></strong> &mdash; the rebranded News Feed algorithm Facebook rolled out in January 2018. Prioritized posts from friends and family over content from businesses, brands, and media companies. The single event most commonly named as the moment brand organic reach on Facebook collapsed.</p>
     <p><strong><em>App Tracking Transparency (ATT)</em></strong> &mdash; the iOS 14.5 framework, launched April 2021, that required apps to ask user permission before tracking them across other apps and websites. Roughly 75% of iOS users opted out; Meta lost 30&ndash;40% of its attribution accuracy and most of its precise-targeting capability. Full mechanics in <a href="social-3-paid.html">Part 3</a>.</p>
     <p><strong><em>AI slop</em></strong> &mdash; low-quality digital content produced at scale by generative AI tools, optimized for algorithmic engagement and ad revenue rather than human value. Merriam-Webster&rsquo;s 2025 Word of the Year. The dominant content category by volume on most major platforms by late 2025.</p>
-    <p><strong><em>Dark social</em></strong> &mdash; content sharing that happens through private channels (DMs, group chats, Slack, Discord, private LinkedIn messages, email forwards) and is invisible to standard analytics. Industry estimates put dark social at 84&ndash;95% of all content sharing. The place where most genuine community conversation has migrated.</p>
+    <p><strong><em>Dark social</em></strong> &mdash; content sharing that happens through private channels (DMs, group chats, Slack, Discord, private LinkedIn messages, email forwards) and is invisible to standard analytics. Unmeasurable by definition, and the place a large share of genuine peer recommendation now happens.</p>
     <p><strong><em>The misallocation loop</em></strong> &mdash; the self-reinforcing cycle by which CEOs underinvest in social (because they believe it&rsquo;s free), the underinvestment produces mediocre work and starves creative production, the mediocre work produces unprovable returns, and the unprovable returns confirm the CEO&rsquo;s belief that further investment isn&rsquo;t warranted. The substantive obstacle to getting social right in most organizations.</p>
     <p><strong><em>The three audiences</em></strong> &mdash; the distinct populations a single piece of content can reach: <strong>strangers</strong> (paid ad), <strong>followers</strong> (organic post), and <strong>loyalists</strong> (direct send by email, SMS, or private community). Treating these as a single &ldquo;social audience&rdquo; is one of the most common analytical errors in marketing meetings. As the Kleenex math in &sect;06 demonstrates, even the followers audience is itself a tiny fraction of the brand&rsquo;s actual customer base.</p>
 
@@ -728,6 +949,8 @@
 
   <div class="references">
 
+    <p class="ref" id="ref-datareportal-2026">DataReportal. (2026). <a href="https://datareportal.com/reports/digital-2026-global-overview-report" target="_blank" rel="noopener">Digital 2026: Global overview report</a>. DataReportal, in partnership with We Are Social and Meltwater. https://datareportal.com/reports/digital-2026-global-overview-report</p>
+
     <p class="ref" id="ref-gee-2025">Gee, D. (2025, July 1). <a href="https://www.exchangewire.com/blog/2025/07/01/social-media-isnt-social-its-just-media/" target="_blank" rel="noopener">Social media isn&rsquo;t social. It&rsquo;s just media</a>. <em>ExchangeWire</em>. https://www.exchangewire.com/blog/2025/07/01/social-media-isnt-social-its-just-media/</p>
 
     <p class="ref" id="ref-almcorp-2026">ALM Corp. (2026, February 27). <a href="https://almcorp.com/blog/tiktok-brand-growth-instagram-organic-reach-decline-2025/" target="_blank" rel="noopener">TikTok brand follower counts rose 200% in 2025 while Instagram organic reach fell up to 40%: A complete platform-by-platform breakdown</a>. ALM Corp Blog. https://almcorp.com/blog/tiktok-brand-growth-instagram-organic-reach-decline-2025/</p>
@@ -743,10 +966,6 @@
     <p class="ref" id="ref-brumby-2025">Brumby, D. P. (2025, May&ndash;June). <a href="https://interactions.acm.org/archive/view/may-june-2025/rebuilding-the-digital-town-square-designing-social-media-for-meaningful-connection-again" target="_blank" rel="noopener">Rebuilding the digital town square: Designing social media for meaningful connection (again)</a>. <em>ACM Interactions</em>, XXXII(3), 40. https://interactions.acm.org/</p>
 
     <p class="ref" id="ref-cetrix-2024">Cetrix. (2024). <a href="https://cetrixstore.com/blogs/news/why-do-people-call-tissue-paper-kleenex" target="_blank" rel="noopener">Why do people call tissue paper &lsquo;Kleenex&rsquo;?</a> <em>Cetrix Store Blog</em>. https://cetrixstore.com/blogs/news/why-do-people-call-tissue-paper-kleenex</p>
-
-    <p class="ref" id="ref-creatorflow-2026">Creatorflow. (2026, February). <a href="https://creatorflow.so/blog/instagram-carousel-posts-guide/" target="_blank" rel="noopener">Instagram carousel posts: 12 best practices</a>. <em>Creatorflow Blog</em>. Cites Resont scroll-rate data. https://creatorflow.so/blog/instagram-carousel-posts-guide/</p>
-
-    <p class="ref" id="ref-digwatch-2026">Digital Watch Observatory. (2026, February 25). <a href="https://dig.watch/updates/ai-slop-content-social-media" target="_blank" rel="noopener">AI slop&rsquo;s meteoric rise and the impact of synthetic content in 2026</a>. <em>Digital Watch Observatory</em>. https://dig.watch/updates/ai-slop-content-social-media</p>
 
     <p class="ref" id="ref-hootsuite-career-2023">Hootsuite. (2023). <a href="https://www.hootsuite.com/research/social-media-career-report/happiness-and-hardships" target="_blank" rel="noopener">Social Media Career Report: Happiness and hardships</a>. <em>Hootsuite Research</em>. https://www.hootsuite.com/research/social-media-career-report/happiness-and-hardships</p>
 
@@ -780,9 +999,9 @@
 
     <p class="ref" id="ref-socialblade-kleenex-2026">Socialblade. (2026). <a href="https://socialblade.com/" target="_blank" rel="noopener">Kleenex Instagram &amp; Facebook account tracking</a>. <em>Socialblade</em>. Follower counts and engagement-rate averages retrieved 2026. https://socialblade.com/</p>
 
-    <p class="ref" id="ref-socialinsider-2025">Socialinsider. (2025, May 14). <a href="https://www.socialinsider.io/blog/social-media-reach/" target="_blank" rel="noopener">Social media reach: Statistics for 2025</a>. <em>Socialinsider Blog</em>. https://www.socialinsider.io/blog/social-media-reach/</p>
+    <p class="ref" id="ref-sprout-index-2025">Sprout Social. (2025, January 7). <a href="https://sproutsocial.com/insights/press/the-days-of-trend-chasing-are-over-new-research-from-sprout-social-reveals-a-third-of-consumers-think-jumping-on-viral-trends-is-embarrassing-for-brands/" target="_blank" rel="noopener">The days of trend-chasing are over: A third of consumers think jumping on viral trends is &ldquo;embarrassing&rdquo; for brands</a> [Press release]. <em>The 2025 Sprout Social Index, Edition XX</em>. https://sproutsocial.com/insights/press/</p>
 
-    <p class="ref" id="ref-statista-social-2025">Statista. (2025, February). <a href="https://www.statista.com/statistics/433871/daily-social-media-usage-worldwide/" target="_blank" rel="noopener">Average daily time spent using social media worldwide</a>. <em>Statista</em>. Global average 141 minutes per day; US average 2 hours 16 minutes. https://www.statista.com/statistics/433871/daily-social-media-usage-worldwide/</p>
+    <p class="ref" id="ref-socialinsider-2025">Socialinsider. (2025, May 14). <a href="https://www.socialinsider.io/blog/social-media-reach/" target="_blank" rel="noopener">Social media reach: Statistics for 2025</a>. <em>Socialinsider Blog</em>. https://www.socialinsider.io/blog/social-media-reach/</p>
 
   </div>
 </section>
@@ -796,6 +1015,151 @@
     <div>Indiana University South Bend</div>
   </div>
 </footer>
+
+
+<!-- Lightbox shared by every image block on this page -->
+<div class="imglb" id="imglb" aria-hidden="true">
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <button class="lb-prev" aria-label="Previous">&lsaquo;</button>
+  <button class="lb-next" aria-label="Next">&rsaquo;</button>
+  <img src="" alt="">
+</div>
+
+<script>
+// Multi-instance image strips + lightbox for the Part 1 image blocks.
+(function () {
+  var SETS = {
+    viral: {
+      dir: 'assets/images/social/viral-09/',
+      files: ['social01-viral-01.png','social01-viral-02.png','social01-viral-03.png',
+              'social01-viral-04.png','social01-viral-05.png','social01-viral-06.png',
+              'social01-viral-07.png','social01-viral-08.png','social01-viral-09.png'],
+      alt: 'Instagram post questioning whether going viral should be the goal'
+    },
+    random: {
+      dir: 'assets/images/social/random-23/',
+      files: (function () {
+        var a = [];
+        for (var i = 1; i <= 23; i++) { a.push('social01-random' + (i < 10 ? '0' + i : i) + '.png'); }
+        return a;
+      })(),
+      alt: 'Instagram post offering social media marketing advice'
+    }
+  };
+
+  var STEP_MS = 2600, EASE_MS = 650;
+  var lb = document.getElementById('imglb');
+  var lbImg = lb ? lb.querySelector('img') : null;
+  var lbList = [], lbIndex = 0;
+
+  function openLightbox(list, index) {
+    if (!lb) return;
+    lbList = list; lbIndex = index;
+    lbImg.src = list[index];
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function stepLightbox(d) {
+    if (!lbList.length) return;
+    lbIndex = (lbIndex + d + lbList.length) % lbList.length;
+    lbImg.src = lbList[lbIndex];
+  }
+  function closeLightbox() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+  if (lb) {
+    lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
+    lb.querySelector('.lb-prev').addEventListener('click', function (e) { e.stopPropagation(); stepLightbox(-1); });
+    lb.querySelector('.lb-next').addEventListener('click', function (e) { e.stopPropagation(); stepLightbox(1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') stepLightbox(-1);
+      if (e.key === 'ArrowRight') stepLightbox(1);
+    });
+  }
+
+  // static grids also open in the lightbox
+  document.querySelectorAll('.imggrid').forEach(function (grid) {
+    var srcs = Array.prototype.map.call(grid.querySelectorAll('img'), function (im) { return im.getAttribute('src'); });
+    grid.querySelectorAll('img').forEach(function (im, i) {
+      im.addEventListener('click', function () { openLightbox(srcs, i); });
+    });
+  });
+
+  document.querySelectorAll('[data-strip]').forEach(function (container) {
+    var key = container.getAttribute('data-strip');
+    var set = SETS[key];
+    if (!set) return;
+
+    var track = document.createElement('div');
+    track.className = 'strip-track';
+    container.appendChild(track);
+
+    var srcs = set.files.map(function (f) { return set.dir + f; });
+    srcs.forEach(function (src, i) {
+      var fig = document.createElement('figure');
+      var im = document.createElement('img');
+      im.src = src;
+      im.alt = set.alt + ' (' + (i + 1) + ' of ' + srcs.length + ')';
+      im.loading = 'lazy';
+      im.decoding = 'async';
+      fig.appendChild(im);
+      fig.addEventListener('click', function () { openLightbox(srcs, i); });
+      track.appendChild(fig);
+    });
+
+    var index = 0, timer = null, paused = false;
+    var countEl = document.querySelector('[data-strip-count="' + key + '"]');
+
+    function offsetFor(i) {
+      var figs = track.children;
+      if (!figs.length) return 0;
+      var x = 0;
+      for (var k = 0; k < i && k < figs.length; k++) { x += figs[k].offsetWidth + 14; }
+      var max = track.scrollWidth - container.clientWidth;
+      return Math.max(0, Math.min(x, max < 0 ? 0 : max));
+    }
+    function render() {
+      track.style.transition = 'transform ' + EASE_MS + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
+      track.style.transform = 'translateX(-' + offsetFor(index) + 'px)';
+      if (countEl) countEl.textContent = (index + 1) + ' / ' + srcs.length;
+    }
+    function step(d) {
+      index = (index + d + srcs.length) % srcs.length;
+      render();
+    }
+    function start() { if (!timer && !paused) timer = setInterval(function () { step(1); }, STEP_MS); }
+    function stop() { clearInterval(timer); timer = null; }
+
+    var prev = document.querySelector('[data-strip-prev="' + key + '"]');
+    var next = document.querySelector('[data-strip-next="' + key + '"]');
+    var pause = document.querySelector('[data-strip-pause="' + key + '"]');
+    if (prev) prev.addEventListener('click', function () { step(-1); });
+    if (next) next.addEventListener('click', function () { step(1); });
+    if (pause) pause.addEventListener('click', function () {
+      paused = !paused;
+      pause.textContent = paused ? 'Play' : 'Pause';
+      if (paused) stop(); else start();
+    });
+    container.addEventListener('mouseenter', stop);
+    container.addEventListener('mouseleave', start);
+    window.addEventListener('resize', render);
+
+    // hold position until images have measurable width
+    var ready = 0, imgs = track.querySelectorAll('img');
+    imgs.forEach(function (im) {
+      if (im.complete) { ready++; }
+      else { im.addEventListener('load', function () { ready++; if (ready === 1) render(); }); }
+    });
+    render();
+    start();
+  });
+})();
+</script>
 
 <script src="assets/nav.js"></script>
 <script src="assets/scrollspy.js"></script>
