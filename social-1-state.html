@@ -306,6 +306,19 @@
     .imggrid-note { grid-column: 1 / -1; }
   }
 
+
+  /* ---- Bottom nav: keep the single "Next" card at half width, right side,
+         so Part 1 matches the two-up nav on every other page. -------------- */
+  .unit-nav.only-next { grid-template-columns: 1fr 1fr; }
+  .unit-nav.only-next .unit-nav-next {
+    grid-column: 2;
+    text-align: right;
+  }
+  @media (max-width: 720px) {
+    .unit-nav.only-next { grid-template-columns: 1fr; }
+    .unit-nav.only-next .unit-nav-next { grid-column: 1; text-align: left; }
+  }
+
   /* Glossary tightening */
   .glossary p { margin-bottom: 10px; max-width: 760px; }
   .glossary p strong em { color: var(--red); font-style: italic; }
