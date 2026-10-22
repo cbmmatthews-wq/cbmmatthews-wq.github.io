@@ -1,0 +1,2732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DMC Challenge: Cute as a Cupcake — cbmatthe</title>
+<meta name="description" content="Working guide to the Fall 2026 DMC challenge for Cute as a Cupcake: the brief, the judging breakdown, and how to spend eight minutes.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+
+<style>
+/* ==========================================================================
+   DMC-challenge page-local styles.
+   Kept here (not in styles.css) so the shared design system is untouched.
+   Cupcake palette is scoped to the handout remake and the time bar only.
+   ========================================================================== */
+:root {
+  --cc-1: #e07fa3;   /* research   */
+  --cc-2: #c2588c;   /* owned      */
+  --cc-3: #a2417a;   /* paid       */
+  --cc-4: #7b2d5e;   /* evaluation */
+  --cc-1-soft: #fbe9f0;
+  --cc-2-soft: #f6e2ee;
+  --cc-3-soft: #f1dbe9;
+  --cc-4-soft: #ecd5e3;
+}
+
+/* ---- Tab panels (top level) ---- */
+.tab-panel { display: none; }
+.tab-panel.is-active { display: block; }
+
+/* ---- Sub-tabs inside a panel ---- */
+.subtabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 28px 0 0;
+  border-bottom: 2px solid var(--rule);
+}
+.subtabs a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  margin-bottom: -2px;
+  background: transparent;
+  transition: color 0.15s, background 0.15s;
+}
+.subtabs a:hover { color: var(--red); background: var(--red-soft); }
+.subtabs a.active {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--rule);
+  border-bottom: 2px solid var(--paper);
+  box-shadow: inset 0 3px 0 var(--red);
+}
+.subpanel { display: none; }
+.subpanel.is-active { display: block; }
+
+/* ---- Placeholder panels ---- */
+.coming {
+  margin: 48px 0;
+  padding: 36px 32px;
+  background: var(--white);
+  border-left: 4px solid var(--rule);
+  max-width: 820px;
+}
+.coming h2 { margin-bottom: 8px; }
+.coming p { color: var(--muted); margin: 0; }
+
+/* ---- Highlights list with an indented block ---- */
+.highlights { list-style: none; margin-left: 0; }
+.highlights > li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+}
+.highlights > li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 0.7em;
+  width: 7px; height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+}
+.highlights ul {
+  list-style: none;
+  margin: 8px 0 4px 0;
+  max-width: none;
+}
+.highlights ul li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 16.5px;
+  line-height: 1.55;
+}
+.highlights ul li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 0.7em;
+  width: 7px; height: 7px;
+  border: 1.5px solid var(--red);
+  border-radius: 50%;
+}
+
+/* ---- Objectives: original + short version ---- */
+.obj-short {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 18px 0 6px;
+  max-width: 900px;
+}
+.obj-short-card {
+  background: var(--white);
+  padding: 18px 20px 20px;
+  border-top: 4px solid var(--cc-2);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.obj-short-card:nth-child(2) { border-top-color: var(--cc-3); }
+.obj-short-card:nth-child(3) { border-top-color: var(--cc-4); }
+.obj-short-card .k {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.obj-short-card p { font-size: 15px; line-height: 1.5; margin: 0; max-width: none; }
+.asterisk {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 760px;
+  margin-top: 10px;
+}
+@media (max-width: 760px) { .obj-short { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   HANDOUT REMAKE — "Building the Plan Left to Right"
+   ========================================================================== */
+.handout {
+  background: var(--white);
+  padding: 26px 26px 22px;
+  margin: 18px 0 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.handout-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.handout-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 6px 0 18px;
+  max-width: none;
+}
+.hand-params {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 36px;
+  align-items: baseline;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.hand-params div { font-size: 14px; color: var(--muted); }
+.hand-params strong {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: var(--cc-4);
+  margin-right: 6px;
+}
+.chev-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.chev {
+  color: #fff;
+  text-align: center;
+  padding: 16px 26px 14px 18px;
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%);
+  margin-right: -2px;
+}
+.chev:first-child { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%); }
+.chev-name {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.chev-pct { font-size: 13px; opacity: 0.92; margin-top: 3px; }
+.c1 .chev, .chev.c1 { background: var(--cc-1); }
+.chev.c2 { background: var(--cc-2); }
+.chev.c3 { background: var(--cc-3); }
+.chev.c4 { background: var(--cc-4); }
+
+.card-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.hcol-tag {
+  font-style: italic;
+  font-size: 13px;
+  text-align: center;
+  padding: 0 6px 8px;
+  line-height: 1.3;
+}
+.hcard {
+  padding: 14px 15px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  height: 100%;
+}
+.hcard p { margin: 0 0 8px; max-width: none; font-size: 13px; line-height: 1.45; }
+.hcard p:last-child { margin-bottom: 0; }
+.hcard strong { color: var(--ink); }
+.hc1 { background: var(--cc-1-soft); } .hc1 + * {}
+.hc2 { background: var(--cc-2-soft); }
+.hc3 { background: var(--cc-3-soft); }
+.hc4 { background: var(--cc-4-soft); }
+.t1 { color: var(--cc-1); } .t2 { color: var(--cc-2); }
+.t3 { color: var(--cc-3); } .t4 { color: var(--cc-4); }
+.hcard .flag { color: #c0262d; font-weight: 700; }
+
+.hand-bottom {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.hbox {
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.hbox p { margin: 0 0 6px; max-width: none; font-size: 13px; line-height: 1.45; }
+.hbox p:last-child { margin-bottom: 0; }
+.hbox strong { color: #fff; }
+.hbox .hbox-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hbox.idea { background: var(--cc-1); }
+.hbox.bridge { background: var(--cc-4); }
+.hbox em { opacity: 0.9; }
+.hand-foot {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  max-width: none;
+}
+.hand-foot strong { color: var(--ink-soft); }
+
+@media (max-width: 900px) {
+  .chev-row, .card-row, .hand-bottom { grid-template-columns: 1fr; }
+  .chev { clip-path: none; margin-right: 0; margin-bottom: 4px; padding: 12px 16px; text-align: left; border-radius: 8px; }
+  .hcol-tag { text-align: left; padding-top: 6px; }
+  .card-row { gap: 6px; }
+}
+
+/* ==========================================================================
+   LITERAL TIME SPLIT — 8 minutes
+   ========================================================================== */
+.timebar {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  height: 64px;
+  margin: 18px 0 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.timebar div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 18px;
+}
+.timebar .s1 { background: var(--cc-1); width: 25%; }
+.timebar .s2 { background: var(--cc-2); width: 30%; }
+.timebar .s3 { background: var(--cc-3); width: 30%; }
+.timebar .s4 { background: var(--cc-4); width: 15%; }
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 900px;
+}
+.time-card {
+  background: var(--white);
+  padding: 14px 16px 16px;
+  border-top: 4px solid var(--cc-1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.time-card:nth-child(2) { border-top-color: var(--cc-2); }
+.time-card:nth-child(3) { border-top-color: var(--cc-3); }
+.time-card:nth-child(4) { border-top-color: var(--cc-4); }
+.time-card .tn { font-size: 14px; font-weight: 700; color: var(--ink); }
+.time-card .tt {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 2px 0 4px;
+}
+.time-card .tw { font-size: 13px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 760px) {
+  .time-grid { grid-template-columns: 1fr 1fr; }
+  .timebar div { font-size: 14px; }
+}
+/* ==========================================================================
+   SLIDE MOCKUPS (Intro tab) — 16:9 frames showing what goes on screen
+   ========================================================================== */
+.slide-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin: 18px 0 6px;
+  max-width: 760px;
+}
+.slide-mock {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--cc-3) 0%, var(--cc-4) 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6% 8%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.slide-mock.light { background: var(--cc-1-soft); color: var(--cc-4); }
+.slide-mock .sm-big {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(24px, 4.6vw, 46px);
+  line-height: 1.08;
+}
+.slide-mock .sm-mid {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.2vw, 22px);
+  margin-top: 4%;
+  opacity: 0.95;
+}
+.slide-mock .sm-small {
+  font-size: clamp(11px, 1.6vw, 15px);
+  margin-top: 3%;
+  opacity: 0.85;
+}
+.slide-cap {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  margin: -6px 0 18px;
+  max-width: 760px;
+}
+.say-box {
+  background: var(--white);
+  border-left: 4px solid var(--cc-3);
+  padding: 16px 22px;
+  margin: 14px 0;
+  max-width: 820px;
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.say-box .say-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cc-3);
+  margin-bottom: 6px;
+}
+.hook-list { list-style: none; margin-left: 0; }
+.hook-list li {
+  display: inline-block;
+  background: var(--cc-1-soft);
+  color: var(--cc-4);
+  font-family: var(--serif);
+  font-weight: 700;
+  padding: 6px 14px;
+  margin: 0 8px 8px 0;
+  border-radius: 999px;
+  font-size: 16px;
+}
+/* ==========================================================================
+   RESEARCH TAB — two-minute bar
+   ========================================================================== */
+.rbar {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  height: 64px;
+  margin: 18px 0 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.rbar div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.15;
+  padding: 0 8px;
+}
+.rbar .ra { background: var(--cc-1); width: 37.5%; }
+.rbar .rb { background: var(--cc-3); width: 37.5%; }
+.rbar .rc { background: var(--cc-4); width: 25%; }
+.rbar-scale {
+  position: relative;
+  max-width: 900px;
+  height: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.rbar-scale span { position: absolute; top: 0; }
+.rbar-scale span:nth-child(1) { left: 0; }
+.rbar-scale span:nth-child(2) { left: 37.5%; transform: translateX(-50%); }
+.rbar-scale span:nth-child(3) { left: 75%; transform: translateX(-50%); }
+.rbar-scale span:nth-child(4) { right: 0; }
+.pair-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 900px;
+  margin: 14px 0;
+}
+.pair-card {
+  background: var(--white);
+  padding: 18px 20px 14px;
+  border-top: 4px solid var(--cc-1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.pair-card.p2 { border-top-color: var(--cc-2); }
+.pair-card h4 { margin-top: 0; }
+.pair-card ul { margin: 0 0 0 20px; }
+.pair-card .slot {
+  display: block;
+  font-size: 15px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+@media (max-width: 760px) { .pair-grid { grid-template-columns: 1fr; } .rbar div { font-size: 12px; } }
+/* ==========================================================================
+   EXAMPLE FINDINGS — big number on the left, loose line on the right
+   ========================================================================== */
+.finding-list { max-width: 860px; margin: 12px 0 8px; }
+.finding {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.finding:last-child { border-bottom: none; }
+.f-num {
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--cc-3);
+  text-align: right;
+}
+.f-text { font-size: 16.5px; line-height: 1.5; color: var(--ink-soft); }
+.f-q {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+@media (max-width: 560px) { .finding { grid-template-columns: 70px 1fr; gap: 12px; } .f-num { font-size: 26px; } }
+/* ==========================================================================
+   AUDIENCE MARKERS — red circle, red triangle, blue circle
+   ========================================================================== */
+.mk {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 9px;
+  vertical-align: -1px;
+  flex: none;
+}
+.mk-rc { background: #c0262d; border-radius: 50%; }
+.mk-rt { background: #c0262d; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.mk-bc { background: #2f62b5; border-radius: 50%; }
+.persona-key {
+  list-style: none;
+  margin: 12px 0 14px;
+  max-width: 760px;
+  background: var(--white);
+  padding: 14px 20px;
+  border-left: 4px solid var(--rule);
+}
+.persona-key li { margin: 0; padding: 5px 0; font-size: 16.5px; }
+.persona-key li strong { margin-right: 4px; }
+.section h3.big-sub {
+  font-size: clamp(28px, 3.6vw, 38px);
+  line-height: 1.15;
+  margin: 36px 0 12px;
+  letter-spacing: -0.01em;
+}
+/* ==========================================================================
+   BEFORE / AFTER POST CARDS (Social Media tab)
+   ========================================================================== */
+.ba-block { max-width: 900px; margin: 18px 0 26px; }
+.ba-title {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ba-card {
+  background: var(--white);
+  padding: 16px 18px 16px;
+  border-top: 4px solid var(--rule);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.ba-card.after { border-top-color: var(--cc-3); }
+.ba-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.ba-card.after .ba-label { color: var(--cc-3); }
+.ba-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.ba-chips span {
+  font-size: 12px;
+  background: var(--cream);
+  color: var(--ink-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+}
+.ba-card.after .ba-chips span { background: var(--cc-1-soft); color: var(--cc-4); }
+.ba-hook {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 0 0 8px;
+  max-width: none;
+}
+.ba-hook.cta { border-top: 1px dashed var(--rule); padding-top: 8px; }
+.ba-why { font-size: 14px; color: var(--muted); font-style: italic; margin: 10px 0 0; max-width: none; }
+@media (max-width: 760px) { .ba-grid { grid-template-columns: 1fr; } }
+/* ==========================================================================
+   HOMEPAGE WIREFRAME (Website tab)
+   ========================================================================== */
+.wf {
+  max-width: 860px;
+  margin: 16px 0 6px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-size: 14px;
+}
+.wf-nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--cream);
+  color: var(--ink-soft);
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+.wf-nav .logo { font-family: var(--serif); font-weight: 900; color: var(--cc-4); margin-right: auto; }
+.wf-hero {
+  padding: 22px 22px 8px;
+  text-align: center;
+}
+.wf-hero .big { font-family: var(--serif); font-weight: 900; font-size: clamp(20px, 3vw, 28px); color: var(--ink); }
+.wf-hero .ask { margin-top: 6px; color: var(--muted); font-style: italic; }
+.wf-doors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 12px 22px 18px;
+}
+.wf-door {
+  border: 2px dashed var(--cc-2);
+  background: var(--cc-1-soft);
+  color: var(--cc-4);
+  text-align: center;
+  font-weight: 700;
+  padding: 16px 8px;
+  line-height: 1.25;
+}
+.wf-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 22px 20px;
+}
+.wf-box {
+  border: 1px dashed var(--rule);
+  padding: 12px 14px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.wf-box strong { display: block; color: var(--ink); margin-bottom: 3px; }
+@media (max-width: 700px) {
+  .wf-doors { grid-template-columns: 1fr 1fr; }
+  .wf-strip { grid-template-columns: 1fr; }
+}
+.callout.big {
+  max-width: 860px;
+  padding: 24px 28px;
+  border-left-width: 6px;
+  border-left-color: var(--cc-3);
+  background: var(--cc-1-soft);
+  margin: 22px 0;
+}
+.callout.big .callout-label { color: var(--cc-3); }
+.callout.big .big-line {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(22px, 2.8vw, 30px);
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 12px;
+  max-width: none;
+}
+.callout.big p { font-size: 17.5px; }
+/* ==========================================================================
+   MACHINE SKETCH with rotating ticker (The Machine tab)
+   ========================================================================== */
+.mach-wrap {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 28px;
+  align-items: start;
+  max-width: 860px;
+  margin: 18px 0 8px;
+}
+.machine {
+  background: var(--cc-4);
+  padding: 12px;
+  border-radius: 10px 10px 4px 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.mach-ticker {
+  background: #c0262d;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 9px 10px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.mach-body { display: grid; grid-template-columns: 1fr 74px; gap: 10px; }
+.mach-window {
+  background: #f7e4ee;
+  border-radius: 4px;
+  padding: 10px 8px;
+  display: grid;
+  gap: 10px;
+}
+.mach-shelf { display: flex; gap: 8px; justify-content: center; border-bottom: 3px solid var(--cc-2); padding-bottom: 6px; }
+.mach-shelf i {
+  display: block;
+  width: 34px; height: 40px;
+  background: #fff;
+  border: 2px solid var(--cc-2);
+  border-radius: 4px 4px 8px 8px;
+  position: relative;
+}
+.mach-shelf i::before {
+  content: '';
+  position: absolute;
+  left: 4px; right: 4px; top: -8px; height: 8px;
+  background: var(--cc-1);
+  border-radius: 8px 8px 0 0;
+}
+.mach-side { display: grid; gap: 10px; align-content: start; }
+.mach-qr {
+  background: #fff;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background-image:
+    linear-gradient(90deg, var(--ink) 50%, transparent 50%),
+    linear-gradient(var(--ink) 50%, transparent 50%);
+  background-size: 14px 14px;
+  background-blend-mode: multiply;
+  border: 5px solid #fff;
+  outline: 2px solid var(--cc-1);
+}
+.mach-label { color: #fff; font-size: 10.5px; text-align: center; line-height: 1.2; }
+.mach-pay { height: 26px; background: var(--cc-1); border-radius: 3px; }
+.mach-slot { margin-top: 10px; height: 26px; background: #2a1020; border-radius: 3px; }
+.phrase-list { list-style: none; margin: 0; padding: 0; }
+.phrase-list li {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  margin: 0;
+}
+.phrase-list li:last-child { border-bottom: none; }
+.phrase-list li.on { color: #c0262d; }
+@media (max-width: 700px) { .mach-wrap { grid-template-columns: 1fr; } .machine { max-width: 320px; } }
+/* ==========================================================================
+   PAID TAB — cost chips
+   ========================================================================== */
+.cost-line {
+  max-width: 860px;
+  margin: 12px 0 4px;
+  padding: 10px 16px;
+  background: var(--white);
+  border-left: 4px solid var(--cc-3);
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.cost-line strong { color: var(--ink); }
+.pair-card ul li { font-size: 15.5px; line-height: 1.5; }
+.src-list { font-size: 14px; color: var(--muted); max-width: 820px; }
+.src-list li { margin-bottom: 3px; }
+.section table.price-table td:nth-child(3) { font-style: normal; color: var(--ink-soft); font-size: 13px; }
+.section table.price-table td:nth-child(4) { font-size: 13px; }
+.vid-ph {
+  max-width: 860px;
+  margin: 14px 0;
+  padding: 26px 22px;
+  border: 2px dashed var(--cc-2);
+  background: var(--cc-1-soft);
+  color: var(--cc-4);
+  text-align: center;
+  font-weight: 700;
+}
+.vid-ph span { display: block; font-weight: 400; font-size: 14px; margin-top: 4px; color: var(--ink-soft); }
+/* ==========================================================================
+   EVALUATION TAB — pie, monthly bars, Gantt
+   ========================================================================== */
+.pie-wrap { display: grid; grid-template-columns: 230px 1fr; gap: 26px; align-items: center; max-width: 900px; margin: 16px 0; }
+.pie {
+  width: 220px; height: 220px; border-radius: 50%;
+  background: conic-gradient(#7b2d5e 0 24%, #a2417a 24% 36%, #c2588c 36% 60%, #e07fa3 60% 76%, #f0b8cf 76% 92%, #8a8f9c 92% 99.2%, #2a2420 99.2% 100%);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
+.section table.price-table td:first-child { width: 26%; }
+@media (max-width: 760px) { .pie-wrap { grid-template-columns: 1fr; } }
+
+.mbars { max-width: 900px; margin: 12px 0 4px; background: var(--white); padding: 18px 16px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.mbars-plot { display: flex; align-items: flex-end; gap: 4px; height: 190px; border-bottom: 2px solid var(--rule); }
+.mbar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.mbar i { display: block; width: 100%; border-radius: 2px 2px 0 0; }
+.mbar b { font-size: 10px; font-weight: 600; color: var(--ink-soft); margin-bottom: 2px; }
+.mbar-l { background: var(--cc-1); } .mbar-n { background: var(--cc-2); } .mbar-h { background: var(--cc-4); }
+.mbars-axis { display: flex; gap: 4px; margin-top: 4px; }
+.mbars-axis span { flex: 1; text-align: center; font-size: 10.5px; color: var(--muted); }
+.mbars-years { display: flex; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--ink); }
+.mbars-years div { text-align: center; border-top: 2px solid var(--rule); padding-top: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-soft); margin: 8px 0 14px; max-width: 900px; }
+.legend span { display: inline-flex; align-items: center; }
+
+.gantt-wrap { overflow-x: auto; max-width: 100%; margin: 14px 0 6px; background: var(--white); padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.section table.gantt { border-collapse: separate; border-spacing: 2px; font-size: 12px; min-width: 860px; width: 100%; background: none; box-shadow: none; }
+.section table.gantt th, .section table.gantt td { padding: 0; text-align: center; height: 24px; border: none; }
+.section table.gantt th.rowh { text-align: left; font-weight: 600; color: var(--ink); width: 190px; padding-right: 8px; font-size: 12.5px; background: none; text-transform: none; letter-spacing: 0; }
+.section table.gantt thead th { font-size: 10.5px; color: var(--muted); font-weight: 600; background: none; text-transform: none; letter-spacing: 0; }
+.section table.gantt thead th.yr { font-size: 12px; color: var(--ink); border-bottom: 2px solid var(--rule); }
+.section table.gantt tbody tr td.g0 { background: #f1ece3; }
+.section table.gantt tbody tr td.gL { background: var(--cc-1); }
+.section table.gantt tbody tr td.gN { background: var(--cc-2); }
+.section table.gantt tbody tr td.gH { background: var(--cc-4); }
+.section table.gantt tbody tr td.gW { background: var(--ink); }
+.section table.gantt tbody tr td.gm { background: #d9d3c8; }
+.section table.gantt tbody tr td.gk { color: #fff; font-weight: 700; font-size: 11px; background: var(--cc-3); }
+.section table.gantt tbody tr td.ev { font-size: 10px; font-weight: 700; color: var(--cc-4); background: var(--cc-1-soft); }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">DMC Fall 2026 · Cute as a Cupcake</div>
+    <h1>The DMC Challenge</h1>
+  </div>
+</header>
+
+<nav class="subnav" id="maintabs" aria-label="Challenge sections">
+  <div class="subnav-inner" role="tablist">
+    <a href="#overview"   data-tab="overview"   role="tab">Overview</a>
+    <a href="#intro"      data-tab="intro"      role="tab">Intro</a>
+    <a href="#research"   data-tab="research"   role="tab">Research</a>
+    <a href="#owned"      data-tab="owned"      role="tab">Owned</a>
+    <a href="#paid"       data-tab="paid"       role="tab">Paid</a>
+    <a href="#evaluation" data-tab="evaluation" role="tab">Evaluation</a>
+    <a href="#closing" data-tab="closing" role="tab">Closing</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     TAB 1 — OVERVIEW
+     ============================================================ -->
+<div class="tab-panel" id="tab-overview">
+
+  <div class="subtabs" role="tablist" aria-label="Overview sections">
+    <a href="#overview" data-sub="challenge" role="tab">The Challenge</a>
+    <a href="#overview-pdf" data-sub="pdf" role="tab">The Supplied PDF</a>
+    <a href="#overview-breakdown" data-sub="breakdown" role="tab">Breakdown</a>
+    <a href="#overview-literal" data-sub="literal" role="tab">Taken Literally</a>
+    <a href="#overview-rules" data-sub="rules" role="tab">Rules</a>
+  </div>
+
+  <!-- ---------- The Challenge ---------- -->
+  <section class="section subpanel" id="sub-challenge">
+    <div class="sec-label">Overview</div>
+    <h2>The Challenge</h2>
+
+    <p>The big elephant in the room is that you have eight minutes to convey your thoughts. That means you have to be very critical about deciding which parts you show on the screen and which parts you say out loud. If you end up reading word for word from the slides, you are going to be in trouble.</p>
+
+    <p>You have to figure out what to say and what to show so that you convey more than eight minutes' worth of information. That's tough.</p>
+
+    <div class="callout">
+      <div class="callout-label">A general rule of presenting</div>
+      <p class="big-line" style="font-size:22px;margin-bottom:8px">&ldquo;Don't show what you say, or say what you show.&rdquo;</p>
+      <p>If you just put up a slide and read the words aloud, you'll have less than eight minutes' worth of content. What's on the screen and what you say should each add something the other doesn't.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Big suggestion</div>
+      <p>Don't talk about numbers <em>and</em> show numbers. That's too confusing. Put the numbers on the screen, and talk more loosely about what you think they mean or how you gathered them.</p>
+    </div>
+  </section>
+
+  <!-- ---------- The Supplied PDF ---------- -->
+  <section class="section subpanel" id="sub-pdf">
+    <div class="sec-label">Overview</div>
+    <h2>The Supplied PDF</h2>
+
+    <p>Make sure you've read through this multiple times. Each team is going to interpret the instructions differently, and that's just fine. This is not paint by numbers, and no part of marketing is a templated paint-by-numbers approach.</p>
+
+    <h3>Some highlights</h3>
+    <ul class="highlights">
+      <li><strong>Distribution channels</strong>
+        <ul>
+          <li>Founded in 2015.</li>
+          <li>Since 2015, we've shared our love for cupcakes through a variety of methods. Currently we have one retail shop, two food trucks, a mobile cart for parties and events, our e-commerce website, a wholesale business, and our new cupcake vending machines.</li>
+          <li>Over that time, we've realized traditional retail doesn't provide the same opportunities that experiences and convenience offer to customers looking for something different.</li>
+        </ul>
+      </li>
+      <li><strong>The three objectives</strong> (page 7 of the supplied PDF)
+        <ul>
+          <li><strong>1.</strong> Over the next two years, we're leaning heavy into cupcake vending machines because the product has a 30-day shelf life and we can turn cupcakes much faster in high profile locations versus our retail location. We'd like you to research and identify the right target audience(s) for both the end-user and the business side of the market.</li>
+          <li><strong>2.</strong> Develop a two-year digital marketing campaign to drive awareness, leads and conversion for both sides of the market. This isn't your typical campaign so think creatively. The goal is to have a minimum of 15 locations in the Chicagoland market, but we are highly encouraging teams to think beyond our market. Can we go nationwide through a new opportunity? We'll see what you develop.
+            <ul>
+              <li><em>But remember from the 105 questions: the first automated retailing machine needs to work and be profitable before you move on to adding more, up to 15. The plan really isn't to jump from 0 to 15. It's to show some kind of progression.</em>
+                <ul><li><em>Automated retailing = vending</em></li></ul>
+              </li>
+              <li><em>Also, based on everything in the 105 questions and the PDF: how does this work with the rest of her business? It's all built on making cupcakes from scratch and delivering them through the bakery, the food trucks, the cart, the website, and more. In a way, this is the question of how to integrate what she's already doing with adding this new thing.</em></li>
+            </ul>
+          </li>
+          <li><strong>3.</strong> We know how students think in this competition, so we know many of you are going to design a new rendering for the vending machine. We're excited to see what you come up with. Hint: A normal ChatGPT prompt is going to blend with all the others. How can you stand out?</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>The short version</h3>
+    <div class="obj-short">
+      <div class="obj-short-card">
+        <div class="k">Find the audiences</div>
+        <p>Pick the right targets for the end-user <em>and</em> the business side.</p>
+      </div>
+      <div class="obj-short-card">
+        <div class="k">Build the campaign</div>
+        <p>A two-year digital plan for awareness, leads, and conversion. At least 15 Chicagoland locations. Think beyond the market.</p>
+      </div>
+      <div class="obj-short-card">
+        <div class="k">Stand out</div>
+        <p>A new vending machine rendering that doesn't look like everyone else's prompt.</p>
+      </div>
+    </div>
+    <p class="asterisk">* These are more than likely intentionally vague, giving you lots of room to find your own path.</p>
+  </section>
+
+  <!-- ---------- Breakdown ---------- -->
+  <section class="section subpanel" id="sub-breakdown">
+    <div class="sec-label">Overview</div>
+    <h2>Breakdown</h2>
+
+    <p>This is a breakdown I tried to give you to fill in the gaps, because otherwise all they told you was research, owned, paid, and evaluation.</p>
+
+    <div class="handout" role="group" aria-label="Handout: Cute as a Cupcake, DMC Fall 2026, Building the Plan Left to Right">
+      <div class="handout-title">Cute as a Cupcake · DMC Fall 2026: Building the Plan Left to Right</div>
+      <p class="handout-sub">The four DMC judging buckets, with Effie Collegiate judge guidance mapped into each. Plan for <strong>both</strong> audiences: end-user consumers and B2B location hosts.</p>
+
+      <div class="hand-params">
+        <div><strong>$250,000</strong>campaign budget</div>
+        <div><strong>24 months</strong>2028/29 campaign timeline</div>
+        <div><strong>15+</strong>Chicagoland locations, minimum</div>
+      </div>
+
+      <div class="chev-row">
+        <div class="chev c1"><div class="chev-name">1 Research</div><div class="chev-pct">25% of score</div></div>
+        <div class="chev c2"><div class="chev-name">2 Owned</div><div class="chev-pct">30% of score</div></div>
+        <div class="chev c3"><div class="chev-name">3 Paid</div><div class="chev-pct">30% of score</div></div>
+        <div class="chev c4"><div class="chev-name">4 Evaluation</div><div class="chev-pct">15% of score</div></div>
+      </div>
+
+      <div class="card-row" style="margin-top:12px">
+        <div class="hcol-tag t1">Primary + secondary: who, why, where</div>
+        <div class="hcol-tag t2">Website, social, email, the machine itself</div>
+        <div class="hcol-tag t3">Social ads, search, programmatic, video</div>
+        <div class="hcol-tag t4">KPIs, benchmarks, optimization</div>
+      </div>
+
+      <div class="card-row" style="margin-top:0">
+        <div class="hcard hc1">
+          <p><strong>Context:</strong> category, vending trends, competitors (dessert vending, bakeries, micro-markets). Go beyond the brief.</p>
+          <p><strong>Two audiences:</strong> consumers AND hosts (hospitals, airports, campuses, offices). Why each drives growth.</p>
+          <p><strong>Primary research:</strong> 2+ sources (surveys, intercepts, host interviews). Footnote every claim.</p>
+          <p><strong>Objectives:</strong> SMART per audience, with a # or % and a timeframe (15+ Chicagoland sites in 24 mo.).</p>
+        </div>
+        <div class="hcard hc2">
+          <p><strong>Website:</strong> host/partner landing page with lead form; "find a machine" locator for consumers.</p>
+          <p><strong>Social (FB, IG, TikTok):</strong> content pillars born from the big idea; UGC and machine "discovery" moments.</p>
+          <p><strong>Email:</strong> B2B and B2C nurture sequence for prospects; consumer alerts for new locations and flavor drops. <em>(But how do they get the email?)</em></p>
+          <p><strong>The machine as media:</strong> new rendering, QR codes, on-machine messaging. Avoid the generic AI-prompt look.</p>
+          <p><strong>Consumer path:</strong> map awareness → consideration → conversion → use → advocacy for each audience.</p>
+        </div>
+        <div class="hcard hc3">
+          <p><strong>Justify channels:</strong> why this one, for this audience, over the alternatives?</p>
+          <p><strong>B2B:</strong> LinkedIn, paid search ("office amenities"), ABM to facility managers.</p>
+          <p><strong>Consumer:</strong> geofenced social near sites, short video, local creators.</p>
+          <p><strong>Creative:</strong> 3+ executions in 3+ channels, one consistent message; motivates action.</p>
+          <p><strong>Think nationwide:</strong> phase in a scalable play (e.g., a national host chain) once Chicagoland proves out.</p>
+          <p class="flag">See outside note for more media options!</p>
+        </div>
+        <div class="hcard hc4">
+          <p><strong>Link KPIs to objectives:</strong> one-to-one, same funnel stages.</p>
+          <p><strong>Benchmarks:</strong> pre/post plus industry (CPM, CTR, CPL, conversion).</p>
+          <p><strong>B2B KPIs:</strong> leads, meetings, contracts, sites live, sales per machine.</p>
+          <p><strong>Consumer KPIs:</strong> reach, locator visits, QR scans, repeat buys, reviews.</p>
+          <p><strong>Be honest:</strong> name risks and how you would overcome them.</p>
+        </div>
+      </div>
+
+      <div class="hand-bottom">
+        <div class="hbox idea">
+          <div class="hbox-title">Output: Insight + Big Idea</div>
+          <p>Insight = context + motivation + tension (not just a fact). Big idea = one sentence; not a tagline, tone, or tactic. Ownable, emotional, and on-brand ("Spread love").</p>
+        </div>
+        <div class="hbox bridge">
+          <div class="hbox-title">Bridge: Budget + 2-Year Timeline</div>
+          <p><em>Past judges have debated the placement: end of Paid or start of Evaluation. Either works if it is clearly labeled.</em></p>
+          <p><strong>Budget chart:</strong> $250K split by channel in % and $, with estimated impressions.</p>
+          <p><strong>Gantt chart</strong> (24 mo., 2028/29): peak, average, and lull periods; show how the plan shifts over time.</p>
+          <p><strong>Flighting logic:</strong> tie peaks to holidays, back-to-school, and host budget cycles.</p>
+        </div>
+      </div>
+
+      <p class="hand-foot"><strong>DMC has 4 sections: Research + Owned + Paid + Evaluation.</strong> This combines things from Effie (a possible Spring 2027 challenge): research → insight → big idea → owned + paid → KPIs. Every section should visibly connect to the one before it.</p>
+    </div>
+  </section>
+
+  <!-- ---------- Taken Literally ---------- -->
+  <section class="section subpanel" id="sub-literal">
+    <div class="sec-label">Overview</div>
+    <h2>If You Took This Literally</h2>
+
+    <p>If you took the judging weights literally, your eight minutes would look like this. It's a thought exercise, not a recommendation. It's a useful way to see how little room there is.</p>
+
+    <div class="timebar" role="img" aria-label="Eight minutes split: research 2:00, owned 2:24, paid 2:24, evaluation 1:12">
+      <div class="s1">25%</div>
+      <div class="s2">30%</div>
+      <div class="s3">30%</div>
+      <div class="s4">15%</div>
+    </div>
+
+    <div class="time-grid">
+      <div class="time-card"><div class="tn">Research</div><div class="tt">2:00</div><div class="tw">Audiences, insight, big idea</div></div>
+      <div class="time-card"><div class="tn">Owned</div><div class="tt">2:24</div><div class="tw">Website, social, email, the machine</div></div>
+      <div class="time-card"><div class="tn">Paid</div><div class="tt">2:24</div><div class="tw">Channels, creative, budget</div></div>
+      <div class="time-card"><div class="tn">Evaluation</div><div class="tt">1:12</div><div class="tw">KPIs, timeline, risks</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">What this split leaves out</div>
+      <p>The four buckets already add up to all eight minutes. That leaves no time for an <strong>introduction</strong>, no time for a <strong>closing</strong>, and no time for the <strong>budget and timeline bridge</strong>. Something has to give.</p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>Research gets two minutes to cover two audiences, primary data, an insight, and a big idea.</li>
+        <li>That is the point of the first tab: what goes on the screen, and what you say out loud.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- Rules ---------- -->
+  <section class="section subpanel" id="sub-rules">
+    <div class="sec-label">Overview</div>
+    <h2>Rules</h2>
+
+    <p>The full list lives on the official competition site. Read it, then use the summary below as a quick check.</p>
+    <a class="ac-cta" href="https://www.digitalmarketingcompetition.com/competition-rules/" target="_blank" rel="noopener">Official competition rules</a>
+
+    <h3>The short version</h3>
+    <ul>
+      <li>8 minutes or less.</li>
+      <li>One continuous recording (probably via Zoom).</li>
+      <li>No edits.</li>
+      <li>Upload it and turn it into a YouTube <strong>unlisted</strong> video. The YouTube link is what you submit.</li>
+      <li>Due <strong>Friday, October 23, 2026</strong> at <strong>6 p.m. EST</strong> (5 p.m. CST).</li>
+    </ul>
+  </section>
+
+</div>
+
+<!-- ============================================================
+     TABS 2–6 — PLACEHOLDERS (to be built)
+     ============================================================ -->
+<div class="tab-panel" id="tab-intro">
+
+  <div class="subtabs" role="tablist" aria-label="Intro sections">
+    <a href="#intro" data-sub="title" role="tab">Title Slide</a>
+    <a href="#intro-hello" data-sub="hello" role="tab">The Intro Slide</a>
+  </div>
+
+  <!-- ---------- Title slide ---------- -->
+  <section class="section subpanel" id="sub-title">
+    <div class="sec-label">Intro</div>
+    <h2>Start on the Title Slide</h2>
+
+    <p>Start the video here. Read off your names, something like: <em>"Hi, this is John, John, John, and John, and here's our answer to your challenge."</em> Then flip.</p>
+
+    <h4>What has to be on it</h4>
+    <ul>
+      <li>A title phrase, probably your big idea.</li>
+      <li>Every team member's name.</li>
+      <li>Your mentor, listed as <strong>Mentor</strong>.</li>
+    </ul>
+
+    <div class="slide-pair">
+      <div class="slide-mock">
+        <div class="sm-big">[Your big idea goes here]</div>
+        <div class="sm-mid">Name · Name · Name · Name</div>
+        <div class="sm-small">Mentor: Curtis B. Matthews</div>
+      </div>
+    </div>
+    <p class="slide-cap">Layout sketch only. Make yours your own. Your big idea can sum up what you learned: for example, the machines are spontaneous and everything else is planned, so maybe it's "The joy of cupcakes: planned and spontaneous."</p>
+
+    <div class="callout">
+      <div class="callout-label">Stay anonymous</div>
+      <p>There can be nothing on any slide, and nothing you say, that mentions Indiana University South Bend. Check the logos, template footers, file names, and your Zoom display names and backgrounds, too.</p>
+    </div>
+  </section>
+
+  <!-- ---------- Intro slide ---------- -->
+  <section class="section subpanel" id="sub-hello">
+    <div class="sec-label">Intro</div>
+    <h2>Say Hello Before You Say Research</h2>
+
+    <p>Title the second slide <strong>Intro</strong> rather than leaping straight into research. Give it a soft hello and a short acknowledgement of your challenge: help reorganize and integrate the marketing messages and assets of a company that has been selling cupcakes for 11 years through many channels (bakery, food truck, cart, website), and fold automated retailing into the mix.</p>
+
+    <h3>Start with a hook</h3>
+    <p>Open with an aha moment that's a little funny or engaging, not "we did research." A few possibilities:</p>
+    <ul class="hook-list">
+      <li>Today is a good day for cupcakes.</li>
+      <li>Cupcakes rule the world.</li>
+      <li>Cupcakes equal love.</li>
+    </ul>
+
+    <div class="slide-pair">
+      <div class="slide-mock light">
+        <div class="sm-big">Cupcakes equal love.</div>
+        <div class="sm-small">Intro</div>
+      </div>
+    </div>
+    <p class="slide-cap">That's all that goes on the slide. There isn't time for more.</p>
+
+    <div class="say-box">
+      <div class="say-label">One way to say it</div>
+      Cupcakes rule the world. For eleven years, Cute as a Cupcake has proved it through a bakery, food trucks, a cart, and a website. Our challenge: bring all of those messages together, and add automated retailing to the family.
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Keep it to 15 seconds</div>
+      <p>Twenty seconds at the absolute most. Time it out loud. You can't spare more than that when your four buckets already add up to all eight minutes.</p>
+    </div>
+  </section>
+
+</div>
+<div class="tab-panel" id="tab-research">
+
+  <div class="subtabs" role="tablist" aria-label="Research sections">
+    <a href="#research" data-sub="problem" role="tab">The Two-Minute Problem</a>
+    <a href="#research-cupcakes" data-sub="cupcakes" role="tab">First 45 Seconds</a>
+    <a href="#research-retailing" data-sub="retailing" role="tab">Next 45 Seconds</a>
+    <a href="#research-fit" data-sub="fit" role="tab">Things to Fit</a>
+  </div>
+
+  <!-- ---------- The two-minute problem ---------- -->
+  <section class="section subpanel" id="sub-problem">
+    <div class="sec-label">Research</div>
+    <h2>The Two-Minute Problem</h2>
+
+    <p>On a normal research presentation, you could spend over an hour on the survey results alone, plus whatever secondary information you gathered. Here you have to get all of it into about two minutes. And research isn't the only thing this bucket has to carry (see Things to Fit).</p>
+
+    <div class="callout">
+      <div class="callout-label">The requirement</div>
+      <p>You must show <strong>both</strong> primary and secondary research. You won't have time for more than about two findings of each.</p>
+    </div>
+
+    <h3>A suggested split</h3>
+    <div class="rbar" role="img" aria-label="Research two-minute split: 45 seconds of primary and secondary research, 45 seconds of automated retailing, 30 seconds of other things">
+      <div class="ra">Primary + secondary research</div>
+      <div class="rb">Automated retailing</div>
+      <div class="rc">Other things</div>
+    </div>
+    <div class="rbar-scale"><span>0:00</span><span>0:45</span><span>1:30</span><span>2:00</span></div>
+    <p class="slide-cap">Working numbers for now. "Other things" is a placeholder label (see Things to Fit).</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>First 45 seconds: what you found about cupcakes, secondary and primary.</li>
+        <li>Next 45 seconds: things that relate only to automated retailing.</li>
+        <li>Last 30 seconds: the other things this bucket has to carry.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- Minute one ---------- -->
+  <section class="section subpanel" id="sub-cupcakes">
+    <div class="sec-label">Research</div>
+    <h2>The First 45 Seconds: What You Learned About Cupcakes</h2>
+
+    <p>For the first 45 seconds, talk about the secondary research you found about cupcakes, then some of the findings from your survey. Because both are required, you probably only have room for two of each.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Secondary</h4>
+        <span class="slot">Things you found that already existed.</span>
+        <ul>
+          <li>Finding 1</li>
+          <li>Finding 2</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Primary</h4>
+        <span class="slot">Things you found out yourselves, from your survey.</span>
+        <ul>
+          <li>Finding 1</li>
+          <li>Finding 2</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Show it or say it</div>
+      <p>Put the numbers on the screen, then talk loosely about what they mean and how you gathered them. Don't read the numbers out.</p>
+    </div>
+
+    <h3>How to introduce your own findings</h3>
+    <div class="say-box">
+      <div class="say-label">One way to say it</div>
+      We launched an online survey using participants from Prolific, and we reached [X] people.
+    </div>
+
+    <h3>Why Prolific</h3>
+    <ul>
+      <li>We used Prolific rather than Amazon's MTurk because its audiences are supposed to be more stable, and people are more genuine with their answers.</li>
+      <li>To tackle everything in the challenge, we needed hundreds of responses, not 30 classmates, a group of classmates' parents, or only 50 people.</li>
+      <li>With a handful of responses there would be too many outliers, and we could never generalize our primary research to a larger audience. That generalizing was part of the charge.</li>
+    </ul>
+
+    <h3>Example findings</h3>
+
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">37%</div><div class="f-text">Cupcakes are a top-three favorite sweet treat, behind ice cream and cookies.<span class="f-q">Q3</span></div></div>
+      <div class="finding"><div class="f-num">52%</div><div class="f-text">Rank "special occasion" as the most common reason to buy cupcakes, and 64% bought one for a birthday this past year.<span class="f-q">Q8, Q9</span></div></div>
+      <div class="finding"><div class="f-num">68%</div><div class="f-text">Say taste matters most when choosing a cupcake. Freshness (48%) and price (41%) come next.<span class="f-q">Q10</span></div></div>
+      <div class="finding"><div class="f-num">30%</div><div class="f-text">Last bought a cupcake at a local bakery, the most common place, ahead of bakery chains and grocery stores (21% each).<span class="f-q">Q7</span></div></div>
+      <div class="finding"><div class="f-num">17%</div><div class="f-text">Had heard of Cute as a Cupcake before the survey.<span class="f-q">Q32</span></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- Minute two ---------- -->
+  <section class="section subpanel" id="sub-retailing">
+    <div class="sec-label">Research</div>
+    <h2>The Next 45 Seconds: Automated Retailing</h2>
+
+    <p>At about the 45-second mark, move on and talk about a few things that relate only to automated retailing. You have about 45 seconds for this.</p>
+
+    <h4>Places to look</h4>
+    <ul>
+      <li>The category and trends in dessert vending.</li>
+      <li>Competitors: bakeries and micro-markets, as well as other vending.</li>
+      <li>The hosts: hospitals, airports, campuses, offices. Why each one could drive growth.</li>
+    </ul>
+    <p class="slide-cap">From the handout's Research box. These are prompts, not a checklist.</p>
+
+    <div class="callout">
+      <div class="callout-label">Remember</div>
+      <p>The first machine has to work and be profitable before you add more, so a short, honest look at how vending actually performs may be worth more than a long list of facts.</p>
+    </div>
+
+    <h3>Example findings</h3>
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">1%</div><div class="f-text">Last bought their cupcake from a vending machine (4 of 393 people). As a place they'd prefer to buy, only 9% ranked it first, versus 48% for a bakery.<span class="f-q">Q7, Q17</span></div></div>
+      <div class="finding"><div class="f-num">44%</div><div class="f-text">Picked an airport as the best fit for a premium cupcake machine. Malls, transit stations, hotel lobbies, and hospitals each landed around a third.<span class="f-q">Q22</span></div></div>
+      <div class="finding"><div class="f-num">21%</div><div class="f-text">Would be likely to buy a $9 cupcake from a machine, while 48% would be unlikely. A larger size (32%) or a deal like 2 for $16 (29%) would help most.<span class="f-q">Q27, Q28</span></div></div>
+      <div class="finding"><div class="f-num">33%</div><div class="f-text">Said the 30-day shelf life makes them <em>less</em> likely to buy, versus 28% more likely. The selling point doesn't automatically sell.<span class="f-q">Q19a</span></div></div>
+      <div class="finding"><div class="f-num">37%</div><div class="f-text">Would feel more comfortable trying a machine if they could see the product through glass, and 37% said the same about a clear freshness date.<span class="f-q">Q26</span></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- Things to fit ---------- -->
+  <section class="section subpanel" id="sub-fit">
+    <div class="sec-label">Research</div>
+    <h2>The Last 30 Seconds: Things to Fit</h2>
+
+    <p>The handout also puts several other things in this bucket. About 30 seconds is set aside for them. "Things to fit" is a working label for now.</p>
+
+    <ul>
+      <li><strong>Two audiences:</strong> the end-user consumer and the business host.</li>
+      <li><strong>Objectives:</strong> SMART for each audience, with a number or percent and a timeframe.</li>
+      <li><strong>Insight:</strong> context + motivation + tension, not just a fact.</li>
+      <li><strong>Big idea:</strong> one sentence. Not a tagline, a tone, or a tactic.</li>
+    </ul>
+
+    <h3>Target Audiences</h3>
+    <p>The challenge calls for you to pick target audiences. But with eight minutes, you don't have time to break them down into four cross-tabbed, derived versions of who these people are.</p>
+    <ul>
+      <li>Consumer behavior works very differently when you're only doing things online, because you can't reach most of those cross-tabs, especially when Meta's AI (or anybody's AI) is building the ads.</li>
+      <li>The suggestion: back off the cross-tabbed information and go loosely for <strong>gender, age, and geographic location</strong>.</li>
+      <li>Then build different personas by creating content that would apply to some of them individually, or to some of them in general.</li>
+      <li>The platform then looks for the right people. Or, based on who responds in the first day, it keeps looking for more people like them.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">Backwards</div>
+      <p>That is a very backwards, consumer-behavior-looking approach compared with the traditional advertising books. Instead of picking the audience and then writing to them, the audience that responds tells you who the audience is.</p>
+    </div>
+
+    <h4>Pick at least one of each</h4>
+    <p>Remember, you have to have at least one consumer target audience (or persona) and at least one B2B one. The challenge doesn't specify where these come from.</p>
+
+    <h4>Consumers</h4>
+    <p>You could very quickly build one for the local people near Merrillville, including Northwest Indiana, and a second one for Chicago. These people aren't going to be buying at the bakery. They'll either find a vending machine (1, 3, 15?) or order online.</p>
+
+    <ul class="persona-key">
+      <li><span class="mk mk-rc"></span><strong>Red circle:</strong> local people near Merrillville and Northwest Indiana</li>
+      <li><span class="mk mk-rt"></span><strong>Red triangle:</strong> people in Chicago</li>
+      <li><span class="mk mk-bc"></span><strong>Blue circle:</strong> B2B</li>
+    </ul>
+
+    <h4>B2B</h4>
+    <p>Where you find the B2B audience for installing 1 to 15 vending machines depends on how you place them:</p>
+    <ul>
+      <li>15 different locations that are all wildly different (a mall, a hospital, an apartment building), or</li>
+      <li>one focus: 15 apartment buildings, 15 malls, 15 hospitals, or whatever the case might end up being.</li>
+    </ul>
+    <p>Either way works, as long as you don't use a library, the end of a 10K fun run, or a golf course.</p>
+
+    <p>Or, instead of building just two, build two consumer audiences and one <span class="mk mk-bc"></span>blue-circle B2B audience, and make that B2B audience <strong>corporate gifting</strong>. Those people aren't going to order one cupcake at a time from the bakery, a food truck, or online. They're buying a dozen, 25, 100, or whatever the case might end up being.</p>
+
+    <div class="callout">
+      <div class="callout-label">Mark them</div>
+      <p>Consider a visual marker, like the blue dot, that follows each audience through your slides.</p>
+    </div>
+
+    <h3>Big Idea</h3>
+    <p>The big idea has always been a foundation of advertising. It's how you sum up the entire campaign in just one phrase. Often that gets translated into taglines and slogans, like "Just do it."</p>
+    <p>But even Nike has realized that in an online world you can't keep repeating "Just do it" over and over and be successful. It gets lost in the noise, or people stop paying attention after the second or third time. Remember the Nike examples we looked at: they're pretty much all from the last year to year and a half. There are many different ways to say it.</p>
+    <p>You don't have much time on this challenge to include this, but it hints that you need something like it. Maybe it's an overall slogan.</p>
+
+    <div class="callout">
+      <div class="callout-label">The tough part</div>
+      <p>Your big idea has to work for the bakery, the food truck, online purchases by individuals, corporate giving, <em>and</em> the new automated retailing. That's tough.</p>
+    </div>
+
+    <h4>An idea that sums up what we learned</h4>
+    <p>The machines are spontaneous, while the other ways to buy (the bakery, trucks, cart, website orders, and gifting) are planned. In the survey, 52% ranked a special occasion as their most common reason to buy cupcakes, and only 10% ranked coming across them on the spot first (Q8). A big idea could hold both. A few to look at:</p>
+    <ul class="hook-list">
+      <li>The joy of cupcakes: planned and spontaneous</li>
+      <li>Joy on the calendar. Joy on the corner.</li>
+      <li>Every plan. Every &ldquo;why not?&rdquo;</li>
+      <li>Order the celebration. Stumble into the joy.</li>
+    </ul>
+    <p class="slide-cap" style="margin-top:0">This isn't a big part of the challenge. It's just something you should do.</p>
+
+    <h4>A few overarching themes to start from</h4>
+    <p class="slide-cap" style="margin-top:0">Starting points, not answers. Each one is checked against the touchpoints it has to stretch across.</p>
+
+    <table class="jobs-table">
+      <thead>
+        <tr><th>Theme</th><th>Bakery + food truck</th><th>Online + corporate giving</th><th>Automated retailing</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cupcake love, any way you want it</td>
+          <td>Come to us, in the shop or at the truck.</td>
+          <td>Send love to a doorstep or a desk.</td>
+          <td>Love on demand, even at the gate.</td>
+        </tr>
+        <tr>
+          <td>Make any moment a celebration</td>
+          <td>Birthdays, parties, and events.</td>
+          <td>Office celebrations and thank-yous.</td>
+          <td>The small celebration: a treat for yourself.</td>
+        </tr>
+        <tr>
+          <td>From scratch, wherever you are</td>
+          <td>Baked by hand, right here.</td>
+          <td>The same recipe, delivered or shipped.</td>
+          <td>The real bakery, now in a machine.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>Footnote every claim you show.</li>
+        <li>Keep audiences loose: gender, age, geography. Let personas and early responses do the narrowing.</li>
+        <li>Your big idea is one phrase that has to stretch across every touchpoint.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+<div class="tab-panel" id="tab-owned">
+
+  <div class="subtabs" role="tablist" aria-label="Owned sections">
+    <a href="#owned" data-sub="summary" role="tab">Overview</a>
+    <a href="#owned-social" data-sub="social" role="tab">Social Media</a>
+    <a href="#owned-website" data-sub="website" role="tab">Website</a>
+    <a href="#owned-seo" data-sub="seo" role="tab">SEO + Organic</a>
+    <a href="#owned-email" data-sub="email" role="tab">Email</a>
+    <a href="#owned-machine" data-sub="machine" role="tab">The Machine</a>
+  </div>
+
+  <!-- ---------- Overview ---------- -->
+  <section class="section subpanel" id="sub-summary">
+    <div class="sec-label">Owned</div>
+    <h2>Owned: Overview</h2>
+
+    <p>Owned is everything the brand controls and doesn't have to buy media to use. The competition describes it as a proposed owned strategy that includes the website, the social accounts, and an email strategy. This page adds search and organic, and the machine itself, which can act as media.</p>
+
+    <div class="callout big">
+      <div class="callout-label">The big point</div>
+      <p class="big-line">For the most part, owned media is about conversion, not awareness.</p>
+      <p>The challenge asked for awareness and conversions. But people who reach your social media, your emails, or your website are already aware of you. Otherwise they wouldn't be searching for you or going to check you out.</p>
+      <p>So owned is mostly about getting people who barely know who you are, or who know you well, to take the next step: to find a different way to buy from you, for themselves, their family, or friends, or as part of a corporate gift.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The weight</div>
+      <p>Owned is worth 30% of the score. Taken literally, that's 2 minutes and 24 seconds.</p>
+    </div>
+
+    <h3 class="big-sub">I might start with&hellip;</h3>
+
+    <div class="say-box">
+      <div class="say-label">One way to say it</div>
+      <p style="margin:0 0 10px">Before we start talking about owned media, we did a social media audit and a similar web audit of your existing assets.</p>
+      <p style="margin:0">When someone sees an automated retailing machine for the first time and doesn't know anything about you, they're likely to take out their phone and look for your website or your social media to get a better sense of who you are. So we're suggesting things to do to your owned accounts to prep for adding automated retailing, by better connecting and integrating some of those pieces. We see a lot of people getting lost in the shuffle.</p>
+    </div>
+
+    <a class="ac-cta" href="https://claude.ai/artifact/4WVjeZQoV2XjTmMmnrAB7A" target="_blank" rel="noopener">Read the full social and web audit</a>
+    <span class="ac-cta-note">Pulled October 1, 2026. Compares Cute as a Cupcake with Gigi's Cupcakes.</span>
+
+    <h4>What the audit found on social</h4>
+    <ul>
+      <li>Engagement is low, and you recognized that in your answers to the 105 questions.</li>
+      <li>With 4,479 Instagram followers, your median engagement is 0.46%. That is about half the 1.0% floor for accounts under 50K followers.</li>
+      <li>Instagram ranks posts by how likely each follower is to care, so weak engagement pushes your posts lower and fewer of your followers see them.</li>
+      <li>To reach the bottom of that range you would need about 45 likes and comments per post, roughly 2.2 times today. That's how you reach all of your people and take full advantage of social media.</li>
+      <li>We looked at your hooks and your content pillars. Founder and Behind the Brand posts average 81 likes and comments, three times the 26 for Promotional posts. Weekly flavor reveals and store-closure notices are what your followers aren't responding to.</li>
+    </ul>
+
+    <h4>What the audit found on the website</h4>
+    <ul>
+      <li>The look matches your feed, and Cupcakes in a Jar posts land on the right page in three taps.</li>
+      <li>But 2 of your 4 most recent offers, the specialty flavors and the $3 latte, appear nowhere on the site.</li>
+      <li>The founder and 10-year story is buried on the About page, and the homepage shows no store hours or this week's flavors.</li>
+    </ul>
+
+    <h4>A couple of suggestions</h4>
+    <ul>
+      <li><strong>Lead with people.</strong> Make founder-led and community Reels a weekly slot, add collabs and customer reposts, and show people actually eating, sharing, and standing in line for the cupcakes.</li>
+      <li><strong>Give every storefront post a landing spot.</strong> Add a "This Week at the Shop" page and make it the first bio link.</li>
+      <li><strong>Put the truck, cart, and occasion boxes on the feed.</strong> None of your 30 most recent posts feature them.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-label">Why do this?</div>
+      <p>If someone comes across your machine and wants to follow up, and they see an unengaged audience, they'll bounce and keep walking. You need to grab people and better tell your story: 11 years in business, a thriving business that sells through a bakery, food trucks, a cart, and online, plus the upcoming automated retailing. You have a lot to tell.</p>
+    </div>
+
+    <h3>What lives here</h3>
+    <ul>
+      <li><strong>Social media:</strong> Facebook, Instagram, and TikTok, with content built from the big idea.</li>
+      <li><strong>Website:</strong> a landing page for hosts and corporate gifting, and a "find a machine" locator for consumers.</li>
+      <li><strong>SEO + organic:</strong> being found when people search, without paying for it.</li>
+      <li><strong>Email:</strong> a nurture sequence for B2B and B2C. But how do they get the email?</li>
+      <li><strong>The machine:</strong> the new rendering, QR codes, and on-machine messaging. Avoid the generic AI-prompt look.</li>
+    </ul>
+
+    <h3>Connect it to what came before</h3>
+    <p>Every section should visibly connect to the one before it. Here, that means your content pillars come from the big idea, and each audience gets a path: awareness, then consideration, conversion, use, and advocacy. Carry your red circle, red triangle, and blue circle through it.</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>You can't cover every owned channel in two and a half minutes. Pick what you say out loud and what you only show.</li>
+        <li>Each owned piece needs a reason: why this one, for this audience.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- Social media ---------- -->
+  <section class="section subpanel" id="sub-social">
+    <div class="sec-label">Owned</div>
+    <h2>Social Media</h2>
+
+    <p>Facebook, Instagram, and TikTok. Build content pillars born from the big idea, then make content that fits some of your audiences individually and some of them in general. The platform then finds who responds.</p>
+
+    <ul>
+      <li><strong>Content pillars:</strong> three or four themes, all traceable to the big idea.</li>
+      <li><strong>UGC:</strong> user-generated content, including machine "discovery" moments.</li>
+      <li><strong>Per audience:</strong> which platform, and which pillar, for the red circle, the red triangle, and the blue circle?</li>
+    </ul>
+
+    <h3>What would you post more of? Less of?</h3>
+    <p>The feed is already busy: about four posts a week, most of them Reels. Whatever you add has to come from somewhere.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Post more of</h4>
+        <ul>
+          <li>People-led Reels: founder, community, collabs, and customer reposts. Behind the Brand posts average 81 likes and comments, versus 26 for Promotional.</li>
+          <li>The truck, the cart, and the occasion boxes. None of the 30 most recent posts feature them.</li>
+          <li>Posts that say where to get it. Only 4 of 30 name a website.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Post less of</h4>
+        <ul>
+          <li>Weekly flavor reveals as plain product shots (11 to 21 likes and comments).</li>
+          <li>Store-closure and open/closed notices (9 to 15).</li>
+          <li>The same founder story over and over (see below).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Show people eating, not just the product</h3>
+    <p>One glaring thing in a visual audit of the social accounts: there's a complete lack of people actually eating the products. The feed shows pictures of the product, not pictures of people.</p>
+    <ul>
+      <li>People standing in line for them.</li>
+      <li>People sharing them: two people standing there eating, or one person walking with one.</li>
+      <li>One person at their desk, staring at the thing they're going to eat on their break in five minutes.</li>
+    </ul>
+    <p>The audit backs it up. In the 30 most recent posts, 53% were Promotional product posts, only 2 were Community and UGC, there was 1 collab, and there were no customer reposts or creators.</p>
+
+    <div class="callout">
+      <div class="callout-label">A big part of any redo</div>
+      <p>This is where influencer and creator content starts to work in. Show less of the actual product, and less of the descriptions for the content pillars already being used. Focus instead on people wanting to eat it, eating it, and sharing it.</p>
+    </div>
+
+    <h3>Where does automated retailing fit?</h3>
+    <p>It's crowded right now, and it gets more crowded once you add something else. That's why you're trying to find a home for all of these things.</p>
+    <ul>
+      <li><strong>How many machine posts?</strong> Decide how many you'd really add on Facebook or Instagram. Facebook is an obvious place to adapt, because it currently repeats Instagram word for word (15 of 15 recent posts).</li>
+      <li><strong>Maps:</strong> will you post maps of where the machines are? You may have room for that once every 3 or 4 weeks, and the feed gets even more crowded.</li>
+      <li><strong>A better home:</strong> put a QR code on the machine that goes to a specific spot on the website showing a map of other locations, instead of crowding social.</li>
+    </ul>
+
+    <h3>Before and after</h3>
+    <p>A couple of existing posts, and what more they could look like.</p>
+
+    <div class="ba-block">
+      <div class="ba-title">1. A founder story, with a next step</div>
+      <div class="ba-grid">
+        <div class="ba-card">
+          <div class="ba-label">Before</div>
+          <div class="ba-chips"><span>Aug 29</span><span>Reel</span><span>Behind the Brand</span><span>199 likes + comments</span><span>CTA: none</span></div>
+          <p class="ba-hook">&ldquo;Grateful for the Recognition. Grateful for the Opportunity.&rdquo;</p>
+        </div>
+        <div class="ba-card after">
+          <div class="ba-label">After</div>
+          <div class="ba-chips"><span><i class="mk mk-bc" style="margin-right:6px;width:10px;height:10px"></i>B2B</span><span>Same story</span><span>Adds a CTA</span></div>
+          <p class="ba-hook">&ldquo;Grateful for the Recognition. Grateful for the Opportunity.&rdquo;</p>
+          <p class="ba-hook cta">Planning a gift for your team or a party for your clients? Our Cupcakes in a Jar ship nationwide. Corporate gifting: link in bio.</p>
+        </div>
+      </div>
+      <p class="ba-why">Keep the story that works. Give the small-business owners who are already watching a next step.</p>
+    </div>
+
+    <div class="ba-block">
+      <div class="ba-title">2. A weekly flavor Reel, with a person and a place to get it</div>
+      <div class="ba-grid">
+        <div class="ba-card">
+          <div class="ba-label">Before</div>
+          <div class="ba-chips"><span>Sept 9</span><span>Reel</span><span>Promotional</span><span>21 likes + comments</span><span>CTA: none</span></div>
+          <p class="ba-hook">&ldquo;Coming through with this week's Specialty Cupcake lineup!&rdquo;</p>
+        </div>
+        <div class="ba-card after">
+          <div class="ba-label">After</div>
+          <div class="ba-chips"><span><i class="mk mk-rc" style="margin-right:6px;width:10px;height:10px"></i>Local</span><span>Person-led</span><span>Question</span><span>Landing spot</span></div>
+          <p class="ba-hook">This week's lineup, picked by [founder name]. Which one are you grabbing?</p>
+          <p class="ba-hook cta">Get it at the shop, or in a jar at our machine at [location]. This week's flavors and every machine: link in bio.</p>
+        </div>
+      </div>
+      <p class="ba-why">Adds a face, a question, and one plain line on where to get it. The map of machines lives on the website, not in the feed.</p>
+    </div>
+
+    <h3>Founder stories: it worked, then it wore out</h3>
+    <ul>
+      <li>In the 105 questions, the business commented on low engagement, and that some of the founder stories had higher engagement. That's true, and we're glad you're exploring it.</li>
+      <li>The only problem: between Aug 27 and Sept 3, seven founder and Behind the Brand stories went up in eight days. Two broke out (199 and 187 likes and comments), but four of the seven drew fewer than 40, and the last drew 19. It looks like the story stopped being new.</li>
+      <li>Also, a lot of the people responding weren't your typical customers. They were other small business owners in Indiana and Illinois.</li>
+      <li>So add a call to action at the end of each founder story, and assume those people would also be willing to do corporate gifting, or corporate buying for parties. None of the 8 Behind the Brand posts has one.</li>
+    </ul>
+
+    <h3>Example findings</h3>
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">24%</div><div class="f-text">Don't follow food businesses online at all, so social alone won't reach everyone.<span class="f-q">Q14</span></div></div>
+      <div class="finding"><div class="f-num">1 in 4</div><div class="f-text">Find new food spots on Instagram, versus 14% on Facebook and 11% on TikTok.<span class="f-q">Q14</span></div></div>
+      <div class="finding"><div class="f-num">22%</div><div class="f-text">Would stop to look at a machine that is worth taking a picture of. That is a ready-made UGC moment.<span class="f-q">Q24</span></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- Website ---------- -->
+  <section class="section subpanel" id="sub-website">
+    <div class="sec-label">Owned</div>
+    <h2>Website</h2>
+
+    <p>The website serves both sides of the market. Hosts and corporate buyers need a place to ask. Consumers need a way to find a machine and order.</p>
+
+    <ul>
+      <li><strong>Host and partner landing page:</strong> a lead form for businesses that want a machine.</li>
+      <li><strong>Corporate gifting:</strong> a bulk-order path for the dozen, 25, or 100 buyers.</li>
+      <li><strong>"Find a machine" locator:</strong> for consumers, growing from 1 to 3 to 15.</li>
+    </ul>
+
+    <h3>Right now: who is this for?</h3>
+    <p>It's confusing who the site is for. Is it for people ordering for themselves or their family? Corporate Gifts is the left-hand tab and the first tile, so it looks like the major thing.</p>
+    <p>In the audit, the first 30 seconds showed a "Cupcake Bliss Sealed in a Jar" hero with Shop now, then tiles for Corporate Gifts, Cupcakes in a Jar, and Occasion Boxes, then the truck and the dessert cart. There were no store hours and no weekly flavors.</p>
+
+    <h3>Five suggestions</h3>
+    <p>The goal: someone arrives on the homepage and immediately knows where to go.</p>
+    <ol>
+      <li><strong>Put a front door at the top.</strong> Ask one plain question, "Who are you shopping for?", and give four big, clearly named buttons: for me and my family, for my team or clients, for an event, and find a machine.</li>
+      <li><strong>Let the biggest audience go first.</strong> Decide who the site should serve first and order the menu to match. If that's individuals, Shop leads, and Corporate Gifts becomes its own labeled path instead of leading by default.</li>
+      <li><strong>Show "this week at the shop" on the homepage.</strong> Hours, this week's flavors, and the current offer. The specialty flavors and the $3 latte appear nowhere on the site today, so social posts have nowhere to land and local walk-ins get nothing.</li>
+      <li><strong>Give machines two pages.</strong> A "Find a machine" map for shoppers, which is where the QR code on the machine goes, and a "Bring a machine to your location" form for hosts. Those are different people, and neither is the corporate gifting buyer.</li>
+      <li><strong>Tell the 11-year story once, near the top.</strong> One short strip showing every way to get Cute as a Cupcake: the shop, the food trucks, the cart, online, and now machines. The founder story is currently buried on the About page, and it's what someone who just scanned a machine wants to know.</li>
+    </ol>
+
+    <div class="wf" role="img" aria-label="Sketch of a homepage with a 'Who are you shopping for?' question, four door buttons, a this week at the shop box, and a story strip">
+      <div class="wf-nav"><span class="logo">Cute as a Cupcake</span><span>Shop</span><span>Gifts</span><span>Events</span><span>Machines</span><span>About</span></div>
+      <div class="wf-hero">
+        <div class="big">[Your big idea goes here]</div>
+        <div class="ask">Who are you shopping for?</div>
+      </div>
+      <div class="wf-doors">
+        <div class="wf-door">For me and my family</div>
+        <div class="wf-door">For my team or clients</div>
+        <div class="wf-door">For an event</div>
+        <div class="wf-door">Find a machine</div>
+      </div>
+      <div class="wf-strip">
+        <div class="wf-box"><strong>This week at the shop</strong>Hours, flavors, and the current offer.</div>
+        <div class="wf-box"><strong>11 years, many ways</strong>Shop &middot; food trucks &middot; cart &middot; online &middot; machines</div>
+      </div>
+    </div>
+    <p class="slide-cap">A sketch of the first screen, not a design.</p>
+
+    <h3>Example findings</h3>
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">33%</div><div class="f-text">Prefer to order special-occasion treats on a website, the top choice ahead of in person (26%) and text (22%).<span class="f-q">Q9a</span></div></div>
+      <div class="finding"><div class="f-num">32%</div><div class="f-text">Would request a cupcake vending machine at work or school with a quick online form (alone or with a food truck).<span class="f-q">Q41</span></div></div>
+      <div class="finding"><div class="f-num">23%</div><div class="f-text">Order food, treats, or gifts for coworkers, clients, or events at least occasionally. That is the corporate gifting audience.<span class="f-q">Q40</span></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- SEO + organic ---------- -->
+  <section class="section subpanel" id="sub-seo">
+    <div class="sec-label">Owned</div>
+    <h2>SEO + Organic</h2>
+
+    <p>Being found when someone is already looking, without buying the click.</p>
+
+    <h3>The problem with "cupcakes"</h3>
+    <ul>
+      <li>Very few people search for the word "cupcakes" or for "cupcakes near me."</li>
+      <li>When they do, the results are often recipes, grocery stores, and sellers with an inferior product.</li>
+      <li>So winning those broad searches is both unlikely and not worth much.</li>
+    </ul>
+
+    <h4>People search for their problem</h4>
+    <ul>
+      <li>People often search for the problem they've got: desserts, birthday treats, office party gifts, and things like that.</li>
+      <li>Make sure your Google Business Profile includes all of those things, so that regardless of what they're searching for, they find you.</li>
+      <li>Keying everything on the word "cupcakes" gets you only a fraction of the people who might be looking for you. Many of them aren't aware enough of you to include your business name in the search.</li>
+    </ul>
+
+    <h3>A few suggestions</h3>
+    <ol>
+      <li><strong>Go after the searches you can win.</strong> Be specific about what you sell and who it's for: cupcakes in a jar, corporate gift cupcakes, a cupcake truck or dessert cart for events, occasion boxes, and your town and region. Your corporate gifting blog post is the model. The audit found one blog post and no FAQ, and a search description that says "delivered in Merrillville," which undersells nationwide shipping.</li>
+      <li><strong>Send people to the right page, not the homepage.</strong> If someone finds you through a search, the link should land on the specific part of the website we already put up: the gifting page for gifting searches, the truck and cart page for event searches, the jar page for jars.</li>
+      <li><strong>Use the reviews you already have.</strong> The audit found 426 Facebook reviews to draw on. Show them on the pages people land on, and ask for new ones with the QR code on each machine.</li>
+      <li><strong>Make each machine findable.</strong> Where the platform allows it, give each machine location a local search listing, so someone near it who looks it up finds the address and the "find a machine" map.</li>
+    </ol>
+
+    <h3>Paid Google ads: same idea</h3>
+    <p>The Google search ads they're paying for cover a wide variety of topics: corporate gifting, food trucks, cupcakes in a jar, plain cupcakes, and more. But they all map to the homepage.</p>
+
+    <div class="callout">
+      <div class="callout-label">Why not the homepage?</div>
+      <p>For paid ads, Google scores how well the landing page matches the ad and the search. That affects what you pay and where the ad shows. A homepage serves everyone, so it matches no one in particular. And since you're worried about conversions: a page that matches the ad can more than double the conversions of the people who visit.</p>
+    </div>
+
+    <table class="jobs-table">
+      <thead>
+        <tr><th>Ad or search topic</th><th>Send them to</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Corporate gifting</td><td>The corporate gifts page</td><td>A buyer wants bulk options and a quote form.</td></tr>
+        <tr><td>Food truck and cart</td><td>The truck and cart page</td><td>An event planner wants to book.</td></tr>
+        <tr><td>Cupcakes in a jar</td><td>The jar collection</td><td>A shopper wants to order and ship.</td></tr>
+        <tr><td>Cupcakes, near me</td><td>This week at the shop</td><td>A local wants hours and today's flavors.</td></tr>
+        <tr><td>Machines (later)</td><td>Find a machine, or the host form</td><td>One page for shoppers, one for hosts.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Example findings</h3>
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">36%</div><div class="f-text">Find new food spots through Google search or Maps, tied for first with friends and family.<span class="f-q">Q14</span></div></div>
+      <div class="finding"><div class="f-num">12%</div><div class="f-text">Would check Google Maps themselves rather than wait to hear from a bakery or food truck they liked.<span class="f-q">Q15</span></div></div>
+      <div class="finding"><div class="f-num">18%</div><div class="f-text">Would feel more comfortable trying a machine if it had reviews or ratings available by QR code.<span class="f-q">Q26</span></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- Email ---------- -->
+  <section class="section subpanel" id="sub-email">
+    <div class="sec-label">Owned</div>
+    <h2>Email</h2>
+
+    <p>Email only works if you have addresses. So the first job is to gather emails, and there are many ways to do it. (And remember the question: how do they get the email?)</p>
+
+    <h3>Ways to gather emails</h3>
+    <ul>
+      <li><strong>After a website order.</strong> Once someone orders from the website, they've given you their email, and now you can follow up with reminders. Add a button at checkout asking whether they're buying for themselves or for a corporate gift or something similar. That is the difference between your red dots and your blue dots (<i class="mk mk-rc" style="margin:0 4px 0 2px"></i><i class="mk mk-rt" style="margin:0 4px 0 0"></i>consumer, <i class="mk mk-bc" style="margin:0 4px 0 2px"></i>B2B).</li>
+      <li><strong>As part of the ad.</strong> The ad itself can ask for the email.</li>
+      <li><strong>During a website visit.</strong> A sign-up on the pages people already land on.</li>
+      <li><strong>At events.</strong> Take the food trucks out to farmers markets and other events. We would still list these under owned media, because you're in control of them and have very little expense.</li>
+    </ul>
+
+    <h4>What an event setup might look like</h4>
+    <ul>
+      <li>Spend $1,000 to $2,000 on a gazebo-style frame, a table, matching vinyl, and an iPad.</li>
+      <li>Ask people to fill in their information to get a discount on a cupcake, or to buy one, get one free at that farmers market.</li>
+      <li>They enter their email, or follow you on social. If they do, they get the reward.</li>
+    </ul>
+
+    <h3>What you do with them</h3>
+    <p>Once you have the emails, you get to reach out for a follow-up. That's not awareness, because they already know who you are. It's about increasing conversions among people who have already been in contact with you once or twice.</p>
+
+    <h4>Two tracks</h4>
+    <ul>
+      <li><strong>B2B:</strong> a sequence that moves a host or corporate buyer from a first inquiry to a signed machine or a standing gift order.</li>
+      <li><strong>Consumers:</strong> alerts for new locations and offers.</li>
+    </ul>
+
+    <h3>Example findings</h3>
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">34%</div><div class="f-text">Would want to hear from a local bakery or food truck by email, with text close behind at 31%.<span class="f-q">Q15</span></div></div>
+      <div class="finding"><div class="f-num">63%</div><div class="f-text">Would actually want to be told about deals or a free item, ahead of new flavors (42%) and a vending machine near them (30%).<span class="f-q">Q16</span></div></div>
+      <div class="finding"><div class="f-num">71%</div><div class="f-text">Are unlikely to come back for a new flavor every week or month. Be careful building email around flavor drops.<span class="f-q">Q16a</span></div></div>
+    </div>
+  </section>
+
+  <!-- ---------- The machine ---------- -->
+  <section class="section subpanel" id="sub-machine">
+    <div class="sec-label">Owned</div>
+    <h2>The Machine</h2>
+
+    <p>Once at least one automated retailing machine is in place, you get to use it to create something downstream. The machine is media you own, and it sits in a high-profile location all day.</p>
+
+    <h3>The rendering</h3>
+    <p>The challenge said to design, or have an AI render, what the machine might look like. Great, knock yourselves out, and avoid the generic AI-prompt look. But also think about what the machine does for the rest of the system. That starts with one QR code and a ticker.</p>
+
+    <h3>One QR code</h3>
+    <p>Include one QR code that people can snap. What would it take them to?</p>
+    <ul>
+      <li>The website, or social media. That works, but a specific spot on the website would be better.</li>
+      <li>A page with a map of other locations.</li>
+      <li>A page that describes who the company is.</li>
+    </ul>
+    <p>You can't load the machine up with five different QR codes. That's too confusing. So pick one. Where are they going to go, and what will you use it to integrate with the other pieces of the system?</p>
+
+    <div class="say-box">
+      <div class="say-label">A "who we are" page could say</div>
+      Even though it's in a vending machine, there aren't a lot of preservatives in these. They're made by Midwestern hands, with Midwestern values and ingredients, and they're fresh. They last 30 days inside the machine without the need for heavy preservatives.
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Careful with the 30 days</div>
+      <p>In the survey, 33% said a 30-day shelf life would make them less likely to buy, versus 28% more likely. Lead with fresh and made by hand, and let the 30 days follow.</p>
+    </div>
+
+    <h3>The ticker</h3>
+    <p>Another idea: a little box at the top of the machine with a red ticker, like the news or business tickers you see in many places, rotating through different messages. You might get more bang for your buck showing a rendering of the machine, with some of the phrases that could pop up beside it. Sky's the limit on what they say.</p>
+
+    <div class="mach-wrap" role="group" aria-label="Sketch of a machine with a rotating red ticker and phrases that could appear on it">
+      <div class="machine">
+        <div class="mach-ticker" id="machTicker" aria-live="off">Made with Midwestern hands&hellip;</div>
+        <div class="mach-body">
+          <div class="mach-window">
+            <div class="mach-shelf"><i></i><i></i><i></i></div>
+            <div class="mach-shelf"><i></i><i></i><i></i></div>
+            <div class="mach-shelf"><i></i><i></i><i></i></div>
+          </div>
+          <div class="mach-side">
+            <div class="mach-qr" aria-hidden="true"></div>
+            <div class="mach-label">One QR code</div>
+            <div class="mach-pay"></div>
+          </div>
+        </div>
+        <div class="mach-slot"></div>
+      </div>
+      <ul class="phrase-list" id="phraseList">
+        <li>Made with Midwestern hands&hellip;</li>
+        <li>Cupcakes are love&hellip;</li>
+        <li>Spread the joy&hellip;</li>
+        <li>You know you want one&hellip;</li>
+        <li>Other places you could find us&hellip;</li>
+      </ul>
+    </div>
+    <p class="slide-cap">A sketch, not the rendering. The red bar rotates through the phrases.</p>
+
+    <p>This may be one of the most powerful things you can use on the machine itself to move people to the next step.</p>
+
+    <h3>Locations</h3>
+    <p>The first machine has to work and be profitable before the plan moves to 3 and then toward 15.</p>
+
+    <h3>Example findings</h3>
+    <div class="finding-list">
+      <div class="finding"><div class="f-num">34%</div><div class="f-text">Would stop to look at a lit, well-stocked display. A unique or colorful design (32%) is close behind.<span class="f-q">Q24</span></div></div>
+      <div class="finding"><div class="f-num">37%</div><div class="f-text">Would feel more comfortable if they could see the product through glass, and 37% want a clear freshness date.<span class="f-q">Q26</span></div></div>
+      <div class="finding"><div class="f-num">44%</div><div class="f-text">Picked an airport as the best fit for a premium machine. Malls, transit, hotels, and hospitals are each around a third.<span class="f-q">Q22</span></div></div>
+    </div>
+  </section>
+
+</div>
+<div class="tab-panel" id="tab-paid">
+
+  <div class="subtabs" role="tablist" aria-label="Paid sections">
+    <a href="#paid" data-sub="paidsum" role="tab">Overview</a>
+    <a href="#paid-meta" data-sub="meta" role="tab">Meta</a>
+    <a href="#paid-gsearch" data-sub="gsearch" role="tab">Google Search</a>
+    <a href="#paid-linkedin" data-sub="linkedin" role="tab">LinkedIn</a>
+    <a href="#paid-display" data-sub="display" role="tab">Digital Ads</a>
+    <a href="#paid-youtube" data-sub="youtube" role="tab">YouTube</a>
+    <a href="#paid-tiktok" data-sub="tiktok" role="tab">TikTok</a>
+    <a href="#paid-pinterest" data-sub="pinterest" role="tab">Pinterest</a>
+    <a href="#paid-influencers" data-sub="influencers" role="tab">Influencers</a>
+    <a href="#paid-spotify" data-sub="spotify" role="tab">Spotify</a>
+    <a href="#paid-ctv" data-sub="ctv" role="tab">Connected TV</a>
+    <a href="#paid-pricing" data-sub="pricing" role="tab">Pricing</a>
+  </div>
+
+  <!-- ---------- Overview ---------- -->
+  <section class="section subpanel" id="sub-paidsum">
+    <div class="sec-label">Paid</div>
+    <h2>Paid: Overview</h2>
+
+    <div class="callout big">
+      <div class="callout-label">The big point</div>
+      <p class="big-line">Paid is where you go get awareness.</p>
+      <p>Your owned media is mainly for conversions: keeping people in your loop, moving them to the next step, and giving them a way to get a reminder. Paid ads are mainly for reaching people who don't know you yet.</p>
+      <p>Organic social doesn't really provide awareness unless you are exploding with the highest engagement possible. The only people who find you are a small subset of your followers. Paid is where you reach out and add people to the system, or to your loop.</p>
+    </div>
+
+    <h3 class="big-sub">Start with the message, not the channel</h3>
+    <p>Think about the message you want to get to people and what format it would come across best in.</p>
+    <ul>
+      <li>Is it a video that someone will probably only watch the first 5 to 10 seconds of, like a Reel?</li>
+      <li>Is it writing? Something they can take in within 10 to 15 seconds, or something longer?</li>
+      <li>Do you need a longer video, a couple of minutes? Not for the mainstay of what you're doing, but maybe that's a reason to include something from YouTube.</li>
+    </ul>
+    <p>Decide what you want to say, then figure out what technology you'll use. Don't start with "we have to use Instagram and we have to use Google Search."</p>
+
+    <table class="jobs-table">
+      <thead><tr><th>If your message is&hellip;</th><th>Format</th><th>It could live in</th></tr></thead>
+      <tbody>
+        <tr><td>A hook that lands in 5 to 10 seconds</td><td>Short vertical video</td><td>Reels, TikTok, YouTube Shorts</td></tr>
+        <tr><td>A line someone can read in 10 to 15 seconds</td><td>A headline and a sentence</td><td>Google Search, display, a Meta image ad</td></tr>
+        <tr><td>A story that needs a couple of minutes</td><td>Longer video</td><td>YouTube</td></tr>
+        <tr><td>A feeling you can describe</td><td>Audio</td><td>Spotify</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Keep the paid breakdown short</h3>
+    <ul>
+      <li>You don't need to list 10 ways to reach people. You don't have time to talk about them. Four or five is fine.</li>
+      <li>For the 15-minute faculty presentation, add one or two more after the fact.</li>
+      <li>Don't use only social media and Google Search ads. She's already using those, and she wants to see something beyond them.</li>
+      <li>Faculty will notice if all your money goes there. Her social media isn't really working for her, and our web audit found almost no traffic going from social media straight to the website. So how would that work?</li>
+    </ul>
+
+    <h3>Think nationwide? Not yet</h3>
+    <p>The challenge invites you to think beyond Chicagoland. But people who live close to her, in the Chicago area and the Midwest, are more likely to order from the website. That likelihood drops when you go nationwide.</p>
+    <ul>
+      <li>So focus the next two years on building a monster base in this area first.</li>
+      <li>Then consider other markets, for automated retailing, corporate gifting, or buying for a party (graduation, birthday) or for yourself.</li>
+      <li>Those things would work in other places too. Chicago and Northwest Indiana is just the starting point.</li>
+    </ul>
+    <p class="slide-cap" style="margin-top:0">In our survey, about 14% of people outside the Midwest said they were likely to order shipped jars from a bakery in another city or state, versus 21% to 22% in the Midwest (Q30). The outside-Midwest group is small (58 people), so treat it as a direction.</p>
+
+    <div class="callout">
+      <div class="callout-label">The weight</div>
+      <p>Paid is worth 30% of the score. Taken literally, that's 2 minutes and 24 seconds.</p>
+    </div>
+
+    <h3>What the handout asks for</h3>
+    <ul>
+      <li><strong>Justify your channels:</strong> why this one, for this audience, over the alternatives?</li>
+      <li><strong>B2B:</strong> LinkedIn, paid search ("office amenities"), and account-based marketing aimed at facility managers.</li>
+      <li><strong>Consumers:</strong> geofenced social near the sites, short video, and local creators.</li>
+      <li><strong>Creative:</strong> three or more executions in three or more channels, with one consistent message that motivates action.</li>
+      <li><strong>Think nationwide:</strong> phase in a scalable play once Chicagoland proves out (see above).</li>
+      <li><strong>Budget and timeline:</strong> the $250,000 split by channel, and a 24-month Gantt chart. Past judges have debated whether this goes at the end of Paid or the start of Evaluation. Either works if it's clearly labeled.</li>
+    </ul>
+
+    <h3>The channels in the next tabs</h3>
+    <p>Each tab has a couple of pros and cons, and a typical cost. The pricing tab puts them all in one very simple chart.</p>
+    <ul>
+      <li><strong>Social and search:</strong> Meta, Google Search, and TikTok.</li>
+      <li><strong>Placed in context:</strong> digital ads, and Pinterest for people planning a party.</li>
+      <li><strong>Other people talking about her:</strong> influencers, but not in week one.</li>
+      <li><strong>Video and audio:</strong> YouTube, connected TV, and Spotify.</li>
+    </ul>
+  </section>
+
+  <!-- ---------- Meta (Facebook + Instagram) ---------- -->
+  <section class="section subpanel" id="sub-meta">
+    <div class="sec-label">Paid</div>
+    <h2>Meta (Facebook + Instagram)</h2>
+
+    <p>One place to buy ads on both Facebook and Instagram. Give it a few broad audiences (gender, age, and location) and several pieces of content, and the platform finds who responds.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Easy to target.</li>
+          <li>Relatively inexpensive.</li>
+          <li>Reaches people who don't follow you. Organic posts reach only a small subset of your followers.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>Lost in a sea of cat videos, fashion advice, news, and updates.</li>
+          <li>Creative wears out. The same message gets ignored the third time.</li>
+          <li>A click isn't a purchase, so the website has to finish the job.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $7 to $15 per 1,000 views (CPM), and about $0.60 to $1.90 per click (CPC). <a href="#paid-pricing">See the pricing tab.</a></div>
+  </section>
+
+  <!-- ---------- Google Search ---------- -->
+  <section class="section subpanel" id="sub-gsearch">
+    <div class="sec-label">Paid</div>
+    <h2>Google Search (Google Ads)</h2>
+
+    <p>Text ads that show when someone searches. You're already using these.</p>
+
+    <div class="vid-ph">[Short video or write-up of what the ads look like goes here]<span>Coming soon.</span></div>
+
+    <div class="callout">
+      <div class="callout-label">One rule</div>
+      <p>When someone clicks one of these ads, send them to the corresponding spot on the website, not to the homepage. A homepage rarely leads to a conversion.</p>
+    </div>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Reaches people who are already looking.</li>
+          <li>Each ad can go to its own page: gifting, truck and cart, jars.</li>
+          <li>You pay when someone clicks, not when it shows.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>The most expensive click on the list.</li>
+          <li>Competes with grocery stores and national chains for the same words.</li>
+          <li>Few people search for something they don't know exists, like a machine.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $3 to $5 or more per click. The all-industry average is about $5.40. <a href="#paid-pricing">See the pricing tab.</a></div>
+
+    <h3>What we found in the 35 ads</h3>
+    <p>We looked at the 35 ads listed for the site in Google's Ads Transparency Center and sorted each by its main message.</p>
+
+    <table class="jobs-table price-table">
+      <thead><tr><th>What the ad promotes</th><th>Ads</th><th>Share</th></tr></thead>
+      <tbody>
+        <tr><td>Cupcakes in a Jar (consumer orders and shipping)</td><td>12</td><td>34%</td></tr>
+        <tr><td>The local bakery</td><td>11</td><td>31%</td></tr>
+        <tr><td>Food truck bookings</td><td>9</td><td>26%</td></tr>
+        <tr><td>Corporate gifting</td><td>2</td><td>6%</td></tr>
+        <tr><td>Portable cart</td><td>0</td><td>0%</td></tr>
+        <tr><td>Preview unavailable</td><td>1</td><td>3%</td></tr>
+      </tbody>
+    </table>
+    <p class="slide-cap" style="margin-top:0">Counts describe listings, not spending or clicks.</p>
+
+    <h3>Missed opportunities</h3>
+    <ul>
+      <li><strong>The topics are all over the place.</strong> Jars, the shop, the truck, and gifting all compete, and 35 ads are not 35 different ideas. Many repeat the same headlines.</li>
+      <li><strong>Nothing ties to a specific spot on a re-envisioned homepage.</strong> The ads show only the main web address, so each one can be tied to its own page: jars to the jar collection, trucks to booking, gifting to the gifting page, the shop to hours and directions.</li>
+      <li><strong>Thin where it matters.</strong> Corporate gifting has two ads with nearly the same headline, and the cart has none. The truck ads are about booking it for an event, not about where it will be.</li>
+      <li><strong>Few people search "cupcake food truck near me."</strong> They search for the need: dessert catering, birthday party catering, wedding desserts. An ad can introduce the truck as the answer.</li>
+    </ul>
+
+    <h3>Focus on a handful, and make room for the machine</h3>
+    <ul>
+      <li>Pick a handful of topics instead of everything, and give each its own page.</li>
+      <li>Make room for the searches people will make once there's a machine: cupcake vending machine, cupcakes in a machine near me, and automated retailing cupcakes. Send them to the "Find a machine" page.</li>
+    </ul>
+
+    <h4>To check next</h4>
+    <ul>
+      <li>Ask for the Search terms report for the last 90 days. It shows what people actually searched, and how much came from people typing the company name versus looking for cupcakes, catering, or gifts.</li>
+      <li>Use Google Keyword Planner to compare how often people search each phrase in the service area. In a Google Ads account, go to Tools, then Planning, then Keyword Planner.</li>
+    </ul>
+  </section>
+
+  <!-- ---------- LinkedIn ---------- -->
+  <section class="section subpanel" id="sub-linkedin">
+    <div class="sec-label">Paid</div>
+    <h2>LinkedIn</h2>
+
+    <p><i class="mk mk-bc" style="margin:0 6px 0 0"></i>This one is for your blue-dot people, the B2B audience. It's frowned upon to sell consumer products on LinkedIn, and in some cases they don't even accept them. But if you're approaching people about corporate gifting, there are plenty of job titles you can target with an ad about how the product is great for corporate gifting, office parties, and company events.</p>
+
+    <h3>Job titles you could target</h3>
+    <ul>
+      <li>Office managers and executive assistants, who often order for the team.</li>
+      <li>HR and people-operations managers, for employee appreciation.</li>
+      <li>Event and meeting planners, for office parties and company events.</li>
+      <li>Sales and account leaders, for client thank-you gifts.</li>
+      <li>Facility and property managers, if the goal is hosting a machine.</li>
+    </ul>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Aim by job title, company, and industry.</li>
+          <li>Reaches the people who order a dozen, 25, or 100 at a time.</li>
+          <li>Speaks directly to the blue-dot audience.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>The most expensive per view and per click on the list.</li>
+          <li>Consumer products are frowned upon, and sometimes rejected.</li>
+          <li>A smaller audience, so people see the same ad again and again.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $30 to $55 per 1,000 views (CPM) and about $5.50 to $12 per click (CPC), with a $10 a day minimum. <a href="#paid-pricing">See the pricing tab.</a></div>
+
+    <p class="slide-cap" style="margin-top:12px">As with Google Search, send the click to the corporate gifts page, not the homepage.</p>
+  </section>
+
+  <!-- ---------- Digital Ads (Display) ---------- -->
+  <section class="section subpanel" id="sub-display">
+    <div class="sec-label">Paid</div>
+    <h2>Digital Ads (Display)</h2>
+
+    <p>Banner and native ads that sit on other websites. A lot of people don't think digital ads work, or find them annoying. The common line is, "I'm more likely to get struck by lightning than to click on a digital ad." Some of that may be true, because engagement has traditionally been pretty low.<br><br>On the other hand, if someone is searching for birthday party ideas or corporate party ideas, they may be reading a blog or web page about exactly that. A well-placed ad can really stand out, because you already know what to put in the content.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Placed where the topic already matches what you sell.</li>
+          <li>The message can match the page exactly.</li>
+          <li>Cheap per thousand views.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>Click rates are typically well under 1%.</li>
+          <li>Banner blindness, and some people find the ads annoying.</li>
+          <li>Your ad may land on weak pages unless you choose placements carefully.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $1.50 to $4 per 1,000 views (CPM), and about $0.10 to $0.80 per click. <a href="#paid-pricing">See the pricing tab.</a></div>
+
+    <h4>Where a well-placed ad could go</h4>
+    <ul>
+      <li><strong>Birthday party ideas pages:</strong> you know the reader is planning a party, so the ad is about birthday treats or occasion boxes.</li>
+      <li><strong>Corporate gifting pages:</strong> <i class="mk mk-bc" style="margin:0 4px 0 0"></i>the ad is about gifting a team or clients.</li>
+      <li><strong>"Unusual things to do in Chicago" or "fun and eccentric ideas to visit in Chicago":</strong> <i class="mk mk-rt" style="margin:0 4px 0 0"></i>a great home for the novelty of the automated retailing machine.</li>
+    </ul>
+  </section>
+
+  <!-- ---------- YouTube ---------- -->
+  <section class="section subpanel" id="sub-youtube">
+    <div class="sec-label">Paid</div>
+    <h2>YouTube</h2>
+
+    <p>Video ads before, during, and between videos. Cupcakes are made to be watched.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Cupcakes look great on video.</li>
+          <li>Cheap per view, because you pay by the view on skippable ads.</li>
+          <li>You can aim at interests and at what people search for.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>People can skip after a few seconds, so the first five seconds have to hook them.</li>
+          <li>You need a video made.</li>
+          <li>A view isn't a visit, and it isn't a purchase.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $0.02 to $0.10 per view, or about $4 to $10 per 1,000 views (CPM). <a href="#paid-pricing">See the pricing tab.</a></div>
+  </section>
+
+  <!-- ---------- TikTok ---------- -->
+  <section class="section subpanel" id="sub-tiktok">
+    <div class="sec-label">Paid</div>
+    <h2>TikTok</h2>
+
+    <p>Short, vertical video ads in the feed. Good for the "discovery" moments around the machine.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Low cost per 1,000 views.</li>
+          <li>Native, handmade-looking video suits a bakery.</li>
+          <li>You can turn your own organic posts into ads.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>It has to feel like TikTok, or people swipe past.</li>
+          <li>Fewer people say they find new food spots there: only 11% in our survey, versus about 1 in 4 on Instagram (Q14).</li>
+          <li>A minimum daily spend applies.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $4 to $13 per 1,000 views (CPM), and about $0.17 to $1.00 per click. <a href="#paid-pricing">See the pricing tab.</a></div>
+  </section>
+
+  <!-- ---------- Pinterest ---------- -->
+  <section class="section subpanel" id="sub-pinterest">
+    <div class="sec-label">Paid</div>
+    <h2>Pinterest</h2>
+
+    <p>A very visual site. True, someone looking for cupcakes might be drawn to cupcake recipe pins. But what about people searching for party ideas, birthday party ideas, corporate party ideas, or graduation party ideas?</p>
+    <p>A well-placed message, with just a small portion of the budget going to Pinterest, could be exactly where those people are looking.</p>
+
+    <h3>Searches worth being in front of</h3>
+    <ul>
+      <li><strong>Birthday party ideas:</strong> the birthday boxes and occasion boxes.</li>
+      <li><strong>Graduation party ideas:</strong> a natural fit for the May and June peak.</li>
+      <li><strong>Corporate party ideas:</strong> <i class="mk mk-bc" style="margin:0 4px 0 0"></i>the corporate gifting page.</li>
+      <li><strong>Baby shower and other party ideas:</strong> the occasion boxes.</li>
+    </ul>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Very visual, and cupcakes look great.</li>
+          <li>People use it to plan parties, so they're already looking for ideas.</li>
+          <li>Cheap per 1,000 views, with no platform minimum, so a small budget works.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>Recipe and make-it-yourself pins compete for the same searches.</li>
+          <li>It's the planned side of buying. It does little for the spontaneous machine moment.</li>
+          <li>It needs strong, clean images.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $2 to $5 per 1,000 views (CPM) and about $0.10 to $1.50 per click (CPC), with no platform minimum. <a href="#paid-pricing">See the pricing tab.</a></div>
+
+    <p class="slide-cap" style="margin-top:12px">As with the other ads, each pin should go to the matching page on the website, not the homepage.</p>
+  </section>
+
+  <!-- ---------- Influencers ---------- -->
+  <section class="section subpanel" id="sub-influencers">
+    <div class="sec-label">Paid</div>
+    <h2>Influencers</h2>
+
+    <p>For heaven's sake, of course she's going to need other people talking about her as well. So you probably want to introduce influencers.</p>
+
+    <h3>Not in week one</h3>
+    <p>As we've mentioned in class, you probably don't want to start with this in week one. The first several months should be about housekeeping: cleaning up, getting organized, redoing the website, and re-coming up with how the content pillars fit together.</p>
+    <ul>
+      <li>Does she use all those different formats?</li>
+      <li>Does she try to combine two topics into one post so they can appear more frequently?</li>
+    </ul>
+    <p>Then, maybe in month four, maybe in month six, maybe more toward the end of the first year, whatever you think is appropriate, you start to get other people talking about her. That's where influencers come in.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Other people talking about her, not just her own accounts.</li>
+          <li>Local people who can reach local audiences, like Chicago.</li>
+          <li>Content you can reuse on your own pages.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>Too early, it distracts from fixing your own house first.</li>
+          <li>Price and quality vary a lot from person to person.</li>
+          <li>Reach depends entirely on that person's following.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $50 to $500 for a specific post from a local creator. $1,000 may get 3 or 4 posts from one influencer. <a href="#paid-pricing">See the pricing tab.</a></div>
+
+    <h3>What it might cost</h3>
+    <p>You can always Google how much it costs. Honestly, someone who talks about things to do in Chicago is probably paid about $50, $250, or $500 for a specific post.</p>
+    <p>So you could easily designate $1,000 starting in month four or month six for influencers, and give a very brief synopsis of what that would look like.</p>
+
+    <h3>Find one person, and show them</h3>
+    <ul>
+      <li>No one expects you to go through 100 influencers, and you don't have time to talk about more than one or two.</li>
+      <li>Find one person who seems appropriate for Cute as a Cupcake.</li>
+      <li>Take a screenshot of that person that shows their reach, their cost, and the topics they talk about.</li>
+      <li>Put that on the screen while you talk about influencers in the paid section.</li>
+    </ul>
+
+    <div class="vid-ph">[Screenshot of one Chicago-area influencer: reach, cost, and topics]<span>An example goes here.</span></div>
+
+    <a class="ac-cta" href="https://collabstr.com/top-influencers/snapchat/in/united-states/illinois/chicago" target="_blank" rel="noopener">Chicago-area influencers on Collabstr</a>
+    <span class="ac-cta-note">A place to start looking. The list shows each creator's followers and the topics they cover.</span>
+    <a class="ac-cta" href="https://collabstr.com/influencer-price-calculator" target="_blank" rel="noopener">Collabstr influencer price calculator</a>
+  </section>
+
+  <!-- ---------- Spotify (Audio) ---------- -->
+  <section class="section subpanel" id="sub-spotify">
+    <div class="sec-label">Paid</div>
+    <h2>Spotify (Audio)</h2>
+
+    <p>Audio ads that play between songs and in podcasts. The obvious problem: cupcakes are so visual to look at.<br><br>On the other hand, when people talk about cupcakes, or love, or "wow, I got to open a cupcake," or "I had a cupcake in a jar the other day," describing it can be incredibly powerful.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Listeners imagine the cupcake, and a good description sticks.</li>
+          <li>You can target by listener, place, and playlist.</li>
+          <li>A small business can start with a modest budget.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>Audio only. You can't show a cupcake.</li>
+          <li>Higher cost per 1,000 than social.</li>
+          <li>Nobody can click an audio ad easily, so you need a short, memorable ending.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $15 to $25 per 1,000 views (CPM), with about a $250 minimum campaign. <a href="#paid-pricing">See the pricing tab.</a></div>
+  </section>
+
+  <!-- ---------- Connected TV ---------- -->
+  <section class="section subpanel" id="sub-ctv">
+    <div class="sec-label">Paid</div>
+    <h2>Connected TV</h2>
+
+    <p>Streaming TV ads on the big screen, bought locally. The most expensive option per view here.</p>
+
+    <div class="pair-grid">
+      <div class="pair-card">
+        <h4>Pros</h4>
+        <ul>
+          <li>Full video and sound on a big screen.</li>
+          <li>Can be aimed at specific ZIP codes.</li>
+          <li>Can start small. No contract is needed on many self-serve platforms.</li>
+        </ul>
+      </div>
+      <div class="pair-card p2">
+        <h4>Cons</h4>
+        <ul>
+          <li>Higher cost per 1,000 views.</li>
+          <li>Viewers can't click, so you need a clear next step they can remember.</li>
+          <li>Harder to connect to a purchase, and it needs a polished video.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cost-line"><strong>Typical cost:</strong> about $15 to $35 per 1,000 views (CPM). Many campaigns land near $25. <a href="#paid-pricing">See the pricing tab.</a></div>
+  </section>
+
+  <!-- ---------- Pricing ---------- -->
+  <section class="section subpanel" id="sub-pricing">
+    <div class="sec-label">Paid</div>
+    <h2>Pricing</h2>
+
+    <p>A very simple chart, because you only have eight minutes. Two terms:</p>
+    <ul>
+      <li><strong>CPM</strong> is what you pay to show your ad 1,000 times.</li>
+      <li><strong>CPC</strong> is what you pay each time someone clicks.</li>
+    </ul>
+
+    <table class="jobs-table price-table">
+      <thead>
+        <tr><th>Channel</th><th>CPM (per 1,000 views)</th><th>CPC (per click)</th><th>To know</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Meta (Facebook + Instagram)</td><td>$7 to $15</td><td>$0.60 to $1.90</td><td>Can start with a few dollars a day.</td></tr>
+        <tr><td>Google Search</td><td>&mdash;</td><td>$3 to $5+</td><td>All-industry average is about $5.40.</td></tr>
+        <tr><td>LinkedIn (B2B)</td><td>$30 to $55</td><td>$5.50 to $12</td><td>$10 a day minimum. The most expensive per view.</td></tr>
+        <tr><td>Pinterest</td><td>$2 to $5</td><td>$0.10 to $1.50</td><td>No platform minimum, so small budgets work.</td></tr>
+        <tr><td>Digital ads (display)</td><td>$1.50 to $4</td><td>$0.10 to $0.80</td><td>Cheapest, with the lowest click rates.</td></tr>
+        <tr><td>YouTube</td><td>$4 to $10</td><td>&mdash;</td><td>$0.02 to $0.10 per view.</td></tr>
+        <tr><td>TikTok</td><td>$4 to $13</td><td>$0.17 to $1.00</td><td>A minimum daily spend applies.</td></tr>
+        <tr><td>Influencers</td><td>&mdash;</td><td>&mdash;</td><td>About $50 to $500 per post for a local creator. $1,000 may get 3 or 4 posts.</td></tr>
+        <tr><td>Spotify</td><td>$15 to $25</td><td>&mdash;</td><td>About a $250 minimum campaign.</td></tr>
+        <tr><td>Connected TV</td><td>$15 to $35</td><td>&mdash;</td><td>Many campaigns land near $25.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>What it costs to show your ad 10,000 times</h3>
+    <div class="reach-chart">
+      <div class="reach-row">
+        <div class="reach-platform">Digital ads</div>
+        <div class="reach-track"><div class="reach-bar" style="width:8%"></div></div>
+        <div class="reach-value">$30</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">Pinterest</div>
+        <div class="reach-track"><div class="reach-bar" style="width:10%"></div></div>
+        <div class="reach-value">$40</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">YouTube</div>
+        <div class="reach-track"><div class="reach-bar" style="width:18%"></div></div>
+        <div class="reach-value">$70</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">TikTok</div>
+        <div class="reach-track"><div class="reach-bar" style="width:20%"></div></div>
+        <div class="reach-value">$80</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">Meta</div>
+        <div class="reach-track"><div class="reach-bar" style="width:25%"></div></div>
+        <div class="reach-value">$100</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">Spotify</div>
+        <div class="reach-track"><div class="reach-bar is-high" style="width:50%"></div></div>
+        <div class="reach-value">$200</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">Connected TV</div>
+        <div class="reach-track"><div class="reach-bar is-high" style="width:62%"></div></div>
+        <div class="reach-value">$250</div>
+      </div>
+      <div class="reach-row">
+        <div class="reach-platform">LinkedIn</div>
+        <div class="reach-track"><div class="reach-bar is-high" style="width:100%"></div></div>
+        <div class="reach-value">$400</div>
+      </div>
+      <div class="reach-note">Planning numbers: the middle of each range above (digital ads $3, Pinterest $4, YouTube $7, TikTok $8, Meta $10, Spotify $20, connected TV $25, LinkedIn $40 per 1,000). Real prices move with targeting, season, and competition.</div>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>Social, video, and display are cheap to show. Audio and TV cost about two to three times what Meta does per view, and LinkedIn about four times, but it reaches the B2B buyers.</li>
+        <li>Search costs the most per click, but those people are already looking.</li>
+        <li>Pick channels for the job they do, then price them. Your budget chart should show $ and % by channel.</li>
+      </ul>
+    </div>
+
+    <h4>Where these ranges come from</h4>
+    <ul class="src-list">
+      <li>Meta: WebFX 2026 Meta benchmarks, WordStream/LocaliQ 2026, and other 2026 summaries.</li>
+      <li>Google Search: WordStream/LocaliQ 2026 search benchmarks.</li>
+      <li>Display and programmatic: 2026 programmatic benchmark roundups.</li>
+      <li>YouTube, TikTok, Spotify, and connected TV: 2026 cost guides from Top Growth Marketing, Influee, Spotify Ad Studio guides, and Adwave.</li>
+    </ul>
+  </section>
+
+</div>
+<div class="tab-panel" id="tab-evaluation">
+
+  <div class="subtabs" role="tablist" aria-label="Evaluation sections">
+    <a href="#evaluation" data-sub="evsum" role="tab">Overview</a>
+    <a href="#evaluation-budget" data-sub="budget" role="tab">Budget</a>
+    <a href="#evaluation-reach" data-sub="reach" role="tab">Reach</a>
+    <a href="#evaluation-gantt" data-sub="gantt" role="tab">Gantt</a>
+    <a href="#evaluation-results" data-sub="results" role="tab">Awareness + Conversions</a>
+    <a href="#evaluation-kpis" data-sub="kpis" role="tab">KPIs</a>
+  </div>
+
+  <!-- ---------- Overview ---------- -->
+  <section class="section subpanel" id="sub-evsum">
+    <div class="sec-label">Evaluation</div>
+    <h2>Media + Evaluation: Overview</h2>
+
+    <div class="callout big">
+      <div class="callout-label">What the challenge says</div>
+      <p class="big-line">Media is all placement, schedule, and budget. Evaluation is the KPIs.</p>
+      <p>This section is worth 15%. It's more than the typical evaluation work of how you'd measure success for awareness and conversions. It also carries your budget numbers, which is why it comes right after paid.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">The weight</div>
+      <p>Taken literally, that's 1 minute and 12 seconds. This gets crowded quickly, so choose what you show and what you say.</p>
+    </div>
+
+    <h3>What you need</h3>
+    <ol>
+      <li><strong>Budget:</strong> a pie or bar chart of the $250,000 across four to six things, with the dollars, the percent, and what each buys.</li>
+      <li><strong>Reach:</strong> impressions are not awareness. Report what happens at three and seven views.</li>
+      <li><strong>Gantt chart:</strong> 24 months, January 2027 through December 2028, that show movement.</li>
+      <li><strong>Awareness + conversions:</strong> how much of each you expect to generate.</li>
+      <li><strong>KPIs:</strong> how you'd measure them.</li>
+    </ol>
+    <p class="slide-cap">Past judges have debated whether the budget and timeline go at the end of Paid or the start of Evaluation. Either works if it's clearly labeled.</p>
+  </section>
+
+  <!-- ---------- Budget ---------- -->
+  <section class="section subpanel" id="sub-budget">
+    <div class="sec-label">Evaluation</div>
+    <h2>Budget</h2>
+
+    <div class="callout">
+      <div class="callout-label">Example only</div>
+      <p>Every number on this tab and the next two is a placeholder that shows the format. Build your own.</p>
+    </div>
+
+    <p>$250,000 over 24 months is about $10,000 a month. But it won't be even. Some months are light, some normal, and some really heavy, like around graduation or major holidays. It may get heavier in year two as you add more machines: maybe $100,000 in year one and $150,000 in year two.</p>
+
+    <h3>The breakdown</h3>
+    <ul>
+      <li>Show four, five, or six things, not ten.</li>
+      <li>For each: the name (Meta, Google Search, Spotify, and so on), the percent, the dollars out of $250,000, and what it buys.</li>
+      <li>A small line item for a food truck or events kit is fine. Once you've paid for the vinyl and signage you can use them over and over.</li>
+    </ul>
+
+    <div class="pie-wrap">
+      <div class="pie" role="img" aria-label="Pie chart of the example $250,000 budget"></div>
+      <table class="jobs-table price-table">
+        <thead><tr><th>Item</th><th>Share</th><th>Dollars</th><th>What it buys</th></tr></thead>
+        <tbody>
+        <tr><td><i class="sw" style="background:#7b2d5e"></i>Meta: awareness (CPM)</td><td>24%</td><td>$60,000</td><td>6,000,000 impressions</td></tr>
+        <tr><td><i class="sw" style="background:#a2417a"></i>Meta: clicks (CPC)</td><td>12%</td><td>$30,000</td><td>30,000 clicks</td></tr>
+        <tr><td><i class="sw" style="background:#c2588c"></i>Google Search</td><td>24%</td><td>$60,000</td><td>15,000 clicks</td></tr>
+        <tr><td><i class="sw" style="background:#e07fa3"></i>YouTube and short video</td><td>16%</td><td>$40,000</td><td>5.7 million impressions</td></tr>
+        <tr><td><i class="sw" style="background:#f0b8cf"></i>Influencers</td><td>16%</td><td>$40,000</td><td>Creator posts and fees (not counted as impressions)</td></tr>
+        <tr><td><i class="sw" style="background:#8a8f9c"></i>Spotify</td><td>7.2%</td><td>$18,000</td><td>900,000 impressions</td></tr>
+        <tr><td><i class="sw" style="background:#2a2420"></i>Events kit and miscellaneous</td><td>0.8%</td><td>$2,000</td><td>A tent, table, vinyl, and iPad, reused all year</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>100%</strong></td><td><strong>$250,000</strong></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="slide-cap">Planning prices from the pricing tab: Meta $10 per 1,000 views and $1 per click, Google Search $4 per click, YouTube $7 per 1,000 views, and Spotify $20 per 1,000 views. For example, $60,000 at $10 per 1,000 is 6,000,000 impressions.</p>
+
+    <h3>Light, normal, and heavy months</h3>
+    <div class="mbars">
+      <div class="mbars-plot"><div class="mbar"><b>5</b><i class="mbar-l" style="height:28%"></i></div><div class="mbar"><b>6</b><i class="mbar-l" style="height:33%"></i></div><div class="mbar"><b>6</b><i class="mbar-l" style="height:33%"></i></div><div class="mbar"><b>8</b><i class="mbar-n" style="height:44%"></i></div><div class="mbar"><b>12</b><i class="mbar-h" style="height:67%"></i></div><div class="mbar"><b>12</b><i class="mbar-h" style="height:67%"></i></div><div class="mbar"><b>7</b><i class="mbar-l" style="height:39%"></i></div><div class="mbar"><b>7</b><i class="mbar-l" style="height:39%"></i></div><div class="mbar"><b>7</b><i class="mbar-l" style="height:39%"></i></div><div class="mbar"><b>7</b><i class="mbar-l" style="height:39%"></i></div><div class="mbar"><b>10</b><i class="mbar-n" style="height:56%"></i></div><div class="mbar"><b>13</b><i class="mbar-h" style="height:72%"></i></div><div class="mbar"><b>9</b><i class="mbar-n" style="height:50%"></i></div><div class="mbar"><b>10</b><i class="mbar-n" style="height:56%"></i></div><div class="mbar"><b>11</b><i class="mbar-n" style="height:61%"></i></div><div class="mbar"><b>13</b><i class="mbar-h" style="height:72%"></i></div><div class="mbar"><b>17</b><i class="mbar-h" style="height:94%"></i></div><div class="mbar"><b>15</b><i class="mbar-h" style="height:83%"></i></div><div class="mbar"><b>10</b><i class="mbar-n" style="height:56%"></i></div><div class="mbar"><b>10</b><i class="mbar-n" style="height:56%"></i></div><div class="mbar"><b>11</b><i class="mbar-n" style="height:61%"></i></div><div class="mbar"><b>11</b><i class="mbar-n" style="height:61%"></i></div><div class="mbar"><b>15</b><i class="mbar-h" style="height:83%"></i></div><div class="mbar"><b>18</b><i class="mbar-h" style="height:100%"></i></div></div>
+      <div class="mbars-axis"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+      <div class="mbars-years"><div style="width:50%">2027 (Year 1): $100,000</div><div style="width:50%">2028 (Year 2): $150,000</div></div>
+    </div>
+    <div class="legend"><span><i class="sw mbar-l"></i>Light (under $8K)</span><span><i class="sw mbar-n"></i>Normal ($8K to $12K)</span><span><i class="sw mbar-h"></i>Heavy ($12K or more)</span><span>Dollars in thousands. The 24 months run January 2027 through December 2028.</span></div>
+  </section>
+
+  <!-- ---------- Reach ---------- -->
+  <section class="section subpanel" id="sub-reach">
+    <div class="sec-label">Evaluation</div>
+    <h2>Reach: Impressions Are Not Awareness</h2>
+
+    <p>If you spend $1,000 a month on Meta at $10 per thousand, that buys 100,000 impressions a month. But one impression doesn't make someone aware. Some people will blindly claim that seeing something once means you're aware, and that's not the case at all.</p>
+    <p>So don't report only the big number. Report impressions, then divide them to show what happens at three views and at seven.</p>
+
+    <table class="jobs-table price-table">
+      <thead><tr><th>Channel</th><th>Impressions</th><th>People who saw it 3 times</th><th>People who saw it 7 times</th></tr></thead>
+      <tbody>
+        <tr><td>Meta: awareness</td><td>6,000,000</td><td>2,000,000</td><td>857,000</td></tr>
+        <tr><td>YouTube and short video</td><td>5,714,000</td><td>1,905,000</td><td>816,000</td></tr>
+        <tr><td>Spotify</td><td>900,000</td><td>300,000</td><td>129,000</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>12,614,000</strong></td><td><strong>4,205,000</strong></td><td><strong>1,802,000</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="slide-cap">Example numbers from the Budget tab. Impressions run into the millions, and the number of people who saw it often enough to remember is far smaller.</p>
+
+    <div class="callout">
+      <div class="callout-label">Do the math with the Pricing sheet</div>
+      <p>The Pricing sheet on Canvas calculates these for you. For example, $1,000 a month on Meta at a $10 CPM gives about 100,000 impressions a month (2,400,000 over 24 months). And $1,000 a month on Meta clicks at $1 per click gives about 1,000 clicks a month (24,000 over 24 months).</p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>Report at least three views, and seven if you can.</li>
+        <li>This is simple division. It assumes every person sees the ad the same number of times, and that the channels don't overlap.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- Gantt ---------- -->
+  <section class="section subpanel" id="sub-gantt">
+    <div class="sec-label">Evaluation</div>
+    <h2>Gantt Chart</h2>
+
+    <div class="callout big">
+      <div class="callout-label">Show movement</div>
+      <p class="big-line">If every line says "we'll do this every month," everybody will stop reading.</p>
+      <p>That's like handing over 12 social media ideas with nothing about week two or week three. A Gantt chart has to show progression over the 24 months, or nobody will take it seriously. What happens in month 12? In month 20?</p>
+    </div>
+
+    <ul>
+      <li><strong>Some lines are steady.</strong> $2,000 a month on Meta awareness and $1,000 a month on Meta clicks, almost constant, bumped up a little at key peaks.</li>
+      <li><strong>Some go dark.</strong> Most farmers markets close in late fall through winter, so those months are blank.</li>
+      <li><strong>Some build.</strong> The machine barely exists in the first months, then grows. Rebuilding owned media happens first, so creators don't start until later, maybe month 6, or toward the end of the first year.</li>
+    </ul>
+
+    <div class="gantt-wrap">
+      <table class="gantt">
+        <thead><tr><th class="rowh"></th><th class="yr" colspan="12">2027 (Year 1)</th><th class="yr" colspan="12">2028 (Year 2)</th></tr><tr><th class="rowh">Month</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th></tr><tr><th class="rowh"></th><th>J</th><th>F</th><th>M</th><th>A</th><th>M</th><th>J</th><th>J</th><th>A</th><th>S</th><th>O</th><th>N</th><th>D</th><th>J</th><th>F</th><th>M</th><th>A</th><th>M</th><th>J</th><th>J</th><th>A</th><th>S</th><th>O</th><th>N</th><th>D</th></tr></thead>
+        <tbody><tr><th class="rowh">Peak moments</th><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev">G</td><td class="ev">G</td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev">H</td><td class="ev">H</td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev">G</td><td class="ev">G</td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev"></td><td class="ev">H</td><td class="ev">H</td></tr><tr><th class="rowh">Rebuild owned media</th><td class="gW"></td><td class="gW"></td><td class="gW"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td><td class="gm"></td></tr><tr><th class="rowh">Meta: awareness</th><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td></tr><tr><th class="rowh">Meta: clicks</th><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td></tr><tr><th class="rowh">Google Search</th><td class="g0"></td><td class="gL"></td><td class="gL"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td></tr><tr><th class="rowh">YouTube and short video</th><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gH"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gH"></td><td class="gH"></td></tr><tr><th class="rowh">Influencers</th><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gL"></td><td class="gL"></td><td class="gL"></td><td class="gL"></td><td class="gL"></td><td class="gL"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gH"></td><td class="gN"></td></tr><tr><th class="rowh">Spotify</th><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gN"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gH"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gN"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gH"></td></tr><tr><th class="rowh">Farmers markets and events</th><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="g0"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="gN"></td><td class="g0"></td><td class="g0"></td></tr><tr><th class="rowh">Machines live (example)</th><td class="gk">0</td><td class="gk">0</td><td class="gk">0</td><td class="gk">1</td><td class="gk">1</td><td class="gk">1</td><td class="gk">1</td><td class="gk">1</td><td class="gk">1</td><td class="gk">3</td><td class="gk">3</td><td class="gk">3</td><td class="gk">3</td><td class="gk">3</td><td class="gk">6</td><td class="gk">6</td><td class="gk">6</td><td class="gk">6</td><td class="gk">10</td><td class="gk">10</td><td class="gk">10</td><td class="gk">15</td><td class="gk">15</td><td class="gk">15</td></tr></tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><i class="sw" style="background:#f1ece3;border:1px solid #d6cfc4"></i>Off</span>
+      <span><i class="sw" style="background:#e07fa3"></i>Light</span>
+      <span><i class="sw" style="background:#c2588c"></i>Normal</span>
+      <span><i class="sw" style="background:#7b2d5e"></i>Heavy</span>
+      <span><i class="sw" style="background:#2a2420"></i>Building owned media</span>
+      <span><i class="sw" style="background:#d9d3c8"></i>Maintaining it</span>
+      <span>H = holidays, G = graduation</span>
+    </div>
+    <p class="slide-cap">Example only. It starts in January 2027, so months 5 and 6 are May and June (graduation) and months 11 and 12 are November and December (holidays). Farmers markets go dark from November through March. The machine count (1, 3, 6, 10, 15) is a progression, not a jump from 0 to 15.</p>
+
+    <div class="callout big">
+      <div class="callout-label">When you present it</div>
+      <p class="big-line">For heaven's sake, don't read every line.</p>
+      <p>It's a trap a lot of students fall into, and you'll burn more than a minute doing it. Point out highlights instead.</p>
+      <ul>
+        <li><strong>The steady lines.</strong> "As you can see, we're running Meta ads for awareness, Meta clicks, and Google Search pretty much every month for the whole 24 months. They're the bread and butter."</li>
+        <li><strong>The darker bars.</strong> "These are months we've identified for running even more."</li>
+        <li><strong>One more thing that stands out,</strong> like something that pops up seasonally. Then move on.</li>
+      </ul>
+      <p>Don't say, "15% of our budget goes to Instagram, it's this much per month, it's this many impressions, divided by 3 and divided by 7." You could take eight minutes just to explain this chart.</p>
+      <p>If viewers like your ideas, they'll slide back through the video and pause at 6:30, 6:52, or 7:00 and read it themselves. So you don't need to transcribe everything on the Gantt chart, the budget chart, or anything like them.</p>
+    </div>
+  </section>
+
+  <!-- ---------- Awareness + Conversions ---------- -->
+  <section class="section subpanel" id="sub-results">
+    <div class="sec-label">Evaluation</div>
+    <h2>Awareness + Conversions</h2>
+
+    <p>This is where you estimate how much awareness and how many conversions you will generate. It takes a few minutes to explain, so decide what goes on the screen and what you say.</p>
+
+    <h3>Awareness</h3>
+    <p>For the most part, we already know the starting awareness level. The survey asked: before today, had you ever heard of Cute as a Cupcake?</p>
+
+    <table class="jobs-table price-table">
+      <thead><tr><th>Where people live</th><th>Had heard of her</th><th>People surveyed</th></tr></thead>
+      <tbody>
+        <tr><td>Merrillville area</td><td>57%</td><td>63</td></tr>
+        <tr><td>Rest of Northwest Indiana</td><td>38%</td><td>64</td></tr>
+        <tr><td>Chicago and its suburbs</td><td>8%</td><td>218</td></tr>
+        <tr><td>Everywhere else</td><td>1%</td><td>113</td></tr>
+        <tr><td><strong>Everyone</strong></td><td><strong>17%</strong></td><td><strong>458</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="slide-cap" style="margin-top:0">Northwest Indiana combined is 47% (127 people). Chicago city alone is 8% (134), and its suburbs are 7% (84).</p>
+
+    <p>Traditionally, you would survey awareness before and after. We can't repeat the survey for another year or two. So the most common approach is to report, from the budget, how many impressions or exposures you will deliver. Focus on how many people will see you <strong>3 times</strong> or <strong>7 times</strong> from the CPM efforts, because those are the awareness-building ones.</p>
+
+    <div class="callout">
+      <div class="callout-label">The comparison</div>
+      <p>Once a projection says "your budget of this equals this many impressions, with people seeing you 3 or 7 times," that is clearly far more awareness than you have right now. In the example on the Reach tab, that's about 4.2 million people at three views and 1.8 million at seven.</p>
+    </div>
+
+    <h3>Conversions</h3>
+    <p>Most websites convert at less than 2%, probably about 1.75%. With our suggestions you could easily double that and might approach 4%, which would count as good or maybe even great.</p>
+    <p class="slide-cap" style="margin-top:0">2026 benchmarks differ by source, but most land between about 1.4% and 3%. The top 20% of Shopify stores convert at 3.2% or more, and the top 10% at 4.7% or more.</p>
+
+    <h4>Count every clickable moment</h4>
+    <ul>
+      <li>Someone clicks a QR code and goes to the website.</li>
+      <li>Someone clicks an ad you paid for by the click (Meta CPC) and goes to the website.</li>
+      <li>Someone clicks a Google Search ad and goes to the website.</li>
+    </ul>
+    <p>Add those up, then apply the conversion rate, so you can say you're also going to generate this many conversions.</p>
+
+    <table class="jobs-table price-table">
+      <thead><tr><th>Conversion rate</th><th>Rate</th><th>Conversions from 45,000 visits</th></tr></thead>
+      <tbody>
+        <tr><td>A typical website today</td><td>1.75%</td><td>788</td></tr>
+        <tr><td>With our suggestions (about double)</td><td>3.5%</td><td>1,575</td></tr>
+        <tr><td>The goal</td><td>4%</td><td>1,800</td></tr>
+      </tbody>
+    </table>
+    <p class="slide-cap" style="margin-top:0">Example: the 30,000 Meta clicks and 15,000 Google Search clicks from the Budget tab. Add your own estimate of QR scans, and count a conversion as an order or an inquiry.</p>
+
+    <div class="takeaway">
+      <div class="takeaway-label">Takeaway</div>
+      <ul>
+        <li>Awareness: impressions turned into people who saw you 3 or 7 times, compared with the starting awareness.</li>
+        <li>Conversions: every click, scan, and ad visit counted, times a conversion rate.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ---------- KPIs ---------- -->
+  <section class="section subpanel" id="sub-kpis">
+    <div class="sec-label">Evaluation</div>
+    <h2>KPIs</h2>
+
+    <p>Link each KPI to an objective, one to one, at the same funnel stage. Awareness measures are different from conversion measures.</p>
+
+    <table class="jobs-table">
+      <thead><tr><th>Goal</th><th>KPI</th><th>An example target</th></tr></thead>
+      <tbody>
+        <tr><td>Awareness</td><td>Reach at 3 and 7 views, video views, Instagram engagement rate</td><td>Engagement from 0.46% toward the 1.0% floor</td></tr>
+        <tr><td>Conversion: consumers</td><td>Locator visits, QR scans, orders, emails collected, repeat buys, reviews</td><td>Set a number and a date for each</td></tr>
+        <tr><td>Conversion: B2B</td><td>Leads, meetings, contracts, sites live, sales per machine</td><td>Machines live: 1, then 3, then up to 15</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Benchmarks</h3>
+    <ul>
+      <li>Compare before and after, and against industry: CPM, CTR, cost per lead, and conversion.</li>
+      <li>Be honest. Name the risks and say how you would overcome them. The first machine has to work and be profitable before the plan moves on.</li>
+    </ul>
+  </section>
+
+</div>
+
+<div class="tab-panel" id="tab-closing">
+  <section class="section" id="sub-closing" style="display:block">
+    <div class="sec-label">Closing</div>
+    <h2>Say Thank You, and Stop</h2>
+
+    <p>Put a simple phrase on your last slide: <strong>Thank you for this opportunity.</strong></p>
+    <p>Then someone says, "Thank you for giving us eight minutes to propose our ideas to you." Period. Leave it at that.</p>
+
+    <div class="slide-pair">
+      <div class="slide-mock">
+        <div class="sm-big">Thank you for this opportunity.</div>
+      </div>
+    </div>
+    <p class="slide-cap">Layout sketch only.</p>
+  </section>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script>
+/* ==========================================================================
+   Two-level tab router.
+   URL hash:  #overview            -> Overview, first sub-tab
+              #overview-pdf        -> Overview, "The Supplied PDF" sub-tab
+   Back/forward buttons and shared links both work.
+   ========================================================================== */
+(function () {
+  var TABS = ['overview', 'intro', 'research', 'owned', 'paid', 'evaluation', 'closing'];
+  var mainLinks = document.querySelectorAll('#maintabs [data-tab]');
+  var progress = document.querySelector('.subnav-progress');
+
+  function show() {
+    var hash = (location.hash || '#overview').slice(1);
+    var parts = hash.split('-');
+    var tab = TABS.indexOf(parts[0]) > -1 ? parts[0] : 'overview';
+    var sub = parts.slice(1).join('-');
+
+    // top-level tabs
+    mainLinks.forEach(function (a) {
+      var on = a.dataset.tab === tab;
+      a.classList.toggle('active', on);
+      a.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function (p) {
+      p.classList.toggle('is-active', p.id === 'tab-' + tab);
+    });
+
+    // sub-tabs inside the active panel (if it has any)
+    var panel = document.getElementById('tab-' + tab);
+    var subLinks = panel.querySelectorAll('[data-sub]');
+    if (subLinks.length) {
+      var ids = Array.prototype.map.call(subLinks, function (a) { return a.dataset.sub; });
+      if (ids.indexOf(sub) === -1) sub = ids[0];
+      subLinks.forEach(function (a) {
+        var on = a.dataset.sub === sub;
+        a.classList.toggle('active', on);
+        a.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panel.querySelectorAll('.subpanel').forEach(function (s) {
+        s.classList.toggle('is-active', s.id === 'sub-' + sub);
+      });
+    }
+    window.scrollTo({ top: 0 });
+  }
+
+  // reading-progress bar for the visible page
+  function updateProgress() {
+    if (!progress) return;
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+
+  window.addEventListener('hashchange', show);
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  show();
+  updateProgress();
+})();
+</script>
+<script>
+/* Rotating ticker on the machine sketch. Respects reduced-motion. */
+(function () {
+  var t = document.getElementById('machTicker');
+  var items = document.querySelectorAll('#phraseList li');
+  if (!t || !items.length) return;
+  var i = 0;
+  function show(n) {
+    i = n % items.length;
+    t.textContent = items[i].textContent;
+    items.forEach(function (li, k) { li.classList.toggle('on', k === i); });
+  }
+  show(0);
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  setInterval(function () { show(i + 1); }, 2600);
+  items.forEach(function (li, k) { li.style.cursor = 'pointer'; li.addEventListener('click', function () { show(k); }); });
+})();
+</script>
+</body>
+</html>
