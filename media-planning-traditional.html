@@ -62,8 +62,14 @@
   .vocab b { display: block; font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 4px; }
   .relic { background: var(--cream); border-left: 4px solid var(--muted); padding: 14px 18px; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); max-width: 860px; }
 
+
+  /* ---------- Then / now comparison inside sidebars ---------- */
+  .then-now { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 14px; }
+  .then-now > div { background: rgba(255,255,255,0.07); padding: 14px 16px; font-size: 14.5px; line-height: 1.5; }
+  .then-now b { display: block; font-family: var(--serif); font-size: 17px; color: #fff; margin-bottom: 6px; }
+
   @media (max-width: 760px) {
-    .procon, .in-plan, .mini-trio, .vocab { grid-template-columns: 1fr; }
+    .procon, .in-plan, .mini-trio, .vocab, .then-now { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -190,6 +196,22 @@
     <div class="relic">These are old-fashioned words from a world of live viewing on a handful of channels. As viewers move to cable, streaming and recordings, they are becoming relics on a shelf, if they are not already, and ads are sold on impressions instead. You will still meet them in older books, so it helps to be able to read them.</div>
 
     <div class="sidebar-card-tag">Know the words. Plan with impressions.</div>
+  </div>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: The Roadblock, a Relic of Four Channels</h3>
+    <div class="sidebar-card-sub">A buying tactic many textbooks still describe</div>
+
+    <p>When most people could watch only ABC, CBS, NBC and maybe Fox, a brand that wanted to blanket a market could run a <strong>roadblock</strong>: buy a spot on every network at the same time, usually in the 8 p.m. hour or during the evening news. Whatever people were watching, the brand&rsquo;s ad aired on it. Even someone who got up to check on the microwave during the break was, in effect, covered, because the ad was running everywhere. Andrews still describes the roadblock in Chapter 16.</p>
+
+    <div class="then-now">
+      <div><b>Then</b>Four networks, one hour, and nearly everyone watching live. Buy all four and you reach everyone who has the TV on.</div>
+      <div><b>Now</b>Streaming, on demand, and hundreds of channels, with each household watching something different at a different time. To get anything close you would have to buy hundreds of channels at once, and on-demand viewers would still miss it.</div>
+    </div>
+
+    <p>The roadblock depended on a handful of channels and a shared, live schedule, and both are gone. Exceptions exist, such as a simulcast event, but the everyday version has been replaced by buying audiences across platforms with a pot of money, which is what CTV and programmatic buying do (see <a href="media-planning.html#programmatic" style="color: var(--red-mid);">Media Planning Basics</a>).</p>
+
+    <div class="sidebar-card-tag">Fewer channels once meant fewer places to hide.</div>
   </div>
 </section>
 
@@ -535,6 +557,9 @@
 
     <dt>Addressable TV</dt>
     <dd>Television advertising delivered to selected households using data, rather than to everyone watching a program.</dd>
+
+    <dt>Roadblock</dt>
+    <dd>Buying a spot on every network at the same time so that anyone watching TV at that moment is exposed. A tactic from the few-channel era.</dd>
 
     <dt>Posting period</dt>
     <dd>The standard period, often four weeks, for which an out-of-home ad is leased.</dd>
