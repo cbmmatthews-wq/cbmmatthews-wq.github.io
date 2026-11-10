@@ -102,8 +102,40 @@
   .unit-nav.two-next { grid-template-columns: 1fr 1fr; }
   .unit-nav.two-next a { text-align: left; }
 
+
+  /* ---------- Creative vs. media sidebar trio ---------- */
+  .trio-dark { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 12px; }
+  .trio-dark div { background: rgba(255,255,255,0.07); padding: 12px 14px; font-size: 14px; line-height: 1.5; }
+  .trio-dark b { display: block; font-family: var(--serif); font-size: 16px; color: #fff; margin-bottom: 3px; }
+
+  /* ---------- Spot-market coverage bars ---------- */
+  .coverage { background: var(--white); padding: 18px 22px 10px; margin: 20px 0 6px; max-width: 820px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .cov-row { display: grid; grid-template-columns: 170px 1fr 64px; gap: 12px; align-items: center; margin: 10px 0; font-size: 14.5px; }
+  .cov-track { background: var(--cream); height: 24px; }
+  .cov-fill { height: 100%; background: var(--red); }
+  .cov-fill.est { background: repeating-linear-gradient(45deg, var(--red), var(--red) 6px, #cc8774 6px, #cc8774 12px); }
+  .cov-fill.all { background: var(--ink); }
+  .cov-val { font-weight: 700; color: var(--ink); text-align: right; }
+
+  /* ---------- Programmatic section ---------- */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+  .duo-card { background: var(--white); border-top: 4px solid var(--ink); padding: 18px 20px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .duo-card.prog { border-top-color: var(--red); }
+  .duo-card h4 { font-family: var(--serif); font-size: 19px; color: var(--ink); margin-bottom: 6px; }
+  .duo-card p { font-size: 15.5px; line-height: 1.5; margin-bottom: 8px; }
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+  .tier { background: var(--white); padding: 16px 18px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 5px solid var(--red); }
+  .tier.mid { border-left-color: #d4917f; }
+  .tier.low { border-left-color: var(--blue); }
+  .tier h4 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+  .tier p { font-size: 14.5px; line-height: 1.5; margin-bottom: 6px; }
+  .price-mini { width: 100%; max-width: 560px; border-collapse: collapse; margin: 8px 0 12px; font-size: 14.5px; background: var(--white); }
+  .price-mini th { background: var(--ink); color: #fff; padding: 8px 12px; text-align: left; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+  .price-mini td { padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+
   @media (max-width: 760px) {
-    .two-jobs, .rf-compare, .buy-trio, .unit-nav.two-next { grid-template-columns: 1fr; }
+    .two-jobs, .rf-compare, .buy-trio, .unit-nav.two-next, .trio-dark, .duo, .tiers { grid-template-columns: 1fr; }
+    .cov-row { grid-template-columns: 110px 1fr 54px; }
     .exposure-grid { grid-template-columns: repeat(5, 1fr); }
     .sched-row, .sched-months { grid-template-columns: 1fr; }
     .sched-months div:first-child { display: none; }
@@ -130,6 +162,7 @@
     <a href="#reach-frequency">Reach &amp; Frequency</a>
     <a href="#scheduling">Scheduling</a>
     <a href="#cost-buying">Cost &amp; Buying</a>
+    <a href="#programmatic">Programmatic</a>
     <a href="#reading-a-plan">Reading a Plan</a>
     <a href="#more-and-glossary">More Views</a>
   </div>
@@ -150,7 +183,24 @@
 
   <p>It is also not a plan. It does not say who the money is trying to reach, what it is supposed to make them do, whether those people have ever heard of the brand, or what happens in week three. It is an allocation. A media plan is the reasoning that comes <em>before</em> the allocation, and the allocation is whatever falls out of the reasoning.</p>
 
-  <p>This page covers that reasoning in seven short sections: the framing, the audience, the objectives and the budget split behind them, how much reach and frequency you need, how to schedule it, what it costs and how it is bought, and how to read a finished plan. Read it in order. It runs about thirty-five minutes.</p>
+  <p>This page covers that reasoning in seven short sections: the framing, the audience, the objectives and the budget split behind them, how much reach and frequency you need, how to schedule it, what it costs and how it is bought, and how to read a finished plan. Programmatic buying, the biggest change in how media is actually bought, gets its own short section after that. Read it in order. It runs about forty minutes.</p>
+
+  <div class="sidebar-card" id="creative-vs-media">
+    <h3>Sidebar: Which Comes First, the Creative or the Media Plan?</h3>
+    <div class="sidebar-card-sub">A debate every agency has, and the answer is &ldquo;it depends&rdquo;</div>
+
+    <p>People argue about this constantly, and the honest answer depends on the company and the goal. Three patterns come up again and again.</p>
+
+    <div class="trio-dark">
+      <div><b>Creative first</b>The creative team develops the message and the big idea, then the media plan works out how to pay for it and get it in front of people. It works when the idea is the point. The risk is an idea nobody can afford to run.</div>
+      <div><b>Media first</b>The budget and media plan come first and tell creative what is possible: sorry, no money for X, so make messages for channels Y and Z. It works when money is tight. The risk is that the format dictates the message and a good idea gets squeezed.</div>
+      <div><b>Together</b>Creative and media work at the same time and share what they learn as they go. This is the best version, and it is how the strongest plans get made.</div>
+    </div>
+
+    <p>Working together means each side can change the other&rsquo;s plan. If the product is complicated and the creative team needs more room to tell the story, perhaps a longer video, the media plan has to bend to fit it. If the goal is only a reminder and people already know what you sell, nearly any format will do. Then the media plan carries the most weight, and the team decides what to make <em>after</em> it knows where the ad will run. Andrews calls the relationship between message and media &ldquo;hand in glove,&rdquo; and Belch makes the same point: each has to be compatible with the other.</p>
+
+    <div class="sidebar-card-tag">Creative and media belong in the same room.</div>
+  </div>
 
   <h3>1.1 Plan vs. Buy</h3>
 
@@ -308,6 +358,7 @@
       <li>A media plan is the reasoning <em>before</em> the allocation. Equal slices are not a strategy.</li>
       <li>Planning decides what the media must do; buying executes. Automation is eating the buying, not the planning.</li>
       <li>Medium &rarr; platform &rarr; vehicle: decide at each level, in order.</li>
+      <li>Creative and media are best planned <strong>together</strong>: the message sets what the media must carry, and the media sets what the message can be.</li>
       <li>Start from the journey. Different audiences have different journeys, and paid media has two jobs: <strong>interrupt</strong> and <strong>answer</strong>.</li>
     </ul>
   </div>
@@ -614,7 +665,7 @@
   <div class="sec-label">Cost &amp; Buying</div>
   <h2>What It Costs, How It Is Bought, and What Changed</h2>
 
-  <p>Every planner eventually has to compare options that are not priced the same way. This section is about the common yardsticks, what buyers actually do, and four changes that are reshaping the plan.</p>
+  <p>Every planner eventually has to compare options that are not priced the same way. This section is about the common yardsticks, what buyers actually do, and four changes that are reshaping the plan. The biggest change in how media is actually bought, programmatic, gets its own section right after this one.</p>
 
   <h3>6.1 CPM, and Why Efficiency Isn&rsquo;t Effectiveness</h3>
 
@@ -673,15 +724,114 @@
 
   <p>CTV also costs you some things. Big live events are usually sold differently, through upfront or direct deals rather than a self-serve pot; you rely on the platform&rsquo;s own reporting; the quality of inventory varies, and the frequency cap on one platform does not know about the others (section 4).</p>
 
-  <h3>6.4 Four Things That Changed</h3>
+  <h3 id="spot-reach">6.4 How Much of America Does a Spot Buy Reach?</h3>
+
+  <p>A natural question is what happens if you skip the national buy and buy the biggest local markets one at a time. Nielsen divides the country into 210 television markets, called DMAs (designated market areas), covering about 128 million TV households in the 2025&ndash;26 season. The markets are very unequal in size, so reach does not grow in proportion to the number of markets you buy:</p>
+
+  <div class="coverage" role="img" aria-label="Share of US TV households by number of markets bought: top 10 about 30 percent, top 50 about 70 percent, top 100 about 88 percent estimated, all 210 markets 100 percent">
+    <div class="cov-row"><span>Top 10 markets</span><div class="cov-track"><div class="cov-fill" style="width:30%"></div></div><span class="cov-val">~30%</span></div>
+    <div class="cov-row"><span>Top 50 markets</span><div class="cov-track"><div class="cov-fill" style="width:70%"></div></div><span class="cov-val">~70%</span></div>
+    <div class="cov-row"><span>Top 100 markets</span><div class="cov-track"><div class="cov-fill est" style="width:88%"></div></div><span class="cov-val">~88%*</span></div>
+    <div class="cov-row"><span>All 210 markets</span><div class="cov-track"><div class="cov-fill all" style="width:100%"></div></div><span class="cov-val">100%</span></div>
+  </div>
+  <div class="split-note">Approximate share of US TV households reached by buying the largest markets.</div>
+  <div class="split-note">*The top-10 and top-50 figures come from published market summaries. The top-100 figure is my own estimate, made by adding ranks 51 through 100 to the top-50 figure using market-by-market household counts; check it against Nielsen&rsquo;s current table. For scale, South Bend&ndash;Elkhart ranks around 99th in recent lists, so a top-100 buy only just reaches it.</div>
+
+  <p>Two things stand out. First, the curve flattens fast: the ten biggest markets hold about 30 percent of the country, the top 50 about 70 percent, and the top 100 something like 88 percent. A top-100 spot buy therefore covers far more than two-thirds of America, and the remaining 110 markets together add only about an eighth.</p>
+
+  <p>Second, <em>cost</em> does not scale the same way. A spot buy is the sum of what each local station charges, set by that market&rsquo;s own demand, and it buys different programming (local news, syndicated shows, local sports) than a network buy does. Whether it costs more or less than a national buy is genuinely contested. The broadcasters&rsquo; trade group, TVB, has long argued from SQAD data that buying the top 100 markets can cost less per thousand viewers than network scatter, even in prime time, though the analyses I found are a decade old and the group is a seller. Media buyers working across today&rsquo;s mix of linear and streaming often report the opposite: local CPMs typically several times higher than national. Both can be true for different dayparts and years. So do not assume a proportion. Ask for CPMs by daypart, and use spot, and now CTV, when your distribution or message is local or you want to weight particular markets.</p>
+
+  <h3>6.5 Four Things That Changed</h3>
 
   <p><strong>Streaming TV with ads.</strong> Connected-TV advertising has grown from a niche into a core TV channel. eMarketer forecasts roughly $35 to $40 billion of US CTV ad spending in 2026 and expects CTV to overtake primetime linear TV in upfront commitments this year, for the first time. A big reason is that the major subscription streamers added cheaper ad-supported tiers. Netflix reported at its May 2026 upfront that its ad tier reaches more than 250 million monthly active viewers globally, and has said a majority of new sign-ups in markets where it offers the plan choose it. For a planner this means premium, living-room video inventory that was unavailable at any price a few years ago is now for sale, in a format you can buy by geography and audience.</p>
 
   <p><strong>Retail media.</strong> Retailers realized they know exactly who bought what, and began selling advertising against it: sponsored products on a retailer&rsquo;s site and app, off-site audience targeting using the retailer&rsquo;s data, and in-store screens. Retail media is a form of &ldquo;answer&rdquo; media, since shoppers are already in a buying mood. eMarketer forecasts US retail media spending of roughly $70 billion in 2026, and the money is concentrating: Amazon and Walmart are expected to take close to nine of every ten dollars. For a brand that sells through retailers, that makes retail media less a channel option than a cost of doing business.</p>
 
-  <p><strong>Programmatic and platform automation.</strong> Programmatic buying uses software and real-time auctions to place ads, and the major platforms now go further: you provide the goal, creative and budget, and they choose placements, audiences and bids for you. That lowers the labor of buying and raises the stakes on the plan. It also hides detail from you, which is why the audience, objective and budget logic in sections 2 and 3 matter more as the machines take over the rest.</p>
+  <p><strong>Platform automation.</strong> Beyond programmatic buying (next section), the major platforms now run whole campaigns for you: you provide the goal, creative and budget, and they choose audiences, placements and bids. That lowers the labor of buying and raises the stakes on the plan. It also hides detail from you, which is why the audience, objective and budget logic in sections 2 and 3 matter more as the machines take over the rest.</p>
 
   <p><strong>Impressions as the common currency.</strong> As covered in the sidebar in section 4, impressions have replaced ratings points as the unit of exchange across TV, video and digital. Local TV stations now quote a cost for a given number of impressions, as do the streaming platforms, so the CPM arithmetic above is the arithmetic you will actually use.</p>
+
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>CPM is a measure of efficiency, not effectiveness. Always check the target CPM.</li>
+      <li>Pricing model decides who carries the risk: you (impressions) or the seller (actions).</li>
+      <li>CTV is spot TV, ZIP-level, self-serve, and paced to a pot of money. Cap the frequency.</li>
+      <li>A top-100 spot buy reaches roughly 88 percent of US TV homes, but cost does not scale with it. Ask for CPMs by daypart.</li>
+      <li>The four shifts: ad-supported streaming, retail media, platform automation, and impressions as the currency.</li>
+      <li>Plan a way to verify. Platform-reported numbers are claims.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROGRAMMATIC
+     ============================================================ -->
+<section class="section" id="programmatic">
+  <div class="sec-label">Programmatic</div>
+  <h2>Programmatic: Describe the Audience, Set the Budget</h2>
+
+  <p>You can still buy media the old way, one placement at a time. A spot in a particular show on your local CBS station, a CTV placement in a named program, a package of spots on a local AM or FM station: all of these can be negotiated individually. A great many advertisers, though, turned most of their buying over to <strong>programmatic buying</strong> several years ago, and it now touches almost every kind of media.</p>
+
+  <div class="duo">
+    <div class="duo-card">
+      <h4>Buying by hand</h4>
+      <p><strong>You pick the vehicle.</strong> A named show, a named station, a named site, each priced and negotiated on its own.</p>
+      <p>You know exactly where the ad will run, and you can tell the client the story. It is slower and more manual.</p>
+    </div>
+    <div class="duo-card prog">
+      <h4>Programmatic</h4>
+      <p><strong>You describe the person and set the budget.</strong> Software then decides, one impression at a time and in a few milliseconds, whether to buy it and what to pay, across thousands of sites, apps, streaming services and audio platforms.</p>
+      <p>It is fast and relentless about price. You give up some knowledge of exactly where each ad ran.</p>
+    </div>
+  </div>
+
+  <h3>A worked example</h3>
+
+  <p>Say you want sports fans aged 25 to 44, with a budget that works out to about $12 per thousand impressions on average. The software can place your ads on ESPN, on Bleacher Report or SI.com, or on a wide network of smaller sports sites. Here are some round, illustrative prices:</p>
+
+  <table class="price-mini">
+    <thead><tr><th>Where</th><th>Illustrative CPM</th></tr></thead>
+    <tbody>
+      <tr><td>ESPN (premium)</td><td>about $20</td></tr>
+      <tr><td>Bleacher Report, SI.com</td><td>about $10&ndash;$12</td></tr>
+      <tr><td>Long tail of smaller sports sites</td><td>about $3&ndash;$5</td></tr>
+    </tbody>
+  </table>
+
+  <p>You decided ESPN at $20 is too expensive, so the software spreads most of your money across Bleacher Report, SI.com and the cheaper sites. Now watch it work in real time. Late on a slow afternoon ESPN has unsold inventory, and its price for your audience dips by about 10 percent, to roughly $18. A person would never see a blip that small, and could not act on it if they did. The software sees it within milliseconds and moves some of your money back to ESPN, because premium content has just come within reach. An hour later the price recovers and the money shifts back. It does this thousands of times a minute across thousands of placements, and that is where the efficiency comes from.</p>
+
+  <p class="split-note">These prices are round numbers to show the logic, not rate cards. Published rates for individual sites are hard to find, and real bids vary enormously: one analysis of observed bid data found advertisers bidding anywhere from a few dollars to more than $50 per thousand impressions on different sites (Adalytics).</p>
+
+  <h3>The Planner&rsquo;s Oldest Question</h3>
+
+  <p>Programmatic did not remove the central trade-off of media planning. It automated it. For any audience you can spend in three broad ways:</p>
+
+  <div class="tiers">
+    <div class="tier">
+      <h4>Pay for the best</h4>
+      <p>Spend the most to appear in or around the very best content, where people are most passionate and attentive.</p>
+      <p><strong>Good for:</strong> launches, brand moments, anything that needs the premium halo.</p>
+    </div>
+    <div class="tier mid">
+      <h4>Pay less, same people</h4>
+      <p>Reach about the same number of the same kind of people in settings where they are a bit less passionate, at a lower price.</p>
+      <p><strong>Good for:</strong> steady reach at a sensible price.</p>
+    </div>
+    <div class="tier low">
+      <h4>Hunt the bargains</h4>
+      <p>Seek out discount programs, off-peak radio, small podcasts and long-tail sites to stretch each dollar as far as it will go.</p>
+      <p><strong>Good for:</strong> reminders, frequency and tight budgets.</p>
+    </div>
+  </div>
+
+  <p>The answer depends on the job (section 3). A launch might happily pay for premium. A reminder might do very well on bargain inventory. Programmatic simply lets you set a rule, say how much you are willing to pay for what kind of attention, and have a machine apply it all day long. It is not limited to websites, either: programmatic buying also reaches connected TV, streaming audio, digital out-of-home, and increasingly local TV and radio inventory.</p>
+
+  <h3>The Catch</h3>
+
+  <p>You are trusting software to follow your rules. Quality varies: ads can land on poor sites, some impressions are never really seen, and several middlemen each take a share. Good buyers protect themselves with approved lists and blocklists, with private marketplaces that give access to premium inventory at agreed prices, and with placement reports they actually read. The <a href="media-planning-digital.html#display">Display and Programmatic card</a> on the Digital page lists the pros and cons.</p>
 
   <div class="sidebar-card">
     <h3>Sidebar: Two Cautions Before You Trust a Dashboard</h3>
@@ -697,11 +847,10 @@
   <div class="takeaway">
     <div class="takeaway-label">Takeaway</div>
     <ul>
-      <li>CPM is a measure of efficiency, not effectiveness. Always check the target CPM.</li>
-      <li>Pricing model decides who carries the risk: you (impressions) or the seller (actions).</li>
-      <li>CTV is spot TV, ZIP-level, self-serve, and paced to a pot of money. Cap the frequency.</li>
-      <li>The four shifts: ad-supported streaming, retail media, automated buying, and impressions as the currency.</li>
-      <li>Plan a way to verify. Platform-reported numbers are claims.</li>
+      <li>You can still buy by hand, show by show. <strong>Programmatic</strong> lets you describe the audience and the budget and have software buy impression by impression, in real time.</li>
+      <li>It reshuffles money every moment toward the best price for the audience you asked for, which no person could do.</li>
+      <li>The old trade-off remains: the best content at the top price, similar reach in less passionate settings for less, or the bargain basement to stretch the dollar.</li>
+      <li>Set rules and check the reports. Cheap and automatic is not the same as good.</li>
     </ul>
   </div>
 </section>
@@ -839,6 +988,36 @@
   </div>
 
   <div class="mv-item">
+    <div class="mv-source">MediaPost &middot; TVB</div>
+    <div class="mv-title"><a href="https://www.mediapost.com/publications/article/170023/the-pastry-economics-of-television.html" target="_blank" rel="noopener">The Pastry Economics of Television</a></div>
+    <div class="mv-desc">The broadcasters&rsquo; trade-group argument that spot TV, including a top-100-market buy, can cost less per thousand than network scatter. Older SQAD data and written by a seller, so read it as one side of the debate.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Simulmedia</div>
+    <div class="mv-title"><a href="https://simulmedia.com/blog/tv-advertising-cost-inventory-and-pricing-options" target="_blank" rel="noopener">TV Advertising Cost, Inventory and Pricing Options</a></div>
+    <div class="mv-desc">The other side: a TV-buying firm explaining why local CPMs typically run several times higher than national, and when national is the better buy.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">GrowthFactor</div>
+    <div class="mv-title"><a href="https://www.growthfactor.ai/resources/blog/what-is-a-dma" target="_blank" rel="noopener">What Is a DMA? 210 Designated Market Areas Explained</a></div>
+    <div class="mv-desc">A plain explanation of Nielsen&rsquo;s 210 markets, the roughly 128 million TV households, and the fact that the ten largest markets hold close to 30 percent.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">eMediaMonitor</div>
+    <div class="mv-title"><a href="https://www.emediamonitor.net/en/country-information/americas/united-states-dmas" target="_blank" rel="noopener">United States DMAs</a></div>
+    <div class="mv-desc">A market-size summary, including the point that the top 50 markets are about 70 percent of US television households.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Adalytics</div>
+    <div class="mv-title"><a href="https://adalytics.io/blog/cpm-bid-data" target="_blank" rel="noopener">How Much Are Competing Advertisers Paying per Ad Impression?</a></div>
+    <div class="mv-desc">A look at real observed programmatic bids by advertiser and site. Useful for seeing how wide the price range is for a single impression.</div>
+  </div>
+
+  <div class="mv-item">
     <div class="mv-source">Course page</div>
     <div class="mv-title"><a href="brand-vs-performance.html">Brand vs. Performance, and the 60/40 Principle</a></div>
     <div class="mv-desc">The full treatment of the Binet and Field research and the situations in which the 60/40 default shifts. Section 3 of this page assumes you have read it.</div>
@@ -900,6 +1079,9 @@
     <dt>CPM / target CPM</dt>
     <dd>Cost per thousand impressions, and the same cost per thousand impressions delivered to the target audience only.</dd>
 
+    <dt>DMA</dt>
+    <dd>Designated market area: one of Nielsen&rsquo;s 210 local television markets, ranked by number of TV households and used to buy and measure local media.</dd>
+
     <dt>National / spot buy</dt>
     <dd>A TV buy that runs in all markets through a network, versus one bought market by market from local stations.</dd>
 
@@ -913,7 +1095,10 @@
     <dd>Advertising sold by retailers against their own shopper and sales data, on and off their own sites.</dd>
 
     <dt>Programmatic</dt>
-    <dd>Software-driven, real-time buying and selling of ad placements, now increasingly automated by the platforms themselves.</dd>
+    <dd>Buying by describing the audience and budget and letting software purchase each impression in real time, rather than choosing shows or sites one at a time.</dd>
+
+    <dt>Real-time bidding</dt>
+    <dd>An auction, run in milliseconds, in which advertisers bid for each individual ad impression as a page or app loads.</dd>
 
     <dt>Incrementality</dt>
     <dd>The sales or actions that happened because of the advertising and would not have happened without it.</dd>

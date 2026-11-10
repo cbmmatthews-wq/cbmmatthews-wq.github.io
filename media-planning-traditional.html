@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traditional Media: A Quick-Reference Guide — cbmatthe</title>
+<meta name="description" content="A one-page comparison of traditional media for planners: television, radio, out-of-home, direct mail, magazines and newspapers. What each is best at, its pros and cons, how it is bought, and its digital cousin.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for the Traditional Media page — kept here rather than touching shared styles.css */
+
+  /* ---------- Medium lead paragraph ---------- */
+  .best-at { font-size: 20px; line-height: 1.55; color: var(--ink); max-width: 780px; margin-bottom: 18px; }
+  .best-at-tag { display: inline-block; font-family: var(--serif); font-weight: 700; font-style: italic; color: var(--red); margin-right: 6px; }
+
+  /* ---------- Pros / cons ---------- */
+  .procon { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .pc-card { background: var(--white); padding: 18px 22px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-top: 4px solid var(--blue); }
+  .pc-card.cons { border-top-color: var(--red); }
+  .pc-card h4 { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+  .pc-card ul { list-style: none; padding: 0; margin: 0; }
+  .pc-card li { position: relative; padding-left: 20px; margin-bottom: 9px; font-size: 15.5px; line-height: 1.5; }
+  .pc-card li::before { content: "+"; position: absolute; left: 0; top: -1px; font-weight: 700; font-size: 18px; color: var(--blue); }
+  .pc-card.cons li::before { content: "\2212"; color: var(--red); }
+  .pc-card li strong { color: var(--ink); }
+
+  /* ---------- In-the-plan strip ---------- */
+  .in-plan { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); margin: 18px 0 8px; border: 1px solid var(--rule); max-width: 900px; }
+  .in-plan > div { background: var(--cream); padding: 12px 14px; font-size: 14px; line-height: 1.45; }
+  .in-plan .ip-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+
+  /* ---------- Medium dividers ---------- */
+  .medium + .medium { border-top: 1px solid var(--rule); }
+
+  /* ---------- Rating dots ---------- */
+  .dots { letter-spacing: 2px; color: var(--red); white-space: nowrap; font-size: 15px; }
+  .dots-off { color: var(--rule); }
+  .glance-wrap { overflow-x: auto; }
+  .glance th, .glance td { white-space: nowrap; }
+  .glance td:nth-child(2) { white-space: normal; min-width: 150px; }
+
+  /* ---------- Questions box ---------- */
+  .ask-box { background: var(--ink); color: #e8e4dc; padding: 24px 28px 18px; margin: 28px 0; max-width: 820px; }
+  .ask-box h3 { font-family: var(--serif); color: #fff; font-size: 20px; margin: 0 0 10px; }
+  .ask-box ol { padding-left: 20px; margin: 0; }
+  .ask-box li { margin-bottom: 8px; font-size: 16px; line-height: 1.5; }
+  .ask-box strong { color: #fff; }
+
+  /* ---------- TV buying mini-cards inside sidebar ---------- */
+  .mini-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 18px; }
+  .mini-trio div { background: rgba(255,255,255,0.07); padding: 12px 14px; font-size: 14px; line-height: 1.45; }
+  .mini-trio b { display: block; font-family: var(--serif); font-size: 16px; color: #fff; margin-bottom: 3px; }
+
+
+  /* ---------- TV vocabulary box ---------- */
+  .vocab { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0 12px; }
+  .vocab > div { background: var(--white); padding: 14px 16px; font-size: 15px; line-height: 1.5; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-top: 3px solid var(--red); }
+  .vocab b { display: block; font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 4px; }
+  .relic { background: var(--cream); border-left: 4px solid var(--muted); padding: 14px 18px; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); max-width: 860px; }
+
+  @media (max-width: 760px) {
+    .procon, .in-plan, .mini-trio, .vocab { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Media Planning &middot; Traditional</div>
+    <h1>Traditional Media: A Quick-Reference Guide</h1>
+    <p class="lede">Six media, one scroll. Each gets the same short treatment so you can compare them side by side: what it is best at, what it does well, where it falls short, and how it fits in a plan.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#tv">TV</a>
+    <a href="#radio">Radio</a>
+    <a href="#ooh">Out-of-Home</a>
+    <a href="#direct-mail">Direct Mail</a>
+    <a href="#magazines">Magazines</a>
+    <a href="#newspapers">Newspapers</a>
+    <a href="#at-a-glance">At a Glance</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     INTRO
+     ============================================================ -->
+<section class="section" id="intro">
+  <p>Textbooks give each of these media a full chapter. A planner needs something shorter: enough to know what each medium is for, so you can decide which ones belong in a plan and which questions to ask before you spend. This page is that shorter version. It pairs with <a href="media-planning.html">Media Planning Basics</a>, and the digital media page follows it. Remember, too, that the medium limits the message: a 30-second spot, a billboard&rsquo;s few words and a magazine page each allow different creative, which is why <a href="media-planning.html#creative-vs-media">creative and media are best planned together</a>.</p>
+
+  <p>Two cautions first. <strong>&ldquo;Traditional&rdquo; does not mean &ldquo;old.&rdquo;</strong> Radio still reaches most adults every month, and most of what we call television is now streamed. And every one of these media has a digital cousin that is sold alongside it, often by the same company. So the cards below describe the <em>shape</em> of each medium, its strengths and weaknesses, rather than this year&rsquo;s prices, which move too fast to put on a page.</p>
+
+  <p>Every card is built the same way, based mainly on the pros and cons in Belch and Andrews with updates where the market has clearly moved:</p>
+
+  <ul>
+    <li><strong>Best at</strong> is the one-paragraph case for the medium.</li>
+    <li><strong>Pros and cons</strong> are the highlights, not the full list.</li>
+    <li>The <strong>In the plan</strong> strip gives four things every planner needs: the job it usually does, how it is bought, how to measure it, and its digital cousin.</li>
+  </ul>
+</section>
+
+
+<!-- ============================================================
+     TELEVISION
+     ============================================================ -->
+<section class="section medium" id="tv">
+  <div class="sec-label">Television</div>
+  <h2>Television: Mass Reach With Sight, Sound and Motion</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>building awareness and emotion quickly, at scale. Nothing else combines moving pictures, sound and story in front of a large audience, which is why TV is still the default for launching a brand and making a product feel bigger than it is.</p>
+
+  <p>What has changed is what &ldquo;TV&rdquo; means. Nielsen&rsquo;s monthly Gauge put streaming at about half of all US time spent on television in mid-2026, with broadcast and cable together under 40 percent. That total includes ad-free viewing, so the share carrying ads is smaller, but the direction is clear. A TV plan today is a mix of linear and streaming inventory, and the buying model has changed to match (see the sidebar).</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Creative impact.</strong> Sight, sound and motion allow demonstration, storytelling and emotion in a way no other medium matches.</li>
+        <li><strong>Scale.</strong> It can reach a very large audience quickly. The total bill is high, but the cost per person reached can be low.</li>
+        <li><strong>Attention.</strong> Viewers are usually settled in and watching rather than scrolling.</li>
+        <li><strong>Credibility.</strong> A TV schedule signals a serious brand and can help win retail distribution.</li>
+        <li><strong>Improving targeting.</strong> Cable networks, streaming platforms and addressable TV let you narrow by program, geography and household data.</li>
+        <li><strong>Big moments.</strong> Live sports and events still assemble audiences few other media can.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Cost.</strong> Airtime plus production prices many small advertisers out of a broad buy.</li>
+        <li><strong>Fleeting.</strong> A 15- or 30-second message leaves nothing to keep or revisit.</li>
+        <li><strong>Clutter and avoidance.</strong> Crowded ad breaks, skipping, recording and ad-free subscription tiers shrink the audience that actually sees the ad.</li>
+        <li><strong>Waste.</strong> A station&rsquo;s market area is often much larger than a local advertiser&rsquo;s trade area.</li>
+        <li><strong>Fragmented measurement.</strong> Linear ratings and streaming-platform reports count audiences differently.</li>
+        <li><strong>Distrust.</strong> Viewers are skeptical of TV commercials, and shorter spots have not helped.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Interrupt. Awareness and emotion; top and middle of the funnel.</div>
+    <div><span class="ip-label">Bought by</span>The spot (15 or 30 seconds), priced by CPM or impressions. National, spot or CTV.</div>
+    <div><span class="ip-label">Measure by</span>Reach, impressions, brand lift, modeled sales lift.</div>
+    <div><span class="ip-label">Digital cousin</span>Connected TV and online video.</div>
+  </div>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: How TV Is Bought</h3>
+    <div class="sidebar-card-sub">Three buying models, one lineage</div>
+
+    <div class="mini-trio">
+      <div><b>National</b>A network buy that runs in every market at once. Biggest reach, one message everywhere, highest absolute cost.</div>
+      <div><b>Spot</b>Bought market by market from local stations. You choose the cities and weight the ones that matter.</div>
+      <div><b>CTV</b>Spot buying with a self-serve engine. You set a pot of money, a geography and audience criteria, and the platform serves ads until the budget is spent.</div>
+    </div>
+
+    <p>CTV is the descendant of spot buying: the same idea of choosing where the money goes, narrowed to a ZIP code and an audience. The worked example is in <a href="media-planning.html#cost-buying" style="color: var(--red-mid);">section 6 of Media Planning Basics</a>.</p>
+
+    <p><strong>How far does spot go?</strong> Nielsen counts 210 local TV markets. The ten biggest hold about 30 percent of US TV homes and the top 50 about 70 percent; by my estimate the top 100 reach roughly 88 percent. Cost does not scale with that, though, so ask for CPMs by daypart. The chart and the debate are in <a href="media-planning.html#spot-reach" style="color: var(--red-mid);">section 6.4 of Media Planning Basics</a>.</p>
+
+    <p><strong>A note on GRPs.</strong> Gross rating points were the standard TV currency for decades, built for an era when ratings set the price of a spot and everyone watched live. With streaming, recording and on-demand viewing, most TV and video, including local TV, is now sold on impressions, and GRPs show up mostly in planning conversations. They are worth knowing, since the arithmetic is still useful (see <a href="media-planning.html#reach-frequency" style="color: var(--red-mid);">section 4</a>), but you will rarely see one on a rate card.</p>
+
+    <div class="sidebar-card-tag">Buy a pot of impressions, not a rating.</div>
+  </div>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: The Old TV Vocabulary</h3>
+    <div class="sidebar-card-sub">Rating, HUT and share, and why they are fading</div>
+
+    <div class="vocab" style="color: var(--ink-soft);">
+      <div><b>Rating</b>The percentage of <em>all</em> TV households tuned to a program.</div>
+      <div><b>HUT</b>Households using television: the percentage of all TV households with a set on at that time.</div>
+      <div><b>Share</b>The percentage of households <em>with a TV on</em> that are tuned to a program (households tuned &divide; HUT).</div>
+    </div>
+
+    <p><strong>Example.</strong> Of 100 homes, 60 have a TV on and 12 are watching your show: rating 12, HUT 60, share 20.</p>
+
+    <div class="relic">These are old-fashioned words from a world of live viewing on a handful of channels. As viewers move to cable, streaming and recordings, they are becoming relics on a shelf, if they are not already, and ads are sold on impressions instead. You will still meet them in older books, so it helps to be able to read them.</div>
+
+    <div class="sidebar-card-tag">Know the words. Plan with impressions.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     RADIO
+     ============================================================ -->
+<section class="section medium" id="radio">
+  <div class="sec-label">Radio</div>
+  <h2>Radio: Local Frequency at Low Cost</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>repeating a message often, in a local market, for very little money. Radio is the quiet workhorse of the traditional mix. It is audio only, which is both its limit and its charm: a good spot makes the listener supply the pictures.</p>
+
+  <p>Radio&rsquo;s reach is bigger than most students expect. Nielsen&rsquo;s 2026 Audio Today report put AM/FM at about 93 percent of US adults each month, and AM/FM still carries most of the ad-supported audio heard in cars. Treat those as a strong case rather than a neutral one, since they come from radio&rsquo;s own research channels. Format also gives it selectivity: country, news, sports talk and Spanish-language stations each deliver a recognizable audience.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Low cost.</strong> Cheap to produce and cheap to air, so a small budget can buy real frequency.</li>
+        <li><strong>Frequency.</strong> Many spots across many stations and dayparts build repetition.</li>
+        <li><strong>Local and format selectivity.</strong> Pick the market and the kind of listener.</li>
+        <li><strong>Speed and flexibility.</strong> A spot can be written and on the air within days, and changed for a sale or the weather.</li>
+        <li><strong>Receptive companion.</strong> Listeners often feel connected to their stations and hosts.</li>
+        <li><strong>Integration.</strong> Live reads, remotes, sponsorships and station events extend a spot into something more.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>No visual.</strong> You cannot show the product or demonstrate it.</li>
+        <li><strong>Fleeting and background.</strong> Listeners are driving, working or doing something else.</li>
+        <li><strong>Fragmentation.</strong> Many stations and a market-by-market buying process.</li>
+        <li><strong>Thin measurement.</strong> Audience data is estimated, and sales impact is hard to trace without a promo code or call-in.</li>
+        <li><strong>Competition.</strong> Streaming audio and podcasts compete for the same time and often the same advertisers.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Remind. Frequency and local action; middle and lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>Spots by station and daypart, priced by CPM or impressions (or bought programmatically through audio platforms); host reads and sponsorships by flat fee.</div>
+    <div><span class="ip-label">Measure by</span>Estimated reach and frequency, promo-code or call-in response.</div>
+    <div><span class="ip-label">Digital cousin</span>Streaming audio and podcasts.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OUT-OF-HOME
+     ============================================================ -->
+<section class="section medium" id="ooh">
+  <div class="sec-label">Out-of-Home</div>
+  <h2>Out-of-Home: The Ad You Cannot Turn Off</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>one big, simple idea near where people live, travel and shop. Billboards, transit, street furniture, airports and in-venue screens are seen for seconds, so the job is narrow: awareness and reminders in a defined place.</p>
+
+  <p>Digital panels have changed the economics. Copy can rotate by time of day, respond to the weather or a sale, and be updated in minutes, and digital inventory can now be bought by impressions, much like online ads. For a local advertiser, OOH is often the best way to be physically present in the market.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Local coverage, around the clock.</strong> Day and night presence in a market.</li>
+        <li><strong>Frequency.</strong> People pass the same locations repeatedly.</li>
+        <li><strong>Geographic flexibility.</strong> Near stores, along commuting routes, around venues.</li>
+        <li><strong>It cannot be skipped.</strong> No remote, no blocker, no scroll.</li>
+        <li><strong>Efficiency.</strong> Cost per thousand is often far lower than other mass media.</li>
+        <li><strong>Timeliness.</strong> Close to the point of purchase, and digital faces can change fast.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Seconds of exposure.</strong> A few words and an image; an industry rule of thumb is about seven words.</li>
+        <li><strong>Waste.</strong> Not everyone driving past is a prospect.</li>
+        <li><strong>Wearout.</strong> The same ad seen every day wears out quickly.</li>
+        <li><strong>Imprecise measurement.</strong> Estimated impressions from traffic counts or phone location data, not proof of attention.</li>
+        <li><strong>Availability and rules.</strong> Good locations are limited, and local restrictions apply.</li>
+        <li><strong>No story.</strong> Not the place for explanation or detail.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Interrupt and remind. Awareness and local presence; top and lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>Posting period (often four weeks) by location or showing; digital by impressions or share of time.</div>
+    <div><span class="ip-label">Measure by</span>Estimated impressions, plus search, site or store visits near locations.</div>
+    <div><span class="ip-label">Digital cousin</span>Digital out-of-home (DOOH) and geofenced mobile ads.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     DIRECT MAIL
+     ============================================================ -->
+<section class="section medium" id="direct-mail">
+  <div class="sec-label">Direct Mail</div>
+  <h2>Direct Mail: You Pick the Person</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>personal, targeted, measurable response. Direct mail is the opposite of mass media: a piece goes to a name on a list, can carry that person&rsquo;s name and offer, and produces a result you can count. It is strongest for bringing back past customers, welcoming new ones and announcing offers, and rarely the right tool for introducing a brand to strangers.</p>
+
+  <p>It is also tangible. A mailer sits on the kitchen counter and can be kept, and surveys cited in Belch found consumers more comfortable receiving direct mail and catalogs than most other direct channels such as phone calls and texts.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Precise targeting.</strong> A good list means very little waste.</li>
+        <li><strong>Personalization.</strong> Names, offers and content tailored to the recipient.</li>
+        <li><strong>Testing and measurement.</strong> Test lists, offers and creative, and trace results by code, URL or coupon.</li>
+        <li><strong>Tangible and trusted.</strong> Something to hold, keep and act on later.</li>
+        <li><strong>Control of timing.</strong> You decide when it lands.</li>
+        <li><strong>Room to inform.</strong> Space for detail, coupons and offers.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>High cost per contact.</strong> Printing and postage add up, and postal rates keep rising.</li>
+        <li><strong>The junk-mail image.</strong> Much of it is thrown away unopened.</li>
+        <li><strong>List quality and privacy.</strong> People move, and data goes stale; data rules are tightening.</li>
+        <li><strong>Limited reach and frequency.</strong> Repeated mailings annoy; it does not build mass awareness.</li>
+        <li><strong>Slower than email.</strong> Print and mail take days or weeks.</li>
+        <li><strong>No surrounding mood.</strong> No editorial or programming context to lend credibility.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Answer. Conversion and retention; lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>Cost per thousand pieces, plus list rental, print and postage.</div>
+    <div><span class="ip-label">Measure by</span>Response rate, cost per acquisition, revenue per piece.</div>
+    <div><span class="ip-label">Digital cousin</span>Email, retargeting and addressable media.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MAGAZINES
+     ============================================================ -->
+<section class="section medium" id="magazines">
+  <div class="sec-label">Magazines</div>
+  <h2>Magazines: The Right People in a Chosen Environment</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>reaching a specific interest or demographic in a credible, good-looking setting. Magazines trade size for selectivity: fewer people than TV, but the right people, in a context they chose and often keep.</p>
+
+  <p>A running magazine delivers readers who are in a running mindset, and a city magazine delivers affluent locals. Paper quality, color and special formats such as gatefolds, inserts and samples make print strong for products that need to look good, and a respected title lends borrowed credibility. The weakness is time and scale: monthly cycles, long closing dates and print circulations that have shrunk. Many titles now sell print, web, newsletter and video packages together.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Selectivity.</strong> By interest, demographic and region, including geographic editions. Belch calls magazines the most selective medium apart from direct mail.</li>
+        <li><strong>Quality and creative flexibility.</strong> Excellent reproduction and special formats.</li>
+        <li><strong>Long life.</strong> Kept for weeks, passed along, and returned to.</li>
+        <li><strong>Prestige and receptivity.</strong> Readers are engaged, and the title confers credibility.</li>
+        <li><strong>Extra services.</strong> Events, merchandising and custom content packages.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Limited reach and frequency.</strong> Monthly publication caps how often you can show up.</li>
+        <li><strong>Long lead times.</strong> Closing dates weeks or months ahead; little room to react.</li>
+        <li><strong>High cost per contact.</strong> A page in a good title is expensive per reader.</li>
+        <li><strong>Clutter.</strong> Ad-heavy titles make it harder to stand out.</li>
+        <li><strong>Shrinking print.</strong> Circulation has declined and some titles are digital-only.</li>
+        <li><strong>Hard to tie to sales.</strong> Impact is mostly inferred.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Interrupt softly. Consideration and brand image; middle of the funnel.</div>
+    <div><span class="ip-label">Bought by</span>Page size, position and color; compared by CPM on circulation or readership.</div>
+    <div><span class="ip-label">Measure by</span>Readership, reader response (URL or QR code), brand lift.</div>
+    <div><span class="ip-label">Digital cousin</span>Publisher websites, newsletters and native content.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     NEWSPAPERS
+     ============================================================ -->
+<section class="section medium" id="newspapers">
+  <div class="sec-label">Newspapers</div>
+  <h2>Newspapers: Local, Timely, Credible</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>local, time-sensitive messages: sales, events, prices and announcements. Newspapers have always belonged to retailers, event promoters and anyone with a deadline. An ad can run tomorrow, and a coupon or price can reach the shoppers who need it.</p>
+
+  <p>Print readership and advertising revenue have fallen sharply, and Belch notes the shift of many papers toward digital. So what you are often buying today is a local news brand&rsquo;s combined audience across print, website, app and email, which can still be the most credible local environment in a market.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Local coverage and zoning.</strong> Reach a metro area or a zone within it.</li>
+        <li><strong>Timeliness.</strong> Short lead times and frequent publication.</li>
+        <li><strong>Flexibility.</strong> Many ad sizes, inserts and special sections.</li>
+        <li><strong>Reader involvement.</strong> Readers control the pace and read with purpose.</li>
+        <li><strong>Credible context.</strong> News environment carries trust.</li>
+        <li><strong>Good for prices and details.</strong> Coupons, sale prices and event information.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Short shelf life.</strong> Today&rsquo;s paper is tomorrow&rsquo;s recycling.</li>
+        <li><strong>Reproduction.</strong> Image quality is weaker than magazines.</li>
+        <li><strong>Clutter.</strong> Ads compete on every page.</li>
+        <li><strong>Little audience selectivity.</strong> You choose sections and zones, not people.</li>
+        <li><strong>Shrinking and aging readership.</strong> Print reach is declining.</li>
+        <li><strong>Rate differences.</strong> National advertisers have often paid more than local ones.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Answer. Local retail and action; lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>Ad size (column inches or modular units), with CPM for comparison.</div>
+    <div><span class="ip-label">Measure by</span>Circulation and readership, coupon or code redemption, store traffic.</div>
+    <div><span class="ip-label">Digital cousin</span>News-site and app ads, and newsletter sponsorships.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AT A GLANCE
+     ============================================================ -->
+<section class="section" id="at-a-glance">
+  <div class="sec-label">At a Glance</div>
+  <h2>Putting Them Side by Side</h2>
+
+  <p>The ratings below are a planner&rsquo;s rough rules of thumb, not measured data. More dots is better on every measure, including speed to market and measurability (and for cost, more dollar signs means more expensive). Real numbers will vary by market and by title.</p>
+
+  <div class="glance-wrap">
+  <table class="glance">
+    <thead>
+      <tr><th>Medium</th><th>Strongest at</th><th>Reach</th><th>Targeting</th><th>Creative power</th><th>Cost to start</th><th>Speed to market</th><th>Measurability</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>TV</strong></td><td>Awareness and emotion at scale</td><td><span class="dots" aria-label="5 of 5">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="5 of 5">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td>$$$$</td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Radio</strong></td><td>Local frequency, low cost</td><td><span class="dots" aria-label="4 of 5">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$</td><td><span class="dots" aria-label="5 of 5">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Out-of-home</strong></td><td>Local reminders and presence</td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Direct mail</strong></td><td>Response and retention</td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="5 of 5">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="5 of 5">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td></tr>
+      <tr><td><strong>Magazines</strong></td><td>Selective, high-quality environment</td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="4 of 5">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots" aria-label="4 of 5">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td>$$$</td><td><span class="dots" aria-label="1 of 5">&#9679;<span class="dots-off">&#9679;&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Newspapers</strong></td><td>Local, timely, credible</td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots" aria-label="2 of 5">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots" aria-label="5 of 5">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots" aria-label="3 of 5">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="ask-box">
+    <h3>Four questions to ask before you buy any of them</h3>
+    <ol>
+      <li><strong>What job is it doing?</strong> Interrupt people who are not looking, or answer people who are? Match the medium to that job and to the funnel stage.</li>
+      <li><strong>Who exactly will see it?</strong> Check the waste. A cheap CPM on the wrong audience is not a bargain.</li>
+      <li><strong>What is the digital version, and what does it change?</strong> Often it is cheaper, more targeted and easier to measure, and sometimes it is not.</li>
+      <li><strong>How will I know it worked?</strong> Decide the measure before you spend: a code, a URL, a holdout, a lift study.</li>
+    </ol>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li><strong>TV</strong> and <strong>radio</strong> are the mass-and-frequency media, one for emotion at scale and one for repetition at low cost.</li>
+      <li><strong>Out-of-home</strong> is a big, simple, local reminder; <strong>direct mail</strong> is a personal, measurable response tool.</li>
+      <li><strong>Magazines</strong> and <strong>newspapers</strong> sell a trusted environment: selective and polished in one, local and timely in the other.</li>
+      <li>Every one has a digital cousin, so most real plans mix a traditional medium with its online counterpart.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     NEXT-PAGE CARDS
+     ============================================================ -->
+<nav class="unit-nav">
+  <a href="media-planning.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">Media Planning Basics</span>
+    <span class="unit-nav-tease">The journey, the audience, the 60/40 split, reach and frequency, scheduling, cost and how to read a plan.</span>
+  </a>
+  <a href="media-planning-digital.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">Digital Media: A Quick-Reference Guide</span>
+    <span class="unit-nav-tease">Digital ads, social ads, Google Search, YouTube, Spotify and more. Strengths, weaknesses and what to check before you buy.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     SOURCES & GLOSSARY
+     ============================================================ -->
+<section class="section" id="sources">
+  <h2>Sources &amp; Glossary</h2>
+
+  <h3>Where This Came From</h3>
+
+  <p class="more-views-intro">The pros and cons are drawn mainly from the course texts: Belch, <em>Advertising and Promotion</em>, chapters 11 through 14 (television and radio, magazines and newspapers, support media including out-of-home, and direct marketing), and Andrews, chapters 12 and 15. Market figures are from the sources below and change quickly, so treat them as a 2026 snapshot.</p>
+
+  <div class="mv-item">
+    <div class="mv-source">Nielsen</div>
+    <div class="mv-title"><a href="https://www.nielsen.com/data-center/the-gauge/" target="_blank" rel="noopener">The Gauge: TV Viewing Trends in the U.S.</a></div>
+    <div class="mv-desc">Monthly split of US television time among broadcast, cable and streaming. The source for the streaming-share point. It measures total viewing, including ad-free, and is not the ad-sales currency.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Radio Ink</div>
+    <div class="mv-title"><a href="https://radioink.com/2026/07/10/radio-tops-tv-smartphones-in-latest-nielsen-reach-data/" target="_blank" rel="noopener">Radio Tops TV, Smartphones in Latest Nielsen Reach Data</a></div>
+    <div class="mv-desc">An industry trade report on Nielsen&rsquo;s 2026 reach figures. Useful as the radio case, and a good example of a figure to read as advocacy as well as data.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Nielsen</div>
+    <div class="mv-title"><a href="https://www.nielsen.com/insights/2026/the-record-q3-2026-us-audio-listening-trends/" target="_blank" rel="noopener">The Record: US Audio Listening Trends</a></div>
+    <div class="mv-desc">Nielsen&rsquo;s audio listening update, including AM/FM&rsquo;s share of ad-supported audio time in the car.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Course page</div>
+    <div class="mv-title"><a href="media-planning.html">Media Planning Basics</a></div>
+    <div class="mv-desc">The framework these cards plug into: audience, objectives, the 60/40 split, reach and frequency, scheduling and cost.</div>
+  </div>
+
+  <h3>Glossary</h3>
+
+  <dl class="glossary">
+    <dt>Selectivity</dt>
+    <dd>A medium&rsquo;s ability to reach a specific audience with little waste.</dd>
+
+    <dt>Lead time</dt>
+    <dd>How far ahead of publication or airing an ad must be submitted.</dd>
+
+    <dt>Wearout</dt>
+    <dd>The decline in an ad&rsquo;s effect after too many exposures to the same audience.</dd>
+
+    <dt>Daypart</dt>
+    <dd>A block of the broadcast day, such as morning drive or prime time, priced and sold as a unit.</dd>
+
+    <dt>Spot buy</dt>
+    <dd>Buying broadcast time market by market from local stations rather than through a network.</dd>
+
+    <dt>Addressable TV</dt>
+    <dd>Television advertising delivered to selected households using data, rather than to everyone watching a program.</dd>
+
+    <dt>Posting period</dt>
+    <dd>The standard period, often four weeks, for which an out-of-home ad is leased.</dd>
+
+    <dt>Digital out-of-home (DOOH)</dt>
+    <dd>Out-of-home screens whose content can change by time, audience or conditions, and that can be bought by impressions.</dd>
+
+    <dt>House list / rented list</dt>
+    <dd>A mailing list of a company&rsquo;s own customers, versus one rented from another source.</dd>
+
+    <dt>Circulation / readership</dt>
+    <dd>The number of copies distributed, versus the estimated number of people who read them.</dd>
+  </dl>
+</section>
+
+</main>
+
+<!-- Site-wide scripts -->
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>

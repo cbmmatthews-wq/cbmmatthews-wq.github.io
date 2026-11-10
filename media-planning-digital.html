@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Media: A Quick-Reference Guide — cbmatthe</title>
+<meta name="description" content="A one-page comparison of digital media for planners: search, paid social, online video and YouTube, creators and influencers, streaming audio and podcasts, display and programmatic, retail media, and email. Best at, pros and cons, how each is bought, and its traditional cousin.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for the Digital Media page — kept here rather than touching shared styles.css */
+
+  /* ---------- Medium lead paragraph ---------- */
+  .best-at { font-size: 20px; line-height: 1.55; color: var(--ink); max-width: 780px; margin-bottom: 18px; }
+  .best-at-tag { display: inline-block; font-family: var(--serif); font-weight: 700; font-style: italic; color: var(--red); margin-right: 6px; }
+
+  /* ---------- Pros / cons ---------- */
+  .procon { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .pc-card { background: var(--white); padding: 18px 22px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-top: 4px solid var(--blue); }
+  .pc-card.cons { border-top-color: var(--red); }
+  .pc-card h4 { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+  .pc-card ul { list-style: none; padding: 0; margin: 0; }
+  .pc-card li { position: relative; padding-left: 20px; margin-bottom: 9px; font-size: 15.5px; line-height: 1.5; }
+  .pc-card li::before { content: "+"; position: absolute; left: 0; top: -1px; font-weight: 700; font-size: 18px; color: var(--blue); }
+  .pc-card.cons li::before { content: "\2212"; color: var(--red); }
+  .pc-card li strong { color: var(--ink); }
+
+  /* ---------- In-the-plan strip ---------- */
+  .in-plan { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); margin: 18px 0 8px; border: 1px solid var(--rule); max-width: 900px; }
+  .in-plan > div { background: var(--cream); padding: 12px 14px; font-size: 14px; line-height: 1.45; }
+  .in-plan .ip-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+
+  .medium + .medium { border-top: 1px solid var(--rule); }
+
+  /* ---------- Rating dots + table ---------- */
+  .dots { letter-spacing: 2px; color: var(--red); white-space: nowrap; font-size: 15px; }
+  .dots-off { color: var(--rule); }
+  .glance-wrap { overflow-x: auto; }
+  .glance th, .glance td { white-space: nowrap; }
+  .glance td:nth-child(2) { white-space: normal; min-width: 150px; }
+
+  /* ---------- Questions box ---------- */
+  .ask-box { background: var(--ink); color: #e8e4dc; padding: 24px 28px 18px; margin: 28px 0; max-width: 820px; }
+  .ask-box h3 { font-family: var(--serif); color: #fff; font-size: 20px; margin: 0 0 10px; }
+  .ask-box ol { padding-left: 20px; margin: 0; }
+  .ask-box li { margin-bottom: 8px; font-size: 16px; line-height: 1.5; }
+  .ask-box strong { color: #fff; }
+
+  /* ---------- Creator vs spokesperson comparison ---------- */
+  .then-now { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 18px; }
+  .then-now > div { background: rgba(255,255,255,0.07); padding: 14px 16px; font-size: 14.5px; line-height: 1.5; }
+  .then-now b { display: block; font-family: var(--serif); font-size: 17px; color: #fff; margin-bottom: 6px; }
+  .then-now ul { margin: 0; padding-left: 18px; }
+  .then-now li { margin-bottom: 5px; }
+
+  @media (max-width: 760px) {
+    .procon, .in-plan, .then-now { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Media Planning &middot; Digital</div>
+    <h1>Digital Media: A Quick-Reference Guide</h1>
+    <p class="lede">Eight digital media, one scroll, one format. For each: what it is best at, what it does well, where it falls short, and how it fits in a plan, with its traditional cousin for comparison.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#search">Search</a>
+    <a href="#social">Social</a>
+    <a href="#video">Video</a>
+    <a href="#creators">Creators</a>
+    <a href="#audio">Audio</a>
+    <a href="#display">Display</a>
+    <a href="#retail">Retail</a>
+    <a href="#email">Email</a>
+    <a href="#at-a-glance">Compare</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     INTRO
+     ============================================================ -->
+<section class="section" id="intro">
+  <p>This page works like the <a href="media-planning-traditional.html">Traditional Media guide</a>, with the same card for each medium so the two pages can be read side by side. It pairs with <a href="media-planning.html">Media Planning Basics</a>. Connected TV is covered in section 6 of the Basics page, and separate pages on CTV, email and geolocation are planned.</p>
+
+  <p>Three things are worth saying before the cards, because they apply to nearly every digital medium.</p>
+
+  <ul>
+    <li><strong>Measurable is not the same as well measured.</strong> Digital produces a flood of numbers, but most of them are reported by the platform that sold you the ad. Belch lists measurement problems first among the weaknesses of digital media, and that has not gone away. Ask who is counting and who is grading.</li>
+    <li><strong>Automation is taking over the buying.</strong> Programmatic buying, which <a href="media-planning.html#programmatic">Media Planning Basics</a> explains, and the major platforms increasingly choose the audience, placement and bid for you. That makes your goal, your budget logic and, above all, your creative the parts that are still yours to control.</li>
+    <li><strong>Creative and media are decided together.</strong> A six-second bumper, a podcast read and a search ad each allow different messages, so the format shapes the idea. See the <a href="media-planning.html#creative-vs-media">sidebar on which comes first</a>.</li>
+    <li><strong>Most of these are paid media, but not all.</strong> Email is <em>owned</em>. Creators sit across paid, earned and shared. The <a href="peso.html">PESO</a> labels still apply, and a good plan says how the pieces feed each other.</li>
+  </ul>
+
+  <p>As before, each card describes the <em>shape</em> of the medium rather than this year&rsquo;s prices, which change too quickly to print. Where the market has clearly moved, I have used current sources, listed at the bottom.</p>
+</section>
+
+
+<!-- ============================================================
+     SEARCH
+     ============================================================ -->
+<section class="section medium" id="search">
+  <div class="sec-label">Search</div>
+  <h2>Search: Be There When Someone Is Asking</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>capturing demand that already exists. A person types or says what they want, and your ad appears at that moment. Search is the &ldquo;answer&rdquo; medium in its purest form: high intent, directly measurable, and you pay when someone responds.</p>
+
+  <p>The results page itself is changing. Google now shows ads inside its AI-generated results (AI Overviews and AI Mode), and as of 2026 advertisers cannot target those placements separately. Eligibility depends on using AI-matched campaign types such as broad match, AI Max, Shopping or Performance Max. For a planner, that means less control and less visibility into exactly which queries triggered an ad, which is one more reason to keep the objective and the creative assets strong.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>High intent.</strong> The audience is already looking for what you sell.</li>
+        <li><strong>Pay for response.</strong> Most search ads charge per click, not per impression.</li>
+        <li><strong>Fast and scalable.</strong> Launch in hours, start small, and test constantly.</li>
+        <li><strong>Directly measurable.</strong> Track from the click to the sale.</li>
+        <li><strong>Captures demand other media create.</strong> A TV ad or a creator post often ends in a search.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>It cannot create demand.</strong> You cannot buy more people than are searching.</li>
+        <li><strong>Competitive cost.</strong> Popular terms are bid up, and rivals can bid on your brand name.</li>
+        <li><strong>Less control.</strong> Automation and AI placements reduce transparency.</li>
+        <li><strong>Inflated credit.</strong> Last-click reporting gives search credit for sales that earlier media set up, especially on brand terms.</li>
+        <li><strong>Little creative room.</strong> Mostly text, in a very small space.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Answer. Conversion; lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>Auction, usually priced per click (CPC) against bids and quality.</div>
+    <div><span class="ip-label">Measure by</span>Clicks, conversions, cost per acquisition, ROAS. Test incrementality, especially on brand terms.</div>
+    <div><span class="ip-label">Traditional cousin</span>Yellow Pages and newspaper classifieds.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PAID SOCIAL
+     ============================================================ -->
+<section class="section medium" id="social">
+  <div class="sec-label">Paid Social</div>
+  <h2>Paid Social: Scale, Targeting and the Scroll</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>reaching defined audiences at scale with ads that look native to the feed. It covers discovery, consideration and retargeting, from Instagram and TikTok to YouTube Shorts, Pinterest, LinkedIn and others, and it is where most brands now place the largest share of digital video and image advertising.</p>
+
+  <p>The biggest shift is that platforms now run much of the targeting themselves, using machine learning to find likely buyers. That puts the creative in charge: the ad itself signals who it is for, and the algorithm finds more people like the ones who respond. Creative also wears out fast on social, which is the Repetition page&rsquo;s point about wearout in its most extreme form.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Scale and targeting.</strong> Huge audiences, with options by interest, behavior, lookalike and your own customer lists.</li>
+        <li><strong>Flexible formats.</strong> Short video, carousels, stories and native-looking posts.</li>
+        <li><strong>Prospecting and retargeting.</strong> One platform can find new people and bring back visitors.</li>
+        <li><strong>Fast creative testing.</strong> Try many versions cheaply and learn what works.</li>
+        <li><strong>Low entry cost.</strong> Small budgets can still run real tests.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Fast creative fatigue.</strong> Ads wear out within weeks, sometimes days.</li>
+        <li><strong>Walled gardens.</strong> The platform counts its own audience and reports its own results.</li>
+        <li><strong>Reduced tracking.</strong> Privacy changes weakened the signals targeting and measurement rely on.</li>
+        <li><strong>Brief attention.</strong> You get a few seconds before the scroll resumes.</li>
+        <li><strong>Context and safety.</strong> Feed placement and adjacent content are hard to control.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Interrupt and retarget. Awareness through conversion.</div>
+    <div><span class="ip-label">Bought by</span>Auction, with an objective set (reach, traffic, conversions) and priced by CPM, click or action.</div>
+    <div><span class="ip-label">Measure by</span>Reach, video views, cost per acquisition, ROAS; add lift tests to check the platform&rsquo;s claims.</div>
+    <div><span class="ip-label">Traditional cousin</span>TV and magazine ads, plus word of mouth.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ONLINE VIDEO
+     ============================================================ -->
+<section class="section medium" id="video">
+  <div class="sec-label">Online Video &amp; YouTube</div>
+  <h2>Online Video and YouTube: TV Habits, Digital Targeting</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>bringing sight, sound and motion to targeted audiences, including on the television screen. YouTube is the center of it: Nielsen&rsquo;s monthly Gauge consistently ranks YouTube among the largest single sources of viewing on the television screen, and it is also one of the main places people go to search.</p>
+
+  <p>Formats range from skippable in-stream ads and short bumpers to YouTube Shorts and ads on connected TV. The creative challenge is the same across all of them: the first few seconds decide whether anyone stays.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Video impact with digital targeting.</strong> Demonstration and emotion, aimed by audience, interest or search behavior.</li>
+        <li><strong>Flexible buying.</strong> Pay per view or per thousand, from small budgets to national scale.</li>
+        <li><strong>Reaches cord-cutters and younger viewers</strong> that linear TV often misses.</li>
+        <li><strong>Search-like behavior.</strong> People look for how-to videos and reviews, which meets purchase intent.</li>
+        <li><strong>Testable.</strong> Many versions, and lift studies from the platform.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Skipping.</strong> A skippable ad must earn the next five seconds immediately.</li>
+        <li><strong>Creative demands.</strong> Different cuts and lengths for different formats.</li>
+        <li><strong>Placement control.</strong> Where the ad appears, and next to what, needs checking.</li>
+        <li><strong>Slippery definitions.</strong> What counts as a &ldquo;view&rdquo; differs by platform.</li>
+        <li><strong>Duplicated reach.</strong> The same person on YouTube, social and CTV is counted separately.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Interrupt. Awareness and consideration.</div>
+    <div><span class="ip-label">Bought by</span>Auction or reservation; CPM or cost per view.</div>
+    <div><span class="ip-label">Measure by</span>Reach, completed views, brand lift, search and site lift.</div>
+    <div><span class="ip-label">Traditional cousin</span>Television.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CREATORS & INFLUENCERS
+     ============================================================ -->
+<section class="section medium" id="creators">
+  <div class="sec-label">Creators &amp; Influencers</div>
+  <h2>Creators and Influencers: Borrowed Trust, With Craft</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>borrowing an audience&rsquo;s trust in a specific person, in that person&rsquo;s voice and format. It works best for consideration and social proof, and for creative that does not look like an ad. It is one tool in a plan, not a plan.</p>
+
+  <p>The vocabulary has shifted, and the shift matters. An &ldquo;influencer&rdquo; was bought for reach, a follower count that would carry the brand&rsquo;s message. A &ldquo;creator&rdquo; is a creative partner who makes content that works in their own style, for an audience that knows their voice. More than half of ad buyers in eMarketer&rsquo;s January 2026 survey said creator ads would be a priority this year, and the reason is practical: creator content often performs better than brand-made content because it fits the feed.</p>
+
+  <p>Brands increasingly run creator posts as paid ads too (partnership ads, where the post runs from the creator&rsquo;s handle but is targeted and scaled by the brand), and the major platforms are building tools to make that easier. Many practitioners also now favor multi-month relationships over one-off posts.</p>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: From Spokesperson to Creator</h3>
+    <div class="sidebar-card-sub">Why holding the product up to the camera stopped working</div>
+
+    <div class="then-now">
+      <div>
+        <b>The spokesperson model</b>
+        <ul>
+          <li>The brief says exactly what to say.</li>
+          <li>The person holds the product toward the camera and reads the talking points.</li>
+          <li>It looks like an ad, so viewers treat it like one.</li>
+          <li>Many posts open the same way.</li>
+          <li>One post, judged on follower count.</li>
+        </ul>
+      </div>
+      <div>
+        <b>The creator model</b>
+        <ul>
+          <li>The brief gives the problem, the audience and the proof points.</li>
+          <li>The creator chooses the story, the hook and the format.</li>
+          <li>It looks like their content, because it is.</li>
+          <li>Each one is recognizably different.</li>
+          <li>A relationship over months, judged on fit, saves, clicks and sales.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p><strong>The sameness test.</strong> Templates and AI-assisted production make it easy to turn out content that all opens the same way: same framing, same hook, same cadence, and a thumbnail you have seen forty times. Cover the logo and watch only the first three seconds. If you could not tell which creator made it, neither can the viewer, and they will scroll. Some industry commentators have noted that authenticity is making a comeback precisely because AI-generated content is everywhere. The value of a creator is that they are not interchangeable.</p>
+
+    <div class="sidebar-card-tag">Brief the problem, not the script.</div>
+  </div>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Trust and relevance.</strong> The audience chose to follow this person.</li>
+        <li><strong>Native creative.</strong> It looks like content, not an ad, and shows the product in real use.</li>
+        <li><strong>Niche reach.</strong> Smaller creators often have tight, engaged communities.</li>
+        <li><strong>Reusable assets.</strong> Creator content can run as ads and in email, on your site and on retailer pages.</li>
+        <li><strong>Scalable with paid.</strong> Partnership ads extend beyond the creator&rsquo;s followers.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Less control.</strong> You trade control of the message and the quality for authenticity.</li>
+        <li><strong>Fit and reputation risk.</strong> A mismatched audience or a creator controversy is your problem too.</li>
+        <li><strong>Opaque, variable pricing.</strong> Rates vary widely and vetting takes time.</li>
+        <li><strong>Indirect measurement.</strong> Codes, links and view-through, not clean attribution.</li>
+        <li><strong>Disclosure and fraud.</strong> Paid relationships must be clearly disclosed, and follower counts can be inflated.</li>
+        <li><strong>Fatigue.</strong> Audiences tire of obvious sponsored content, which is why sameness is risky.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Persuade. Consideration and social proof; often paired with search and retail media to close.</div>
+    <div><span class="ip-label">Bought by</span>Fee per deliverable, plus usage rights and an amplification budget; sometimes commission.</div>
+    <div><span class="ip-label">Measure by</span>Audience fit, views and saves, link clicks, promo codes, lift tests.</div>
+    <div><span class="ip-label">Traditional cousin</span>Celebrity endorsement and word of mouth.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AUDIO
+     ============================================================ -->
+<section class="section medium" id="audio">
+  <div class="sec-label">Audio</div>
+  <h2>Streaming Audio and Podcasts: The Screen-Free Moments</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>reaching people in screen-free, lean-back moments (the commute, the workout, the chores) with a voice they trust. Spotify, Pandora and other streaming services sell ad breaks; podcasts add host-read ads that sound like a recommendation from a friend.</p>
+
+  <p>Audio is the digital cousin of radio, with two big differences: digital delivery lets you target by listener data, genre and location and cap frequency, and podcasts let a niche show deliver a very specific audience. The limit is that many people pay to avoid ads altogether, which caps the available inventory.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Screen-free attention.</strong> Reaches people when eyes and hands are busy.</li>
+        <li><strong>Targeting and control.</strong> By listener data, genre and location, with frequency caps and completion tracking.</li>
+        <li><strong>Host credibility.</strong> A trusted host reading an ad carries weight in a niche.</li>
+        <li><strong>Companion medium.</strong> Listeners often spend long, repeat sessions.</li>
+        <li><strong>Lower production barrier.</strong> Audio is quick and cheaper to make than video.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Audio only.</strong> No product demonstration.</li>
+        <li><strong>Ad-free tiers.</strong> Paid subscriptions remove ads, limiting inventory.</li>
+        <li><strong>Thin measurement.</strong> Downloads are not listens, and attribution leans on promo codes and surveys.</li>
+        <li><strong>Fragmented inventory.</strong> Many platforms and thousands of shows.</li>
+        <li><strong>Background listening.</strong> Attention can be partial.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Remind and persuade. Awareness and consideration.</div>
+    <div><span class="ip-label">Bought by</span>CPM per spot, programmatic or direct; host-read ads by flat fee.</div>
+    <div><span class="ip-label">Measure by</span>Impressions, completion rate, promo codes or vanity URLs, brand lift.</div>
+    <div><span class="ip-label">Traditional cousin</span>Radio.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     DISPLAY & PROGRAMMATIC
+     ============================================================ -->
+<section class="section medium" id="display">
+  <div class="sec-label">Display &amp; Programmatic</div>
+  <h2>Display and Programmatic: Wide Reach and Retargeting, With Caveats</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>wide, inexpensive reach and retargeting. Banners, native ads and mobile ads placed across thousands of sites and apps, usually bought through software and real-time auctions. It is the plumbing behind much of the open web.</p>
+
+  <p>Belch noted years ago that banner ads lost effectiveness as clutter grew, and it documents the programmatic problems of fraud, unviewable placements and murky supply chains. The medium remains useful, mostly for retargeting people who have already visited and for contextual placement next to relevant content. Display needs the most skepticism of any digital medium.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Scale and cost efficiency.</strong> Enormous inventory at low cost per impression.</li>
+        <li><strong>Retargeting.</strong> Reaches people who recently visited your site or abandoned a cart.</li>
+        <li><strong>Contextual targeting.</strong> Place ads next to relevant content.</li>
+        <li><strong>Fast optimization.</strong> Shift spend toward what performs, in near real time.</li>
+        <li><strong>Many formats.</strong> Native, rich media, video and mobile.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Low attention.</strong> Banner blindness and very low click-through rates.</li>
+        <li><strong>Placement quality.</strong> Ads can appear on poor-quality or unsuitable sites.</li>
+        <li><strong>Fraud and viewability.</strong> Some impressions are not seen, or not seen by a person.</li>
+        <li><strong>Opaque supply chain.</strong> Many intermediaries take a share, and it can be hard to see where the money went.</li>
+        <li><strong>Overstated credit.</strong> Retargeting often claims sales that would have happened anyway.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Remind and retarget. Mid to lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>Programmatic auction, priced per thousand impressions (CPM). <a href="media-planning.html#programmatic">How programmatic works</a>.</div>
+    <div><span class="ip-label">Measure by</span>Viewable impressions and conversions; use holdout tests, since click-through is weak.</div>
+    <div><span class="ip-label">Traditional cousin</span>Magazine, newspaper and billboard ad space.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     RETAIL MEDIA
+     ============================================================ -->
+<section class="section medium" id="retail">
+  <div class="sec-label">Retail Media</div>
+  <h2>Retail Media: Advertising at the Shelf</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>reaching shoppers who are already on a retailer&rsquo;s site or app, at the moment of purchase, with sales data to match. Sponsored product listings, banners and off-site ads built on the retailer&rsquo;s shopper data make it the closest advertising gets to the checkout.</p>
+
+  <p>eMarketer forecasts US retail media spending of roughly $70 billion in 2026, with Amazon and Walmart expected to take close to nine of every ten dollars. For a brand sold through those retailers, retail media is less an option than a cost of doing business, which is also the risk: concentration gives the retailer the power to set the price and to grade its own results.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Closest to purchase.</strong> Shoppers are already in a buying mood.</li>
+        <li><strong>First-party shopper data.</strong> Based on who actually bought, not guesses.</li>
+        <li><strong>Closed-loop measurement.</strong> Ad exposure tied to sales at the same retailer.</li>
+        <li><strong>On- and off-site.</strong> Extends from the retailer&rsquo;s pages to the wider web using its data.</li>
+        <li><strong>Directly tied to sell-through.</strong> Supports the products you need to move.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Concentration.</strong> Two companies dominate, and they set the terms.</li>
+        <li><strong>Self-reported results.</strong> The retailer sells the ad and measures it.</li>
+        <li><strong>Harvests, rarely builds.</strong> It captures existing demand and does little for brand-building.</li>
+        <li><strong>Rising auction costs.</strong> Competing brands bid on the same shelf position.</li>
+        <li><strong>Only where you sell.</strong> No value without distribution at that retailer.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Answer. Conversion at the point of sale.</div>
+    <div><span class="ip-label">Bought by</span>Retailer auction, cost per click or per thousand, within each retailer&rsquo;s system.</div>
+    <div><span class="ip-label">Measure by</span>Retailer-reported sales and ROAS, new-to-brand customers; verify with your own sales data.</div>
+    <div><span class="ip-label">Traditional cousin</span>In-store displays, shelf placement and trade promotion.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     EMAIL
+     ============================================================ -->
+<section class="section medium" id="email">
+  <div class="sec-label">Email &amp; Owned Channels</div>
+  <h2>Email and Owned Channels: The Cheapest Reach You Have</h2>
+
+  <p class="best-at"><span class="best-at-tag">Best at</span>talking to people who already know you. Email, and its relatives text messages and app notifications, is the main way to keep customers, bring them back and announce something to people who have given permission to hear from you. The list is an asset that you own, with no auction and no algorithm in between.</p>
+
+  <p>That is also the limit: email does not reach new people. Its job comes after the paid media in the plan has done its work, and it works best when other media are feeding the list.</p>
+
+  <div class="procon">
+    <div class="pc-card">
+      <h4>What it does well</h4>
+      <ul>
+        <li><strong>Very low cost per message.</strong> Often the best return in the plan.</li>
+        <li><strong>Personalized and segmented.</strong> By behavior, purchase history and stage.</li>
+        <li><strong>Highly testable.</strong> Subject lines, offers and timing are simple to test.</li>
+        <li><strong>Fast.</strong> Built and sent within hours.</li>
+        <li><strong>You own it.</strong> The list does not depend on a platform&rsquo;s rules.</li>
+      </ul>
+    </div>
+    <div class="pc-card cons">
+      <h4>Where it falls short</h4>
+      <ul>
+        <li><strong>Only as good as the list.</strong> It requires permission, and growing it takes effort.</li>
+        <li><strong>Inbox clutter and spam filters.</strong> Deliverability is a constant task.</li>
+        <li><strong>Unreliable open rates.</strong> Privacy features such as Apple&rsquo;s Mail Privacy Protection inflate opens; judge on clicks and conversions.</li>
+        <li><strong>Fatigue.</strong> Too many sends lead to unsubscribes.</li>
+        <li><strong>No new audiences.</strong> It reaches only those already on the list.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="in-plan">
+    <div><span class="ip-label">Usual job</span>Answer and retain. Loyalty, repeat purchase and win-back; lower funnel.</div>
+    <div><span class="ip-label">Bought by</span>A platform subscription or per-send fee; effectively owned cost.</div>
+    <div><span class="ip-label">Measure by</span>Click-through, conversions, revenue per send, unsubscribes (not opens).</div>
+    <div><span class="ip-label">Traditional cousin</span>Direct mail.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AT A GLANCE
+     ============================================================ -->
+<section class="section" id="at-a-glance">
+  <div class="sec-label">Compare</div>
+  <h2>Putting Them Side by Side</h2>
+
+  <p>These are a planner&rsquo;s rough rules of thumb, not measured data. More dots is better on every measure, including speed to market and measurability, and more dollar signs means more expensive. Digital measurability is high on paper, so the ratings here reflect how <em>trustworthy</em> the numbers are, not how many there are.</p>
+
+  <div class="glance-wrap">
+  <table class="glance">
+    <thead>
+      <tr><th>Medium</th><th>Strongest at</th><th>Reach</th><th>Targeting</th><th>Creative power</th><th>Cost to start</th><th>Speed to market</th><th>Measurability</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Search</strong></td><td>Capturing existing demand</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;<span class="dots-off">&#9679;&#9679;&#9679;&#9679;</span></span></td><td>$&ndash;$$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td></tr>
+      <tr><td><strong>Paid social</strong></td><td>Discovery at scale</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td>$&ndash;$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Online video / YouTube</strong></td><td>TV-style impact, digital targeting</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td>$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Creators / influencers</strong></td><td>Trust and native creative</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td>$$&ndash;$$$</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Audio / podcasts</strong></td><td>Screen-free moments</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Display / programmatic</strong></td><td>Wide reach and retargeting</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Retail media</strong></td><td>Reaching shoppers at the shelf</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td></tr>
+      <tr><td><strong>Email / owned</strong></td><td>Retention and win-back</td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td>$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="ask-box">
+    <h3>Four questions to ask before you buy any digital medium</h3>
+    <ol>
+      <li><strong>Is it reaching someone new, or someone who was already coming?</strong> Retargeting, brand search and retail media often take credit for sales that would have happened anyway.</li>
+      <li><strong>Who is counting, and who is grading?</strong> If the seller supplies both the audience and the results, find a second source.</li>
+      <li><strong>Where will it run, and next to what?</strong> Automation chooses placements for you. Check the report.</li>
+      <li><strong>What do the first three seconds look like?</strong> Sameness is the enemy. If your ad looks like everyone else&rsquo;s opening, the best targeting in the world will not stop a thumb.</li>
+    </ol>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li><strong>Search</strong>, <strong>retail media</strong> and <strong>email</strong> mostly <em>answer</em> demand that exists; <strong>social</strong>, <strong>video</strong>, <strong>audio</strong> and <strong>creators</strong> mostly <em>interrupt</em> and build it.</li>
+      <li><strong>Creators</strong> are creative partners and one part of a plan, valuable because they are not interchangeable. The spokesperson read and the template opening both fail the same way.</li>
+      <li><strong>Display</strong> and <strong>programmatic</strong> reward skepticism; check where ads ran and who saw them.</li>
+      <li>Digital gives you more numbers, not necessarily better proof. Plan a way to verify.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PREVIOUS-PAGE CARD
+     ============================================================ -->
+<nav class="unit-nav only-next">
+  <a href="media-planning-traditional.html" class="unit-nav-prev">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">Traditional Media: A Quick-Reference Guide</span>
+    <span class="unit-nav-tease">TV, radio, out-of-home, direct mail, magazines and newspapers, in the same format.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     SOURCES & GLOSSARY
+     ============================================================ -->
+<section class="section" id="sources">
+  <h2>Sources &amp; Glossary</h2>
+
+  <h3>Where This Came From</h3>
+
+  <p class="more-views-intro">The general pros and cons come from Belch, <em>Advertising and Promotion</em>, chapter 15 (the Internet and digital and social media), and Andrews, chapter 13, updated for the current market from the sources below. Digital changes quickly: treat the specifics as a 2026 snapshot.</p>
+
+  <div class="mv-item">
+    <div class="mv-source">eMarketer</div>
+    <div class="mv-title"><a href="https://www.emarketer.com/topics/category/authenticity" target="_blank" rel="noopener">Authenticity Trends &amp; Statistics</a></div>
+    <div class="mv-desc">A hub of eMarketer coverage, including the January 2026 finding that a majority of ad buyers planned to prioritize creator ads, with success tied to repeat partnerships with genuine advocates.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Open Influence</div>
+    <div class="mv-title"><a href="https://openinfluence.com/?p=31372" target="_blank" rel="noopener">Creators Establish a Beachhead at Cannes Lions 2026</a></div>
+    <div class="mv-desc">Industry notes from Cannes Lions on creators, AI-generated content and the renewed emphasis on authenticity.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Search Engine Journal</div>
+    <div class="mv-title"><a href="https://www.searchenginejournal.com/google-search-growth-slows-again-ai-mode/594862/" target="_blank" rel="noopener">Google Says Lower AI Mode Monetization Weighed on Search Growth</a></div>
+    <div class="mv-desc">Explains which campaign types are eligible for ads in AI Overviews and AI Mode, and that advertisers cannot target those placements separately.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Nielsen</div>
+    <div class="mv-title"><a href="https://www.nielsen.com/data-center/the-gauge/" target="_blank" rel="noopener">The Gauge: TV Viewing Trends in the U.S.</a></div>
+    <div class="mv-desc">Monthly share of US TV-screen time by platform, including YouTube. Measures total viewing, not ad-sales currency.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">eMarketer</div>
+    <div class="mv-title"><a href="https://www.emarketer.com/chart/c/354785/us-retail-media-ad-spending-will-near-70-billion-2026-354785" target="_blank" rel="noopener">US Retail Media Ad Spending Will Near $70 Billion in 2026</a></div>
+    <div class="mv-desc">The headline retail media forecast. Other forecasts differ by a few billion dollars depending on date and definition.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Course page</div>
+    <div class="mv-title"><a href="media-planning-traditional.html">Traditional Media: A Quick-Reference Guide</a></div>
+    <div class="mv-desc">The companion page, with the same card structure for TV, radio, out-of-home, direct mail, magazines and newspapers.</div>
+  </div>
+
+  <h3>Glossary</h3>
+
+  <dl class="glossary">
+    <dt>Intent</dt>
+    <dd>How close a person is to buying, as shown by what they are searching for or doing right now.</dd>
+
+    <dt>CPC / CPA</dt>
+    <dd>Cost per click and cost per acquisition: pricing or performance measures tied to a response instead of an impression.</dd>
+
+    <dt>ROAS</dt>
+    <dd>Return on ad spend: revenue attributed to the ads divided by what was spent on them.</dd>
+
+    <dt>Walled garden</dt>
+    <dd>A platform (such as Google, Meta or Amazon) that controls its own audience data and reports its own results, with little outside verification.</dd>
+
+    <dt>Retargeting</dt>
+    <dd>Showing ads to people who have already visited your site or interacted with your brand.</dd>
+
+    <dt>Lookalike audience</dt>
+    <dd>A group a platform builds of people who resemble your existing customers.</dd>
+
+    <dt>Partnership ad</dt>
+    <dd>A creator&rsquo;s post that a brand runs as a paid ad from the creator&rsquo;s handle, targeted and scaled with the brand&rsquo;s budget.</dd>
+
+    <dt>Creator vs. influencer</dt>
+    <dd>An influencer is typically bought for reach; a creator is a creative partner whose own voice and format carry the message.</dd>
+
+    <dt>Programmatic</dt>
+    <dd>Software-driven, real-time buying and selling of ad placements.</dd>
+
+    <dt>Viewability</dt>
+    <dd>Whether an ad had a real chance to be seen (for instance, on screen for a minimum time) rather than just served.</dd>
+
+    <dt>Retail media network</dt>
+    <dd>A retailer&rsquo;s advertising business, selling placements on and off its sites using shopper data.</dd>
+
+    <dt>Owned media</dt>
+    <dd>Channels a brand controls directly, such as its email list, website and app.</dd>
+
+    <dt>Incrementality</dt>
+    <dd>The sales or actions that happened because of the ad and would not have happened without it.</dd>
+  </dl>
+</section>
+
+</main>
+
+<!-- Site-wide scripts -->
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
