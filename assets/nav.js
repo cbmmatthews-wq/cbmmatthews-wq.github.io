@@ -142,6 +142,22 @@ const navConfig = {
               { label: 'Hooks & CTAs',      href: 'hooks-and-ctas.html',     muted: true, disabled: true },
               { label: 'Social Media Audit', href: 'social-media-audit.html', muted: true, disabled: true }
             ]
+          },
+          {
+            title: 'Media Planning',
+            items: [
+              { label: 'Media Planning Basics', href: 'media-planning.html' },
+              { separator: true, dashed: true },
+              // Traditional and Digital pages are not built yet: muted + disabled.
+              // Remove `muted` and `disabled` on each as its page goes live.
+              { label: 'Traditional Media',     href: 'media-planning-traditional.html', muted: true, disabled: true },
+              { label: 'Digital Media',         href: 'media-planning-digital.html',     muted: true, disabled: true },
+              { separator: true, dashed: true },
+              // Future "think about this" pages
+              { label: 'CTV',                   href: 'media-planning-ctv.html',         muted: true, disabled: true },
+              { label: 'Email',                 href: 'media-planning-email.html',       muted: true, disabled: true },
+              { label: 'Geolocation',           href: 'media-planning-geo.html',         muted: true, disabled: true }
+            ]
           }
         ]
       }
@@ -202,8 +218,10 @@ const navConfig = {
           : `<ul class="topnav-megamenu-list">${
               col.items.map(sub => {
                 // A horizontal rule between groups of items.
+                // Add `dashed: true` to a separator for a dashed rule instead of a solid one.
                 if (sub.separator) {
-                  return '<li aria-hidden="true" style="border-top:1px solid var(--rule);margin:7px 0 6px;"></li>';
+                  const ruleStyle = sub.dashed ? '1px dashed var(--muted)' : '1px solid var(--rule)';
+                  return `<li aria-hidden="true" style="border-top:${ruleStyle};margin:7px 0 6px;"></li>`;
                 }
                 // Muted items render grey and italic (companion readings).
                 const mutedStyle = sub.muted ? 'font-style:italic;color:var(--muted);' : '';
@@ -226,7 +244,7 @@ const navConfig = {
 
       return `<li class="topnav-item">
         <a href="#" class="topnav-link has-dropdown" onclick="return false;">${item.label}</a>
-        <div class="topnav-megamenu">${colsHTML}</div>
+        <div class="topnav-megamenu${item.megaMenu.columns.length > 4 ? ' cols-' + item.megaMenu.columns.length : ''}">${colsHTML}</div>
       </li>`;
     }
 

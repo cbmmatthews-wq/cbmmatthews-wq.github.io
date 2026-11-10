@@ -41,8 +41,8 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.50;
+  font-size: 18px;
+  line-height: 1.62;
   color: var(--ink-soft);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
@@ -326,7 +326,7 @@ body {
 }
 .page-hero .lede {
   margin-top: 18px;
-  font-size: 18px;
+  font-size: 21px;
   line-height: 1.55;
   color: var(--ink-soft);
   max-width: 720px;
@@ -414,7 +414,7 @@ body {
 }
 .section h2 {
   font-family: var(--serif);
-  font-size: clamp(24px, 3vw, 34px);
+  font-size: clamp(26px, 3vw, 34px);
   font-weight: 700;
   line-height: 1.2;
   color: var(--ink);
@@ -423,14 +423,14 @@ body {
 }
 .section h3 {
   font-family: var(--serif);
-  font-size: 21px;
+  font-size: 23px;
   font-weight: 700;
   color: var(--ink);
   margin: 24px 0 8px;
 }
 .section h4 {
   font-family: var(--sans);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -640,7 +640,7 @@ a.ac-cta:hover {
 }
 .sidebar-card h3 {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 24px;
   color: var(--white);
   margin-bottom: 4px;
 }
@@ -979,15 +979,15 @@ pre.ascii-figure {
   font-family: var(--serif);
   font-weight: 700;
   color: var(--red);
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 18px;
 }
 .glossary dt:first-child { margin-top: 0; }
 .glossary dd {
   margin: 4px 0 0 0;
-  font-size: 14.5px;
+  font-size: 16px;
   color: var(--ink-soft);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .glossary dd em { font-style: italic; }
 .glossary dd strong { color: var(--ink); }
@@ -1042,7 +1042,7 @@ pre.ascii-figure {
   padding: 0 var(--content-padding) 100px;
 }
 .home-intro p {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
   margin-bottom: 16px;
   color: var(--ink-soft);
@@ -1051,7 +1051,7 @@ pre.ascii-figure {
   margin-top: 30px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 19px;
+  font-size: 21px;
   color: var(--red);
   text-align: right;
 }
@@ -1142,7 +1142,7 @@ pre.ascii-figure {
    sub-section within the same dark card (e.g., "Even More Nike Slogans"). */
 .sidebar-sub-heading {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 700;
   color: var(--white);
   margin: 26px 0 12px;
@@ -1360,7 +1360,7 @@ pre.ascii-figure {
    Source-led, title-as-link layout. Thin rules separate items.
    ========================================================================== */
 .more-views-intro {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink-soft);
   max-width: 760px;
@@ -1410,7 +1410,7 @@ pre.ascii-figure {
    ========================================================================== */
 @media (max-width: 768px) {
   :root { --content-padding: 20px; --topnav-height: 42px; }
-  body { font-size: 15px; }
+  body { font-size: 16px; }
   .topnav-brand { font-size: 14px; }
   .topnav-link { padding: 0 10px; font-size: 11px; }
   .topnav-dropdown { right: -10px; min-width: 240px; }
@@ -1817,7 +1817,7 @@ pre.ascii-figure {
 .scenario-prompt {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--ink);
   line-height: 1.45;
   margin-bottom: 14px;
@@ -1914,4 +1914,32 @@ pre.ascii-figure {
   .section table.jobs-table th,
   .section table.jobs-table td { padding: 9px 10px; }
   .section table.jobs-table td:first-child { font-size: 13px; }
+}
+
+/* ==========================================================================
+   MEGA MENU — five-column variant (Resources, once Media Planning is added)
+   nav.js adds the class `cols-5` automatically when a mega menu has 5 columns.
+   Four-column menus (Quick Hits / Examples has 3) are unaffected.
+   The five-column menu centers itself under the nav bar so it never runs off
+   the left edge of a laptop-width window.
+   ========================================================================== */
+.topnav-megamenu.cols-5 {
+  position: fixed;
+  top: var(--topnav-height);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(1100px, 96vw);
+  grid-template-columns: repeat(5, 1fr);
+}
+@media (max-width: 900px) {
+  /* match the existing mobile behavior: single stacked column */
+  .topnav-megamenu.cols-5 {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: none;
+    width: 100vw;
+    grid-template-columns: 1fr;
+  }
 }
