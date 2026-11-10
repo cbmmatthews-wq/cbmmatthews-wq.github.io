@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Planning Basics — cbmatthe</title>
+<meta name="description" content="A media plan is a set of decisions about which audience, which objective, which window and how much money. The basics: journey, targeting, objectives and the 60/40 budget split, reach and frequency, scheduling, cost and buying, and how to read a plan.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for Media Planning Basics — kept here rather than touching shared styles.css */
+
+  /* ---------- Journey map figure ---------- */
+  .journey-fig { background: var(--white); padding: 20px 18px 14px; margin: 28px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .journey-scroll { overflow-x: auto; }
+  .journey-svg { display: block; width: 100%; min-width: 720px; height: auto; overflow: visible; }
+  .jm-head  { font: 700 17px var(--sans); fill: var(--ink); }
+  .jm-stage { font: 700 17px var(--sans); fill: #fff; }
+  .jm-lab, .jm-leg { font: 400 14px var(--sans); fill: #3a3632; }
+  .journey-fig figcaption { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: 10px; }
+
+  /* ---------- Two-jobs cards (interrupt vs answer) ---------- */
+  .two-jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .job-card { background: var(--white); border-top: 4px solid var(--red); padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .job-card.answer { border-top-color: var(--blue); }
+  .job-card h4 { font-family: var(--serif); font-size: 19px; color: var(--ink); margin-bottom: 4px; }
+  .job-card .job-sub { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .job-card ul { font-size: 15px; padding-left: 18px; margin: 0; }
+  .job-card li { margin-bottom: 4px; }
+
+  /* ---------- Worked-example box ---------- */
+  .calc { background: var(--cream); border-left: 4px solid var(--blue); padding: 18px 24px; margin: 22px 0; max-width: 820px; }
+  .calc-label { font-family: var(--serif); font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 8px; }
+  .calc p { font-size: 16px; margin-bottom: 8px; }
+  .calc .eq { font-family: var(--serif); font-size: 17px; color: var(--ink); background: var(--white); padding: 8px 14px; display: inline-block; margin: 4px 0 10px; }
+
+  /* ---------- Exposure matrix ---------- */
+  .exposure-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin: 16px 0 6px; max-width: 820px; }
+  .ex-cell { background: var(--white); text-align: center; padding: 8px 0 6px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border-bottom: 3px solid var(--rule); }
+  .ex-cell .who { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
+  .ex-cell .n { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+  .ex-cell.zero { background: var(--cream); } .ex-cell.zero .n { color: var(--muted); }
+  .ex-cell.eff { border-bottom-color: var(--red); }
+
+  /* ---------- Same GRPs, two shapes ---------- */
+  .rf-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; max-width: 820px; }
+  .rf-card { background: var(--white); padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .rf-card h4 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: 10px; }
+  .rf-row { display: flex; align-items: center; gap: 10px; font-size: 13px; margin: 6px 0; }
+  .rf-row .lbl { width: 78px; color: var(--muted); }
+  .rf-track { flex: 1; background: var(--cream); height: 16px; position: relative; }
+  .rf-fill { height: 100%; background: var(--red); }
+  .rf-fill.blue { background: var(--blue); }
+  .rf-row .val { width: 54px; text-align: right; font-weight: 700; color: var(--ink); }
+
+  /* ---------- Budget split bar ---------- */
+  .split-bar { display: flex; height: 64px; margin: 18px 0 6px; max-width: 820px; font-family: var(--serif); color: #fff; }
+  .split-bar > div { display: flex; flex-direction: column; justify-content: center; padding: 0 18px; }
+  .split-bar .brand { background: var(--red); width: 60%; }
+  .split-bar .perf  { background: var(--blue); width: 40%; }
+  .split-bar b { font-size: 22px; line-height: 1.1; }
+  .split-bar span { font-family: var(--sans); font-size: 13px; opacity: .92; }
+  .split-note { font-size: 13px; color: var(--muted); max-width: 820px; margin-bottom: 18px; }
+
+  /* ---------- Scheduling shapes ---------- */
+  .sched { background: var(--white); padding: 20px 22px 14px; margin: 24px 0; max-width: 820px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .sched-row { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: end; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .sched-row:last-of-type { border-bottom: none; }
+  .sched-name { font-family: var(--serif); font-weight: 700; color: var(--ink); font-size: 16px; align-self: center; }
+  .sched-name small { display: block; font-family: var(--sans); font-weight: 400; font-size: 12px; color: var(--muted); }
+  .sched-bars { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; height: 70px; align-items: end; }
+  .sched-bars i { display: block; background: var(--red); min-height: 2px; }
+  .sched-bars i.off { background: var(--rule); height: 2px !important; }
+  .sched-months { display: grid; grid-template-columns: 110px 1fr; gap: 14px; margin-top: 4px; }
+  .sched-months div:last-child { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; font-size: 11px; text-align: center; color: var(--muted); }
+
+  /* ---------- National / Spot / CTV ---------- */
+  .buy-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+  .buy-card { background: var(--white); border-top: 4px solid var(--ink); padding: 18px 18px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .buy-card.ctv { border-top-color: var(--red); }
+  .buy-card h4 { font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 2px; }
+  .buy-card .buy-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .buy-card p { font-size: 14.5px; line-height: 1.5; margin-bottom: 8px; }
+
+  /* ---------- Plan flowchart ---------- */
+  .plan { background: var(--white); margin: 24px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow-x: auto; }
+  .plan-grid { display: grid; grid-template-columns: 190px 78px repeat(4, minmax(70px, 1fr)); min-width: 640px; font-size: 14px; }
+  .plan-grid > div { padding: 9px 10px; border-bottom: 1px solid var(--rule); display: flex; align-items: center; }
+  .plan-grid .hd { background: var(--ink); color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border-bottom: none; }
+  .plan-grid .grp { grid-column: 1 / -1; background: var(--cream); font-family: var(--serif); font-weight: 700; color: var(--ink); font-size: 14px; }
+  .plan-grid .grp small { font-family: var(--sans); font-weight: 400; color: var(--muted); margin-left: 10px; font-size: 12px; }
+  .plan-grid .amt { justify-content: flex-end; color: var(--muted); font-size: 13px; }
+  .plan-grid .cell { padding: 0; border-left: 1px solid var(--rule); }
+  .plan-grid .cell span { display: block; width: 100%; height: 100%; min-height: 38px; }
+  .plan-grid .a1 { background: #e7c3b9; } .plan-grid .a2 { background: #d4917f; } .plan-grid .a3 { background: #BC5A44; }
+  .plan-grid .p1 { background: #c3d1de; } .plan-grid .p2 { background: #8fa9c0; } .plan-grid .p3 { background: #4D7090; }
+  .plan-grid .o1 { background: repeating-linear-gradient(45deg, #ede8e0, #ede8e0 5px, #fff 5px, #fff 10px); }
+  .plan-grid .tot { background: var(--cream); font-weight: 700; color: var(--ink); }
+  .plan-key { font-size: 13px; color: var(--muted); padding: 10px 12px 12px; }
+
+  /* ---------- Next-page cards ---------- */
+  .unit-nav.two-next { grid-template-columns: 1fr 1fr; }
+  .unit-nav.two-next a { text-align: left; }
+
+  @media (max-width: 760px) {
+    .two-jobs, .rf-compare, .buy-trio, .unit-nav.two-next { grid-template-columns: 1fr; }
+    .exposure-grid { grid-template-columns: repeat(5, 1fr); }
+    .sched-row, .sched-months { grid-template-columns: 1fr; }
+    .sched-months div:first-child { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Media Planning</div>
+    <h1>Media Planning Basics</h1>
+    <p class="lede">A media plan is not a budget split into equal slices. It is a set of decisions about which audience, doing what, in which window, for how much money, and with what job for each dollar to do.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#what-is-a-plan">The Plan</a>
+    <a href="#who-and-where">Who &amp; Where</a>
+    <a href="#objectives-budget">Objectives &amp; Budget</a>
+    <a href="#reach-frequency">Reach &amp; Frequency</a>
+    <a href="#scheduling">Scheduling</a>
+    <a href="#cost-buying">Cost &amp; Buying</a>
+    <a href="#reading-a-plan">Reading a Plan</a>
+    <a href="#more-and-glossary">More Views</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     01 — WHAT A MEDIA PLAN IS
+     ============================================================ -->
+<section class="section" id="what-is-a-plan">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The Plan</div>
+  <h2>A Plan Is a Set of Decisions, Not a Spreadsheet</h2>
+
+  <p>Imagine a brand with $60,000 for the next four weeks and a media &ldquo;plan&rdquo; that looks like this: ten percent to Instagram, ten percent to YouTube, ten percent to search, ten percent to radio, ten percent to a billboard, and so on down the list. Every channel gets a slice. Nobody argued with anybody. The spreadsheet balances.</p>
+
+  <p>It is also not a plan. It does not say who the money is trying to reach, what it is supposed to make them do, whether those people have ever heard of the brand, or what happens in week three. It is an allocation. A media plan is the reasoning that comes <em>before</em> the allocation, and the allocation is whatever falls out of the reasoning.</p>
+
+  <p>This page covers that reasoning in seven short sections: the framing, the audience, the objectives and the budget split behind them, how much reach and frequency you need, how to schedule it, what it costs and how it is bought, and how to read a finished plan. Read it in order. It runs about thirty-five minutes.</p>
+
+  <h3>1.1 Plan vs. Buy</h3>
+
+  <p><strong>Media planning</strong> decides what the media has to accomplish, for whom, when, and with how much money. <strong>Media buying</strong> is carrying it out: negotiating rates, placing orders, setting up campaigns, pacing spend, and trading out underperformers. Agencies traditionally separate the two roles, and large advertisers sometimes unbundle media from creative altogether.</p>
+
+  <p>The distinction matters more now, not less, because the buying half is being automated. Ad platforms increasingly ask you for a goal, a budget, an audience and some creative, and then place the ads themselves. That makes the planning half the part a human still has to do well. A machine can pace a budget. It cannot tell you that the budget is pointed at the wrong audience.</p>
+
+  <h3>1.2 Medium, Vehicle, Platform</h3>
+
+  <p>Three words get used loosely, and the plan falls apart when they blur together.</p>
+
+  <ul>
+    <li>A <strong>medium</strong> is the general category of delivery system: television, audio, social video, search, out-of-home, email.</li>
+    <li>A <strong>vehicle</strong> is the specific carrier inside it: a particular show, a particular podcast, a particular magazine, a particular creator&rsquo;s channel.</li>
+    <li>A <strong>platform</strong> is the system that sells you access: YouTube, Instagram, Roku, Spotify, Amazon.</li>
+  </ul>
+
+  <p>Belch&rsquo;s textbook example captures the nesting: in social media, user-generated video is a medium, YouTube is a platform, and a particular creator&rsquo;s channel is a channel. A good plan makes the choice at each level in order. Do we want video? Where do we buy it? Next to which content, in front of which audience? Choosing &ldquo;Instagram&rdquo; is not a media decision. It is a platform decision made before the earlier two.</p>
+
+  <h3>1.3 Start With the Journey, Not the Channel List</h3>
+
+  <p>The most useful first step in planning is to stop looking at channels and look at the customer. A customer journey map is a diagram of every place a customer comes into contact with the brand, online or off. It is the same idea as the touch-points framework on <a href="touch-points.html">the Touch Points page</a>, laid out in time. Here is one, redrawn for this unit.</p>
+
+  <figure class="journey-fig">
+    <div class="journey-scroll">
+<svg class="journey-svg" viewBox="0 0 970 468" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="jm-title jm-desc">
+<title id="jm-title">Customer journey map with digital and physical touchpoints</title>
+<desc id="jm-desc">Five journey stages (awareness, consideration, purchase, service, loyalty) run left to right. A dashed line weaves above the band for digital touchpoints and below it for physical touchpoints. Solid dots are managed touchpoints; hatched dots are unmanaged touchpoints the brand does not control.</desc>
+<defs>
+<pattern id="hatch0" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#BC5A44" stroke-width="2.4"/></pattern>
+<pattern id="hatch1" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#D9893A" stroke-width="2.4"/></pattern>
+<pattern id="hatch2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#5E8C5A" stroke-width="2.4"/></pattern>
+<pattern id="hatch3" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#4A9BBF" stroke-width="2.4"/></pattern>
+<pattern id="hatch4" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#3F6A9A" stroke-width="2.4"/></pattern>
+<pattern id="hatchK" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#fff"/><line x1="0" y1="0" x2="0" y2="5" stroke="#2A2420" stroke-width="2.4"/></pattern>
+</defs>
+<text class="jm-head" x="485" y="24" text-anchor="middle">Digital touchpoints</text>
+<g transform="translate(0,-90)">
+<path d="M0,350 C5.2,355.3 16.0,373.2 31,382 C46.0,390.8 72.5,406.2 90,403 C107.5,399.8 125.2,389.5 136,363 C146.8,336.5 148.3,271.0 155,244 C161.7,217.0 167.3,213.7 176,201 C184.7,188.3 195.0,176.3 207,168 C219.0,159.7 234.3,152.3 248,151 C261.7,149.7 276.8,152.8 289,160 C301.2,167.2 313.0,180.8 321,194 C329.0,207.2 331.2,213.3 337,239 C342.8,264.7 341.2,322.7 356,348 C370.8,373.3 405.3,391.3 426,391 C446.7,390.7 463.3,376.0 480,346 C496.7,316.0 501.7,238.7 526,211 C550.3,183.3 604.0,176.8 626,180 C648.0,183.2 644.3,200.5 658,230 C671.7,259.5 680.5,335.2 708,357 C735.5,378.8 795.7,380.3 823,361 C850.3,341.7 859.2,267.5 872,241 C884.8,214.5 888.5,213.8 900,202 C911.5,190.2 929.3,178.3 941,170 C952.7,161.7 965.2,155.0 970,152" fill="none" stroke="#8d8782" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+<polygon points="4,272 194,272 212,297.0 194,322 4,322" fill="#BC5A44"/>
+<text class="jm-stage" x="108.0" y="303.0" text-anchor="middle">awareness</text>
+<polygon points="197,272 384,272 402,297.0 384,322 197,322 215,297.0" fill="#D9893A"/>
+<text class="jm-stage" x="305.5" y="303.0" text-anchor="middle">consideration</text>
+<polygon points="387,272 570,272 588,297.0 570,322 387,322 405,297.0" fill="#5E8C5A"/>
+<text class="jm-stage" x="493.5" y="303.0" text-anchor="middle">purchase</text>
+<polygon points="573,272 760,272 778,297.0 760,322 573,322 591,297.0" fill="#4A9BBF"/>
+<text class="jm-stage" x="681.5" y="303.0" text-anchor="middle">service</text>
+<polygon points="763,272 947,272 965,297.0 947,322 763,322 781,297.0" fill="#3F6A9A"/>
+<text class="jm-stage" x="870.0" y="303.0" text-anchor="middle">loyalty</text>
+<circle cx="31" cy="382" r="10.5" fill="url(#hatch0)" stroke="#BC5A44" stroke-width="1.6"/>
+<text class="jm-lab" x="31" y="412" text-anchor="middle">PR</text>
+<circle cx="90" cy="403" r="11" fill="#BC5A44"/>
+<text class="jm-lab" x="82" y="430" text-anchor="start"><tspan x="82" dy="0">Radio</tspan><tspan x="82" dy="17">TV</tspan><tspan x="82" dy="17">Print</tspan><tspan x="82" dy="17">Outdoor</tspan></text>
+<circle cx="136" cy="363" r="10.5" fill="url(#hatch0)" stroke="#BC5A44" stroke-width="1.6"/>
+<text class="jm-lab" x="152" y="371" text-anchor="start">Word of Mouth</text>
+<circle cx="155" cy="244" r="11" fill="#BC5A44"/>
+<text class="jm-lab" x="139" y="249" text-anchor="end">Online Ads</text>
+<circle cx="176" cy="201" r="10.5" fill="url(#hatch0)" stroke="#BC5A44" stroke-width="1.6"/>
+<text class="jm-lab" x="160" y="206" text-anchor="end">Viral Email</text>
+<circle cx="207" cy="168" r="11" fill="#D9893A"/>
+<text class="jm-lab" x="191" y="173" text-anchor="end">Digital Billboard</text>
+<circle cx="248" cy="151" r="11" fill="#D9893A"/>
+<text class="jm-lab" x="248" y="127" text-anchor="middle">Search</text>
+<circle cx="289" cy="160" r="11" fill="#D9893A"/>
+<text class="jm-lab" x="305" y="157" text-anchor="start">Landing Page</text>
+<circle cx="321" cy="194" r="10.5" fill="url(#hatch1)" stroke="#D9893A" stroke-width="1.6"/>
+<text class="jm-lab" x="337" y="197" text-anchor="start">Blog</text>
+<circle cx="337" cy="239" r="10.5" fill="url(#hatch1)" stroke="#D9893A" stroke-width="1.6"/>
+<text class="jm-lab" x="353" y="241" text-anchor="start">3rd Party Sites</text>
+<circle cx="356" cy="348" r="11" fill="#D9893A"/>
+<text class="jm-lab" x="340" y="353" text-anchor="end">Direct Mail</text>
+<circle cx="426" cy="391" r="11" fill="#5E8C5A"/>
+<text class="jm-lab" x="436" y="414" text-anchor="start">Store</text>
+<circle cx="480" cy="346" r="11" fill="#5E8C5A"/>
+<text class="jm-lab" x="496" y="350" text-anchor="start">Call Center</text>
+<circle cx="526" cy="211" r="11" fill="#5E8C5A"/>
+<text class="jm-lab" x="510" y="215" text-anchor="end">Website</text>
+<circle cx="626" cy="180" r="11" fill="#4A9BBF"/>
+<text class="jm-lab" x="642" y="178" text-anchor="start">Mobile</text>
+<circle cx="658" cy="230" r="11" fill="#4A9BBF"/>
+<text class="jm-lab" x="674" y="232" text-anchor="start">IM/Chat</text>
+<circle cx="708" cy="357" r="11" fill="#4A9BBF"/>
+<text class="jm-lab" x="692" y="362" text-anchor="end">Call Center IVR</text>
+<circle cx="823" cy="361" r="11" fill="#3F6A9A"/>
+<text class="jm-lab" x="823" y="392" text-anchor="middle">Promotion on Invoice</text>
+<circle cx="872" cy="241" r="10.5" fill="url(#hatch4)" stroke="#3F6A9A" stroke-width="1.6"/>
+<text class="jm-lab" x="856" y="244" text-anchor="end">Blog</text>
+<circle cx="900" cy="202" r="11" fill="#3F6A9A"/>
+<text class="jm-lab" x="884" y="203" text-anchor="end">Email</text>
+<circle cx="941" cy="170" r="11" fill="#3F6A9A"/>
+<text class="jm-lab" x="925" y="168" text-anchor="end">Newsletter</text>
+</g>
+<text class="jm-head" x="485" y="440" text-anchor="middle">Physical touchpoints</text>
+<g transform="translate(700,402)"><rect x="0" y="0" width="262" height="58" fill="#fff" stroke="#d6cfc4"/>
+<circle cx="24" cy="29" r="10" fill="#2A2420"/><text class="jm-leg" x="42" y="34">Managed</text>
+<circle cx="138" cy="29" r="10" fill="url(#hatchK)" stroke="#2A2420" stroke-width="1.6"/><text class="jm-leg" x="156" y="34">Unmanaged</text></g>
+</svg>
+    </div>
+    <figcaption><strong>Figure 1.1 &mdash; A customer journey map.</strong> The journey runs left to right. Digital touchpoints weave above the band, physical ones below. Solid dots are <em>managed</em> touchpoints the brand creates and controls; hatched dots are <em>unmanaged</em>: word of mouth, PR, a blog post, a third-party site.</figcaption>
+  </figure>
+
+  <p>Look at what the map makes you see that a channel list hides. The hatched dots, the ones the brand does not control, cluster at the top of the journey, and they are doing real work. The paid dots are sprinkled across every stage. The purchase stage is physical <em>and</em> digital. And the loyalty stage, the place where most media plans stop paying attention, is full of cheap, owned touchpoints that quietly decide whether a customer buys again.</p>
+
+  <p>Consultants have been making this argument for years. McKinsey&rsquo;s version: as touchpoints multiply across technologies and channels, consistency stops being optional.</p>
+  <!-- OPTIONAL: the full McKinsey and Gartner quotes are in the InMoment article (inmoment.com/blog/the-customer-journey-mapping-examples/). Paste longer versions into the two pullquotes below if you prefer. -->
+
+  <div class="pullquote">
+    <div class="pullquote-text">&ldquo;The need to create a consistent experience is critically important.&rdquo;</div>
+    <div class="pullquote-attr">McKinsey &amp; Company, on the growing number of customer touchpoints</div>
+  </div>
+
+  <p>The same research made a sharper point for planners. McKinsey found that how a company performs across a whole <em>journey</em> predicts customer satisfaction about 35 percent better, and churn about 32 percent better, than how it performs at any single touchpoint. For a media plan that translates plainly: a plan that optimizes each channel separately will beat a plan that does not, but a plan built around the journey will beat both. A strong ad that sends people to a confusing landing page is a weak plan.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Customer experience is &ldquo;the only truly durable competitive advantage.&rdquo;</div>
+    <div class="pullquote-attr">Jake Sorofman, Research VP, Gartner</div>
+  </div>
+
+  <p>One practical consequence. The InMoment guide that popularized this map points out that each customer segment usually has a <em>different</em> journey, which means a brand with more than one audience really has more than one map. That is the connection to everything that follows. The map shows <em>where</em> the brand can show up. The audience and the objective decide which of those places are worth paying for.</p>
+
+  <h3>1.4 Two Different Jobs: Interrupt and Answer</h3>
+
+  <p>Once you see the journey, you notice that paid media is doing two quite different jobs, and a plan that confuses them wastes money in both directions.</p>
+
+  <div class="two-jobs">
+    <div class="job-card">
+      <h4>Interrupt</h4>
+      <div class="job-sub">Reach people who are not looking for you</div>
+      <ul>
+        <li>Streaming and linear TV, short-form video, audio, out-of-home, display</li>
+        <li>The audience is in the middle of something else, so you earn attention</li>
+        <li>Builds awareness and mental availability for people who are not yet in the market</li>
+        <li>Judged by reach, recall, brand lift, and later demand</li>
+      </ul>
+    </div>
+    <div class="job-card answer">
+      <h4>Answer</h4>
+      <div class="job-sub">Be there when someone is already asking</div>
+      <ul>
+        <li>Search, retail media, marketplace listings, email, reviews</li>
+        <li>The audience has a need and is looking, so you earn the click</li>
+        <li>Captures demand that already exists, mostly created by something else</li>
+        <li>Judged by conversions, cost per acquisition, return on ad spend</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Interruption is not a dirty word. Someone who has never heard of your brand will never search for it. Someone who sees your search ad is, in most cases, already a customer of somebody. Interruption creates the pool of people who later search. Answering harvests it. A plan that only does the second is fishing in a shrinking pond, which is the argument in the <a href="brand-vs-performance.html">Brand vs. Performance page</a>, and we will put numbers on it in section 3.</p>
+
+  <p>Put together: a media plan is <strong>objectives &times; audiences &times; time</strong>. In a four-week window, you might need awareness from one group while you need conversions from another. You might need to push the first group into the second. The money follows those jobs, not a list of channels.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>A media plan is the reasoning <em>before</em> the allocation. Equal slices are not a strategy.</li>
+      <li>Planning decides what the media must do; buying executes. Automation is eating the buying, not the planning.</li>
+      <li>Medium &rarr; platform &rarr; vehicle: decide at each level, in order.</li>
+      <li>Start from the journey. Different audiences have different journeys, and paid media has two jobs: <strong>interrupt</strong> and <strong>answer</strong>.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     02 — WHO AND WHERE
+     ============================================================ -->
+<section class="section" id="who-and-where">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Who &amp; Where</div>
+  <h2>The Audience Decides the Media</h2>
+
+  <p>If the previous section is the frame, this one is the first real input. You cannot choose media until you know who it has to reach, and the media planner&rsquo;s version of that question is more specific than the marketer&rsquo;s. <a href="unit-3-stp.html">The STP unit</a> covers how a brand chooses a target. Here the question is: <em>how do we find and reach those people through media we can actually buy?</em></p>
+
+  <h3>2.1 Behavior First</h3>
+
+  <p>Planners describe audiences in four ways: by behavior, by geography, by demographics, and by psychographics (lifestyle and attitude). The order matters. What people <em>do</em> is the best predictor of what they will do next, so buying behavior, product usage and media habits are the most useful basis for a media target when you can get them. Geography, age and income are usually layered on afterward to make the target buyable.</p>
+
+  <p>The classic example is an &ldquo;adults 25&ndash;54&rdquo; target. It is easy to buy and easy to measure. It is also a description of about half the country, most of whom have no interest in your category. A behavioral version &mdash; people who bought in the category in the last year, who watch a certain kind of content, who searched for a competitor last month &mdash; is smaller and sharper. The plan then asks which media reach that group <em>efficiently</em>, instead of which media reach a large group.</p>
+
+  <p>One refinement from the <a href="context-2-growth.html">Growth page</a>: audience temperature. A cold audience has never met the brand. A warm audience knows it. A hot audience is ready to buy. A single plan usually has to speak to all three, and they need different messages and different media.</p>
+
+  <h3>2.2 Reading an Index</h3>
+
+  <p>Media planners rarely work from raw counts. They work from indexes, usually from syndicated research such as MRI-Simmons, which surveys consumers on the products they use and the media they consume and lets a planner profile any group. The index compares a segment&rsquo;s share of product users to its share of the population:</p>
+
+  <div class="calc">
+    <div class="calc-label">How an index works</div>
+    <div class="eq">Index = (% of users in the segment &divide; % of the population in the segment) &times; 100</div>
+    <p>An index of 100 means average. Above 100 means the segment uses the product more than its size would predict.</p>
+    <p><strong>Example.</strong> Adults 18&ndash;24 are 8% of the adult population but 14% of a product&rsquo;s buyers: index 175. Adults 35&ndash;54 are 34% of the population and 37% of buyers: index 109.</p>
+  </div>
+
+  <p>The trap is in the example. The 18&ndash;24 segment has the sexier index, but only 14 percent of buyers. A plan aimed at it alone ignores 86 percent of the people who buy. A high index can simply mean a small denominator. Use the index to find where your product over-performs, and use the share numbers to check that the group is big enough to matter.</p>
+
+  <p>The same logic picks media. If runners index well above 100 on one cable sports network and well below 100 on an outdoor-lifestyle channel, a running-shoe plan buys the first and skips the second. The index is the tool for matching a target to a vehicle.</p>
+
+  <h3>2.3 Where: Weight the Map</h3>
+
+  <p>Geography is the other half of the question, and it comes down to weight: where to put more money, and where to put less. Two simple indexes help. The <strong>brand development index (BDI)</strong> compares the share of a brand&rsquo;s sales in a market to that market&rsquo;s share of the population. The <strong>category development index (CDI)</strong> does the same for the whole product category. Read them together:</p>
+
+  <table>
+    <thead><tr><th></th><th>High BDI (brand strong here)</th><th>Low BDI (brand weak here)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>High CDI</strong> (category strong)</td><td>Strong on both. Defend and grow share.</td><td>The category is thriving and the brand is not. Find out why before you spend; this is where the opportunity is.</td></tr>
+      <tr><td><strong>Low CDI</strong> (category weak)</td><td>The brand is winning in a small pond. Maintain and watch for decline.</td><td>Weak category, weak brand. Probably the wrong place to spend.</td></tr>
+    </tbody>
+  </table>
+
+  <p>These are useful as a first screen, not a finished answer, since a low BDI can mean the brand is not being supported there <em>or</em> that it has not found its customer. Geography also matters for a more practical reason: it decides what you can buy. A local radio station, a billboard, a regional streaming buy, and a ZIP-targeted social campaign are all geographic decisions, and in digital the unit of geography has shrunk from &ldquo;market&rdquo; to something like &ldquo;people within a few miles of a store.&rdquo;</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Describe the audience by <strong>behavior</strong> first; layer geography, demographics and psychographics on top.</li>
+      <li>An index shows over- and under-use. Always check it against group size before you target on it.</li>
+      <li>BDI and CDI help decide <strong>where</strong> to weight spend: high-category, low-brand markets deserve a hard look.</li>
+      <li>Most plans serve cold, warm and hot audiences at once. Name them separately.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     03 — OBJECTIVES AND BUDGET
+     ============================================================ -->
+<section class="section" id="objectives-budget">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Objectives &amp; Budget</div>
+  <h2>What the Money Is For, and How Much of It</h2>
+
+  <p>This is the section the rest of the page hangs on. Every later decision, including how much reach you need, how long to run and what to pay, depends on what job you have given the money.</p>
+
+  <h3>3.1 From Marketing Objectives to Media Objectives</h3>
+
+  <p>A <strong>media objective</strong> is a goal that media, and only media, can accomplish. It is the marketing objective translated into something a plan can deliver. &ldquo;Grow share by two points&rdquo; is a marketing objective. &ldquo;Reach 70 percent of lapsed buyers at least three times in four weeks&rdquo; is a media objective. The second one can be checked after the fact, and the first cannot, at least not by the media alone.</p>
+
+  <p>The <a href="funnel.html">funnel</a> is the quickest way to match objective to job. Early stages call for reach, because people cannot buy a brand they have never heard of. Middle stages call for repetition and relevance. Late stages call for presence at the moment of choice. Notice that each stage needs a different audience, a different message and a different measure of success. Planners tend to describe the work using six dials, which come back through the rest of this page:</p>
+
+  <table>
+    <thead><tr><th>Dial</th><th>The question it answers</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Reach</strong></td><td>How many different people in the target see it at least once?</td></tr>
+      <tr><td><strong>Frequency</strong></td><td>How many times, on average, do the people we reach see it?</td></tr>
+      <tr><td><strong>Weight</strong></td><td>How much total advertising volume is that?</td></tr>
+      <tr><td><strong>Continuity</strong></td><td>Over what period, and in what pattern?</td></tr>
+      <tr><td><strong>Recency</strong></td><td>How close to the buying decision does it land?</td></tr>
+      <tr><td><strong>Cost</strong></td><td>What is the efficient way to do all of the above?</td></tr>
+    </tbody>
+  </table>
+
+  <p>They pull against each other. With a fixed budget you cannot maximize reach, frequency and continuity at the same time; every one you push up pushes another down. Planning is the art of choosing which ones matter for <em>this</em> job.</p>
+
+  <h3>3.2 How Much to Spend</h3>
+
+  <p>Textbooks describe three standard ways to set the total. <strong>Percent of sales</strong> takes a fixed share of revenue: simple and common, and slightly backward, since it ties spending to results rather than the other way around. <strong>Competitive parity</strong> matches rivals, usually by watching share of voice, meaning your share of the category&rsquo;s advertising. <strong>Objective-and-task</strong> starts from the goal, works out what it would take to reach it, and prices that. It is the most logical of the three and the hardest to defend to a finance department.</p>
+
+  <p>In practice companies blend them. For a class project the usual question is simpler: given the money you have, what is the best use of it? That is a split question, not a total question, and it is where the most important rule in this unit lives.</p>
+
+  <h3>3.3 The Split: 60/40</h3>
+
+  <p>The most influential finding on budget split comes from Les Binet and Peter Field, who analyzed thousands of campaigns in the IPA Effectiveness Databank. Their conclusion, replicated across categories, is that established brands grow best, in the long run, with roughly <strong>60 percent of budget on brand building</strong> and <strong>40 percent on activation</strong>. The <a href="brand-vs-performance.html">Brand vs. Performance page</a> covers the research and when to deviate: luxury skews heavily to brand, startups and DTC launches skew heavily to performance, seasonal businesses flip with the season. This section is about what it means for the person building the plan.</p>
+
+  <div class="split-bar" role="img" aria-label="Budget split of 60 percent brand building and 40 percent performance activation">
+    <div class="brand"><b>60%</b><span>Brand building &mdash; interrupt</span></div>
+    <div class="perf"><b>40%</b><span>Activation &mdash; answer</span></div>
+  </div>
+  <div class="split-note">The default for an established brand. A starting point to argue from, not a law.</div>
+
+  <p>Three things follow for a planner.</p>
+
+  <p><strong>Split by objective, not by channel.</strong> 60/40 is not &ldquo;TV gets 60.&rdquo; Brand spending is whatever is aimed at <em>future</em> buyers who are not in the market yet. Performance spending is whatever is aimed at buyers who are. A video ad can be either, depending on who sees it and what it asks for. A search ad bought on the brand&rsquo;s own name is largely harvesting the work that something else did.</p>
+
+  <p><strong>Beware measurement bias.</strong> Performance channels report clean, immediate numbers, and last-click attribution hands them credit for sales that earlier exposures set up. Budgets drift toward whatever reports best, which is how a plan ends up 10/90 and then wonders why growth has stalled. Holding a deliberate share for brand work is the planner&rsquo;s defense against that drift.</p>
+
+  <p><strong>The split can vary by audience.</strong> The cold audience is a brand-building job. The warm and hot audiences are performance jobs. When you plan by audience (section 2), the overall split falls out of the plan instead of being imposed on it.</p>
+
+  <div class="scenario-card" style="background: var(--cream); border-left: 4px solid var(--ink); padding: 18px 24px; margin: 24px 0; max-width: 820px;">
+    <div style="font-family: var(--serif); font-weight: 700; color: var(--ink); margin-bottom: 8px;">A running example for this page</div>
+    <p style="font-size: 16px; margin-bottom: 8px;">A regional running-shoe retailer has <strong>$60,000</strong> of paid media for the four weeks leading to a store event. It has two audiences. <strong>Audience A</strong> is runners in the metro area who have never bought from the store: a cold audience, a brand job. <strong>Audience B</strong> is people who have visited the website or bought before: a warm audience, a conversion job. At roughly 60/40, that is about $36,000 for A and $24,000 for B. We will use this plan in the next four sections.</p>
+  </div>
+
+  <h3>3.4 Where PESO Fits</h3>
+
+  <p>A media plan, strictly speaking, buys <em>paid</em> media. But the <a href="peso.html">PESO model</a> is a reminder that paid is only one of four ways a brand gets exposure, and a good plan says how the paid dollars help the other three. Paid video can send people to an <em>owned</em> email signup. A creative idea built for paid can be <em>shared</em> by people who like it. A well-timed campaign gives a PR team something to pitch, and <em>earned</em> coverage follows. The retailer&rsquo;s store event is the example: the plan runs paid media, but the email list (owned) announces it, a local press mention (earned) adds credibility, and runners who post from the event (shared) extend it, all at close to zero marginal media cost. The plan should list those roles, even though only the paid line carries a budget.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>A media objective is something media can accomplish and a plan can be checked against.</li>
+      <li>The six dials are reach, frequency, weight, continuity, recency and cost, and they trade off against each other.</li>
+      <li><strong>60/40 is the default for an established brand</strong>, split by objective rather than by channel.</li>
+      <li>Performance reporting flatters itself. Protect the brand share on purpose.</li>
+      <li>Paid should be designed to feed owned, earned and shared.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     04 — REACH AND FREQUENCY
+     ============================================================ -->
+<section class="section" id="reach-frequency">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Reach &amp; Frequency</div>
+  <h2>How Many People, How Many Times</h2>
+
+  <p>Reach and frequency are the two oldest ideas in media planning, and they are still the right vocabulary, even though the numbers behind them are collected very differently now. Most students can recite the definitions and few have worked one through, so let us do that.</p>
+
+  <h3>4.1 A Ten-Person Audience</h3>
+
+  <p><strong>Reach</strong> is the share of the target audience that sees the message at least once in a set period. <strong>Frequency</strong> is how many times the average reached person sees it. Imagine a ten-person target audience and a four-week campaign. After the campaign we count how many times each person saw an ad:</p>
+
+  <div class="exposure-grid" role="img" aria-label="Exposure counts for ten people: A 0, B 1, C 1, D 2, E 2, F 2, G 3, H 4, I 5, J 0">
+    <div class="ex-cell zero"><div class="who">A</div><div class="n">0</div></div>
+    <div class="ex-cell"><div class="who">B</div><div class="n">1</div></div>
+    <div class="ex-cell"><div class="who">C</div><div class="n">1</div></div>
+    <div class="ex-cell"><div class="who">D</div><div class="n">2</div></div>
+    <div class="ex-cell"><div class="who">E</div><div class="n">2</div></div>
+    <div class="ex-cell"><div class="who">F</div><div class="n">2</div></div>
+    <div class="ex-cell eff"><div class="who">G</div><div class="n">3</div></div>
+    <div class="ex-cell eff"><div class="who">H</div><div class="n">4</div></div>
+    <div class="ex-cell eff"><div class="who">I</div><div class="n">5</div></div>
+    <div class="ex-cell zero"><div class="who">J</div><div class="n">0</div></div>
+  </div>
+  <div class="split-note">Exposures per person over four weeks. People with three or more exposures are marked in red.</div>
+
+  <div class="calc">
+    <div class="calc-label">Working it through</div>
+    <p><strong>Reach.</strong> Eight of ten people saw it at least once (A and J saw nothing). Reach = <strong>80%</strong>.</p>
+    <p><strong>Total impressions.</strong> 0+1+1+2+2+2+3+4+5+0 = <strong>20</strong> exposures.</p>
+    <p><strong>Average frequency.</strong> Divide the impressions by the people <em>reached</em>, not the whole audience: 20 &divide; 8 = <strong>2.5</strong>.</p>
+    <p><strong>Weight.</strong> Reach &times; frequency = 80 &times; 2.5 = <strong>200</strong>. That is 20 impressions for every 10 people, or 200 per 100.</p>
+    <p><strong>Effective reach at 3+.</strong> Only G, H and I have three or more exposures: <strong>30%</strong>.</p>
+  </div>
+
+  <p>Look at what the headline numbers hide. The average frequency is 2.5, but two people saw it once, three saw it twice, and one person saw it five times. The &ldquo;average&rdquo; describes almost nobody. Two people, a fifth of the audience, were never reached at all. That gap between an average and the distribution underneath it is the reason experienced planners ask for the whole distribution and not just the headline.</p>
+
+  <h3>4.2 The Trade-Off</h3>
+
+  <p>With a fixed budget, reach and frequency trade off. Spend to put the message in front of more people and the average person sees it fewer times. Concentrate on fewer people and they see it more. The same amount of media weight can be shaped two ways:</p>
+
+  <div class="rf-compare">
+    <div class="rf-card">
+      <h4>Plan X: Spread wide</h4>
+      <div class="rf-row"><span class="lbl">Reach</span><div class="rf-track"><div class="rf-fill" style="width:80%"></div></div><span class="val">80%</span></div>
+      <div class="rf-row"><span class="lbl">Frequency</span><div class="rf-track"><div class="rf-fill blue" style="width:31%"></div></div><span class="val">2.5</span></div>
+      <div class="rf-row"><span class="lbl">Weight</span><div class="rf-track"><div class="rf-fill" style="width:100%; background: var(--ink);"></div></div><span class="val">200</span></div>
+    </div>
+    <div class="rf-card">
+      <h4>Plan Z: Concentrate</h4>
+      <div class="rf-row"><span class="lbl">Reach</span><div class="rf-track"><div class="rf-fill" style="width:50%"></div></div><span class="val">50%</span></div>
+      <div class="rf-row"><span class="lbl">Frequency</span><div class="rf-track"><div class="rf-fill blue" style="width:50%"></div></div><span class="val">4.0</span></div>
+      <div class="rf-row"><span class="lbl">Weight</span><div class="rf-track"><div class="rf-fill" style="width:100%; background: var(--ink);"></div></div><span class="val">200</span></div>
+    </div>
+  </div>
+
+  <p>Both plans deliver 200 units of weight for the same money. Which is better depends on the job. A new product, or a brand most people have never heard of, needs reach: you cannot persuade someone who was never exposed. A complicated message, an unfamiliar benefit, or a crowded category needs frequency. A well-known brand with simple news can often live on thin, wide reach. For the retailer&rsquo;s cold audience in our running example, the lean is toward reach. For the warm audience, which already knows the brand, it is toward frequency, in the form of retargeting and email.</p>
+
+  <h3>4.3 How Much Is Enough?</h3>
+
+  <p>Nobody knows precisely, and the honest answer is &ldquo;it depends.&rdquo; Industry habit for decades was the &ldquo;three-exposure&rdquo; rule, usually traced to Herbert Krugman&rsquo;s work in the 1970s: fewer than three is too few, and more than about ten is waste. Belch&rsquo;s textbook reports that more recent studies cast doubt on it. One meta-analysis of dozens of experiments found attitudes toward a brand kept improving up to about ten exposures, and consumers now live in a media world with thousands of ad and brand exposures a day, so what counted as enough in the 1970s probably undercounts today.</p>
+
+  <p>The <a href="repetition.html">Repetition page</a> goes further into why one exposure rarely works and what wearout looks like, so we will not repeat it here. The planner&rsquo;s takeaway is to set a <em>minimum</em> frequency the job requires, then maximize reach at that level, instead of accepting whatever average the buy happens to produce. It also helps to remember that an <em>opportunity to see</em> is not the same as being seen. People leave the room, skip, scroll and look away. The number in the plan is always an upper bound on what actually landed.</p>
+
+  <h3>4.4 In Digital: Same Ideas, Different Counting</h3>
+
+  <p>Reach and frequency carry over to digital, but each term needs a translation. <strong>Impressions</strong> are the count of times an ad was served. <strong>Reach</strong> is the number of <em>unique</em> people (or devices, or households) who got at least one. <strong>Frequency</strong> is impressions divided by that unique count. All the same arithmetic, applied to a different counting problem.</p>
+
+  <p>The problem is that every platform counts its own audience, and a person is not one person across them. The same runner can see your ad on Instagram, YouTube and a streaming service, and each platform will report her as a separate unique viewer. Add up the dashboards and you overstate reach. Each platform also sets its own frequency cap without knowing about the others, so a person can easily be capped on one and flooded on two. The industry term for this hole is <strong>cross-platform deduplication</strong>, and it is among the hardest unsolved problems in the field. Netflix, for example, defined its own &ldquo;monthly active viewers&rdquo; metric for its ad tier because there is no accepted industry standard for counting streaming-ad reach. A planner should treat platform-reported reach as a claim to be checked, not a fact.</p>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: GRPs, a Currency From the TV Era</h3>
+    <div class="sidebar-card-sub">Useful to know. Mostly not what people buy on anymore.</div>
+
+    <p><strong>Gross rating points (GRPs)</strong> are reach &times; frequency expressed per 100 people, the same weight figure we just calculated. A single rating point is one percent of the audience, so 100 GRPs could mean everyone saw it once or half the audience saw it twice. <strong>Target rating points (TRPs)</strong> count only the people who fit the target.</p>
+
+    <p>The measure grew up with television, when a handful of networks and a handful of measured programs made &ldquo;rating&rdquo; a meaningful, shared currency. Nielsen&rsquo;s ratings set the price of a spot, and planners wrote their plans in GRPs. It worked because everybody watched live, on a schedule.</p>
+
+    <p>That world is gone. People stream, record, skip and watch on demand, and a &ldquo;program rating&rdquo; tells you little about who saw a particular ad. Impressions replaced ratings points as the standard currency for most TV and video buying, including local TV, which Nielsen moved to reporting in impressions by default around 2022. Many planners still think in GRPs, because the arithmetic is useful, but they buy in impressions. If an older book or agency deck quotes GRPs, now you know what it means and why you probably will not see them on a rate card.</p>
+
+    <div class="sidebar-card-tag">Plan with the ideas. Buy with impressions.</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li><strong>Reach</strong> is the share of the target that sees it at least once; <strong>frequency</strong> is the average number of exposures among those reached; <strong>weight</strong> is reach &times; frequency.</li>
+      <li>An average frequency can hide a lot. Look at the distribution.</li>
+      <li>Reach and frequency trade off on a fixed budget. The job decides the lean.</li>
+      <li>There is no magic number. Set a minimum frequency, then maximize reach at that level.</li>
+      <li>In digital, reach means <em>unique</em> people and platforms count separately, so cross-platform reach is overstated.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     05 — SCHEDULING
+     ============================================================ -->
+<section class="section" id="scheduling">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Scheduling</div>
+  <h2>When the Money Runs</h2>
+
+  <p>Once you know how much weight you want, you decide when it runs. Spending evenly across a year is easy and almost never right. Planners use three basic shapes.</p>
+
+  <div class="sched" role="img" aria-label="Three scheduling shapes across twelve months: continuity is even, pulsing keeps a base with peaks in May to August, flighting runs in bursts with gaps in January, February, November and December">
+    <div class="sched-row">
+      <div class="sched-name">Continuity<small>Even, all year</small></div>
+      <div class="sched-bars"><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i><i style="height:45%"></i></div>
+    </div>
+    <div class="sched-row">
+      <div class="sched-name">Pulsing<small>Always on, with peaks</small></div>
+      <div class="sched-bars"><i style="height:22%"></i><i style="height:22%"></i><i style="height:30%"></i><i style="height:40%"></i><i style="height:100%"></i><i style="height:100%"></i><i style="height:100%"></i><i style="height:100%"></i><i style="height:40%"></i><i style="height:30%"></i><i style="height:22%"></i><i style="height:22%"></i></div>
+    </div>
+    <div class="sched-row">
+      <div class="sched-name">Flighting<small>On and off in bursts</small></div>
+      <div class="sched-bars"><i class="off"></i><i class="off"></i><i style="height:35%"></i><i style="height:35%"></i><i style="height:100%"></i><i style="height:100%"></i><i style="height:100%"></i><i style="height:100%"></i><i style="height:35%"></i><i style="height:35%"></i><i class="off"></i><i class="off"></i></div>
+    </div>
+    <div class="sched-months"><div></div><div><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div></div>
+  </div>
+  <div class="split-note">Illustrative shapes for a seasonal brand that peaks May through August (a pool-supply company, say). Bar height is relative weight, not exact dollars.</div>
+
+  <ul>
+    <li><strong>Continuity</strong> keeps a steady presence with no gaps. It suits products bought year-round without much seasonality: groceries, cleaning products, insurance. Its drawback is cost, since steady weight across the whole year dilutes the peaks.</li>
+    <li><strong>Flighting</strong> alternates bursts of advertising with periods of none. It suits seasonal products and tight budgets. The risk is that the brand goes silent in the gaps, a competitor can fill the vacuum, and each restart has to rebuild awareness.</li>
+    <li><strong>Pulsing</strong> is the hybrid: a low, continuous base with heavier bursts in peak periods. It suits seasonal brands that cannot afford to disappear, for example a beer brand that keeps advertising all year and steps up around summer holidays.</li>
+  </ul>
+
+  <h3>5.1 The Recency Argument</h3>
+
+  <p>There is a good counterargument to flighting, associated with the media planner Erwin Ephron. It is called <strong>recency planning</strong>, or the shelf-space model, and it makes three points.</p>
+
+  <ul>
+    <li>The first exposure to a brand&rsquo;s message does the most work, and later exposures add progressively less.</li>
+    <li>Advertising works best on people who are <em>about to buy</em>, and at any given time only a small slice of any category is in the market.</li>
+    <li>Therefore the best plan is one that keeps the brand in front of as many people as possible <em>every week</em>, with modest frequency, so the message is nearby when each person happens to be ready. Advertising should rent the shelf all the time.</li>
+  </ul>
+
+  <p>Recency planning changes the planning unit from a four-week period to a single week and swaps &ldquo;how many times?&rdquo; for &ldquo;how many weeks are we present?&rdquo; It is a strong argument for mature brands that people already understand. It is a weak one for a new brand, a new benefit or a complicated message, where people need enough repetition to learn something. So the two camps are not really in conflict: they answer different questions. Use continuity and recency thinking to <em>remind</em>, and use heavier bursts to <em>teach</em>.</p>
+
+  <p>For the running-shoe retailer, the four-week window leading to a store event makes the schedule almost obvious. Awareness media starts first, because the cold audience needs time to hear about the event, retargeting starts after that audience begins visiting the site, and search is on throughout and heaviest in the last week, when people are deciding. Section 7 shows it laid out.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li><strong>Continuity</strong> is even; <strong>flighting</strong> is bursts with gaps; <strong>pulsing</strong> is a base with peaks.</li>
+      <li>Seasonality and budget decide the shape. If you cannot afford to be everywhere all the time, choose when to be somewhere.</li>
+      <li>The <strong>recency</strong> argument: be present every week, near the purchase, with modest frequency. Strong for mature brands, weak for brands that need to teach.</li>
+      <li>Sequence matters: audiences should hear the message before they see the offer.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     06 — COST, BUYING & NEW REALITIES
+     ============================================================ -->
+<section class="section" id="cost-buying">
+  <div class="sec-num">06</div>
+  <div class="sec-label">Cost &amp; Buying</div>
+  <h2>What It Costs, How It Is Bought, and What Changed</h2>
+
+  <p>Every planner eventually has to compare options that are not priced the same way. This section is about the common yardsticks, what buyers actually do, and four changes that are reshaping the plan.</p>
+
+  <h3>6.1 CPM, and Why Efficiency Isn&rsquo;t Effectiveness</h3>
+
+  <p>The workhorse yardstick is <strong>CPM</strong>, the cost per thousand impressions (the M is the Roman numeral for one thousand):</p>
+
+  <div class="calc">
+    <div class="calc-label">CPM and target CPM</div>
+    <div class="eq">CPM = (cost &divide; impressions) &times; 1,000</div>
+    <p><strong>Example.</strong> A placement costs $12,000 and delivers 600,000 impressions: CPM = $20. But only 40 percent of those impressions are in the target audience, or 240,000. The <strong>target CPM</strong> is $12,000 &divide; 240,000 &times; 1,000 = <strong>$50</strong>.</p>
+  </div>
+
+  <p>The second number is the honest one. A cheap CPM against the wrong audience is a bargain on the wrong thing. That is the central warning: CPM measures <em>efficiency</em>, how cheaply you reach people, not <em>effectiveness</em>, whether reaching them did any good. It is also awkward to compare across media. A radio spot and a streaming video ad are doing different jobs in different contexts, and a lower CPM does not make one better. Use CPM to compare like with like, such as two streaming platforms, two podcasts or two search networks.</p>
+
+  <h3>6.2 Who Carries the Risk</h3>
+
+  <p>Prices come in several forms, and the form decides who bears the risk if the ad does not work.</p>
+
+  <table>
+    <thead><tr><th>Pricing model</th><th>You pay for</th><th>Who carries the outcome risk</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CPM</strong> (impressions)</td><td>Delivery: ads served</td><td>You. The seller is paid whether or not anyone responds.</td></tr>
+      <tr><td><strong>CPC</strong> (per click)</td><td>A click</td><td>Shared. You pay only when someone engages, but a click is not a sale.</td></tr>
+      <tr><td><strong>CPA / CPL</strong> (per action or lead)</td><td>A conversion</td><td>The seller. You pay for results, so the rate per result is higher.</td></tr>
+      <tr><td><strong>Flat fee / sponsorship</strong></td><td>A slot, a date, an exclusivity</td><td>You. Common for out-of-home, events and creators.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Moving from impressions toward actions shifts risk from you to the seller, and sellers price that risk in. Whichever model you choose, ask what is actually being counted.</p>
+
+  <h3>6.3 National, Spot, and the CTV Pot of Money</h3>
+
+  <p>Television is the cleanest place to see how buying has changed, because it has had three generations of buying model. Understanding the first two explains the third.</p>
+
+  <div class="buy-trio">
+    <div class="buy-card">
+      <h4>National</h4>
+      <div class="buy-sub">The network buy</div>
+      <p>You buy a network&rsquo;s programs and your ad runs in every market at once. Huge reach, one message everywhere, high absolute cost, and priced for a mass audience.</p>
+      <p><strong>Fits:</strong> brands sold nationwide with a national message.</p>
+    </div>
+    <div class="buy-card">
+      <h4>Spot</h4>
+      <div class="buy-sub">The market-by-market buy</div>
+      <p>You buy local stations market by market. You choose the cities, weight heavier where the brand is weak or the store is, and skip where there is no distribution.</p>
+      <p><strong>Fits:</strong> regional brands, local retailers, and national brands that weight by market.</p>
+    </div>
+    <div class="buy-card ctv">
+      <h4>CTV</h4>
+      <div class="buy-sub">The descendant of spot</div>
+      <p>You set a budget, a geography and a few audience criteria, and the platform serves your ad to matching households until the money is gone. You control the pot, where it goes and who sees it.</p>
+      <p><strong>Fits:</strong> almost anyone, including budgets that could never afford a TV buy.</p>
+    </div>
+  </div>
+
+  <p>The CTV model is spot buying with the geography narrowed to a ZIP code, audience criteria added, and a self-serve pacing engine in place of a sales rep. Here is how it works for the running-shoe retailer&rsquo;s $16,000 CTV allocation. Assume a CPM of $30 (an illustrative round number; real CTV prices vary a lot by platform, targeting and season). That buys about 533,000 impressions. Spread across a metro audience of, say, 120,000 reachable target households, it works out to an average of roughly four impressions per household <em>if</em> every household were reached. If only 60 percent are, frequency among those reached is closer to seven. This is where a <strong>frequency cap</strong> earns its keep, preventing the same households from soaking up the budget while others see nothing.</p>
+
+  <p>CTV also costs you some things. Big live events are usually sold differently, through upfront or direct deals rather than a self-serve pot; you rely on the platform&rsquo;s own reporting; the quality of inventory varies, and the frequency cap on one platform does not know about the others (section 4).</p>
+
+  <h3>6.4 Four Things That Changed</h3>
+
+  <p><strong>Streaming TV with ads.</strong> Connected-TV advertising has grown from a niche into a core TV channel. eMarketer forecasts roughly $35 to $40 billion of US CTV ad spending in 2026 and expects CTV to overtake primetime linear TV in upfront commitments this year, for the first time. A big reason is that the major subscription streamers added cheaper ad-supported tiers. Netflix reported at its May 2026 upfront that its ad tier reaches more than 250 million monthly active viewers globally, and has said a majority of new sign-ups in markets where it offers the plan choose it. For a planner this means premium, living-room video inventory that was unavailable at any price a few years ago is now for sale, in a format you can buy by geography and audience.</p>
+
+  <p><strong>Retail media.</strong> Retailers realized they know exactly who bought what, and began selling advertising against it: sponsored products on a retailer&rsquo;s site and app, off-site audience targeting using the retailer&rsquo;s data, and in-store screens. Retail media is a form of &ldquo;answer&rdquo; media, since shoppers are already in a buying mood. eMarketer forecasts US retail media spending of roughly $70 billion in 2026, and the money is concentrating: Amazon and Walmart are expected to take close to nine of every ten dollars. For a brand that sells through retailers, that makes retail media less a channel option than a cost of doing business.</p>
+
+  <p><strong>Programmatic and platform automation.</strong> Programmatic buying uses software and real-time auctions to place ads, and the major platforms now go further: you provide the goal, creative and budget, and they choose placements, audiences and bids for you. That lowers the labor of buying and raises the stakes on the plan. It also hides detail from you, which is why the audience, objective and budget logic in sections 2 and 3 matter more as the machines take over the rest.</p>
+
+  <p><strong>Impressions as the common currency.</strong> As covered in the sidebar in section 4, impressions have replaced ratings points as the unit of exchange across TV, video and digital. Local TV stations now quote a cost for a given number of impressions, as do the streaming platforms, so the CPM arithmetic above is the arithmetic you will actually use.</p>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: Two Cautions Before You Trust a Dashboard</h3>
+    <div class="sidebar-card-sub">Brand safety and measurement, in short</div>
+
+    <p><strong>Know where your ads ran.</strong> Automated buying can place an ad next to content you would never choose, on a low-quality site, or not in front of a real person at all. Fraud, unviewable placements and murky supply chains have been documented for years, and each layer of intermediaries takes a cut. The principle is simple: if you cannot find out where the ad ran and who saw it, treat the number with suspicion.</p>
+
+    <p><strong>Reported results are not proof of results.</strong> A platform tells you how many people saw or clicked your ad. It cannot tell you how many would have bought anyway. Better answers come from attention measurement, incrementality tests (comparing exposed people with a held-out group) and marketing mix modeling, which estimates what each channel contributed to sales. We cover these in the evaluation unit. For now, remember that a plan needs a way to check itself.</p>
+
+    <div class="sidebar-card-tag">Trust, then verify.</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>CPM is a measure of efficiency, not effectiveness. Always check the target CPM.</li>
+      <li>Pricing model decides who carries the risk: you (impressions) or the seller (actions).</li>
+      <li>CTV is spot TV, ZIP-level, self-serve, and paced to a pot of money. Cap the frequency.</li>
+      <li>The four shifts: ad-supported streaming, retail media, automated buying, and impressions as the currency.</li>
+      <li>Plan a way to verify. Platform-reported numbers are claims.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     07 — READING A PLAN
+     ============================================================ -->
+<section class="section" id="reading-a-plan">
+  <div class="sec-num">07</div>
+  <div class="sec-label">Reading a Plan</div>
+  <h2>How to Read a Media Plan</h2>
+
+  <p>Real media plans are communicated as flowcharts: a grid with time across the top, media down the side, and shading or numbers showing the weight in each cell. (Belch shows the real flowchart for ASICS in its chapter appendix.) Below is a simplified flowchart for the running-shoe retailer&rsquo;s four-week, $60,000 plan. It is an invented example for teaching, but every piece in it follows from the earlier sections.</p>
+
+  <div class="plan" role="group" aria-label="Four-week media flowchart for a regional running-shoe retailer">
+    <div class="plan-grid">
+      <div class="hd">Media</div><div class="hd amt" style="justify-content:flex-end">Budget</div><div class="hd">Week 1</div><div class="hd">Week 2</div><div class="hd">Week 3</div><div class="hd">Week 4</div>
+
+      <div class="grp">Audience A &middot; New-to-brand runners <small>Objective: awareness &middot; Interrupt &middot; $36,000 (60%)</small></div>
+      <div>CTV, geo-targeted, capped</div><div class="amt">$16,000</div>
+      <div class="cell"><span class="a3"></span></div><div class="cell"><span class="a3"></span></div><div class="cell"><span class="a2"></span></div><div class="cell"><span class="a2"></span></div>
+      <div>Short-form social video</div><div class="amt">$10,000</div>
+      <div class="cell"><span class="a2"></span></div><div class="cell"><span class="a3"></span></div><div class="cell"><span class="a3"></span></div><div class="cell"><span class="a1"></span></div>
+      <div>Streaming audio</div><div class="amt">$6,000</div>
+      <div class="cell"><span class="a3"></span></div><div class="cell"></div><div class="cell"><span class="a3"></span></div><div class="cell"></div>
+      <div>Local out-of-home</div><div class="amt">$4,000</div>
+      <div class="cell"><span class="a1"></span></div><div class="cell"><span class="a1"></span></div><div class="cell"><span class="a1"></span></div><div class="cell"><span class="a1"></span></div>
+
+      <div class="grp">Audience B &middot; Site visitors and past buyers <small>Objective: conversion &middot; Answer &middot; $24,000 (40%)</small></div>
+      <div>Search (brand + category)</div><div class="amt">$10,000</div>
+      <div class="cell"><span class="p2"></span></div><div class="cell"><span class="p2"></span></div><div class="cell"><span class="p2"></span></div><div class="cell"><span class="p3"></span></div>
+      <div>Retargeting (display and social)</div><div class="amt">$8,000</div>
+      <div class="cell"></div><div class="cell"><span class="p1"></span></div><div class="cell"><span class="p2"></span></div><div class="cell"><span class="p3"></span></div>
+      <div>Local search and maps ads</div><div class="amt">$6,000</div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"><span class="p2"></span></div><div class="cell"><span class="p3"></span></div>
+
+      <div class="grp">Not in the paid budget <small>Owned, earned and shared roles</small></div>
+      <div>Email to the customer list</div><div class="amt">&mdash;</div>
+      <div class="cell"><span class="o1"></span></div><div class="cell"></div><div class="cell"><span class="o1"></span></div><div class="cell"><span class="o1"></span></div>
+      <div>Local press and event listing</div><div class="amt">&mdash;</div>
+      <div class="cell"><span class="o1"></span></div><div class="cell"></div><div class="cell"></div><div class="cell"><span class="o1"></span></div>
+
+      <div class="tot">Total paid media</div><div class="tot amt" style="justify-content:flex-end">$60,000</div><div class="tot" style="grid-column: span 4;">Store event on Saturday of week 4</div>
+    </div>
+    <div class="plan-key">Darker shading means heavier weight in that week. Red tones are awareness media (Audience A); blue tones are conversion media (Audience B); hatched cells are owned and earned activity with no media budget. Blank cells are off.</div>
+  </div>
+
+  <h3>7.1 Five Questions to Ask of Any Plan</h3>
+
+  <p>You do not have to be able to build a plan to be able to critique one. Run any flowchart through these five checks, and then run your own project through them.</p>
+
+  <ol>
+    <li><strong>Is every audience and objective covered?</strong> Each group named at the top should have a job and money behind it. In the flowchart, both A and B do. A plan with only conversion rows is the pond-fishing plan from section 3.</li>
+    <li><strong>Does the sequence make sense?</strong> Look at the order the shading arrives. Awareness media leads, retargeting starts only after the first audience has had time to arrive, and search peaks last, near the event. The plan moves people through the journey.</li>
+    <li><strong>Do the weights match the job?</strong> Heavy weight should sit where the objective needs it, not just where the cheap inventory is. The cold audience gets the reach media; the warm audience gets the repeat and response media.</li>
+    <li><strong>Does the budget split make an argument?</strong> This one is 60/40, split by objective. A different split is fine if the plan says why: a launch, a season, a premium brand.</li>
+    <li><strong>How will we know if it worked?</strong> A plan should state the measures up front, and ideally include a way to test them, even a simple holdout. You will build that out in the evaluation unit.</li>
+  </ol>
+
+  <p>Notice what the flowchart does <em>not</em> say. It says nothing about which creator, which show, which billboard location or what the ads look like. Those are the next level of decisions, the buying and the creative, and they live inside the structure the plan sets. The plan is the part that tells everyone else what to do and why.</p>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>A flowchart shows time across, media down, weight as shading. Read it for <strong>coverage, sequence, weight, split and measurement</strong>.</li>
+      <li>The money follows the audience and objective, not the other way around.</li>
+      <li>A good plan can be defended line by line, and can show what it expects each line to do.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     NEXT-PAGE CARDS
+     ============================================================ -->
+<nav class="unit-nav two-next">
+  <a href="media-planning-traditional.html" class="unit-nav-next">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">Traditional Media: A One-Page Pros &amp; Cons</span>
+    <span class="unit-nav-tease">TV, radio, out-of-home, direct mail, magazines and newspapers. What each is good at, where each falls short, and why the old currency is fading.</span>
+  </a>
+  <a href="media-planning-digital.html" class="unit-nav-next">
+    <span class="unit-nav-label">Then &rarr;</span>
+    <span class="unit-nav-title">Digital Media: A One-Page Pros &amp; Cons</span>
+    <span class="unit-nav-tease">Digital ads, social ads, Google Search, YouTube, Spotify and more. Strengths, weaknesses, and what to check before you buy.</span>
+  </a>
+</nav>
+
+
+<!-- ============================================================
+     MORE VIEWS & GLOSSARY
+     ============================================================ -->
+<section class="section" id="more-and-glossary">
+  <h2>More Views &amp; Glossary</h2>
+
+  <h3>More Views</h3>
+
+  <p class="more-views-intro">The pieces below sample the current picture of the market (CTV, streaming ad tiers, retail media, the move to impressions) and the thinking behind the journey-first approach. Market figures change quickly; treat the numbers on this page as a 2026 snapshot and check the sources for the latest.</p>
+
+  <div class="mv-item">
+    <div class="mv-source">InMoment</div>
+    <div class="mv-title"><a href="https://inmoment.com/blog/the-customer-journey-mapping-examples/" target="_blank" rel="noopener">What Is a Customer Journey Map? A Beginner&rsquo;s Guide</a></div>
+    <div class="mv-desc">The source for the journey-map framing and the McKinsey and Gartner quotes. Walks through building a map by segment, plotting touchpoints and gathering customer data, with examples for SaaS, e-commerce and retail.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">eMarketer</div>
+    <div class="mv-title"><a href="https://www.emarketer.com/chart/c/364132/ctv-will-surpass-primetime-linear-tv-us-upfront-ad-spending-2026-364132" target="_blank" rel="noopener">CTV Will Surpass Primetime Linear TV in US Upfront Ad Spending in 2026</a></div>
+    <div class="mv-desc">The chart behind the claim that connected TV overtakes primetime linear in upfront commitments this year. A full forecast needs a subscription, but the headline chart is public.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">TheWrap</div>
+    <div class="mv-title"><a href="https://www.thewrap.com/media-platforms/streaming/netflix-ad-tier-monthly-active-viewers-update-upfronts-2026/" target="_blank" rel="noopener">Netflix&rsquo;s Ad Tier Now Reaches More Than 250 Million Monthly Active Viewers</a></div>
+    <div class="mv-desc">Coverage of the 2026 Netflix upfront, including how Netflix defines a &ldquo;monthly active viewer&rdquo; and its share of new sign-ups. Useful for the point about platforms writing their own reach metrics.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">eMarketer</div>
+    <div class="mv-title"><a href="https://www.emarketer.com/chart/c/354785/us-retail-media-ad-spending-will-near-70-billion-2026-354785" target="_blank" rel="noopener">US Retail Media Ad Spending Will Near $70 Billion in 2026</a></div>
+    <div class="mv-desc">The headline forecast for retail media. Other forecasts differ by a few billion dollars depending on the date and definition, which is itself a lesson about reading market-size numbers.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Next TV</div>
+    <div class="mv-title"><a href="https://www.nexttv.com/news/nielsen-to-support-impression-based-local-advertising-sales" target="_blank" rel="noopener">Nielsen to Support Impression-Based Local Advertising Sales</a></div>
+    <div class="mv-desc">The announcement that local TV reporting would default to impressions rather than ratings points. A concise account of why the industry abandoned the GRP as its everyday currency.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">AdExchanger</div>
+    <div class="mv-title"><a href="https://adexchanger.com/on-tv-and-video/for-tv-grps-are-out-and-impressions-are-in" target="_blank" rel="noopener">For TV, GRPs Are Out, and Impressions Are In</a></div>
+    <div class="mv-desc">An industry argument that household-level impression data has made panel-based ratings obsolete. Pointed and one-sided, but a good statement of the case.</div>
+  </div>
+
+  <div class="mv-item">
+    <div class="mv-source">Course page</div>
+    <div class="mv-title"><a href="brand-vs-performance.html">Brand vs. Performance, and the 60/40 Principle</a></div>
+    <div class="mv-desc">The full treatment of the Binet and Field research and the situations in which the 60/40 default shifts. Section 3 of this page assumes you have read it.</div>
+  </div>
+
+  <h3>Glossary</h3>
+
+  <p>Working vocabulary for this page. Definitions are short on purpose.</p>
+
+  <dl class="glossary">
+    <dt>Media plan</dt>
+    <dd>The documented set of decisions about which audience, objective, media, timing and budget will deliver a marketing goal.</dd>
+
+    <dt>Medium / vehicle / platform</dt>
+    <dd>The category of delivery (TV, audio), the specific carrier within it (a show, a podcast), and the system that sells access to it (YouTube, Roku).</dd>
+
+    <dt>Customer journey map</dt>
+    <dd>A diagram of every point at which a customer meets a brand, arranged by stage and marked by whether the brand controls the touchpoint.</dd>
+
+    <dt>Managed / unmanaged touchpoint</dt>
+    <dd>A touchpoint the brand creates and controls, versus one it does not, such as word of mouth or third-party coverage.</dd>
+
+    <dt>Reach</dt>
+    <dd>The share (or number) of unique people in the target who see a message at least once in a period.</dd>
+
+    <dt>Frequency</dt>
+    <dd>The average number of times each reached person is exposed. Always the average of those <em>reached</em>, not of the whole audience.</dd>
+
+    <dt>Impressions</dt>
+    <dd>The count of times an ad is served or delivered. Reach &times; frequency, expressed as a raw number.</dd>
+
+    <dt>Weight</dt>
+    <dd>The total volume of advertising in a plan, usually reach &times; frequency.</dd>
+
+    <dt>GRP / TRP</dt>
+    <dd>Gross and target rating points: weight per 100 people, across all audiences or only the target. A TV-era currency largely replaced by impressions.</dd>
+
+    <dt>Effective reach</dt>
+    <dd>The share of the target exposed enough times (often 3 or more) to be influenced.</dd>
+
+    <dt>Opportunity to see (OTS)</dt>
+    <dd>An exposure to the vehicle, not proof the ad was noticed. The ceiling on actual exposure.</dd>
+
+    <dt>Index</dt>
+    <dd>A segment&rsquo;s share of product users divided by its share of the population, times 100. Above 100 is over-use.</dd>
+
+    <dt>BDI / CDI</dt>
+    <dd>Brand and category development index: how a market&rsquo;s share of brand (or category) sales compares to its share of population.</dd>
+
+    <dt>Waste coverage</dt>
+    <dd>Exposure delivered to people outside the target audience.</dd>
+
+    <dt>Continuity / flighting / pulsing</dt>
+    <dd>Steady scheduling; bursts with gaps; and a continuous base with peaks, respectively.</dd>
+
+    <dt>Recency planning</dt>
+    <dd>The view that the first exposure matters most and that ads work best near the purchase, so plans should maximize weekly reach and stay continuously present.</dd>
+
+    <dt>CPM / target CPM</dt>
+    <dd>Cost per thousand impressions, and the same cost per thousand impressions delivered to the target audience only.</dd>
+
+    <dt>National / spot buy</dt>
+    <dd>A TV buy that runs in all markets through a network, versus one bought market by market from local stations.</dd>
+
+    <dt>CTV</dt>
+    <dd>Connected TV: video advertising delivered through internet-connected television devices and streaming services.</dd>
+
+    <dt>Frequency cap</dt>
+    <dd>A limit on how many times one person or household can be shown an ad in a period.</dd>
+
+    <dt>Retail media</dt>
+    <dd>Advertising sold by retailers against their own shopper and sales data, on and off their own sites.</dd>
+
+    <dt>Programmatic</dt>
+    <dd>Software-driven, real-time buying and selling of ad placements, now increasingly automated by the platforms themselves.</dd>
+
+    <dt>Incrementality</dt>
+    <dd>The sales or actions that happened because of the advertising and would not have happened without it.</dd>
+  </dl>
+</section>
+
+</main>
+
+<!-- Site-wide scripts -->
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+</body>
+</html>
