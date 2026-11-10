@@ -33,11 +33,14 @@
   .medium + .medium { border-top: 1px solid var(--rule); }
 
   /* ---------- Rating dots + table ---------- */
-  .dots { letter-spacing: 2px; color: var(--red); white-space: nowrap; font-size: 15px; }
+  .dots { letter-spacing: 1px; color: var(--red); white-space: nowrap; font-size: 13px; }
   .dots-off { color: var(--rule); }
   .glance-wrap { overflow-x: auto; }
-  .glance th, .glance td { white-space: nowrap; }
-  .glance td:nth-child(2) { white-space: normal; min-width: 150px; }
+  .glance { table-layout: auto; }
+  .glance th { white-space: normal; font-size: 11px; letter-spacing: 0.04em; padding: 10px 7px; line-height: 1.25; }
+  .glance td { padding: 10px 7px; font-size: 13.5px; }
+  .glance td:first-child { font-size: 14px; }
+  .glance td:nth-child(2) { min-width: 130px; }
 
   /* ---------- Questions box ---------- */
   .ask-box { background: var(--ink); color: #e8e4dc; padding: 24px 28px 18px; margin: 28px 0; max-width: 820px; }
@@ -493,7 +496,7 @@
   <div class="sec-label">Compare</div>
   <h2>Putting Them Side by Side</h2>
 
-  <p>These are a planner&rsquo;s rough rules of thumb, not measured data. More dots is better on every measure, including speed to market and measurability, and more dollar signs means more expensive. Digital measurability is high on paper, so the ratings here reflect how <em>trustworthy</em> the numbers are, not how many there are.</p>
+  <p>These are a planner&rsquo;s rough rules of thumb, not measured data. More dots is better on every measure, including speed to market and measurability, and more dollar signs means more expensive. Digital measurability is high on paper, so the ratings here reflect how <em>trustworthy</em> the numbers are, not how many there are. Creators score 4, not 5, on creative power: a creator simply holding up the product is not creative by itself, so the score assumes they are given room to make something of their own.</p>
 
   <div class="glance-wrap">
   <table class="glance">
@@ -504,7 +507,7 @@
       <tr><td><strong>Search</strong></td><td>Capturing existing demand</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;<span class="dots-off">&#9679;&#9679;&#9679;&#9679;</span></span></td><td>$&ndash;$$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td></tr>
       <tr><td><strong>Paid social</strong></td><td>Discovery at scale</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td>$&ndash;$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
       <tr><td><strong>Online video / YouTube</strong></td><td>TV-style impact, digital targeting</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td>$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
-      <tr><td><strong>Creators / influencers</strong></td><td>Trust and native creative</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td>$$&ndash;$$$</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
+      <tr><td><strong>Creators / influencers</strong></td><td>Trust and native creative</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td>$$&ndash;$$$</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
       <tr><td><strong>Audio / podcasts</strong></td><td>Screen-free moments</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td></tr>
       <tr><td><strong>Display / programmatic</strong></td><td>Wide reach and retargeting</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;&#9679;</span></td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td></tr>
       <tr><td><strong>Retail media</strong></td><td>Reaching shoppers at the shelf</td><td><span class="dots">&#9679;&#9679;&#9679;<span class="dots-off">&#9679;&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;<span class="dots-off">&#9679;&#9679;&#9679;</span></span></td><td>$$</td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td><td><span class="dots">&#9679;&#9679;&#9679;&#9679;<span class="dots-off">&#9679;</span></span></td></tr>
