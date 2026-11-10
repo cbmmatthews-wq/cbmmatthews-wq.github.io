@@ -148,10 +148,8 @@ const navConfig = {
             items: [
               { label: 'Media Planning Basics', href: 'media-planning.html' },
               { separator: true, dashed: true },
-              // Traditional and Digital pages are not built yet: muted + disabled.
-              // Remove `muted` and `disabled` on each as its page goes live.
-              { label: 'Traditional Media',     href: 'media-planning-traditional.html', muted: true, disabled: true },
-              { label: 'Digital Media',         href: 'media-planning-digital.html',     muted: true, disabled: true },
+              { label: 'Traditional Media',     href: 'media-planning-traditional.html' },
+              { label: 'Digital Media',         href: 'media-planning-digital.html' },
               { separator: true, dashed: true },
               // Future "think about this" pages
               { label: 'CTV',                   href: 'media-planning-ctv.html',         muted: true, disabled: true },
