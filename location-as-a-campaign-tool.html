@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Location as a Campaign Tool — cbmatthe</title>
+<meta name="description" content="Location has been marketing's Hail Mary for 10 to 15 years. What Foursquare and Gowalla got right, how geofencing and Meta location targeting work today, awareness versus conversion, notifications and privacy, and why a Google Maps listing may do more than a fence.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Local additions for Location as a Campaign Tool — kept here rather than touching shared styles.css */
+
+  /* ---------- Video row (thumbnails open in a lightbox) ---------- */
+  .video-row { display: flex; gap: 18px; align-items: flex-start; margin: 26px 0 8px; }
+  .video-card { flex: 0 0 auto; margin: 0; }
+  .video-thumb { display: block; position: relative; height: 210px; padding: 0; border: 0; cursor: pointer; background: var(--cream); box-shadow: 0 1px 3px rgba(0,0,0,0.12); overflow: hidden; }
+  .video-thumb.v { aspect-ratio: 9 / 16; }
+  .video-thumb.h { aspect-ratio: 16 / 9; }
+  .video-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .video-thumb::after { content: ""; position: absolute; inset: 0; background: rgba(42,36,32,0.18); transition: background 0.2s ease; }
+  .video-thumb:hover::after { background: rgba(42,36,32,0.05); }
+  .video-thumb:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .video-play { position: absolute; left: 50%; top: 50%; z-index: 1; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: var(--red); box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+  .video-play::before { content: ""; position: absolute; left: 21px; top: 16px; border-left: 17px solid #fff; border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+  .video-card figcaption { margin-top: 8px; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--ink); }
+  .video-hint { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+
+  /* Video lightbox: reuses the shared .lightbox shell, adds a video frame */
+  .video-frame { width: min(92vw, 1000px); aspect-ratio: 16 / 9; background: #000; box-shadow: 0 30px 80px rgba(0,0,0,0.5); cursor: default; }
+  .video-frame.tall { aspect-ratio: 9 / 16; width: auto; height: min(78vh, 820px); max-width: 92vw; }
+  .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .lightbox .meta a { pointer-events: auto; color: var(--paper); margin-left: 0.6rem; }
+
+  /* ---------- Conversion vs. awareness cards ---------- */
+  .two-jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .job-card { background: var(--white); border-top: 4px solid var(--red); padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .job-card.awareness { border-top-color: var(--blue); }
+  .job-card h4 { font-family: var(--serif); font-size: 19px; color: var(--ink); margin-bottom: 4px; }
+  .job-card .job-sub { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .job-card ul { font-size: 15.5px; padding-left: 18px; margin: 0; }
+  .job-card li { margin-bottom: 8px; font-style: italic; }
+
+  /* ---------- Source note ---------- */
+  .source-note { font-size: 13px; color: var(--muted); max-width: 820px; margin-top: 18px; }
+
+  @media (max-width: 760px) {
+    .video-row { flex-direction: column; align-items: center; }
+    .video-thumb { height: auto; width: min(86vw, 420px); }
+    .video-thumb.v { width: min(52vw, 220px); }
+    .two-jobs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <h1>Location as a Campaign Tool</h1>
+    <p class="lede">Knowing where a customer is, and reaching them at exactly the right moment, has been marketing&rsquo;s favorite promise for over a decade. It has also been one of its most disappointing.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#the-promise">The Promise</a>
+    <a href="#where-it-started">Where It Started</a>
+    <a href="#how-it-works-today">How It Works Today</a>
+    <a href="#awareness-conversion">Awareness vs. Conversion</a>
+    <a href="#notifications-privacy">Notifications &amp; Privacy</a>
+    <a href="#google-maps">Google Maps</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     01 — THE PROMISE
+     ============================================================ -->
+<section class="section" id="the-promise">
+  <div class="sec-num">01</div>
+  <div class="sec-label">The Promise</div>
+  <h2>The Hail Mary That Keeps Getting Thrown</h2>
+
+  <p>Location has often been hailed as the Hail Mary that will solve everyone&rsquo;s problems. Know where the customer is, reach them at the right moment, watch the sale happen. People have been trying to make that work consistently for more than 10 or 15 years, and in a lot of cases they have fallen short.</p>
+
+  <p>For a bakery, it hardly matters. Everyone who wants a Cute as a Cupcake storefront already knows where Merrillville is. Location gets interesting when the place <em>changes</em>: a food truck that moves each day, or vending machines in Chicago, far from the home bakery, where nobody has heard of the brand. This page is about what location can and cannot do for a campaign like that.</p>
+</section>
+
+
+<!-- ============================================================
+     02 — WHERE IT STARTED
+     ============================================================ -->
+<section class="section" id="where-it-started">
+  <div class="sec-num">02</div>
+  <div class="sec-label">Where It Started</div>
+  <h2>When Location Was Something People Did</h2>
+
+  <p>Around 2009 and 2010, apps like Foursquare and Gowalla made location the entire point. Watch how they pitched it.</p>
+
+  <div class="video-row">
+    <figure class="video-card">
+      <button class="video-thumb v" type="button" data-id="R5AzeOPbWYI" data-title="Foursquare" data-tall="1" aria-label="Play video: Foursquare (short)">
+        <img src="assets/images/geo/foursquare-short.jpg" alt="Foursquare short: a man holding up a phone showing a check-in confirmation in a coffee shop" loading="lazy">
+        <span class="video-play"></span>
+      </button>
+      <figcaption>Foursquare</figcaption>
+    </figure>
+    <figure class="video-card">
+      <button class="video-thumb h" type="button" data-id="pIR2WYSDmxM" data-title="Foursquare" aria-label="Play video: Foursquare">
+        <img src="assets/images/geo/foursquare-venue.jpg" alt="Foursquare venue page for a convention center showing check-in counts and a Who&rsquo;s Been Here photo grid" loading="lazy">
+        <span class="video-play"></span>
+      </button>
+      <figcaption>Foursquare</figcaption>
+    </figure>
+    <figure class="video-card">
+      <button class="video-thumb h" type="button" data-id="M4fTA9_EuZQ" data-title="Gowalla" aria-label="Play video: Gowalla">
+        <img src="assets/images/geo/gowalla-map.jpg" alt="Gowalla on a tablet showing a city map with friends&rsquo; profile photos pinned to locations" loading="lazy">
+        <span class="video-play"></span>
+      </button>
+      <figcaption>Gowalla</figcaption>
+    </figure>
+  </div>
+  <p class="video-hint">Select a video to play it on this page.</p>
+
+  <div class="callout">
+    <div class="callout-label">The Key Takeaway</div>
+    <p>It wasn&rsquo;t just using a location to send a message. Users actually went out of their way to interact with the places and with each other, and that created a social environment.</p>
+  </div>
+
+  <p>People collected stops, left tips, chased badges, and saw where their friends were. We now say social media has lost its social side. This is what social media looked like 15 years ago, when it was a very social place, and location was something people <em>did</em>, not something done to them.</p>
+
+  <p>Those apps no longer exist as they were. Yelp still has a check-in feature, and Google Maps has become the everyday location tool for almost everyone. What advertisers mostly have left is the fence.</p>
+</section>
+
+
+<!-- ============================================================
+     03 — HOW IT WORKS TODAY
+     ============================================================ -->
+<section class="section" id="how-it-works-today">
+  <div class="sec-num">03</div>
+  <div class="sec-label">How It Works Today</div>
+  <h2>Draw a Fence, Then Try to Reach the People Inside</h2>
+
+  <p><strong>Geofencing</strong> means drawing a virtual boundary around a place, such as a mall, a park, or a lobby, and then trying to reach people who enter it. A provider uses available, permissioned location signals from phones to buy ads for them in other apps and websites. There are three common ways to use a fence, and they are very different from each other.</p>
+
+  <h3>3.1 Three Ways to Use a Fence</h3>
+
+  <table>
+    <thead><tr><th>Approach</th><th>What happens</th><th>The catch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ads through a provider</strong></td><td>A vendor identifies eligible devices near your fence and buys ads for them in participating apps and sites.</td><td>You don&rsquo;t need your own app. But the ad may show up during the visit or later, and many visitors will never see one.</td></tr>
+      <tr><td><strong>Meta (Instagram and Facebook)</strong></td><td>You target an area around a location, and your ad can appear in feeds for people who match.</td><td>It targets an area, not a single doorway, and can include people who are no longer there. Some vendors can load fence audiences into Meta, usually for an added fee.</td></tr>
+      <tr><td><strong>Push notification or text</strong></td><td>A beep the moment someone enters the fence.</td><td>Needs an installed app with location and notification permission, or an opted-in phone number. A fence does not reveal anyone&rsquo;s number.</td></tr>
+    </tbody>
+  </table>
+
+  <p>Compared with what Foursquare and Gowalla did, the Meta version is not nearly as impressive. It does let you aim a message at people in an area, and for most small brands that is the version actually available.</p>
+
+  <h3>3.2 What It Costs</h3>
+
+  <p>Some sites let you build or claim a fence for free. The problem is then tying it to something that delivers a message. That is where paid providers come in, usually charging per thousand impressions (CPM). A provider&rsquo;s fee might lift a typical Meta price of about $10 per thousand to $11 or $12 per thousand. One provider advertises a $3.50 minimum CPM, and $5 to $15 is a reasonable planning range for a class project. That is an illustration, not a quote, so always ask for an all-in price.</p>
+
+
+  <div class="callout">
+    <div class="callout-label">What You Are Actually Buying</div>
+    <p>Ad exposures, not unique people and not sales. A reported visit to a building does not prove anyone bought a cupcake. Compare a test location against a similar location with no ads, and ask any provider about audience size, delivery timing, and how purchases are measured.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>A <strong>fence</strong> is cheap to draw. Delivering a message to people inside it is where the cost is.</li>
+      <li>Meta targets an <strong>area</strong>, not a doorway, and delivery is never guaranteed to be immediate.</li>
+      <li>Ask for an <strong>all-in price</strong>. Impressions are not people, and people are not sales.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     04 — AWARENESS VS CONVERSION
+     ============================================================ -->
+<section class="section" id="awareness-conversion">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Awareness vs. Conversion</div>
+  <h2>Is This an Awareness Tool or a Conversion Tool?</h2>
+
+  <p>The original apps did both. <strong>Conversion</strong> meant tapping a badge, a location, or a friend, seeing where they were, and heading their way or deciding to join them. <strong>Awareness</strong> meant simply opening the app to see what was going on. A friend turned up somewhere new, or a crowd was checking in at a place you had never heard of, and you got curious enough to go look. Nobody was selling anything, yet people were being pulled toward places.</p>
+
+  <h3>4.1 Through an App: It&rsquo;s All Conversion</h3>
+
+  <p>Someone who has already taken the time to download your app is past the awareness stage. They know you. Your job is to make acting easy:</p>
+
+  <ul>
+    <li>Where is the truck right now?</li>
+    <li>Where is the closest vending machine or other automated retail location?</li>
+    <li>Is it open, and what is available today?</li>
+  </ul>
+
+  <h3>4.2 Through Meta: You Have to Choose</h3>
+
+  <p>When you are trying to catch people in an area, most of them have never heard of you. Does every ad need to be a conversion ad, or does one of them need to give people a reason to care first? Here is the same fence doing two different jobs:</p>
+
+  <div class="two-jobs">
+    <div class="job-card">
+      <h4>Conversion</h4>
+      <div class="job-sub">Act now. Works when people already know you.</div>
+      <ul>
+        <li>&ldquo;Come get a $9 cupcake.&rdquo;</li>
+        <li>&ldquo;The truck is in the park until 2. Come join us.&rdquo;</li>
+        <li>&ldquo;Vending machine by the east entrance, open now.&rdquo;</li>
+      </ul>
+    </div>
+    <div class="job-card awareness">
+      <h4>Awareness</h4>
+      <div class="job-sub">Feel something. Works when they do not.</div>
+      <ul>
+        <li>&ldquo;Cupcakes are important. Cupcakes are special.&rdquo;</li>
+        <li>&ldquo;Graduation is coming up. Someone you know deserves a cupcake.&rdquo;</li>
+        <li>&ldquo;In the mood for something sweet?&rdquo;</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>In Merrillville, the conversion lines work because people know the brand. In Chicago, a stranger who has never heard of Cute as a Cupcake is being asked to spend $9 for no reason. That is where the awareness lines earn their place. The two can work as a pair: awareness ads to an area in the days before you arrive, then conversion ads once the truck is parked or the machine is stocked.</p>
+
+  <div class="callout">
+    <div class="callout-label">Measure Them Differently</div>
+    <p>Awareness is judged by reach and whether people remember you. Conversion is judged by cupcakes sold. Do not grade an awareness ad on sales, or a conversion ad on how warm it feels.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Foursquare and Gowalla did <strong>both</strong>: they pulled people toward places and helped them act.</li>
+      <li>An app user is already aware. For them, location is a <strong>conversion</strong> tool.</li>
+      <li>On Meta, strangers need a reason to care before they need a <strong>price</strong>.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     05 — NOTIFICATIONS AND PRIVACY
+     ============================================================ -->
+<section class="section" id="notifications-privacy">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Notifications &amp; Privacy</div>
+  <h2>It All Comes Down to Notifications and Privacy</h2>
+
+  <p>The dream is a phone that buzzes the moment a customer walks past your vending machine. For that to happen, the person must already have downloaded your app, and must have said yes to both location and notification permissions. That is a high bar for a cupcake brand.</p>
+
+  <p>So the most common version is the weaker one: tying a campaign to something like Meta&rsquo;s location feature, which can target anybody who enters an area. But that depends on a long chain of things going right. Does the person have the app open? Will they see it? Is the phone in a pocket or a purse? Often the ad is triggered when someone enters the fence and lands in their feed, but they do not pick up the phone until they have already left. The message then reads like &ldquo;oops, you could have taken advantage of this when you were there.&rdquo;</p>
+
+  <div class="callout">
+    <div class="callout-label">Privacy Is the Limit</div>
+    <p>Every one of these methods depends on people agreeing to share their location. Phones and platforms keep tightening those permissions, and some venues, such as apartments and healthcare sites, are off limits to targeting. A fence also does not hand you anyone&rsquo;s phone number.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>True entry alerts need an <strong>installed app</strong> and two permissions.</li>
+      <li>Fence-triggered ads often arrive <strong>after the person has left</strong>.</li>
+      <li>Privacy rules limit who can be reached, where, and how.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     06 — GOOGLE MAPS
+     ============================================================ -->
+<section class="section" id="google-maps">
+  <div class="sec-num">06</div>
+  <div class="sec-label">Google Maps</div>
+  <h2>The Free Option That Is Already Working</h2>
+
+  <p>Being on Google Maps is free. If you feel you are listed too low, you can pay to promote your listing like you would any other ad, to be among the first results on the first page of locations Google shows. And Google Maps does more than show a pin. It shows photos of the outside and sometimes the inside, attaches Google reviews, and lists the hours, the address, and more, all in one place.</p>
+
+  <h3>6.1 What You Need to Be on the Map</h3>
+
+  <p>It starts with a Google Business Profile, set up and kept current:</p>
+
+  <ul>
+    <li>Claim and verify the business</li>
+    <li>Correct name, address, and phone number</li>
+    <li>Current hours, including holidays</li>
+    <li>Photos of the outside and inside, so people recognize the place</li>
+    <li>Categories and a short description of what you sell</li>
+    <li>Replies to reviews, since reviews attach to the listing</li>
+  </ul>
+
+  <h3>6.2 The Sad Part</h3>
+
+  <p>An awful lot of local businesses never update their Google business profile. That limits their organic search to begin with, and it limits anything they might try to tie to a Google Map.</p>
+
+  <div class="sidebar-card">
+    <h3>Sidebar: Could This Work for Cute as a Cupcake?</h3>
+    <div class="sidebar-card-sub">A could, not a should</div>
+
+    <p>Location tools could be considered for vending machine locations, food trucks, or anything where the place changes or alters. It would not be needed for the bakery in Merrillville. Before spending on a fence, check whether each machine or truck stop can have a correct, current Google listing. That may do more work than a geofence, for free.</p>
+
+    <div class="sidebar-card-tag">Fix the map listing before you buy the fence.</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>A <strong>Google Business Profile</strong> is free and does most of what the old check-in apps did for a customer.</li>
+      <li>Paying to promote a listing works like any other ad.</li>
+      <li>Most local businesses never keep the profile up to date, which is an opening.</li>
+    </ul>
+  </div>
+
+  <p class="source-note">Cost and targeting details are summarized from vendor materials (GroundTruth, Propellant Media, Airship), accessed October 15, 2026. Vendor pricing and capabilities change, so treat all numbers as planning estimates.</p>
+</section>
+
+</main>
+
+<!-- Video lightbox (reuses the shared .lightbox shell) -->
+<div class="lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Video player" aria-hidden="true">
+  <button class="close" id="vlbClose" type="button" aria-label="Close video">&times;</button>
+  <div class="video-frame" id="vlbFrame"></div>
+  <div class="meta" id="vlbMeta"></div>
+</div>
+
+<!-- Site-wide scripts -->
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+
+<!-- Page script: opens the YouTube videos in the lightbox -->
+<script>
+(function () {
+  var lb = document.getElementById('videoLightbox');
+  var frame = document.getElementById('vlbFrame');
+  var meta = document.getElementById('vlbMeta');
+  var closeBtn = document.getElementById('vlbClose');
+  var lastTrigger = null;
+
+  function openVideo(btn) {
+    lastTrigger = btn;
+    var id = btn.getAttribute('data-id');
+    var tall = btn.getAttribute('data-tall') === '1';
+    var title = btn.getAttribute('data-title');
+    frame.className = 'video-frame' + (tall ? ' tall' : '');
+    frame.innerHTML = '';
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1';
+    f.title = title + ' video';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.setAttribute('allowfullscreen', '');
+    f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    frame.appendChild(f);
+    var watch = tall ? 'https://www.youtube.com/shorts/' + id : 'https://www.youtube.com/watch?v=' + id;
+    meta.innerHTML = title + ' <a href="' + watch + '" target="_blank" rel="noopener">Watch on YouTube</a>';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeVideo() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    frame.innerHTML = '';      // removing the iframe stops playback
+    document.body.style.overflow = '';
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  document.querySelectorAll('.video-thumb').forEach(function (b) {
+    b.addEventListener('click', function () { openVideo(b); });
+  });
+  closeBtn.addEventListener('click', closeVideo);
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeVideo(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeVideo();
+  });
+})();
+</script>
+
+</body>
+</html>
