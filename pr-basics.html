@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR Basics: Public Relations, Publicity &amp; Earned Media — cbmatthe</title>
+<meta name="description" content="PR Basics. What PR is and isn't, the credibility–control trade-off, proactive and reactive PR, sponsorship and cause, measurement beyond AVE, and earned media in AI search.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ============================================================
+   PAGE-LOCAL COMPONENTS (PR Basics)
+   .versus  — two-column side-by-side comparison cards
+   .job-grid — small card grid for the MPR "jobs"
+   ============================================================ */
+.versus{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:22px 0;
+  max-width:820px;
+}
+.versus-col{
+  background:var(--white);
+  border-top:3px solid var(--red);
+  padding:18px 22px 16px;
+  box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.versus-col.is-blue{ border-top-color:var(--blue); }
+.versus-kicker{
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:4px;
+}
+.versus-col.is-blue .versus-kicker{ color:var(--blue); }
+.versus-title{
+  font-family:var(--serif);
+  font-size:19px;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:10px;
+  line-height:1.25;
+}
+.versus-col p, .versus-col li{ font-size:14px; line-height:1.55; }
+.versus-col p{ margin-bottom:8px; max-width:none; }
+.versus-col ul{ margin:0 0 0 18px; max-width:none; }
+.versus-col li{ margin-bottom:4px; }
+.versus-verdict{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid var(--rule);
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:14.5px;
+  color:var(--ink);
+}
+
+.job-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+  gap:12px;
+  margin:20px 0 24px;
+}
+.job-card{
+  background:var(--white);
+  padding:14px 18px 14px;
+  border-left:3px solid var(--red);
+  box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.job-card-title{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:16px;
+  color:var(--ink);
+  margin-bottom:4px;
+  line-height:1.25;
+}
+.job-card p{ font-size:13.5px; line-height:1.5; margin:0; max-width:none; }
+
+.formula{
+  font-family:'Courier New', monospace;
+  font-size:13.5px;
+  background:var(--cream);
+  padding:12px 16px;
+  border-left:3px solid var(--ink);
+  margin:10px 0;
+  white-space:pre-wrap;
+}
+
+.ig-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+  max-width:900px;
+}
+.ig-grid a{ display:block; box-shadow:0 2px 8px rgba(0,0,0,.12); transition:transform .15s ease, box-shadow .15s ease; }
+.ig-grid a:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.18); }
+.ig-grid img{ display:block; width:100%; height:auto; }
+.section p.ig-link{ margin:12px 0 0; font-size:14px; font-weight:600; }
+@media (max-width:640px){ .ig-grid{ grid-template-columns:1fr; max-width:380px; } }
+
+.refs li{ font-size:14px; line-height:1.5; margin-bottom:8px; }
+
+@media (max-width:640px){
+  .versus{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="topnav"></div>
+
+<header class="wrapper">
+  <div class="page-hero">
+    <div class="page-hero-eyebrow">Media Planning &amp; PR · PR Basics</div>
+    <h1>Public Relations, Publicity &amp; Earned Media</h1>
+    <p class="lede">Every other tool in the promotional mix talks to customers directly. PR has to convince someone else to do the talking. That one fact explains almost everything good and bad about it.</p>
+  </div>
+</header>
+
+<nav class="subnav">
+  <div class="subnav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#what-pr-is">What PR Is</a>
+    <a href="#tradeoff">Credibility vs. Control</a>
+    <a href="#proactive">Proactive PR</a>
+    <a href="#reactive">Crises &amp; Rumors</a>
+    <a href="#sponsorship">Sponsorship &amp; Cause</a>
+    <a href="#measurement">Measurement</a>
+    <a href="#ai">AI Search</a>
+    <a href="#closing">Wrap-Up</a>
+  </div>
+  <div class="subnav-progress"></div>
+</nav>
+
+<main class="wrapper">
+
+<!-- ============================================================
+     OVERVIEW
+     ============================================================ -->
+<section class="section" id="overview">
+  <div class="sec-label">Overview</div>
+  <h2>What This Page Does</h2>
+
+  <p>PR usually shows up in two places in marketing frameworks. In the <a href="peso.html">PESO model</a> it is the core of <strong>Earned</strong> media: high credibility, low control. In the <a href="touch-points.html">touch-points framework</a> it lives mostly in the <strong>Unexpected</strong> category, the one the company controls least and the customer believes most. This page goes inside that box.</p>
+
+  <p>The textbooks treat PR as a grab bag: press releases, crisis management, sponsorships, corporate image ads, cause marketing, community relations. They're all here. But a single idea ties them together, and it's worth stating up front:</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">PR is the only promotional tool that has to persuade a gatekeeper before it can persuade a customer.</div>
+    <div class="pullquote-attr">The thesis of this page</div>
+  </div>
+
+  <p>An ad runs because you paid for it. A coupon goes out because you mailed it. A news story, a podcast mention, a reviewer's verdict, or an AI assistant's citation happens only because someone who doesn't work for you decided it was worth their audience's time. That gatekeeper is where PR's credibility comes from. It is also why PR is slow, unpredictable, and impossible to buy on demand.</p>
+
+  <p>The page draws mainly on Belch &amp; Belch (Ch. 17), with shorter pieces from Andrews &amp; Shimp (Ch. 21) where they cover ground Belch doesn't: content marketing, rumors, word of mouth, and ambush marketing. Two topics come from outside both books: why the industry's favorite PR metric is discredited, and what AI search is doing to the value of earned media.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 1</div>
+    <div class="figure-title">The PR Industry Makes Its Own Case</div>
+    <div class="ig-grid">
+      <a href="assets/images/edelman-1.jpg" target="_blank" rel="noopener"><img src="assets/images/edelman-1.jpg" alt="Edelman Instagram post: Here's why your brand is getting ignored."></a>
+      <a href="assets/images/edelman-2.jpg" target="_blank" rel="noopener"><img src="assets/images/edelman-2.jpg" alt="Edelman Instagram post: The paid-led model is broken."></a>
+      <a href="assets/images/edelman-3.jpg" target="_blank" rel="noopener"><img src="assets/images/edelman-3.jpg" alt="Edelman Instagram post: 85% of ads fail to meet the 2.5 second attention threshold; 95% of brand visibility comes from non-paid sources; but still, brands are overpaying to compensate for ideas that don't travel."></a>
+    </div>
+    <p class="ig-link"><a href="https://www.instagram.com/p/DcOXNmlm29C/" target="_blank" rel="noopener">See more on Instagram &rarr;</a></p>
+    <div class="figure-caption">Three slides from an Edelman Instagram carousel. Click any slide to enlarge.</div>
+  </div>
+
+  <p>Edelman is the world's largest PR firm, so read its posts the way you'd read any vendor's pitch. As the <a href="peso.html">PESO</a> discussion warns, every tool's specialists argue their tool is the answer. Still, the argument is the one this page makes: <strong>attention you pay for is getting harder to hold, and visibility increasingly comes from sources you don't pay</strong>. The 95% figure matches the AI-search data in <a href="#ai">Section 7</a>, and the same cautions apply to it there.</p>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — WHAT PR IS
+     ============================================================ -->
+<section class="section" id="what-pr-is">
+  <div class="sec-num">01</div>
+  <div class="sec-label">Definitions</div>
+  <h2>What PR Is, and How It Differs from Publicity</h2>
+
+  <p>The traditional definition, from the trade newsletter <em>Public Relations News</em>, describes PR as a management function with three jobs: figure out what the public thinks of you, line up your policies with the public interest, and then run a program of action and communication to <em>"earn public understanding and acceptance"</em> <a class="cite" href="#refs">(Belch, Ch. 17)</a>. Notice the order. Listening comes first and communicating comes last. Notice too that customers are only one of the publics in view. Employees, investors, neighbors, regulators, and activists all count.</p>
+
+  <p>That broad definition is what Andrews calls <strong>general PR</strong>. The narrower slice aimed at actual and prospective customers is <strong>marketing public relations</strong>, or <strong>MPR</strong>, a term coined by Thomas Harris <a class="cite" href="#refs">(Andrews, Ch. 21)</a>. Most of this page is about MPR, but the general-PR publics matter because they can sink a marketing program. As one editor quoted by Belch put it (paraphrasing), it's hard to sell an eco-friendly detergent while your company is in the news for dumping chemicals in a river.</p>
+
+  <h3>1.1 Four Terms People Use Interchangeably (and Shouldn't)</h3>
+
+  <div class="figure">
+    <div class="figure-label">Figure 2</div>
+    <div class="figure-title">The PR Family</div>
+    <table>
+      <thead>
+        <tr><th>Term</th><th>What It Is</th><th>Who Controls the Message</th><th>Time Horizon</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Public relations</strong></td><td>The ongoing management of relationships with every public that matters to the organization</td><td>Mostly the organization</td><td>Months to years</td><td>An annual impact report; employee communications; community involvement</td></tr>
+        <tr><td><strong>Marketing PR (MPR)</strong></td><td>The part of PR aimed at customers and prospects, in support of marketing goals</td><td>The organization proposes; media decide</td><td>Campaign-length</td><td>A product launch built around press coverage before ads break</td></tr>
+        <tr><td><strong>Publicity</strong></td><td>News about a person, product, or company that appears in the media. A subset of PR.</td><td>Third parties. Often not the organization at all.</td><td>Short-term, often unplanned</td><td>A reviewer's verdict; a viral complaint; a <em>60 Minutes</em> segment</td></tr>
+        <tr><td><strong>Corporate advertising</strong></td><td>Paid advertising that promotes the organization, its image, or its views, not a product</td><td>The organization (it's paid)</td><td>Varies</td><td>An image campaign; an issue ad; a sponsorship spot</td></tr>
+      </tbody>
+    </table>
+    <div class="figure-caption">Synthesized from Belch (Ch. 17) and Andrews (Ch. 21). The key line Belch draws: PR is planned and mostly positive; publicity is often neither.</div>
+  </div>
+
+  <p>The distinction between PR and publicity matters more than it looks. PR is something you <em>do</em>. Publicity is something that <em>happens to you</em>, and it can be good or bad. A well-run PR department spends much of its time trying to turn the second into the first.</p>
+
+  <h3>1.2 Where PR Sits in the Organization</h3>
+
+  <p>Belch describes a continuum. At one end, PR is a <strong>non-marketing function</strong>: a separate department, often a separate agency, whose job is keeping peace with all publics, with customers just one group among many. At the other end, PR <strong>reports to marketing</strong> and every relationship is judged by what it does for sales. Belch's preferred position is the middle: strong marketing and strong PR departments that work together without either absorbing the other. Make PR too subordinate and it loses the independence that makes journalists and communities trust it.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-card-val">74%</span>
+      <div class="stat-card-lbl">of PR pros rate PR–marketing ties strong</div>
+      <div class="stat-card-sub">Survey of 200+ U.S. PR professionals cited by Belch. The old silos are mostly gone.</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card-val">85%</span>
+      <div class="stat-card-lbl">say the two share information more readily</div>
+      <div class="stat-card-sub">Same survey (Belch, Ch. 17).</div>
+    </div>
+    <div class="stat-card highlight">
+      <span class="stat-card-val">87%</span>
+      <div class="stat-card-lbl">of PR execs doubt "public relations" will describe their work</div>
+      <div class="stat-card-sub">USC Annenberg study cited by Belch. The job now includes SEO, social, and influencer work: "digital PR."</div>
+    </div>
+  </div>
+
+  <h3>1.3 PR as a Process, and Its Publics</h3>
+
+  <p>Because PR is a management function, it gets planned like one. Cutlip, Center, and Broom's four steps are the standard: <strong>(1)</strong> define the problem, <strong>(2)</strong> plan and program, <strong>(3)</strong> act and communicate, <strong>(4)</strong> evaluate. Step 1 is where attitude research happens, and Belch gives four reasons to do it: it feeds the plan, it works as an <em>early-warning system</em>, it wins internal support for fixing a problem, and it makes the eventual messaging sharper.</p>
+
+  <p>Then come the publics. One classification surprises students: John Marston counts <strong>community members and current customers as internal publics</strong>, alongside employees and investors, because the organization already deals with them in the ordinary course of business.</p>
+
+  <ul>
+    <li><strong>Internal publics</strong> (already connected): employees, investors, the community, suppliers, and current customers. Reached through newsletters, annual reports, impact reports, and day-to-day contact.</li>
+    <li><strong>External publics</strong> (no standing connection): the media and educators, both <em>gatekeepers</em>; civic groups; the financial community; and government, where one regulation can be worth more than a year of advertising.</li>
+  </ul>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>PR is a management function: listen first, align policy, then communicate. Customers are one public among many.</li>
+      <li><strong>MPR</strong> is the customer-facing slice. Most marketing conversations about "PR" mean MPR.</li>
+      <li>PR is something you do. Publicity is something that happens to you, positive or negative.</li>
+      <li>Corporate advertising is paid, so it isn't earned, but it lives in the PR family because it sells the organization rather than a product.</li>
+      <li>PR and marketing work best as partners. Fold PR entirely into marketing and it loses the independence that makes it credible.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — CREDIBILITY VS CONTROL
+     ============================================================ -->
+<section class="section" id="tradeoff">
+  <div class="sec-num">02</div>
+  <div class="sec-label">The Core Trade-Off</div>
+  <h2>Credibility vs. Control</h2>
+
+  <p>Every argument for PR and every argument against it comes back to the same trade. You give up control over the message in exchange for a source the audience believes. The <a href="touch-points.html">touch-points framework</a> shows the pattern: the less a company controls a touch point, the more it tends to move customers. PR is that pattern turned into a discipline.</p>
+
+  <div class="versus">
+    <div class="versus-col">
+      <div class="versus-kicker">What PR buys you</div>
+      <div class="versus-title">Advantages</div>
+      <ul>
+        <li><strong>Credibility.</strong> No visible sponsor, so audiences treat it as news, not persuasion.</li>
+        <li><strong>Cost.</strong> Often the most affordable option for small companies.</li>
+        <li><strong>Clutter avoidance.</strong> A news story doesn't sit in an ad break.</li>
+        <li><strong>Lead generation.</strong> Coverage of a breakthrough produces inquiries.</li>
+        <li><strong>Niche reach.</strong> Trade press and specialist outlets reach groups too small to advertise to.</li>
+        <li><strong>Image as insurance.</strong> A strong reputation helps a company ride out the next crisis.</li>
+        <li><strong>Staying power.</strong> A good article can be remembered for years; a social post is often a flash in the pan.</li>
+      </ul>
+    </div>
+    <div class="versus-col is-blue">
+      <div class="versus-kicker">What PR costs you</div>
+      <div class="versus-title">Disadvantages</div>
+      <ul>
+        <li><strong>No control over whether it runs.</strong> Space and time are never guaranteed.</li>
+        <li><strong>No control over timing.</strong> It may run too early, too late, or never.</li>
+        <li><strong>No control over accuracy.</strong> The story you pitched and the story that ran may barely resemble each other.</li>
+        <li><strong>The attribution gap.</strong> Audiences may never connect the story back to the brand.</li>
+        <li><strong>Hard to tie in slogans</strong> or other advertising devices.</li>
+        <li><strong>Coordination risk.</strong> PR running separately from marketing produces mixed messages.</li>
+        <li><strong>No standard effectiveness measure</strong> (see Section 6).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>2.1 Why Publicity Hits So Hard</h3>
+
+  <p>Belch gives three reasons publicity can outweigh every other form of promotion combined. First, it's <strong>credible</strong>, because it isn't seen as company-sponsored (negative publicity never is). Second, it seems <strong>endorsed by the outlet</strong> that runs it: a <em>Car and Driver</em> award reflects the magazine's judgment, not the automaker's. Third, it's <strong>news</strong>, and people like passing news along. That last point is where publicity turns into word of mouth.</p>
+
+  <p>The upside examples are striking. Cabernet Sauvignon sales rose an average of 45% in the month after a <em>60 Minutes</em> report linking moderate red wine consumption to heart health. Fortnite became a sensation with essentially no advertising spend. The downside examples are just as large, and Section 4 covers them.</p>
+
+  <h3>2.2 The "Rise of PR" Argument and Its Limits</h3>
+
+  <p>In 2002, Al and Laura Ries published <em>The Fall of Advertising and the Rise of PR</em>, arguing that new brands should launch on publicity and use advertising only to maintain them once they're established. They pointed to eBay, Starbucks, PlayStation, and The Body Shop. Belch adds Tesla, Apple, and Gillette, which uses PR as the lead medium in every launch.</p>
+
+  <div class="callout">
+    <div class="callout-label">Andrews' two pushbacks</div>
+    <p><strong>1. Most products aren't news.</strong> A slightly better detergent or a new flavor extension won't get free coverage, because editors don't care. Launch-by-PR works for products that are genuinely unique or visible.</p>
+    <p><strong>2. Newsworthiness wears off.</strong> Even a truly novel product stops being a story after launch. At that point, keeping the brand's equity up falls to advertising.</p>
+  </div>
+
+  <p>Both pushbacks point to the same practical test, which the <a href="earning-earned.html">Earning Earned</a> reading calls the <strong>remove-the-name test</strong>: <em>would this story still interest anyone if you took the company's name out of the headline?</em> If not, it isn't a PR opportunity. It's an ad, and should be bought as one.</p>
+
+  <div class="sidebar-card">
+    <h3>Borrowed Voices</h3>
+    <div class="sidebar-card-sub">Earned third parties, paid third parties, and why the difference matters</div>
+    <p>PR works because someone else is saying it. That's a <strong>source</strong> effect, the same idea behind celebrity endorsement. Both strategies borrow credibility from a voice that isn't the brand's own. They differ in one crucial way: the audience knows the celebrity was paid.</p>
+    <p>That difference predicts a lot. An unpaid reviewer, journalist, or fan has <em>independence</em>, and independence is what makes the message believable. A paid celebrity brings <em>attention and image transfer</em> but not independence, which helps explain why pooled research finds celebrity endorsements average out near zero effect, and why celebrities underperform quality seals and awards. A J.D. Power award, which State Farm advertises, is the third-party voice working as intended.</p>
+    <p>There's a middle case. Andrews notes research finding that when a word-of-mouth agent discloses their connection to a brand, it <em>doesn't</em> hurt their credibility, and actually increases how often the message gets passed along. Disclosure isn't the problem. Hiding the connection is.</p>
+    <p>For a deeper look at when paid voices do and don't work, see <a href="celebrity-effectiveness.html" style="color:var(--red-mid);">Do Celebrities Actually Sell Anything?</a></p>
+    <div class="sidebar-card-tag">Independence is the asset. Payment spends it.</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>PR trades control for credibility. Every advantage and disadvantage traces back to that trade.</li>
+      <li>Publicity is powerful because it's credible, appears endorsed by the outlet, and is news people repeat.</li>
+      <li>"Launch on PR, maintain with ads" works for genuinely newsworthy products, and only while they stay newsworthy.</li>
+      <li><strong>Remove-the-name test:</strong> if the story dies without the brand name, buy an ad instead.</li>
+      <li>Earned and paid third parties both borrow credibility. Only the earned one keeps its independence.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — PROACTIVE PR
+     ============================================================ -->
+<section class="section" id="proactive">
+  <div class="sec-num">03</div>
+  <div class="sec-label">Offense</div>
+  <h2>Proactive PR: The Toolkit</h2>
+
+  <p>Andrews splits MPR into two modes. <strong>Proactive MPR</strong> is offensive and opportunity-seeking: launches, announcements, content, buzz. <strong>Reactive MPR</strong> is defensive: responding to crises, rumors, and attacks. This section covers offense. Section 4 covers defense.</p>
+
+  <h3>3.1 The Basic Tools</h3>
+
+  <div class="figure">
+    <div class="figure-label">Figure 3</div>
+    <div class="figure-title">Proactive PR Tools</div>
+    <table>
+      <thead>
+        <tr><th>Tool</th><th>What It Is</th><th>When It Works</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Press release</strong></td><td>A written announcement sent to media in the hope they'll run it</td><td>When it's factual, interesting to <em>that outlet's</em> audience, and easy to pass along</td></tr>
+        <tr><td><strong>Product release</strong></td><td>A release about a new or revised product: features, benefits, where to learn more</td><td>Trade and business press. Usually lands in the product section.</td></tr>
+        <tr><td><strong>Executive-statement release</strong></td><td>A release quoting the CEO or another executive on trends, forecasts, or issues</td><td>Lands in the <em>news</em> section, which carries more credibility. Any product release can be rewritten as one.</td></tr>
+        <tr><td><strong>Feature article</strong></td><td>A detailed piece written by the PR team for publication or posting</td><td>Local and niche outlets short on content. Cheap to produce, wide reach.</td></tr>
+        <tr><td><strong>Exclusive</strong></td><td>Offering one outlet the story first, or only</td><td>When that outlet reaches much of the target. Exclusivity raises acceptance odds.</td></tr>
+        <tr><td><strong>Press conference</strong></td><td>A live briefing for assembled media</td><td>Only for major news, or crises. Otherwise nobody shows up.</td></tr>
+        <tr><td><strong>Interview</strong></td><td>A company spokesperson answers questions</td><td>Crises and controversies, sometimes with top management</td></tr>
+        <tr><td><strong>Video news release (VNR)</strong></td><td>Company-produced video packaged so stations can air it as news</td><td>Useful, but often aired without disclosing the source, which consumer advocates have long criticized</td></tr>
+        <tr><td><strong>Community involvement</strong></td><td>Local memberships, events, and support</td><td>Long-term goodwill (Dunkin' has done this since 1950)</td></tr>
+      </tbody>
+    </table>
+    <div class="figure-caption">Combined from Belch (Ch. 17) and Andrews (Ch. 21).</div>
+  </div>
+
+  <h3>3.2 What MPR Can Do for a Brand</h3>
+
+  <p>Harris's list of the jobs marketing PR can do is the most useful part of Belch's chapter. It shows PR doing things advertising can't.</p>
+
+  <div class="job-grid">
+    <div class="job-card">
+      <div class="job-card-title">Build excitement before ads break</div>
+      <p>Apple builds anticipation through coverage before launch, then lets lines outside stores become the story.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Launch with little or no advertising</div>
+      <p>Tesla, Segway, Crayola. Works only when the product is genuinely news (see Andrews' pushback).</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Make the ad itself the news</div>
+      <p>Super Bowl spots get covered, ranked, and shared, so the ad earns far more exposure than its media buy.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Add a service</div>
+      <p>Butterball's turkey hotline took 25,000 calls its first holiday season. Helpful, branded, and newsworthy.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Build brand–customer bonds</div>
+      <p>The Pillsbury Bake-Off has run since 1949. Participation creates loyalty no ad can match.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Defend a product at risk</div>
+      <p>After the auto bailout made private jets a symbol of excess, Cessna's "Rise" campaign made the business case for them.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Give a reason to buy</div>
+      <p>Energizer's "change your smoke-alarm battery when you change your clocks" built goodwill <em>and</em> battery sales.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Influence the influentials</div>
+      <p>Get the story to the opinion leaders who brief everyone else (more in 3.4).</p>
+    </div>
+  </div>
+
+  <p>One example in Belch shows how far modern PR has drifted toward performance marketing. WestJet, much smaller than Air Canada, turned PR stunts into videos (an April Fools' "raise your hands for aerodynamics" gag, surprise holiday gifts), then <strong>retargeted the viewers with ticket ads</strong>. The airline reported millions of dollars in flights bought by people who had just watched the videos. Earned attention, harvested with paid media: a PESO flywheel in one campaign.</p>
+
+  <h3>3.3 Content Marketing and Native Advertising</h3>
+
+  <p>Andrews treats <strong>content marketing</strong> as the fastest-growing area of proactive PR: producing, curating, and sharing brand content built around what customers need and that delivers visible value. Belch's best example is Betty Crocker. Search data showed that mothers looking for help baking birthday cakes searched for "birthday cake," not brand names, so Betty Crocker produced instructional videos that barely mentioned the brand. The videos drove more than 70 million visitors to its site.</p>
+
+  <p>Its controversial cousin is <strong>native advertising</strong>: brand-sponsored content made to blend in with the editorial content around it. Defenders say it delivers useful information people actually want to read. Critics say looking like journalism is the point, and that makes it deceptive. The FTC held a workshop on the issue in 2013 and in 2015 issued an enforcement policy statement on <em>deceptively formatted advertising</em>: if a reasonable reader can't tell it's an ad, it needs a clearer label.</p>
+
+  <div class="sidebar-card is-red">
+    <h3>Is native advertising PR or advertising?</h3>
+    <div class="sidebar-card-sub">A question that comes up every semester</div>
+    <p><strong>In PESO terms, it's Paid.</strong> The brand buys the placement. What makes it feel like PR is that it borrows the <em>look</em> of earned media, which is exactly why regulators care about disclosure.</p>
+    <p>Content marketing on the brand's own site (Betty Crocker's videos, Coca-Cola's Journey site) is <strong>Owned</strong>. It becomes <strong>Earned</strong> only when an independent outlet or person picks it up and passes it along by choice.</p>
+    <div class="sidebar-card-tag">Ask who paid for the placement, not what it looks like.</div>
+  </div>
+
+  <div class="figure">
+    <div class="figure-label">Figure 4</div>
+    <div class="figure-title">One Announcement, Four PESO Channels: Dell's Global Technology Adoption Index</div>
+    <div class="timeline">
+      <div class="timeline-item is-major">
+        <div class="timeline-date">Earned (event)</div>
+        <div class="timeline-title">Michael Dell announces the index at the Dell World press conference</div>
+        <div class="timeline-body"><p>The research itself is the news hook: original data, not a product pitch.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Shared</div>
+        <div class="timeline-title">Results posted across Dell's social accounts with a campaign hashtag</div>
+        <div class="timeline-body"><p>The community is invited to discuss and pass it on.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Owned</div>
+        <div class="timeline-title">Dell's own content site publishes a story on the key findings</div>
+        <div class="timeline-body"><p>A permanent home that coverage can link to.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Earned (media)</div>
+        <div class="timeline-title">PR pitches journalists; coverage lands in tech and business outlets</div>
+        <div class="timeline-body"><p>Third parties tell the story in their own words.</p></div>
+      </div>
+      <div class="timeline-item is-major">
+        <div class="timeline-date">Paid</div>
+        <div class="timeline-title">A <em>New York Times</em> native campaign runs the next day, plus paid social and syndication</div>
+        <div class="timeline-body"><p>Paid media goes in <em>after</em> the earned wave, extending a story that already has credibility.</p></div>
+      </div>
+    </div>
+    <div class="figure-caption">Described in Belch (Ch. 17) as an example of the PESO model, credited to Gini Dietrich, now used by PR practitioners. The sequence is the lesson: earn first, then pay to extend.</div>
+  </div>
+
+  <h3>3.4 Word of Mouth and Buzz, Briefly</h3>
+
+  <p>Publicity becomes powerful when people repeat it. Andrews defines <strong>word of mouth (WOM)</strong> as informal communication among consumers about products, and the average American has more than 120 such conversations a week. Three ideas are worth keeping:</p>
+
+  <ul>
+    <li><strong>The two-step flow.</strong> Advertising and publicity <em>start</em> the conversation; opinion leaders and social networks <em>carry</em> it. Neither works as well alone.</li>
+    <li><strong>Gladwell's three rules:</strong> the <em>law of the few</em> (a handful of connected people start it), <em>stickiness</em> (the message has to be memorable), and the <em>power of context</em> (the moment has to be right).</li>
+    <li><strong>Emotion drives sharing.</strong> High-arousal emotions (awe, anger, anxiety) spread content; low-arousal ones (sadness) don't.</li>
+  </ul>
+
+  <p>McKinsey turns this into tactics: make the product <strong>unique or visible</strong>, <strong>seed the early adopters</strong> others copy, and <strong>ration supply</strong>, because people talk about what they can't have yet.</p>
+
+  <div class="callout">
+    <div class="callout-label">Go deeper</div>
+    <p>Andrews' viral examples (Blendtec, Old Spice, Oprah's Pontiac giveaway) are a decade or more old. For a current treatment of why people share, including Berger's STEPPS framework and 2024 survey data on why people pass along brand posts, see <a href="share-worthy.html">What Makes Content Shareable?</a></p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Proactive MPR seeks opportunities; reactive MPR solves problems.</li>
+      <li>Executive-statement releases land in the news section and carry more credibility than product releases.</li>
+      <li>MPR does jobs ads can't: pre-launch buzz, turning ads into news, defending products at risk, building community.</li>
+      <li>Content marketing on your own site is <strong>Owned</strong>; native advertising is <strong>Paid</strong>. Neither is Earned until someone independent passes it on.</li>
+      <li>The Dell example shows the sequence: earn first, then pay to extend.</li>
+      <li>Publicity becomes word of mouth through connected people, sticky messages, and high-arousal emotion.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — REACTIVE PR
+     ============================================================ -->
+<section class="section" id="reactive">
+  <div class="sec-num">04</div>
+  <div class="sec-label">Defense</div>
+  <h2>Reactive PR: Crises and Rumors</h2>
+
+  <p>Belch opens his chapter with the costs of bad publicity. Kanye West's antisemitic remarks in 2022 ended his deals with adidas, the Gap, and Balenciaga; adidas estimated that ending the Yeezy line would cost it about a quarter of a billion dollars that year. Andrews adds a run of recent disasters: VW's emissions cheating, Chipotle's outbreaks, Samsung's exploding Note 7 batteries, Wells Fargo's unauthorized accounts. Belch's other opening story is the most famous, and more instructive than the textbook realizes.</p>
+
+  <div class="sidebar-card is-red">
+    <h3>Did Ronaldo really cost Coca-Cola $4 billion?</h3>
+    <div class="sidebar-card-sub">A publicity story that became "fact," including in Belch</div>
+    <p>The claim went around the world in 2021: Coke's shares fell 1.6% soon after Ronaldo pushed two bottles aside at a press conference, wiping about $4 billion off its market value. Fact-checkers then pointed out that <strong>the stock was already falling</strong> before the press conference began, and that the day was <strong>Coca-Cola's ex-dividend date</strong>, when a drop of roughly that size is expected <a class="cite" href="#refs">(Snopes; City A.M.)</a>.</p>
+    <p>That makes it a perfect PR lesson. A vivid story with a big number spread faster than the correction and ended up in a textbook. <em>The gesture was real. The causal claim wasn't.</em></p>
+    <div class="sidebar-card-tag">Vivid beats accurate, until someone checks.</div>
+  </div>
+
+  <h3>4.1 What Separates a Survivable Crisis from a Fatal One</h3>
+
+  <div class="versus">
+    <div class="versus-col is-blue">
+      <div class="versus-kicker">Tylenol, 1982</div>
+      <div class="versus-title">Seven deaths from cyanide-laced capsules</div>
+      <p>Pulled the product nationwide, immediately; told consumers on TV <em>not</em> to take it; introduced tamper-proof packaging; replaced product people had thrown away.</p>
+      <div class="versus-verdict">Analysts predicted the brand was dead. It regained its share soon after relaunch.</div>
+    </div>
+    <div class="versus-col">
+      <div class="versus-kicker">Perrier, 1990</div>
+      <div class="versus-title">Traces of benzene in bottles</div>
+      <p>Offered shifting explanations, recalled reluctantly, then had to recall worldwide at a cost of more than $150 million.</p>
+      <div class="versus-verdict">U.S. sales fell 40%. Perrier never fully recovered.</div>
+    </div>
+  </div>
+
+  <p>The difference wasn't the severity of the problem. It was <strong>speed and candor</strong>. Two more findings sharpen the point. In a study of 128 incidents where a celebrity endorser created bad publicity, firms that responded <strong>within 72 hours</strong> actually saw their stock rise slightly, and every day after that made things worse (Belch). And loyal customers push back against negative publicity, while less loyal ones absorb it (Andrews): <em>reputation built in good times gets spent in bad ones</em>. The crisis playbook that follows from this is short: be open, be first with the news, put a human face on the company, pause the advertising, and follow through on every promise.</p>
+
+  <h3>4.2 Rumors</h3>
+
+  <p>A <strong>commercial rumor</strong> is a widely circulated, unverified, and usually false claim about a product or company. Andrews sorts them into two kinds. <strong>Conspiracy rumors</strong> say the company secretly supports something offensive (P&amp;G's logo as a satanic symbol). <strong>Contamination rumors</strong> say there's something disgusting in the product (Corona and urine, a rumor started by a rival distributor that cut sales 80% in some markets). Saying nothing feels safe but usually isn't. The expert advice is to treat a rumor like a fire: refute the specific claim quickly, through the channels where it's spreading, using a <strong>credible spokesperson who isn't the company</strong>.</p>
+
+  <div class="sidebar-card is-red">
+    <h3>Is any publicity good publicity?</h3>
+    <div class="sidebar-card-sub">Both textbooks ask. The research answer: it depends on whether anyone knows you.</div>
+    <p>A study of <em>New York Times</em> book reviews found a negative review <strong>raised</strong> sales for unknown authors by about 45%, because being reviewed at all built awareness, while it <strong>cut</strong> sales for established authors by about 15% <a class="cite" href="#refs">(Berger, Sorensen &amp; Rasmussen, 2010)</a>. That's the <em>awareness threshold</em> at work. Below it, almost any attention helps. Above it, people already know you, and bad press just makes them think less of you.</p>
+    <div class="sidebar-card-tag">Attention helps the unknown. Reputation is what the known have to lose.</div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Go deeper</div>
+    <p>For the full set of cases (the Pepsi syringe hoax, Samsung, VW, Wells Fargo), the six-step crisis playbook, how to run an anti-rumor campaign and when refutation backfires, and a campus restaurant scenario to work through, see <a href="crisis-and-rumors.html">When It Goes Wrong: Crises and Rumors</a>.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Negative publicity can be very costly, but check the number. Vivid claims spread faster than corrections.</li>
+      <li>Tylenol vs. Perrier: <strong>speed and candor</strong> save brands; hesitation and shifting stories sink them.</li>
+      <li>Respond within about 72 hours. Loyalty built beforehand is the buffer.</li>
+      <li>Rumors are conspiracy or contamination. Fight them fast, with a credible third-party voice.</li>
+      <li>"Any publicity is good publicity" holds only for brands nobody has heard of yet.</li>
+    </ul>
+  </div>
+</section>
+
+
+
+<!-- ============================================================
+     SECTION 5 — SPONSORSHIP & CAUSE
+     ============================================================ -->
+<section class="section" id="sponsorship">
+  <div class="sec-num">05</div>
+  <div class="sec-label">Paying to Be Associated</div>
+  <h2>Corporate Advertising, Sponsorship, and Cause</h2>
+
+  <p>The last part of the PR family involves paying, not for a product message, but to put the <em>organization</em> next to something people already value: an idea, an event, a cause. Belch groups these under <strong>corporate advertising</strong>, which promotes the firm rather than any product.</p>
+
+  <h3>5.1 Corporate Advertising and Why It's Controversial</h3>
+
+  <p>Belch lists four common criticisms: consumers aren't interested in it, it's executive self-indulgence (top managers often dictate the copy), it's a sign the company is in trouble, and it's a waste of money because it asks for nothing specific. Its defense is that it positions the firm (compare what comes to mind for Apple versus ConAgra), says what PR couldn't get the media to cover, and reaches a select audience, often investors and business leaders rather than the general public. It comes in four main forms:</p>
+
+  <div class="job-grid">
+    <div class="job-card">
+      <div class="job-card-title">Image advertising</div>
+      <p>General positioning (Accenture), program sponsorship (Antiques Roadshow on PBS), recruiting, and building investor confidence.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Event sponsorship</div>
+      <p>Sports, arts, festivals, stadium names. The most marketing-oriented form (5.2).</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Advocacy and issue ads</div>
+      <p>Taking a position on an issue. Can come from a company, a trade group, or an activist organization.</p>
+    </div>
+    <div class="job-card">
+      <div class="job-card-title">Cause-related marketing</div>
+      <p>Linking sales to donations for a nonprofit partner (5.3).</p>
+    </div>
+  </div>
+
+  <p>Issue ads can work as pressure, not just image. After talks with Trader Joe's broke down, the Humane Society ran an ad headlined "Why Won't Trader Joe's Give an Inch?" The customer response was large enough that the chain announced it would switch its store-brand eggs to cage-free within three months. During the vaping debate, the Campaign for Tobacco-Free Kids and JUUL ran opposing issue ads at about the same time.</p>
+
+  <div class="pullquote">
+    <div class="pullquote-text">A positive corporate image cannot be created from a few advertisements.</div>
+    <div class="pullquote-attr">Belch &amp; Belch, Ch. 17</div>
+  </div>
+
+  <p>Belch backs this up with three 2022 reputation rankings: Fortune's Most Admired, the Best Corporate Citizens list, and the Harris Poll's Most Reputable. <strong>No company appears in the top five of all three.</strong> Apple leads one; Owens Corning leads another; Trader Joe's leads the third. Reputation comes from product quality, innovation, citizenship, and financial soundness in different mixes. Corporate advertising can describe a reputation, but it can't build one.</p>
+
+  <h3>5.2 Event Sponsorship</h3>
+
+  <p>Andrews defines event sponsorship as tying a brand to a meaningful athletic, entertainment, cultural, or social activity. It's been growing for several reasons: it gets around ad clutter, it reaches people as media habits fragment, it pleases employees and shareholders, it builds brand equity, and it targets precisely. Professional bull riding attracts Ford Trucks, Carhartt, and Wrangler because its fans are mostly men aged 21–49 living west of the Mississippi.</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 5</div>
+    <div class="figure-title">Six Questions Before Signing a Sponsorship</div>
+    <table>
+      <thead>
+        <tr><th>Factor</th><th>The Question</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Image match</strong></td><td>Is the event consistent with the brand's image, and will it help?</td><td>Coleman grills at NASCAR, fishing tournaments, and country festivals</td></tr>
+        <tr><td><strong>Audience fit</strong></td><td>Does it reliably reach the target?</td><td>Prilosec sponsored the Bunco World Championship after learning about a third of women who play bunco get frequent heartburn</td></tr>
+        <tr><td><strong>Misidentification risk</strong></td><td>Will people credit a competitor?</td><td>Coke paid $250M to sponsor the NFL. Fans named Coke as a sponsor 35% of the time and Pepsi, falsely, 34%.</td></tr>
+        <tr><td><strong>Clutter</strong></td><td>Will the brand stand out among other sponsors?</td><td>Unless you're a primary NASCAR sponsor, you "can get lost on the bumper"</td></tr>
+        <tr><td><strong>Fit with other marcom</strong></td><td>Does it reinforce the brand's other activity?</td><td>Multiple sponsorships should add up to one story, not several</td></tr>
+        <tr><td><strong>Economics</strong></td><td>Can you afford to <em>activate</em> it, not just buy it?</td><td>Rule of thumb: spend 2–3 times the rights fee supporting the sponsorship</td></tr>
+      </tbody>
+    </table>
+    <div class="figure-caption">Adapted from Andrews (Ch. 21). The last row is the one most often ignored: buying the rights without the activation budget is like buying a car with no money for gas.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-card-val">72% vs. 54%</span>
+      <div class="stat-card-lbl">Visa vs. Amex as "Olympic sponsor"</div>
+      <div class="stat-card-sub">Visa paid $40M for official sponsorship. Amex just advertised heavily during the broadcast. That's <strong>ambush marketing</strong> (Andrews).</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card-val">99%</span>
+      <div class="stat-card-lbl">of fans recall their stadium's sponsor</div>
+      <div class="stat-card-sub">And 35% say it improves their view of the brand (Belch). The risk: Enron Field, and naming sponsors that went bankrupt.</div>
+    </div>
+  </div>
+
+  <p><strong>Ambushing</strong> means creating the impression of official sponsorship without paying for it. Is it unethical, or just smart? Andrews leaves the question open on purpose. One side calls it free-riding on someone else's investment. The other calls it a cheap, legal way to neutralize a competitor's advantage.</p>
+
+  <p>For more on choosing, activating, and measuring sponsorships, and on the Olympics' long fight against ambushers, see <a href="sponsorship-ambush.html">Sponsorship &amp; Ambush Marketing</a>.</p>
+
+  <h3>5.3 Cause-Related Marketing</h3>
+
+  <p>Andrews draws a precise line. <strong>Cause-related marketing (CRM)</strong> isn't just a company giving to charity. The donation is <strong>contingent on the customer doing something</strong> that benefits the firm: buying, redeeming, texting, test-driving. Yoplait gave 10 cents to breast cancer research for every lid mailed back. Campbell's Labels for Education traded soup labels for school supplies, more than $100 million worth over 30 years. If the company gives no matter what customers do, it's philanthropy. If giving depends on a purchase, it's marketing, and should be judged as marketing.</p>
+
+  <p>Three things decide whether it works. <strong>Fit:</strong> the cause should connect naturally to the brand and its customers, otherwise it looks self-serving. <strong>Specificity:</strong> "a portion of proceeds will be donated" makes consumers suspicious; "$1 per pack, up to $100,000" doesn't. <strong>Authenticity:</strong> causes built into how the company operates (Patagonia) do better than causes bolted onto a campaign.</p>
+
+  <div class="callout">
+    <div class="callout-label">Go deeper</div>
+    <p>Both textbooks present cause marketing as mostly upside. The picture has changed since: high-profile backlashes, a measurable retreat from visible Pride and DEI campaigns, and evidence that younger consumers are less unified on this than marketers assume. See <a href="cause-marketing.html">Cause Marketing: Upside, Downside, and the Pullback</a>.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>Corporate advertising promotes the firm, not a product. It's controversial, but useful for positioning and reaching investors.</li>
+      <li>Reputation is earned through operations. No company leads all three major reputation rankings.</li>
+      <li>Sponsorship checklist: image, audience, misidentification, clutter, fit, and an activation budget of 2–3x the fee.</li>
+      <li>Ambush marketing can win the perception battle without paying for the rights.</li>
+      <li>CRM ties donations to customer action. Fit, specificity, and authenticity decide whether it reads as generous or cynical.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — MEASUREMENT
+     ============================================================ -->
+<section class="section" id="measurement">
+  <div class="sec-num">06</div>
+  <div class="sec-label">Accountability</div>
+  <h2>Measuring PR (and the Metric That Won't Die)</h2>
+
+  <p>"No standard effectiveness measures" was on the disadvantages list in Section 2, and it's been PR's weak spot for decades. Without measurement, PR can't win budget arguments against channels with dashboards. With bad measurement, it wins them for the wrong reasons.</p>
+
+  <h3>6.1 The Bad Old Metric: Advertising Value Equivalency</h3>
+
+  <p>For years the standard way to "value" coverage was the <strong>advertising value equivalent (AVE)</strong>: measure the column inches or airtime a story got, then multiply by what the same space would have cost as an ad. A half-page article worth $40,000 in ad rates becomes "$40,000 of PR value." Some agencies multiplied the result again to account for editorial credibility.</p>
+
+  <p>The problem is that AVE measures the <em>cost of space</em>, not the <em>effect of the message</em>. A negative story earns the same AVE as a positive one. A mention in the wrong outlet, to the wrong audience, counts the same as one in the right outlet. It also tells you nothing about what to do next time.</p>
+
+  <p>In 2010 the measurement industry's professional body, AMEC, adopted the <strong>Barcelona Principles</strong>, which explicitly reject AVE and call for measuring <em>outcomes</em> rather than <em>outputs</em>. Version 3.0 (2020) still states plainly that AVEs are not the value of communication, and added <strong>impact</strong> as a third level alongside outputs and outcomes <a class="cite" href="#refs">(PR News; React &amp; Share)</a>. A decade after Barcelona, industry surveys still found AVE in wide use. It survives because it produces a dollar figure, and executives like dollar figures.</p>
+
+  <div class="versus">
+    <div class="versus-col">
+      <div class="versus-kicker">Outputs</div>
+      <div class="versus-title">What we produced</div>
+      <p>Releases sent, clips, mentions, impressions, share of voice. Easy to count, and easy to inflate.</p>
+    </div>
+    <div class="versus-col is-blue">
+      <div class="versus-kicker">Outcomes → Impact</div>
+      <div class="versus-title">What changed</div>
+      <p>Awareness, attitudes, site traffic, inquiries, sales, donations, policy changes. Harder to measure, but the actual point.</p>
+    </div>
+  </div>
+
+  <h3>6.2 Better Frameworks</h3>
+
+  <p>Belch presents a three-level funnel from Cision, a PR software firm, that maps closely onto the outputs-to-impact idea:</p>
+
+  <div class="figure">
+    <div class="figure-label">Figure 6</div>
+    <div class="figure-title">The Communicator's Funnel for Digital PR</div>
+    <div class="funnel-figure">
+      <div class="funnel-tier tier-tofu">
+        <div class="funnel-stage">Brand Impact</div>
+        <div class="funnel-quote">"Are people talking about us, and how?"</div>
+        <div class="funnel-tools">Awareness (mentions) · Mindshare (share of voice vs. competitors) · Reputation (sentiment, social sharing)</div>
+      </div>
+      <div class="funnel-tier tier-mofu">
+        <div class="funnel-stage">Digital Impact</div>
+        <div class="funnel-quote">"Did coverage send anyone anywhere?"</div>
+        <div class="funnel-tools">Website traffic from coverage · SEO value of referring links · Social amplification</div>
+      </div>
+      <div class="funnel-tier tier-bofu">
+        <div class="funnel-stage">Bottom Line</div>
+        <div class="funnel-quote">"Did it change behavior?"</div>
+        <div class="funnel-tools">Sales · Donations · Conversions tracked through marketing analytics</div>
+      </div>
+    </div>
+    <div class="figure-caption">Adapted from Cision (2019) via Belch (Ch. 17). Mark Weiner adds three methods for marketing PR: media content analysis, survey research on attitudes, and marketing-mix modeling.</div>
+  </div>
+
+  <p>Sponsorship and cause programs use the same logic, and Andrews is blunt that they're not exempt. Set an objective, take a <strong>baseline</strong> measurement (awareness, attitude, sales) before the event or a matched control market without it, then measure the same thing afterward. Colgate-Palmolive's cause-program formula is a model of simplicity:</p>
+
+  <div class="formula">Incremental profit = (sales in 3 weeks after coupon drop − avg. sales prior 6 months)
+                     × net profit margin − per-unit program cost</div>
+
+  <div class="pullquote">
+    <div class="pullquote-text">Corporate ads are often owned by top management, and the people who should care most about accountability are the least willing to be held to it.</div>
+    <div class="pullquote-attr">Paraphrasing Belch &amp; Belch, Ch. 17</div>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>AVE measures the price of space, not the effect of a message. The industry formally rejected it in 2010, and it's still around.</li>
+      <li>Measure outcomes and impact, not just outputs.</li>
+      <li>Cision's funnel: brand impact → digital impact → bottom line.</li>
+      <li>Sponsorships and cause programs need a baseline and a post-measure, like any other campaign.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — AI SEARCH
+     ============================================================ -->
+<section class="section" id="ai">
+  <div class="sec-num">07</div>
+  <div class="sec-label">Outside the Textbooks</div>
+  <h2>Earned Media in the AI Answer</h2>
+
+  <p>Neither textbook could cover this. A growing share of product research now starts with a question to ChatGPT, Gemini, Claude, Perplexity, or Google's AI Overviews rather than a list of blue links. Those answers often cite their sources. So a new question for PR: <em>when an AI tells someone about your category, whose words is it repeating?</em></p>
+
+  <h3>7.1 What the Main Study Says</h3>
+
+  <p>The most-cited research is Muck Rack's recurring <em>What Is AI Reading?</em> report, which tracks the links AI assistants cite in their answers.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card highlight">
+      <span class="stat-card-val">84%</span>
+      <div class="stat-card-lbl">of AI citations come from "earned" sources</div>
+      <div class="stat-card-sub">May 2026 report, 25M+ cited links across ChatGPT, Claude, and Gemini; steady across three editions since July 2025.</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card-val">0.3%</span>
+      <div class="stat-card-lbl">come from paid or advertorial content</div>
+      <div class="stat-card-sub">Same report. Paying for placement barely registers.</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card-val">27% → 22%</span>
+      <div class="stat-card-lbl">Journalism's share of citations</div>
+      <div class="stat-card-sub">May vs. October 2026 editions. Actual news coverage is a minority of "earned," and shrinking.</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-card-val">2%</span>
+      <div class="stat-card-lbl">Overlap between most-pitched and most-cited journalists</div>
+      <div class="stat-card-sub">December 2025 edition. The reporters PR teams pitch hardest are rarely the ones AI cites for a brand.</div>
+    </div>
+  </div>
+
+  <p>If those numbers hold, PR's old advantage, credibility from someone else saying it, now has a machine audience too. Paid placement mostly doesn't reach that audience.</p>
+
+  <h3>7.2 Why You Shouldn't Take the 84% at Face Value</h3>
+
+  <div class="source-card dissent">
+    <div class="source-card-source">Limitations · Read before citing the number</div>
+    <div class="source-card-title">Five reasons to be careful with the Muck Rack figures</div>
+    <ul>
+      <li><strong>The source sells the solution.</strong> Muck Rack is a PR software company, and the report is produced by Generative Pulse, its paid AI-visibility product. That doesn't make the data wrong, but it is a vendor study, not peer-reviewed research, using prompts the vendor chose.</li>
+      <li><strong>"Earned" is defined very broadly.</strong> Muck Rack counts journalism, academic research, government and NGO sites, Wikipedia, social platforms, and third-party corporate content as "earned." Muck Rack's own staff have had to defend the categorization publicly.</li>
+      <li><strong>By PESO standards, much of it isn't Earned.</strong> Under the <a href="peso.html">PESO model</a>, Reddit threads, forums, and social posts are <strong>Shared</strong> media, not Earned. Separate journalism out and you're closer to a quarter of citations.</li>
+      <li><strong>Other studies find different leaders.</strong> Profound's analysis of 30 million citations found Wikipedia was ChatGPT's top source (about 48% of its top-ten citations) while Reddit led for Google AI Overviews and Perplexity. Similarweb found Wikipedia and Reddit each made up about 12–13% of U.S. ChatGPT citations in early 2026.</li>
+      <li><strong>It shifts fast and varies by engine.</strong> Semrush tracked ChatGPT abruptly cutting its citations of Reddit and Wikipedia in September 2025. A citation also isn't proof the source shaped the answer, since models also draw on training data that isn't cited at all.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">What survives the caveats</div>
+    <p>Across every study, paid placements are a tiny share of what AI cites, and AI favors sources it treats as independent: encyclopedias, news outlets, government and academic sites, and large communities of real users. The exact share varies by engine and month, but the direction matches everything on this page. <strong>Third-party presence is what gets repeated, and you can't buy your way into it.</strong></p>
+    <p>The practical implication goes straight back to Section 2 and the <a href="earning-earned.html">Earning Earned</a> reading: original data, credible experts, and stories worth covering are now how a brand shows up in AI answers as well as in the news.</p>
+    <p>For the click data behind the shift, a side-by-side of the competing studies, and what PR teams are doing about it, see <a href="earned-media-ai.html">Earned Media &amp; AI Search</a>.</p>
+  </div>
+
+  <div class="takeaway">
+    <div class="takeaway-label">Takeaway</div>
+    <ul>
+      <li>AI assistants overwhelmingly cite unpaid, third-party sources. Paid content is close to invisible.</li>
+      <li>The headline "84% earned" comes from a vendor with a product to sell and a broad definition of earned.</li>
+      <li>By PESO standards, a large share of AI citations are Shared (Reddit, social), not Earned. Journalism is about a quarter.</li>
+      <li>Engines differ and change month to month. Treat any single number as a snapshot.</li>
+      <li>The direction is solid: the gatekeeper logic of PR now applies to machines as well as editors.</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CLOSING
+     ============================================================ -->
+<section class="section" id="closing">
+  <h2>What You Should Be Able to Do Now</h2>
+
+  <p>You should be able to <strong>tell PR, MPR, publicity, and corporate advertising apart</strong>, and say which ones a brand controls.</p>
+
+  <p>You should be able to <strong>explain the credibility–control trade-off</strong> and use the remove-the-name test to tell a real PR opportunity from something that should be bought as an ad.</p>
+
+  <p>You should be able to <strong>sequence a launch across PESO</strong> the way Dell did: earn first, then pay to extend.</p>
+
+  <p>You should be able to <strong>assess a crisis response</strong> against Tylenol, Perrier, and the 72-hour window, and <strong>fight a rumor</strong> with a credible third-party voice.</p>
+
+  <p>You should be able to <strong>evaluate a sponsorship or cause program</strong> on fit, clutter, activation budget, and a measurable objective, and explain why AVE isn't one.</p>
+
+  <p>And you should be able to <strong>read a headline statistic critically</strong>, whether it's "Ronaldo cost Coke $4 billion" or "84% of AI citations are earned," by asking who measured it, how they defined it, and what else could explain it.</p>
+
+  <div class="tagline">You can buy attention. You have to earn belief.</div>
+</section>
+
+
+<!-- ============================================================
+     RELATED READINGS
+     ============================================================ -->
+<section class="section" id="related">
+  <h2>Related Readings</h2>
+  <p class="more-views-intro">Shorter companion pieces that go deeper on topics this page only introduces.</p>
+
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · Publicity</div>
+    <div class="mv-title"><a href="earning-earned.html">How Can a Brand Earn More Publicity?</a></div>
+    <div class="mv-desc">The seven hooks that earn coverage, how small and large brands differ, how to pitch, and a five-point scorecard for deciding whether a story is earnable or should be bought.</div>
+  </div>
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · Word of Mouth</div>
+    <div class="mv-title"><a href="share-worthy.html">What Makes Content Shareable?</a></div>
+    <div class="mv-desc">Why people share brand content, Berger's STEPPS framework, and a five-question shareability test.</div>
+  </div>
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · Crisis</div>
+    <div class="mv-title"><a href="crisis-and-rumors.html">When It Goes Wrong: Crises and Rumors</a></div>
+    <div class="mv-desc">The full case set, the Tylenol/Perrier/Pepsi responses, the 72-hour playbook, how to fight a rumor and when refuting backfires, plus a scenario to work through.</div>
+  </div>
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · Cause</div>
+    <div class="mv-title"><a href="cause-marketing.html">Cause Marketing: Upside, Downside, and the Pullback</a></div>
+    <div class="mv-desc">When cause marketing works, why the failures are structural, the youth myth, and the retreat from visible campaigns.</div>
+  </div>
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · Source Effects</div>
+    <div class="mv-title"><a href="celebrity-effectiveness.html">Do Celebrities Actually Sell Anything?</a></div>
+    <div class="mv-desc">The paid-voice counterpart to earned credibility: what celebrity endorsement does and doesn't buy, and when it pays off.</div>
+  </div>
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · Sponsorship</div>
+    <div class="mv-title"><a href="sponsorship-ambush.html">Sponsorship &amp; Ambush Marketing</a></div>
+    <div class="mv-desc">Why brands sponsor, six questions before signing, the 2–3x activation rule, ambush marketing and Olympic Rule 40, and how to measure results.</div>
+  </div>
+  <div class="mv-item">
+    <div class="mv-source">Quick Hit · AI Search</div>
+    <div class="mv-title"><a href="earned-media-ai.html">Earned Media &amp; AI Search</a></div>
+    <div class="mv-desc">Why AI summaries reduce clicks, what AI assistants cite, why the studies disagree, and what it means for PR.</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     GLOSSARY
+     ============================================================ -->
+<section class="section" id="glossary">
+  <h2>Glossary: PR Basics</h2>
+  <dl class="glossary">
+    <dt>Advertising value equivalent (AVE)</dt>
+    <dd>A discredited PR metric that values coverage at what the same space or time would cost as advertising. Rejected by the Barcelona Principles because it measures cost, not effect.</dd>
+
+    <dt>Advocacy advertising</dt>
+    <dd>Corporate advertising that takes a position on a social, business, or environmental issue in a way that supports the sponsor's interests.</dd>
+
+    <dt>Ambush marketing</dt>
+    <dd>Marketing by a non-sponsor that creates the impression of official event sponsorship.</dd>
+
+    <dt>Barcelona Principles</dt>
+    <dd>Measurement standards adopted by AMEC in 2010 and updated in 2020 (3.0). They call for measuring outcomes and impact rather than outputs, and reject AVE.</dd>
+
+    <dt>Buzz creation</dt>
+    <dd>The organized effort to get people talking favorably about a brand and recommending it within their social networks.</dd>
+
+    <dt>Cause-related marketing (CRM)</dt>
+    <dd>A partnership with a nonprofit where the company's contribution depends on the customer doing something that benefits the firm, usually a purchase.</dd>
+
+    <dt>Commercial rumor</dt>
+    <dd>A widely circulated but unverified claim about a product, brand, company, or store. Either <em>conspiracy</em> (offensive practices) or <em>contamination</em> (repulsive product features).</dd>
+
+    <dt>Content marketing</dt>
+    <dd>Producing, curating, and sharing brand content built around customers' needs that delivers visible value. Owned media unless independently picked up.</dd>
+
+    <dt>Corporate advertising</dt>
+    <dd>Paid advertising that promotes the organization, its image, or its views rather than a specific product.</dd>
+
+    <dt>Event sponsorship</dt>
+    <dd>Tying a brand to a meaningful athletic, entertainment, cultural, or social activity in exchange for a fee.</dd>
+
+    <dt>Exclusive</dt>
+    <dd>Offering a single outlet first or sole rights to a story, to raise the odds of coverage.</dd>
+
+    <dt>Executive-statement release</dt>
+    <dd>A news release quoting a senior executive on issues, trends, or forecasts. Tends to run in the news section, where it carries more credibility.</dd>
+
+    <dt>General PR</dt>
+    <dd>PR concerned with all of an organization's publics: employees, investors, government, community. Contrasted with MPR.</dd>
+
+    <dt>Internal / external publics</dt>
+    <dd>Internal publics are already connected to the organization (employees, investors, community, current customers); external publics are not (media, government, the general public).</dd>
+
+    <dt>Issue advertising</dt>
+    <dd>A form of advocacy advertising, sometimes sponsored by organizations with no corporate tie, aimed at drawing attention to an issue.</dd>
+
+    <dt>Marketing public relations (MPR)</dt>
+    <dd>The part of PR aimed at customers and prospects in support of marketing objectives. Can be proactive or reactive.</dd>
+
+    <dt>Native advertising</dt>
+    <dd>Paid brand content designed to blend in with the editorial content around it. Subject to FTC disclosure guidance.</dd>
+
+    <dt>Opinion leader</dt>
+    <dd>A person whose views on a particular topic carry weight within their social network; an informer, persuader, and confirmer.</dd>
+
+    <dt>Proactive / reactive MPR</dt>
+    <dd>Proactive MPR seeks opportunities to communicate a brand's merits; reactive MPR responds to external pressures, usually negative.</dd>
+
+    <dt>Public relations (PR)</dt>
+    <dd>The management function that evaluates public attitudes, aligns the organization's policies with the public interest, and runs a program to earn public understanding and acceptance.</dd>
+
+    <dt>Publicity</dt>
+    <dd>News about a person, product, or organization in the media. A subset of PR; short-term, often uncontrolled, and either positive or negative.</dd>
+
+    <dt>Remove-the-name test</dt>
+    <dd>Asking whether a story would still interest anyone without the company's name in the headline. If not, it's an ad, not a PR opportunity.</dd>
+
+    <dt>Video news release (VNR)</dt>
+    <dd>Company-produced video packaged for stations to air as news, often without disclosing the source.</dd>
+
+    <dt>Word of mouth (WOM)</dt>
+    <dd>Informal communication among consumers about products and services.</dd>
+  </dl>
+</section>
+
+
+<!-- ============================================================
+     REFERENCES
+     ============================================================ -->
+<section class="section" id="refs">
+  <h2>References</h2>
+  <ul class="refs">
+    <li>Belch, G. E., &amp; Belch, M. A. <em>Advertising and Promotion: An Integrated Marketing Communications Perspective</em> (13th ed.), Ch. 17, "Public Relations, Publicity, and Corporate Advertising." McGraw Hill.</li>
+    <li>Andrews, J. C., &amp; Shimp, T. A. (2018). <em>Advertising, Promotion, and Other Aspects of Integrated Marketing Communications</em> (10th ed.), Ch. 21, "Public Relations, Content Marketing, Viral Marketing, and Sponsorships." Cengage.</li>
+    <li>Berger, J., Sorensen, A. T., &amp; Rasmussen, S. J. (2010). Positive effects of negative publicity: When negative reviews increase sales. <em>Marketing Science, 29</em>(5).</li>
+    <li>Ries, A., &amp; Ries, L. (2002). <em>The Fall of Advertising and the Rise of PR</em>. HarperBusiness.</li>
+    <li>Federal Trade Commission (2015). <em>Enforcement Policy Statement on Deceptively Formatted Advertisements.</em></li>
+    <li>Snopes. <a href="https://www.snopes.com/fact-check/ronaldo-snub-cost-coke-billions/" target="_blank" rel="noopener">Did Ronaldo's Coca-Cola snub cost the company billions?</a></li>
+    <li>City A.M. <a href="https://www.cityam.com/?p=1727706" target="_blank" rel="noopener">Explained: Why Cristiano Ronaldo's Coke snub at Euro 2020 was not the cause of Coca-Cola's share price drop.</a></li>
+    <li>PR News. <a href="https://www.prnewsonline.com/what-are-barcelona-principles/" target="_blank" rel="noopener">What are the Barcelona Principles?</a></li>
+    <li>React &amp; Share. <a href="https://www.reactandshare.com/blog/barcelona-principles-3-0-what-they-are-and-what-they-mean" target="_blank" rel="noopener">Barcelona Principles 3.0: What they are and what they mean.</a></li>
+    <li>Muck Rack (2026, May). <a href="https://media.muckrack.com/documents/What_Is_AI_Reading__May_2026.pdf" target="_blank" rel="noopener"><em>What Is AI Reading?</em></a> See also the <a href="https://aimagazine.com/globenewswire/3290268" target="_blank" rel="noopener">May 2026 release</a>.</li>
+    <li>Muck Rack (2025, December). <a href="https://a.storyblok.com/f/285956001491051/f0e79f943b/muckrack-generativepulse2025-1.pdf" target="_blank" rel="noopener"><em>What Is AI Reading?</em></a></li>
+    <li>Unite.AI (2026). <a href="https://www.unite.ai/?p=496477" target="_blank" rel="noopener">Muck Rack's "What Is AI Reading?" report finds journalism's AI citation share falls to 22%.</a></li>
+    <li>Dzugan, M., &amp; Zebian, L. <a href="https://www.prdaily.com/what-does-earned-mean-in-the-age-of-ai/" target="_blank" rel="noopener">What does "earned" mean in the age of AI?</a> PR Daily.</li>
+    <li>Search Engine Roundtable (2025). <a href="https://www.seroundtable.com/chatgpt-google-aio-sources-39578.html" target="_blank" rel="noopener">ChatGPT mostly sources Wikipedia; Google AI Overviews mostly source Reddit</a> (Profound study).</li>
+    <li>Semrush (2025). <a href="https://www.semrush.com/blog/most-cited-domains-ai/" target="_blank" rel="noopener">The most-cited domains in AI: A 3-month study.</a></li>
+    <li>Similarweb (2026). <a href="https://aisearch.similarweb.com/blog/most-cited-domains-llms/" target="_blank" rel="noopener">The most cited domains by LLMs and the signals that get you cited.</a></li>
+  </ul>
+</section>
+
+<nav class="unit-nav">
+  <a class="unit-nav-prev" href="media-planning-digital.html">
+    <span class="unit-nav-label">&larr; Previous</span>
+    <span class="unit-nav-title">Digital Media</span>
+    <span class="unit-nav-tease">The last of the media planning pages.</span>
+  </a>
+  <a class="unit-nav-next" href="earning-earned.html">
+    <span class="unit-nav-label">Next &rarr;</span>
+    <span class="unit-nav-title">Earning Earned</span>
+    <span class="unit-nav-tease">How to make a story a third party will actually tell.</span>
+  </a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Curtis B. Matthews</div>
+    <div>Indiana University South Bend</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+<script src="assets/scrollspy.js"></script>
+</body>
+</html>
