@@ -144,17 +144,22 @@ const navConfig = {
             ]
           },
           {
-            title: 'Media Planning',
+            title: 'Media Planning & PR',
             items: [
               { label: 'Media Planning Basics', href: 'media-planning.html' },
               { separator: true, dashed: true },
               { label: 'Traditional Media',     href: 'media-planning-traditional.html' },
               { label: 'Digital Media',         href: 'media-planning-digital.html' },
               { separator: true, dashed: true },
-              // Future "think about this" pages
-              { label: 'CTV',                   href: 'media-planning-ctv.html',         muted: true, disabled: true },
-              { label: 'Email',                 href: 'media-planning-email.html',       muted: true, disabled: true },
-              { label: 'Geolocation',           href: 'media-planning-geo.html',         muted: true, disabled: true }
+              // PR: the main page, then its companion pages.
+              { label: 'PR Basics',             href: 'pr-basics.html' },
+              { label: 'Earning Earned',        href: 'earning-earned.html' },
+              { label: 'Share-Worthy',          href: 'share-worthy.html' },
+              { label: 'Crises & Rumors',       href: 'crisis-and-rumors.html' },
+              { label: 'Cause Marketing',       href: 'cause-marketing.html' },
+              { label: 'Do Celebrities Sell?',  href: 'celebrity-effectiveness.html' },
+              { label: 'Sponsorship & Ambush',  href: 'sponsorship-ambush.html' },
+              { label: 'Earned Media & AI',     href: 'earned-media-ai.html' }
             ]
           }
         ]
